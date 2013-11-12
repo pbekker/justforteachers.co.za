@@ -1,0 +1,108 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 07.00.17            *****/
+/************************************************************/
+/****** Object:  StoredProcedure {databaseOwner}[jb_DeleteClassifieds]    Script Date: 08/15/2011 00:00:46 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_DeleteClassifieds]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_DeleteClassifieds]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanGetByModuleID]    Script Date: 08/15/2011 00:00:46 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanGetByModuleID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanGetByModuleID]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_DeleteClassifieds]    Script Date: 08/15/2011 00:01:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_DeleteClassifieds]
+(
+	@ItemID INT,
+	@mode nvarchar(10) = 'UDF' 
+
+)
+AS
+SET NOCOUNT ON
+DECLARE @ModuleID int
+DECLARE @CategoryID int 
+SELECT @CategoryID = CategoryID, @ModuleID = ModuleID FROM jb_ClassifiedsItem WHERE  ItemID = @ItemID
+SELECT @mode = SettingValue FROM {objectQualifier}ModuleSettings WHERE ModuleID = @ModuleID AND SettingName = 'PF_ItemsCountOption'
+
+BEGIN
+	BEGIN TRAN			
+		DELETE FROM jb_ItemFile WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ItemAttribute WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ItemReview WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ItemImage WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ItemCategory WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ItemVideo WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_JobApplication WHERE JobID=@ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ClassifiedsItem WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER	
+		IF @mode  = 'TABLE'
+			BEGIN				
+				EXEC jb_UtilUpdateItemsCount @CategoryID, 0
+			END
+		COMMIT TRAN -- No Errors, so go ahead
+		RETURN
+	ERR_HANDLER:
+		ROLLBACK TRAN
+		RETURN
+END
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanGetByModuleID]    Script Date: 08/15/2011 00:01:14 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_SubscriptionPlanGetByModuleID]
+		@ModuleID	int,
+		@Key nvarchar(20) = 'ACTIVE',
+		@GroupName nvarchar(50) 
+	AS
+	SET NOCOUNT ON
+
+
+	IF @GroupName = 'RenewalOption' 
+		SELECT jb_SubscriptionPlan.*	
+		FROM {databaseOwner}jb_SubscriptionPlan
+		WHERE ModuleID=@ModuleID
+		AND GroupName = @GroupName
+		AND IsActive >= CASE WHEN UPPER(@Key) = 'ADMIN' THEN 0  ELSE 1 END
+		ORDER BY ViewOrder ASC
+	ELSE
+		SELECT jb_SubscriptionPlan.*, {databaseOwner}{objectQualifier}Roles.RoleName		
+		FROM {databaseOwner}jb_SubscriptionPlan, {databaseOwner}{objectQualifier}Roles
+		WHERE ModuleID=@ModuleID
+		AND jb_SubscriptionPlan.RoleId = {databaseOwner}{objectQualifier}Roles.RoleID 
+		AND GroupName = @GroupName
+		AND IsActive >= CASE WHEN UPPER(@Key) = 'ADMIN' THEN 0  ELSE 1 END
+		ORDER BY ViewOrder ASC
+
+
+GO

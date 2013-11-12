@@ -1,0 +1,10 @@
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetLast20
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT Top 10 * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments 
+	WHERE PortalId=@PortalId Order By DateCreated
+
+GO
+

@@ -1,0 +1,218 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.40            *****/
+/************************************************************/
+
+ALTER TABLE {databaseOwner}[jb_SubscriptionPlan] ADD 
+[GroupName] [nvarchar] (50) NOT NULL CONSTRAINT [DF_jb_SubscriptionPlan_GroupName]  DEFAULT ('SubscriptionPlan'),
+[ListingPeriod] [int] NULL;
+
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanAdd]    Script Date: 03/17/2011 23:47:36 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanGetByModuleID]    Script Date: 03/17/2011 23:47:36 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanGetByModuleID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanGetByModuleID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanUpdate]    Script Date: 03/17/2011 23:47:36 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanUpdate]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanAdd]    Script Date: 03/17/2011 23:49:19 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_SubscriptionPlanAdd]
+		@PortalID int,
+		@ModuleID int,
+		@RoleID int,
+		@PlanName nvarchar(50),
+		@Description nvarchar(255),
+		@IsActive bit,
+		@ViewOrder int,
+		@Fee money,
+		@Limit int,
+		@ExpirationPeriod int,
+		@BillingFrequency int,
+		@BillingPeriod INT,
+		@GroupName nvarchar(50) = 'SubscriptionPlan',
+		@ListingPeriod INT = NULL
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_SubscriptionPlan
+		(PortalID,ModuleID,RoleID,PlanName,Description,IsActive,ViewOrder,Fee,Limit,ExpirationPeriod,BillingFrequency,BillingPeriod,GroupName,ListingPeriod)
+		VALUES
+		(@PortalID,@ModuleID,@RoleID,@PlanName,@Description,@IsActive,@ViewOrder,@Fee,@Limit,@ExpirationPeriod,@BillingFrequency,@BillingPeriod,@GroupName,@ListingPeriod)
+	SELECT SCOPE_IDENTITY()
+
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanGetByModuleID]    Script Date: 03/17/2011 23:49:19 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_SubscriptionPlanGetByModuleID]
+		@ModuleID	int,
+		@Key nvarchar(20) = 'ACTIVE',
+		@GroupName nvarchar(50) 
+	AS
+	SET NOCOUNT ON
+
+
+	IF @GroupName = 'RenewalOption' 
+		SELECT jb_SubscriptionPlan.*	
+		FROM {databaseOwner}jb_SubscriptionPlan
+		WHERE ModuleID=@ModuleID
+		AND GroupName = @GroupName
+		AND IsActive >= CASE WHEN UPPER(@Key) = 'ADMIN' THEN 0  ELSE 1 END
+		ORDER BY ViewOrder ASC
+	ELSE
+		SELECT jb_SubscriptionPlan.*, Roles.RoleName		
+		FROM {databaseOwner}jb_SubscriptionPlan, Roles
+		WHERE ModuleID=@ModuleID
+		AND jb_SubscriptionPlan.RoleId = Roles.RoleID 
+		AND GroupName = @GroupName
+		AND IsActive >= CASE WHEN UPPER(@Key) = 'ADMIN' THEN 0  ELSE 1 END
+		ORDER BY ViewOrder ASC
+
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanUpdate]    Script Date: 03/17/2011 23:49:19 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_SubscriptionPlanUpdate]
+		@PlanID int,
+		@PortalID int,
+		@ModuleID int,
+		@RoleID int,
+		@PlanName nvarchar(50),
+		@Description nvarchar(255),
+		@IsActive bit,
+		@ViewOrder int,
+		@Fee money,
+		@Limit int,
+		@ExpirationPeriod int,
+		@BillingFrequency int,
+		@BillingPeriod INT,
+		@GroupName nvarchar(50) = 'SubscriptionPlan',
+		@ListingPeriod INT = NULL
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_SubscriptionPlan SET 
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		RoleID=@RoleID,
+		PlanName=@PlanName,
+		Description=@Description,
+		IsActive=@IsActive,
+		ViewOrder=@ViewOrder,
+		Fee=@Fee,
+		Limit=@Limit,
+		ExpirationPeriod=@ExpirationPeriod,
+		BillingFrequency=@BillingFrequency,
+		BillingPeriod=@BillingPeriod,
+		GroupName=@GroupName,
+		ListingPeriod=@ListingPeriod
+	WHERE
+		PlanID=@PlanID
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscription_Jedi_ListingPeriodByUserID]    Script Date: 03/20/2011 12:03:31 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscription_Jedi_ListingPeriodByUserID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscription_Jedi_ListingPeriodByUserID]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscription_Jedi_ListingPeriodByUserID]    Script Date: 03/20/2011 12:02:28 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_MySubscription_Jedi_ListingPeriodByUserID]
+		@UserID INT,
+		@ModuleID INT	
+	AS
+	SET NOCOUNT ON
+	DECLARE	@PlanID INT
+	DECLARE @DefaultExpirationDays INT
+	SET @PlanID = (SELECT PlanID FROM jb_MySubscription WHERE UserID = @UserID)
+	SET  @DefaultExpirationDays = (SELECT ISNULL(SettingValue, 0) AS SettingValue FROM ModuleSettings WHERE  ModuleId = @ModuleID AND SettingName = 'ExpirationDays')
+	SELECT IsNull(ListingPeriod, @DefaultExpirationDays) FROM jb_SubscriptionPlan WHERE PlanID = @PlanID
+
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailAdd]    Script Date: 03/22/2011 12:00:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailAdd]    Script Date: 03/22/2011 12:00:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- *** Create stored procedures for table jb_OrderDetail ***
+CREATE PROCEDURE {databaseOwner}[jb_OrderDetailAdd]
+		@OrderID int,
+		@ProductID nvarchar(50),
+		@ProductName nvarchar(50),
+		@Quantity int,
+		@UnitCost money,
+		@Subtotal money,
+		@IsPayPal bit,
+		@txn_id nvarchar(255),
+		@ItemID INT = -1
+	AS
+	SET NOCOUNT ON
+	IF @OrderID = -6
+		SET @OrderID = null
+	INSERT INTO {databaseOwner}jb_OrderDetail
+		(OrderID,ProductID,ProductName,Quantity,UnitCost,Subtotal,IsPayPal,txn_id)
+		VALUES
+		(@OrderID,@ProductID,@ProductName,@Quantity,@UnitCost,@Subtotal,@IsPayPal,@txn_id)
+	
+	DECLARE @Reference nvarchar(50)
+	DECLARE @ListingPeriod int
+	SET @Reference = (SELECT Reference FROM {databaseOwner}jb_Orders WHERE OrderID = @OrderID)
+	IF (@Reference = 'SubscriptionFee')
+		BEGIN
+			EXEC jb_MySubscriptionUpdate_ByTxnID @txn_id
+		END
+	ELSE IF (@Reference = 'RenewalFee')
+		BEGIN
+			SET @ListingPeriod = (SELECT IsNull(ListingPeriod,0) FROM jb_SubscriptionPlan WHERE PlanID = @ProductID)
+			UPDATE jb_ClassifiedsItem SET ExpireDate = CASE 
+				WHEN @ListingPeriod = 0 THEN NULL  
+				ELSE DATEADD(DAY, @ListingPeriod, ExpireDate)	
+				END
+			WHERE ItemID = @ItemID
+		END	
+
+GO

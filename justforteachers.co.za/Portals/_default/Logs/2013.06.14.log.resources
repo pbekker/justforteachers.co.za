@@ -1,0 +1,13 @@
+2013-06-14 20:27:41,596 [simon-PC][Thread:8][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Data.SqlClient.SqlException (0x80131904): Timeout expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+   at System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at PetaPoco.Database.OpenSharedConnection()
+   at DotNetNuke.Data.PetaPoco.PetaPocoExt.ExecuteReader(Database database, String sql, Object[] args)
+   at DotNetNuke.Data.PetaPoco.PetaPocoHelper.ExecuteReader(String connectionString, CommandType type, String sql, Int32 timeout, Object[] args)
+   at DotNetNuke.Data.PetaPoco.PetaPocoHelper.ExecuteReader(String connectionString, CommandType type, String sql, Object[] args)
+   at DotNetNuke.Data.SqlDataProvider.ExecuteReader(String procedureName, Object[] commandParameters)
+   at DotNetNuke.Data.DataProvider.GetLanguages()
+   at DotNetNuke.Services.Localization.LocaleController.GetLocalesCallBack(CacheItemArgs cacheItemArgs)
+   at DotNetNuke.Common.Utilities.DataCache.GetCachedDataFromDictionary(CacheItemArgs cacheItemArgs, CacheItemExpiredCallback cacheItemExpired)

@@ -1,0 +1,8 @@
+2013-07-05 22:10:42,246 [simon-PC][Thread:32][ERROR] DotNetNuke.Modules.Admin.FileManager.FileManager - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at DotNetNuke.Services.FileSystem.FileManager.WriteFileToHttpContext(IFileInfo file, ContentDisposition contentDisposition)
+   at DotNetNuke.Services.FileSystem.FileManager.WriteFileToResponse(IFileInfo file, ContentDisposition contentDisposition)
+   at DotNetNuke.Modules.Admin.FileManager.FileManager.lnkDLFile_Command(Object sender, CommandEventArgs e)

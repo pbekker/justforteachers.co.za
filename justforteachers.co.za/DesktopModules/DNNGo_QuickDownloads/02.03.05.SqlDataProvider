@@ -1,0 +1,73 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+
+if  exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownloads]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	 ALTER TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloads] ADD
+	 CommentCount int NOT NULL CONSTRAINT DF_{objectQualifier}GO_QuickDownloads_CommentCount DEFAULT 0
+END
+
+GO
+
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownload_Themes]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}GO_QuickDownload_Themes](
+			[ID] [int] IDENTITY(1,1) NOT NULL,
+			[Name] [nvarchar](128) NOT NULL,
+			[Alias] [nvarchar](128) NOT NULL,
+			[Description] [nvarchar](512) NULL,
+			[Version] [nvarchar](32) NOT NULL,
+			[Picture] [nvarchar](512) NULL,
+			[Tags] [nvarchar](128) NULL,
+			[ModuleId] [int] NOT NULL,
+			[PortalId] [int] NOT NULL,
+			[LastTime] [datetime] NOT NULL,
+			[LastUser] [int] NOT NULL,
+			[LastIP] [varchar](32) NOT NULL,
+		 CONSTRAINT [PK_{objectQualifier}GO_QuickDownload_Themes] PRIMARY KEY CLUSTERED 
+		(
+			[ID] ASC
+		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+		) ON [PRIMARY]
+END
+
+GO
+
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownload_Comments]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}GO_QuickDownload_Comments](
+			[ID] [int] IDENTITY(1,1) NOT NULL,
+			[ArticleID] [int] NOT NULL,
+			[ParentID] [int] NOT NULL,
+			[LevelID] [int] NOT NULL,
+			[Title] [nvarchar](128) NOT NULL,
+			[ContentText] [ntext] NOT NULL,
+			[Status] [tinyint] NOT NULL,
+			[Email] [nvarchar](64) NULL,
+			[UserName] [nvarchar](32) NULL,
+			[CreateTime] [datetime] NOT NULL,
+			[UserID] [int] NOT NULL,
+			[UserIP] [varchar](32) NOT NULL,
+			[ModuleId] [int] NOT NULL,
+			[PortalId] [int] NOT NULL,
+		 CONSTRAINT [PK_{objectQualifier}GO_QuickDownload_Comments] PRIMARY KEY CLUSTERED 
+		(
+			[ID] ASC
+		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+		) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+END
+
+
+
+
+

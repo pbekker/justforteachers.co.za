@@ -1,0 +1,45 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Drop FAQs Table **/
+
+DROP TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadFiles]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloads]
+GO
+
+ DROP TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadCategory]
+GO
+
+
+ DROP TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadTemp]
+GO
+
+ DROP TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadLog]
+GO
+
+ DROP TABLE {databaseOwner}[{objectQualifier}GO_QuickDownload_Comments]
+GO
+
+ DROP TABLE {databaseOwner}[{objectQualifier}GO_QuickDownload_Themes]
+GO
+
+ DROP TABLE {databaseOwner}[{objectQualifier}GO_QuickDownload_Tags]
+GO
+
+ DROP TABLE {databaseOwner}[{objectQualifier}DNNGo_QuickDownloads_FilterServices]
+GO
+
+ 
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

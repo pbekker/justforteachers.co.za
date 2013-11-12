@@ -1,0 +1,14 @@
+/*-------- Container01 --------*/
+.Container01_style { min-width:160px;}
+.Container01_c_menu { float:left; }
+.Container01_c_help  { float:right; padding-top:2px; }
+.Container01_top_style { padding:5px 2px; margin:0px; }
+.Container01_top_height { height:25px; line-height:25px; }
+.Container01_content { padding:2px 2px 5px 2px; text-align:left; }
+.Container01_footer { height:12px; line-height:12px; overflow:hidden; }
+
+
+
+
+
+

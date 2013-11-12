@@ -1,0 +1,43 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.16            *****/
+/************************************************************/
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetResume_CreatedByUser]    Script Date: 02/26/2011 18:25:25 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetResume_CreatedByUser]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetResume_CreatedByUser]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetResume_CreatedByUser]    Script Date: 02/26/2011 18:25:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_GetResume_CreatedByUser]
+@ModuleID int,
+@CreatedByUser int
+as
+SELECT 'ListItemText' =
+     CASE
+		  WHEN (Authed = 0) THEN rm_FullName + ' (' + Cast(ItemID AS NVARCHAR) + ') -- '  +  'Not Authorized'
+		  WHEN (Authed = 1) AND (ExpireDate IS NULL) THEN rm_FullName + ' (' + Cast(ItemID AS NVARCHAR) + ') -- '  + 'Authorized, Will not expire.'
+          ELSE  rm_FullName + ' (' + Cast(ItemID AS NVARCHAR) + ') -- '  + 'Authorized, Exp. ' + Convert(varchar,ExpireDate,101)
+     END, 
+*, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+from   rm_ClassifiedsItem
+where  ModuleID = @ModuleID
+and    (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0
+and CreatedByUser = @CreatedByUser
+Order By CreatedDate Desc
+
+GO

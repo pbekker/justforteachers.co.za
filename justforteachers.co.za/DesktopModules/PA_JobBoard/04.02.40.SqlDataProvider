@@ -1,0 +1,78 @@
+﻿if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsCategories]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsCategories]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemAttributePopulateTemplate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemAttributePopulateTemplate]
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE procedure {databaseOwner}jb_GetClassifiedsCategories
+@ParentID   int,
+@moduleID	int,
+@mode nvarchar(10) = 'UDF' 
+as
+SELECT @mode = SettingValue FROM {objectQualifier}ModuleSettings WHERE ModuleID = @ModuleID AND SettingName = 'PF_ItemsCountOption'
+
+IF @mode  = 'UDF'
+	BEGIN
+		select CategoryID, CategoryName, {databaseOwner}jb_CountChildren(CategoryID, 0, Getdate()) AS ItemsCount, {databaseOwner}jb_CountChildrenAdmin(CategoryID, 0, Getdate()) AS ItemsCountAdmin
+		from   jb_ClassifiedsCat
+		where  (IsNull(ParentID, 0) = @ParentID AND moduleID = @moduleID)
+		order by CategoryName
+	END
+
+ELSE
+	BEGIN
+		select CategoryID, CategoryName, ItemCount AS ItemsCount, ItemCountAdmin AS ItemsCountAdmin
+		from   jb_ClassifiedsCat
+		where  (IsNull(ParentID, 0) = @ParentID AND moduleID = @moduleID)
+		order by CategoryName
+	END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_ItemAttributePopulateTemplate
+		@ItemID int
+	AS
+	IF EXISTS(SELECT PicklistValue FROM jb_Picklist WHERE PicklistGroup = 'AttributeTemplate')
+		BEGIN
+			Declare @PicklistValue nvarchar(50)
+			-- first we'll pull some records out of our table.
+			DECLARE CursorQuery CURSOR FOR
+			            SELECT PicklistValue FROM jb_Picklist WHERE PicklistGroup = 'AttributeTemplate' ORDER BY ViewOrder ASC
+			OPEN CursorQuery 
+			-- we're going to fetch our record into the @PicklistValue which we'll use for inserting a related record.
+			FETCH NEXT FROM CursorQuery 
+			INTO @PicklistValue
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+			-- now insert the @PicklistValue from the main table into the related table.
+			            INSERT INTO 
+			                        jb_ItemAttribute(ItemID,AttributeName)
+			            VALUES
+			                        (@ItemID,@PicklistValue)                    
+			            FETCH NEXT FROM CursorQuery 
+			            INTO @PicklistValue
+			END
+			CLOSE CursorQuery 
+			DEALLOCATE CursorQuery 
+			RETURN
+		END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON

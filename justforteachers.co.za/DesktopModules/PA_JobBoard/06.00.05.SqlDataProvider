@@ -1,0 +1,104 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.00.05            *****/
+/************************************************************/
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionUpdate_ByTxnID]    Script Date: 01/11/2011 17:23:09 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionUpdate_ByTxnID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionUpdate_ByTxnID]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionUpdate_ByTxnID]    Script Date: 01/11/2011 17:23:38 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_MySubscriptionUpdate_ByTxnID]
+		@txn_id nvarchar(255)
+	AS
+--Update jb_SubscriptionPlan
+-- This is called by jb_OrdersAdd
+DECLARE
+@PortalID int,
+@ModuleID int,
+@UserID int,
+@PlanID INT,
+@RoleID int,
+@TransactionID nvarchar(50),
+@DateCreated datetime,
+@DateStart datetime,
+@DateEnd datetime,
+@DateRenew datetime,
+@Limit int,
+@Used int,
+@IsActive bit,
+@Status nvarchar(255),
+@ExpirationPeriod int
+
+SELECT TOP 1
+@PortalID = {databaseOwner}jb_Orders.PortalID, 
+@ModuleID = {databaseOwner}jb_Orders.ModuleID, 
+@UserID	= {databaseOwner}jb_Orders.UserID, 
+@PlanID = {databaseOwner}jb_SubscriptionPlan.PlanID, 
+@RoleID = {databaseOwner}jb_SubscriptionPlan.RoleID, 
+@TransactionID = {databaseOwner}jb_Orders.txn_id,                      
+@DateCreated = {databaseOwner}jb_Orders.OrderDate, 
+@DateStart = {databaseOwner}jb_Orders.OrderDate,
+@DateEnd = DateAdd(DAY, {databaseOwner}jb_SubscriptionPlan.ExpirationPeriod, {databaseOwner}jb_Orders.OrderDate),
+@DateRenew = NULL,
+@Limit = {databaseOwner}jb_SubscriptionPlan.Limit,
+@ExpirationPeriod = {databaseOwner}jb_SubscriptionPlan.ExpirationPeriod
+FROM {databaseOwner}jb_OrderDetail 
+INNER JOIN {databaseOwner}jb_Orders ON {databaseOwner}jb_OrderDetail.txn_id = {databaseOwner}jb_Orders.txn_id 
+INNER JOIN {databaseOwner}jb_SubscriptionPlan ON {databaseOwner}jb_OrderDetail.ProductID = {databaseOwner}jb_SubscriptionPlan.PlanID
+WHERE {databaseOwner}jb_Orders.txn_id = @txn_id
+ORDER BY jb_Orders.[OrderID] DESC
+
+
+IF NOT EXISTS(SELECT * FROM {databaseOwner}jb_MySubscription WHERE UserID = @UserID)
+	BEGIN
+		
+		INSERT INTO {databaseOwner}jb_MySubscription
+		(PortalID,ModuleID,UserID,PlanID,TransactionID,DateCreated,DateStart,DateEnd,DateRenew,Limit,Used,IsActive,Status)
+		VALUES
+		(@PortalID,@ModuleID,@UserID,@PlanID,@TransactionID,@DateCreated,@DateStart,@DateEnd,@DateRenew,@Limit,NULL, 0,'ADD')
+	END
+ELSE
+
+	BEGIN
+		
+		SELECT @DateEnd = CASE WHEN jb_MySubscription.DateEnd > GetDate() THEN  DATEADD(DAY, @ExpirationPeriod, jb_MySubscription.DateEnd)  ELSE  DATEADD(DAY, @ExpirationPeriod, GetDate()) END, 
+			@Limit = @Limit + jb_MySubscription.[Limit],
+			@DateRenew = GetDate()
+		FROM {databaseOwner}jb_MySubscription WHERE jb_MySubscription.UserID = @UserID
+		
+		UPDATE {databaseOwner}jb_MySubscription 
+		SET 
+			PortalID=@PortalID,
+			ModuleID=@ModuleID,
+			UserID=@UserID,
+			PlanID=@PlanID,
+			TransactionID=@TransactionID,
+			--DateCreated=@DateCreated,
+			--DateStart=@DateStart,
+			DateEnd=@DateEnd,
+			DateRenew=@DateRenew,
+			Limit=@Limit,
+			--Used=@Used,
+			--IsActive=@IsActive,
+			Status='UPDATE'
+		WHERE jb_MySubscription.UserID = @UserID
+	END
+EXEC AddUserRole @PortalID, @UserID, @RoleID, NULL, NULL, NULL

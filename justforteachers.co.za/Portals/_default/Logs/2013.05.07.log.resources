@@ -1,0 +1,5 @@
+2013-05-07 19:47:27,357 [simon-PC][Thread:32][ERROR] DotNetNuke.Common.Utilities.Config - System.IO.IOException: The process cannot access the file 'C:\Users\sslater\Documents\My Web Sites\.DotNetNuke® Community Edition\Web.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at DotNetNuke.Common.Utilities.Config.Save(XmlDocument xmlDoc, String filename)

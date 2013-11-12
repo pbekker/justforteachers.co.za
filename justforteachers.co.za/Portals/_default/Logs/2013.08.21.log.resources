@@ -1,0 +1,8 @@
+2013-08-21 10:35:39,988 [mystique][Thread:10][ERROR] DotNetNuke.Services.FileSystem.FileServerHandler - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at DotNetNuke.Services.FileSystem.FileServerHandler.ProcessRequest(HttpContext context)

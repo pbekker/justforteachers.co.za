@@ -1,0 +1,77 @@
+﻿<div class="$EffectThemeName" id="DashBoard_PopularTab$ModuleID">
+	<div class="ranking_tabs">
+				<ul class="ui-tabs-nav clearfix">
+					<li class="ui-state-default"><a href="#tabs-1">Recent</a></li>
+					<li class="ui-state-default"><a href="#tabs-2">Popular</a></li>
+					<li class="ui-state-default"><a href="#tabs-3">Tag</a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="tabs-1" class="ui-tabs-panel ui-tabs-hide">
+						#set($DataList1 = ${xf.ViewArticleRankingList("time",1,${xf.ViewEffectSetting("Recent_Number",4)})})
+									#if($DataList1.Count > 0)
+										<ul class="news_toplist">
+										#foreach($DataItem in $DataList1)
+											<li class="clearfix">
+                                                 #if($DataItem.Photo != "")
+												<div class="post_thum"><a href="${xf.GoUrl($DataItem)}"><img src="${xf.ThumbnailUrl($DataItem,${xf.ViewEffectSetting("thumbnail_width",80)},80,"W")}"  alt="" title="" /></a>
+												</div>
+                                                #end
+												<div class="post_title"><a href="${xf.GoUrl($DataItem)}">$DataItem.Name</a></div>
+												<div class="post_date">Posted on $DataItem.PublishTime.ToString("MM/dd/yyyy")</div>
+												<div class="post_summary">
+													<!-- News Summary Begin-->
+													${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}
+													<!-- News Summary End-->
+												</div>
+										</li>
+										#end
+										</ul>
+						#end
+					</div>
+					<div id="tabs-2" class="ui-tabs-panel ui-tabs-hide">
+						#set($DataList3 = ${xf.ViewArticleRankingList("view",1,${xf.ViewEffectSetting("Popular_Number",4)})})
+									#if($DataList3.Count > 0)
+										<ul class="news_toplist">
+										#foreach($DataItem in $DataList3)
+											<li class="clearfix">
+                                                #if($DataItem.Photo != "")
+												<div class="post_thum"><a href="${xf.GoUrl($DataItem)}"><img src="${xf.ThumbnailUrl($DataItem,${xf.ViewEffectSetting("thumbnail_width",80)},80,"W")}"  alt="" title="" /></a>
+												</div>
+                                                #end
+												<h4 class="post_title"><a href="${xf.GoUrl($DataItem)}">$DataItem.Name</a></h4>
+												<div class="post_date">Posted on $DataItem.PublishTime.ToString("MM/dd/yyyy")</div>
+												<div class="post_summary">
+													<!-- News Summary Begin-->
+													${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}
+													<!-- News Summary End-->
+												</div>
+										</li>
+										#end
+										</ul>
+									#end
+					</div>
+					<div id="tabs-3" class="ui-tabs-panel ui-tabs-hide">
+						#set($DataList2 = ${xf.ViewTagList("random",1,${xf.ViewEffectSetting("Tags_Number",20)})})
+							#if($DataList2.Count > 0)
+								<div class="post_tabtag clearfix">
+									#foreach($DataItem in $DataList2)
+									       <a href="${xf.GoUrl($DataItem)}" >$DataItem.ContentText</a> 
+									#end  
+								</div>
+							#end
+					</div>
+			</div>
+	</div>
+</div>
+<script type="text/javascript">
+			jQuery(function(){
+				// Tabs
+				jQuery('#DashBoard_PopularTab$ModuleID .ranking_tabs').tabs({
+					event:'${xf.ViewEffectSetting("event","click")}', //The event on which to trigger the accordion.
+					fx:{ opacity: 'toggle',duration:${xf.ViewEffectSetting("duration","150")} },
+					collapsible:false, //Whether all the sections can be closed at once. Allows collapsing the active section by the triggering event (click is the default).
+					selected:0 
+
+				});
+			});
+</script>

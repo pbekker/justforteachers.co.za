@@ -1,0 +1,890 @@
+﻿/************************************************************/
+/*****        DNJ Uninstall.SqlDataProvider             *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+/*** DROP DNJ TABLE GO***/
+/*** DROP DNJ VIEW GO***/
+/*** DROP DNJ STORED PROCEDURE GO***/
+/*** DROP DNJ UDF - TABLE GO***/
+/*** DROP DNJ UDF - SCALAR GO***/
+
+/*** DROP DNJ TABLE ***/GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ClassifiedsCat_jb_ClassifiedsCat]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ClassifiedsCat] DROP CONSTRAINT [FK_jb_ClassifiedsCat_jb_ClassifiedsCat]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ClassifiedsItem_jb_ClassifiedsCat]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] DROP CONSTRAINT [FK_jb_ClassifiedsItem_jb_ClassifiedsCat]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ItemAttribute_jb_Item]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ItemAttribute] DROP CONSTRAINT [FK_jb_ItemAttribute_jb_Item]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ItemCategory_jb_Category]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ItemCategory] DROP CONSTRAINT [FK_jb_ItemCategory_jb_Category]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ItemCategory_jb_Item]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ItemCategory] DROP CONSTRAINT [FK_jb_ItemCategory_jb_Item]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ItemFile_jb_Item]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ItemFile] DROP CONSTRAINT [FK_jb_ItemFile_jb_Item]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ItemImage_jb_Item]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ItemImage] DROP CONSTRAINT [FK_jb_ItemImage_jb_Item]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ItemReview_jb_Item]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ItemReview] DROP CONSTRAINT [FK_jb_ItemReview_jb_Item]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ItemVideo_jb_ClassifiedsItem]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ItemVideo] DROP CONSTRAINT [FK_jb_ItemVideo_jb_ClassifiedsItem]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_JobApplication_jb_ClassifiedsItem]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_JobApplication] DROP CONSTRAINT [FK_jb_JobApplication_jb_ClassifiedsItem]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_UserCategory_jb_ClassifiedsCat]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_UserCategory] DROP CONSTRAINT [FK_jb_UserCategory_jb_ClassifiedsCat]
+GO
+/****** Object:  Table {databaseOwner}[jb_ClassifiedsCat]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ClassifiedsCat]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_ClassifiedsCat]
+GO
+/****** Object:  Table {databaseOwner}[jb_ClassifiedsItem]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ClassifiedsItem]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_ClassifiedsItem]
+GO
+/****** Object:  Table {databaseOwner}[jb_ItemAttribute]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemAttribute]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_ItemAttribute]
+GO
+/****** Object:  Table {databaseOwner}[jb_ItemCategory]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemCategory]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_ItemCategory]
+GO
+/****** Object:  Table {databaseOwner}[jb_ItemFile]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFile]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_ItemFile]
+GO
+/****** Object:  Table {databaseOwner}[jb_ItemImage]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImage]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_ItemImage]
+GO
+/****** Object:  Table {databaseOwner}[jb_ItemReview]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReview]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_ItemReview]
+GO
+/****** Object:  Table {databaseOwner}[jb_ItemVideo]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideo]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_ItemVideo]
+GO
+/****** Object:  Table {databaseOwner}[jb_JobApplication]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplication]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_JobApplication]
+GO
+/****** Object:  Table {databaseOwner}[jb_MySubscription]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscription]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_MySubscription]
+GO
+/****** Object:  Table {databaseOwner}[jb_OrderDetail]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetail]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_OrderDetail]
+GO
+/****** Object:  Table {databaseOwner}[jb_Orders]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_Orders]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_Orders]
+GO
+/****** Object:  Table {databaseOwner}[jb_Picklist]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_Picklist]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_Picklist]
+GO
+/****** Object:  Table {databaseOwner}[jb_rw_tabReviews]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_rw_tabReviews]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_rw_tabReviews]
+GO
+/****** Object:  Table {databaseOwner}[jb_SubscriptionPlan]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlan]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_SubscriptionPlan]
+GO
+/****** Object:  Table {databaseOwner}[jb_UserCategory]    Script Date: 11/03/2010 14:24:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategory]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_UserCategory]
+
+/*** DROP DNJ VIEW ***/GO
+/****** Object:  View {databaseOwner}[jb_ClassifiedsItem_vw]    Script Date: 11/03/2010 14:31:17 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ClassifiedsItem_vw]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+DROP VIEW {databaseOwner}[jb_ClassifiedsItem_vw]
+
+/*** DROP DNJ STORED PROCEDURE ***/GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_AddClassifieds]    Script Date: 11/03/2010 14:37:56 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_AddClassifieds]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_AddClassifieds]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_AddClassifiedsCategory]    Script Date: 11/03/2010 14:37:56 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_AddClassifiedsCategory]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_AddClassifiedsCategory]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ClassifiedsCheckCategoryPayment]    Script Date: 11/03/2010 14:37:56 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ClassifiedsCheckCategoryPayment]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ClassifiedsCheckCategoryPayment]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ClassifiedsCheckPosterPassword]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ClassifiedsCheckPosterPassword]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ClassifiedsCheckPosterPassword]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_DeleteClassifieds]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_DeleteClassifieds]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_DeleteClassifieds]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_DeleteClassifiedsCategory]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_DeleteClassifiedsCategory]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_DeleteClassifiedsCategory]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetAutoCompletionList]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetAutoCompletionList]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetAutoCompletionList]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetCategoryName]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetCategoryName]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetCategoryName]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifieds]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifieds]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifieds]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsCategories]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsCategories]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsCategories]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsCategoriesCompleteList]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsCategoriesCompleteList]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsCategoriesCompleteList]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsCategoriesCount]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsCategoriesCount]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsCategoriesCount]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Adv]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsSearch_Adv]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Adv]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Bsc]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsSearch_Bsc]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Bsc]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Cri]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsSearch_Cri]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Cri]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetMainImage]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetMainImage]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetMainImage]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetSingleClassifieds]    Script Date: 11/03/2010 14:37:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetSingleClassifieds]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetSingleClassifieds]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetSingleClassifiedsCategory]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetSingleClassifiedsCategory]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetSingleClassifiedsCategory]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetSingleClassifiedsPhoto]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetSingleClassifiedsPhoto]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetSingleClassifiedsPhoto]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ImageFileName_Update]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ImageFileName_Update]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ImageFileName_Update]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemAttributeAdd]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemAttributeAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemAttributeAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemAttributeByjb_Item]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemAttributeByjb_Item]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemAttributeByjb_Item]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemAttributeCountAll]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemAttributeCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemAttributeCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemAttributeDelete]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemAttributeDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemAttributeDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemAttributeDeleteAll]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemAttributeDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemAttributeDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemAttributeGet]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemAttributeGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemAttributeGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemAttributeGetAll]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemAttributeGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemAttributeGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemAttributePopulateTemplate]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemAttributePopulateTemplate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemAttributePopulateTemplate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemAttributeUpdate]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemAttributeUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemAttributeUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemCategoryAdd]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemCategoryAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemCategoryAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemCategoryByjb_Category]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemCategoryByjb_Category]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemCategoryByjb_Category]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemCategoryByjb_Item]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemCategoryByjb_Item]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemCategoryByjb_Item]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemCategoryCheckDuplicate]    Script Date: 11/03/2010 14:37:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemCategoryCheckDuplicate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemCategoryCheckDuplicate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemCategoryCountAll]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemCategoryCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemCategoryCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemCategoryDelete]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemCategoryDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemCategoryDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemCategoryDeleteAll]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemCategoryDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemCategoryDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemCategoryGet]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemCategoryGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemCategoryGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemCategoryGetAll]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemCategoryGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemCategoryGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileAdd]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileByjb_Item]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileByjb_Item]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileByjb_Item]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileCountAll]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileCountFilesByItemID]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileCountFilesByItemID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileCountFilesByItemID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileDelete]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileDeleteAll]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileGet]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileGetAll]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileUpdate]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileUpdateUtil]    Script Date: 11/03/2010 14:37:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileUpdateUtil]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileUpdateUtil]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemImageAdd]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImageAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemImageAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemImageByjb_Item]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImageByjb_Item]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemImageByjb_Item]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemImageCountAll]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImageCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemImageCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemImageDelete]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImageDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemImageDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemImageDeleteAll]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImageDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemImageDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemImageGet]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImageGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemImageGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemImageGetAll]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImageGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemImageGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemImageGetMainImageID]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImageGetMainImageID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemImageGetMainImageID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemImageUpdate]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImageUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemImageUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemImageUpdateUtil]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemImageUpdateUtil]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemImageUpdateUtil]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReview_Jedi_Approve]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReview_Jedi_Approve]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReview_Jedi_Approve]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReview_Jedi_Byjb_Item]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReview_Jedi_Byjb_Item]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReview_Jedi_Byjb_Item]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReview_Jedi_GetAverageByItemID]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReview_Jedi_GetAverageByItemID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReview_Jedi_GetAverageByItemID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReview_Jedi_HelpfulYesNoIncrement]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReview_Jedi_HelpfulYesNoIncrement]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReview_Jedi_HelpfulYesNoIncrement]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReview_Jedi_ModifyReview]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReview_Jedi_ModifyReview]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReview_Jedi_ModifyReview]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReview_Jedi_ReviewCountByItemID]    Script Date: 11/03/2010 14:38:00 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReview_Jedi_ReviewCountByItemID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReview_Jedi_ReviewCountByItemID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReviewAdd]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReviewAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReviewAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReviewByjb_Item]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReviewByjb_Item]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReviewByjb_Item]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReviewCountAll]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReviewCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReviewCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReviewDelete]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReviewDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReviewDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReviewDeleteAll]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReviewDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReviewDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReviewGet]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReviewGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReviewGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReviewGetAll]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReviewGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReviewGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemReviewUpdate]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemReviewUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemReviewUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemUpdate_Jedi_FileNameTG]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemUpdate_Jedi_FileNameTG]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemUpdate_Jedi_FileNameTG]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoAdd]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoByjb_ClassifiedsItem]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoByjb_ClassifiedsItem]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoByjb_ClassifiedsItem]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoCountAll]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoDelete]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoDeleteAll]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoGet]    Script Date: 11/03/2010 14:38:01 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoGetAll]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoUpdate]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoUpdateUtil]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoUpdateUtil]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoUpdateUtil]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationAdd]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationByjb_ClassifiedsItem]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationByjb_ClassifiedsItem]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationByjb_ClassifiedsItem]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationCountAll]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationDelete]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationDeleteAll]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGet]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGetAll]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGetByUser]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationGetByUser]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationGetByUser]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationUpdate]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscription_Verify]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscription_Verify]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscription_Verify]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionAdd]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionCountAll]    Script Date: 11/03/2010 14:38:02 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionDelete]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionDeleteAll]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionGet]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionGetAll]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionGetByModuleID]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionGetByModuleID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionGetByModuleID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionGetByUserID]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionGetByUserID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionGetByUserID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionUpdate]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionUpdate_ByTxnID]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionUpdate_ByTxnID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionUpdate_ByTxnID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscriptionUpdate_OverrideByAdmin]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscriptionUpdate_OverrideByAdmin]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscriptionUpdate_OverrideByAdmin]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetail_CountBoughtByThisUser]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetail_CountBoughtByThisUser]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetail_CountBoughtByThisUser]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailAdd]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailBy_pp_txn_id]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailBy_pp_txn_id]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailBy_pp_txn_id]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailByjb_Orders]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailByjb_Orders]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailByjb_Orders]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailCountAll]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailDelete]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailDeleteAll]    Script Date: 11/03/2010 14:38:03 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailGet]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailGetAll]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailUpdate]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_Orders_pp_IsDuplicate]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_Orders_pp_IsDuplicate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_Orders_pp_IsDuplicate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersAdd]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersByjb_Customer]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersByjb_Customer]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersByjb_Customer]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersByjb_Customer_pp_payer_email]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersByjb_Customer_pp_payer_email]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersByjb_Customer_pp_payer_email]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersCount_pp_ByTransactionID]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersCount_pp_ByTransactionID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersCount_pp_ByTransactionID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersCountAll]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersDelete]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersDelete_pp]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersDelete_pp]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersDelete_pp]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersDeleteAll]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersGet]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersGet_pp]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersGet_pp]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersGet_pp]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersGet_pp_CheckIPNCompleted]    Script Date: 11/03/2010 14:38:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersGet_pp_CheckIPNCompleted]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersGet_pp_CheckIPNCompleted]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersGet_pp_SinglePriceCheck]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersGet_pp_SinglePriceCheck]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersGet_pp_SinglePriceCheck]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersGetAll]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersGetByModuleID]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersGetByModuleID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersGetByModuleID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersGetByUserID]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersGetByUserID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersGetByUserID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersLogin]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersLogin]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersLogin]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersUpdate]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersUpdate_lc_PriceCheck]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersUpdate_lc_PriceCheck]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersUpdate_lc_PriceCheck]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersUpdate_pp]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersUpdate_pp]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersUpdate_pp]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrdersUpdate_pp_PriceCheck]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrdersUpdate_pp_PriceCheck]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrdersUpdate_pp_PriceCheck]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_PicklistAdd]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_PicklistAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_PicklistAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_PicklistCountAll]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_PicklistCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_PicklistCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_PicklistCountAllByGroup]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_PicklistCountAllByGroup]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_PicklistCountAllByGroup]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_PicklistDelete]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_PicklistDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_PicklistDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_PicklistDeleteAll]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_PicklistDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_PicklistDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_PicklistGet]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_PicklistGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_PicklistGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_PicklistGetAll]    Script Date: 11/03/2010 14:38:05 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_PicklistGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_PicklistGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_PicklistGetByGroup]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_PicklistGetByGroup]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_PicklistGetByGroup]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_PicklistGetByGroup_DefaultSortOption]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_PicklistGetByGroup_DefaultSortOption]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_PicklistGetByGroup_DefaultSortOption]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_PicklistUpdate]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_PicklistUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_PicklistUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_rw_CheckProductIDExist]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_rw_CheckProductIDExist]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_rw_CheckProductIDExist]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_rw_DeleteProductID]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_rw_DeleteProductID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_rw_DeleteProductID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_rw_DeleteReview]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_rw_DeleteReview]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_rw_DeleteReview]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_rw_GetAllDistinctProductID]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_rw_GetAllDistinctProductID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_rw_GetAllDistinctProductID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_rw_GetAverage]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_rw_GetAverage]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_rw_GetAverage]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_rw_GetLastReview]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_rw_GetLastReview]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_rw_GetLastReview]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_rw_GetReviewCount]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_rw_GetReviewCount]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_rw_GetReviewCount]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_rw_GetReviews]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_rw_GetReviews]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_rw_GetReviews]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_rw_InsertReview]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_rw_InsertReview]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_rw_InsertReview]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlan_Jedi_GetSinglePlanFee]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlan_Jedi_GetSinglePlanFee]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlan_Jedi_GetSinglePlanFee]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanAdd]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanCountAll]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanDelete]    Script Date: 11/03/2010 14:38:06 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanDeleteAll]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanGet]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanGetAll]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanGetByModuleID]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanGetByModuleID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanGetByModuleID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanUpdate]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifieds]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UpdateClassifieds]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UpdateClassifieds]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifieds_approval]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UpdateClassifieds_approval]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UpdateClassifieds_approval]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifiedsAdsCount]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UpdateClassifiedsAdsCount]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UpdateClassifiedsAdsCount]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifiedsAuthed]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UpdateClassifiedsAuthed]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UpdateClassifiedsAuthed]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifiedsCategory]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UpdateClassifiedsCategory]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UpdateClassifiedsCategory]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifiedsViewCount]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UpdateClassifiedsViewCount]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UpdateClassifiedsViewCount]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryAdd]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategoryAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UserCategoryAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryByCategoryID]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategoryByCategoryID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UserCategoryByCategoryID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryByjb_ClassifiedsCat]    Script Date: 11/03/2010 14:38:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategoryByjb_ClassifiedsCat]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UserCategoryByjb_ClassifiedsCat]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryByUserID]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategoryByUserID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UserCategoryByUserID]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryCheckDuplicate]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategoryCheckDuplicate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UserCategoryCheckDuplicate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryCountAll]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategoryCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UserCategoryCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryDelete]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategoryDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UserCategoryDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryDeleteAll]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategoryDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UserCategoryDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryGet]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategoryGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UserCategoryGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryGetAll]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UserCategoryGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UserCategoryGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UtilDeleteRows]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UtilDeleteRows]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UtilDeleteRows]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UtilGetDistinctLocation]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UtilGetDistinctLocation]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UtilGetDistinctLocation]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UtilUpdateItemsCount]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UtilUpdateItemsCount]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UtilUpdateItemsCount]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGetByEmployer]    Script Date: 03/04/2011 00:00:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationGetByEmployer]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationGetByEmployer]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UtilXferLegacyData]    Script Date: 11/03/2010 14:38:08 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UtilXferLegacyData]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UtilXferLegacyData]
+
+
+
+/*** DROP DNJ UDF - TABLE ***/GO
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_udf_Split]    Script Date: 11/03/2010 14:49:41 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_udf_Split]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[jb_udf_Split]
+
+/*** DROP DNJ UDF - SCALAR ***/GO
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_BuildCategoryPath]    Script Date: 11/03/2010 14:53:56 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_BuildCategoryPath]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[jb_BuildCategoryPath]
+GO
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_CountChildren]    Script Date: 11/03/2010 14:53:56 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_CountChildren]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[jb_CountChildren]
+GO
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_CountChildrenAdmin]    Script Date: 11/03/2010 14:53:56 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_CountChildrenAdmin]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[jb_CountChildrenAdmin]
+GO
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_LPAD]    Script Date: 11/03/2010 14:53:56 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_LPAD]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[jb_LPAD]
+GO
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_udf_AttributeValueString]    Script Date: 11/03/2010 14:53:56 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_udf_AttributeValueString]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[jb_udf_AttributeValueString]
+GO
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_udf_GetAvgReview]    Script Date: 11/03/2010 14:53:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_udf_GetAvgReview]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[jb_udf_GetAvgReview]
+GO
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_udf_WordCount]    Script Date: 11/03/2010 14:53:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_udf_WordCount]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[jb_udf_WordCount]

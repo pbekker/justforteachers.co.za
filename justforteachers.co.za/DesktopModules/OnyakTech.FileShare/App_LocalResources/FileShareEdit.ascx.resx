@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lblAddCategory.Text" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="lblAddCategory.Help" xml:space="preserve">
+    <value>Type the name of a new category into the textbox provided and click Add Category</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>File Share Categories</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkEnabled.Text" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="chkEnableEmails.Text" xml:space="preserve">
+    <value>Allow Email Subscriptions</value>
+  </data>
+  <data name="chkIsRSS.Text" xml:space="preserve">
+    <value>Is RSS Feed</value>
+  </data>
+  <data name="chkPortalSpecific.Text" xml:space="preserve">
+    <value>Show on this portal only</value>
+  </data>
+  <data name="cmdAddCategory.Text" xml:space="preserve">
+    <value>Add Category</value>
+  </data>
+  <data name="lblCategoryDescription.Text" xml:space="preserve">
+    <value>Category Description</value>
+  </data>
+  <data name="lblCategoryImage.Help" xml:space="preserve">
+    <value>Enter the URL for the Category Image.  It must be fully qualified.</value>
+  </data>
+  <data name="lblCategoryImage.Text" xml:space="preserve">
+    <value>Category Image</value>
+  </data>
+  <data name="lblCategoryKeyWords.Help" xml:space="preserve">
+    <value>These are key words used to provide search results</value>
+  </data>
+  <data name="lblCategoryKeyWords.Text" xml:space="preserve">
+    <value>Key Words</value>
+  </data>
+  <data name="lblCurrentCategories.Help" xml:space="preserve">
+    <value>This is a list of current Categories.  To create a sub-category, select the parent category from below and then fill out the form on the right to add a new sub-category.</value>
+  </data>
+  <data name="lblCurrentCategories.Text" xml:space="preserve">
+    <value>Current Categories</value>
+  </data>
+  <data name="lblRSSFeedURL.Help" xml:space="preserve">
+    <value>If this Category is an RSS Feed, enter the RSS Feed URL Here.</value>
+  </data>
+  <data name="lblRSSFeedURL.Text" xml:space="preserve">
+    <value>Category URL or RSS Feed URL</value>
+  </data>
+  <data name="TopCategory.Text" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="CantEditMain.Text" xml:space="preserve">
+    <value>**You can't edit the selected category**</value>
+  </data>
+  <data name="Editing.Text" xml:space="preserve">
+    <value>Editing Category #</value>
+  </data>
+  <data name="lnkClear.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="lnkEditSelected.Text" xml:space="preserve">
+    <value>Edit Selected Category</value>
+  </data>
+  <data name="lnkRemoveCategory.Text" xml:space="preserve">
+    <value>Remove Category</value>
+  </data>
+  <data name="lnkUpdateCategory.Text" xml:space="preserve">
+    <value>Update Category</value>
+  </data>
+  <data name="NodeHasParent.Text" xml:space="preserve">
+    <value>**You must first remove all child categories**</value>
+  </data>
+  <data name="FilesInCat.Text" xml:space="preserve">
+    <value> Files are listed in this category</value>
+  </data>
+  <data name="RemoveCat.Text" xml:space="preserve">
+    <value>Are you sure you want to remove this category (all Files will be deleted)</value>
+  </data>
+  <data name="CATURL.Text" xml:space="preserve">
+    <value>&lt;b&gt;Direct URL: &lt;/b&gt;</value>
+  </data>
+  <data name="SecurityRoles.Text" xml:space="preserve">
+    <value>Check Roles that will have access to the files in this category</value>
+  </data>
+  <data name="lblPageHelp.Text" xml:space="preserve">
+    <value>&lt;p class="heading"&gt;File Category Help&lt;/p&gt;
+&lt;div class="content"&gt;
+Categories provide three major features:&lt;br /&gt;
+&lt;ol&gt;
+  &lt;li&gt;To organize files you upload to File Share into groups and secure them.&lt;/li&gt;
+  &lt;li&gt;To connect to the Amazon S3 Cloud where you can store files and list them here in the OnyakTech File Share module.  To sign up for the Amazon S3 Services, go to &lt;a href="http://aws.amazon.com"&gt;http://aws.amazon.com&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;To list files that already exist on a specific folder on your network by setting the UNC Patch for the Category.  When using the UNC Path, a File Share Scheduler will sync the files between the folder and File Share and these files do not get the same security features other files in File Share have.   To create a sub-category, first select the category you want to add sub-categories to before creating a new category.
+    &lt;ul&gt;
+      &lt;li&gt;To display a list of files from a folder in your local portal: Click the &amp;quot;Set to the local Portal Root&amp;quot; link. This will set the local folder path of the current portal. You can then modify to access a sub-folder. Then just provide a name for your Category and click Save. File Share will import all files and display for download&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Additional Display Options are in the Module Settings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="heading"&gt;Attribute Help&lt;/p&gt;
+&lt;div class="content"&gt; 
+  &lt;p&gt;Adding Attributes to a Category allow you to collect additional information about each file group as they are added and updated. The File Group Attributes are displayed to the users while viewing the File Group in the download detail view. &lt;/p&gt;
+  &lt;p&gt;Attributes are managed through the Attribute Manager and available portal wide to be assigned to Categories.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="heading"&gt;Category vs. File Group vs Files&lt;/p&gt;
+&lt;div class="content"&gt; 
+  &lt;p&gt;Each Category can contain multiple File Groups and each File Group can contain multiple Files. On the main view of this module you will see a list of entries (these are File Groups) and selecting one will show you the details of that File Group and all files available for download in that File Group. While viewing a File Group you can download individual files or add all files to your &amp;quot;File Bundle&amp;quot;. The File Bundle is a collection of files you have selected for download; clicking on &amp;quot;My File Bundle&amp;quot; will show you all of the files you have selected and from that screen you can download all selected files in a single zip file.&lt;/p&gt;
+  &lt;p&gt;Categories are managed here and displayed on the main view.  On the main view you can &amp;quot;Submit New File&amp;quot; that creates a new File Group where you upload the first file of a File Gruop and assign a Category.  After you save the File Group you are then asked to provide Attribute details if the Category you assigned to the File Group has Attributes assigned to it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr /&gt;</value>
+  </data>
+  <data name="lblAWSAccessKeyId.Help" xml:space="preserve">
+    <value>If you have an Amazon Simple Storage Service Account then enter the Access Key ID here to have the files accessible from this category.  Otherwise leave this field empty.</value>
+  </data>
+  <data name="lblAWSAccessKeyId.Text" xml:space="preserve">
+    <value>Amazon Access Key ID</value>
+  </data>
+  <data name="lblAWSSecretAccessKey.Help" xml:space="preserve">
+    <value>If you have an Amazon Simple Storage Service Account then enter the Secret Access Key here to have the files accessible from this category.  Otherwise leave this field empty.</value>
+  </data>
+  <data name="lblAWSSecretAccessKey.Text" xml:space="preserve">
+    <value>Amazon Secret Access Key</value>
+  </data>
+  <data name="lblUNCPath.Text" xml:space="preserve">
+    <value>Network or Local Path</value>
+  </data>
+  <data name="EmailRoles.Text" xml:space="preserve">
+    <value>Check Roles to Email New Files Notices</value>
+  </data>
+  <data name="lblAuthorizedUsers.Text" xml:space="preserve">
+    <value>Type User Name to Authorize User</value>
+  </data>
+  <data name="lnkAddUser.Text" xml:space="preserve">
+    <value>Add User</value>
+  </data>
+  <data name="MustEnterUserName.Text" xml:space="preserve">
+    <value>You must enter the user name of the person you want to give access .</value>
+  </data>
+  <data name="UserAdded.Text" xml:space="preserve">
+    <value>User has been authorized to the currently selected category</value>
+  </data>
+  <data name="UserNotFound.Text" xml:space="preserve">
+    <value>User was not found, please try again.</value>
+  </data>
+  <data name="lnkClearUsers.Text" xml:space="preserve">
+    <value>Clear Users - Allow All</value>
+  </data>
+  <data name="UsersCleared.Text" xml:space="preserve">
+    <value>Users for this file have been cleared. All users may now access this file group unless secured by Roles you have selected.</value>
+  </data>
+  <data name="lnkSetLocalUNCPath.Text" xml:space="preserve">
+    <value>Set to the local Portal Root</value>
+  </data>
+  <data name="AttributeAlreadyExists.Text" xml:space="preserve">
+    <value>The attribute already belongs to the selected category.</value>
+  </data>
+  <data name="lblAttributes.Text" xml:space="preserve">
+    <value>Attributes:</value>
+  </data>
+  <data name="lnkAddAttribute.Text" xml:space="preserve">
+    <value>Add Attribute</value>
+  </data>
+  <data name="lnkRemovedSelectedAttributes.Text" xml:space="preserve">
+    <value>Remove Selected Attributes</value>
+  </data>
+  <data name="RequiredAttributes.Text" xml:space="preserve">
+    <value>Category Attributes: (Select required or select to perform action)</value>
+  </data>
+  <data name="NoCategorySetForAttribute.Text" xml:space="preserve">
+    <value>The Attribute could not be assigned to the active Category.  Please select the Category from the Category list on the left and try again.</value>
+  </data>
+  <data name="lnkMoveSelectedDown.Text" xml:space="preserve">
+    <value>Move Selected Down</value>
+  </data>
+  <data name="lnkMoveSelectedUp.Text" xml:space="preserve">
+    <value>Move Selected Up</value>
+  </data>
+</root>

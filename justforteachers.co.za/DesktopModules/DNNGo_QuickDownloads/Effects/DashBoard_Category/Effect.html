@@ -1,0 +1,78 @@
+﻿<div class="$EffectThemeName">
+  #macro(ViewSubcategory $DataItemParent)
+  #set($ParentID = $DataItemParent.ID)
+  <ul class="category_list">
+    #foreach($DataItem in $DataList)
+        #if($DataItem.ParentID == $ParentID)
+          <li><a href='${xf.GoUrl($DataItem)}' title="$DataItem.Name">$DataItem.Name</a>
+            #if(${xf.ViewSubcategory($DataList,$DataItem)})
+                #ViewSubcategory2($DataItem)
+            #end
+          </li>
+        #end
+    #end
+ </ul>
+ #end
+
+
+
+ #macro(ViewSubcategory2 $DataItemParent)
+  #set($ParentID2 = $DataItemParent.ID)
+  <ul class="category_list">
+    #foreach($DataItem in $DataList)
+        #if($DataItem.ParentID == $ParentID2)
+          <li><a href='${xf.GoUrl($DataItem)}' title="$DataItem.Name">$DataItem.Name</a>
+             #if(${xf.ViewSubcategory($DataList,$DataItem)})
+                #ViewSubcategory3($DataItem)
+            #end
+          </li>
+        #end
+    #end
+ </ul>
+ #end
+
+   #macro(ViewSubcategory3 $DataItemParent)
+  #set($ParentID3 = $DataItemParent.ID)
+  <ul class="category_list">
+    #foreach($DataItem in $DataList)
+        #if($DataItem.ParentID == $ParentID3)
+          <li><a href='${xf.GoUrl($DataItem)}' title="$DataItem.Name">$DataItem.Name</a>
+             #if(${xf.ViewSubcategory($DataList,$DataItem)})
+                #ViewSubcategory4($DataItem)
+            #end
+          </li>
+        #end
+    #end
+ </ul>
+ #end
+
+  #macro(ViewSubcategory4 $DataItemParent)
+  #set($ParentID4 = $DataItemParent.ID)
+  <ul class="category_list">
+    #foreach($DataItem in $DataList)
+        #if($DataItem.ParentID == $ParentID4)
+          <li><a href='${xf.GoUrl($DataItem)}' title="$DataItem.Name">$DataItem.Name</a>
+          </li>
+        #end
+    #end
+ </ul>
+ #end
+
+
+
+
+
+<ul class="category_list">
+ #if($DataList.Count > 0) 
+    #foreach($DataItem in $DataList)
+        #if($DataItem.ParentID == 0)
+          <li><a href='${xf.GoUrl($DataItem)}' title="$DataItem.Name">$DataItem.Name</a>
+             #if(${xf.ViewSubcategory($DataList,$DataItem)})
+                #ViewSubcategory($DataItem)
+            #end
+          </li>
+        #end
+    #end
+ #end
+</ul>
+</div>

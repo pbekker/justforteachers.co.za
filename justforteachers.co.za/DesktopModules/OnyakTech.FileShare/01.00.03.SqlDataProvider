@@ -1,0 +1,21 @@
+CREATE NONCLUSTERED INDEX IX_OnyakTechFLSRFileHeader_Category ON {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader
+	(
+	CategoryId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+
+CREATE NONCLUSTERED INDEX IX_OnyakTechFLSRFileHeader_DateApproved ON {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader
+	(
+	DateApproved
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryTop40
+		@CategoryId int
+	AS
+	SET NOCOUNT ON
+	SELECT top 40 *  
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE CategoryId=@CategoryId    ORDER BY Premium DESC, DatePublished DESC 
+GO
+

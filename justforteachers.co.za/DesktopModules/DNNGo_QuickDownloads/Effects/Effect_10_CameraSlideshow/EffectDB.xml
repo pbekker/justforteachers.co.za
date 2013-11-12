@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DNNGo_QuickDownloads>
+  <XmlDB>
+    <Name>
+      <![CDATA[Effect_10_CameraSlideshow]]>
+    </Name>
+    <Description>
+      <![CDATA[Camera a Advanced jQuery slideshow with many effects,
+      transitions, adaptive layout, easy to customize,
+      using canvas and mobile ready.]]>
+    </Description>
+    <Version>
+      <![CDATA[01.00.00]]>
+    </Version>
+    <Thumbnails>
+      <![CDATA[http://www.dnngo.net/DesktopModules/DNNGo_QuickDownloads/Effects/Effect_10_CameraSlideshow/preview.jpg]]>
+    </Thumbnails>
+    <EffectScript>
+      <![CDATA[camera.js]]>
+    </EffectScript>
+    <GlobalScript>
+      <![CDATA[jquery.easing.js]]>
+    </GlobalScript>
+    <DisplayByNormal>
+      <![CDATA[Picture,ContentText,UrlLink]]>
+    </DisplayByNormal>
+    <DisplayByModule>
+      <![CDATA[Description,ViewType]]>
+    </DisplayByModule>
+    <DemoUrl>
+      <![CDATA[http://www.dnngo.net/OurModules/QuickDownloads.aspx]]>
+    </DemoUrl>
+    <SettingName>
+      <![CDATA[Effect]]>
+    </SettingName>
+    <DisplayEffect>
+      <![CDATA[true]]>
+    </DisplayEffect>
+    <DataListOption>
+      <![CDATA[Effect]]>
+    </DataListOption>
+  </XmlDB>
+</DNNGo_QuickDownloads>

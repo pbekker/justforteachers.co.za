@@ -1,0 +1,76 @@
+ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails ADD
+	UNCPathStore nvarchar(750) NULL
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsAdd
+		@OrderId int,
+		@FileId int,
+		@OriginalFileName nvarchar(255),
+		@FileHeaderId int,
+		@Status int,
+		@DateAdded datetime,
+		@DateProcessStart datetime,
+		@DateProcessEnd datetime,
+		@DeliveryType int,
+		@DeliveryEmailTo nvarchar(255),
+		@DirectDownloaded bit,
+		@FileSize bigint,
+		@AWSBucketName nvarchar(750),
+		@AWSKeyName nvarchar(750),
+		@AWSETag nvarchar(750),
+		@AWSAccessKeyID nvarchar(750),
+		@AWSSecretAccessKey nvarchar(750),
+		@UNCPathStore nvarchar(750)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails
+		(OrderId,FileId,OriginalFileName,FileHeaderId,Status,DateAdded,DateProcessStart,DateProcessEnd,DeliveryType,DeliveryEmailTo,DirectDownloaded,FileSize,AWSBucketName,AWSKeyName,AWSETag,AWSAccessKeyID,AWSSecretAccessKey,UNCPathStore)
+		VALUES
+		(@OrderId,@FileId,@OriginalFileName,@FileHeaderId,@Status,@DateAdded,@DateProcessStart,@DateProcessEnd,@DeliveryType,@DeliveryEmailTo,@DirectDownloaded,@FileSize,@AWSBucketName,@AWSKeyName,@AWSETag,@AWSAccessKeyID,@AWSSecretAccessKey,@UNCPathStore)
+	SELECT SCOPE_IDENTITY()
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsUpdate
+		@OrderDetailId int,
+		@OrderId int,
+		@FileId int,
+		@OriginalFileName nvarchar(255),
+		@FileHeaderId int,
+		@Status int,
+		@DateAdded datetime,
+		@DateProcessStart datetime,
+		@DateProcessEnd datetime,
+		@DeliveryType int,
+		@DeliveryEmailTo nvarchar(255),
+		@DirectDownloaded bit,
+		@FileSize bigint,
+		@AWSBucketName nvarchar(750),
+		@AWSKeyName nvarchar(750),
+		@AWSETag nvarchar(750),
+		@AWSAccessKeyID nvarchar(750),
+		@AWSSecretAccessKey nvarchar(750),
+		@UNCPathStore nvarchar(750)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails SET 
+		OrderId=@OrderId,
+		FileId=@FileId,
+		OriginalFileName=@OriginalFileName,
+		FileHeaderId=@FileHeaderId,
+		Status=@Status,
+		DateAdded=@DateAdded,
+		DateProcessStart=@DateProcessStart,
+		DateProcessEnd=@DateProcessEnd,
+		DeliveryType=@DeliveryType,
+		DeliveryEmailTo=@DeliveryEmailTo,
+		DirectDownloaded=@DirectDownloaded,
+		FileSize=@FileSize,
+		AWSBucketName=@AWSBucketName,
+		AWSKeyName=@AWSKeyName,
+		AWSETag=@AWSETag,
+		AWSAccessKeyID=@AWSAccessKeyID,
+		AWSSecretAccessKey=@AWSSecretAccessKey,
+		UNCPathStore=@UNCPathStore
+	WHERE
+		OrderDetailId=@OrderDetailId
+GO

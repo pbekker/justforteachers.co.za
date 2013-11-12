@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FtpAdvancedSettings.Text" xml:space="preserve">
+    <value>FTP - Advanced Settings</value>
+  </data>
+  <data name="FtpBasicSettings.Text" xml:space="preserve">
+    <value>FTP- Basic Settings</value>
+  </data>
+  <data name="FtpTestError.Text" xml:space="preserve">
+    <value>FTP Connection error: &lt;br /&gt;{0}</value>
+  </data>
+  <data name="FtpTestOK.Text" xml:space="preserve">
+    <value>The FTP Connection is valid.</value>
+  </data>
+  <data name="cmdTestFtpConnection.Text" xml:space="preserve">
+    <value>Test Connection</value>
+  </data>
+  <data name="lblFtpInfo.Text" xml:space="preserve">
+    <value>&lt;ul&gt;
+
+&lt;li&gt;&lt;a href="http://www.evotiva.com/Products/DNNGlobalStorage.aspx" target="_blank" class="CommandButton"&gt;DNNGlobalStorage&lt;/a&gt; can be connected to one or many FTP locations.&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+
+&lt;li&gt;You have to specify the server's  name or IP, and a user/password to access it.&lt;br /&gt;&lt;br /&gt;
+&lt;/li&gt;
+
+&lt;li&gt;It is recommended to map a FTP subfolder, not the root.&lt;/li&gt;
+
+&lt;/ul&gt;</value>
+  </data>
+  <data name="lblFtpIsDisabled.Help" xml:space="preserve">
+    <value>You can use this setting to temporarily 'turn off' all access to the configured Windows Azure Container.</value>
+  </data>
+  <data name="lblFtpIsDisabled.Text" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="lblFtpTest.Help" xml:space="preserve">
+    <value>Click on the [Test] button to verify the configured settings.</value>
+  </data>
+  <data name="lblFtpTest.Text" xml:space="preserve">
+    <value>Test Settings</value>
+  </data>
+  <data name="lblFtpServer.Help" xml:space="preserve">
+    <value>FTP host (server name or IP address).</value>
+  </data>
+  <data name="lblFtpServer.Text" xml:space="preserve">
+    <value>FTP Server</value>
+  </data>
+  <data name="lblEnforceReadOnlyAccess.Help" xml:space="preserve">
+    <value>Use this option to prevent any update on the FTP server. &lt;br /&gt;
+Files creation, update or rename requests will be ignored.&lt;br /&gt;
+This setting is useful if you want to 'plug' a FTP location you already have, ensuring that its content will not be updated in any way from the DotNetNuke site.</value>
+  </data>
+  <data name="lblEnforceReadOnlyAccess.Text" xml:space="preserve">
+    <value>Enforce Ready Only Access</value>
+  </data>
+  <data name="lblShowInfo.Help" xml:space="preserve">
+    <value>About FTP Storage.</value>
+  </data>
+  <data name="lblShowInfo.Text" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="MissingCredentials.Text" xml:space="preserve">
+    <value>Please check the provided FTP Credentials. </value>
+  </data>
+  <data name="ShowInfo.Text" xml:space="preserve">
+    <value>Show / Hide</value>
+  </data>
+  <data name="valFtpUser.ErrorMessage" xml:space="preserve">
+    <value>Please type your FTP User.</value>
+  </data>
+  <data name="valFtpPassword.ErrorMessage" xml:space="preserve">
+    <value>Please type your FTP Password.</value>
+  </data>
+  <data name="valFtpServer.ErrorMessage" xml:space="preserve">
+    <value>Please type the FTP server name or IP.</value>
+  </data>
+  <data name="valFtpServerPortRequired.ErrorMessage" xml:space="preserve">
+    <value>Please type a valid FTP server port.</value>
+  </data>
+  <data name="valFtpServerPortRequiredValue.ErrorMessage" xml:space="preserve">
+    <value>The Port needs to be an integer value.</value>
+  </data>
+  <data name="ConfigureLicenseFirst.Text" xml:space="preserve">
+    <value>Your license is invalid, or not suitable for your current environment. &lt;br /&gt;
+Without a license key, this product is fully functional on any 'localhost' or '*.local' site.&lt;br /&gt;
+Please configure your License before setting up the Windows Azure options.</value>
+  </data>
+  <data name="lblRootFolder.Help" xml:space="preserve">
+    <value>You can choose any (&lt;b&gt;already created&lt;/b&gt;) FTP folder to act as the root folder regarding the connection from this web site.&lt;br /&gt;&lt;br /&gt;
+This allows you to provide a segmented view of your FTP Connection, instead of providing access to all its content.&lt;br /&gt;&lt;br /&gt;
+Let's say you have lots of folders on your FTP secer, and you want to access from this web site just a specific folders tree, not everything.&lt;br /&gt;&lt;br /&gt;
+Example 1: /myfolder/&lt;br /&gt;
+Example 2: /myfolder/mysubfolder&lt;br /&gt;
+etc.&lt;br /&gt;
+Note: Depending on the remote FTP server type, you may have to type the folders path with the same 'case' as they are defined in the FTP Server.</value>
+  </data>
+  <data name="lblRootFolder.Text" xml:space="preserve">
+    <value>Root Folder</value>
+  </data>
+  <data name="lblHideFilesLocation.Help" xml:space="preserve">
+    <value>Instead of as FTP URLs, the files will be like served directly from your web site (not linked from their real location).</value>
+  </data>
+  <data name="lblHideFilesLocation.Text" xml:space="preserve">
+    <value>Hide Files Location</value>
+  </data>
+  <data name="lblFtpPassword.Help" xml:space="preserve">
+    <value>FTP User's password.</value>
+  </data>
+  <data name="lblFtpPassword.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="lblFtpServerPort.Help" xml:space="preserve">
+    <value>FTP Server Port (the standard port for FTP is 21)</value>
+  </data>
+  <data name="lblFtpServerPort.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="lblFtpUsePassiveMode.Help" xml:space="preserve">
+    <value>Transfer mode: Passive (recommented) or Active</value>
+  </data>
+  <data name="lblFtpUsePassiveMode.Text" xml:space="preserve">
+    <value>Use Passive Mode</value>
+  </data>
+  <data name="lblFtpUser.Help" xml:space="preserve">
+    <value>FTP User</value>
+  </data>
+  <data name="lblFtpUser.Text" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="FtpFolderNotFound.Text" xml:space="preserve">
+    <value>Could not read the configured FTP folder.</value>
+  </data>
+  <data name="lblAnonymousAccess.Help" xml:space="preserve">
+    <value>No user/password is required to access the FTP location.</value>
+  </data>
+  <data name="lblAnonymousAccess.Text" xml:space="preserve">
+    <value>Anonymous Access</value>
+  </data>
+  <data name="lblIncludeCredentialsInUrl.Help" xml:space="preserve">
+    <value>If enabled, and the connection was not configured to be anonymous, the generated URLs for the files will include the ftp user and password. An example of a complete FTP url is: ftp://user:password@server:port/path&lt;br /&gt;
+If it is disabled, and the connection was not configured to be anonymous, the access to the files will be the same as if 'Hide Files Location' was enabled.</value>
+  </data>
+  <data name="lblIncludeCredentialsInUrl.Text" xml:space="preserve">
+    <value>Include Credentials in URLs</value>
+  </data>
+  <data name="FullTrustRequired.Text" xml:space="preserve">
+    <value>This provider requires 'Full Trust' level for ASP.NET in the hosting environment (i.e. it does not work on 'Medium Trust').</value>
+  </data>
+  <data name="lblHttpPrefix.Help" xml:space="preserve">
+    <value>e.g. "http://www.example.com " or "http://www.example.com/whatever"&lt;br /&gt;&lt;br/&gt;
+Instead of FTP URLs, DNNGlobalStorage will generate HTTP URLs like  "HTTP Prefix" + "File Path within the defined 'Root Folder'". &lt;br /&gt;
+Example:&lt;br /&gt;
+- "HTTP Prefix" :  "http://www.example.com/whatever"&lt;br /&gt;
+- 'Root Folder" :  "/someuser/somefolder/"&lt;br /&gt;
+- Let's say there is a FTP file:  "/someuser/somefolder/ancc/image.png"&lt;br /&gt;&lt;br /&gt;
+=&gt; The URL will be generated as "http://www.example.com/whatever/ancc/image.png"&lt;br /&gt;
+It will be a regular HTPP url, with no authentication, and assuming the caller (web user client) will have access to this public HTTP URL.&lt;br /&gt;&lt;br /&gt;
+Note: 'Hide Files Location' has preference over this setting.</value>
+  </data>
+  <data name="lblHttpPrefix.Text" xml:space="preserve">
+    <value>HTTP Prefix</value>
+  </data>
+  <data name="valFtpServerPortValue.ErrorMessage" xml:space="preserve">
+    <value>The Port needs to be an integer value.</value>
+  </data>
+  <data name="MappingNotUnique.ErrorMessage" xml:space="preserve">
+    <value>There is already a mapping featuring the same key settings.</value>
+  </data>
+</root>

@@ -1,0 +1,2434 @@
+
+-- ***************  Deleting any existing stored procedures  ******************
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileComments ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByUserIdAndFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByUserIdAndFileId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileEmailList ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByEmailAddress') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByEmailAddress
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByPublisherId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByPublisherId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileFiles ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGetFileFilesByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGetFileFilesByFileId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileHeader ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByApprovedByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByApprovedByUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByArchived') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByArchived
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishing') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishing
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishingAndDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishingAndDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryIdActive') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryIdActive
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryIdActivePremium') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryIdActivePremium
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCreatedByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCreatedByUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByDateApproved') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByDateApproved
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEditorUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEditorUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEmailPublishDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEmailPublishDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcedPublishEmail') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcedPublishEmail
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcePublishToEmailWithDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcePublishToEmailWithDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLastViewDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLastViewDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLocked') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLocked
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPopUp') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPopUp
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPremium') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPremium
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByScanImageAndImageURL') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByScanImageAndImageURL
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileBySearchCategory') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileBySearchCategory
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByShowOnce') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByShowOnce
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByWebScanImage') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByWebScanImage
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFiles') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFiles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFilesBySearch') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFilesBySearch
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileSearchAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileSearchAll
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFilePublishers ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetPublishersByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetPublishersByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetPublishersByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetPublishersByPortalId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileRatingsLog ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByUserId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileReadLog ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByDateTracked') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByDateTracked
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByEmailAddress') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByEmailAddress
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByModuleId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRCategories ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByEmailPublishing') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByEmailPublishing
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByPortalId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSREmailSubscriptions ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByCategoryId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByCategoryId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByUserId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRGlobalSettings ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByPublisherId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByPublisherId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRMyFiles ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByUserId
+GO
+
+-- ***************  Create table definitions  ******************
+
+-- *** Create table OnyakTechFLSRFileComments ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileComments') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments (
+		 [FileCommentId] int IDENTITY (1, 1) NOT NULL,
+		 [FileId] int NOT NULL,
+		 [DateCreated] datetime NOT NULL,
+		 [UserId] int NOT NULL,
+		 [Comments] ntext NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL,
+		 [Approved] bit NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRFileComments') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileComments PRIMARY KEY CLUSTERED (FileCommentId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSRFileEmailList ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList (
+		 [FileEmailListId] int IDENTITY (1, 1) NOT NULL,
+		 [EmailAddress] nvarchar(100) NOT NULL,
+		 [ReadDate] datetime NOT NULL,
+		 [FirstName] nvarchar(32) NOT NULL,
+		 [LastName] nvarchar(32) NOT NULL,
+		 [OptOut] bit NOT NULL,
+		 [OptOutDate] datetime NOT NULL,
+		 [DateCreated] datetime NOT NULL,
+		 [PublisherId] int NOT NULL,
+		 [FileList] int NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL,
+		 [Enabled] bit NOT NULL,
+		 [OwnerUserId] int NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRFileEmailList') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileEmailList PRIMARY KEY CLUSTERED (FileEmailListId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSRFileFiles ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles (
+		 [FileFileId] int IDENTITY (1, 1) NOT NULL,
+		 [DateAdded] datetime NOT NULL,
+		 [FileSize] bigint NOT NULL,
+		 [FileType] nvarchar(150) NOT NULL,
+		 [FileName] nvarchar(255) NOT NULL,
+		 [FilePath] nvarchar(2000) NOT NULL,
+		 [FileURL] ntext NOT NULL,
+		 [FileId] int NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRFileFiles') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileFiles PRIMARY KEY CLUSTERED (FileFileId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSRFileHeader ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader (
+		 [FileId] int IDENTITY (1, 1) NOT NULL,
+		 [DateCreated] datetime NOT NULL,
+		 [DateModified] datetime NOT NULL,
+		 [DateApproved] datetime NOT NULL,
+		 [LastViewDate] datetime NOT NULL,
+		 [ArchiveDate] datetime NOT NULL,
+		 [DatePublished] datetime NOT NULL,
+		 [ReadCount] int NOT NULL,
+		 [EmailCount] int NOT NULL,
+		 [ReferralCount] int NOT NULL,
+		 [ApprovedByUserId] int NOT NULL,
+		 [CreatedByUserId] int NOT NULL,
+		 [EditorUserId] int NOT NULL,
+		 [Premium] bit NOT NULL,
+		 [KeyWords] nvarchar(500) NOT NULL,
+		 [PortalsVisibleOn] nvarchar(500) NOT NULL,
+		 [RolesVisibleTo] nvarchar(500) NOT NULL,
+		 [UsersVisibleTo] nvarchar(500) NOT NULL,
+		 [ForcePublishToEmail] bit NOT NULL,
+		 [EmailPublishDate] datetime NOT NULL,
+		 [EnableCategoryEmailPublishing] bit NOT NULL,
+		 [Locked] bit NOT NULL,
+		 [Archived] bit NOT NULL,
+		 [Notes] ntext NOT NULL,
+		 [PortalCreatedOnId] int NOT NULL,
+		 [ModuleId] int NOT NULL,
+		 [PositiveRatings] int NOT NULL,
+		 [NegativeRatings] int NOT NULL,
+		 [ShowOnce] bit NOT NULL,
+		 [ShowPopUp] bit NOT NULL,
+		 [ScanImage] bit NOT NULL,
+		 [RelatedWebSite] nvarchar(255) NOT NULL,
+		 [RelatedWebSiteImageURL] nvarchar(1000) NOT NULL,
+		 [Title] nvarchar(200) NOT NULL,
+		 [Summary] ntext NOT NULL,
+		 [Body] ntext NOT NULL,
+		 [ViewCount] int NOT NULL,
+		 [Published] bit NOT NULL,
+		 [CategoryId] int NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRFileHeader') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileHeader PRIMARY KEY CLUSTERED (FileId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSRFilePublishers ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers (
+		 [PublisherId] int IDENTITY (1, 1) NOT NULL,
+		 [CanEmailToCategories] bit NOT NULL,
+		 [AutoApprove] bit NOT NULL,
+		 [CanUploadEmailList] bit NOT NULL,
+		 [CanAttachFiles] bit NOT NULL,
+		 [AuthorizedPortals] nvarchar(500) NOT NULL,
+		 [AuthorizedRoles] nvarchar(500) NOT NULL,
+		 [UserId] int NOT NULL,
+		 [ExpiresDate] datetime NOT NULL,
+		 [DateCreated] datetime NOT NULL,
+		 [FileCount] int NOT NULL,
+		 [LastSubmissionId] int NOT NULL,
+		 [LastSubmissionDate] datetime NOT NULL,
+		 [BlackListed] bit NOT NULL,
+		 [Notes] ntext NOT NULL,
+		 [CanPostPremiumFiles] bit NOT NULL,
+		 [Image] ntext NOT NULL,
+		 [WebSite] nvarchar(200) NOT NULL,
+		 [EmailAddress] nvarchar(50) NOT NULL,
+		 [LinkBackURL] nvarchar(1000) NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL,
+		 [FileLimit] int NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRFilePublishers') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFilePublishers PRIMARY KEY CLUSTERED (PublisherId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSRFileRatingsLog ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog (
+		 [RatingsLogId] int IDENTITY (1, 1) NOT NULL,
+		 [UserId] int NOT NULL,
+		 [IPAddress] nvarchar(255) NOT NULL,
+		 [FileId] int NOT NULL,
+		 [PositiveRating] bit NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [DatePosted] datetime NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRFileRatingsLog') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileRatingsLog PRIMARY KEY CLUSTERED (RatingsLogId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSRFileReadLog ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog (
+		 [FileReadId] int IDENTITY (1, 1) NOT NULL,
+		 [WebRead] bit NOT NULL,
+		 [WebReadURL] nvarchar(2000) NOT NULL,
+		 [EmailRead] bit NOT NULL,
+		 [EmailAddress] nvarchar(75) NOT NULL,
+		 [HostAddress] nvarchar(255) NOT NULL,
+		 [HostName] nvarchar(255) NOT NULL,
+		 [UserAgent] nvarchar(255) NOT NULL,
+		 [DateTracked] datetime NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL,
+		 [FileId] int NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRFileReadLog') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileReadLog PRIMARY KEY CLUSTERED (FileReadId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSRCategories ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategories') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories (
+		 [FileCategoryId] int IDENTITY (1, 1) NOT NULL,
+		 [CategoryName] nvarchar(255) NOT NULL,
+		 [CategoryDescription] ntext NOT NULL,
+		 [CategoryImageURL] nvarchar(2000) NOT NULL,
+		 [DateAdded] datetime NOT NULL,
+		 [ParentCategoryId] int NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL,
+		 [IsPortalSpecific] bit NOT NULL,
+		 [CreatedByUserId] int NOT NULL,
+		 [EnableEmailPublishing] bit NOT NULL,
+		 [KeyWords] nvarchar(2000) NOT NULL,
+		 [Enabled] bit NOT NULL,
+		 [IsRSSFeed] bit NOT NULL,
+		 [RSSFeedURL] nvarchar(2000) NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRCategories') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRCategories PRIMARY KEY CLUSTERED (FileCategoryId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSREmailSubscriptions ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions (
+		 [EmailSubscriptionId] int IDENTITY (1, 1) NOT NULL,
+		 [UserId] int NOT NULL,
+		 [DateCreated] datetime NOT NULL,
+		 [CategoryId] int NOT NULL,
+		 [Enabled] bit NOT NULL,
+		 [DateOfOptOut] datetime NOT NULL,
+		 [EmailAddress] nvarchar(75) NOT NULL,
+		 [AllCategories] bit NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSREmailSubscriptions') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSREmailSubscriptions PRIMARY KEY CLUSTERED (EmailSubscriptionId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSRGlobalSettings ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings (
+		 [SettingId] int IDENTITY (1, 1) NOT NULL,
+		 [SettingKey] nvarchar(32) NOT NULL,
+		 [SettingValue] ntext NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL,
+		 [PublisherId] int NOT NULL,
+		 [FileId] int NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRGlobalSettings') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRGlobalSettings PRIMARY KEY CLUSTERED (SettingId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSRMyFiles ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles (
+		 [MyFilesSystemId] int IDENTITY (1, 1) NOT NULL,
+		 [UserId] int NOT NULL,
+		 [FileId] int NOT NULL,
+		 [DateAdded] datetime NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRMyFiles') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRMyFiles PRIMARY KEY CLUSTERED (MyFilesSystemId) ON [PRIMARY]
+GO
+
+-- ***************  Create relations (foreign keys)  ******************
+
+-- ***************  Create stored procedures  ******************
+
+-- *** Create stored procedures for table OnyakTechFLSRFileComments ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsAdd
+		@FileId int,
+		@DateCreated datetime,
+		@UserId int,
+		@Comments ntext,
+		@PortalId int,
+		@ModuleId int,
+		@Approved bit
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments
+		(FileId,DateCreated,UserId,Comments,PortalId,ModuleId,Approved)
+		VALUES
+		(@FileId,@DateCreated,@UserId,@Comments,@PortalId,@ModuleId,@Approved)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsUpdate
+		@FileCommentId int,
+		@FileId int,
+		@DateCreated datetime,
+		@UserId int,
+		@Comments ntext,
+		@PortalId int,
+		@ModuleId int,
+		@Approved bit
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments SET 
+		FileId=@FileId,
+		DateCreated=@DateCreated,
+		UserId=@UserId,
+		Comments=@Comments,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		Approved=@Approved
+	WHERE
+		FileCommentId=@FileCommentId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsDelete
+		@FileCommentId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments WHERE
+		FileCommentId=@FileCommentId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGet
+		@FileCommentId int
+	AS
+	SET NOCOUNT ON
+	SELECT *
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments WHERE
+		FileCommentId=@FileCommentId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT *
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByFileId
+		@Approved bit,
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments 
+	WHERE FileId=@FileId  AND Approved=@Approved Order By DateCreated
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByPortalId
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments 
+	WHERE PortalId=@PortalId Order By DateCreated
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByUserId
+		@UserId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments 
+	WHERE UserId=@UserId Order By DateCreated
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByUserIdAndFileId
+		@FileId int,
+		@UserId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments 
+	WHERE FileId=@FileId AND UserId=@UserId Order By DateCreated
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRFileEmailList ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListAdd
+		@EmailAddress nvarchar(100),
+		@ReadDate datetime,
+		@FirstName nvarchar(32),
+		@LastName nvarchar(32),
+		@OptOut bit,
+		@OptOutDate datetime,
+		@DateCreated datetime,
+		@PublisherId int,
+		@FileList int,
+		@PortalId int,
+		@ModuleId int,
+		@Enabled bit,
+		@OwnerUserId int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList
+		(EmailAddress,ReadDate,FirstName,LastName,OptOut,OptOutDate,DateCreated,PublisherId,FileList,PortalId,ModuleId,Enabled,OwnerUserId)
+		VALUES
+		(@EmailAddress,@ReadDate,@FirstName,@LastName,@OptOut,@OptOutDate,@DateCreated,@PublisherId,@FileList,@PortalId,@ModuleId,@Enabled,@OwnerUserId)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListUpdate
+		@FileEmailListId int,
+		@EmailAddress nvarchar(100),
+		@ReadDate datetime,
+		@FirstName nvarchar(32),
+		@LastName nvarchar(32),
+		@OptOut bit,
+		@OptOutDate datetime,
+		@DateCreated datetime,
+		@PublisherId int,
+		@FileList int,
+		@PortalId int,
+		@ModuleId int,
+		@Enabled bit,
+		@OwnerUserId int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList SET 
+		EmailAddress=@EmailAddress,
+		ReadDate=@ReadDate,
+		FirstName=@FirstName,
+		LastName=@LastName,
+		OptOut=@OptOut,
+		OptOutDate=@OptOutDate,
+		DateCreated=@DateCreated,
+		PublisherId=@PublisherId,
+		FileList=@FileList,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		Enabled=@Enabled,
+		OwnerUserId=@OwnerUserId
+	WHERE
+		FileEmailListId=@FileEmailListId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListDelete
+		@FileEmailListId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList WHERE
+		FileEmailListId=@FileEmailListId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGet
+		@FileEmailListId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList WHERE
+		FileEmailListId=@FileEmailListId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByEmailAddress
+		@EmailAddress nvarchar(100)
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList 
+	WHERE EmailAddress=@EmailAddress
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByModuleId
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList 
+	WHERE ModuleId=@ModuleId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByPortalId
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList 
+	WHERE PortalId=@PortalId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByPublisherId
+		@PublisherId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList 
+	WHERE PublisherId=@PublisherId
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRFileFiles ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesAdd
+		@DateAdded datetime,
+		@FileSize bigint,
+		@FileType nvarchar(150),
+		@FileName nvarchar(255),
+		@FilePath nvarchar(2000),
+		@FileURL ntext,
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles
+		(DateAdded,FileSize,FileType,FileName,FilePath,FileURL,FileId)
+		VALUES
+		(@DateAdded,@FileSize,@FileType,@FileName,@FilePath,@FileURL,@FileId)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesUpdate
+		@FileFileId int,
+		@DateAdded datetime,
+		@FileSize bigint,
+		@FileType nvarchar(150),
+		@FileName nvarchar(255),
+		@FilePath nvarchar(2000),
+		@FileURL ntext,
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles SET 
+		DateAdded=@DateAdded,
+		FileSize=@FileSize,
+		FileType=@FileType,
+		FileName=@FileName,
+		FilePath=@FilePath,
+		FileURL=@FileURL,
+		FileId=@FileId
+	WHERE
+		FileFileId=@FileFileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesDelete
+		@FileFileId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles WHERE
+		FileFileId=@FileFileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGet
+		@FileFileId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles WHERE
+		FileFileId=@FileFileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGetFileFilesByFileId
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles 
+	WHERE FileId=@FileId
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRFileHeader ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAdd
+		@DateCreated datetime,
+		@DateModified datetime,
+		@DateApproved datetime,
+		@LastViewDate datetime,
+		@ArchiveDate datetime,
+		@DatePublished datetime,
+		@ReadCount int,
+		@EmailCount int,
+		@ReferralCount int,
+		@ApprovedByUserId int,
+		@CreatedByUserId int,
+		@EditorUserId int,
+		@Premium bit,
+		@KeyWords nvarchar(500),
+		@PortalsVisibleOn nvarchar(500),
+		@RolesVisibleTo nvarchar(500),
+		@UsersVisibleTo nvarchar(500),
+		@ForcePublishToEmail bit,
+		@EmailPublishDate datetime,
+		@EnableCategoryEmailPublishing bit,
+		@Locked bit,
+		@Archived bit,
+		@Notes ntext,
+		@PortalCreatedOnId int,
+		@ModuleId int,
+		@PositiveRatings int,
+		@NegativeRatings int,
+		@ShowOnce bit,
+		@ShowPopUp bit,
+		@ScanImage bit,
+		@RelatedWebSite nvarchar(255),
+		@RelatedWebSiteImageURL nvarchar(1000),
+		@Title nvarchar(200),
+		@Summary ntext,
+		@Body ntext,
+		@ViewCount int,
+		@Published bit,
+		@CategoryId int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader
+		(DateCreated,DateModified,DateApproved,LastViewDate,ArchiveDate,DatePublished,ReadCount,EmailCount,ReferralCount,ApprovedByUserId,CreatedByUserId,EditorUserId,Premium,KeyWords,PortalsVisibleOn,RolesVisibleTo,UsersVisibleTo,ForcePublishToEmail,EmailPublishDate,EnableCategoryEmailPublishing,Locked,Archived,Notes,PortalCreatedOnId,ModuleId,PositiveRatings,NegativeRatings,ShowOnce,ShowPopUp,ScanImage,RelatedWebSite,RelatedWebSiteImageURL,Title,Summary,Body,ViewCount,Published,CategoryId)
+		VALUES
+		(@DateCreated,@DateModified,@DateApproved,@LastViewDate,@ArchiveDate,@DatePublished,@ReadCount,@EmailCount,@ReferralCount,@ApprovedByUserId,@CreatedByUserId,@EditorUserId,@Premium,@KeyWords,@PortalsVisibleOn,@RolesVisibleTo,@UsersVisibleTo,@ForcePublishToEmail,@EmailPublishDate,@EnableCategoryEmailPublishing,@Locked,@Archived,@Notes,@PortalCreatedOnId,@ModuleId,@PositiveRatings,@NegativeRatings,@ShowOnce,@ShowPopUp,@ScanImage,@RelatedWebSite,@RelatedWebSiteImageURL,@Title,@Summary,@Body,@ViewCount,@Published,@CategoryId)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderUpdate
+		@FileId int,
+		@DateCreated datetime,
+		@DateModified datetime,
+		@DateApproved datetime,
+		@LastViewDate datetime,
+		@ArchiveDate datetime,
+		@DatePublished datetime,
+		@ReadCount int,
+		@EmailCount int,
+		@ReferralCount int,
+		@ApprovedByUserId int,
+		@CreatedByUserId int,
+		@EditorUserId int,
+		@Premium bit,
+		@KeyWords nvarchar(500),
+		@PortalsVisibleOn nvarchar(500),
+		@RolesVisibleTo nvarchar(500),
+		@UsersVisibleTo nvarchar(500),
+		@ForcePublishToEmail bit,
+		@EmailPublishDate datetime,
+		@EnableCategoryEmailPublishing bit,
+		@Locked bit,
+		@Archived bit,
+		@Notes ntext,
+		@PortalCreatedOnId int,
+		@ModuleId int,
+		@PositiveRatings int,
+		@NegativeRatings int,
+		@ShowOnce bit,
+		@ShowPopUp bit,
+		@ScanImage bit,
+		@RelatedWebSite nvarchar(255),
+		@RelatedWebSiteImageURL nvarchar(1000),
+		@Title nvarchar(200),
+		@Summary ntext,
+		@Body ntext,
+		@ViewCount int,
+		@Published bit,
+		@CategoryId int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader SET 
+		DateCreated=@DateCreated,
+		DateModified=@DateModified,
+		DateApproved=@DateApproved,
+		LastViewDate=@LastViewDate,
+		ArchiveDate=@ArchiveDate,
+		DatePublished=@DatePublished,
+		ReadCount=@ReadCount,
+		EmailCount=@EmailCount,
+		ReferralCount=@ReferralCount,
+		ApprovedByUserId=@ApprovedByUserId,
+		CreatedByUserId=@CreatedByUserId,
+		EditorUserId=@EditorUserId,
+		Premium=@Premium,
+		KeyWords=@KeyWords,
+		PortalsVisibleOn=@PortalsVisibleOn,
+		RolesVisibleTo=@RolesVisibleTo,
+		UsersVisibleTo=@UsersVisibleTo,
+		ForcePublishToEmail=@ForcePublishToEmail,
+		EmailPublishDate=@EmailPublishDate,
+		EnableCategoryEmailPublishing=@EnableCategoryEmailPublishing,
+		Locked=@Locked,
+		Archived=@Archived,
+		Notes=@Notes,
+		PortalCreatedOnId=@PortalCreatedOnId,
+		ModuleId=@ModuleId,
+		PositiveRatings=@PositiveRatings,
+		NegativeRatings=@NegativeRatings,
+		ShowOnce=@ShowOnce,
+		ShowPopUp=@ShowPopUp,
+		ScanImage=@ScanImage,
+		RelatedWebSite=@RelatedWebSite,
+		RelatedWebSiteImageURL=@RelatedWebSiteImageURL,
+		Title=@Title,
+		Summary=@Summary,
+		Body=@Body,
+		ViewCount=@ViewCount,
+		Published=@Published,
+		CategoryId=@CategoryId
+	WHERE
+		FileId=@FileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderDelete
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader WHERE
+		FileId=@FileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGet
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader WHERE
+		FileId=@FileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader  ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGet20
+	AS
+	SET NOCOUNT ON
+	SELECT  top 40 *  
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader  Where Published=1 ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByApprovedByUserId
+		@ApprovedByUserId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ApprovedByUserId=@ApprovedByUserId   ORDER BY Premium DESC, DatePublished DESC 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByArchived
+		@Archived bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE Archived=@Archived   ORDER BY Premium DESC, DatePublished DESC 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishing
+		@EnableCategoryEmailPublishing bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE EnableCategoryEmailPublishing=@EnableCategoryEmailPublishing   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishingAndDate
+		@EmailPublishDate datetime,
+		@EnableCategoryEmailPublishing bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE EnableCategoryEmailPublishing=@EnableCategoryEmailPublishing AND EmailPublishDate=@EmailPublishDate  ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCreatedByUserId
+		@CreatedByUserId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE CreatedByUserId=@CreatedByUserId   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByDateApproved
+		@DateApproved datetime
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE DateApproved=@DateApproved  ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEditorUserId
+		@EditorUserId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE EditorUserId=@EditorUserId   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEmailPublishDate
+		@EmailPublishDate datetime
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE EmailPublishDate=@EmailPublishDate   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcedPublishEmail
+		@ForcePublishToEmail bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ForcePublishToEmail=@ForcePublishToEmail   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcePublishToEmailWithDate
+		@EmailPublishDate datetime,
+		@ForcePublishToEmail bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ForcePublishToEmail=@ForcePublishToEmail AND EmailPublishDate=@EmailPublishDate   ORDER BY Premium DESC, DatePublished DESC 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLastViewDate
+		@LastViewDate datetime
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE LastViewDate=@LastViewDate  ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLocked
+		@Locked bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE Locked=@Locked   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByModuleId
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ModuleId=@ModuleId  ORDER BY Premium DESC, DatePublished DESC 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPopUp
+		@ShowPopUp bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ShowPopUp=@ShowPopUp  ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPortalId
+		@PortalCreatedOnId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE PortalCreatedOnId=@PortalCreatedOnId   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPremium
+		@Premium bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE Premium=@Premium   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByScanImageAndImageURL
+		@RelatedWebSiteImageURL nvarchar(1000),
+		@ScanImage bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ScanImage=@ScanImage AND RelatedWebSiteImageURL=@RelatedWebSiteImageURL   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileBySearchCategory
+		@Archived bit,
+		@CategoryId int,
+		@Published bit,
+		@SearchString ntext
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE  (KeyWords Like @SearchString OR Title Like @SearchString) AND CategoryId=@CategoryId AND Archived=@Archived AND  Published=@Published  ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByShowOnce
+		@ShowOnce bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ShowOnce=@ShowOnce   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByWebScanImage
+		@ScanImage bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ScanImage=@ScanImage  ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFiles
+		@ApprovedByUserId int,
+		@Archived bit,
+		@Published bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE Archived=@Archived AND Published=@Published   ORDER BY Premium DESC, DatePublished DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFilesBySearch
+		@Archived bit,
+		@Published bit,
+		@SearchString ntext
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE Archived=@Archived AND (KeyWords Like @SearchString OR Title  Like @SearchString) AND Published=@Published   ORDER BY Premium DESC, DatePublished DESC 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileSearchAll
+		@SearchString ntext
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE KeyWords Like @SearchString OR Title  Like @SearchString  ORDER BY Premium DESC, DatePublished DESC 
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRFilePublishers ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersAdd
+		@CanEmailToCategories bit,
+		@AutoApprove bit,
+		@CanUploadEmailList bit,
+		@CanAttachFiles bit,
+		@AuthorizedPortals nvarchar(500),
+		@AuthorizedRoles nvarchar(500),
+		@UserId int,
+		@ExpiresDate datetime,
+		@DateCreated datetime,
+		@FileCount int,
+		@LastSubmissionId int,
+		@LastSubmissionDate datetime,
+		@BlackListed bit,
+		@Notes ntext,
+		@CanPostPremiumFiles bit,
+		@Image ntext,
+		@WebSite nvarchar(200),
+		@EmailAddress nvarchar(50),
+		@LinkBackURL nvarchar(1000),
+		@PortalId int,
+		@ModuleId int,
+		@FileLimit int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers
+		(CanEmailToCategories,AutoApprove,CanUploadEmailList,CanAttachFiles,AuthorizedPortals,AuthorizedRoles,UserId,ExpiresDate,DateCreated,FileCount,LastSubmissionId,LastSubmissionDate,BlackListed,Notes,CanPostPremiumFiles,Image,WebSite,EmailAddress,LinkBackURL,PortalId,ModuleId,FileLimit)
+		VALUES
+		(@CanEmailToCategories,@AutoApprove,@CanUploadEmailList,@CanAttachFiles,@AuthorizedPortals,@AuthorizedRoles,@UserId,@ExpiresDate,@DateCreated,@FileCount,@LastSubmissionId,@LastSubmissionDate,@BlackListed,@Notes,@CanPostPremiumFiles,@Image,@WebSite,@EmailAddress,@LinkBackURL,@PortalId,@ModuleId,@FileLimit)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersUpdate
+		@PublisherId int,
+		@CanEmailToCategories bit,
+		@AutoApprove bit,
+		@CanUploadEmailList bit,
+		@CanAttachFiles bit,
+		@AuthorizedPortals nvarchar(500),
+		@AuthorizedRoles nvarchar(500),
+		@UserId int,
+		@ExpiresDate datetime,
+		@DateCreated datetime,
+		@FileCount int,
+		@LastSubmissionId int,
+		@LastSubmissionDate datetime,
+		@BlackListed bit,
+		@Notes ntext,
+		@CanPostPremiumFiles bit,
+		@Image ntext,
+		@WebSite nvarchar(200),
+		@EmailAddress nvarchar(50),
+		@LinkBackURL nvarchar(1000),
+		@PortalId int,
+		@ModuleId int,
+		@FileLimit int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers SET 
+		CanEmailToCategories=@CanEmailToCategories,
+		AutoApprove=@AutoApprove,
+		CanUploadEmailList=@CanUploadEmailList,
+		CanAttachFiles=@CanAttachFiles,
+		AuthorizedPortals=@AuthorizedPortals,
+		AuthorizedRoles=@AuthorizedRoles,
+		UserId=@UserId,
+		ExpiresDate=@ExpiresDate,
+		DateCreated=@DateCreated,
+		FileCount=@FileCount,
+		LastSubmissionId=@LastSubmissionId,
+		LastSubmissionDate=@LastSubmissionDate,
+		BlackListed=@BlackListed,
+		Notes=@Notes,
+		CanPostPremiumFiles=@CanPostPremiumFiles,
+		Image=@Image,
+		WebSite=@WebSite,
+		EmailAddress=@EmailAddress,
+		LinkBackURL=@LinkBackURL,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		FileLimit=@FileLimit
+	WHERE
+		PublisherId=@PublisherId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersDelete
+		@PublisherId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers WHERE
+		PublisherId=@PublisherId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGet
+		@PublisherId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers WHERE
+		PublisherId=@PublisherId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetPublishersByModuleId
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers 
+	WHERE ModuleId=@ModuleId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetPublishersByPortalId
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers 
+	WHERE PortalId=@PortalId
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRFileRatingsLog ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogAdd
+		@UserId int,
+		@IPAddress nvarchar(255),
+		@FileId int,
+		@PositiveRating bit,
+		@PortalId int,
+		@DatePosted datetime
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog
+		(UserId,IPAddress,FileId,PositiveRating,PortalId,DatePosted)
+		VALUES
+		(@UserId,@IPAddress,@FileId,@PositiveRating,@PortalId,@DatePosted)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogUpdate
+		@RatingsLogId int,
+		@UserId int,
+		@IPAddress nvarchar(255),
+		@FileId int,
+		@PositiveRating bit,
+		@PortalId int,
+		@DatePosted datetime
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog SET 
+		UserId=@UserId,
+		IPAddress=@IPAddress,
+		FileId=@FileId,
+		PositiveRating=@PositiveRating,
+		PortalId=@PortalId,
+		DatePosted=@DatePosted
+	WHERE
+		RatingsLogId=@RatingsLogId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogDelete
+		@RatingsLogId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog WHERE
+		RatingsLogId=@RatingsLogId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGet
+		@RatingsLogId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog WHERE
+		RatingsLogId=@RatingsLogId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByFileId
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog 
+	WHERE FileId=@FileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByPortalId
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog 
+	WHERE PortalId=@PortalId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByUserId
+		@UserId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog 
+	WHERE UserId=@UserId
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRFileReadLog ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogAdd
+		@WebRead bit,
+		@WebReadURL nvarchar(2000),
+		@EmailRead bit,
+		@EmailAddress nvarchar(75),
+		@HostAddress nvarchar(255),
+		@HostName nvarchar(255),
+		@UserAgent nvarchar(255),
+		@DateTracked datetime,
+		@PortalId int,
+		@ModuleId int,
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog
+		(WebRead,WebReadURL,EmailRead,EmailAddress,HostAddress,HostName,UserAgent,DateTracked,PortalId,ModuleId,FileId)
+		VALUES
+		(@WebRead,@WebReadURL,@EmailRead,@EmailAddress,@HostAddress,@HostName,@UserAgent,@DateTracked,@PortalId,@ModuleId,@FileId)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogUpdate
+		@FileReadId int,
+		@WebRead bit,
+		@WebReadURL nvarchar(2000),
+		@EmailRead bit,
+		@EmailAddress nvarchar(75),
+		@HostAddress nvarchar(255),
+		@HostName nvarchar(255),
+		@UserAgent nvarchar(255),
+		@DateTracked datetime,
+		@PortalId int,
+		@ModuleId int,
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog SET 
+		WebRead=@WebRead,
+		WebReadURL=@WebReadURL,
+		EmailRead=@EmailRead,
+		EmailAddress=@EmailAddress,
+		HostAddress=@HostAddress,
+		HostName=@HostName,
+		UserAgent=@UserAgent,
+		DateTracked=@DateTracked,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		FileId=@FileId
+	WHERE
+		FileReadId=@FileReadId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogDelete
+		@FileReadId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog WHERE
+		FileReadId=@FileReadId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGet
+		@FileReadId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog WHERE
+		FileReadId=@FileReadId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadByPortalId
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog 
+	WHERE PortalId=@PortalId Order By DateTracked DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByFileId
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog 
+	WHERE FileId=@FileId Order By DateTracked DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByDateTracked
+		@DateTracked datetime
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog 
+	WHERE DateTracked=@DateTracked Order By DateTracked DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByEmailAddress
+		@EmailAddress nvarchar(75)
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog 
+	WHERE EmailAddress=@EmailAddress  Order By DateTracked DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByModuleId
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog 
+	WHERE ModuleId=@ModuleId Order By DateTracked DESC
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRCategories ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesAdd
+		@CategoryName nvarchar(255),
+		@CategoryDescription ntext,
+		@CategoryImageURL nvarchar(2000),
+		@DateAdded datetime,
+		@ParentCategoryId int,
+		@PortalId int,
+		@ModuleId int,
+		@IsPortalSpecific bit,
+		@CreatedByUserId int,
+		@EnableEmailPublishing bit,
+		@KeyWords nvarchar(2000),
+		@Enabled bit,
+		@IsRSSFeed bit,
+		@RSSFeedURL nvarchar(2000)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRCategories
+		(CategoryName,CategoryDescription,CategoryImageURL,DateAdded,ParentCategoryId,PortalId,ModuleId,IsPortalSpecific,CreatedByUserId,EnableEmailPublishing,KeyWords,Enabled,IsRSSFeed,RSSFeedURL)
+		VALUES
+		(@CategoryName,@CategoryDescription,@CategoryImageURL,@DateAdded,@ParentCategoryId,@PortalId,@ModuleId,@IsPortalSpecific,@CreatedByUserId,@EnableEmailPublishing,@KeyWords,@Enabled,@IsRSSFeed,@RSSFeedURL)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesUpdate
+		@FileCategoryId int,
+		@CategoryName nvarchar(255),
+		@CategoryDescription ntext,
+		@CategoryImageURL nvarchar(2000),
+		@DateAdded datetime,
+		@ParentCategoryId int,
+		@PortalId int,
+		@ModuleId int,
+		@IsPortalSpecific bit,
+		@CreatedByUserId int,
+		@EnableEmailPublishing bit,
+		@KeyWords nvarchar(2000),
+		@Enabled bit,
+		@IsRSSFeed bit,
+		@RSSFeedURL nvarchar(2000)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories SET 
+		CategoryName=@CategoryName,
+		CategoryDescription=@CategoryDescription,
+		CategoryImageURL=@CategoryImageURL,
+		DateAdded=@DateAdded,
+		ParentCategoryId=@ParentCategoryId,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		IsPortalSpecific=@IsPortalSpecific,
+		CreatedByUserId=@CreatedByUserId,
+		EnableEmailPublishing=@EnableEmailPublishing,
+		KeyWords=@KeyWords,
+		Enabled=@Enabled,
+		IsRSSFeed=@IsRSSFeed,
+		RSSFeedURL=@RSSFeedURL
+	WHERE
+		FileCategoryId=@FileCategoryId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesDelete
+		@FileCategoryId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRCategories WHERE
+		FileCategoryId=@FileCategoryId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGet
+		@FileCategoryId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRCategories WHERE
+		FileCategoryId=@FileCategoryId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRCategories
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRCategories 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRCategories
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByEmailPublishing
+		@Enabled bit,
+		@EnableEmailPublishing bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRCategories 
+	WHERE EnableEmailPublishing=@EnableEmailPublishing AND Enabled=@Enabled
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByModuleId
+		@Enabled bit,
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRCategories 
+	WHERE ModuleId=@ModuleId AND Enabled=@Enabled
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByPortalId
+		@Enabled bit,
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRCategories 
+	WHERE PortalId=@PortalId AND Enabled=@Enabled
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSREmailSubscriptions ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsAdd
+		@UserId int,
+		@DateCreated datetime,
+		@CategoryId int,
+		@Enabled bit,
+		@DateOfOptOut datetime,
+		@EmailAddress nvarchar(75),
+		@AllCategories bit,
+		@PortalId int,
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions
+		(UserId,DateCreated,CategoryId,Enabled,DateOfOptOut,EmailAddress,AllCategories,PortalId,ModuleId)
+		VALUES
+		(@UserId,@DateCreated,@CategoryId,@Enabled,@DateOfOptOut,@EmailAddress,@AllCategories,@PortalId,@ModuleId)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsUpdate
+		@EmailSubscriptionId int,
+		@UserId int,
+		@DateCreated datetime,
+		@CategoryId int,
+		@Enabled bit,
+		@DateOfOptOut datetime,
+		@EmailAddress nvarchar(75),
+		@AllCategories bit,
+		@PortalId int,
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions SET 
+		UserId=@UserId,
+		DateCreated=@DateCreated,
+		CategoryId=@CategoryId,
+		Enabled=@Enabled,
+		DateOfOptOut=@DateOfOptOut,
+		EmailAddress=@EmailAddress,
+		AllCategories=@AllCategories,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId
+	WHERE
+		EmailSubscriptionId=@EmailSubscriptionId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsDelete
+		@EmailSubscriptionId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions WHERE
+		EmailSubscriptionId=@EmailSubscriptionId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGet
+		@EmailSubscriptionId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions WHERE
+		EmailSubscriptionId=@EmailSubscriptionId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByCategoryId
+		@CategoryId int,
+		@Enabled bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions 
+	WHERE CategoryId=@CategoryId AND Enabled=@Enabled
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByModuleId
+		@Enabled bit,
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions 
+	WHERE ModuleId=@ModuleId AND Enabled=@Enabled
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByPortalId
+		@Enabled bit,
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions 
+	WHERE PortalId=@PortalId AND Enabled=@Enabled
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByUserId
+		@UserId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions 
+	WHERE UserId=@UserId
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRGlobalSettings ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsAdd
+		@SettingKey nvarchar(32),
+		@SettingValue ntext,
+		@PortalId int,
+		@ModuleId int,
+		@PublisherId int,
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings
+		(SettingKey,SettingValue,PortalId,ModuleId,PublisherId,FileId)
+		VALUES
+		(@SettingKey,@SettingValue,@PortalId,@ModuleId,@PublisherId,@FileId)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsUpdate
+		@SettingId int,
+		@SettingKey nvarchar(32),
+		@SettingValue ntext,
+		@PortalId int,
+		@ModuleId int,
+		@PublisherId int,
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings SET 
+		SettingKey=@SettingKey,
+		SettingValue=@SettingValue,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		PublisherId=@PublisherId,
+		FileId=@FileId
+	WHERE
+		SettingId=@SettingId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsDelete
+		@SettingId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings WHERE
+		SettingId=@SettingId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGet
+		@SettingId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings WHERE
+		SettingId=@SettingId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByFileId
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings 
+	WHERE FileId=@FileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByModuleId
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings 
+	WHERE ModuleId=@ModuleId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByPortalId
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings 
+	WHERE PortalId=@PortalId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByPublisherId
+		@PublisherId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings 
+	WHERE PublisherId=@PublisherId
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRMyFiles ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesAdd
+		@UserId int,
+		@FileId int,
+		@DateAdded datetime,
+		@PortalId int,
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles
+		(UserId,FileId,DateAdded,PortalId,ModuleId)
+		VALUES
+		(@UserId,@FileId,@DateAdded,@PortalId,@ModuleId)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesUpdate
+		@MyFilesSystemId int,
+		@UserId int,
+		@FileId int,
+		@DateAdded datetime,
+		@PortalId int,
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles SET 
+		UserId=@UserId,
+		FileId=@FileId,
+		DateAdded=@DateAdded,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId
+	WHERE
+		MyFilesSystemId=@MyFilesSystemId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesDelete
+		@MyFilesSystemId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles WHERE
+		MyFilesSystemId=@MyFilesSystemId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGet
+		@MyFilesSystemId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles WHERE
+		MyFilesSystemId=@MyFilesSystemId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByModuleId
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles 
+	WHERE ModuleId=@ModuleId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByPortalId
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles 
+	WHERE PortalId=@PortalId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByUserId
+		@UserId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles 
+	WHERE UserId=@UserId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryId
+		@CategoryId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE CategoryId=@CategoryId    ORDER BY Premium DESC, DatePublished DESC 
+GO

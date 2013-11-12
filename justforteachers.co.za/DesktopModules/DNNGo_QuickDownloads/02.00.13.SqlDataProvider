@@ -1,0 +1,43 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Create Table **/
+
+if  exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownloadTemp]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+ DROP TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadTemp]
+
+END
+
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownloadTemp]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadTemp](
+		[ID] [int] IDENTITY(1,1) NOT NULL,
+		[Name] [nvarchar](256) NOT NULL,
+		[TrueFileName] [nvarchar](100) NOT NULL,
+		[DirectoryName] [nvarchar](100) NULL,
+		[Suffix] [nvarchar](20) NOT NULL,
+		[ContentLength] [int] NOT NULL,
+		[PortalId] [int] NOT NULL CONSTRAINT [DF_{objectQualifier}GO_QuickDownloadTemp_PortalId] DEFAULT ((0)),
+		[TabModuleId] [int] NOT NULL,
+		[UserID] [int] NOT NULL CONSTRAINT [DF_{objectQualifier}GO_QuickDownloadTemp_UserID] DEFAULT ((0)),
+		[ItemID] [int] NOT NULL CONSTRAINT [DF_{objectQualifier}GO_QuickDownloadTemp_ItemID] DEFAULT ((0)),
+		[LastDateTime] [datetime] NOT NULL,
+	 CONSTRAINT [PK_{objectQualifier}GO_QuickDownloadTemp] PRIMARY KEY CLUSTERED 
+	(
+		[ID] ASC
+	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+END
+	
+	
+ 

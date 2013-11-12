@@ -1,0 +1,17 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 05.02.04            *****/
+/************************************************************/
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ItemVideo_jb_Item]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ItemVideo] DROP CONSTRAINT [FK_jb_ItemVideo_jb_Item]
+GO

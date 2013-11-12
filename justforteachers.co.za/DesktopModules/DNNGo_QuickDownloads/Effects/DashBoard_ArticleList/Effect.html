@@ -1,0 +1,58 @@
+﻿		<div id="article_list${ModuleID}" class="$EffectThemeName">
+			<div class="article_list">
+               #if( ${xf.ViewEffectSetting("navigationbar",true)})
+				<!-- Categories -->
+				<div class="nav_category clearfix">
+					<a href="javascript:;" lang="Layout" id="column_three" class="list_three "><span class="btn"><i class="icon-th"></i></span></a>
+					<a href="javascript:;" lang="Layout" id="column_two" class="list_two"><span class="btn"><i class="icon-th-large"></i></span></a>
+					<a href="javascript:;" lang="Layout" id="column_one" class="list_one"><span class="btn"><i class="icon-th-list"></i></span></a>
+				</div>
+				<!-- Categories -->
+	            #end
+				<!-- Article List -->			
+				<ul class="article_inner column_one" id="article_inner${ModuleID}">
+					#if($DataList.Count > 0) 
+						#foreach($DataItem in $DataList)
+							<li class="article_item clearfix">
+							  
+									 <div class="article_photo" id="article_photo${ModuleID}">
+										<a href="${xf.GoUrl($DataItem)}" title="${xf.ViewContent("Summary",$DataItem,200)}"><img src="${xf.ThumbnailUrl($DataItem,${xf.ViewEffectSetting("thumbnail_width",200)},200,"W")}" alt="${xf.ViewContent("Name",$DataItem)}" title="${xf.ViewContent("Name",$DataItem)}" /></a>
+									</div>
+									<div class="article_info">
+										<h3><a href="${xf.GoUrl($DataItem)}">${xf.ViewContent("Name",$DataItem)}</a></h3>
+										<div class="item_category">${xf.ViewCategories($DataItem)}</div>
+										<div class="item_summary">
+											<!-- News Summary Begin-->
+											${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}
+											<!-- News Summary End-->
+										</div>
+									</div>
+								
+							</li>
+						#end 
+					#end
+				</ul>
+				<!-- Article List -->	
+				<div class="article_page">
+						 ${Pager}
+				</div>
+			</div>
+		</div>
+ 
+ <script type="text/javascript">
+     jQuery(function (q) {
+         q("#article_list${ModuleID} a[lang='Layout']").click(function () {
+             var $a = q(this);
+             q("#article_inner${ModuleID}").stop().animate({ opacity: 0 },${xf.ViewEffectSetting("fadeshow",100)}, function () {
+                  q(this).attr("class", "article_inner " + $a.attr("id")).stop().animate({ opacity: 1},${xf.ViewEffectSetting("fadeshow",100)});
+                  q.cookie('Layout', $a.attr("id"), { expires: 7, path: '/' });
+             });
+         });
+         q("#article_inner${ModuleID}").attr("class", "article_inner " + (q.cookie('Layout') != null ? q.cookie('Layout') : "${xf.ViewEffectSetting("columnstyle","column_two")}")); 
+     });
+ 
+ 
+ </script>
+       
+
+

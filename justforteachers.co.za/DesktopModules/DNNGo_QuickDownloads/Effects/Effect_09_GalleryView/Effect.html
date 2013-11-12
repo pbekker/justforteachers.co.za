@@ -1,0 +1,53 @@
+﻿<div class="$EffectThemeName">
+<ul id="GalleryView${ModuleID}" class="GalleryView">
+    #if($DataList.Count > 0) 
+        #foreach($DataItem in $DataList)
+        <li>
+            
+               <img src="${xf.ViewPicture($DataItem)}" alt="${xf.ViewContent("Name",$DataItem)}" title="<a href='${xf.GoUrl($DataItem)}'>${xf.ViewContent("Name",$DataItem)}</a>" data-description="${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}" />
+           
+		</li>
+        #end 
+    #end
+</ul>
+</div>
+<!-- Plugin initialization -->
+<script type="text/javascript">
+    // Initialize the plugin with no custom options
+    jQuery(document).ready(function () {
+        // None of the options are set
+        jQuery("#GalleryView${ModuleID}").galleryView({
+        panel_width: ${xf.ViewEffectSetting("panel_width",700)}, 				//INT - width of gallery panel (in pixels)
+        panel_height: ${xf.ViewEffectSetting("panel_height",340)}, 				//INT - height of gallery panel (in pixels)
+		transition_speed: ${xf.ViewEffectSetting("transition_speed",800)}, 		//INT - duration of panel/frame transition (in milliseconds)
+		transition_interval: ${xf.ViewEffectSetting("transition_interval",3000)}, 		//INT - delay between panel/frame transitions (in milliseconds)
+		easing: '${xf.ViewEffectSetting("easing","swing")}', 				//STRING - easing method to use for animations (jQuery provides 'swing' or 'linear', more available with jQuery UI or Easing plugin)
+		show_panels: ${xf.ViewEffectSetting("show_panels","true")}, 				//BOOLEAN - flag to show or hide panel portion of gallery
+		show_panel_nav: ${xf.ViewEffectSetting("show_panel_nav","true")}, 			//BOOLEAN - flag to show or hide panel navigation buttons
+		enable_overlays: ${xf.ViewEffectSetting("enable_overlays","true")}, 			//BOOLEAN - flag to show or hide panel overlays
+
+		panel_animation: '${xf.ViewEffectSetting("panel_animation","slide")}', 		//STRING - animation method for panel transitions (crossfade,fade,slide,none)
+		panel_scale: '${xf.ViewEffectSetting("panel_scale","crop")}', 			//STRING - cropping option for panel images (crop = scale image and fit to aspect ratio determined by panel_width and panel_height, fit = scale image and preserve original aspect ratio)
+		overlay_position: '${xf.ViewEffectSetting("overlay_position","bottom")}', 	//STRING - position of panel overlay (bottom, top)
+		pan_images: ${xf.ViewEffectSetting("pan_images","true")},				//BOOLEAN - flag to allow user to grab/drag oversized images within gallery
+		pan_style: '${xf.ViewEffectSetting("pan_style","drag")}',				//STRING - panning method (drag = user clicks and drags image to pan, track = image automatically pans based on mouse position
+		pan_smoothness: ${xf.ViewEffectSetting("pan_smoothness",15)},				//INT - determines smoothness of tracking pan animation (higher number = smoother)
+		start_frame: ${xf.ViewEffectSetting("start_frame",1)}, 				//INT - index of panel/frame to show first when gallery loads
+		show_filmstrip: ${xf.ViewEffectSetting("show_filmstrip","true")}, 			//BOOLEAN - flag to show or hide filmstrip portion of gallery
+		show_filmstrip_nav: ${xf.ViewEffectSetting("show_filmstrip_nav","true")}, 		//BOOLEAN - flag indicating whether to display navigation buttons
+		enable_slideshow: ${xf.ViewEffectSetting("enable_slideshow","true")},			//BOOLEAN - flag indicating whether to display slideshow play/pause button
+		autoplay: ${xf.ViewEffectSetting("autoplay","true")},				//BOOLEAN - flag to start slideshow on gallery load
+		show_captions: ${xf.ViewEffectSetting("show_captions","true")}, 			//BOOLEAN - flag to show or hide frame captions	
+		filmstrip_size: ${xf.ViewEffectSetting("filmstrip_size",3)}, 				//INT - number of frames to show in filmstrip-only gallery
+		filmstrip_style: '${xf.ViewEffectSetting("filmstrip_style","scroll")}', 		//STRING - type of filmstrip to use (scroll = display one line of frames, scroll filmstrip if necessary, showall = display multiple rows of frames if necessary)
+		filmstrip_position: '${xf.ViewEffectSetting("filmstrip_position","bottom")}', 	//STRING - position of filmstrip within gallery (bottom, top, left, right)
+		frame_width: ${xf.ViewEffectSetting("frame_width",150)}, 				//INT - width of filmstrip frames (in pixels)
+		frame_height: ${xf.ViewEffectSetting("frame_height",60)}, 				//INT - width of filmstrip frames (in pixels)
+		frame_opacity: ${xf.ViewEffectSetting("frame_opacity","0.5")}, 			//FLOAT - transparency of non-active frames (1.0 = opaque, 0.0 = transparent)
+		frame_scale: '${xf.ViewEffectSetting("frame_scale","crop")}', 			//STRING - cropping option for filmstrip images (same as above)
+		frame_gap: ${xf.ViewEffectSetting("frame_gap",5)}, 					//INT - spacing between frames within filmstrip (in pixels)
+		show_infobar: ${xf.ViewEffectSetting("show_infobar","true")},				//BOOLEAN - flag to show or hide infobar
+		infobar_opacity: ${xf.ViewEffectSetting("infobar_opacity",1)}				//FLOAT - transparency for info bar
+		});
+    });
+</script>

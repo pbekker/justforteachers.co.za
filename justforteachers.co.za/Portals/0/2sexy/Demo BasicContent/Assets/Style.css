@@ -1,0 +1,23 @@
+.BasicContentWithSingleImage { position:relative; }
+.BasicContentWithSingleImage .PreviewImage { float:right; margin:0 0 10px 25px; }
+
+.BasicContentWithLightBox { overflow:hidden; }
+.BasicContentWithLightBox .BasicPreviewContent { }
+.BasicContentWithLightBox .BasicContent { display:none; }
+
+.BasicContentWithPreview { overflow:hidden; }
+.BasicContentWithPreview .BasicPreviewContent { }
+.BasicContentWithPreview .BasicContent { display:none; }
+
+.BasicContentWithPreviewAndImage { overflow:hidden; }
+.BasicContentWithPreviewAndImage .PreviewImage { float:left; margin:0 25px 10px 0; }
+.BasicContentWithPreviewAndImage .BasicContent { display:none; }
+.BasicContent img { float:left; margin:0 25px 10px 0; }
+.BasicContent { padding:20px!important; }
+
+.BasicContentWithPreview .BasicContent { padding:0!important; }
+
+.BasicContentWithSingleImage { position:relative; }
+.BasicContentWithSingleImage .PreviewImage { float:left; margin:0 25px 10px 0; }
+.BasicContentWithSingleImageRight { position:relative; }
+.BasicContentWithSingleImageRight .PreviewImage { float:right; margin:0 0 10px 25px; }

@@ -1,0 +1,378 @@
+﻿if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsSearch_Cri]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsSearch_Cri]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategoryAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UserCategoryAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategoryByCategoryID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UserCategoryByCategoryID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategoryByUserID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UserCategoryByUserID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategoryByjb_ClassifiedsCat]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UserCategoryByjb_ClassifiedsCat]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategoryCheckDuplicate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UserCategoryCheckDuplicate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategoryCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UserCategoryCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategoryDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UserCategoryDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategoryDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UserCategoryDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategoryGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UserCategoryGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategoryGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UserCategoryGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UserCategory]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_UserCategory]
+GO
+
+CREATE TABLE {databaseOwner}[jb_UserCategory] (
+	[UserID] [int] NOT NULL ,
+	[CategoryID] [int] NOT NULL ,
+	[GroupName] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL 
+) ON [PRIMARY]
+GO
+
+ALTER TABLE {databaseOwner}[jb_UserCategory] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_UserCategory] PRIMARY KEY  CLUSTERED 
+	(
+		[UserID],
+		[CategoryID],
+		[GroupName]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_UserCategory] ADD 
+	CONSTRAINT [FK_jb_UserCategory_jb_ClassifiedsCat] FOREIGN KEY 
+	(
+		[CategoryID]
+	) REFERENCES {databaseOwner}[jb_ClassifiedsCat] (
+		[CategoryID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE  PROCEDURE {databaseOwner}jb_GetClassifiedsSearch_Cri
+@ModuleID 		int,
+@CurrentCategoryID 	int= -1,
+@Message		nvarchar(255)= '',
+@StartDate 		DATETIME = NULL,
+@EndDate 		DATETIME = NULL
+AS
+
+DECLARE @strSelect		nvarchar(2000)
+DECLARE @strFrom		nvarchar(2000)
+DECLARE @strWhere		nvarchar(2000)
+DECLARE @strOrderBy 		nvarchar(2000)
+
+SET @strSelect = 'SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt'
+SET @strFrom = ' FROM jb_ClassifiedsItem'
+SET @strWhere = ' WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT jb_ClassifiedsItem_vw.ItemID 
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = ' + CAST(@ModuleID AS NVARCHAR) + '
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0'
+IF (@CurrentCategoryID <> -1)
+	SET @strWhere = @strWhere + ' AND UCategoryID IN(SELECT * FROM [#RETURN])'
+-- Fields
+IF (@Message <> '')
+	SET @strWhere = @strWhere + ' AND Message LIKE ''%' + @Message + '%''' 
+-- Date range
+IF (@StartDate is not null) 
+	SET @strWhere = @strWhere + ' AND CreatedDate >= ''' + convert(nvarchar, @StartDate) + ''''
+IF (@EndDate is not null) and (@EndDate > '1/1/1900')
+	SET @strWhere = @strWhere + ' AND CreatedDate <= ''' + convert(nvarchar, @EndDate) + ''''
+SET @strWhere = @strWhere + ')'
+SET @strOrderBy  = ' Order By CreatedDate Desc'
+
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+EXEC(@strSelect + @strFrom + @strWhere + @strOrderBy)
+
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+-- *** Create stored procedures for table jb_UserCategory ***
+
+CREATE PROCEDURE {databaseOwner}jb_UserCategoryAdd
+		@UserID int,
+		@CategoryID int,
+		@GroupName nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_UserCategory
+		(UserID,CategoryID,GroupName)
+		VALUES
+		(@UserID,@CategoryID,@GroupName)
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_UserCategoryByCategoryID
+		@ModuleID int,
+		@CurrentCategoryID int,
+		@GroupName nvarchar(255)
+	AS
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+	SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+	DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+	INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+	INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+BEGIN	
+	SELECT jb_UserCategory.UserID, Users.Email, Users.DisplayName
+	FROM jb_UserCategory, Users 
+	WHERE jb_UserCategory.UserID = Users.UserID
+	AND jb_UserCategory.CategoryID IN(SELECT * FROM [#RETURN])
+	AND jb_UserCategory.GroupName=@GroupName
+END
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_UserCategoryByUserID
+		@UserID int,
+		@GroupName nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	
+	Select ClassifiedsCat.[CategoryID] AS [CategoryID],  substring(CategoryString, 3, 1024) as [CategoryPath]
+	 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+			, ClassifiedsCat.CategoryID CategoryID
+	   	from jb_ClassifiedsCat as ClassifiedsCat) as ClassifiedsCat, jb_UserCategory
+	where CategoryString IS NOT NULL
+	AND ClassifiedsCat.[CategoryID] =  jb_UserCategory.[CategoryID]
+	AND jb_UserCategory.[UserID]=@UserID
+	AND jb_UserCategory.[GroupName]=@GroupName
+	order by substring(CategoryString,3,1024)
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_UserCategoryByjb_ClassifiedsCat
+		@CategoryID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		UserID,CategoryID,GroupName
+	FROM {databaseOwner}jb_UserCategory WHERE
+		CategoryID=@CategoryID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_UserCategoryCheckDuplicate
+(
+    @UserID int,
+    @CategoryID int,
+    @GroupName nvarchar(255)
+)
+AS
+SET NOCOUNT ON
+
+IF EXISTS (SELECT * FROM {databaseOwner}jb_UserCategory WHERE UserID = @UserID AND CategoryID = @CategoryID AND GroupName = @GroupName)
+	BEGIN
+		SELECT 'DUPLICATE'
+	END
+ELSE
+	BEGIN
+		SELECT 'OK'
+	END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_UserCategoryCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_UserCategory
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_UserCategoryDelete
+		@UserID int,
+		@CategoryID int,
+		@GroupName nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_UserCategory WHERE
+		UserID=@UserID AND CategoryID=@CategoryID AND GroupName=@GroupName
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_UserCategoryDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_UserCategory
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_UserCategoryGet
+		@UserID int,
+		@CategoryID int,
+		@GroupName nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	SELECT
+		UserID,CategoryID,GroupName
+	FROM {databaseOwner}jb_UserCategory WHERE
+		UserID=@UserID AND CategoryID=@CategoryID AND GroupName=@GroupName
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_UserCategoryGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		UserID,CategoryID,GroupName
+	FROM {databaseOwner}jb_UserCategory 
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+

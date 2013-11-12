@@ -1,0 +1,80 @@
+2013-08-31 08:34:13,686 [mystique][Thread:12][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.ArgumentOutOfRangeException: Non-negative number required.
+Parameter name: count
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at DotNetNuke.jb_moreinfo.JobApply(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2013-08-31 08:34:13,733 [mystique][Thread:12][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=137&error=Non-negative+number+required.%0d%0aParameter+name%3a+count&content=0
+System.ArgumentOutOfRangeException: Non-negative number required.
+Parameter name: count
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at DotNetNuke.jb_moreinfo.JobApply(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2013-08-31 11:10:24,317 [mystique][Thread:16][ERROR] DotNetNuke.Services.FileSystem.FileServerHandler - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at DotNetNuke.Services.FileSystem.FileServerHandler.ProcessRequest(HttpContext context)
+2013-08-31 11:51:06,788 [mystique][Thread:21][ERROR] DotNetNuke.Services.FileSystem.FileServerHandler - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at DotNetNuke.Services.FileSystem.FileServerHandler.ProcessRequest(HttpContext context)
+2013-08-31 12:19:55,021 [mystique][Thread:12][ERROR] DotNetNuke.Services.FileSystem.FileServerHandler - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at DotNetNuke.Services.FileSystem.FileServerHandler.ProcessRequest(HttpContext context)
+2013-08-31 12:27:23,230 [mystique][Thread:12][ERROR] DotNetNuke.Services.FileSystem.FileServerHandler - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at DotNetNuke.Services.FileSystem.FileServerHandler.ProcessRequest(HttpContext context)
+2013-08-31 22:46:13,470 [mystique][Thread:9][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.ArgumentException: Invalid postback or callback argument.  Event validation is enabled using <pages enableEventValidation="true"/> in configuration or <%@ Page EnableEventValidation="true" %> in a page.  For security purposes, this feature verifies that arguments to postback or callback events originate from the server control that originally rendered them.  If the data is valid and expected, use the ClientScriptManager.RegisterForEventValidation method in order to register the postback or callback data for validation.
+   at System.Web.UI.ClientScriptManager.ValidateEvent(String uniqueId, String argument)
+   at System.Web.UI.Control.ValidateEvent(String uniqueID, String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2013-08-31 22:46:13,611 [mystique][Thread:9][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=178&error=Invalid+postback+or+callback+argument.++Event+validation+is+enabled+using+%3cpages+enableEventValidation%3d%22true%22%2f%3e+in+configuration+or+%3c%25%40+Page+EnableEventValidation%3d%22true%22+%25%3e+in+a+page.++For+security+purposes%2c+this+feature+verifies+that+arguments+to+postback+or+callback+events+originate+from+the+server+control+that+originally+rendered+them.++If+the+data+is+valid+and+expected%2c+use+the+ClientScriptManager.RegisterForEventValidation+method+in+order+to+register+the+postback+or+callback+data+for+validation.
+System.ArgumentException: Invalid postback or callback argument.  Event validation is enabled using <pages enableEventValidation="true"/> in configuration or <%@ Page EnableEventValidation="true" %> in a page.  For security purposes, this feature verifies that arguments to postback or callback events originate from the server control that originally rendered them.  If the data is valid and expected, use the ClientScriptManager.RegisterForEventValidation method in order to register the postback or callback data for validation.
+   at System.Web.UI.ClientScriptManager.ValidateEvent(String uniqueId, String argument)
+   at System.Web.UI.Control.ValidateEvent(String uniqueID, String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2013-08-31 23:15:55,540 [mystique][Thread:35][ERROR] DotNetNuke.Services.FileSystem.FileServerHandler - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at DotNetNuke.Services.FileSystem.FileServerHandler.ProcessRequest(HttpContext context)

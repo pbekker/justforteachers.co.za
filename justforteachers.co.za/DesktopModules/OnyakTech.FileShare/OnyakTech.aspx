@@ -1,0 +1,1 @@
+<%@ Page Language="c#" AutoEventWireup="false" Codebehind="OnyakTech.aspx.cs" Inherits="OnyakTech.FileShare.Rss" %>

@@ -1,0 +1,114 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 07.00.35          *****/
+/************************************************************/
+
+ALTER TABLE {databaseOwner}jb_Picklist ADD 
+[PortalID] [int] NULL,
+[ModuleID] [int] NULL,
+[OtherID] [int] NULL,
+[Value1] [nvarchar](255) NULL,
+[Value2] [nvarchar](255) NULL,
+[Value3] [nvarchar](255) NULL;
+GO
+
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+ALTER PROCEDURE {databaseOwner}[jb_PicklistAdd]
+		@PicklistGroup nvarchar(255),
+		@PicklistText nvarchar(255),
+		@PicklistValue nvarchar(255),
+		@ViewOrder int,	
+		@PortalID int = NULL,
+		@ModuleID int = NULL,
+		@OtherID int = NULL,
+		@Value1 nvarchar(255) = NULL,
+		@Value2 nvarchar(255) = NULL,
+		@Value3 nvarchar(255) = NULL
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_Picklist
+		(PicklistGroup,PicklistText,PicklistValue,ViewOrder,PortalID,ModuleID,OtherID,Value1,Value2,Value3)
+		VALUES
+		(@PicklistGroup,@PicklistText,@PicklistValue,@ViewOrder,@PortalID,@ModuleID,@OtherID,@Value1,@Value2,@Value3)
+	SELECT SCOPE_IDENTITY()
+GO
+
+ALTER PROCEDURE {databaseOwner}[jb_PicklistUpdate]
+		@PicklistID int,
+		@PicklistGroup nvarchar(255),
+		@PicklistText nvarchar(255),
+		@PicklistValue nvarchar(255),
+		@ViewOrder int,
+		@PortalID int = NULL,
+		@ModuleID int = NULL,
+		@OtherID int = NULL,
+		@Value1 nvarchar(255) = NULL,
+		@Value2 nvarchar(255) = NULL,
+		@Value3 nvarchar(255) = NULL
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_Picklist SET 
+		PicklistGroup=@PicklistGroup,
+		PicklistText=@PicklistText,
+		PicklistValue=@PicklistValue,
+		ViewOrder=@ViewOrder,
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		OtherID=@OtherID,
+		Value1=@Value1,
+		Value2=@Value2,
+		Value3=@Value3
+	WHERE
+		PicklistID=@PicklistID
+GO
+
+ALTER PROCEDURE {databaseOwner}[jb_PicklistCountAllByGroup]
+	@PicklistGroup nvarchar(255),
+	@ModuleID int = NULL
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_Picklist 
+	WHERE PicklistGroup=@PicklistGroup
+	AND ISNULL(ModuleID, -1) =  ISNULL(@ModuleID, -1)
+GO
+
+
+
+ALTER PROCEDURE {databaseOwner}[jb_PicklistGetByGroup]
+		@PicklistGroup nvarchar(255),
+		@ModuleID int = NULL
+	AS
+	SET NOCOUNT ON
+	
+	SELECT *
+	FROM {databaseOwner}jb_Picklist 
+	WHERE PicklistGroup=@PicklistGroup
+	AND ISNULL(ModuleID, -1) =  ISNULL(@ModuleID, -1)
+	ORDER BY ViewOrder, PicklistValue ASC
+GO
+
+
+ALTER PROCEDURE {databaseOwner}[jb_PicklistGetByGroup_DefaultSortOption]
+		@PicklistGroup nvarchar(255),
+		@ModuleID int = NULL
+	AS
+	SET NOCOUNT ON
+	SELECT TOP 1 PicklistValue
+	FROM {databaseOwner}jb_Picklist 
+	WHERE PicklistGroup=@PicklistGroup
+	AND ISNULL(ModuleID, -1) =  ISNULL(@ModuleID, -1)
+	ORDER BY ViewOrder, PicklistValue ASC
+GO

@@ -1,0 +1,719 @@
+
+-- *** Droping stored procedures for table OnyakTechFLSRLog ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByPortalIdLogType') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByPortalIdLogType
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByUserId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSROrderDetails ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDeleteOrderDetailByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDeleteOrderDetailByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetOrderDetailByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetOrderDetailByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetOrderDetailByOrderId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetOrderDetailByOrderId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSROrders ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersDeleteOrderByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersDeleteOrderByUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByStatus') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByStatus
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserName') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserName
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserNameAndPortal') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserNameAndPortal
+GO
+
+-- ***************  Create table definitions  ******************
+
+-- *** Create table OnyakTechFLSRLog ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLog') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRLog (
+		 [LogId] int IDENTITY (1, 1) NOT NULL,
+		 [UserId] int NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL,
+		 [FileId] int NOT NULL,
+		 [LogType] int NOT NULL,
+		 [UserFullName] nvarchar(200) NOT NULL,
+		 [FileName] nvarchar(200) NOT NULL,
+		 [OrderId] int NOT NULL,
+		 [OrderDetailId] int NOT NULL,
+		 [FileHeaderId] int NOT NULL,
+		 [DateCreated] datetime NOT NULL,
+		 [Notes] ntext NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRLog') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRLog ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRLog PRIMARY KEY CLUSTERED (LogId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSROrderDetails ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails (
+		 [OrderDetailId] int IDENTITY (1, 1) NOT NULL,
+		 [OrderId] int NOT NULL,
+		 [FileId] int NOT NULL,
+		 [OriginalFileName] nvarchar(255) NOT NULL,
+		 [FileHeaderId] int NOT NULL,
+		 [Status] int NOT NULL,
+		 [DateAdded] datetime NOT NULL,
+		 [DateProcessStart] datetime NOT NULL,
+		 [DateProcessEnd] datetime NOT NULL,
+		 [DeliveryType] int NOT NULL,
+		 [DeliveryEmailTo] nvarchar(255) NOT NULL,
+		 [DirectDownloaded] bit NOT NULL,
+		 [FileSize] bigint NOT NULL,
+		 [AWSBucketName] nvarchar(750) NOT NULL,
+		 [AWSKeyName] nvarchar(750) NOT NULL,
+		 [AWSETag] nvarchar(750) NOT NULL,
+		 [AWSAccessKeyID] nvarchar(750) NOT NULL,
+		 [AWSSecretAccessKey] nvarchar(750) NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSROrderDetails') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSROrderDetails PRIMARY KEY CLUSTERED (OrderDetailId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSROrders ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrders') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSROrders (
+		 [OrderId] int IDENTITY (1, 1) NOT NULL,
+		 [UserId] int NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL,
+		 [TabId] int NOT NULL,
+		 [DateOrdered] datetime NOT NULL,
+		 [ZipFileName] nvarchar(250) NOT NULL,
+		 [ZipFilePath] nvarchar(1000) NOT NULL,
+		 [Status] int NOT NULL,
+		 [DateCompleted] datetime NOT NULL,
+		 [UserName] nvarchar(100) NOT NULL,
+		 [DisplayName] nvarchar(128) NOT NULL,
+		 [DeliveryType] int NOT NULL,
+		 [DateCreated] datetime NOT NULL,
+		 [OrderProcessor] nvarchar(100) NOT NULL,
+		 [StatusNotes] ntext NOT NULL,
+		 [EmailOnComplete] bit NOT NULL,
+		 [EmailOnCompleteAddress] nvarchar(255) NOT NULL,
+		 [RepositoryUNCPath] ntext NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSROrders') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSROrders ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSROrders PRIMARY KEY CLUSTERED (OrderId) ON [PRIMARY]
+GO
+
+-- ***************  Create relations (foreign keys)  ******************
+
+-- ***************  Create stored procedures  ******************
+
+-- *** Create stored procedures for table OnyakTechFLSRLog ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogAdd
+		@UserId int,
+		@PortalId int,
+		@ModuleId int,
+		@FileId int,
+		@LogType int,
+		@UserFullName nvarchar(200),
+		@FileName nvarchar(200),
+		@OrderId int,
+		@OrderDetailId int,
+		@FileHeaderId int,
+		@DateCreated datetime,
+		@Notes ntext
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRLog
+		(UserId,PortalId,ModuleId,FileId,LogType,UserFullName,FileName,OrderId,OrderDetailId,FileHeaderId,DateCreated,Notes)
+		VALUES
+		(@UserId,@PortalId,@ModuleId,@FileId,@LogType,@UserFullName,@FileName,@OrderId,@OrderDetailId,@FileHeaderId,@DateCreated,@Notes)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogUpdate
+		@LogId int,
+		@UserId int,
+		@PortalId int,
+		@ModuleId int,
+		@FileId int,
+		@LogType int,
+		@UserFullName nvarchar(200),
+		@FileName nvarchar(200),
+		@OrderId int,
+		@OrderDetailId int,
+		@FileHeaderId int,
+		@DateCreated datetime,
+		@Notes ntext
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRLog SET 
+		UserId=@UserId,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		FileId=@FileId,
+		LogType=@LogType,
+		UserFullName=@UserFullName,
+		FileName=@FileName,
+		OrderId=@OrderId,
+		OrderDetailId=@OrderDetailId,
+		FileHeaderId=@FileHeaderId,
+		DateCreated=@DateCreated,
+		Notes=@Notes
+	WHERE
+		LogId=@LogId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogDelete
+		@LogId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRLog WHERE
+		LogId=@LogId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGet
+		@LogId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRLog WHERE
+		LogId=@LogId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRLog
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRLog 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRLog
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByFileId
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRLog 
+	WHERE FileId=@FileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByModuleId
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRLog 
+	WHERE ModuleId=@ModuleId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByPortalId
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRLog 
+	WHERE PortalId=@PortalId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByPortalIdLogType
+		@LogType int,
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRLog 
+	WHERE PortalId=@PortalId AND LogType=@LogType
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByUserId
+		@UserId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRLog 
+	WHERE UserId=@UserId
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSROrderDetails ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsAdd
+		@OrderId int,
+		@FileId int,
+		@OriginalFileName nvarchar(255),
+		@FileHeaderId int,
+		@Status int,
+		@DateAdded datetime,
+		@DateProcessStart datetime,
+		@DateProcessEnd datetime,
+		@DeliveryType int,
+		@DeliveryEmailTo nvarchar(255),
+		@DirectDownloaded bit,
+		@FileSize bigint,
+		@AWSBucketName nvarchar(750),
+		@AWSKeyName nvarchar(750),
+		@AWSETag nvarchar(750),
+		@AWSAccessKeyID nvarchar(750),
+		@AWSSecretAccessKey nvarchar(750)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails
+		(OrderId,FileId,OriginalFileName,FileHeaderId,Status,DateAdded,DateProcessStart,DateProcessEnd,DeliveryType,DeliveryEmailTo,DirectDownloaded,FileSize,AWSBucketName,AWSKeyName,AWSETag,AWSAccessKeyID,AWSSecretAccessKey)
+		VALUES
+		(@OrderId,@FileId,@OriginalFileName,@FileHeaderId,@Status,@DateAdded,@DateProcessStart,@DateProcessEnd,@DeliveryType,@DeliveryEmailTo,@DirectDownloaded,@FileSize,@AWSBucketName,@AWSKeyName,@AWSETag,@AWSAccessKeyID,@AWSSecretAccessKey)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsUpdate
+		@OrderDetailId int,
+		@OrderId int,
+		@FileId int,
+		@OriginalFileName nvarchar(255),
+		@FileHeaderId int,
+		@Status int,
+		@DateAdded datetime,
+		@DateProcessStart datetime,
+		@DateProcessEnd datetime,
+		@DeliveryType int,
+		@DeliveryEmailTo nvarchar(255),
+		@DirectDownloaded bit,
+		@FileSize bigint,
+		@AWSBucketName nvarchar(750),
+		@AWSKeyName nvarchar(750),
+		@AWSETag nvarchar(750),
+		@AWSAccessKeyID nvarchar(750),
+		@AWSSecretAccessKey nvarchar(750)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails SET 
+		OrderId=@OrderId,
+		FileId=@FileId,
+		OriginalFileName=@OriginalFileName,
+		FileHeaderId=@FileHeaderId,
+		Status=@Status,
+		DateAdded=@DateAdded,
+		DateProcessStart=@DateProcessStart,
+		DateProcessEnd=@DateProcessEnd,
+		DeliveryType=@DeliveryType,
+		DeliveryEmailTo=@DeliveryEmailTo,
+		DirectDownloaded=@DirectDownloaded,
+		FileSize=@FileSize,
+		AWSBucketName=@AWSBucketName,
+		AWSKeyName=@AWSKeyName,
+		AWSETag=@AWSETag,
+		AWSAccessKeyID=@AWSAccessKeyID,
+		AWSSecretAccessKey=@AWSSecretAccessKey
+	WHERE
+		OrderDetailId=@OrderDetailId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDelete
+		@OrderDetailId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails WHERE
+		OrderDetailId=@OrderDetailId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGet
+		@OrderDetailId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails WHERE
+		OrderDetailId=@OrderDetailId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDeleteOrderDetailByFileId
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails
+	WHERE FileId=@FileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetOrderDetailByFileId
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails 
+	WHERE FileId=@FileId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetOrderDetailByOrderId
+		@OrderId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails 
+	WHERE OrderId=@OrderId
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSROrders ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersAdd
+		@UserId int,
+		@PortalId int,
+		@ModuleId int,
+		@TabId int,
+		@DateOrdered datetime,
+		@ZipFileName nvarchar(250),
+		@ZipFilePath nvarchar(1000),
+		@Status int,
+		@DateCompleted datetime,
+		@UserName nvarchar(100),
+		@DisplayName nvarchar(128),
+		@DeliveryType int,
+		@DateCreated datetime,
+		@OrderProcessor nvarchar(100),
+		@StatusNotes ntext,
+		@EmailOnComplete bit,
+		@EmailOnCompleteAddress nvarchar(255),
+		@RepositoryUNCPath ntext
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSROrders
+		(UserId,PortalId,ModuleId,TabId,DateOrdered,ZipFileName,ZipFilePath,Status,DateCompleted,UserName,DisplayName,DeliveryType,DateCreated,OrderProcessor,StatusNotes,EmailOnComplete,EmailOnCompleteAddress,RepositoryUNCPath)
+		VALUES
+		(@UserId,@PortalId,@ModuleId,@TabId,@DateOrdered,@ZipFileName,@ZipFilePath,@Status,@DateCompleted,@UserName,@DisplayName,@DeliveryType,@DateCreated,@OrderProcessor,@StatusNotes,@EmailOnComplete,@EmailOnCompleteAddress,@RepositoryUNCPath)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersUpdate
+		@OrderId int,
+		@UserId int,
+		@PortalId int,
+		@ModuleId int,
+		@TabId int,
+		@DateOrdered datetime,
+		@ZipFileName nvarchar(250),
+		@ZipFilePath nvarchar(1000),
+		@Status int,
+		@DateCompleted datetime,
+		@UserName nvarchar(100),
+		@DisplayName nvarchar(128),
+		@DeliveryType int,
+		@DateCreated datetime,
+		@OrderProcessor nvarchar(100),
+		@StatusNotes ntext,
+		@EmailOnComplete bit,
+		@EmailOnCompleteAddress nvarchar(255),
+		@RepositoryUNCPath ntext
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSROrders SET 
+		UserId=@UserId,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		TabId=@TabId,
+		DateOrdered=@DateOrdered,
+		ZipFileName=@ZipFileName,
+		ZipFilePath=@ZipFilePath,
+		Status=@Status,
+		DateCompleted=@DateCompleted,
+		UserName=@UserName,
+		DisplayName=@DisplayName,
+		DeliveryType=@DeliveryType,
+		DateCreated=@DateCreated,
+		OrderProcessor=@OrderProcessor,
+		StatusNotes=@StatusNotes,
+		EmailOnComplete=@EmailOnComplete,
+		EmailOnCompleteAddress=@EmailOnCompleteAddress,
+		RepositoryUNCPath=@RepositoryUNCPath
+	WHERE
+		OrderId=@OrderId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersDelete
+		@OrderId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders WHERE
+		OrderId=@OrderId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGet
+		@OrderId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders WHERE
+		OrderId=@OrderId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersDeleteOrderByUserId
+		@UserId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders
+	WHERE UserId=@UserId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByDate
+		@EndDate datetime,
+		@StartDate datetime,
+		@DateCreated datetime,
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders 
+	WHERE PortalId=@PortalId AND  DateCreated BETWEEN @StartDate and @EndDate
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByModuleId
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders 
+	WHERE ModuleId=@ModuleId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByPortalId
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders 
+	WHERE PortalId=@PortalId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByStatus
+		@PortalId int,
+		@Status int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders 
+	WHERE PortalId=@PortalId AND Status=@Status
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByStatusUser
+		@PortalId int,
+		@Status int,
+		@UserId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders 
+	WHERE PortalId=@PortalId AND Status=@Status AND UserId=@UserId
+	ORDER BY DateCreated DESC
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserId
+		@UserId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders 
+	WHERE UserId=@UserId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserName
+		@UserName nvarchar(100)
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders 
+	WHERE UserName=@UserName
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserNameAndPortal
+		@PortalId int,
+		@UserName nvarchar(100)
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSROrders 
+	WHERE PortalId=@PortalId AND UserName=@UserName
+GO
+

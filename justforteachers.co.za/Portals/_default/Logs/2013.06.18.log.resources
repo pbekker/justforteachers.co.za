@@ -1,0 +1,61 @@
+2013-06-18 22:02:14,978 [simon-PC][Thread:24][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: File load failed, aborting
+2013-06-18 22:42:53,056 [simon-PC][Thread:17][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at OnyakTech.FileShare.FileShareEdit.lnkAddAttribute_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2013-06-18 22:42:53,119 [simon-PC][Thread:17][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=130&error=Input+string+was+not+in+a+correct+format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at OnyakTech.FileShare.FileShareEdit.lnkAddAttribute_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2013-06-18 22:43:41,716 [simon-PC][Thread:17][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at OnyakTech.FileShare.FileShareEdit.lnkAddAttribute_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2013-06-18 22:43:41,716 [simon-PC][Thread:17][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=130&error=Input+string+was+not+in+a+correct+format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at OnyakTech.FileShare.FileShareEdit.lnkAddAttribute_Click(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2013-06-18 22:48:52,777 [simon-PC][Thread:22][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+Telerik.Web.UI.GridGroupByException: Expression cannot be null or empty
+   at Telerik.Web.UI.GridGroupByExpression.SetExpression(String expression)
+   at Telerik.Web.UI.GridGroupByExpression..ctor(GridColumn column)
+   at Telerik.Web.UI.RadGrid.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2013-06-18 22:48:52,777 [simon-PC][Thread:22][ERROR] DotNetNuke.Services.Exceptions.Exceptions - ~/Default.aspx?tabid=130&error=Expression+cannot+be+null+or+empty
+Telerik.Web.UI.GridGroupByException: Expression cannot be null or empty
+   at Telerik.Web.UI.GridGroupByExpression.SetExpression(String expression)
+   at Telerik.Web.UI.GridGroupByExpression..ctor(GridColumn column)
+   at Telerik.Web.UI.RadGrid.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

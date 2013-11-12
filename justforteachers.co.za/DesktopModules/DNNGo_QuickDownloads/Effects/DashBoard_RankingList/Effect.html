@@ -1,0 +1,21 @@
+﻿#if($DataList.Count > 0)
+	<div class="$EffectThemeName">
+			<ul class="article_toplist">
+			#foreach($DataItem in $DataList)
+				<li class="clearfix">
+                    #if($DataItem.Photo != "")
+					<div class="post_thum"><a href="${xf.GoUrl($DataItem)}"><img src="${xf.ThumbnailUrl($DataItem,${xf.ViewEffectSetting("thumbnail_width",200)},200,"W")}"  alt="$DataItem.Name" title="$DataItem.Name" /></a></div>
+                    #end
+					<div class="post_title"><a href="${xf.GoUrl($DataItem)}">$DataItem.Name</a></div>
+					<div class="post_date">Posted on $DataItem.PublishTime.ToString("MM/dd/yyyy")</div>
+					<div class="post_summary">
+                    <!-- News Summary Begin-->
+						${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}
+					<!-- News Summary End-->
+                    </div>
+					<div class="post_more"><a href="${xf.GoUrl($DataItem)}">Read More</a></div>
+			</li>
+		    #end
+		    </ul>
+	</div>
+#end

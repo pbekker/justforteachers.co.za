@@ -1,0 +1,125 @@
+/*
+ * DotNetNuke Skin styles by bestdnnskins.com
+ */
+@import url(css/all.css);
+@import url(css/mobile.css);
+@import url(css/tablet.css);
+@import url(css/camera.css);
+@import url(css/fancybox.css);
+/*--------- Global CSS Reset & Standards ----------*/
+Body { margin:0;padding:0; background:#ffffff; }
+#Body{ background:#F5F5F5; color:#333333; }
+html,body{ margin:0; padding:0; height:100%; font:normal 12px/1.5 Arial, Tahoma, Helvetica, Verdana, sans-serif; color:#333333; }
+form#Form{ height:100%; }
+TH,TD,DIV{ font-family:Arial, Tahoma, Helvetica, Verdana, sans-serif;}
+p{ margin:0 0 8px 0; }
+ol, ul {list-style: none;}
+li,ul li{ list-style:disc; }
+a{outline:0;border:0;}
+img{border:0;}
+.ModuleTitle_SubMenu{ z-index:9999!important; }	
+
+A:link { color :#19821A; text-decoration : none; }
+A:active { color :#19821A; text-decoration : none; }
+A:hover { color :#990000; text-decoration : none; }
+A:visited { color :#666666; text-decoration : none; }
+
+h1{font-size:28px;line-height:1.5em;color:#333333;font-weight:bold;font-family:Arial, Tahoma, Helvetica, Verdana, sans-serif;}
+h2{font-size:24px;line-height:1.5em;color:#333333;font-weight:bold;font-family:Arial, Tahoma, Helvetica, Verdana, sans-serif;}
+h3{font-size:20px;line-height:1.5em;color:#333333;font-weight:bold;font-family:Arial, Tahoma, Helvetica, Verdana, sans-serif;}
+h4{font-size:18px;line-height:1.5em;color:#333333;font-weight:bold;font-family:Arial, Tahoma, Helvetica, Verdana, sans-serif;}
+h5{font-size:16px;line-height:1.5em;color:#333333;font-weight:bold;font-family:Arial, Tahoma, Helvetica, Verdana, sans-serif;}
+h6{font-size:14px;line-height:1.5em;color:#333333;font-weight:bold;font-family:Arial, Tahoma, Helvetica, Verdana, sans-serif;}
+
+.Head{ font-weight:bold; font-size:15px; }
+.SubHead { font-weight:bold;  font-size:14px; }
+.SubSubHead{ font-size:13px; }
+.Normal { font-size:12px; line-height:1.5em; }
+
+.clearafter:after{ clear:both; content:"."; height:0px; font-size:0px; visibility:hidden; display:block; }
+.clearafter{ display:inline-block; }
+.clearafter{ display:block; }
+.clear{ clear:both; }
+.clear_float{ clear:both;line-height:0;font-size:0;}
+
+/*--------- ControlPanel style ----------*/
+.controlpanel_bg { width: 100%; background:#FFFFFF; }
+.controlpanel_style {width:900px; margin:0 auto}
+.controlpanel_style table {width:100%}
+
+.CommandButton { font-size: 11px; font-weight : normal; color: #0033CC; text-decoration: none; }
+A.CommandButton:link, A.CommandButton:visited, A.CommandButton:active { font-size: 11px; font-weight : normal; color : #0033CC; text-decoration : underline; }
+A.CommandButton:hover { font-size: 11px; font-weight : normal; color : #0033CC; text-decoration : none; }
+
+.FileManager A, .FileManager A:link, .FileManager A:visited, .FileManager A:active{ color:#000; text-decoration: underline; }
+.FileManager A:hover{ color:#000; text-decoration:none; }
+
+/*--------- Search style ----------*/
+#Search{ background:url(images/search_bg.png) no-repeat left top; width:153px; height:21px; z-index:2;position:relative;}
+.searchcss, a.searchcss:link, a.searchcss:active, a.searchcss:visited{ color:#ffffff; text-decoration:none; font-weight:normal; font-size:12px; display:block; position:absolute; width:25px; height:25px; right:10px; top:2px; text-indent:-99999px; overflow:hidden; }
+.searchSite {text-indent:-99999px; }
+a.searchcss:hover{ color:#000000; text-decoration:none; font-weight:normal; font-size:12px; }
+#dnn_dnnSEARCH_txtSearch{ width:115px; height:16px; font-size: 12px; color:#333333; text-align: left; padding:1px 3px 1px 3px; background:none; border:none; display:block; position:absolute; left:3px; top:2px; }
+
+/*--------- Currentdate style ----------*/
+.Currentdate{ color:#FFFFFF; line-height:34px; font-size:12px; text-decoration:none; }
+
+/*--------- Footer_user style ----------*/
+.Footer_user, A.Footer_user:link, A.Footer_user:visited, A.Footer_user:active { padding:4px 12px; margin-left:10px; color:#cccccc; font-weight:bold; font-size:12px; text-decoration:none; border:1px solid #666666; border-radius: 4px; webkit-border-radius: 4px; -moz-border-radius: 4px; }
+A.Footer_user:hover {  border:1px solid #888888; color:#ffffff; text-decoration: none;}
+
+/*--------- Footer style ----------*/
+.Footer, A.Footer:link, A.Footer:visited, A.Footer:active { padding:0px 8px; color:#000000; font-size:12px; text-decoration:none; }
+A.Footer:hover { color:#19821A; text-decoration: none;}
+
+/*--------- BannerPane Links style ----------*/
+.bannerpane a { color :#f5f5f5; text-decoration : underline; }
+.bannerpane a:visited { color :#dddddd; text-decoration : none; }
+.bannerpane a:active { color :#ffffff; text-decoration : none; }
+.bannerpane a:hover { color :#cccccc; text-decoration : none; }
+
+/*--------- Social-Links ----------*/
+.iconFacebook{width:36px;height:41px;background:url(images/socialicons.png) no-repeat 0 0;}
+.iconTwitter{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -37px 0;}
+.iconForrst{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -74px 0;}
+.iconDribbble{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -111px 0;}
+.iconDeviantart{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -148px 0;}
+.iconYoutube{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -185px 0;}
+.iconTumblr{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -222px 0;}
+.iconLast.fm{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -259px 0;}
+.iconPicasa{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -296px 0;}
+.iconRSS{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -333px 0;}
+.iconBehance{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -370px 0;}
+.iconSkype{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -407px 0;}
+.iconGithub{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -444px 0;}
+.iconLinkedIn{width:36px;height:41px;background:url(images/socialicons.png) no-repeat -481px 0;}
+
+/*--------- Camera Slider style ----------*/
+.fluid_container { margin: 0 auto; max-width: 960px; width: 100%; }
+
+/*--------- Main Top style ----------*/
+.main_top ul{ list-style:none;margin:0;padding:0;}
+.main_top ul li{ list-style:none;margin:0;padding:0;}
+.main_top h3{ text-align:center;}
+.main_top p{ text-align:center;}
+
+/*--------- More style ----------*/
+.more a, .more a:visited, .more a:active { background:url(images/more.png) no-repeat 0 0; padding:9px 65px; text-decoration:none; }
+.more a:hover{ background:url(images/more.png) no-repeat 0 -33px; width:123px; height:62px; text-decoration: none; color:#FFFFFF;}
+
+/*--------- Image Shake style ----------*/
+.shake ul {list-style:none;margin:0;padding:0;}
+.shake ul li {float:left;list-style:none;margin:0;padding:0;}
+
+/*--------- Fancybox style ----------*/
+.fancybox_style { margin:0; padding:0; }
+.fancybox_style ul { margin:0; padding:0; float:left;list-style:none; width:auto; }
+.fancybox_style ul li { list-style:none; padding-right:12px; padding-top:5px; margin:1px 3px; float:left; position:relative; opacity:1; }
+.fancybox_style ul li:hover { opacity:0.8; }
+
+/*--------- Scroll Top style ----------*/
+#top-link { background: url("images/up.png") no-repeat scroll 0 0 transparent; bottom: 10px; right: 20px; display: none; padding: 30px 20px; position: fixed; text-decoration: none; z-index: 903; opacity: 0.7;}
+#top-link:hover { opacity:1;}
+
+
+

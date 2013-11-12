@@ -1,0 +1,46 @@
+﻿<div class="$EffectThemeName" id="TB_Wrapper${ModuleID}" style="max-width: ${xf.ViewEffectSetting("max-width",700)}px; height: ${xf.ViewEffectSetting("height",300)}px;">
+	<div class="Slides">
+         #if($DataList.Count > 0)
+             #foreach($DataItem in $DataList)
+               <div class="Slide">      
+                        <a href="${xf.GoUrl($DataItem)}" ><img src="${xf.ViewPicture($DataItem)}" alt="${xf.ViewContent("Name",$DataItem)}" /></a>
+			            <div>
+                           <span > 
+                                <h3><a href="${xf.GoUrl($DataItem)}" >${xf.ViewContent("Name",$DataItem)}</a></h3>
+										 ${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}
+                          </span>				        
+			            </div>                                        
+		        </div>
+            #end
+        #end
+	</div><!--End of Slides -->
+</div><!--End of TB_Wrapper -->
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#TB_Wrapper${ModuleID}').TransBanner({
+			responsive_screen_based_limits : true ,
+            slide_autoplay: ${xf.ViewEffectSetting("slide_autoplay","true")}, 
+            slide_delaytime: ${xf.ViewEffectSetting("slide_delaytime",5)}, 
+            slide_transition: ${xf.ViewEffectSetting("slide_transition",1)},
+            slide_transition_period: ${xf.ViewEffectSetting("slide_period",800)},
+            slide_preload_images: ${xf.ViewEffectSetting("slide_images",1)},
+            slide_random_order: ${xf.ViewEffectSetting("slide_random_order","false")},
+
+            button_show_next: ${xf.ViewEffectSetting("button_next","true")},
+	        button_show_back: ${xf.ViewEffectSetting("button_back","true")},
+	        button_show_timer: ${xf.ViewEffectSetting("button_timer","true")},
+	        button_show_numbers: ${xf.ViewEffectSetting("button_numbers","true")},
+	        button_numbers_autohide: ${xf.ViewEffectSetting("button_autohide","true")},
+	        button_numbers_horizontal: ${xf.ViewEffectSetting("button_horizontal","false")},
+
+            caption_margin_x: ${xf.ViewEffectSetting("caption_margin_x",16)},
+			caption_margin_y: ${xf.ViewEffectSetting("caption_margin_y",16)},	
+            navigation_type: ${xf.ViewEffectSetting("navigation_type",1)},
+			caption_bg_color: '#000',
+			caption_bg_opacity: .7
+			
+        });
+        
+    });	
+</script>

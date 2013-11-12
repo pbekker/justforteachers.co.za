@@ -1,0 +1,89 @@
+<div class="download_info clearfix">
+    <h1 class="d_title">${xf.ViewContent("Name",$DataItem)}</h1>
+    <div class="pic">
+        <img src="${xf.ViewPicture($DataItem)}" alt="${xf.ViewContent("Name",$DataItem)}" />
+    </div>
+    <div class="date_attr">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="100">Category:</td>
+                <td>${xf.ViewCategories($DataItem)}</td>
+            </tr>
+            <tr>
+                <td>Tags:</td>
+                <td>${xf.ViewTags($DataItem)}</td>
+            </tr>
+            <tr>
+                <td>Published Date:</td>
+                <td>$DataItem.CreatedDate</td>
+            </tr>
+            <tr>
+                 <td>Posted by:</td>
+                 <td><a href="${xf.GoAuthorUrl($DataItem.CreateUser)}">${xf.ViewUser($DataItem.CreateUser,"DisplayName")}</a></td>
+            </tr>
+            <tr>
+                <td>Attachment Size:</td>
+                <td>${xf.ViewFileUnit($DataItem)}</td>
+            </tr>
+            <tr>
+                <td>Attachment Count:</td>
+                <td>$DataItem.AttachmentCount</td>
+            </tr>
+            <tr>
+                <td>Popularity Degrees:</td>
+                <td>${xf.ViewPopularityDegrees($DataItem)}</td>
+            </tr>
+            <tr>
+                <td>Download Count:</td>
+                <td>$DataItem.ClickCount</td>
+            </tr>
+            <tr>
+                <td class="icon">#if($Module.IsEditable)
+                <span class="blog_edit"><a href="${xf.GoEditUrl($DataItem)}">[Edit]</a></span>
+                #end
+                </td>
+                <td align="right" class="icon">
+                    <a href="${xf.GoUrl()}">Back</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="date_share">
+    ${xf.ViewSharingTool($DataItem)}
+</div>
+<div class="date_row">
+    <h3>Download list</h3>
+    <div class="date_intro">
+            #if($DataList.Count >0)
+                  #if($NeedLogin == true && $UserInfo.UserID < 1)
+                     <b>You can only see download address after you [<a href="${xf.GoLogin()}">login</a>].</b>
+                    <ol>
+                    #foreach($DataItemX in $DataList)
+                        <li style="text-align: left; margin-left: 10px;">
+                            <a>$DataItemX.Name</a> 
+                            <i>$DataItemX.LastTime</i>
+                        </li>
+                    #end
+                    </ol>
+                #else
+                    <ol>
+                    #foreach($DataItemX in $DataList)
+                        <li style="text-align: left; margin-left: 10px;">
+                            <a href="${xf.GoDownloadUrl($DataItemX)}" target="_blank">${DataItemX.Name}${DataItemX.Suffix}</a> 
+                            <i>$DataItemX.LastTime</i>
+                        </li>
+                    #end
+                    </ol>
+                #end
+            #else
+                No entry attachments
+            #end
+    </div>
+</div>
+<div class="date_row">
+    <h3>Description</h3>
+    <div class="date_intro">$DataItem.Description</div>
+</div>
+#parse( "view_comment.html" )
+

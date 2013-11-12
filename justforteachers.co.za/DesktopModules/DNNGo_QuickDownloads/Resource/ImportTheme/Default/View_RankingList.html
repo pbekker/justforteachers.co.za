@@ -1,0 +1,13 @@
+#if($DataList.Count > 0)
+			<ul class="QuickDownloads_RankingList">
+			#foreach($DataItem in $DataList)
+				<li class="clearfix">
+					<div class="post_thum"><a href="${xf.GoUrl($DataItem)}"><img src="${xf.ViewPicture($DataItem)}" style="width:90px;" alt="" title="" /></a>
+					</div>
+					<h4 class="post_title"><a href="${xf.GoUrl($DataItem)}">$DataItem.Name</a></h4>
+					<div class="post_date">$DataItem.LastTime.ToString()</div>
+					<div class="post_more"><a href="${xf.GoUrl($DataItem)}">Read More</a></div>
+			</li>
+		    #end
+		    </ul>
+#end

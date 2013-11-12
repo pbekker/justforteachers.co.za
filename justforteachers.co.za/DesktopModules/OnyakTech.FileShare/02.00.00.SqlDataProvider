@@ -1,0 +1,164 @@
+ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories ADD
+	UsersVisibleTo nvarchar(500) NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles ADD
+	UsersVisibleTo nvarchar(500) NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles ADD
+	RolesVisibleTo nvarchar(500) NULL
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesAdd
+		@CategoryName nvarchar(255),
+		@CategoryDescription ntext,
+		@CategoryImageURL nvarchar(2000),
+		@DateAdded datetime,
+		@ParentCategoryId int,
+		@PortalId int,
+		@ModuleId int,
+		@IsPortalSpecific bit,
+		@CreatedByUserId int,
+		@EnableEmailPublishing bit,
+		@KeyWords nvarchar(2000),
+		@Enabled bit,
+		@IsRSSFeed bit,
+		@RSSFeedURL nvarchar(2000),
+		@EmailRoles nvarchar(500),
+		@TreeId int,
+		@TreePath nvarchar(750),
+		@AWSAccessKeyID nvarchar(750),
+		@AWSSecretAccessKey nvarchar(750),
+		@UNCPathStore nvarchar(750),
+		@SecureRoles nvarchar(500),
+		@UsersVisibleTo nvarchar(500)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRCategories
+		(CategoryName,CategoryDescription,CategoryImageURL,DateAdded,ParentCategoryId,PortalId,ModuleId,IsPortalSpecific,CreatedByUserId,EnableEmailPublishing,KeyWords,Enabled,IsRSSFeed,RSSFeedURL,EmailRoles,TreeId,TreePath,AWSAccessKeyID,AWSSecretAccessKey,UNCPathStore,SecureRoles,UsersVisibleTo)
+		VALUES
+		(@CategoryName,@CategoryDescription,@CategoryImageURL,@DateAdded,@ParentCategoryId,@PortalId,@ModuleId,@IsPortalSpecific,@CreatedByUserId,@EnableEmailPublishing,@KeyWords,@Enabled,@IsRSSFeed,@RSSFeedURL,@EmailRoles,@TreeId,@TreePath,@AWSAccessKeyID,@AWSSecretAccessKey,@UNCPathStore,@SecureRoles,@UsersVisibleTo)
+	SELECT SCOPE_IDENTITY()
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesUpdate
+		@FileCategoryId int,
+		@CategoryName nvarchar(255),
+		@CategoryDescription ntext,
+		@CategoryImageURL nvarchar(2000),
+		@DateAdded datetime,
+		@ParentCategoryId int,
+		@PortalId int,
+		@ModuleId int,
+		@IsPortalSpecific bit,
+		@CreatedByUserId int,
+		@EnableEmailPublishing bit,
+		@KeyWords nvarchar(2000),
+		@Enabled bit,
+		@IsRSSFeed bit,
+		@RSSFeedURL nvarchar(2000),
+		@EmailRoles nvarchar(500),
+		@TreeId int,
+		@TreePath nvarchar(750),
+		@AWSAccessKeyID nvarchar(750),
+		@AWSSecretAccessKey nvarchar(750),
+		@UNCPathStore nvarchar(750),
+		@SecureRoles nvarchar(500),
+		@UsersVisibleTo nvarchar(500)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories SET 
+		CategoryName=@CategoryName,
+		CategoryDescription=@CategoryDescription,
+		CategoryImageURL=@CategoryImageURL,
+		DateAdded=@DateAdded,
+		ParentCategoryId=@ParentCategoryId,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		IsPortalSpecific=@IsPortalSpecific,
+		CreatedByUserId=@CreatedByUserId,
+		EnableEmailPublishing=@EnableEmailPublishing,
+		KeyWords=@KeyWords,
+		Enabled=@Enabled,
+		IsRSSFeed=@IsRSSFeed,
+		RSSFeedURL=@RSSFeedURL,
+		EmailRoles=@EmailRoles,
+		TreeId=@TreeId,
+		TreePath=@TreePath,
+		AWSAccessKeyID=@AWSAccessKeyID,
+		AWSSecretAccessKey=@AWSSecretAccessKey,
+		UNCPathStore=@UNCPathStore,
+		SecureRoles=@SecureRoles,
+		UsersVisibleTo=@UsersVisibleTo
+	WHERE
+		FileCategoryId=@FileCategoryId
+GO
+
+
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesAdd
+		@DateAdded datetime,
+		@FileSize bigint,
+		@FileType nvarchar(150),
+		@FileName nvarchar(255),
+		@FilePath nvarchar(2000),
+		@FileURL ntext,
+		@FileId int,
+		@AWSBucketName nvarchar(750),
+		@AWSKeyName nvarchar(750),
+		@AWSETag nvarchar(750),
+		@AWSAccessKeyID nvarchar(750),
+		@AWSSecretAccessKey nvarchar(750),
+		@CategoryId int,
+		@UsersVisibleTo nvarchar(500),
+		@RolesVisibleTo nvarchar(500)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles
+		(DateAdded,FileSize,FileType,FileName,FilePath,FileURL,FileId,AWSBucketName,AWSKeyName,AWSETag,CategoryId,AWSAccessKeyID,AWSSecretAccessKey,UsersVisibleTo,RolesVisibleTo)
+		VALUES
+		(@DateAdded,@FileSize,@FileType,@FileName,@FilePath,@FileURL,@FileId,@AWSBucketName,@AWSKeyName,@AWSETag,@CategoryId,@AWSAccessKeyID,@AWSSecretAccessKey,@UsersVisibleTo,@RolesVisibleTo)
+	SELECT SCOPE_IDENTITY()
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesUpdate
+		@FileFileId int,
+		@DateAdded datetime,
+		@FileSize bigint,
+		@FileType nvarchar(150),
+		@FileName nvarchar(255),
+		@FilePath nvarchar(2000),
+		@FileURL ntext,
+		@FileId int,
+		@AWSBucketName nvarchar(750),
+		@AWSKeyName nvarchar(750),
+		@AWSETag nvarchar(750),
+		@AWSAccessKeyID nvarchar(750),
+		@AWSSecretAccessKey nvarchar(750),
+		@CategoryId int,
+		@UsersVisibleTo nvarchar(500),
+		@RolesVisibleTo nvarchar(500)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles SET 
+		DateAdded=@DateAdded,
+		FileSize=@FileSize,
+		FileType=@FileType,
+		FileName=@FileName,
+		FilePath=@FilePath,
+		FileURL=@FileURL,
+		FileId=@FileId,
+		AWSBucketName=@AWSBucketName,
+		AWSKeyName=@AWSKeyName,
+		AWSETag=@AWSETag,
+		AWSAccessKeyID=@AWSAccessKeyID,
+		AWSSecretAccessKey=@AWSSecretAccessKey,
+		CategoryId=@CategoryId,
+		UsersVisibleTo=@UsersVisibleTo,
+		RolesVisibleTo=@RolesVisibleTo
+	WHERE
+		FileFileId=@FileFileId
+GO
+
+

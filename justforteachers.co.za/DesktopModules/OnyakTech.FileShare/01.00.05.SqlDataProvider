@@ -1,0 +1,70 @@
+ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories 
+ADD EmailRoles nvarchar(500) NULL
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRCategories ***
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesAdd
+		@CategoryName nvarchar(255),
+		@CategoryDescription ntext,
+		@CategoryImageURL nvarchar(2000),
+		@DateAdded datetime,
+		@ParentCategoryId int,
+		@PortalId int,
+		@ModuleId int,
+		@IsPortalSpecific bit,
+		@CreatedByUserId int,
+		@EnableEmailPublishing bit,
+		@KeyWords nvarchar(2000),
+		@Enabled bit,
+		@IsRSSFeed bit,
+		@RSSFeedURL nvarchar(2000),
+		@EmailRoles nvarchar(500)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRCategories
+		(CategoryName,CategoryDescription,CategoryImageURL,DateAdded,ParentCategoryId,PortalId,ModuleId,IsPortalSpecific,CreatedByUserId,EnableEmailPublishing,KeyWords,Enabled,IsRSSFeed,RSSFeedURL,EmailRoles)
+		VALUES
+		(@CategoryName,@CategoryDescription,@CategoryImageURL,@DateAdded,@ParentCategoryId,@PortalId,@ModuleId,@IsPortalSpecific,@CreatedByUserId,@EnableEmailPublishing,@KeyWords,@Enabled,@IsRSSFeed,@RSSFeedURL,@EmailRoles)
+	SELECT SCOPE_IDENTITY()
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesUpdate
+		@FileCategoryId int,
+		@CategoryName nvarchar(255),
+		@CategoryDescription ntext,
+		@CategoryImageURL nvarchar(2000),
+		@DateAdded datetime,
+		@ParentCategoryId int,
+		@PortalId int,
+		@ModuleId int,
+		@IsPortalSpecific bit,
+		@CreatedByUserId int,
+		@EnableEmailPublishing bit,
+		@KeyWords nvarchar(2000),
+		@Enabled bit,
+		@IsRSSFeed bit,
+		@RSSFeedURL nvarchar(2000),
+		@EmailRoles nvarchar(500)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories SET 
+		CategoryName=@CategoryName,
+		CategoryDescription=@CategoryDescription,
+		CategoryImageURL=@CategoryImageURL,
+		DateAdded=@DateAdded,
+		ParentCategoryId=@ParentCategoryId,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		IsPortalSpecific=@IsPortalSpecific,
+		CreatedByUserId=@CreatedByUserId,
+		EnableEmailPublishing=@EnableEmailPublishing,
+		KeyWords=@KeyWords,
+		Enabled=@Enabled,
+		IsRSSFeed=@IsRSSFeed,
+		RSSFeedURL=@RSSFeedURL,
+		EmailRoles=@EmailRoles
+	WHERE
+		FileCategoryId=@FileCategoryId
+GO
+

@@ -1,0 +1,55 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 07.00.10            *****/
+/************************************************************/
+ALTER TABLE {databaseOwner}[jb_ItemAttribute] ADD
+[IsActive] [bit] NOT NULL CONSTRAINT [jb_ItemAttribute_IsActive] DEFAULT (1)
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemFile] ADD
+[IsActive] [bit] NOT NULL CONSTRAINT [jb_ItemFile_IsActive] DEFAULT (1)
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemImage] ADD
+[IsActive] [bit] NOT NULL CONSTRAINT [jb_ItemImage_IsActive] DEFAULT (1)
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemReview] ADD
+[IsActive] [bit] NOT NULL CONSTRAINT [jb_ItemReview_IsActive] DEFAULT (1)
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemVideo] ADD
+[IsActive] [bit] NOT NULL CONSTRAINT [jb_ItemVideo_IsActive] DEFAULT (1)
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileByjb_Item]    Script Date: 07/09/2011 22:25:24 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemFileByjb_Item]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemFileByjb_Item]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemFileByjb_Item]    Script Date: 07/09/2011 22:25:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_ItemFileByjb_Item]
+		@ItemID int
+	AS
+	SET NOCOUNT ON
+	SELECT *
+	FROM {databaseOwner}jb_ItemFile WHERE
+		ItemID=@ItemID
+	ORDER BY ViewOrder, FileID
+GO

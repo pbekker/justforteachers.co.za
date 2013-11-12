@@ -1,0 +1,31 @@
+<div class="contentflexslider">
+    #set($DataList1 = ${xf.ViewArticleRankingList(${xf.ViewXmlSetting("ViewType","time")},1,${xf.ViewXmlSetting("Number",5)},${xf.ViewXmlSetting("Featured","no")})})
+    #if($DataList1.Count > 0)
+    <ul class="slides">
+      #foreach($DataItem in $DataList1)
+        <li>
+          <div class="flex-image post_thum"><a href="${xf.GoUrl($DataItem)}"><img src="${xf.ViewPicture($DataItem)}" style="width:100%"  alt="" title="" /></a></div>
+          <div class="flex-caption"><h3><a href="${xf.GoUrl($DataItem)}">$DataItem.Name</a></h3><p>${xf.ViewSummary($DataItem,100,"...")}</p></div>
+        </li>
+        #end
+    </ul>
+  #end
+</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(jQuery) {  
+  /* Slider
+   * ---------------------------------------------- */
+   jQuery('.contentflexslider').flexslider({
+    animation: "slide",
+    animationLoop: false,
+    itemWidth: ${xf.ViewXmlSetting("ItemWidth","230")},
+    controlNav: ${xf.ViewXmlSetting("ControlNav","true")},
+    directionNav:${xf.ViewXmlSetting("DirectionNav","true")},
+    maxItems: ${xf.ViewXmlSetting("MaxItems","4")},
+    move: ${xf.ViewXmlSetting("Move","1")},
+    itemMargin: 10
+  });
+});
+</script>
+

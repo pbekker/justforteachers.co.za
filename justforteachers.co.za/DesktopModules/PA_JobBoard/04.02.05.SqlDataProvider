@@ -1,0 +1,739 @@
+﻿if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_AddClassifieds]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_AddClassifieds]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_DeleteClassifieds]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_DeleteClassifieds]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_DeleteClassifiedsCategory]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_DeleteClassifiedsCategory]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsCategories]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsCategories]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsCategoriesCompleteList]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsCategoriesCompleteList]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsSearch_Adv]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsSearch_Adv]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsSearch_Bsc]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsSearch_Bsc]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsSearch_Cri]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsSearch_Cri]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UtilGetDistinctLocation]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UtilGetDistinctLocation]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UtilUpdateItemsCount]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UtilUpdateItemsCount]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ClassifiedsItem_vw]') and OBJECTPROPERTY(id, N'IsView') = 1)
+drop view {databaseOwner}[jb_ClassifiedsItem_vw]
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE VIEW {databaseOwner}jb_ClassifiedsItem_vw
+AS
+SELECT     jb_ClassifiedsItem.*, UnionCategory.[CategoryID] AS UCategoryID
+FROM         (SELECT     ItemID, CategoryID
+		FROM         jb_ClassifiedsItem
+		UNION
+		SELECT     *
+		FROM         jb_ItemCategory) AS UnionCategory 
+LEFT OUTER JOIN {databaseOwner}jb_ClassifiedsItem ON UnionCategory.ItemID = jb_ClassifiedsItem.ItemID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_AddClassifieds  
+@ModuleID       int,
+@UserName       nvarchar(100),
+@JB_JobTitle	nvarchar(255),
+@JB_JobCode	nvarchar(50),
+@JB_JobLocation	nvarchar(50),
+@JB_EmpType	nvarchar(50),
+@JB_ReqEducation	nvarchar(50),
+@JB_YearExp	int,
+@JB_Travel	nvarchar(50),
+@JB_StartingSalary	int,
+@JB_HourlyRate money,
+@JB_OtherSalary nvarchar(50),
+@JB_StartDate	datetime,
+@JB_NumberOpening	int,
+@Message	ntext,
+@JB_CompanyName	nvarchar(150),
+@JB_AddReqList	ntext,
+@JB_BenefitsList	ntext,
+@Image image, 
+@ImageContentType nvarchar(50), 
+@ImageContentSize int, 
+@Image1 image, 
+@ImageContentType1 nvarchar(50), 
+@ImageContentSize1 int, 
+@JB_ContactInfo	nvarchar(2000),
+@JB_ContactEmail	nvarchar(150),
+@PosterPassword	nvarchar(50),
+@ExpireDate	datetime,
+@Authed	bit,
+@CategoryID       int,
+@Featured	bit,
+@it_Postal nvarchar(50), 
+@ItemID   int OUTPUT
+AS
+
+IF DATEPART(YYYY,@ExpireDate) = '1900'
+	SET @ExpireDate = null
+
+
+insert into jb_ClassifiedsItem(
+  ModuleID,
+  CreatedByUser,
+  CreatedDate,
+  JB_JobTitle,
+  JB_JobCode,
+  JB_JobLocation,
+  JB_EmpType,
+  JB_ReqEducation,
+  JB_YearExp,
+  JB_Travel,
+  JB_StartingSalary,
+  JB_HourlyRate,
+  JB_OtherSalary,
+  JB_StartDate, 
+  JB_NumberOpening, 
+  Message,
+  JB_CompanyName,
+  JB_AddReqList,
+  JB_BenefitsList,
+  Image,
+  ImageContentType,
+  ImageContentSize,
+  Image1,
+  ImageContentType1,
+  ImageContentSize1,
+  JB_ContactInfo,
+  JB_ContactEmail,
+  PosterPassword,
+  ExpireDate,
+  Authed,
+Featured,
+  CategoryID,
+it_Postal	
+)
+values (
+  @ModuleID,
+  @UserName,
+  getdate(),
+@JB_JobTitle,
+@JB_JobCode,
+@JB_JobLocation,
+@JB_EmpType,
+@JB_ReqEducation,
+@JB_YearExp,
+@JB_Travel,
+@JB_StartingSalary,
+@JB_HourlyRate,
+@JB_OtherSalary,
+@JB_StartDate,
+@JB_NumberOpening,
+@Message,
+@JB_CompanyName,
+@JB_AddReqList,
+@JB_BenefitsList,
+@Image, 
+@ImageContentType, 
+@ImageContentSize, 
+@Image1, 
+@ImageContentType1, 
+@ImageContentSize1, 
+@JB_ContactInfo,
+@JB_ContactEmail,
+@PosterPassword,
+@ExpireDate,
+@Authed,
+@Featured,
+@CategoryID,
+@it_Postal	
+	
+)
+SELECT
+   @ItemID = @@Identity
+
+IF (SELECT SettingValue FROM {objectQualifier}ModuleSettings WHERE ModuleID = @ModuleID AND SettingName = 'PF_ItemsCountOption') =  'TABLE'
+	BEGIN				
+		EXEC jb_UtilUpdateItemsCount @CategoryID, 0
+	END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_DeleteClassifieds
+(
+    @ItemID int
+
+)
+AS
+SET NOCOUNT ON
+DECLARE @mode nvarchar(10) 
+DECLARE @ModuleID int
+DECLARE @CategoryID int 
+SELECT @CategoryID = CategoryID, @ModuleID = ModuleID FROM jb_ClassifiedsItem WHERE  ItemID = @ItemID
+SELECT @mode = SettingValue FROM {objectQualifier}ModuleSettings WHERE ModuleID = @ModuleID AND SettingName = 'PF_ItemsCountOption'
+
+BEGIN
+	BEGIN TRAN			
+		DELETE FROM jb_ItemFile WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ItemAttribute WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ItemReview WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ItemImage WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ItemCategory WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_JobApplication WHERE JobID=@ItemID
+		If @@error <> 0 goto ERR_HANDLER
+		DELETE FROM jb_ClassifiedsItem WHERE  ItemID = @ItemID
+		If @@error <> 0 goto ERR_HANDLER	
+		IF @mode  = 'TABLE'
+			BEGIN				
+				EXEC jb_UtilUpdateItemsCount @CategoryID, 0
+			END
+		COMMIT TRAN -- No Errors, so go ahead
+		RETURN
+	ERR_HANDLER:
+		ROLLBACK TRAN
+		RETURN
+END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_DeleteClassifiedsCategory
+(
+   @CategoryID   int,
+   @ReturnCode int OUTPUT	
+)
+AS
+if not exists ( select * from jb_ClassifiedsCat where ParentID = @CategoryID )
+	BEGIN
+		BEGIN TRAN			
+			DELETE FROM jb_ItemCategory WHERE  CategoryID = @CategoryID
+			If @@error <> 0 goto ERR_HANDLER
+			DELETE FROM jb_UserCategory WHERE  CategoryID = @CategoryID
+			If @@error <> 0 goto ERR_HANDLER
+			DELETE FROM jb_ClassifiedsItem WHERE CategoryID = @CategoryID
+			If @@error <> 0 goto ERR_HANDLER
+			DELETE FROM jb_ClassifiedsCat WHERE CategoryID = @CategoryID
+			If @@error <> 0 goto ERR_HANDLER	
+			COMMIT TRAN -- No Errors, so go ahead
+			SELECT  @ReturnCode =  @CategoryID
+			RETURN @ReturnCode
+		ERR_HANDLER:
+			ROLLBACK TRAN
+			SELECT  @ReturnCode =   @@error * (-1)
+			RETURN @ReturnCode
+	END
+ELSE
+	SELECT  @ReturnCode = -1
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE procedure {databaseOwner}jb_GetClassifiedsCategories
+@ParentID   int,
+@moduleID	int,
+@mode nvarchar(10) = 'UDF' 
+as
+SELECT @mode = SettingValue FROM {objectQualifier}ModuleSettings WHERE moduleID = @moduleID AND SettingName = 'PF_ItemsCountOption'
+
+IF @mode  = 'UDF'
+	BEGIN
+		select *, {databaseOwner}jb_CountChildren(CategoryID, 0, Getdate()) AS ItemsCount, {databaseOwner}jb_CountChildrenAdmin(CategoryID, 0, Getdate()) AS ItemsCountAdmin
+		from   jb_ClassifiedsCat
+		where  (IsNull(ParentID, 0) = @ParentID AND moduleID = @moduleID)
+		order by CategoryName
+	END
+
+ELSE
+	BEGIN
+		select *, ItemCount AS ItemsCount, ItemCountAdmin AS ItemsCountAdmin
+		from   jb_ClassifiedsCat
+		where  (IsNull(ParentID, 0) = @ParentID AND moduleID = @moduleID)
+		order by CategoryName
+	END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_GetClassifiedsCategoriesCompleteList
+	(
+	@ModuleID int,
+	@Key nvarchar(20) = 'DDL' -- (DS, DDL_CATPATH, DDL_CATPATH_NC, DDL_CATPATH_EL, DDL, DDL_ADMINPANEL, DDL_ADDITEM, DDL_SEARCH)
+	)
+	AS
+
+	IF UPPER(@Key) = 'DS' 
+		BEGIN		
+			Select ClassifiedsCat.*, 
+				{databaseOwner}jb_CountChildren(ClassifiedsCat.CategoryID, 0, Getdate()) AS ItemsCount, 
+				{databaseOwner}jb_CountChildrenAdmin(ClassifiedsCat.CategoryID, 0, Getdate()) AS ItemsCountAdmin,
+				cast(left(CategoryString, 2) as int) as [LEVEL],
+				rtrim(CategoryName) as [CategoryName],	
+				substring(CategoryString, 3, 1024) as [CategoryPath], 
+				(SELECT CategoryName From jb_ClassifiedsCat c2 WHERE c2.CategoryID = ClassifiedsCat.ParentID) AS 'ParentName',
+				(SELECT COUNT(CategoryID) FROM [jb_ClassifiedsCat]  WHERE [ParentID] = ClassifiedsCat.CategoryID) AS [ChildrenCount]
+			 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+					, ClassifiedsCat.*
+			   	from jb_ClassifiedsCat as ClassifiedsCat WHERE ModuleID=@ModuleID
+				) as ClassifiedsCat
+			where CategoryString IS NOT NULL
+			order by substring(CategoryString,3,1024)
+				
+		END	
+	ELSE IF UPPER(@Key) = 'DS_TABLE' 
+		BEGIN		
+			Select ClassifiedsCat.*, ItemCount AS ItemsCount, ItemCountAdmin AS ItemsCountAdmin,
+				cast(left(CategoryString, 2) as int) as [LEVEL],
+				rtrim(CategoryName) as [CategoryName],	
+				substring(CategoryString, 3, 1024) as [CategoryPath], 
+				(SELECT CategoryName From jb_ClassifiedsCat c2 WHERE c2.CategoryID = ClassifiedsCat.ParentID) AS 'ParentName',
+				(SELECT COUNT(CategoryID) FROM [jb_ClassifiedsCat]  WHERE [ParentID] = ClassifiedsCat.CategoryID) AS [ChildrenCount]
+			 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+					, ClassifiedsCat.*
+			   	from jb_ClassifiedsCat as ClassifiedsCat WHERE ModuleID=@ModuleID
+				) as ClassifiedsCat
+			where CategoryString IS NOT NULL
+			order by substring(CategoryString,3,1024)
+		END	
+	ELSE  IF UPPER(@Key) = 'DDL_CATPATH' 
+		BEGIN		
+			Select CategoryID AS [CategoryID], 
+				cast(left(CategoryString, 2) as int) as [LEVEL],
+				rtrim(CategoryName) as [CategoryName],	
+				substring(CategoryString, 3, 1024) as [CategoryPath], 
+				(SELECT COUNT(CategoryID) FROM [jb_ClassifiedsCat]  WHERE [ParentID] = ClassifiedsCat.CategoryID) AS [ChildrenCount]
+			 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+					, ClassifiedsCat.CategoryID CategoryID, ClassifiedsCat.CategoryName CategoryName
+			   	from jb_ClassifiedsCat as ClassifiedsCat WHERE ModuleID=@ModuleID
+				) as ClassifiedsCat
+			where CategoryString IS NOT NULL
+			order by substring(CategoryString,3,1024)
+		END
+	ELSE  IF UPPER(@Key) = 'DDL_CATPATH_NC' 
+		BEGIN		
+			Select CategoryID AS [CategoryID], 
+				cast(left(CategoryString, 2) as int) as [LEVEL],
+				rtrim(CategoryName) as [CategoryName],	
+				substring(CategoryString, 3, 1024) as [CategoryPath], 
+				ClassifiedsCat. [ChildrenCount]
+			 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+					, ClassifiedsCat.CategoryID CategoryID, ClassifiedsCat.CategoryName CategoryName,
+					(SELECT COUNT(CategoryID) FROM [jb_ClassifiedsCat]  WHERE [ParentID] = ClassifiedsCat.CategoryID) AS [ChildrenCount]
+			   	from jb_ClassifiedsCat as ClassifiedsCat WHERE ModuleID=@ModuleID
+				) as ClassifiedsCat
+			where ClassifiedsCat.[ChildrenCount] = 0  AND CategoryString IS NOT NULL
+			order by substring(CategoryString,3,1024)
+		END
+	 ELSE IF UPPER(@Key) = 'DDL_CATPATH_EL' 
+		BEGIN		
+			Select CategoryID AS [CategoryID], 
+				cast(left(CategoryString, 2) as int) as [LEVEL],
+				rtrim(CategoryName) as [CategoryName],	
+				substring(CategoryString, 3, 1024) as [CategoryPath], 
+				(SELECT COUNT(CategoryID) FROM [jb_ClassifiedsCat]  WHERE [ParentID] = ClassifiedsCat.CategoryID) AS [ChildrenCount]
+			 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+					, ClassifiedsCat.CategoryID CategoryID, ClassifiedsCat.CategoryName CategoryName
+			   	from jb_ClassifiedsCat as ClassifiedsCat  WHERE ModuleID=@ModuleID AND EnableListings = 1
+				) as ClassifiedsCat
+			where CategoryString IS NOT NULL
+			order by substring(CategoryString,3,1024)
+		END	
+	ELSE 	-- DDL, DDL_ADMINPANEL, DDL_ADDITEM, DDL_SEARCH
+		BEGIN	
+			CREATE TABLE [#RETURN] ([CategoryID] int, [CategoryName] nVARCHAR(512))				
+			IF UPPER(@Key) = 'DDL_ADMINPANEL' 
+				BEGIN
+					INSERT INTO [#RETURN] 
+					VALUES (0,  '-- NO PARENT --')
+
+					INSERT INTO [#RETURN] 				
+					Select CategoryID AS [CategoryID],  substring(CategoryString, 3, 1024) as [CategoryPath]
+					 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+							, ClassifiedsCat.CategoryID CategoryID
+					   	from jb_ClassifiedsCat as ClassifiedsCat  WHERE ModuleID=@ModuleID
+						) as ClassifiedsCat
+					where CategoryString IS NOT NULL
+					order by substring(CategoryString,3,1024)
+				END
+			ELSE  IF UPPER(@Key) = 'DDL_SEARCH' 
+				BEGIN
+					INSERT INTO [#RETURN] 
+					VALUES (-1,  '-- ALL Categories --')
+
+					INSERT INTO [#RETURN] 				
+					Select CategoryID AS [CategoryID],  substring(CategoryString, 3, 1024) as [CategoryPath]
+					 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+							, ClassifiedsCat.CategoryID CategoryID
+					   	from jb_ClassifiedsCat as ClassifiedsCat  WHERE ModuleID=@ModuleID
+						) as ClassifiedsCat
+					where CategoryString IS NOT NULL
+					order by substring(CategoryString,3,1024)
+				END
+			ELSE -- DDL, DDL_ADDITEM
+				BEGIN
+					INSERT INTO [#RETURN] 				
+					Select CategoryID AS [CategoryID],  substring(CategoryString, 3, 1024) as [CategoryPath]
+					 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+							, ClassifiedsCat.CategoryID CategoryID
+					   	from jb_ClassifiedsCat as ClassifiedsCat  WHERE ModuleID=@ModuleID AND EnableListings = 1
+						) as ClassifiedsCat
+					where CategoryString IS NOT NULL
+					order by substring(CategoryString,3,1024)
+				END			
+			
+						
+			SELECT  *  FROM [#RETURN]
+
+			DROP TABLE [#RETURN]
+
+		END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE  PROCEDURE {databaseOwner}jb_GetClassifiedsSearch_Adv
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@EmploymentType nvarchar(50),
+@SalaryFrom  int,
+@Zip nvarchar(50) = NULL
+
+AS
+IF @Zip = ''
+SET @Zip = null
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+
+SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt
+	, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+	FROM jb_ClassifiedsItem
+	WHERE  jb_ClassifiedsItem.ItemID IN
+	(
+	SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+	FROM jb_ClassifiedsItem_vw
+	WHERE ModuleID = @ModuleID
+	AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+	AND ((UCategoryID IN(SELECT * FROM [#RETURN])) OR (@CurrentCategoryID = -1))
+	AND (JB_EmpType = @EmploymentType)
+	AND (JB_StartingSalary >= @SalaryFrom)		
+	and ((JB_JobTitle like '%' + @SearchText + '%' or 
+					JB_JobCode like '%' + @SearchText + '%' or 
+					JB_JobLocation like '%' + @SearchText + '%' or 
+					JB_ReqEducation like '%' + @SearchText + '%' or 									
+					JB_Travel like '%' + @SearchText + '%' or 
+					JB_NumberOpening like '%' + @SearchText + '%' or 
+					Message like '%' + @SearchText + '%'  or
+					JB_CompanyName like '%' + @SearchText + '%'  or
+					JB_ContactInfo like '%' + @SearchText + '%'  or
+					JB_ContactEmail like '%' + @SearchText + '%'  or 
+					CreatedDate    like '%' + @SearchText + '%'  or 
+					ExpireDate like '%' + @SearchText + '%'  or 
+					JB_AddReqList	like '%' + @SearchText + '%'  or 
+					JB_BenefitsList like '%' + @SearchText + '%'  )  OR (@SearchText IS NULL))
+	AND  ((it_Postal = @Zip) OR (@Zip IS NULL)) 
+	) 
+	Order By Rank Desc
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE  PROCEDURE {databaseOwner}jb_GetClassifiedsSearch_Bsc
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@Zip nvarchar(50) = NULL
+AS
+IF @Zip = ''
+SET @Zip = null
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt
+, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+FROM jb_ClassifiedsItem
+WHERE  jb_ClassifiedsItem.ItemID IN
+(
+SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+FROM jb_ClassifiedsItem_vw
+WHERE ModuleID = @ModuleID
+AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+AND ((UCategoryID IN(SELECT * FROM [#RETURN])) OR (@CurrentCategoryID = -1))		
+AND ((JB_JobTitle like '%' + @SearchText + '%' or 
+				JB_JobCode like '%' + @SearchText + '%' or 
+				JB_JobLocation like '%' + @SearchText + '%' or 
+				JB_EmpType like '%' + @SearchText + '%' or 
+				JB_ReqEducation like '%' + @SearchText + '%' or 									
+				JB_Travel like '%' + @SearchText + '%' or 
+				JB_StartingSalary like '%' + @SearchText + '%' or 
+				CAST(JB_HourlyRate As NVARCHAR(255)) like '%' + @SearchText + '%' or 	
+				JB_StartDate	like '%' + @SearchText + '%' or 
+				JB_NumberOpening like '%' + @SearchText + '%' or 
+				Message like '%' + @SearchText + '%'  or
+				JB_CompanyName like '%' + @SearchText + '%'  or
+				JB_ContactInfo like '%' + @SearchText + '%'  or
+				JB_ContactEmail like '%' + @SearchText + '%'  or 
+				CreatedDate    like '%' + @SearchText + '%'  or 
+				ExpireDate like '%' + @SearchText + '%'  or 
+				JB_AddReqList	like '%' + @SearchText + '%'  or 
+				JB_BenefitsList like '%' + @SearchText + '%'  )  OR (@SearchText IS NULL))
+AND  ((it_Postal = @Zip) OR (@Zip IS NULL)) 
+)
+Order By Rank Desc
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE  PROCEDURE {databaseOwner}jb_GetClassifiedsSearch_Cri
+@ModuleID 		int,
+@CurrentCategoryID 	int= -1,
+@Message		nvarchar(255)= '',
+@StartDate 		DATETIME = NULL,
+@EndDate 		DATETIME = NULL,
+@Zip nvarchar(50) = NULL
+AS
+
+DECLARE @strSelect		nvarchar(2000)
+DECLARE @strFrom		nvarchar(2000)
+DECLARE @strWhere		nvarchar(2000)
+DECLARE @strOrderBy 		nvarchar(2000)
+
+SET @strSelect = 'SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt'
+SET @strFrom = ' FROM jb_ClassifiedsItem'
+SET @strWhere = ' WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT jb_ClassifiedsItem_vw.ItemID 
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = ' + CAST(@ModuleID AS NVARCHAR) + '
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0'
+IF (@CurrentCategoryID <> -1)
+	SET @strWhere = @strWhere + ' AND UCategoryID IN(SELECT * FROM [#RETURN])'
+-- Fields
+IF (@Message <> '')
+	SET @strWhere = @strWhere + ' AND Message LIKE ''%' + @Message + '%''' 
+-- Date range
+IF (@StartDate is not null) 
+	SET @strWhere = @strWhere + ' AND CreatedDate >= ''' + convert(nvarchar, @StartDate) + ''''
+IF (@EndDate is not null) and (@EndDate > '1/1/1900')
+	SET @strWhere = @strWhere + ' AND CreatedDate <= ''' + convert(nvarchar, @EndDate) + ''''
+SET @strWhere = @strWhere + ')'
+SET @strOrderBy  = ' Order By CreatedDate Desc'
+
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+EXEC(@strSelect + @strFrom + @strWhere + @strOrderBy)
+
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE  PROCEDURE {databaseOwner}jb_UtilGetDistinctLocation
+@ModuleId int
+as
+SELECT Distinct it_Postal FROM jb_ClassifiedsItem
+WHERE ModuleID = @ModuleId
+AND LEN(LTRIM(RTRIM(it_Postal))) > 0
+AND it_Postal IS NOT NULL
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_UtilUpdateItemsCount
+(    	@CategoryID Integer,
+	@IncVal Integer = 0
+
+)
+AS    
+	DECLARE @ParentID int 
+	SET @ParentID = (SELECT ParentID FROM jb_ClassifiedsCat WHERE CategoryID = @CategoryID) 
+	IF @ParentID IS NOT NULL
+		IF @IncVal = 0
+			BEGIN        
+				Update jb_ClassifiedsCat 
+				SET ItemCount = {databaseOwner}jb_CountChildren(CategoryID, 0, Getdate()), 
+				ItemCountAdmin = {databaseOwner}jb_CountChildrenAdmin(CategoryID, 0, Getdate())
+				WHERE CategoryID = @CategoryID
+				EXEC jb_UtilUpdateItemsCount @ParentID, @IncVal     
+			END    
+		ELSE
+			BEGIN        
+				UPDATE jb_ClassifiedsCat
+				SET ItemCount = ItemCount + @IncVal, 
+				ItemCountAdmin = ItemCountAdmin + @IncVal			
+				WHERE CategoryID = @CategoryID
+				EXEC jb_UtilUpdateItemsCount @ParentID, @IncVal     
+	  
+			END                  
+    
+	ELSE            
+		IF @IncVal = 0
+			BEGIN                
+				Update jb_ClassifiedsCat 
+				SET ItemCount = {databaseOwner}jb_CountChildren(CategoryID, 0, Getdate()), 
+				ItemCountAdmin = {databaseOwner}jb_CountChildrenAdmin(CategoryID, 0, Getdate())
+				WHERE CategoryID = @CategoryID    
+			END    
+		ELSE
+			BEGIN                
+				UPDATE jb_ClassifiedsCat
+				SET ItemCount = ItemCount + @IncVal, 
+				ItemCountAdmin = ItemCountAdmin + @IncVal			
+				WHERE CategoryID = @CategoryID      
+			END 
+
+RETURN
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON

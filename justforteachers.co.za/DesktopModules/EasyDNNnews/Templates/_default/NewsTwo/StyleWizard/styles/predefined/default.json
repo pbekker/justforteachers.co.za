@@ -1,0 +1,429 @@
+{
+	"templateGroups": {
+		"default": {
+			"name": "Green",
+			"colors": [
+				"#89c11e"
+			]
+		}
+	},
+	"values": {
+		"properties": {
+			"anchor": {
+				"default": {
+					"disabled": [
+						"shadows"
+					],
+					"values": {
+						"color": {"hex":"5e9700"},
+						"shadows": {
+							"show": false,
+							"list": []
+						},
+						"decorations": {
+							"underline": false
+						}
+					}
+				},
+				"hover": {
+					"disabled": [
+						"shadows",
+						"color"
+					],
+					"values": {
+						"color": {"hex":"5e9700"},
+						"shadows": {
+							"show": false,
+							"list": []
+						},
+						"decorations": {
+							"underline": true
+						}
+					}
+				}
+			},
+			"sidebarTemplateRssIcon": {
+				"default": {
+					"disabled": [
+						"color",
+						"repeat",
+						"attachment",
+						"position"
+					],
+					"values": {
+						"color": {},
+						"image": {
+							"completeUrl": "{{StyleAssetsClientRoot}}images/sidebarTemplateRssIcon/predefined/green_articles_rss.png",
+							"file": "green_articles_rss.png",
+							"type": "predefined"
+						},
+						"repeat": "no-repeat",
+						"attachment": "scroll",
+						"position": {
+							"horizontal": {
+								"value": 0,
+								"unit": "%"
+							},
+							"vertical": {
+								"value": 0,
+								"unit": "%"
+							}
+						}
+					}
+				}
+			},
+			"title": {
+				"default": {
+					"disabled": [
+						"shadows"
+					],
+					"values": {
+						"color": {"hex":"121212"},
+						"shadows": {
+							"show": false,
+							"list": []
+						}
+					}
+				},
+				"hover": {
+					"disabled": [
+						"shadows"
+					],
+					"values": {
+						"color": {"hex":"72A819"},
+						"shadows": {
+							"show": false,
+							"list": []
+						}
+					}
+				}
+			},
+			"articlesRssIcon": {
+				"default": {
+					"disabled": [
+						"color",
+						"repeat",
+						"attachment",
+						"position"
+					],
+					"values": {
+						"color": {},
+						"image": {
+							"completeUrl": "{{StyleAssetsClientRoot}}images/articlesRssIcon/predefined/green-rss.png",
+							"file": "green-rss.png",
+							"type": "predefined"
+						},
+						"repeat": "repeat",
+						"attachment": "scroll",
+						"position": {
+							"horizontal": {
+								"value": 0,
+								"unit": "%"
+							},
+							"vertical": {
+								"value": 2,
+								"unit": "px"
+							}
+						}
+					}
+				}
+			},
+			"rateitStars": {
+				"default": {
+					"values": {
+						"image": {
+							"completeUrl": "{{StyleAssetsClientRoot}}images/rateitStars/predefined/green_rate_stars.png",
+							"file": "green_rate_stars.png",
+							"type": "predefined"
+						}
+					}
+				}
+			},
+			"detailsTags": {
+				"default": {
+					"disabled": [
+						"image",
+						"repeat",
+						"attachment",
+						"position"
+					],
+					"values": {
+						"color": {},
+						"image": {},
+						"repeat": "repeat",
+						"attachment": "scroll",
+						"position": {
+							"horizontal": {
+								"value": 0,
+								"unit": "%"
+							},
+							"vertical": {
+								"value": 0,
+								"unit": "%"
+							}
+						}
+					}
+				},
+				"hover": {
+					"disabled": [
+						"image",
+						"repeat",
+						"attachment",
+						"position"
+					],
+					"values": {
+						"color": {"hex": "87C02A"},
+						"image": {},
+						"repeat": "repeat",
+						"attachment": "scroll",
+						"position": {
+							"horizontal": {
+								"value": 0,
+								"unit": "%"
+							},
+							"vertical": {
+								"value": 0,
+								"unit": "%"
+							}
+						}
+					}
+				}
+			},
+			"submitComments": {
+				"default": {
+					"disabled": [
+						"image",
+						"repeat",
+						"attachment",
+						"position"
+					],
+					"values": {
+						"color": {"hex": "5E9700"},
+						"image": {},
+						"repeat": "repeat",
+						"attachment": "scroll",
+						"position": {
+							"horizontal": {
+								"value": 0,
+								"unit": "%"
+							},
+							"vertical": {
+								"value": 0,
+								"unit": "%"
+							}
+						}
+					}
+				},
+				"hover": {
+					"disabled": [
+						"image",
+						"repeat",
+						"attachment",
+						"position"
+					],
+					"values": {
+						"color": {"hex": "67A402"},
+						"image": {},
+						"repeat": "repeat",
+						"attachment": "scroll",
+						"position": {
+							"horizontal": {
+								"value": 0,
+								"unit": "%"
+							},
+							"vertical": {
+								"value": 0,
+								"unit": "%"
+							}
+						}
+					}
+				}
+			},
+			"relatedArticlesAndDocuments": {
+				"default": {
+					"disabled": [
+						"shadows"
+					],
+					"values": {
+						"color": {"hex":"72a819"},
+						"shadows": {
+							"show": false,
+							"list": []
+						}
+					}
+				}
+			},
+			"eventIcons": {
+				"default": {
+					"values": {
+						"image": {
+							"completeUrl": "{{StyleAssetsClientRoot}}images/eventIcons/predefined/green_event_icons.png",
+							"file": "green_event_icons.png",
+							"type": "predefined"
+						}
+					}
+				}
+			}
+		},
+		"sections": {
+			"authorGroupInfo": {
+				"properties": {
+					"background": {
+						"default": {
+							"disabled": [
+								"color",
+								"repeat",
+								"attachment",
+								"position"
+							],
+							"values": {
+								"color": {"hex": "8bc42e"},
+								"image": {
+									"completeUrl": "{{StyleAssetsClientRoot}}images/authorGroupInfo/background/predefined/green_pattern.png",
+									"file": "green_pattern.png",
+									"type": "predefined"
+								},
+								"repeat": "repeat",
+								"attachment": "scroll",
+								"position": {
+									"horizontal": {
+										"value": 0,
+										"unit": "%"
+									},
+									"vertical": {
+										"value": 0,
+										"unit": "%"
+									}
+								}
+							}
+						}
+					},
+					"imgBorder": {
+						"default": {
+							"disabled": [
+								"width",
+								"style"
+							],
+							"values": {
+								"width": {
+									"value": 1,
+									"unit": "px"
+								},
+								"style": "solid",
+								"color": {"hex": "69A409"}
+							}
+						}
+					}
+				}
+			},
+			"sidebarArticles": {
+				"properties": {
+					"sidebarItemBackground": {
+						"default": {
+							"disabled": [
+								"image",
+								"repeat",
+								"attachment",
+								"position"
+							],
+							"values": {
+								"color": {"hex": "f9f9f9"},
+								"image": {},
+								"repeat": "repeat",
+								"attachment": "scroll",
+								"position": {
+									"horizontal": {
+										"value": 0,
+										"unit": "%"
+									},
+									"vertical": {
+										"value": 0,
+										"unit": "%"
+									}
+								}
+							}
+						},
+						"odd": {
+							"disabled": [
+								"image",
+								"repeat",
+								"attachment",
+								"position"
+							],
+							"values": {
+								"color": {"hex": "eeeeee"},
+								"image": {},
+								"repeat": "repeat",
+								"attachment": "scroll",
+								"position": {
+									"horizontal": {
+										"value": 0,
+										"unit": "%"
+									},
+									"vertical": {
+										"value": 0,
+										"unit": "%"
+									}
+								}
+							}
+						},
+						"hover": {
+							"disabled": [
+								"image",
+								"repeat",
+								"attachment",
+								"position"
+							],
+							"values": {
+								"color": {"hex": "86bf29"},
+								"image": {},
+								"repeat": "repeat",
+								"attachment": "scroll",
+								"position": {
+									"horizontal": {
+										"value": 0,
+										"unit": "%"
+									},
+									"vertical": {
+										"value": 0,
+										"unit": "%"
+									}
+								}
+							}
+						}
+					},
+					"sidebarItemImageBorder": {
+						"default": {
+							"disabled": [
+								"width",
+								"style"
+							],
+							"values": {
+								"width": {
+									"value": 1,
+									"unit": "px"
+								},
+								"style": "solid",
+								"color": {"hex": "dadada"}
+							}
+						},
+						"hover": {
+							"disabled": [
+								"width",
+								"style"
+							],
+							"values": {
+								"width": {
+									"value": 1,
+									"unit": "px"
+								},
+								"style": "solid",
+								"color": {"hex": "69a409"}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

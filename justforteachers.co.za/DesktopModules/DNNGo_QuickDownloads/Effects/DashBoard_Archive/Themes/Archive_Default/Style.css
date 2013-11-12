@@ -1,0 +1,17 @@
+﻿.Archive_Default .archive_list{
+	padding:0px!important;
+	margin:0px;
+}
+.Archive_Default .archive_list li{
+	list-style:none;
+	padding:6px 0px 6px 20px;
+	border-bottom:1px dotted #CCCCCC;
+	background:url(images/calendar_icon.png) 0px 8px no-repeat;
+}
+.Archive_Default .archive_list li a{
+	text-decoration:none;
+	color:#111;
+}
+.Archive_Default .archive_list li a:hover{
+	text-decoration:underline;
+}

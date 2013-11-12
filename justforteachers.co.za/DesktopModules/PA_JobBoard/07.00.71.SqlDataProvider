@@ -1,0 +1,16 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 07.00.71            *****/
+/************************************************************/
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('RadiusOptions','25 miles','25',1)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('RadiusOptions','50 miles','50',2)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('RadiusOptions','100 miles','100',3)

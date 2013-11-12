@@ -1,0 +1,22 @@
+/*-------- for all containers --------*/
+.c_icon, .c_title, .c_menu { float:left; }
+.c_title { max-width:95%; }
+.c_menu { padding-top:8px; }
+.c_help { float:right; padding-top:10px; }
+.c_content_style { display:inline-block; width:100%; }
+.c_footer { padding:0px 2px; }
+.c_footer_l {float:left;}
+.c_footer_r {float:right;}
+.c_footer_space { height:13px; line-height:13px; overflow:hidden; }
+.clear_float {clear:both;}
+
+/*-------- containers title --------*/
+.c_title_black {font-weight:bold; font-size:15px; color:#000000; font-family:Arial, Tahoma, Verdana, Helvetica, sans-serif; }
+.c_title_white {font-weight:bold; font-size:15px; color:#FFFFFF; font-family:Arial, Tahoma, Verdana, Helvetica, sans-serif; }
+.c_title_ForestGreen{font-weight:bold; font-size:15px; color:#298D29; font-family:Arial, Tahoma, Verdana, Helvetica, sans-serif; }
+
+
+
+
+
+

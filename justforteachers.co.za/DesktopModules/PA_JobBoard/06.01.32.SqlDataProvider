@@ -1,0 +1,24 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.32            *****/
+/************************************************************/
+
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('JobLead','Advertisement','Advertisement',0)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('JobLead','Family or Friend','Family or Friend',0)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('JobLead','Website/Search Engine','Website/Search Engine',0)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('StatusInternal','Application Submitted','Application Submitted',1)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('StatusInternal','Application Updated','Application Updated',2)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('StatusInternal','Interested','Interested',3)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('StatusInternal','Phone Interviewed','Phone Interviewed',4)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('StatusInternal','Group Interviewed','Group Interviewed',5)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('StatusInternal','Recommeded for Hire','Recommeded for Hire',6)
+INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('StatusInternal','Rejected','Rejected',7)

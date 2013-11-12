@@ -1,0 +1,92 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.58           *****/
+/************************************************************/
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationAdd]    Script Date: 04/23/2011 16:37:49 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationAdd]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationCheckSubmitted]    Script Date: 04/23/2011 16:38:59 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationCheckSubmitted]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationCheckSubmitted]
+GO
+
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationAdd]    Script Date: 04/23/2011 16:39:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE {databaseOwner}[jb_JobApplicationAdd]
+		@JobID int,
+		@ModuleID int,
+		@CreatedByUser int,
+		@ApplicantName nvarchar(50),
+		@ApplicantEmail  nvarchar(100),
+		@Message ntext,
+		@SalaryReq nvarchar(50),
+		@JobLead nvarchar(50),
+		@Image Image,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@Image1 Image,
+		@ImageContentType1 nvarchar(50),
+		@ImageContentSize1 int,
+		@ImageFileName nvarchar(255),
+		@ImageFileName1 nvarchar(255),
+		@ViewCount INT,
+		@SelectedResumeItemID int,
+		@StatusWorkFlow nvarchar(50),
+		@StatusInternal nvarchar(50),
+		@NoteInternal nvarchar(255)
+	AS
+	SET NOCOUNT ON
+
+
+	IF EXISTS (SELECT ApplicationId FROM jb_JobApplication WHERE JobID = @JobID AND ModuleID = @ModuleID AND CreatedByUser = @CreatedByUser AND CreatedByUser > 2)
+		BEGIN
+			SELECT -99
+		END
+	ELSE 
+		BEGIN
+			INSERT INTO {databaseOwner}jb_JobApplication
+				(JobID,ModuleID,CreatedByUser,CreatedDate,ApplicantName, ApplicantEmail, Message,SalaryReq,JobLead,[Image],ImageContentType,ImageContentSize,Image1,ImageContentType1,ImageContentSize1,ImageFileName,ImageFileName1,ViewCount,SelectedResumeItemID,StatusWorkFlow,StatusInternal,NoteInternal)
+			VALUES
+				(@JobID,@ModuleID,@CreatedByUser,getdate(),@ApplicantName, @ApplicantEmail, @Message,@SalaryReq,@JobLead,CAST(@Image AS Image),@ImageContentType,@ImageContentSize,CAST(@Image1 AS Image),@ImageContentType1,@ImageContentSize1,@ImageFileName,@ImageFileName1,@ViewCount,@SelectedResumeItemID,@StatusWorkFlow,@StatusInternal,@NoteInternal)
+			SELECT SCOPE_IDENTITY()
+		END
+		
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationCheckSubmitted]    Script Date: 04/23/2011 16:40:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE {databaseOwner}[jb_JobApplicationCheckSubmitted]
+		@JobID int,
+		@ModuleID int,
+		@CreatedByUser int
+	AS
+	BEGIN 
+		SELECT Count(ApplicationId) FROM jb_JobApplication 
+		WHERE JobID = @JobID 
+		AND ModuleID = @ModuleID 
+		AND CreatedByUser = @CreatedByUser 
+		AND CreatedByUser > 2
+	END
+
+GO

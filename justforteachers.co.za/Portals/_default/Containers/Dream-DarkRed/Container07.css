@@ -1,0 +1,9 @@
+/*-------- Container07 --------*/
+.Container07_style { min-width:160px; background:#FFFFFF; border:1px solid #9E1927; }
+.Container07_c_menu { float:left; }
+.Container07_c_help  { float:right; padding-top:8px; }
+.Container07_top_bg { background:url(images/c_bg_07.jpg) repeat-x top; }
+.Container07_top_left { background:url(images/c_left_07.jpg) no-repeat left top; height:34px; padding:0 5px 0px 12px; }
+.Container07_top_height { height:34px; line-height:34px; }
+.Container07_content { padding:6px 10px 8px 10px; text-align:left; }
+.Container07_footer { height:14px; line-height:14px; overflow:hidden; }

@@ -1,0 +1,116 @@
+﻿#if($Navigation.IsView)
+		<div class="page_meta">
+				$Navigation.Title: <span> $Navigation.Content</span><a href="${xf.GoUrl()}">Return</a>
+		</div>
+		#if($Navigation.AuthorID >0)
+		<div class="author_info clearfix">
+			<div class="thum"><img src="${xf.ViewAuthorPic($Navigation.AuthorID)}" /></div>
+			<div class="author_desc">${xf.ViewAuthorBiography($Navigation.AuthorID)}</div>
+		</div>
+        #end
+	#end
+
+
+#if($DataList.Count > 0)
+        <div class="date_rss"><a href="${xf.GoRssUrl()}" target="_blank"><img src="${xf.ThemePath}images/rss.png" alt="RSS" title="RSS" /></a></div>
+        <ul class="clearfix download_list">
+			#foreach($DataItem in $DataList)
+                <li class="download_item">
+                    <div class="d_title">
+                        <h3>
+                            <a href="${xf.GoUrl($DataItem)}">${xf.ViewContent("Name",$DataItem)}</a></h3>
+                    </div>
+                    <div class="content">
+                        <table cellpadding="6" cellspacing="0" border="0">
+                            <tr>
+                                <td align="left" valign="top">
+                                    <div class="thumb">
+                                        <a href="${xf.GoUrl($DataItem)}">
+                                            <img style="width: 80px" src="${xf.ViewPicture($DataItem)}" alt='${xf.ViewContent("Name",$DataItem)}' /></a></div>
+                                </td>
+                                <td align="left" valign="top" width="100%">
+                                    <table class="list_item" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td>
+                                                Category:
+                                            </td>
+                                            <td>
+                                               ${xf.ViewCategories($DataItem)}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Published Date:
+                                            </td>
+                                            <td>
+                                                 $DataItem.CreatedDate.ToShortDateString()
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Posted by:
+                                            </td>
+                                            <td>
+                                                <a href="${xf.GoAuthorUrl($DataItem.CreateUser)}">${xf.ViewUser($DataItem.CreateUser,"DisplayName")}</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Attachment Size:
+                                            </td>
+                                            <td>
+                                                 ${xf.ViewFileUnit($DataItem)}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Attachment Count:
+                                            </td>
+                                            <td>
+                                                $DataItem.AttachmentCount
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Popularity Degrees:
+                                            </td>
+                                            <td>
+                                                 ${xf.ViewPopularityDegrees($DataItem)}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Download Count:
+                                            </td>
+                                            <td>
+                                                $DataItem.ClickCount
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon">
+                                                #if($Module.IsEditable)
+							                        <span class="blog_edit"><a href="${xf.GoEditUrl($DataItem)}">[Edit]</a></span>
+						                        #end
+                               
+                                            </td>
+                                            <td align="right" class="icon">
+                                                <a href="${xf.GoUrl($DataItem)}">
+                                                    <img src="${Module.ModulePath}Resource/images/download_icon.jpg" alt="download Detail" /></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+                #end
+        </ul>
+                <div class="download_page">
+					${Pager}
+				</div>
+
+#else
+		No entry of any article
+#end
+ 

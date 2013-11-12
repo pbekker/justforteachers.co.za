@@ -1,0 +1,193 @@
+@charset "utf-8";
+/* CSS Document */
+.socialprofile_content { padding:20px 10px 10px 10px; min-height:500px; }
+.socialprofile_content h1{ font:bold 18px/22px Helvetica, Tahoma, Arial, Verdana, sans-serif;  color:#333333; }
+.socialprofile_content h2{ font:bold 15px/19px Helvetica, Tahoma, Arial, Verdana, sans-serif;  color:#333333; }
+.socialprofile_content h3{ font:bold 13px/17px Helvetica, Tahoma, Arial, Verdana, sans-serif;  color:#333333; }
+.socialprofile_content h4{ font:bold 12px/16px Helvetica, Tahoma, Arial, Verdana, sans-serif;  color:#333333; }
+
+.ProfilePanes{display:inline-block; zoom:1; /* IE7 FIX */margin-bottom:15px;}
+.LeftPaneProfile, .ContentPaneProfile,.RightPaneProfile{position:relative;float:left;z-index:1;}
+.LeftPaneProfile:hover, .ContentPaneProfile:hover,.RightPaneProfile:hover{z-index:2;}
+.LeftPaneProfile{ padding-left:10px; margin-right:20px;width:120px; min-height:100px;}
+.HeaderPaneProfile{position:relative;z-index:1;width:780px;min-height:30px;float:left;}
+.HeaderPaneProfile:hover{z-index:2;}
+.ContentPaneProfile{width:570px;margin-right:20px;}
+.RightPaneProfile{width:190px;padding-right:0;}
+
+/* Left Column User Profile */
+.LeftPaneProfile #UserProfileImg{}
+.LeftPaneProfile #UserProfileImg img{display:block;margin:0; padding:0; width:102px; height:auto;background:url(images/noProfilePic.png) no-repeat -1px -1px;}
+.LeftPaneProfile #UserProfileImg span{display:block;width:102px; max-height:102px; padding:8px;margin-bottom:15px; overflow:hidden; border:1px solid #CCCCCC;border-radius:5px;}
+
+.LeftPaneProfile .DnnModule .UserProfileControls ul{padding-left:0;}
+.LeftPaneProfile .DnnModule .UserProfileControls ul li{list-style:none;margin-bottom:3px;}
+.LeftPaneProfile .DnnModule .UserProfileControls a.dnnSecondaryAction{padding:0 10px; margin-bottom:5px; background:#818181;background:-moz-linear-gradient(top, #818181 0%, #656565 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#818181), color-stop(100%,#656565));filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#818181', endColorstr='#656565',GradientType=0 );-moz-border-radius:3px;border-radius:3px;text-shadow:0px 1px 1px #000;color:#fff;text-decoration:none;font-weight:bold;border-color:#fff;}
+.LeftPaneProfile .DnnModule .UserProfileControls a.dnnSecondaryAction:hover {background:#4E4E4E;background:-moz-linear-gradient(top, #4E4E4E 0%, #282828 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#4E4E4E), color-stop(100%,#282828));filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#4E4E4E', endColorstr='#282828',GradientType=0 );color:#fff;}
+
+/* Profile Content */
+#UserDisplayNameHeader{border-bottom:1px solid #CCCCCC;margin-bottom:10px;}
+#UserDisplayNameHeader h2{ margin-top:0; margin-bottom:10px; }
+#UserDisplayNameHeader h2 em{font-family:Helvetica, Tahoma, Arial, Verdana, sans-serif; font-style:italic;font-weight:lighter;color:#777;vertical-align:baseline;}
+
+/* Social Messaging / Member Directory */
+.ContentPaneProfile #smMainContent{padding:0; }
+.ContentPaneProfile .dnnForm{min-width:590px!important;}
+
+.ContentPaneProfile .DnnModule-Messaging-Notifications .smListings .ListCol-1{width:2%; padding-left:2%;}
+.ContentPaneProfile .DnnModule-Messaging-Notifications .smListings .ListCol-2{width:10%;}
+.ContentPaneProfile .DnnModule-Messaging-Notifications .smListings .ListCol-3{width:52%;}
+.ContentPaneProfile .DnnModule-Messaging-Notifications .smListings .ListCol-4{width:25%;}
+
+.ContentPaneProfile .DnnModule-Messaging-Details .smListings .ListCol-1{width:10%; padding-left:2%;}
+.ContentPaneProfile .DnnModule-Messaging-Details .smListings .ListCol-2{width:62%;}
+.ContentPaneProfile .DnnModule-Messaging-Details .smListings .ListCol-3{width:20%;}
+
+/* Member Directory */
+.ContentPaneProfile .dnnMemberDirectory{width:100%;}
+.ContentPaneProfile .dnnMemberDirectory #mdMemberList > li {padding-left:0px; padding-right:0px;} 
+.ContentPaneProfile .searchWrapper{width:300px;}
+.ContentPaneProfile #mdBasicSearch{width:253px;}
+.ContentPaneProfile .DnnModule #mdMemberList > li {width:265px;}
+.DnnModule-Messaging-Details .smListings .ListCol-2{width:61%; max-width:400px;}
+
+/* Send Mesage / Accept Friend / Follow Box Right Column */
+.RightPaneProfile .dnnForm{min-width:100px;}
+.RightPaneProfile h3{ font:bold 13px/13px Helvetica, Tahoma, Arial, Verdana, sans-serif;  color:#333333; }
+
+.RightPaneProfile ul.mdMemberList > li #mdMemberDetails{padding:0;}
+.RightPaneProfile .DnnModule #mdMemberList > li {width:150px;height:auto!important; margin:0;padding:0;-webkit-box-shadow:none;box-shadow:none; border:none;-webkit-border-radius:0;border-radius:0; }
+.RightPaneProfile #mdMemberList #mdMemberDetails{padding:0; margin-bottom:0;}
+.DnnModule .friendProfileActions{width:170px;background:#EBEDF0;padding:15px;}
+
+.DnnModule .friendProfileActions ul{padding-left:0;}
+.DnnModule .friendProfileActions ul li{list-style:none;margin-bottom:3px;}
+
+/* Left Column User Profile */
+.RightPaneProfile .console{width:100%;}
+.RightPaneProfile .console > div > div{border-bottom:1px solid #CCCCCC;margin:0;padding:10px 0 0 0;width:190px;}
+.RightPaneProfile .console .active{background:#EBEDF0;}
+
+/* View Profile */
+.ContentPaneProfile .pAddress,
+.ContentPaneProfile .pContact{width:49%;float:left;margin-bottom:15px;}
+.ContentPaneProfile .pContact{border-left:1px solid #CCCCCC;padding:0 5%;width:39%;padding-bottom:15px;}
+
+/* Edit Profile */
+.ContentPaneProfile #dnnUserDetails .dnnUser{ width:100%; }
+.ContentPaneProfile #dnnUserDetails .dnnActions,
+.ContentPaneProfile #dnnPassword .dnnActions,
+.ContentPaneProfile .dnnProfile .dnnActions {margin-top:25px; }
+
+.ContentPaneProfile .dnnProfile .dnnTooltip{ width:150px; margin-right:15px;}
+.ContentPaneProfile .dnnProfile input[type="text"],
+.ContentPaneProfile .dnnProfile select
+{ width:150px; margin-right:10px;}
+.ContentPaneProfile .dnnProfile select{width:210px; float:left;}
+.ContentPaneProfile .dnnProfile .dnnFormVisibility{width:100px; float:left;}
+.ContentPaneProfile .dnnProfile div[id$="_ProfileProperties_Biography"] .dnnFormVisibility{width:179px;margin-left:165px;padding-left:220px;margin-bottom:25px;border:1px solid #CCCCCC;border-top:none;}
+
+.ContentPaneProfile .dnnProfile div[id$="_ProfileProperties_Photo"]{margin-top:25px;}
+.ContentPaneProfile .dnnFilePicker .dnnFormItem span{ width:25px; }
+.ContentPaneProfile .dnnFilePicker .dnnFormItem span + select{width:175px;}
+.ContentPaneProfile .dnnFilePicker .dnnLeft .dnnFormItem {width:220px; float:left;}
+.ContentPaneProfile .dnnFilePicker .dnnLeft .dnnFormItem + div{float:left; clear:none;}
+.ContentPaneProfile .dnnFilePicker .dnnLeft a.dnnSecondaryAction{margin-left:0; padding:0;}
+.ContentPaneProfile .dnnFilePicker .dnnLeft + .dnnLeft{width:200px;border-top:1px solid #CCCCCC;padding-top:10px;margin-top:15px;margin-left:175px;margin-right:10px;clear:both;}
+.ContentPaneProfile .dnnFilePicker .dnnLeft + .dnnLeft img{width:100px; height:100px;}
+
+
+@media handheld, only screen and (max-width: 970px){
+.socialprofile_content { padding:10px;}
+.LeftPaneProfile{ padding-left:10px; margin-right:20px;width:120px;}
+.HeaderPaneProfile{width:750px;}
+.ContentPaneProfile{width:540px;margin-right:20px;}
+.RightPaneProfile{width:190px;}
+.ContentPaneProfile .dnnForm{min-width:100%!important;}
+.ContentPaneProfile .searchWrapper{width:54%;}
+.ContentPaneProfile #mdBasicSearch{width:44%;}
+.RightPaneProfile .DnnModule #mdMemberList > li {width:90%;}
+.DnnModule .friendProfileActions{width:98%;padding:1%;}
+.RightPaneProfile .console > div > div{width:100%;}
+}
+
+@media handheld, only screen and (max-width: 950px){
+.LeftPaneProfile{ padding-left:10px; margin-right:20px;width:120px;}
+.HeaderPaneProfile{width:730px;}
+.ContentPaneProfile{width:520px;margin-right:20px;}
+.RightPaneProfile{width:190px;}
+}
+
+@media handheld, only screen and (max-width: 930px){
+.LeftPaneProfile{ padding-left:10px; margin-right:20px;width:120px;}
+.HeaderPaneProfile{width:710px;}
+.ContentPaneProfile{width:520px;margin-right:20px;}
+.RightPaneProfile{width:170px;}
+}
+
+@media handheld, only screen and (max-width: 910px){
+.LeftPaneProfile{ padding-left:10px; margin-right:20px;width:120px;}
+.HeaderPaneProfile{width:690px;}
+.ContentPaneProfile{width:500px;margin-right:20px;}
+.RightPaneProfile{width:170px;}
+}
+
+@media handheld, only screen and (max-width: 890px){
+.LeftPaneProfile{ padding-left:10px; margin-right:20px;width:120px;}
+.HeaderPaneProfile{width:670px;}
+.ContentPaneProfile{width:480px;margin-right:20px;}
+.RightPaneProfile{width:170px;}
+}
+
+@media handheld, only screen and (max-width: 870px){
+.LeftPaneProfile{ padding-left:10px; margin-right:20px;width:120px;}
+.HeaderPaneProfile{width:650px;}
+.ContentPaneProfile{width:480px;margin-right:20px;}
+.RightPaneProfile{width:150px;}
+}
+
+@media handheld, only screen and (max-width: 850px){
+.LeftPaneProfile{ padding-left:10px; margin-right:20px;width:120px;}
+.HeaderPaneProfile{width:630px;}
+.ContentPaneProfile{width:460px;margin-right:20px;}
+.RightPaneProfile{width:150px;}
+}
+
+@media handheld, only screen and (max-width: 830px){
+.LeftPaneProfile{ padding-left:10px; margin-right:20px;width:120px;}
+.HeaderPaneProfile{width:610px;}
+.ContentPaneProfile{width:440px;margin-right:20px;}
+.RightPaneProfile{width:150px;}
+}
+
+@media handheld, only screen and (max-width: 810px){
+.LeftPaneProfile{ padding-left:10px; margin-right:10px;width:120px;}
+.HeaderPaneProfile{width:600px;}
+.ContentPaneProfile{width:440px;margin-right:10px;}
+.RightPaneProfile{width:150px;}
+}
+
+@media handheld, only screen and (max-width: 790px){
+.LeftPaneProfile{ padding-left:10px; margin-right:10px;width:120px;}
+.HeaderPaneProfile{width:580px;}
+.ContentPaneProfile{width:410px;margin-right:10px;}
+.RightPaneProfile{width:150px;}
+}
+
+@media handheld, only screen and (max-width: 770px){
+.LeftPaneProfile{ padding-left:10px; margin-right:10px;width:120px;}
+.HeaderPaneProfile{width:560px;}
+.ContentPaneProfile{width:400px;margin-right:10px;}
+.RightPaneProfile{width:150px;}
+}
+
+@media handheld, only screen and (max-width: 767px){
+.ProfilePanes{width:100%;}
+.HeaderPaneProfile{width:100%;float:none; padding:5px 0; margin:0;}
+.LeftPaneProfile{ width:100%;float:none; padding:5px 0; margin:0;}
+.RightPaneProfile{width:100%;float:none; padding:5px 0; margin:0;}
+.ContentPaneProfile{width:100%;float:none; padding:5px 0; margin:0;}
+
+.LeftPaneProfile #UserProfileImg{ float:left; margin-right:5%;}
+.LeftPaneProfile .UserProfileControls { float:left; margin-top:15px;}
+}

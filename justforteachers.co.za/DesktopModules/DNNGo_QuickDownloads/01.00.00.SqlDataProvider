@@ -1,0 +1,68 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Create Table **/
+
+ 
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownloadFiles]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	BEGIN
+		CREATE TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadFiles](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[QD_ID] [int] NOT NULL,
+	[Name] [nvarchar](100) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[DownUrl] [nvarchar](250) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[ClickCount] [int] NOT NULL,
+	[LastUserID] [int] NOT NULL,
+	[LastTime] [datetime] NOT NULL,
+ CONSTRAINT [PK_{objectQualifier}GO_QuickDownloadFiles] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+END
+GO
+
+
+
+
+
+ 
+/****** 对象:  Table [GO_QuickDownloads]   date: 09/19/2011 14:25:09 ******/
+ if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Go_QuickDownloads]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	BEGIN
+		CREATE TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloads](
+			[ID] [int] IDENTITY(1,1) NOT NULL,
+			[Name] [nvarchar](100) COLLATE Chinese_PRC_CI_AS NOT NULL,
+			[Description] [ntext] COLLATE Chinese_PRC_CI_AS NULL,
+			[CreatedDate] [datetime] NOT NULL,
+			[EndTime] [datetime] NOT NULL,
+			[ClickCount] [int] NOT NULL,
+			[LastUserID] [int] NOT NULL,
+			[LastTime] [datetime] NOT NULL,
+			[ModuleId] [int] NOT NULL DEFAULT ((0)),
+		 CONSTRAINT [PK_GO_QuickDownloads] PRIMARY KEY CLUSTERED 
+		(
+			[ID] ASC
+		)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+		) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+	END
+GO
+
+
+
+
+
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/
+
+

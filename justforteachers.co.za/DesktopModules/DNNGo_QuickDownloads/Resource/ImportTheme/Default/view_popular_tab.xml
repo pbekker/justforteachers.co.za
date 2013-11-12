@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<theme>
+  <Name>
+    <![CDATA[ Popular Tab ]]>
+  </Name>
+  <Description>
+    <![CDATA[ Popular Tab ]]>
+  </Description>
+
+  <Version>
+    <![CDATA[01.00.00]]>
+  </Version>
+  <Thumbnails>
+    <![CDATA[]]>
+  </Thumbnails>
+  <EffectScript>
+    <![CDATA[]]>
+  </EffectScript>
+  <GlobalScript>
+    <![CDATA[]]>
+  </GlobalScript>
+  <DemoUrl>
+    <![CDATA[]]>
+  </DemoUrl>
+  <ThemeSettings>
+    <ThemeSetting>
+      <Name>
+        <![CDATA[ Event ]]>
+      </Name>
+      <DefaultValue>
+        <![CDATA[ click ]]>
+      </DefaultValue>
+      <ControlType>
+        <![CDATA[ RadioButton ]]>
+      </ControlType>
+      <ListContent>
+        <![CDATA[ click,mouseover ]]>
+      </ListContent>
+    </ThemeSetting>
+    <ThemeSetting>
+      <Name>
+        <![CDATA[ Duration ]]>
+      </Name>
+      <ControlType>
+        <![CDATA[ text ]]>
+      </ControlType>
+      <DefaultValue>
+        <![CDATA[ 150 ]]>
+      </DefaultValue>
+      <Description>
+        <![CDATA[ ms ]]>
+      </Description>   
+      <Width>
+        <![CDATA[100]]>
+      </Width>
+      <Required>
+        <![CDATA[ true ]]>
+      </Required>
+      <Verification>
+        <![CDATA[ number ]]>
+      </Verification> 
+    </ThemeSetting>
+  </ThemeSettings>
+</theme>

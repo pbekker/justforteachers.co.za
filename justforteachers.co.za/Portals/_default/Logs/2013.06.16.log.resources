@@ -1,0 +1,86 @@
+2013-06-16 09:48:27,383 [simon-PC][Thread:12][ERROR] DotNetNuke.Services.FileSystem.FileServerHandler - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at DotNetNuke.Services.FileSystem.FileServerHandler.ProcessRequest(HttpContext context)
+2013-06-16 09:49:28,068 [simon-PC][Thread:27][ERROR] DotNetNuke.Services.FileSystem.FileServerHandler - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at DotNetNuke.Services.FileSystem.FileServerHandler.ProcessRequest(HttpContext context)
+2013-06-16 20:39:17,084 [simon-PC][Thread:10][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.InvalidOperationException: Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at PetaPoco.Database.OpenSharedConnection()
+   at DotNetNuke.Data.PetaPoco.PetaPocoExt.ExecuteReader(Database database, String sql, Object[] args)
+   at DotNetNuke.Data.PetaPoco.PetaPocoHelper.ExecuteReader(String connectionString, CommandType type, String sql, Int32 timeout, Object[] args)
+   at DotNetNuke.Data.PetaPoco.PetaPocoHelper.ExecuteReader(String connectionString, CommandType type, String sql, Object[] args)
+   at DotNetNuke.Data.SqlDataProvider.CanConnect(String connectionString, String owner, String qualifier)
+   at DotNetNuke.Data.SqlDataProvider.get_IsConnectionValid()
+   at DotNetNuke.Data.DataProvider.GetProviderPath()
+   at DotNetNuke.Common.Globals.get_Status()
+   at DotNetNuke.HttpModules.RewriterUtils.OmitFromRewriteProcessing(String localPath)
+   at DotNetNuke.HttpModules.RequestFilter.RequestFilterModule.FilterRequest(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-16 20:48:36,808 [simon-PC][Thread:13][ERROR] DotNetNuke.Services.Exceptions.Exceptions - FriendlyMessage="Error:  is currently unavailable." ctrl="ASP.desktopmodules_admin_filemanager_editfoldermapping_ascx" exc="System.Web.HttpException (0x80004005): Failed to load viewstate.  The control tree into which viewstate is being loaded must match the control tree that was used to save viewstate during the previous request.  For example, when adding controls dynamically, the controls added during a post-back must match the type and position of the controls added during the initial request.
+   at System.Web.UI.Control.LoadViewStateRecursive(Object savedState)
+   at System.Web.UI.Control.LoadChildViewStateByIndex(ArrayList childState)
+   at System.Web.UI.Control.LoadViewStateRecursive(Object savedState)
+   at System.Web.UI.Control.LoadChildViewStateByIndex(ArrayList childState)
+   at System.Web.UI.Control.LoadViewStateRecursive(Object savedState)
+   at System.Web.UI.Control.AddedControl(Control control, Int32 index)
+   at System.Web.UI.ControlCollection.Add(Control child)
+   at DotNetNuke.Modules.Admin.FileManager.EditFolderMapping.BindFolderMappingSettings()
+   at DotNetNuke.Modules.Admin.FileManager.EditFolderMapping.OnLoad(EventArgs e)"
+2013-06-16 21:00:14,367 [simon-PC][Thread:13][ERROR] DotNetNuke.Instrumentation.DnnLog - Evotiva GoogleDrive: error creating folder [Test1/]
+System.ArgumentException: The argument 'ClientID' cannot be null or empty.
+Parameter name: ClientID
+   at DotNetNuke.Common.Requires.NotNullOrEmpty(String argName, String argValue)
+   at #HP.#VV.#ds()
+   at #HP.#VV..ctor(#VW settings, Boolean isLicenseValid)
+   at Evotiva.Providers.DNNGlobalStorage.GoogleDriveFolderProvider.#0Q(String #cl, FolderMappingInfo #1Q)
+2013-06-16 21:00:14,377 [simon-PC][Thread:13][ERROR] DotNetNuke.Services.Exceptions.Exceptions - System.Exception: Evotiva GoogleDrive: error creating folder [Test1/] ---> System.ArgumentException: The argument 'ClientID' cannot be null or empty.
+Parameter name: ClientID
+   at DotNetNuke.Common.Requires.NotNullOrEmpty(String argName, String argValue)
+   at #HP.#VV.#ds()
+   at #HP.#VV..ctor(#VW settings, Boolean isLicenseValid)
+   at Evotiva.Providers.DNNGlobalStorage.GoogleDriveFolderProvider.#0Q(String #cl, FolderMappingInfo #1Q)
+   --- End of inner exception stack trace ---
+2013-06-16 21:00:14,537 [simon-PC][Thread:13][ERROR] DotNetNuke.Services.FileSystem.FolderManager - System.ArgumentException: The argument 'ClientID' cannot be null or empty.
+Parameter name: ClientID
+   at DotNetNuke.Common.Requires.NotNullOrEmpty(String argName, String argValue)
+   at #HP.#VV.#ds()
+   at #HP.#VV..ctor(#VW settings, Boolean isLicenseValid)
+   at Evotiva.Providers.DNNGlobalStorage.GoogleDriveFolderProvider.#0Q(String #cl, FolderMappingInfo #1Q)
+   at Evotiva.Providers.DNNGlobalStorage.GoogleDriveFolderProvider.AddFolder(String folderPath, FolderMappingInfo folderMapping)
+   at DotNetNuke.Services.FileSystem.FolderManager.AddFolder(FolderMappingInfo folderMapping, String folderPath)
+2013-06-16 21:00:14,545 [simon-PC][Thread:13][ERROR] DotNetNuke.Modules.Admin.FileManager.FileManager - DotNetNuke.Services.FileSystem.FolderProviderException: The underlying system threw an exception. The folder has not been added. ---> System.ArgumentException: The argument 'ClientID' cannot be null or empty.
+Parameter name: ClientID
+   at DotNetNuke.Common.Requires.NotNullOrEmpty(String argName, String argValue)
+   at #HP.#VV.#ds()
+   at #HP.#VV..ctor(#VW settings, Boolean isLicenseValid)
+   at Evotiva.Providers.DNNGlobalStorage.GoogleDriveFolderProvider.#0Q(String #cl, FolderMappingInfo #1Q)
+   at Evotiva.Providers.DNNGlobalStorage.GoogleDriveFolderProvider.AddFolder(String folderPath, FolderMappingInfo folderMapping)
+   at DotNetNuke.Services.FileSystem.FolderManager.AddFolder(FolderMappingInfo folderMapping, String folderPath)
+   --- End of inner exception stack trace ---
+   at DotNetNuke.Services.FileSystem.FolderManager.AddFolder(FolderMappingInfo folderMapping, String folderPath)
+   at DotNetNuke.Modules.Admin.FileManager.FileManager.lnkAddFolder_Command(Object sender, CommandEventArgs e)
+2013-06-16 22:26:51,589 [simon-PC][Thread:61][ERROR] DotNetNuke.Modules.Admin.FileManager.FileManager - System.ArgumentNullException: Value cannot be null.
+Parameter name: file
+   at DotNetNuke.Common.Requires.NotNull(String argName, Object argValue)
+   at DotNetNuke.Services.FileSystem.FileManager.MoveFile(IFileInfo file, IFolderInfo destinationFolder)
+   at DotNetNuke.Modules.Admin.FileManager.FileManager.lnkMoveFiles_Command(Object sender, CommandEventArgs e)
+2013-06-16 22:42:07,237 [simon-PC][Thread:63][ERROR] DotNetNuke.Modules.Admin.FileManager.FileManager - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at DotNetNuke.Services.FileSystem.FileManager.WriteFileToHttpContext(IFileInfo file, ContentDisposition contentDisposition)
+   at DotNetNuke.Services.FileSystem.FileManager.WriteFileToResponse(IFileInfo file, ContentDisposition contentDisposition)
+   at DotNetNuke.Modules.Admin.FileManager.FileManager.lnkDLFile_Command(Object sender, CommandEventArgs e)
+2013-06-16 23:14:44,254 [simon-PC][Thread:56][ERROR] DotNetNuke.Modules.Admin.FileManager.FileManager - DotNetNuke.Services.FileSystem.FolderAlreadyExistsException: The provided folder path already exists. The folder has not been added.
+   at DotNetNuke.Services.FileSystem.FolderManager.AddFolder(FolderMappingInfo folderMapping, String folderPath)
+   at DotNetNuke.Modules.Admin.FileManager.FileManager.lnkAddFolder_Command(Object sender, CommandEventArgs e)

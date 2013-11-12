@@ -1,0 +1,162 @@
+﻿/*Tab*/
+.PopularTab_Default .ranking_tabs{
+	border-radius:0px;
+	border:none;
+	background:none;
+}
+.PopularTab_Default .ranking_tabs .ui-tabs-nav{
+	border:none;
+	border-radius:0px;
+	padding:0px;
+	margin:0px;
+	background:none;
+}
+.PopularTab_Default .ranking_tabs .ui-tabs-nav .ui-state-default{
+	list-style:none;
+	float:left;
+	border:none;
+	background:none;
+}
+
+.PopularTab_Default .ranking_tabs .ui-tabs-nav li a{
+	font-weight: bold; 
+	color: #666;
+	display: block; 
+	background: url(images/tab-bg.png) 0 bottom repeat-x #F4F4F4;
+	padding: 0 15px; 
+	line-height: 36px;
+	border: 1px solid #ccc;
+	border-width: 1px 1px 0 0;
+	font-size:13px;
+	text-decoration:none!important;
+	font-family:Arial;
+}
+.PopularTab_Default .ranking_tabs .ui-tabs-nav li a:hover{
+	color: #333; 
+}
+.PopularTab_Default .ranking_tabs .ui-tabs-nav li.ui-state-active a{
+	background:#fff;
+	color: #333; 
+}
+.PopularTab_Default .ranking_tabs .ui-tabs-nav li:first-child a{
+	border-left-width: 1px;
+    border-top-left-radius: 2px;
+}
+.PopularTab_Default .ranking_tabs .ui-tabs-nav li:last-child a{
+	border-top-right-radius: 2px;
+}
+
+.PopularTab_Default .tab-content .ui-tabs-panel{
+	display:block;
+	padding:0px;
+	background:none;
+	border-radius:0px;
+	border:none;
+}
+.PopularTab_Default .tab-content .ui-tabs-hide{
+	display:none;
+}
+.PopularTab_Default .tab-content{
+	padding: 10px; 
+	margin:0px;
+	background-color: #fff; clear: none;
+	border: 1px solid #ccc;
+	-moz-box-shadow: 0 2px 2px #ddd; -webkit-box-shadow: 0 2px 2px #ddd; box-shadow: 0 2px 2px #ddd;
+	-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;
+	-moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0; border-top-left-radius: 0;
+}
+
+.PopularTab_Default .news_toplist{
+	padding:0px!important;
+	margin:0px;
+}
+.PopularTab_Default .news_toplist li:first-child{
+	border-top:none;	
+}
+.PopularTab_Default .news_toplist li{
+	list-style:none;
+	border-top:1px solid #ccc;
+	padding:8px 0px;
+	border-bottom:none;
+}
+.PopularTab_Default .news_toplist li:first-child{
+	padding-top:0px;
+}
+.PopularTab_Default .news_toplist li .post_thum{
+	float:left;
+	margin-right:10px;
+	margin-bottom:10px;
+	border:none;
+	padding:0px;
+}
+.PopularTab_Default .news_toplist li .post_thum a{
+    background:none;
+    display: block;
+}
+.PopularTab_Default .news_toplist li .post_thum img{
+	display:block;
+	transition: opacity 0.2s linear;
+	-moz-transition: opacity 0.2s linear;
+	-webkit-transition: opacity 0.2s linear;
+	-o-transition: opacity 0.2s linear;
+	max-width:100%;
+	width:auto;
+}
+.PopularTab_Default .news_toplist li .post_thum img:hover{
+	opacity: 0.6;
+}
+.PopularTab_Default .news_toplist li .post_title{
+	font:bold 13px/16px Arial;
+	margin:5px 0px 5px 0px;
+}
+.PopularTab_Default .news_toplist .post_summary{
+	margin:5px 0px;
+	clear:both;
+}
+.PopularTab_Default .news_toplist li .post_title,
+.PopularTab_Default .news_toplist li .post_date,
+.PopularTab_Default .news_toplist li .post_more{
+	color: #717171;
+}
+.PopularTab_Default .news_toplist li .post_date{
+	font-style:italic;	
+}
+.PopularTab_Default .news_toplist li .post_title a,
+.PopularTab_Default .news_toplist li .post_date a,
+.PopularTab_Default .news_toplist li .post_more a{
+	color: #111;
+	text-decoration:none;
+}
+.PopularTab_Default .news_toplist li .post_title a:hover,
+.PopularTab_Default .news_toplist li .post_date a:hover,
+.PopularTab_Default .news_toplist li .post_more a:hover{
+	text-decoration:underline;
+}
+
+.PopularTab_Default .post_tabtag a {
+	font-size: 13px !important; 
+	color: #3E3E3E!important;
+	line-height: 22px;
+	background-color: #fff;
+	display: inline-block; 
+	margin: 0 3px 6px 0; 
+	padding: 1px 9px;
+	border: 1px solid #D4D4D4;
+	-moz-border-radius: 4px; 
+	-webkit-border-radius: 4px; 
+	border-radius: 4px; 
+	text-decoration:none!important;
+	transition: background 0.2s linear;
+	-moz-transition: background 0.2s linear;
+	-webkit-transition: background 0.2s linear;
+	-o-transition: background 0.2s linear;
+}
+.PopularTab_Default .post_tabtag a:hover { background-color: #333; text-decoration: none; color:#fff!important;}
+
+@media (max-width: 767px) {
+	.PopularTab_Default .news_toplist li .post_thum{
+		float:none;
+		margin-right:0px;
+		margin-bottom:10px;
+	}	
+}

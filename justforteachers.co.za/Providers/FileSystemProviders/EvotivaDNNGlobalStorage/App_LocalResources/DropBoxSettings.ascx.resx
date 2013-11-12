@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DropBox.Text" xml:space="preserve">
+    <value>DropBox</value>
+  </data>
+  <data name="DropBoxAdvancedSettings.Text" xml:space="preserve">
+    <value>DropBox - Advanced Settings</value>
+  </data>
+  <data name="DropBoxBasicSettings.Text" xml:space="preserve">
+    <value>DropBox - Basic Settings</value>
+  </data>
+  <data name="DropBoxTestError.Text" xml:space="preserve">
+    <value>DropBox: &lt;br /&gt;{0}</value>
+  </data>
+  <data name="DropBoxTestOK.Text" xml:space="preserve">
+    <value>DropBox operation successfully completed.</value>
+  </data>
+  <data name="cmdCancelNewBucket.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="cmdRequestConnection.Text" xml:space="preserve">
+    <value>Request Connection</value>
+  </data>
+  <data name="lblDropBoxAppKey.Help" xml:space="preserve">
+    <value>The DropBox's "App key" you'll use to connect this web site.</value>
+  </data>
+  <data name="lblDropBoxAppKey.Text" xml:space="preserve">
+    <value>App key</value>
+  </data>
+  <data name="lblDropBoxInfo.Text" xml:space="preserve">
+    <value>&lt;p&gt;Don't have a &lt;b&gt;DropBox &lt;/b&gt; account?  &lt;a  href="https://www.dropbox.com" target="_blank" class="CommandButton"&gt;Click here to create an account&lt;/a&gt;.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you have a DropBox account, you'll have to &lt;b&gt;Generate an 'App key' and 'App secret' &lt;/b&gt; values for this web site to connect with DropBox.&lt;br /&gt;
+This is DropBox's policy regarding API connections from web sites/application. This web site will do not store and will don't even ask you for your DropBox user name and password.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;How to generate an 'App key' and 'App secret'&lt;/b&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go to &lt;a  href="https://www.dropbox.com/developers/apps" target="_blank"&gt;https://www.dropbox.com/developers/apps&lt;/a&gt;, and login with your current DropBox account (or create a new account if you do not have any).&lt;/li&gt;
+&lt;li&gt;Click on "Create an App".&lt;/li&gt;
+&lt;li&gt;Give the new Application a name (like "example.com", where example.com is the web site you are connecting to DropBox), and a Description (like "example.com connection").&lt;/li&gt;
+&lt;li&gt;Take note of the "App key" and "App secret" that DropBox created for you, and set them in this form.&lt;br /&gt;
+Note: Don't worry about the "Additional Information", you can leave it blank.&lt;/li&gt;
+&lt;li&gt;Save the Settings by clicking on the 'Update' link found on this page, and re-open this form (Click on the pencil for this Folder Type on the 'Folder Type Definitions' dialog) to continue with the authorization process.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Once you have your  'App key' and 'App secret'  keys, you can connect this web site to your DropBox account.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;How to connect this web site with DropBox&lt;/b&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Click on the &lt;b&gt;'Request Connection'&lt;/b&gt; link.  A new window, on DropBox's web site will be opened.&lt;/li&gt;
+&lt;li&gt;A 'The app .... would like to connect with your Dropbox' dialog will be presented. Click on 'Allow' to start the authorization process that will grant your web site access to your DropBox account.&lt;/li&gt;
+&lt;li&gt;Click on the '&lt;b&gt;Establish Connection&lt;/b&gt;' link found on this page.&lt;/li&gt;
+&lt;li&gt;Save the Settings by clicking on the 'Update' link found on this page.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;b&gt;How to disconnect this web site from DropBox (how to disallow this web site from accessing your Dropbox account)&lt;/b&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go to Dropbox &amp;gt; Account &amp;gt; My Apps (&lt;a  href="https://www.dropbox.com/account#applications" target="_blank"&gt;https://www.dropbox.com/account#applications&lt;/a&gt;), and login with your current DropBox account.&lt;/li&gt;
+&lt;li&gt;Click on the "x" (delete) icon to drop access for the 'App Name' that was created when performing the "How to generate an 'App key' and 'App secret'" steps.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;b&gt;NOTE:&lt;/b&gt; files over 300MB cannot be uploaded due to a Dropbox API limitation.&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="lblDropBoxIsDisabled.Help" xml:space="preserve">
+    <value>You can use this setting to temporarily 'turn off' all access to the configured DropBox account.</value>
+  </data>
+  <data name="lblDropBoxIsDisabled.Text" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="lblDropBoxTest.Help" xml:space="preserve">
+    <value>Click on the [Test] button to verify the configured settings.</value>
+  </data>
+  <data name="lblDropBoxTest.Text" xml:space="preserve">
+    <value>Test Settings</value>
+  </data>
+  <data name="lblDropBoxUseSSL.Help" xml:space="preserve">
+    <value>Use SSL (secure connection). Notice that this is not required to proctect your credentials. This setting will just make encrypted the data (like files upload/download) being transferred from the DropBox.</value>
+  </data>
+  <data name="lblDropBoxUseSSL.Text" xml:space="preserve">
+    <value>Use SSL</value>
+  </data>
+  <data name="lblDropBoxAppSecret.Help" xml:space="preserve">
+    <value>The DropBox's "App secret" realated with the "App key".</value>
+  </data>
+  <data name="lblDropBoxAppSecret.Text" xml:space="preserve">
+    <value>App secret</value>
+  </data>
+  <data name="lblEnforceReadOnlyAccess.Help" xml:space="preserve">
+    <value>Use this option to prevent any update on the DropBox repository. &lt;br /&gt;
+Files creation, update or rename requests will be ignored.&lt;br /&gt;
+This setting is useful if you want to 'plug' a DropBox repository you already have, ensuring that its content will not be updated in any way from the DotNetNuke site.</value>
+  </data>
+  <data name="lblEnforceReadOnlyAccess.Text" xml:space="preserve">
+    <value>Enforce Ready Only Access</value>
+  </data>
+  <data name="lblInheritBucketACLs.Help" xml:space="preserve">
+    <value>When enabled, objects created or updated from the DotNetNuke site will inherith the permissions (ACLs) set on the bucket. Otherwise the created/updated objects will have permissions for the &lt;b&gt;Bucket owner only&lt;/b&gt; (BucketOwnerFullControl).&lt;br /&gt;
+You can use e.g. the &lt;a  target="_blank" class="CommandButton" href="https://console.aws.DropBox.com/s3/home"&gt;AWS Management Console:&lt;/a&gt; to define the permissions you want for this bucket, make all the objects updated from the DotNetNuke site inherit these permissions.&lt;br /&gt;
+For example, you may want to add 'Open/Download' permissions to everyone, and provide (or use yourself) the regular DropBox's direct URL to access the files. See the "URLs Expiration" Setting on this same page.&lt;br /&gt;
+Note: 'Inherit Bucket ACLs' will not affect permissions of files not created, updated or modified from the DotNetNuke site.</value>
+  </data>
+  <data name="lblInheritBucketACLs.Text" xml:space="preserve">
+    <value>Inherit Bucket ACLs</value>
+  </data>
+  <data name="lblIsBucketRoot.Help" xml:space="preserve">
+    <value>Enable this setting if you want to mimic an already running s3 bucket, and your root DotNetNuke folder is the bucket root.&lt;br /&gt;
+For example, you create in DNN file manager a Portal_Root/MYS3FOLDER, and add a image.png file on it.&lt;br /&gt;
+With this setting enabled,  MYS3FOLDER is assumed to be the s3 bucket root, and on the S3 bucket the file will be created as: /image.png.&lt;br /&gt;
+If this setting is disabled, on the S3 bucket the file will be created as:  MYS3FOLDER/image.png&lt;br /&gt;
+When this setting is disabled, you can safely combine different types of Folder Types and locate this S3 Folder as child of any folder.</value>
+  </data>
+  <data name="lblIsBucketRoot.Text" xml:space="preserve">
+    <value>Is Bucket Root</value>
+  </data>
+  <data name="lblShowDropBoxInfo.Help" xml:space="preserve">
+    <value>About DropBox.</value>
+  </data>
+  <data name="lblShowDropBoxInfo.Text" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="MissingCredentials.Text" xml:space="preserve">
+    <value>Please check the provided DropBox Credentials. &lt;br /&gt;If you haven't signed up for DropBox, please follow this procedure:&lt;br /&gt;
+&lt;b&gt;1)&lt;/b&gt; Go to &lt;a target="_blank" href="https://www.dropbox.com/developers/apps"&gt;https://www.dropbox.com/developers/apps&lt;/a&gt;, and login with your current DropBox account, or create a new account if you do not have any.&lt;br/&gt;
+&lt;b&gt;2)&lt;/b&gt; Click on "Create an App" &lt;br /&gt;
+&lt;b&gt;3)&lt;/b&gt; Give the new Application a name (like "example.com", where example.com is the web site you are connection to DropBox), and a Description (like "example.com connection").&lt;br /&gt;
+&lt;b&gt;4)&lt;/b&gt; Take note of the "App key" and "App secret" that DropBox created for you, and set them in this form.&lt;br /&gt;
+Note: Don't worry about the "Additional Information", you can leave it blank.&lt;br /&gt;</value>
+  </data>
+  <data name="MissingNewBucketName.Text" xml:space="preserve">
+    <value>Please type the name for the new Bucket.</value>
+  </data>
+  <data name="ShowDropBoxInfo.Text" xml:space="preserve">
+    <value>Show / Hide</value>
+  </data>
+  <data name="valDropBoxAppKey.ErrorMessage" xml:space="preserve">
+    <value>Please type your Access Key ID.</value>
+  </data>
+  <data name="valDropBoxAppSecret.ErrorMessage" xml:space="preserve">
+    <value>Please type your Secret Access Key.</value>
+  </data>
+  <data name="lblUrlExpireMinutes.Help" xml:space="preserve">
+    <value>The system will generate expiring links to DropBox. This value defines for how long the generated URLs will be valid. &lt;br /&gt;
+Notice that the longer you make this period, the longer you are exposing the resource to an anauthorized access.&lt;br /&gt;
+Sometimes, depending on your contents, you may want to make the resource available for direct access.&lt;br /&gt;&lt;br /&gt;
+If you set this value to "-1", a non-expiring link will be generated. For this to work, you'll have to define in the file (e.g. by means of the AWS Managment Console) 'Open/Download' permissions for 'Everyone'. You can define this permission on the buket and enable the "Inherit Bucket ACLs" on this Settings page (Note: this setting will not affect objects already present on the Bucket).</value>
+  </data>
+  <data name="lblUrlExpireMinutes.Text" xml:space="preserve">
+    <value>URLs Expiration (minutes)</value>
+  </data>
+  <data name="valUrlExpireMinutesRequired.ErrorMessage" xml:space="preserve">
+    <value>Please type an expiration value for the generated URLs.</value>
+  </data>
+  <data name="valUrlExpireMinutesValue.ErrorMessage" xml:space="preserve">
+    <value>The expiration needs to be an integer value.</value>
+  </data>
+  <data name="ConfigureLicenseFirst.Text" xml:space="preserve">
+    <value>Your license is invalid, or not suitable for your current environment. &lt;br /&gt;
+Without a license key, this product is fully functional on any 'localhost' or '*.local' site.&lt;br /&gt;
+Please configure your License before setting up the DropBox options.</value>
+  </data>
+  <data name="cmdEstablishConnection.Text" xml:space="preserve">
+    <value>Establish Connection</value>
+  </data>
+  <data name="lblDropBoxConnectionStatus.Help" xml:space="preserve">
+    <value>Tells if for the given "App key" and "App secret", a connection with DropBox has been already established or not.</value>
+  </data>
+  <data name="lblDropBoxConnectionStatus.Text" xml:space="preserve">
+    <value>Connection Status</value>
+  </data>
+  <data name="ConnectionMissingAppKeyAndSecret.Message" xml:space="preserve">
+    <value>Please configure your 'App key' and 'App secret' (get them at &lt;a  href="https://www.dropbox.com/developers/apps" target="_blank"&gt;https://www.dropbox.com/developers/apps&lt;/a&gt;). Then click on 'Update' and reload this form to continue with the authorization process.&lt;br /&gt;
+Note: Expand 'Information' (clicking on 'Show / Hide') for complete information about the authorization process.</value>
+  </data>
+  <data name="DropBoxAuthorizationMessage.Text" xml:space="preserve">
+    <value>&lt;h3&gt;DropBox Configuration&lt;/h3&gt;
+        &lt;p&gt;Next Steps:&lt;/p&gt;
+        &lt;ul&gt;        
+        &lt;li&gt;You can close this window.&lt;/li&gt;
+        &lt;li&gt;Click on the '&lt;b&gt;Establish Connection&lt;/b&gt;' link found on the configuration page (that you should have already open).&lt;/li&gt;
+        &lt;li&gt;Save the Settings just configured by clicking  on the '&lt;b&gt;Update&lt;/b&gt;' link found on the configuration page.&lt;/li&gt;
+        &lt;/ul&gt;</value>
+  </data>
+  <data name="ConnectionMissing.Message" xml:space="preserve">
+    <value>&lt;p&gt;Your web site is not yet connected with your DropBox account. &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Click on the &lt;b&gt;'Request Connection'&lt;/b&gt; link.  A new window, on DropBox's web site will be opened.&lt;/li&gt;
+&lt;li&gt;A 'The app .... would like to connect with your Dropbox' dialog will be presented. Click on 'Allow' to start the authorization process that will grant your web site access to your DropBox account.&lt;/li&gt;
+&lt;li&gt;Click on the '&lt;b&gt;Establish Connection&lt;/b&gt;' link found on this page.&lt;/li&gt;
+&lt;li&gt;Save the Settings by clicking on the 'Update' link found on this page.&lt;/li&gt;
+&lt;/ol&gt;
+
+Note: Expand 'Information' (clicking on 'Show / Hide') for complete information about the authorization process.</value>
+  </data>
+  <data name="ConnectionOK.Message" xml:space="preserve">
+    <value>Established &lt;br /&gt;
+{0} - {1} of {2} in use.</value>
+  </data>
+  <data name="lblEnablePublicUrls.Help" xml:space="preserve">
+    <value>When enabled, and when the object is in a public folder, it will be generated a regular public URL for the file, instead of the private/secure temporary URL.</value>
+  </data>
+  <data name="lblEnablePublicUrls.Text" xml:space="preserve">
+    <value>Enable Public URLs</value>
+  </data>
+  <data name="lblRootFolder.Help" xml:space="preserve">
+    <value>You can choose any (&lt;b&gt;already created&lt;/b&gt;) public or private Dropbox folder to act as the root folder regarding the connection from this web site.&lt;br /&gt;&lt;br /&gt;
+This allows you to provide a segmented view of your Dropbox space contents, instead of providing access to all the content.&lt;br /&gt;&lt;br /&gt;
+Let's say you have lots of folders on your account, and you want to access from this web site just a specific folders tree, not everything.&lt;br /&gt;&lt;br /&gt;
+Example 1: myfolder/mysubfolder&lt;br /&gt;
+Example 2: Photos&lt;br /&gt;
+Example 3: Public/Something&lt;br /&gt;
+Example 4: Public&lt;br /&gt;
+etc.&lt;br /&gt;
+Note: you should type the folders path with the same 'case' as they are in Dropbox.</value>
+  </data>
+  <data name="lblRootFolder.Text" xml:space="preserve">
+    <value>Root Folder</value>
+  </data>
+  <data name="cmdClearConnection.Text" xml:space="preserve">
+    <value>Clear Connection</value>
+  </data>
+  <data name="cmdClearConnection.Message" xml:space="preserve">
+    <value>Please remember to click on "Update" to confirm the drop action.   Note: To really drop the connection, you must unauthorize the Application from your Dropbox account.</value>
+  </data>
+  <data name="lblHideFilesLocation.Help" xml:space="preserve">
+    <value>Regardless of the Folder's accessibility (public/shared, or private), , the files will be like served directly from your web site (not linked from their real location).  
+It would be more efficient to generate a signed (protected / expiring) URL, but you may want to use this option to completelly hide the file's location.</value>
+  </data>
+  <data name="lblHideFilesLocation.Text" xml:space="preserve">
+    <value>Hide Files Location</value>
+  </data>
+  <data name="CannotEstablishConnection.Text" xml:space="preserve">
+    <value>The connection to Dropbox could not be established. Error: </value>
+  </data>
+  <data name="CannotGetAuthorizationURL.Text" xml:space="preserve">
+    <value>The Authorization URL could not be generated. Please verify the Dropbox application was created, and the provided App Key and Secret are valid. Error: </value>
+  </data>
+  <data name="MappingNotUnique.ErrorMessage" xml:space="preserve">
+    <value>There is already a mapping featuring the same key settings.</value>
+  </data>
+</root>

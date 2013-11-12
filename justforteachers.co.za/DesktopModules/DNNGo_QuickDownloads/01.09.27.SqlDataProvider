@@ -1,0 +1,108 @@
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Tmp_Go_QuickDownloads]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	BEGIN
+CREATE TABLE {databaseOwner}[{objectQualifier}Tmp_GO_QuickDownloadFiles]
+	(
+	ID int NOT NULL IDENTITY (1, 1),
+	QD_ID int NOT NULL,
+	[Name] nvarchar(100) NOT NULL,
+	DownUrl nvarchar(250) NOT NULL,
+	ClickCount int NOT NULL,
+	LastUserID int NOT NULL,
+	LastTime datetime NOT NULL,
+	ContentLength int NOT NULL,
+	PortalId int NOT NULL,
+	TabModuleId int NOT NULL,
+	Suffix nvarchar(10) NOT NULL,
+	DirectoryName nvarchar(50) NOT NULL,
+	TrueFileName nvarchar(50) NOT NULL
+	)  ON [PRIMARY]
+END
+GO
+ALTER TABLE {databaseOwner}[{objectQualifier}Tmp_GO_QuickDownloadFiles] ADD CONSTRAINT
+	DF_GO_QuickDownloadFiles_ContentLength DEFAULT 0 FOR ContentLength
+GO
+ALTER TABLE {databaseOwner}[{objectQualifier}Tmp_GO_QuickDownloadFiles] ADD CONSTRAINT
+	DF_GO_QuickDownloadFiles_PortalId DEFAULT 0 FOR PortalId
+GO
+ALTER TABLE {databaseOwner}[{objectQualifier}Tmp_GO_QuickDownloadFiles] ADD CONSTRAINT
+	DF_GO_QuickDownloadFiles_TabModuleId DEFAULT 0 FOR TabModuleId
+--GO
+--SET IDENTITY_INSERT {databaseOwner}[{objectQualifier}Tmp_GO_QuickDownloadFiles] ON
+GO
+IF EXISTS(SELECT * FROM {databaseOwner}[{objectQualifier}GO_QuickDownloadFiles])
+	 EXEC('INSERT INTO {databaseOwner}[{objectQualifier}Tmp_GO_QuickDownloadFiles] ( QD_ID, Name, DownUrl, ClickCount, LastUserID, LastTime)
+		SELECT  QD_ID, Name, DownUrl, ClickCount, LastUserID, LastTime FROM {databaseOwner}[{objectQualifier}GO_QuickDownloadFiles] WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT {databaseOwner}[{objectQualifier}Tmp_GO_QuickDownloadFiles] OFF
+GO
+DROP TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadFiles]
+GO
+EXECUTE sp_rename N'{objectQualifier}Tmp_GO_QuickDownloadFiles', N'{objectQualifier}GO_QuickDownloadFiles', 'OBJECT' 
+GO
+ALTER TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadFiles] ADD CONSTRAINT
+	PK_GO_QuickDownloadFiles PRIMARY KEY CLUSTERED 
+	(
+	ID
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Tmp_Go_QuickDownloads]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	BEGIN
+
+CREATE TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadCategory](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ParentID] [int] NOT NULL CONSTRAINT [DF_{objectQualifier}GO_QuickDownloadCategory_ParentID]  DEFAULT ((0)),
+	[Name] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[Sort] [int] NOT NULL,
+	[ChildCount] [int] NOT NULL,
+	[ModuleId] [int] NOT NULL,
+ CONSTRAINT [PK_{objectQualifier}GO_QuickDownloadCategory] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+END
+GO
+
+
+
+
+
+if  exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownloads]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	BEGIN
+ALTER TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloads] ADD
+	CategoryID int NOT NULL CONSTRAINT DF_GO_QuickDownloads_CategoryID DEFAULT 0,
+	HotValue tinyint NOT NULL CONSTRAINT DF_GO_QuickDownloads_HotValue DEFAULT 5,
+	Photo nvarchar(300) NULL,
+	AttachmentLength int NOT NULL CONSTRAINT DF_GO_QuickDownloads_AttachmentLength DEFAULT 0,
+	AttachmentCount int NOT NULL CONSTRAINT DF_GO_QuickDownloads_AttachmentCount DEFAULT 0
+	
+
+END
+
+
+
+
+
+
+if  exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}ModuleControls]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	BEGIN
+		delete from  {databaseOwner}[{objectQualifier}ModuleControls] where ModuleDefID= (
+		select ModuleDefID from {databaseOwner}[{objectQualifier}ModuleDefinitions] where FriendlyName = 'QuickDownloads' )
+	END
+
+
+
+
+
+
+
+
+
+
+
+ 

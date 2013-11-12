@@ -1,0 +1,132 @@
+<div class="download_item">
+    <div class="d_title">
+        <h3>${xf.ViewContent("Name",$DataItem)}</h3>
+    </div>
+    <div class="content">
+        <table cellpadding="10" cellspacing="0" border="0">
+            <tr>
+                <td align="left" valign="top">
+                    <div class="thumb">
+                        <img src="${xf.ViewPicture($DataItem)}" alt="${xf.ViewContent("Name",$DataItem)}" width="300" /></div>
+                </td>
+                <td align="left" valign="top" width="100%">
+                    <table class="list_item" width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>
+                                Category:
+                            </td>
+                            <td>
+                                 ${xf.ViewCategories($DataItem)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Tags:
+                            </td>
+                            <td>
+                                 ${xf.ViewTags($DataItem)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Published Date:
+                            </td>
+                            <td>
+                                $DataItem.CreatedDate
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Posted by:
+                            </td>
+                            <td>
+                                <a href="${xf.GoAuthorUrl($DataItem.CreateUser)}">${xf.ViewUser($DataItem.CreateUser,"DisplayName")}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Attachment Size:
+                            </td>
+                            <td>
+                                ${xf.ViewFileUnit($DataItem)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Attachment Count:
+                            </td>
+                            <td>
+                                $DataItem.AttachmentCount
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Popularity Degrees:
+                            </td>
+                            <td>
+                                ${xf.ViewPopularityDegrees($DataItem)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Download Count:
+                            </td>
+                            <td>
+                                $DataItem.ClickCount
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="icon">
+                                 #if($Module.IsEditable)
+                                     <span class="blog_edit"><a href="${xf.GoEditUrl($DataItem)}">[Edit]</a></span>
+                                 #end
+                            </td>
+                            <td align="right" class="icon">
+                                <a href="${xf.GoUrl()}">
+                                    <img src="${Module.ModulePath}Resource/images/download_back.jpg" alt="Back download List" /></a>
+                                <a href="#FileList">
+                                    <img src="${Module.ModulePath}Resource/images/download_icon.jpg" alt="download Detail" /></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="des">
+        <h3>
+            File list</h3>
+        <a name="FileList"></a>
+        <div>
+            #if($DataList.Count >0)
+                  #if($NeedLogin == true && $UserInfo.UserID < 1)
+                    <b>You must <a href="${xf.GoLogin()}">login</a> to download.</b>
+                    <ol>
+                    #foreach($DataItemX in $DataList)
+                        <li style="text-align: left; margin-left: 10px;">
+                            <a>$DataItemX.Name</a> 
+                            <i>$DataItemX.LastTime</i>
+                        </li>
+                    #end
+                    </ol>
+                #else
+                    <ol>
+                    #foreach($DataItemX in $DataList)
+                        <li style="text-align: left; margin-left: 10px;">
+                            <a href="${xf.GoDownloadUrl($DataItemX)}" target="_blank">${DataItemX.Name}${DataItemX.Suffix}</a> 
+                            <i>$DataItemX.LastTime</i>
+                        </li>
+                    #end
+                    </ol>
+                #end
+            #else
+                No entry attachments
+            #end
+        </div>
+
+        <h3> Description</h3>
+        <div class="des_content">$DataItem.Description</div>
+        <div class="des_content">${xf.ViewSharingTool($DataItem)}</div>
+        #parse( "view_comment.html" )
+    </div>
+</div>

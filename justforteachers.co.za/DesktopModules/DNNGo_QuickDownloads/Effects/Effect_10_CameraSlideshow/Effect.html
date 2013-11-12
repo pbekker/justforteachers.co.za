@@ -1,0 +1,75 @@
+﻿<div class="$EffectThemeName" id="camera_wrap_${ModuleID}">
+     #if($DataList.Count > 0) 
+        #foreach($DataItem in $DataList)       
+             <div data-thumb="${xf.ThumbnailUrl($DataItem)}" data-src="${xf.ViewPicture($DataItem)}" data-time="1500" data-trasPeriod="4000" data-link="${xf.GoUrl($DataItem)}" >
+                    <div class="camera_caption fadeFromBottom">
+                         <h3><a href='${xf.GoUrl($DataItem)}'>${xf.ViewContent("Name",$DataItem)}</a></h3>
+						 ${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",150)},"...")}
+                    </div>
+             </div>
+        #end 
+    #end
+</div>
+
+
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery('#camera_wrap_${ModuleID}').camera({
+            imagePath: '${Module.ModulePath}Effects/${EffectName}/Themes/${ThemeName}/images/',//he path to the image folder (it serves for the blank.gif, when you want to display videos)
+ 
+		    height				: '${xf.ViewEffectSetting("height","300px")}',	//here you can type pixels (for instance '300px'), a percentage (relative to the width of the slideshow, for instance '50%') or 'auto'
+		    minHeight			: '${xf.ViewEffectSetting("minHeight",300)}px',	//you can also leave it blank
+            gridDifference		: ${xf.ViewEffectSetting("gridDifference",250)},	//to make the grid blocks slower than the slices, this value must be smaller than transPeriod
+            time				: ${xf.ViewEffectSetting("time",5000)},	//milliseconds between the end of the sliding effect and the start of the nex one
+		    transPeriod			: ${xf.ViewEffectSetting("transPeriod",1500)},	//lenght of the sliding effect in milliseconds
+            pieDiameter			: ${xf.ViewEffectSetting("pieDiameter",38)},
+		    rows				: ${xf.ViewEffectSetting("rows",4)},
+		    slicedCols			: ${xf.ViewEffectSetting("slicedCols",12)},	//if 0 the same value of cols
+		    slicedRows			: ${xf.ViewEffectSetting("slicedRows",8)},	//if 0 the same value of rows
+            cols				: ${xf.ViewEffectSetting("cols",6)},
+
+
+            alignment			: '${xf.ViewEffectSetting("alignment","center")}', //topLeft, topCenter, topRight, centerLeft, center, centerRight, bottomLeft, bottomCenter, bottomRight
+		    barDirection		: '${xf.ViewEffectSetting("barDirection","leftToRight")}',	//'leftToRight', 'rightToLeft', 'topToBottom', 'bottomToTop'
+		    barPosition			: '${xf.ViewEffectSetting("barPosition","bottom")}',	//'bottom', 'left', 'top', 'right'
+		  
+		    easing				: '${xf.ViewEffectSetting("easing","easeInOutExpo")}',	//for the complete list http://jqueryui.com/demos/effect/easing.html
+		    //mobileEasing		: '',	//leave empty if you want to display the same easing on mobile devices and on desktop etc.
+		    fx					: '${xf.ViewEffectSetting("fx","random")}',	//'random','simpleFade', 'curtainTopLeft', 'curtainTopRight', 'curtainBottomLeft', 'curtainBottomRight', 'curtainSliceLeft', 'curtainSliceRight', 'blindCurtainTopLeft', 'blindCurtainTopRight', 'blindCurtainBottomLeft', 'blindCurtainBottomRight', 'blindCurtainSliceBottom', 'blindCurtainSliceTop', 'stampede', 'mosaic', 'mosaicReverse', 'mosaicRandom', 'mosaicSpiral', 'mosaicSpiralReverse', 'topLeftBottomRight', 'bottomRightTopLeft', 'bottomLeftTopRight', 'bottomLeftTopRight'
+										    //you can also use more than one effect, just separate them with commas: 'simpleFade, scrollRight, scrollBottom'
+		    //mobileFx			: '',	//leave empty if you want to display the same effect on mobile devices and on desktop etc.
+		   
+            slideOn				: '${xf.ViewEffectSetting("slideOn","random")}',	//next, prev, random: decide if the transition effect will be applied to the current (prev) or the next slide
+		    piePosition         : '${xf.ViewEffectSetting("piePosition","rightTop")}', //'rightTop', 'leftTop', 'leftBottom', 'rightBottom'
+
+		    loader				: '${xf.ViewEffectSetting("loader","pie")}',//pie, bar, none (even if you choose "pie", old browsers like IE8- can't display it... they will display always a loading bar)
+		    loaderColor			: '#eeeeee', 
+		    loaderBgColor		: '#222222', 
+		    loaderOpacity		: ${xf.ViewEffectSetting("loaderOpacity","0.8")},	//0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1
+		    loaderPadding		: ${xf.ViewEffectSetting("loaderPadding",2)},	//how many empty pixels you want to display between the loader and its background
+		    loaderStroke		: ${xf.ViewEffectSetting("loaderStroke",7)},	//the thickness both of the pie loader and of the bar loader. Remember: for the pie, the loader thickness must be less than a half of the pie diameter
+		  
+
+		    autoAdvance         : ${xf.ViewEffectSetting("autoAdvance","true")}, //true, false
+		    mobileAutoAdvance   : ${xf.ViewEffectSetting("mobileAutoAdvance","true")}, //true, false. Auto-advancing for mobile devices
+		    hover               : ${xf.ViewEffectSetting("hover","true")}, //true, false. Puase on state hover. Not available for mobile devices
+		    navigation			: ${xf.ViewEffectSetting("navigation","true")},	//true or false, to display or not the navigation buttons
+		    navigationHover		: ${xf.ViewEffectSetting("navigationHover","false")},	//if true the navigation button (prev, next and play/stop buttons) will be visible on hover state only, if false they will be visible always
+		    mobileNavHover		: ${xf.ViewEffectSetting("mobileNavHover","true")},	//same as above, but only for mobile devices
+		    opacityOnGrid		: ${xf.ViewEffectSetting("opacityOnGrid","true")},//true, false. Decide to apply a fade effect to blocks and slices: if your slideshow is fullscreen or simply big, I recommend to set it false to have a smoother effect 
+		    overlayer			: ${xf.ViewEffectSetting("overlayer","true")},	//a layer on the images to prevent the users grab them simply by clicking the right button of their mouse (.camera_overlayer)
+		    pagination			: ${xf.ViewEffectSetting("pagination","true")},
+		    playPause			: ${xf.ViewEffectSetting("playPause","true")},	//true or false, to display or not the play/pause buttons
+		    pauseOnClick		: ${xf.ViewEffectSetting("pauseOnClick","false")},	//true, false. It stops the slideshow when you click the sliders.
+		    portrait            : ${xf.ViewEffectSetting("portrait","false")}, //true, false. Select true if you don't want that your images are cropped
+		    thumbnails          : ${xf.ViewEffectSetting("thumbnails","true")}
+            
+        });
+    });
+</script>
+
+
+
+
+
+ 

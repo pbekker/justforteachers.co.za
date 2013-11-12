@@ -1,0 +1,8 @@
+.eds_alert {
+	background: #fff6bf url(../images/icons/exclamationmark.png) center no-repeat;
+	background-position: 7px 50%; /* x-pos y-pos */
+	text-align: left;
+	padding: 12px 20px 12px 45px;
+	border-top: 2px solid #ffd324;
+	border-bottom: 2px solid #ffd324;
+}

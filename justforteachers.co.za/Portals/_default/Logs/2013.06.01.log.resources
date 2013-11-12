@@ -1,0 +1,214 @@
+2013-06-01 18:12:01,239 [simon-PC][Thread:201][ERROR] DotNetNuke.Web.InternalServices.FileUploadController - startIndex cannot be larger than length of string.
+Parameter name: startIndex
+2013-06-01 21:50:21,500 [simon-PC][Thread:16][ERROR] DotNetNuke.Web.InternalServices.FileUploadController - startIndex cannot be larger than length of string.
+Parameter name: startIndex
+2013-06-01 21:52:23,408 [simon-PC][Thread:26][ERROR] DotNetNuke.Web.InternalServices.FileUploadController - startIndex cannot be larger than length of string.
+Parameter name: startIndex
+2013-06-01 22:11:05,116 [simon-PC][Thread:9][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,117 [simon-PC][Thread:25][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,117 [simon-PC][Thread:23][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,118 [simon-PC][Thread:30][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,120 [simon-PC][Thread:7][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,119 [simon-PC][Thread:13][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,345 [simon-PC][Thread:25][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,368 [simon-PC][Thread:9][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,365 [simon-PC][Thread:23][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,517 [simon-PC][Thread:9][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,539 [simon-PC][Thread:13][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,539 [simon-PC][Thread:30][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,621 [simon-PC][Thread:23][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,615 [simon-PC][Thread:25][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,623 [simon-PC][Thread:14][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,645 [simon-PC][Thread:7][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,657 [simon-PC][Thread:9][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,689 [simon-PC][Thread:37][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,753 [simon-PC][Thread:23][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,735 [simon-PC][Thread:14][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,753 [simon-PC][Thread:25][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,779 [simon-PC][Thread:7][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,805 [simon-PC][Thread:13][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,903 [simon-PC][Thread:23][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,887 [simon-PC][Thread:14][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:11:05,940 [simon-PC][Thread:7][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:53,900 [simon-PC][Thread:17][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:53,932 [simon-PC][Thread:17][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:53,982 [simon-PC][Thread:17][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,012 [simon-PC][Thread:17][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,047 [simon-PC][Thread:91][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,115 [simon-PC][Thread:91][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,024 [simon-PC][Thread:92][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,059 [simon-PC][Thread:85][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,160 [simon-PC][Thread:92][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,054 [simon-PC][Thread:17][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,157 [simon-PC][Thread:91][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,193 [simon-PC][Thread:85][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,222 [simon-PC][Thread:92][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,283 [simon-PC][Thread:17][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,342 [simon-PC][Thread:85][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,379 [simon-PC][Thread:92][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,305 [simon-PC][Thread:91][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,523 [simon-PC][Thread:17][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,467 [simon-PC][Thread:85][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,563 [simon-PC][Thread:91][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,569 [simon-PC][Thread:92][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,603 [simon-PC][Thread:17][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,624 [simon-PC][Thread:85][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,651 [simon-PC][Thread:91][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,680 [simon-PC][Thread:92][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-06-01 22:46:54,761 [simon-PC][Thread:85][FATAL] DotNetNuke.Web.Common.Internal.DotNetNukeHttpApplication - System.Web.HttpException (0x80004005): This is an invalid webresource request.
+   at System.Web.Handlers.AssemblyResourceLoader.System.Web.IHttpHandler.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

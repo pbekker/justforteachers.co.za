@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ClearLogsSuccess.Message" xml:space="preserve">
+    <value>Cleared a total of {0} records</value>
+  </data>
+  <data name="DeleteArticleError.Message" xml:space="preserve">
+    <value>Delete Article item :{0} Failure.</value>
+  </data>
+  <data name="DeleteArticleSuccess.Message" xml:space="preserve">
+    <value>Delete Article item :{0} successfully.</value>
+  </data>
+  <data name="DeleteCategoryError.Message" xml:space="preserve">
+    <value>Delete Category :{0} Failure.</value>
+  </data>
+  <data name="DeleteCategorySuccess.Message" xml:space="preserve">
+    <value>Delete Category :{0} successfully.</value>
+  </data>
+  <data name="DeleteCommentError.Message" xml:space="preserve">
+    <value>Delete Comment item :{0} Failure.</value>
+  </data>
+  <data name="DeleteCommentSuccess.Message" xml:space="preserve">
+    <value>Delete Comment item :{0} successfully.</value>
+  </data>
+  <data name="DeleteTagError.Message" xml:space="preserve">
+    <value>Delete tag item :{0} Failure.</value>
+  </data>
+  <data name="DeleteTagSuccess.Message" xml:space="preserve">
+    <value>Delete tag item :{0} successfully.</value>
+  </data>
+  <data name="DeleteThemeError.Message" xml:space="preserve">
+    <value>Delete theme item :{0} Failure.</value>
+  </data>
+  <data name="DeleteThemeSuccess.Message" xml:space="preserve">
+    <value>Delete theme item :{0} successfully.</value>
+  </data>
+  <data name="Email_CommentReplyTitle.EmailText" xml:space="preserve">
+    <value>[{0} Comment reply notification]Re:{1}</value>
+  </data>
+  <data name="Email_CommentTitle.EmailText" xml:space="preserve">
+    <value>[{0} Comment Notification]Re:{1}</value>
+  </data>
+  <data name="EnabledThemeSuccess.Message" xml:space="preserve">
+    <value>Activation theme  successfully.</value>
+  </data>
+  <data name="GridViewEmpty.Message" xml:space="preserve">
+    <value>No data in the list.</value>
+  </data>
+  <data name="ImportThemeError.Message" xml:space="preserve">
+    <value>Import theme :{0} Failure.Need to re-operation.</value>
+  </data>
+  <data name="ImportThemeSuccess.Message" xml:space="preserve">
+    <value>Import theme :{0} successfully.</value>
+  </data>
+  <data name="InstallThemeError.Message" xml:space="preserve">
+    <value>Install Theme template:{0} failure.</value>
+  </data>
+  <data name="InstallThemeSuccess.Message" xml:space="preserve">
+    <value>Install Theme template:{0}  successfully.</value>
+  </data>
+  <data name="LicenseStatus.Message" xml:space="preserve">
+    <value>Your authorization will become invalid in {0} days.</value>
+    <comment>Your authorization will become invalid in {0} days.</comment>
+  </data>
+  <data name="NoModuleSetting.Message" xml:space="preserve">
+    <value>Click [Settings] button to set the relationship between the current module and data module</value>
+  </data>
+  <data name="NoTemplate.Message" xml:space="preserve">
+    <value>Not set a template item. </value>
+  </data>
+  <data name="SaveArticleError.Message" xml:space="preserve">
+    <value>Save Article item :{0} Failure.</value>
+  </data>
+  <data name="SaveArticleSuccess.Message" xml:space="preserve">
+    <value>Save Article item :{0} successfully.</value>
+  </data>
+  <data name="SaveCategoryError.Message" xml:space="preserve">
+    <value>Save Category :{0} Failure.</value>
+  </data>
+  <data name="SaveCategorySuccess.Message" xml:space="preserve">
+    <value>Save Category :{0} successfully.</value>
+  </data>
+  <data name="SaveLicenseSuccess.Message" xml:space="preserve">
+    <value>Save authorization code :{0} successfully.</value>
+    <comment>Save authorization code :{0} successfully.</comment>
+  </data>
+  <data name="SaveTagError.Message" xml:space="preserve">
+    <value>Save tag :{0} Failure.</value>
+  </data>
+  <data name="SaveTagSuccess.Message" xml:space="preserve">
+    <value>Save tag :{0} successfully.</value>
+  </data>
+  <data name="SaveThemeError.Message" xml:space="preserve">
+    <value>Save theme :{0} Failure.</value>
+  </data>
+  <data name="SaveThemeFileSuccess.Message" xml:space="preserve">
+    <value>File edited successfully.</value>
+  </data>
+  <data name="SaveThemeSuccess.Message" xml:space="preserve">
+    <value>Save theme :{0} successfully.</value>
+  </data>
+  <data name="ThemeGoUrl.Message" xml:space="preserve">
+    <value>Click [&lt;a href="[ThemeUrl]"&gt;Redirect&lt;/a&gt;] to theme interface and load default theme.</value>
+  </data>
+  <data name="UpdateSettingsSuccess.Message" xml:space="preserve">
+    <value>Update Settings succeed.</value>
+  </data>
+</root>

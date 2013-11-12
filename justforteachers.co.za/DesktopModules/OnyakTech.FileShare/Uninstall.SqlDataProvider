@@ -1,0 +1,1135 @@
+
+-- ***************  Deleting all stored procedures  ******************
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileComments ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryTop40') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryTop40
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetLast20') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetLast20
+GO
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsAdd
+GO
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByUserIdAndFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsGetFileCommentsByUserIdAndFileId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileEmailList ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByEmailAddress') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByEmailAddress
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByPublisherId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailListGetEmailListByPublisherId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileFiles ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGetFileFilesByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFilesGetFileFilesByFileId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileHeader ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGet20') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGet20
+GO
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByApprovedByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByApprovedByUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByArchived') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByArchived
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishing') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishing
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishingAndDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishingAndDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryIdActive') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryIdActive
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryIdActivePremium') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryIdActivePremium
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCreatedByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCreatedByUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByDateApproved') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByDateApproved
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEditorUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEditorUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEmailPublishDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEmailPublishDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcedPublishEmail') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcedPublishEmail
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcePublishToEmailWithDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcePublishToEmailWithDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLastViewDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLastViewDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLocked') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLocked
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPopUp') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPopUp
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPremium') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPremium
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByScanImageAndImageURL') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByScanImageAndImageURL
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileBySearchCategory') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileBySearchCategory
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByShowOnce') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByShowOnce
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByWebScanImage') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByWebScanImage
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFiles') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFiles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFilesBySearch') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFilesBySearch
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileSearchAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileSearchAll
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFilePublishers ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetPublishersByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetPublishersByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetPublishersByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishersGetPublishersByPortalId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileRatingsLog ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLogGetRatingLogByUserId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileReadLog ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByDateTracked') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByDateTracked
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByEmailAddress') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByEmailAddress
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLogGetFileReadsByModuleId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRCategories ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByEmailPublishing') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByEmailPublishing
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesGetCategoryByPortalId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSREmailSubscriptions ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByCategoryId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByCategoryId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptionsGetEmailSubscriptionsByUserId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRGlobalSettings ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByPublisherId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettingsGetSettingsByPublisherId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRMyFiles ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFilesGetMyFilesByUserId
+GO
+
+-- ***************  Deleting all foreign keys  ******************
+
+-- ***************  Deleting all primary keys  ******************
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRFileComments') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileComments
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRFileEmailList') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileEmailList
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRFileFiles') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileFiles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRFileHeader') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileHeader
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRFilePublishers') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFilePublishers
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRFileRatingsLog') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileRatingsLog
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRFileReadLog') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileReadLog
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRCategories') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRCategories
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSREmailSubscriptions') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSREmailSubscriptions
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRGlobalSettings') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRGlobalSettings
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRMyFiles') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRMyFiles
+GO
+
+-- ***************  Deleting all tables  ******************
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileComments') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileEmailList
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileFiles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFilePublishers
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileRatingsLog
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileReadLog
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategories') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSREmailSubscriptions
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRGlobalSettings
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRMyFiles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByPortalIdLogType') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByPortalIdLogType
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRLogGetLogByUserId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSROrderDetails ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDeleteOrderDetailByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsDeleteOrderDetailByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetOrderDetailByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetOrderDetailByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetOrderDetailByOrderId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetailsGetOrderDetailByOrderId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSROrders ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersDeleteOrderByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersDeleteOrderByUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByStatus') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByStatus
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserName') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserName
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserNameAndPortal') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByUserNameAndPortal
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByStatusUser') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSROrdersGetOrderByStatusUser
+GO
+
+
+-- ***************  Deleting all foreign keys  ******************
+
+-- ***************  Deleting all primary keys  ******************
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRLog') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRLog DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRLog
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSROrderDetails') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSROrderDetails
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSROrders') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSROrders DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSROrders
+GO
+
+-- ***************  Deleting all tables  ******************
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRLog') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRLog
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSROrderDetails
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSROrders') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSROrders
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRAttributes ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRAttributesAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributesAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRAttributesUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributesUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRAttributesDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributesDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRAttributesGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributesGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRAttributesCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributesCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRAttributesGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributesGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRAttributesDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributesDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRAttributesGetAttributesByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributesGetAttributesByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRAttributesGetAttributesByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributesGetAttributesByPortalId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRCategoryAttributes ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesGetCategoryAttributesByAttributeId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesGetCategoryAttributesByAttributeId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesGetCategoryAttributesByFileCategoryId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributesGetCategoryAttributesByFileCategoryId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRFileHeaderAttributes ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetFileHeaderAttributesByCategoryAttributeId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetFileHeaderAttributesByCategoryAttributeId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetFileHeaderAttributesByFileId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetFileHeaderAttributesByFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetFileHeaderAttributesByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetFileHeaderAttributesByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetFileHeaderAttributesByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetFileHeaderAttributesByPortalId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetFileHeaderAttributesByUserId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributesGetFileHeaderAttributesByUserId
+GO
+
+-- ***************  Deleting all foreign keys  ******************
+
+-- ***************  Deleting all primary keys  ******************
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRAttributes') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributes DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRAttributes
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRCategoryAttributes') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributes DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRCategoryAttributes
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRFileHeaderAttributes') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributes DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRFileHeaderAttributes
+GO
+
+-- ***************  Deleting all tables  ******************
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRAttributes') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRAttributes
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributes') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoryAttributes
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributes') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderAttributes
+GO
+
+
+-- *** Droping stored procedures for table OnyakTechFLSRSearchTemplateDetails ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGetSearchTemplateDetailByHeaderId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGetSearchTemplateDetailByHeaderId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRSearchTemplateHeader ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetSearchTemplateByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetSearchTemplateByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetSearchTemplateByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetSearchTemplateByPortalId
+GO
+
+-- ***************  Deleting all foreign keys  ******************
+
+-- ***************  Deleting all primary keys  ******************
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRSearchTemplateDetails') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRSearchTemplateDetails
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}OnyakTechFLSRSearchTemplateHeader') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader DROP CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRSearchTemplateHeader
+GO
+
+-- ***************  Deleting all tables  ******************
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	DROP TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader
+GO
+

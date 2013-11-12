@@ -1,0 +1,57 @@
+﻿<div id="liteAccordion${ModuleID}" class="$EffectThemeName" style="width:${xf.ViewEffectSetting("containerWidth","800")}px; height:${xf.ViewEffectSetting("containerHeight","320")}px;">
+    #if($DataList.Count > 0)
+    <ol>
+        #foreach($DataItem in $DataList)
+        <li>
+           
+                 <h2><span>${xf.ViewContent("Name",$DataItem)}</span></h2>
+                <div>
+                    <div class="figure">
+                        <a  href="${xf.GoUrl($DataItem)}"  title="${xf.ViewContent("Name",$DataItem)}"><img src="${xf.ViewPicture($DataItem)}" style="width:100%"  alt="${xf.ViewContent("Name",$DataItem)}" /></a>
+                            <div class="AccordionDescription">
+                               <h3><a href="${xf.GoUrl($DataItem)}">${xf.ViewContent("Name",$DataItem)}</a></h3>
+								 ${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}
+                            </div>
+                    
+                    </div>
+                </div>              
+           
+        </li>
+        #end
+    </ol>
+    #end
+    <noscript>
+        <p>
+            Please enable JavaScript to get the full experience.</p>
+    </noscript>
+</div>
+<script type="text/javascript">
+    jQuery(function($) {
+        $('#liteAccordion${ModuleID}').liteAccordion({
+            onTriggerSlide: function () {
+                this.find("div[class='AccordionDescription']").fadeOut();
+            },
+            onSlideAnimComplete: function () {
+                this.find("div[class='AccordionDescription']").fadeIn();
+            },
+            containerWidth: ${xf.ViewEffectSetting("containerWidth",800)},                   // fixed (px)  
+            containerHeight: ${xf.ViewEffectSetting("containerHeight",320)},                  // fixed (px)  
+            responsive : ${xf.ViewEffectSetting("responsive","false")},                     // overrides the above two settings, accordion adjusts to fill container
+
+            autoScaleImages : ${xf.ViewEffectSetting("autoScaleImages","false")},                // if a single image is placed within the slide, this will be automatically scaled to fit
+
+            activateOn : '${xf.ViewEffectSetting("activateOn","click")}',                   // click or mouseover  
+            firstSlide : ${xf.ViewEffectSetting("firstSlide",1)},                         // displays slide (n) on page load  
+            slideSpeed : ${xf.ViewEffectSetting("slideSpeed",800)},                       // slide animation speed  
+   
+            autoPlay : ${xf.ViewEffectSetting("autoPlay","false")},                       // automatically cycle through slides  
+            pauseOnHover : ${xf.ViewEffectSetting("pauseOnHover","false")},                   // pause on hover  
+            cycleSpeed : ${xf.ViewEffectSetting("cycleSpeed",6000)},                      // time between slide cycles  
+            easing : '${xf.ViewEffectSetting("easing","swing")}',                       // custom easing function  
+
+            theme : '$EffectThemeName',                                                   // basic, dark, light, or stitch  
+            rounded : ${xf.ViewEffectSetting("rounded","true")},                        // square or rounded corners  
+            enumerateSlides : ${xf.ViewEffectSetting("enumerateSlides","true")}                // put numbers on slides  
+        }).find("div[class='AccordionDescription']:first").show();
+    });
+</script>

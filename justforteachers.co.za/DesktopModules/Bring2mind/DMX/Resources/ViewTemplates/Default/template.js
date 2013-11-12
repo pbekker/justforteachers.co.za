@@ -1,0 +1,1 @@
+$(document).ready(function(){$("tr.entryItem:odd").addClass("entryAlternateItem");if($("ul.dmx-breadcrumb").children().length==0){$("ul.dmx-breadcrumb").remove()}$("ul.dmx-breadcrumb li:first span.divider").remove()});

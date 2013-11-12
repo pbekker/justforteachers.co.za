@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SkyDrive.Text" xml:space="preserve">
+    <value>SkyDrive</value>
+  </data>
+  <data name="SkyDriveAdvancedSettings.Text" xml:space="preserve">
+    <value>SkyDrive - Advanced Settings</value>
+  </data>
+  <data name="SkyDriveBasicSettings.Text" xml:space="preserve">
+    <value>SkyDrive - Basic Settings</value>
+  </data>
+  <data name="SkyDriveTestError.Text" xml:space="preserve">
+    <value>SkyDrive: &lt;br /&gt;{0}</value>
+  </data>
+  <data name="SkyDriveTestOK.Text" xml:space="preserve">
+    <value>SkyDrive operation successfully completed.</value>
+  </data>
+  <data name="cmdRequestConnection.Text" xml:space="preserve">
+    <value>Request Connection</value>
+  </data>
+  <data name="lblSkyDriveClientId.Help" xml:space="preserve">
+    <value>The SkyDrive's "Client ID" you'll use to connect this web site.</value>
+  </data>
+  <data name="lblSkyDriveClientId.Text" xml:space="preserve">
+    <value>Client ID</value>
+  </data>
+  <data name="lblSkyDriveInfo.Text" xml:space="preserve">
+    <value>&lt;p&gt;Don't have a &lt;b&gt;SkyDrive&lt;/b&gt; account?  &lt;a  href="https://skydrive.live.com" target="_blank" class="CommandButton"&gt;Click here to create an account&lt;/a&gt;.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you have a SkyDrive account, you'll have to create an 'Application' for this web site to connect to your SkyDrive.&lt;/p&gt;
+
+Notes:
+&lt;ul&gt;
+&lt;li&gt;NOTE: At this time SkyDrive does not provide permanent URLs, not even for public files.&lt;li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;b&gt;How to generate a 'Client ID' and 'Client Secret'&lt;/b&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go to &lt;a href="https://manage.dev.live.com/Applications/Create" target="_blank"&gt;https://manage.dev.live.com/Applications/Create&lt;/a&gt; to create an application (provide an 'Application Name', choose a language, and click on 'I Accept')&lt;/li&gt;
+&lt;li&gt;Take note of the 'Client ID' and 'Client secret' that SkyDrive created for you.&lt;/li&gt;
+&lt;li&gt;Leave the 'Redirect domain:' empty, and choose 'Yes' for "Is Mobile Client app?". Save the configured settings.&lt;/li&gt;
+&lt;li&gt;Set the "Client ID" and "Client secret" on this form, and save the Settings by clicking on the 'Update' link found on this page, and re-open this form (Click on the pencil for this Folder Type on the 'Folder Type Definitions' dialog) to continue with the authorization process.&lt;/li&gt;   
+&lt;/ol&gt;
+
+&lt;p&gt;Once you have your  'Client ID' and 'Client Secret' keys, you can connect this web site to your SkyDrive account.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;How to connect this web site to SkyDrive&lt;/b&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Click on the &lt;b&gt;'Request Connection'&lt;/b&gt; link.  A new window, on the SkyDriive's web site (oauth.live.com) will be opened.&lt;/li&gt;
+&lt;li&gt;If you are not already logged into your SkyDrive account, you will be prompted to log in.&lt;/li&gt;
+&lt;li&gt;An 'Allow access?' dialog will be presented. Click on 'Yes'.&lt;/li&gt;
+&lt;li&gt;The pagep will be refreshed, and it will be blank (empty). The page's URL in the window's Address Bar will look like similar to 'https://oauth.live.com/desktop?code=bb1024aa-dbad-6aa6-2ac6-a54c38ed3cb0'.&lt;/li&gt;
+&lt;li&gt;Copy the  code you're given, in the Popup window's Address bar (in this example, it is 'bb1024aa-dbad-6aa6-2ac6-a54c38ed3cb0'), and paste it into the &lt;strong&gt;"Authorization code"&lt;/strong&gt; textbox found on this page.&lt;/li&gt;
+&lt;li&gt;Click on the '&lt;b&gt;Establish Connection&lt;/b&gt;' link found on this page.&lt;/li&gt;
+&lt;li&gt;Save the Settings by clicking on the 'Update' link found on this page.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;&lt;b&gt;How to disconnect this web site from SkyDrive (how to disallow this web site from accessing your SkyDrive account)&lt;/b&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Use the 'Clear Connection' link found on this page to remove the link between SkyDrive and this web site.&lt;/li&gt;
+&lt;li&gt;Go to the &lt;a href="https://manage.dev.live.com/Applications/Index"&gt;Live Connect Developer Center&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Click on your Application, and then click on 'Delete Application'.&lt;/li&gt;
+&lt;/ol&gt;</value>
+  </data>
+  <data name="lblSkyDriveIsDisabled.Help" xml:space="preserve">
+    <value>You can use this setting to temporarily 'turn off' all access to the configured SkyDrive account.</value>
+  </data>
+  <data name="lblSkyDriveIsDisabled.Text" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="lblSkyDriveTest.Help" xml:space="preserve">
+    <value>Click on the [Test] button to verify the configured settings.</value>
+  </data>
+  <data name="lblSkyDriveTest.Text" xml:space="preserve">
+    <value>Test Settings</value>
+  </data>
+  <data name="lblSkyDriveClientSecret.Help" xml:space="preserve">
+    <value>The SkyDrive's "Client secret" realated with the "Client ID".</value>
+  </data>
+  <data name="lblSkyDriveClientSecret.Text" xml:space="preserve">
+    <value>Client secret</value>
+  </data>
+  <data name="lblEnforceReadOnlyAccess.Help" xml:space="preserve">
+    <value>Use this option to prevent any update on the SkyDrive repository. &lt;br /&gt;
+Files creation, update or rename requests will be ignored.&lt;br /&gt;
+This setting is useful if you want to 'plug' a SkyDrive repository you already have, ensuring that its content will not be updated in any way from the DotNetNuke site.</value>
+  </data>
+  <data name="lblEnforceReadOnlyAccess.Text" xml:space="preserve">
+    <value>Enforce Ready Only Access</value>
+  </data>
+  <data name="lblShowSkyDriveInfo.Help" xml:space="preserve">
+    <value>About SkyDrive.</value>
+  </data>
+  <data name="lblShowSkyDriveInfo.Text" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="MissingCredentials.Text" xml:space="preserve">
+    <value>Please check the provided SkyDrive Credentials. &lt;br /&gt;</value>
+  </data>
+  <data name="ShowSkyDriveInfo.Text" xml:space="preserve">
+    <value>Show / Hide</value>
+  </data>
+  <data name="valSkyDriveClientId.ErrorMessage" xml:space="preserve">
+    <value>Please type your Access Key ID.</value>
+  </data>
+  <data name="valSkyDriveClientSecret.ErrorMessage" xml:space="preserve">
+    <value>Please type your Secret Access Key.</value>
+  </data>
+  <data name="ConfigureLicenseFirst.Text" xml:space="preserve">
+    <value>Your license is invalid, or not suitable for your current environment. &lt;br /&gt;
+Without a license key, this product is fully functional on any 'localhost' or '*.local' site.&lt;br /&gt;
+Please configure your License before setting up the SkyDrive options.</value>
+  </data>
+  <data name="cmdEstablishConnection.Text" xml:space="preserve">
+    <value>Establish Connection</value>
+  </data>
+  <data name="lblSkyDriveConnectionStatus.Help" xml:space="preserve">
+    <value>Tells if for the given "Client ID" and "Client secret", a connection with SkyDrive has been already established or not.</value>
+  </data>
+  <data name="lblSkyDriveConnectionStatus.Text" xml:space="preserve">
+    <value>Connection Status</value>
+  </data>
+  <data name="ConnectionMissingClientIdAndSecret.Message" xml:space="preserve">
+    <value>&lt;p&gt;&lt;b&gt;How to generate a 'Client ID' and 'Client Secret'&lt;/b&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go to &lt;a href="https://manage.dev.live.com/Applications/Create" target="_blank"&gt;https://manage.dev.live.com/Applications/Create&lt;/a&gt; to create an application (provide an 'Application Name', choose a language, and click on 'I Accept')&lt;/li&gt;
+&lt;li&gt;Take note of the 'Client ID' and 'Client secret' that SkyDrive created for you.&lt;/li&gt;
+&lt;li&gt;Leave the 'Redirect domain:' empty, and choose 'Yes' for "Is Mobile Client app?". Save the configured settings.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;br /&gt;&lt;br /&gt;
+Note: Expand 'Information' (clicking on 'Show / Hide') for complete information about the authorization process.</value>
+  </data>
+  <data name="SkyDriveAuthorizationMessage.Text" xml:space="preserve">
+    <value>&lt;h3&gt;SkyDrive Configuration&lt;/h3&gt;
+        &lt;p&gt;Next Steps:&lt;/p&gt;
+        &lt;ul&gt;        
+        &lt;li&gt;You can close this window.&lt;/li&gt;
+        &lt;li&gt;Click on the '&lt;b&gt;Establish Connection&lt;/b&gt;' link found on the configuration page (that you should have already open).&lt;/li&gt;
+        &lt;li&gt;Save the Settings just configured by clicking  on the '&lt;b&gt;Update&lt;/b&gt;' link found on the configuration page.&lt;/li&gt;
+        &lt;/ul&gt;</value>
+  </data>
+  <data name="ConnectionMissing.Message" xml:space="preserve">
+    <value>&lt;p&gt;Your web site is not yet connected to your SkyDrive account. &lt;/p&gt;
+&lt;p&gt;Important: Verify the &lt;b&gt;'Client ID' and 'Client secret'&lt;/b&gt; are right. If it is needed, update them and click on &lt;b&gt;'Update'&lt;/b&gt; to save their values before browsing back to this dialog and clicking on &lt;b&gt;'Request Connection'&lt;/b&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Click on the &lt;b&gt;'Request Connection'&lt;/b&gt; link.  A new window, on the SkyDriive's web site (oauth.live.com) will be opened.&lt;/li&gt;
+&lt;li&gt;If you are not already logged into your SkyDrive account, you will be prompted to log in.&lt;/li&gt;
+&lt;li&gt;An 'Allow access?' dialog will be presented. Click on 'Yes'.&lt;/li&gt;
+&lt;li&gt;The pagep will be refreshed, and it will be blank (empty). The page's URL in the window's Address Bar will look like similar to 'https://oauth.live.com/desktop?code=bb1024aa-dbad-6aa6-2ac6-a54c38ed3cb0'.&lt;/li&gt;
+&lt;li&gt;Copy the  code you're given, in the Popup window's Address bar (in this example, it is 'bb1024aa-dbad-6aa6-2ac6-a54c38ed3cb0'), and paste it into the &lt;strong&gt;"Authorization code"&lt;/strong&gt; textbox found on this page.&lt;/li&gt;
+&lt;li&gt;Click on the '&lt;b&gt;Establish Connection&lt;/b&gt;' link found on this page.&lt;/li&gt;
+&lt;li&gt;Save the Settings by clicking on the 'Update' link found on this page.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Note: Expand 'Information' (clicking on 'Show / Hide') for complete information about the authorization process.&lt;/p&gt;</value>
+  </data>
+  <data name="ConnectionOK.Message" xml:space="preserve">
+    <value>Established &lt;br /&gt;
+{0} - {1} of {2} in use.</value>
+  </data>
+  <data name="lblEnableTempUrls.Help" xml:space="preserve">
+    <value>When enabled , direct (temporary) URLs will be generated for the SkyDrive files. 
+&lt;br /&gt;&lt;br /&gt;'Hide Files Location' takes precedence over this setting.
+
+&lt;br /&gt;&lt;br /&gt;NOTE: At this time SkyDrive does not provide permanent URLs, not even for public files.</value>
+  </data>
+  <data name="lblEnableTempUrls.Text" xml:space="preserve">
+    <value>Use (Temporary) SkyDrive URLs</value>
+  </data>
+  <data name="lblRootFolder.Help" xml:space="preserve">
+    <value>You can choose any (&lt;b&gt;already created&lt;/b&gt;) private or shared SkyDrive folder to act as the root folder regarding the connection from this web site (or you can leave this setting blank to use the SkyDrive root folder).&lt;br /&gt;&lt;br /&gt;
+This allows you to provide a segmented view of your SkyDrive space contents, instead of providing access to all the content.&lt;br /&gt;&lt;br /&gt;
+Let's say you have lots of folders on your account, and you want to access from this web site just a specific folders tree, not everything.&lt;br /&gt;&lt;br /&gt;
+Example 1: myfolder/mysubfolder&lt;br /&gt;
+Example 2: MyWebSite/&lt;br /&gt;
+etc.</value>
+  </data>
+  <data name="lblRootFolder.Text" xml:space="preserve">
+    <value>Root Folder</value>
+  </data>
+  <data name="cmdClearConnection.Text" xml:space="preserve">
+    <value>Clear Connection</value>
+  </data>
+  <data name="cmdClearConnection.Message" xml:space="preserve">
+    <value>Please remember to click on "Update" to confirm the drop action.   Note: To really drop the connection, you must unauthorize the Application from your SkyDrive account.</value>
+  </data>
+  <data name="lblHideFilesLocation.Help" xml:space="preserve">
+    <value>The files will be like served directly from your web site (not linked from their real location). </value>
+  </data>
+  <data name="lblHideFilesLocation.Text" xml:space="preserve">
+    <value>Hide Files Location</value>
+  </data>
+  <data name="CannotEstablishConnection.Text" xml:space="preserve">
+    <value>The connection to SkyDrive could not be established.&lt;br /&gt;&lt;br /&gt;
+&lt;b&gt;Important&lt;/b&gt;: Please verify the &lt;b&gt;'Client ID' and 'Client secret'&lt;/b&gt; are right. If it is needed, udate them and click on &lt;b&gt;'Update'&lt;/b&gt; to save their values before browsing back to this dialog and clicking on &lt;b&gt;'Request Connection'&lt;/b&gt;.&lt;br /&gt;&lt;br /&gt;
+Error: </value>
+  </data>
+  <data name="CannotGetAuthorizationURL.Text" xml:space="preserve">
+    <value>The Authorization URL could not be generated. Please verify the SkyDrive application was created, and the provided Client ID and Secret are valid. Error: </value>
+  </data>
+  <data name="MappingNotUnique.ErrorMessage" xml:space="preserve">
+    <value>There is already a mapping featuring the same key settings.</value>
+  </data>
+  <data name="valSkyDriveAuthorizationCode.ErrorMessage" xml:space="preserve">
+    <value>Please type your Authorization Token.</value>
+  </data>
+  <data name="AuthorizationCodeMissing.Text" xml:space="preserve">
+    <value>&lt;b&gt;The Authorization Code is missing. Use the 'Request Connection' link to get it.&lt;/b&gt;</value>
+  </data>
+  <data name="lblSkyDriveAuthorizationCode.Help" xml:space="preserve">
+    <value>During the authorization process, SkyDrive will generate this code for you. Once it is given to you, it should be pasted here.</value>
+  </data>
+  <data name="lblSkyDriveAuthorizationCode.Text" xml:space="preserve">
+    <value>Authorization Code</value>
+  </data>
+  <data name="cmdClearDataCache.Text" xml:space="preserve">
+    <value>Clear Cache</value>
+  </data>
+  <data name="lblClearDataCache.Help" xml:space="preserve">
+    <value>To improve the performance of the provider, DNNGlobalStorage cache(for a short period of time) the remote data structure. &lt;br /&gt;&lt;br /&gt;
+
+If you make a change directly in the remote storage (not from the DNN site), and very quickly perform a 'Sinchonize' operations, it could be the new file(s) are not yet visible. In this case, you can use this option to force the cache to be cleared up.</value>
+  </data>
+  <data name="lblClearDataCache.Text" xml:space="preserve">
+    <value>Clear Data Cache</value>
+  </data>
+</root>

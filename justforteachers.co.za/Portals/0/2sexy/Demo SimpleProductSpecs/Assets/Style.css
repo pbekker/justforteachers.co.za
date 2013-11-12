@@ -1,0 +1,15 @@
+.SimpleProduct .SpecificationsTable { display:none; }
+
+.SpecificationsTable table { width:580px; border-collapse:collapse; margin:10px; font-family:Verdana; }
+.SpecificationsTable td:first-child { width:75%; }
+.SpecificationsTable th { background: #FDFDFD;
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FDFDFD), to(#EAEBED));
+background: -webkit-linear-gradient(#FDFDFD, #EAEBED);
+background: -moz-linear-gradient(#FDFDFD, #EAEBED);
+background: -ms-linear-gradient(#FDFDFD, #EAEBED);
+background: -o-linear-gradient(#FDFDFD, #EAEBED);
+background: linear-gradient(#FDFDFD, #EAEBED); font-weight:bold; }
+.SpecificationsTable th, .SpecificationsTable td { padding:10px; vertical-align:top; text-align:left; color:#6B6C6E; border:1px solid #ADAEB1 }
+
+.SimpleProduct { float:left; width:25%; }
+.SimpleProductWrapper { overflow:hidden; }

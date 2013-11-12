@@ -1,0 +1,9 @@
+﻿<div class="$EffectThemeName">
+<ul class="archive_list">
+ #if($DataList.Count > 0) 
+    #foreach($DataItem in $DataList)
+     <li  class="${xf.ViewArchiveClass($DataItem,"Archive_Current")}"> <a href='${xf.GoUrl($DataItem)}'>${xf.ViewMonth($DataItem)} $DataItem.Year ($DataItem.QuoteCount)</a></li>
+    #end
+ #end
+</ul>
+</div>

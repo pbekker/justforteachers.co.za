@@ -1,0 +1,26 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.26            *****/
+/************************************************************/
+
+UPDATE jb_ClassifiedsItem
+SET it_Name = Isnull(it_Name, ''),
+it_Unit = Isnull(it_Unit, ''),
+it_Street = Isnull(it_Street, ''),
+it_City = Isnull(it_City, ''),
+it_Region = Isnull(it_Region, ''),
+it_Country = Isnull(it_Country, ''),
+it_Postal = Isnull(it_Postal, ''),
+it_Phone = Isnull(it_Phone, ''),
+it_Fax = Isnull(it_Fax, ''),
+it_Email = Isnull(it_Email, '')
+GO

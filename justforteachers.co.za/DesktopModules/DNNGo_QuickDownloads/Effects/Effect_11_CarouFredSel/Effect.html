@@ -1,0 +1,90 @@
+﻿		<div class="$EffectThemeName" id="Effect_11_CarouFredSel${ModuleID}" style=" display:none; width:${xf.ViewEffectSetting("width","100%")};">
+			<ul>
+                #if($DataList.Count > 0) 
+                    #foreach($DataItem in $DataList)
+                       <li>
+                	      <div class="carousel_image image-link"><a  href="${xf.GoUrl($DataItem)}"  title="$DataItem.Name"><img src="${xf.ViewPicture($DataItem)}" width="100%" /></a></div>
+                            <h3 class="carousel_title"><a  href="${xf.GoUrl($DataItem)}">${xf.ViewContent("Name",$DataItem)}</a></h3>
+                            <div class="carousel_cap">
+                                ${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",150)},"...")}
+                            </div>
+                        </li>
+                    #end 
+                #end 
+			</ul>
+            #if(${xf.ViewEffectSetting("Navigation",true)})
+                <a id="prev${ModuleID}" class="prev" href="javascript:;">&lt;</a>
+			    <a id="next${ModuleID}" class="next" href="javascript:;">&gt;</a>
+            #end
+
+            #if(${xf.ViewEffectSetting("pager",true)})
+			    <div id="pager${ModuleID}" class="pager"></div>
+            #end
+		</div>
+
+ 
+<script type="text/javascript" charset="utf-8">
+    jQuery(window).load(function () {
+        jQuery('#Effect_11_CarouFredSel${ModuleID}').fadeIn("slow");
+        base_photo_hover();
+        jQuery('#Effect_11_CarouFredSel${ModuleID} > ul').carouFredSel({
+            mousewheel: ${xf.ViewEffectSetting("mousewheel","true")},//used for scrolling via the mousewheel
+            circular:${xf.ViewEffectSetting("circular","true")},//Determines whether the carousel should be circular.
+            infinite:${xf.ViewEffectSetting("infinite","true")},//Determines whether the carousel should be infinite.
+            direction:'${xf.ViewEffectSetting("direction","left")}',//The direction to scroll the carousel, determines whether the carousel scrolls horizontal or vertical and -when the carousel scrolls automatically- in what direction. Possible values: "right", "left", "up" or "down".
+            cookie:${xf.ViewEffectSetting("cookie","true")},//Determines whether the carousel should start at its last viewed position.The cookie is stored until the browser is closed.
+
+            scroll: {
+                items:${xf.ViewEffectSetting("scroll_items",1)},//The number of items to scroll.
+                fx:'${xf.ViewEffectSetting("scroll_fx","scroll")}',//Indicates which effect to use for the transition.Possible values: "none", "scroll", "directscroll", "fade", "crossfade", "cover", "cover-fade", "uncover" or "uncover-fade".
+                easing:'${xf.ViewEffectSetting("scroll_easing","swing")}',//Indicates which easing function to use for the transition. jQuery defaults: "linear" and "swing", built in: "quadratic", "cubic" and "elastic".
+                duration:${xf.ViewEffectSetting("scroll_duration",500)},//Determines the duration of the transition in milliseconds.
+                queue:${xf.ViewEffectSetting("scroll_queue","false")}//Determines whether the scrolling should be queued if the carousel is currently being animated.
+            },
+            auto:{
+                play:${xf.ViewEffectSetting("play","true")},//Determines whether the carousel should scroll automatically or not.
+                timeoutDuration:${xf.ViewEffectSetting("timeoutDuration",3000)},//The amount of milliseconds the carousel will pause.
+                delay:${xf.ViewEffectSetting("delay",0)} //Additional delay in milliseconds before the carousel starts scrolling the first time.
+            },
+			swipe: {
+				onMouse: ${xf.ViewEffectSetting("onMouse","true")},//Determines whether the carousel should scroll via dragging (on non-touch-devices only).
+				onTouch: ${xf.ViewEffectSetting("onTouch","true")}//Determines whether the carousel should scroll via swiping gestures (on touch-devices only).
+			},
+			prev: '#prev${ModuleID}',
+			next: '#next${ModuleID}',
+			pagination: "#pager${ModuleID}",
+			responsive: true,
+			items: {
+				width:${xf.ViewEffectSetting("items_width",300)},//The width of the items.
+				height: 'auto',//
+				visible: {
+					min: ${xf.ViewEffectSetting("items_min",1)},//A map for min and max.
+					max: ${xf.ViewEffectSetting("items_max",6)}//A map for min and max.
+				}
+			}
+        });
+
+   
+        function base_photo_hover() {
+            // Photo Hover
+            jQuery('.image-zoom, .image-link').unbind().hoverIntent({
+                over: function () {
+                    $('a img', $(this)).stop().animate({
+                        opacity: 0.4
+                    }, 150);
+                },
+                out: function () {
+                    $('a img', $(this)).stop().animate({
+                        opacity: 1
+                    }, 150);
+                }
+            });
+        }
+
+    });
+   
+</script>
+
+ 
+
+ 

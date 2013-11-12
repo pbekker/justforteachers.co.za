@@ -1,0 +1,17 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.00.14            *****/
+/************************************************************/
+
+
+ALTER TABLE {databaseOwner}jb_ClassifiedsItem ADD 
+[AttachedFileName] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL;

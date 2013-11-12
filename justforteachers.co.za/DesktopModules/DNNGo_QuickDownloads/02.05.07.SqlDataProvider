@@ -1,0 +1,72 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Create Table **/
+
+
+/** DNNGo_QuickDownloads_FilterServices  **/
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}DNNGo_QuickDownloads_FilterServices]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}DNNGo_QuickDownloads_FilterServices](
+		[ID] [int] IDENTITY(1,1) NOT NULL,
+		[FilterName] [nvarchar](50) NOT NULL,
+		[DllName] [nvarchar](200) NOT NULL,
+		[ClassName] [nvarchar](200) NOT NULL,
+		[CheckCount] [int] NOT NULL,
+		[SpamCount] [int] NOT NULL,
+		[ErrorCount] [int] NOT NULL,
+		[ModuleId] [int] NOT NULL,
+		[PortalId] [int] NOT NULL,
+		[LastTime] [datetime] NOT NULL,
+		[LastUser] [int] NOT NULL,
+		[LastIP] [varchar](32) NOT NULL,
+	 CONSTRAINT [PK_{objectQualifier}DNNGo_QuickDownloads_FilterServices] PRIMARY KEY CLUSTERED 
+	(
+		[ID] ASC
+	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	  
+END
+GO
+
+
+ 
+/** GO_QuickDownloads  **/
+if  exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownloads]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	ALTER TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloads] ADD
+		CreateUser int NOT NULL CONSTRAINT DF_{objectQualifier}GO_QuickDownloads_CreateUser DEFAULT 1,
+		Status tinyint NOT NULL CONSTRAINT DF_{objectQualifier}GO_QuickDownloads_Status DEFAULT 1,
+		PortalId int NOT NULL CONSTRAINT DF_{objectQualifier}GO_QuickDownloads_PortalId DEFAULT 0,
+		SearchTitle nvarchar(128) NULL,
+		SearchKeywords nvarchar(256) NULL,
+		SearchDescription nvarchar(512) NULL
+END
+GO
+
+
+
+/** GO_QuickDownload_Comments  **/
+if  exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownload_Comments]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	ALTER TABLE {databaseOwner}[{objectQualifier}GO_QuickDownload_Comments] ADD
+		WebSite nvarchar(128) NULL
+END
+GO
+
+
+ 
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/
+
+
+

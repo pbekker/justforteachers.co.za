@@ -1,0 +1,37 @@
+<link rel="Stylesheet" href="@(Dnn.Portal.HomeDirectory)2sexy/Demo SimpleProductSpecs/Assets/Style.css" />
+<script src="@(Dnn.Portal.HomeDirectory)2sexy/Demo SimpleProductSpecs/Assets/Scripts.js"></script>
+
+<div class="SimpleProductWrapper">
+	@foreach(var Element in List) {
+		var Content = Element.Content;
+	<div class="SimpleProduct sc-element">
+	@Html.Raw(Content.Toolbar)
+		<img src="/DesktopModules/ToSic_SexyContent/Extensions/Thumbnailer.aspx?Image=@Content.Image&Width=2000&Height=170" alt="@Content.Title" />
+		<h1>@Content.Title</h1>
+		<div class="SpecificationsTable" title="@Content.Title">
+			<table cellspacing="0" cellpadding="0">
+				<tr>
+					<th colspan="2">Specifications</th>
+				</tr>
+				@foreach(string Specification in Content.Specifications.Replace("\r", "").Split('\n'))
+				{
+					var SpecificationPair = Specification.Split(':');
+					if(SpecificationPair.Count() == 2)
+					{
+						<tr>
+							<td>@SpecificationPair[0]</td>
+							<td style="text-align: center;">
+								@if(SpecificationPair[1].Trim().ToLower() == "yes") {
+									<img src="/images/grant.gif" alt="Yes" />
+								} else {
+									<img src="/images/red-error_16px.gif" alt="No" />
+								}
+							</td>
+						</tr>
+					}
+				}
+			</table>
+		</div>
+	</div>
+	}
+</div>

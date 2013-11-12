@@ -1,0 +1,12 @@
+﻿#if($DataList.Count > 0) 
+	<div class="$EffectThemeName">
+		<div class="article_tag clearfix">
+		#foreach($DataItem in $DataList)
+			   <a href="${xf.GoUrl($DataItem)}" >$DataItem.ContentText</a> 
+		#end  
+		</div>
+	</div>
+ #end
+
+
+ 

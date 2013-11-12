@@ -1,0 +1,295 @@
+ 
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGet
+		@FileId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader WHERE
+		FileId=@FileId
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGet20
+	AS
+	SET NOCOUNT ON
+	SELECT  top 40 *  
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader  Where Published=1 ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader  ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByApprovedByUserId
+		@ApprovedByUserId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ApprovedByUserId=@ApprovedByUserId   ORDER BY Premium DESC, Title 
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByArchived
+		@Archived bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE Archived=@Archived   ORDER BY Premium DESC, Title 
+
+GO
+
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishing
+		@EnableCategoryEmailPublishing bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE EnableCategoryEmailPublishing=@EnableCategoryEmailPublishing   ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryEmailPublishingAndDate
+		@EmailPublishDate datetime,
+		@EnableCategoryEmailPublishing bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE EnableCategoryEmailPublishing=@EnableCategoryEmailPublishing AND EmailPublishDate=@EmailPublishDate  ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryId
+		@CategoryId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE CategoryId=@CategoryId    ORDER BY Premium DESC, Title 
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCategoryTop40
+		@CategoryId int
+	AS
+	SET NOCOUNT ON
+	SELECT top 40 *  
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE CategoryId=@CategoryId    ORDER BY Premium DESC, Title 
+
+GO
+
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByCreatedByUserId
+		@CreatedByUserId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE CreatedByUserId=@CreatedByUserId   ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByDateApproved
+		@DateApproved datetime
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE DateApproved=@DateApproved  ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEditorUserId
+		@EditorUserId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE EditorUserId=@EditorUserId   ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByEmailPublishDate
+		@EmailPublishDate datetime
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE EmailPublishDate=@EmailPublishDate   ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcedPublishEmail
+		@ForcePublishToEmail bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ForcePublishToEmail=@ForcePublishToEmail   ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByForcePublishToEmailWithDate
+		@EmailPublishDate datetime,
+		@ForcePublishToEmail bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ForcePublishToEmail=@ForcePublishToEmail AND EmailPublishDate=@EmailPublishDate   ORDER BY Premium DESC, Title 
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLastViewDate
+		@LastViewDate datetime
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE LastViewDate=@LastViewDate  ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByLocked
+		@Locked bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE Locked=@Locked   ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByModuleId
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ModuleId=@ModuleId  ORDER BY Premium DESC, Title 
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPopUp
+		@ShowPopUp bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ShowPopUp=@ShowPopUp  ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPortalId
+		@PortalCreatedOnId int
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE PortalCreatedOnId=@PortalCreatedOnId   ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByPremium
+		@Premium bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE Premium=@Premium   ORDER BY Premium DESC, Title
+
+GO
+
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByScanImageAndImageURL
+		@RelatedWebSiteImageURL nvarchar(1000),
+		@ScanImage bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ScanImage=@ScanImage AND RelatedWebSiteImageURL=@RelatedWebSiteImageURL   ORDER BY Premium DESC, Title
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileBySearchCategory
+		@Archived bit,
+		@CategoryId int,
+		@Published bit,
+		@SearchString ntext
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE  (KeyWords Like @SearchString OR Title Like @SearchString) AND CategoryId=@CategoryId AND Archived=@Archived AND  Published=@Published  ORDER BY Premium DESC, Title
+
+GO
+
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByShowOnce
+		@ShowOnce bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ShowOnce=@ShowOnce   ORDER BY Premium DESC, Title
+
+GO
+
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileByWebScanImage
+		@ScanImage bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE ScanImage=@ScanImage  ORDER BY Premium DESC, Title
+
+GO
+
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFiles
+		@ApprovedByUserId int,
+		@Archived bit,
+		@Published bit
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE Archived=@Archived AND Published=@Published   ORDER BY Premium DESC, Title
+
+GO
+
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFilesBySearch
+		@Archived bit,
+		@Published bit,
+		@SearchString ntext
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE Archived=@Archived AND (KeyWords Like @SearchString OR Title  Like @SearchString) AND Published=@Published   ORDER BY Premium DESC, Title 
+
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeaderGetFileSearchAll
+		@SearchString ntext
+	AS
+	SET NOCOUNT ON
+	SELECT  * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRFileHeader 
+	WHERE KeyWords Like @SearchString OR Title  Like @SearchString  ORDER BY Premium DESC, Title
+
+GO
+
+

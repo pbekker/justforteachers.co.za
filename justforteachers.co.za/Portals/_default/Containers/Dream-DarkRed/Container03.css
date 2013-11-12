@@ -1,0 +1,10 @@
+/*-------- Container03 --------*/
+.Container03_style { min-width:160px; }
+.Container03_c_menu { float:left; }
+.Container03_c_help  { float:right; padding-top:8px; }
+.Container03_top_bg { background:url(images/c_bg_03.jpg) repeat-x top; }
+.Container03_top_left { background:url(images/c_left_03.jpg) no-repeat 8px center; }
+.Container03_top_light { background:url(images/c_light_03.png) no-repeat center top; height:35px; padding:1px 5px 0 22px; }
+.Container03_top_height { height:35px; line-height:35px; }
+.Container03_content { padding:5px 2px 5px 2px; text-align:left; }
+.Container03_footer { height:14px; line-height:14px; overflow:hidden; }

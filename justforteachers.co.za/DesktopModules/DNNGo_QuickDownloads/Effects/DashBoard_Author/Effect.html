@@ -1,0 +1,19 @@
+﻿#if($DataList.Count > 0)
+	<div class="$EffectThemeName">
+	<ul class="author_list">
+	#foreach($DataItem in $DataList)
+		<li class="clearfix">
+			<div class="thum"><a href="${xf.GoUrl($DataItem)}"><img src="${xf.ViewAuthorPic($DataItem)}" /></a></div>
+			<div class="author_name"><a href="${xf.GoUrl($DataItem)}">$DataItem.CreateUserName </a> ($DataItem.Count)</div>
+			#set($NewArticleItem = $xf.ViewAuthorByNewArticle($DataItem.CreateUser))
+     
+            #if($NewArticleItem.ID > 0)
+            <h4 class="post_title"><a href="${xf.GoUrl($NewArticleItem)}">${xf.ViewContent("Name",$NewArticleItem)}</a></h4>
+            <!--${xf.ViewSummary($NewArticleItem,300,"...")} -->
+            #end
+        
+		</li>
+	#end
+	</ul>
+	</div>
+#end

@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AmazonS3.Text" xml:space="preserve">
+    <value>Amazon S3</value>
+  </data>
+  <data name="AmazonS3AdvancedSettings.Text" xml:space="preserve">
+    <value>Amazon S3 - Advanced Settings</value>
+  </data>
+  <data name="AmazonS3BasicSettings.Text" xml:space="preserve">
+    <value>Amazon S3 - Basic Settings</value>
+  </data>
+  <data name="AmazonS3TestError.Text" xml:space="preserve">
+    <value>Amazon S3: &lt;br /&gt;{0}</value>
+  </data>
+  <data name="AmazonS3TestOK.Text" xml:space="preserve">
+    <value>Amazon S3 operation successfully completed.</value>
+  </data>
+  <data name="cmdCancelNewBucket.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="cmdNewBucket.Text" xml:space="preserve">
+    <value>Create New Bucket</value>
+  </data>
+  <data name="cmdRefreshBuckets.Text" xml:space="preserve">
+    <value>Refresh Buckets List.</value>
+  </data>
+  <data name="cmdSaveBucket.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="lblAmazonAccessKeyID.Help" xml:space="preserve">
+    <value>Your Amazon's Access Key.</value>
+  </data>
+  <data name="lblAmazonAccessKeyID.Text" xml:space="preserve">
+    <value>Access Key ID</value>
+  </data>
+  <data name="lblAmazonBucketName.Help" xml:space="preserve">
+    <value>A bucket is a container for objects stored in Amazon S3.</value>
+  </data>
+  <data name="lblAmazonBucketName.Text" xml:space="preserve">
+    <value>Bucket Name</value>
+  </data>
+  <data name="lblAmazonBucketNameNotice.Text" xml:space="preserve">
+    <value>To conform with DNS requirements, bucket name (3 to 255 characters long) must contain lowercase letters only.</value>
+  </data>
+  <data name="lblAmazonS3Info.Text" xml:space="preserve">
+    <value>&lt;ul&gt;
+
+&lt;li&gt;Don't have an &lt;b&gt;Amazon S3&lt;/b&gt; account?  &lt;a  href="http://aws.amazon.com/s3/" target="_blank" class="CommandButton"&gt;Click here to create an account&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;
+&lt;/li&gt;
+
+&lt;li&gt;You can manage your account, access keys, and review account activity online at &lt;a href="http://aws.amazon.com/account" target="_blank" class="CommandButton"&gt;http://aws.amazon.com/account&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;
+&lt;/li&gt;
+
+&lt;li&gt;A &lt;b&gt;Bucket&lt;/b&gt; is a container for objects stored in Amazon S3.&lt;br /&gt;To conform with DNS requirements, bucket name (3 to 255 characters long) must contain lowercase letters only, and it is advised to avoid special characters (including dots).&lt;br /&gt;
+For more information regarding bucket naming conventions, please visit the &lt;a href="http://docs.amazonwebservices.com/AmazonS3/latest/dev/index.html?UsingBucket.html" target="_blank" class="CommandButton"&gt;Amazon S3 documentation&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;
+&lt;/li&gt;
+
+&lt;li&gt;From any Amazon S3 GUI front-end application (like the &lt;a  target="_blank" class="CommandButton" href="https://console.aws.amazon.com/s3/home"&gt;AWS Management Console&lt;/a&gt;), you can create/configure/manage your buckets, folders, files, permissions, and other settings.&lt;br /&gt;
+Besides the &lt;a  target="_blank" class="CommandButton" href="https://console.aws.amazon.com/s3/home"&gt;AWS Management Console&lt;/a&gt;, there are other available Amazon S3 like (among other options): &lt;a href="http://www.cloudberrylab.com" target="_blank" class="CommandButton"&gt;
+CloudBerry S3 Explorer Freeware&lt;/a&gt;, and &lt;a href="http://www.s3fox.net" target="_blank" class="CommandButton"&gt;S3Fox Organizer&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;
+&lt;/li&gt;
+
+&lt;/ul&gt;</value>
+  </data>
+  <data name="lblAmazonS3IsDisabled.Help" xml:space="preserve">
+    <value>You can use this setting to temporarily 'turn off' all access to the configured S3 bucket.</value>
+  </data>
+  <data name="lblAmazonS3IsDisabled.Text" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="lblAmazonS3Test.Help" xml:space="preserve">
+    <value>Click on the [Test] button to verify the configured settings.</value>
+  </data>
+  <data name="lblAmazonS3Test.Text" xml:space="preserve">
+    <value>Test Settings</value>
+  </data>
+  <data name="lblAmazonS3UseSSL.Help" xml:space="preserve">
+    <value>Use SSL (secure connection). Notice that this is not required to proctect your credentials. This setting will just make encrypted the data (like files upload/download) being transferred from the S3 cloud.</value>
+  </data>
+  <data name="lblAmazonS3UseSSL.Text" xml:space="preserve">
+    <value>Use SSL</value>
+  </data>
+  <data name="lblAmazonSecretAccessKey.Help" xml:space="preserve">
+    <value>Your Amazon's Secret Access Key. For your protection, you should never share your secret access keys with anyone.</value>
+  </data>
+  <data name="lblAmazonSecretAccessKey.Text" xml:space="preserve">
+    <value>Secret Access Key</value>
+  </data>
+  <data name="lblEnforceReadOnlyAccess.Help" xml:space="preserve">
+    <value>Use this option to prevent any update on the S3 repository. &lt;br /&gt;
+Files creation, update or rename requests will be ignored.&lt;br /&gt;
+This setting is useful if you want to 'plug' a S3 repository you already have, ensuring that its content will not be updated in any way from the DotNetNuke site.</value>
+  </data>
+  <data name="lblEnforceReadOnlyAccess.Text" xml:space="preserve">
+    <value>Enforce Ready Only Access</value>
+  </data>
+  <data name="lblInheritBucketACLs.Help" xml:space="preserve">
+    <value>When enabled, objects created or updated from the DotNetNuke site will inherith the permissions (ACLs) set on the bucket. Otherwise the created/updated objects will have permissions for the &lt;b&gt;Bucket owner only&lt;/b&gt; (BucketOwnerFullControl).&lt;br /&gt;
+You can use e.g. the &lt;a  target="_blank" class="CommandButton" href="https://console.aws.amazon.com/s3/home"&gt;AWS Management Console:&lt;/a&gt; to define the permissions you want for this bucket, make all the objects updated from the DotNetNuke site inherit these permissions.&lt;br /&gt;
+For example, you may want to define in the bucket additional permissions for other S3 users. &lt;br /&gt;
+Note: It is not recommented (specifically by Amazon) to set public read access on the bucket. Amazon specifically does not recommend this configuration.&lt;br /&gt;
+Note: 'Inherit Bucket ACLs' will not affect permissions of files not created, updated or modified from the DotNetNuke site.</value>
+  </data>
+  <data name="lblInheritBucketACLs.Text" xml:space="preserve">
+    <value>Inherit Bucket ACLs</value>
+  </data>
+  <data name="lblIsBucketRoot.Help" xml:space="preserve">
+    <value>Enable this setting if you want to mimic an already running s3 bucket, and your root DotNetNuke folder is the bucket root.&lt;br /&gt;
+For example, you create in DNN file manager a Portal_Root/MYS3FOLDER, and add a image.png file on it.&lt;br /&gt;
+With this setting enabled,  MYS3FOLDER is assumed to be the s3 bucket root, and on the S3 bucket the file will be created as: /image.png.&lt;br /&gt;
+If this setting is disabled, on the S3 bucket the file will be created as:  MYS3FOLDER/image.png&lt;br /&gt;
+When this setting is disabled, you can safely combine different types of Folder Types and locate this S3 Folder as child of any folder.</value>
+  </data>
+  <data name="lblIsBucketRoot.Text" xml:space="preserve">
+    <value>Is Bucket Root</value>
+  </data>
+  <data name="lblShowAmazonS3Info.Help" xml:space="preserve">
+    <value>About Amazon S3.</value>
+  </data>
+  <data name="lblShowAmazonS3Info.Text" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="lblUseReducedRedundancyStorage.Help" xml:space="preserve">
+    <value>Reduced Redundancy Storage (RRS) is a storage option that enables customers to reduce their costs by storing non-critical, reproducible data at lower levels of redundancy than Amazon S3’s standard storage. It provides a cost-effective, highly available solution for distributing or sharing content that is durably stored elsewhere, or for storing thumbnails, transcoded media, or other processed data that can be easily reproduced. Amazon S3’s standard and reduced redundancy options both store data in multiple facilities and on multiple devices, but with RRS, data is replicated fewer times, so the cost is less. Amazon S3 standard storage is designed to provide 99.999999999% durability and to sustain the concurrent loss of data in two facilities, while RRS is designed to provide 99.99% durability and to sustain the loss of data in a single facility. Both the standard and RRS storage options are designed to be highly available, and both are backed by Amazon S3’s Service Level Agreement.</value>
+  </data>
+  <data name="lblUseReducedRedundancyStorage.Text" xml:space="preserve">
+    <value>Use Reduced Redundancy Storage</value>
+  </data>
+  <data name="MissingCredentials.Text" xml:space="preserve">
+    <value>Please check the provided AWS Credentials. &lt;br /&gt;If you haven't signed up for Amazon S3, please visit http://aws.amazon.com/s3.</value>
+  </data>
+  <data name="MissingNewBucketName.Text" xml:space="preserve">
+    <value>Please type the name for the new Bucket.</value>
+  </data>
+  <data name="ShowAmazonS3Info.Text" xml:space="preserve">
+    <value>Show / Hide</value>
+  </data>
+  <data name="valAmazonAccessKeyID.ErrorMessage" xml:space="preserve">
+    <value>Please type your Access Key ID.</value>
+  </data>
+  <data name="valAmazonBucketName.ErrorMessage" xml:space="preserve">
+    <value>Please select a Bucket. &lt;br /&gt;You can click on 'Create New Bucket' to add a new one.</value>
+  </data>
+  <data name="valAmazonSecretAccessKey.ErrorMessage" xml:space="preserve">
+    <value>Please type your Secret Access Key.</value>
+  </data>
+  <data name="lblUrlExpireMinutes.Help" xml:space="preserve">
+    <value>The system will generate expiring links to Amazon S3. This value defines for how long the generated URLs will be valid. &lt;br /&gt;
+Notice that the longer you make this period, the longer you are exposing the resource to an anauthorized access.&lt;br /&gt;
+Sometimes, depending on your contents, you may want to make the resource available for direct access.&lt;br /&gt;&lt;br /&gt;
+If you set this value to "-1", a non-expiring link will be generated. For this to work, you'll have to define in the file (e.g. by means of the AWS Managment Console) 'Open/Download' permissions for 'Everyone'. You can define this permission on the buket and enable the "Inherit Bucket ACLs" on this Settings page (Note: this setting will not affect objects already present on the Bucket).</value>
+  </data>
+  <data name="lblUrlExpireMinutes.Text" xml:space="preserve">
+    <value>URLs Expiration (minutes)</value>
+  </data>
+  <data name="valUrlExpireMinutesRequired.ErrorMessage" xml:space="preserve">
+    <value>Please type an expiration value for the generated URLs.</value>
+  </data>
+  <data name="valUrlExpireMinutesValue.ErrorMessage" xml:space="preserve">
+    <value>The expiration needs to be an integer value.</value>
+  </data>
+  <data name="ConfigureLicenseFirst.Text" xml:space="preserve">
+    <value>Your license is invalid, or not suitable for your current environment. &lt;br /&gt;
+Without a license key, this product is fully functional on any 'localhost' or '*.local' site.&lt;br /&gt;
+Please configure your License before setting up the Amazon S3 options.</value>
+  </data>
+  <data name="lblUrlStyle.Help" xml:space="preserve">
+    <value>You can choose the style for the generated URLs.&lt;br /&gt;&lt;br /&gt;
+
+&lt;p&gt;According to &lt;a href="http://docs.amazonwebservices.com/AmazonS3/index.html?VirtualHosting.html" target="_blank"&gt;Amazon Web Services&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;Customizing Amazon S3 URLs with CNAMEs&lt;/p&gt;
+&lt;p&gt;Depending on your needs,you might not want &amp;#8220;s3.amazonaws.com&amp;#8221;to appear on your web site or service. For example,if you host your web site&amp;#8217;s images on Amazon S3,you might prefer http://images.example.com/ as opposed to http://example-images.s3.amazonaws.com/.&lt;/p&gt;
+&lt;p&gt;The bucket name must be the same as the CNAME. So http://images.example.com/filename would be the same as http://images.example.com.s3.amazonaws.com/filename if a CNAME were created to map images.example.com to images.example.com.s3.amazonaws.com.&lt;/p&gt;
+&lt;p&gt;Any bucket with a DNS compatible name may be referenced as follows: http://[BucketName].s3.amazonaws.com/[Filename], for example,  http://images.example.com.s3.amazonaws.com/mydog.jpg. Using CNAME you can map images.example.com to an Amazon S3 host name so the previous URL could become: http://images.example.com/mydog.jpg.&lt;/p&gt;
+&lt;p&gt;The CNAME DNS record should alias your domain name to the appropriate virtual hosted style host name. For example,if your bucket name (and domain name) is images.example.com,the CNAME record should alias to images.example.com.s3.amazonaws.com. &lt;/p&gt;</value>
+  </data>
+  <data name="lblUrlStyle.Text" xml:space="preserve">
+    <value>URL Style</value>
+  </data>
+  <data name="lblRootFolder.Help" xml:space="preserve">
+    <value>You can choose any (&lt;b&gt;already created&lt;/b&gt;) S3 folder to act as the root folder regarding the connection from this web site.&lt;br /&gt;&lt;br /&gt;
+This allows you to provide a segmented view of your S3 Bucket, instead of providing access to all its content.&lt;br /&gt;&lt;br /&gt;
+Let's say you have lots of folders on your Bucket, and you want to access from this web site just a specific folders tree, not everything.&lt;br /&gt;&lt;br /&gt;
+Example 1: myfolder&lt;br /&gt;
+Example 2: myfolder/mysubfolder&lt;br /&gt;
+etc.&lt;br /&gt;
+Note: you should type the folders path with the same 'case' as they are in S3.</value>
+  </data>
+  <data name="lblRootFolder.Text" xml:space="preserve">
+    <value>Root Folder</value>
+  </data>
+  <data name="lblHideFilesLocation.Help" xml:space="preserve">
+    <value>Regardless of the Bucket's accessibility (anonymous or private access), the files will be like served directly from your web site (not linked from their real location). 
+It would be more efficient to generate a signed (protected / expiring) URL, but you may want to use this option to completelly hide the file's location.</value>
+  </data>
+  <data name="lblHideFilesLocation.Text" xml:space="preserve">
+    <value>Hide Files Location</value>
+  </data>
+  <data name="lblAllowEveryoneOpenDownload.Help" xml:space="preserve">
+    <value>Allow Everyone (Anonymous) to Open/Download the files in the bucket.&lt;br /&gt;
+If this setting is enabled, and 'Inherit Bucket ACLs' is disabled, then new or updated files (from the DNN site) will have granted open/download permissions for everyone (including anonymous S3 users). Otherwise, the updated files will be set as private.
+&lt;br /&gt;
+Note: This setting will not affect permissions of files not created, updated or modified from the DotNetNuke site.</value>
+  </data>
+  <data name="lblAllowEveryoneOpenDownload.Text" xml:space="preserve">
+    <value>Allow Anonymous Open/Download</value>
+  </data>
+  <data name="lblCustomServiceURL.Help" xml:space="preserve">
+    <value>Amazon S3 operates by default with 's3.amazonaws.com'. By means of this setting, you can define a different 'Service URL' for DNNGlobalStorage to work with.&lt;br /&gt;
+This allows the integration of 3rd. party providers which relays on S3 infrastructure, but provides their own set of services, and use their own 'Service URL'.</value>
+  </data>
+  <data name="lblCustomServiceURL.Text" xml:space="preserve">
+    <value>Custom Service URL</value>
+  </data>
+  <data name="lblLocalRootFolder.Help" xml:space="preserve">
+    <value>You can define a 'fake' root folder under which the S3 content defined by the connection will be added.&lt;br /&gt;&lt;br /&gt;
+For example, you can name this same as the bucket name, or whatever works for you.&lt;br /&gt;&lt;br /&gt;
+
+&lt;b&gt;Note&lt;/b&gt;: this folder will &lt;b&gt;not&lt;/b&gt; be created in S3, and in the DNN's File Manager Folders Tree, you'll see it as a standard (default type) folder.&lt;br /&gt;Remember this folder is only an arbitrary root you can define for your files. It will exist just in your DNN site.&lt;br /&gt;If you add a file to this folder, it will be a local file, not a file in S3.&lt;br /&gt;&lt;br /&gt;
+
+&lt;b&gt;Warning&lt;/b&gt;: Use this setting if you really need it. Unexpected things could happen if you (in DNN) create a new S3 folder outside this defined root. For example, once you perform a 'Synchonize' operation, the new folder will appear on the DNN root (if this was where you've created it), and it also will appear under this 'fake' root.
+</value>
+  </data>
+  <data name="lblLocalRootFolder.Text" xml:space="preserve">
+    <value>Local Root Folder</value>
+  </data>
+  <data name="MappingNotUnique.ErrorMessage" xml:space="preserve">
+    <value>There is already a mapping featuring the same key settings.</value>
+  </data>
+</root>

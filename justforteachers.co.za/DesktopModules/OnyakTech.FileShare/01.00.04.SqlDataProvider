@@ -1,0 +1,50 @@
+ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments 
+ADD CategoryId int NULL
+GO
+
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsAdd
+		@FileId int,
+		@DateCreated datetime,
+		@UserId int,
+		@Comments ntext,
+		@PortalId int,
+		@ModuleId int,
+		@Approved bit,
+		@CategoryId int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments
+		(FileId,DateCreated,UserId,Comments,PortalId,ModuleId,Approved,CategoryId)
+		VALUES
+		(@FileId,@DateCreated,@UserId,@Comments,@PortalId,@ModuleId,@Approved,@CategoryId)
+	SELECT SCOPE_IDENTITY()
+
+GO
+
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRFileCommentsUpdate
+		@FileCommentId int,
+		@FileId int,
+		@DateCreated datetime,
+		@UserId int,
+		@Comments ntext,
+		@PortalId int,
+		@ModuleId int,
+		@Approved bit,
+		@CategoryId int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRFileComments SET 
+		FileId=@FileId,
+		DateCreated=@DateCreated,
+		UserId=@UserId,
+		Comments=@Comments,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		Approved=@Approved,
+		CategoryId=@CategoryId
+	WHERE
+		FileCommentId=@FileCommentId
+
+GO

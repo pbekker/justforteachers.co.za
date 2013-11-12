@@ -1,0 +1,24 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.00.03            *****/
+/************************************************************/
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [it_Name] NVARCHAR(255) NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [it_Unit] NVARCHAR(255) NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [it_Street] NVARCHAR(255) NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [it_City] NVARCHAR(255) NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [it_Region] NVARCHAR(255) NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [it_Country] NVARCHAR(255) NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [it_Postal] NVARCHAR(255) NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [it_Phone] NVARCHAR(255) NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [it_Fax] NVARCHAR(255) NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [it_Email] NVARCHAR(255) NULL
+GO

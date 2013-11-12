@@ -1,0 +1,36 @@
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Create Table **/
+
+ 
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownloadLog]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloadLog](
+[ID] [int] IDENTITY(1,1) NOT NULL,
+	[UserID] [int] NOT NULL,
+	[UserName] [nvarchar](100) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[InfoID] [int] NOT NULL,
+	[InfoName] [nvarchar](100) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[FileID] [int] NOT NULL,
+	[FileName] [nvarchar](100) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[DownLoadTime] [datetime] NOT NULL CONSTRAINT [DF_{objectQualifier}GO_QuickDownloadLog_DownLoadTime]  DEFAULT (getdate()),
+	[ModuleId] [int] NOT NULL,
+	[IP] [varchar](15) COLLATE Chinese_PRC_CI_AS NOT NULL CONSTRAINT [DF_{objectQualifier}GO_QuickDownloadLog_IP]  DEFAULT ('127.0.0.1'),
+	 CONSTRAINT [PK_{objectQualifier}GO_QuickDownloadLog] PRIMARY KEY CLUSTERED 
+	(
+		[ID] ASC
+	)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+	) ON [PRIMARY]
+END
+	
+	
+ 

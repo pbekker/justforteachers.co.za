@@ -1,0 +1,708 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path />
+      <name>SkinViewFiles.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>SubmitFiles.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>SubmitFilesEZ.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>ViewFileDetail.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>ViewFiles.ascx</name>
+    </file>
+    <file>
+      <path>AttachedFiles/</path>
+      <name>PlaceHolder.txt</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>addfilesharecomment.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>addfilesharecomment2.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>addfiletobundle.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>back.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>chm.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>dfltfolder.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>emailButton.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>emaildownload.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>emaildownload.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>emaildownloadcheckout.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>emaildownloadcheckoutcancel.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>EPS.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>excel.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharearrwdwn.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharecheck.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharedelete.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharedown.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharedown2.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharedown3.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharedownload.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharefolderclosed.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharefolderitems.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharefolderopen.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>fileshareleft.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharepin.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharepin16.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharepublisherlocked.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharepublishers.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharepublishers16.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharepublisherunlocked.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharereaders16.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>fileshareright2.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharerightarw.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>filesharesmchk.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>fileshareup.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>GIF.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>gif.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>icon-security.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>image.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>JPG.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>loading.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>log.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>mpg.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>music.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>myarticles.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>mybundle.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>mybundle32.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>mybundleplus.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>newfile.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>newfile16.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>OnyakTech.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>pdd.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>pdf.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>pendingapproval.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>premiumnovus.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>psd.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>quickdownload.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>ratedown.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>ratedown16.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>rateup.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>rateup16.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>refreshnovus.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>refreshnovus2.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>retract.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>rss32.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>rss48.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>scheduled.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>scheduled.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>searchfileshare16.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>searchfileshare32.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>template1.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>template2.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>TIF.jpg</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>txt.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>word.png</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>zip.jpg</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>jquery.mobile-1.1.1.css</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>jquery.mobile-1.1.1.js</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>jquery.mobile-1.1.1.min.css</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>jquery.mobile-1.1.1.min.js</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>jquery.mousewheel.min.js</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>jquery.smoothDivScroll-1.2.js</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>jquery.smoothdivscroll-1.2-min.js</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>jquery-ui-1.8.18.custom.min.js</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>thickbox-compressed.js</name>
+    </file>
+    <file>
+      <path />
+      <name>DisplayGrid.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Email.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>ExportComplete.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>FilesAttributes.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>FileShareEdit.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>FileShareEmail.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>FileShareSetting.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>FileShareView.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>FormPop.aspx</name>
+    </file>
+    <file>
+      <path />
+      <name>module.css</name>
+    </file>
+    <file>
+      <path />
+      <name>MyBundle.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>OnyakTech.aspx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>DisplayGrid.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>Email.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>ExportComplete.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>FilesAttributes.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>FileShareEdit.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>FileShareEmail.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>FileShareSetting.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>FileShareView.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>MyBundle.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>SharedResources.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>SkinViewFiles.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>SubmitFiles.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>SubmitFilesEZ.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>ViewFileDetail.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>ViewFiles.ascx.resx</name>
+    </file>
+    <file>
+      <path />
+      <name>addfilesharecomment.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>addfilesharecomment2.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>AdvancedSearch.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>AdvancedSearch32.png</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>AdvancedSearch.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>Attributes.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>Attributes.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>SearchTemplates.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>SetFileAttributes.ascx.resx</name>
+    </file>
+    <file>
+      <path />
+      <name>Attributes.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>emailButton.png</name>
+    </file>
+    <file>
+      <path />
+      <name>filedownload.png</name>
+    </file>
+    <file>
+      <path />
+      <name>FileSecurity.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharearrwdwn.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharecheck.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharedelete.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharedown.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharedown2.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharedown3.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharedownload.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharefolderclosed.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharefolderitems.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharefolderopen.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>fileshareleft.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharepin.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharepin16.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharepublisherlocked.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharepublishers.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharepublishers16.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharepublisherunlocked.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharereaders16.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>fileshareright2.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharerightarw.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>filesharesmchk.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>fileshareup.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>myarticles.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>newfile.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>newfile16.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>OnyakTech.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>pendingapproval.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>premiumnovus.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>ratedown.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>ratedown16.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>rateup.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>rateup16.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>refreshnovus.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>refreshnovus2.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>retract.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>rss32.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>rss48.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>scheduled.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>scheduled.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>searchfileshare16.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>searchfileshare32.gif</name>
+    </file>
+    <file>
+      <path />
+      <name>SearchTemplates.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>SetFileAttributes.ascx</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>fileshareloading.gif</name>
+    </file>
+    <file>
+      <path>images/</path>
+      <name>AdvancedSearch32.png</name>
+    </file>
+  </files>
+</dotnetnuke>

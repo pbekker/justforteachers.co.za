@@ -1,0 +1,106 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.33            *****/
+/************************************************************/
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationUpdate]    Script Date: 03/08/2011 00:32:18 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationUpdate]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationUpdate]    Script Date: 03/08/2011 00:33:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_JobApplicationUpdate]
+	@ApplicationID int,
+		@JobID int,
+		@ModuleID int,
+		@CreatedByUser int,
+		@ApplicantName nvarchar(50),
+		@ApplicantEmail nvarchar(100),
+		@Message ntext,
+		@SalaryReq nvarchar(50),
+		@JobLead nvarchar(50),
+		@Image Image,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@Image1 Image,
+		@ImageContentType1 nvarchar(50),
+		@ImageContentSize1 int,
+		@ImageFileName nvarchar(255),
+		@ImageFileName1 nvarchar(255),
+		@ViewCount INT,
+		@SelectedResumeItemID int,
+		@StatusWorkFlow nvarchar(50),
+		@StatusInternal nvarchar(50),
+		@NoteInternal nvarchar(255),
+		@UpdateMode nvarchar(25) = 'normal'
+	AS
+	SET NOCOUNT ON
+	IF (@UpdateMode = 'internalstatus')
+		BEGIN
+			UPDATE {databaseOwner}jb_JobApplication SET 
+				StatusInternal=@StatusInternal,
+				NoteInternal=@NoteInternal
+			WHERE
+				ApplicationID=@ApplicationID
+		END
+	ELSE
+		BEGIN
+			UPDATE {databaseOwner}jb_JobApplication SET 
+				JobID=@JobID,
+				ModuleID=@ModuleID,
+				CreatedByUser=@CreatedByUser,
+				ApplicantName=@ApplicantName,
+				ApplicantEmail=@ApplicantEmail,
+				Message=@Message,
+				SalaryReq=@SalaryReq,
+				JobLead=@JobLead,
+				--[Image]=@Image,
+				--ImageContentType=@ImageContentType,
+				--ImageContentSize=@ImageContentSize,
+				--Image1=@Image1,
+				--ImageContentType1=@ImageContentType1,
+				--ImageContentSize1=@ImageContentSize1,
+				--ImageFileName=@ImageFileName,
+				--ImageFileName1=@ImageFileName1,
+				ViewCount=@ViewCount,
+				SelectedResumeItemID=@SelectedResumeItemID,
+				StatusWorkFlow=@StatusWorkFlow,
+				StatusInternal=@StatusInternal,
+				NoteInternal=@NoteInternal
+			WHERE
+				ApplicationID=@ApplicationID
+		END
+IF @ImageContentSize > 0   OR  @ImageContentSize = -1
+BEGIN
+	UPDATE    jb_JobApplication
+	SET 	Image = @Image, 
+		ImageContentType = @ImageContentType, 
+		ImageContentSize = @ImageContentSize,
+		ImageFileName=@ImageFileName
+	WHERE
+		ApplicationID=@ApplicationID
+END
+IF @ImageContentSize1 > 0   OR  @ImageContentSize1 = -1
+BEGIN
+	UPDATE    jb_JobApplication
+	SET 	Image1 = @Image1, 
+		ImageContentType1 = @ImageContentType1, 
+		ImageContentSize1 = @ImageContentSize1,
+		ImageFileName1=@ImageFileName1
+	WHERE
+		ApplicationID=@ApplicationID
+END

@@ -1,0 +1,414 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.00.12            *****/
+/************************************************************/
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetAutoCompletionList]    Script Date: 01/18/2011 11:50:50 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetAutoCompletionList]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetAutoCompletionList]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Adv]    Script Date: 01/18/2011 11:50:50 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsSearch_Adv]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Adv]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Bsc]    Script Date: 01/18/2011 11:50:50 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsSearch_Bsc]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Bsc]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Cri]    Script Date: 01/18/2011 11:50:51 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsSearch_Cri]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Cri]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetAutoCompletionList]    Script Date: 01/18/2011 11:51:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_GetAutoCompletionList]
+@PrefixText   nvarchar(50),
+@ModuleID INT,
+@count INT = 10,
+@contextKey nvarchar(50) = 'Title'
+AS
+
+IF @contextKey = 'Location'
+	BEGIN
+		SET ROWCOUNT @count
+		SELECT DISTINCT JB_JobLocation AS Item
+		FROM   jb_ClassifiedsItem
+		WHERE  ModuleID = @ModuleID
+		AND	(ExpireDate > GetDate() OR ExpireDate IS NULL) AND Authed <> 0
+		AND JB_JobLocation IS NOT NULL
+		AND JB_JobLocation LIKE @PrefixText + '%'
+		ORDER BY Item ASC
+	END
+ELSE IF @contextKey = 'City'
+	BEGIN
+		SET ROWCOUNT @count
+		SELECT DISTINCT it_City AS Item
+		FROM   jb_ClassifiedsItem
+		WHERE  ModuleID = @ModuleID
+		AND	(ExpireDate > GetDate() OR ExpireDate IS NULL) AND Authed <> 0
+		AND it_City IS NOT NULL
+		AND it_City LIKE @PrefixText + '%'
+		ORDER BY Item ASC
+	END
+ELSE IF @contextKey = 'Region'  -- This is State for US, Province for Canada
+	BEGIN
+		SET ROWCOUNT @count
+		SELECT DISTINCT it_Region AS Item
+		FROM   jb_ClassifiedsItem
+		WHERE  ModuleID = @ModuleID
+		AND	(ExpireDate > GetDate() OR ExpireDate IS NULL) AND Authed <> 0		
+		AND it_Region IS NOT NULL
+		AND it_Region LIKE @PrefixText + '%'
+		ORDER BY Item ASC
+	END
+ELSE IF @contextKey = 'CityRegion' 
+	BEGIN
+		SET ROWCOUNT @count
+		(	SELECT DISTINCT it_Region AS Item
+			FROM   jb_ClassifiedsItem
+			WHERE  ModuleID = @ModuleID
+			AND	(ExpireDate > GetDate() OR ExpireDate IS NULL) AND Authed <> 0		
+			AND it_Region IS NOT NULL
+			AND it_Region LIKE @PrefixText + '%'
+		) 
+		UNION
+		(	SELECT DISTINCT it_City + ', ' + it_Region AS Item
+			FROM   jb_ClassifiedsItem
+			WHERE  ModuleID = @ModuleID
+			AND	(ExpireDate > GetDate() OR ExpireDate IS NULL) AND Authed <> 0	
+			AND IsNull(it_City, '') <> ''
+			AND IsNull(it_Region, '') <> ''
+			AND (it_City + ' ' + it_Region) LIKE @PrefixText + '%'
+		) 
+		ORDER BY Item ASC
+	END
+ELSE IF @contextKey = 'Postal'  
+	BEGIN
+		SET ROWCOUNT @count
+		SELECT DISTINCT it_Postal AS Item
+		FROM   jb_ClassifiedsItem
+		WHERE  ModuleID = @ModuleID
+		AND	(ExpireDate > GetDate() OR ExpireDate IS NULL) AND Authed <> 0		
+		AND it_Postal IS NOT NULL
+		AND it_Postal LIKE @PrefixText + '%'
+		ORDER BY Item ASC
+	END
+ELSE IF @contextKey = 'CustomKeyword'  
+	BEGIN
+		SET ROWCOUNT @count
+		SELECT PicklistValue AS Item
+		FROM   jb_Picklist
+		WHERE PicklistGroup = 'AutoCompleteKeyword'
+		AND PicklistValue LIKE @PrefixText + '%'
+		ORDER BY ViewOrder, Item ASC
+	END
+ELSE IF @contextKey = 'CustomLocation'  
+	BEGIN
+		SET ROWCOUNT @count
+		SELECT PicklistValue AS Item
+		FROM   jb_Picklist
+		WHERE PicklistGroup = 'AutoCompleteLocation'
+		AND PicklistValue LIKE @PrefixText + '%'
+		ORDER BY ViewOrder, Item ASC
+	END
+ELSE
+	BEGIN
+		SET ROWCOUNT @count
+		SELECT DISTINCT JB_JobTitle AS Item
+		FROM   jb_ClassifiedsItem
+		WHERE  ModuleID = @ModuleID
+		AND	(ExpireDate > GetDate() OR ExpireDate IS NULL) AND Authed <> 0
+		AND JB_JobTitle IS NOT NULL
+		AND JB_JobTitle LIKE @PrefixText + '%'
+		ORDER BY Item ASC
+	END
+
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Adv]    Script Date: 01/18/2011 11:51:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+
+
+CREATE  PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Adv]
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@EmploymentType nvarchar(50),
+@SalaryFrom  int,
+@Location nvarchar(50) = NULL,
+@SearchAttributeString BIT = 0
+
+AS
+
+IF @Location = ''
+SET @Location = null
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+
+SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+	, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR) + CASE WHEN @SearchAttributeString = 1 THEN ' ' + {databaseOwner}jb_udf_AttributeValueString(ItemID) ELSE '' END)  AS Rank
+	FROM jb_ClassifiedsItem
+	WHERE  jb_ClassifiedsItem.ItemID IN
+	(
+	SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+	FROM jb_ClassifiedsItem_vw
+	WHERE ModuleID = @ModuleID
+	AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+	AND ((UCategoryID IN(SELECT * FROM [#RETURN])) OR (@CurrentCategoryID = -1))
+	AND (JB_EmpType = @EmploymentType)
+	AND (JB_StartingSalary >= @SalaryFrom)		
+	and ((JB_JobTitle like '%' + @SearchText + '%' or 
+					JB_JobCode like '%' + @SearchText + '%' or 
+					JB_JobLocation like '%' + @SearchText + '%' or 
+					JB_ReqEducation like '%' + @SearchText + '%' or 									
+					JB_Travel like '%' + @SearchText + '%' or 
+					JB_NumberOpening like '%' + @SearchText + '%' or 
+					Message like '%' + @SearchText + '%'  or
+					JB_CompanyName like '%' + @SearchText + '%'  or
+					JB_ContactInfo like '%' + @SearchText + '%'  or
+					JB_ContactEmail like '%' + @SearchText + '%'  or 
+					CreatedDate    like '%' + @SearchText + '%'  or 
+					ExpireDate like '%' + @SearchText + '%'  or 
+					JB_AddReqList	like '%' + @SearchText + '%'  OR 
+					it_Name like '%' + @SearchText + '%' or 
+					it_Unit like '%' + @SearchText + '%' or 
+					it_Street like '%' + @SearchText + '%' or 
+					it_City like '%' + @SearchText + '%' or 
+					it_Region like '%' + @SearchText + '%' or 									
+					it_Country like '%' + @SearchText + '%' or 
+					it_Postal like '%' + @SearchText + '%' or 
+					it_Phone like '%' + @SearchText + '%' OR 
+					REPLACE(it_Phone, ' ', '') like '%' + @SearchText + '%' OR 
+					it_Fax like '%' + @SearchText + '%' or 
+					it_Email like '%' + @SearchText + '%' or 					
+					CASE WHEN @SearchAttributeString = 1 THEN {databaseOwner}jb_udf_AttributeValueString(ItemID) END like '%' + @SearchText + '%'  OR 
+					JB_BenefitsList like '%' + @SearchText + '%'  )  OR (@SearchText IS NULL))
+	AND  ((it_City + ', ' + it_Region + ' ' + it_City + ' ' + it_Region + ' ' + it_Postal + ' ' + JB_JobLocation LIKE '%' + @Location+ '%') OR (@Location IS NULL)) 
+	) 
+	Order By Rank Desc
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Bsc]    Script Date: 01/18/2011 11:51:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+
+
+CREATE  PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Bsc]
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@Location nvarchar(50) = NULL,
+@SearchAttributeString BIT = 0
+AS
+
+IF @Location = ''
+SET @Location = null
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR) + CASE WHEN @SearchAttributeString = 1 THEN ' ' + {databaseOwner}jb_udf_AttributeValueString(ItemID) ELSE '' END)  AS Rank
+FROM jb_ClassifiedsItem
+WHERE  jb_ClassifiedsItem.ItemID IN
+(
+SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+FROM jb_ClassifiedsItem_vw
+WHERE ModuleID = @ModuleID
+AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+AND ((UCategoryID IN(SELECT * FROM [#RETURN])) OR (@CurrentCategoryID = -1))		
+AND ((JB_JobTitle like '%' + @SearchText + '%' or 
+				JB_JobCode like '%' + @SearchText + '%' or 
+				JB_JobLocation like '%' + @SearchText + '%' or 
+				JB_EmpType like '%' + @SearchText + '%' or 
+				JB_ReqEducation like '%' + @SearchText + '%' or 									
+				JB_Travel like '%' + @SearchText + '%' or 
+				JB_StartingSalary like '%' + @SearchText + '%' or 
+				CAST(JB_HourlyRate As NVARCHAR(255)) like '%' + @SearchText + '%' or 	
+				JB_StartDate	like '%' + @SearchText + '%' or 
+				JB_NumberOpening like '%' + @SearchText + '%' or 
+				Message like '%' + @SearchText + '%'  or
+				JB_CompanyName like '%' + @SearchText + '%'  or
+				JB_ContactInfo like '%' + @SearchText + '%'  or
+				JB_ContactEmail like '%' + @SearchText + '%'  or 
+				CreatedDate    like '%' + @SearchText + '%'  or 
+				ExpireDate like '%' + @SearchText + '%'  or 
+				JB_AddReqList	like '%' + @SearchText + '%'  OR 
+				it_Name like '%' + @SearchText + '%' or 
+				it_Unit like '%' + @SearchText + '%' or 
+				it_Street like '%' + @SearchText + '%' or 
+				it_City like '%' + @SearchText + '%' or 
+				it_Region like '%' + @SearchText + '%' or 									
+				it_Country like '%' + @SearchText + '%' or 
+				it_Postal like '%' + @SearchText + '%' or 
+				it_Phone like '%' + @SearchText + '%' OR 
+				REPLACE(it_Phone, ' ', '') like '%' + @SearchText + '%' OR 
+				it_Fax like '%' + @SearchText + '%' or 
+				it_Email like '%' + @SearchText + '%' or 
+				CASE WHEN @SearchAttributeString = 1 THEN {databaseOwner}jb_udf_AttributeValueString(ItemID) END like '%' + @SearchText + '%'  OR 
+				JB_BenefitsList like '%' + @SearchText + '%'  )  OR (@SearchText IS NULL))
+AND  ((it_City + ', ' + it_Region + ' ' + it_City + ' ' + it_Region + ' ' + it_Postal + ' ' + JB_JobLocation LIKE '%' + @Location+ '%') OR (@Location IS NULL)) 
+)
+Order By Rank Desc
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Cri]    Script Date: 01/18/2011 11:51:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+CREATE  PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Cri]
+@ModuleID 		int,
+@CurrentCategoryID 	int= -1,
+@Message		nvarchar(255)= '',
+@StartDate 		DATETIME = NULL,
+@EndDate 		DATETIME = NULL,
+@Location nvarchar(50) = NULL,
+@SearchText nvarchar(255) = '',
+@SearchAttributeString BIT = 0
+
+AS
+
+
+DECLARE @strSelect		nvarchar(2000)
+DECLARE @strSelectRank	nvarchar(2000)
+DECLARE @strFrom		nvarchar(2000)
+DECLARE @strWhere		nvarchar(2000)
+DECLARE @strOrderBy 	nvarchar(2000)
+
+SET @strSelectRank = ', 3 * {databaseOwner}jb_udf_WordCount(''' + @SearchText + ''', JB_JobTitle) + {databaseOwner}jb_udf_WordCount(''' + @SearchText + ''', JB_JobTitle  + '' '' +  CAST(Message AS NVARCHAR)  + '' '' +  CAST(JB_JobCode AS NVARCHAR) + '' '' +  CAST(JB_CompanyName AS NVARCHAR) + CASE WHEN ' + Cast(@SearchAttributeString AS nvarchar(1)) + ' = 1 THEN '' '' + {databaseOwner}jb_udf_AttributeValueString(ItemID) ELSE '''' END )  AS Rank'
+
+SET @strSelect = 'SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, {databaseOwner}jb_udf_GetAvgReview(ItemID) AS Avg_CustReview'
+IF (@SearchText <> '') 
+	BEGIN
+		SET @strSelect = @strSelect + @strSelectRank
+	END
+SET @strFrom = ' FROM jb_ClassifiedsItem'
+SET @strWhere = ' WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT jb_ClassifiedsItem_vw.ItemID 
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = ' + CAST(@ModuleID AS NVARCHAR) + '
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0'
+IF (@CurrentCategoryID <> -1)
+	SET @strWhere = @strWhere + ' AND UCategoryID IN(SELECT * FROM [#RETURN])'
+-- Fields
+IF (@Message <> '')
+	SET @strWhere = @strWhere + ' AND Message LIKE ''%' + @Message + '%''' 
+-- Date range
+IF (@StartDate is not null) 
+	SET @strWhere = @strWhere + ' AND CreatedDate >= ''' + convert(nvarchar, @StartDate) + ''''
+IF (@EndDate is not null) and (@EndDate > '1/1/1900')
+	SET @strWhere = @strWhere + ' AND CreatedDate <= ''' + convert(nvarchar, @EndDate) + ''''
+SET @strWhere = @strWhere + ')'
+IF (@SearchText <> '') 
+	BEGIN
+		SET @strOrderBy  = ' Order By Rank Desc' 
+	END
+ELSE
+	BEGIN
+		SET @strOrderBy  = ' Order By CreatedDate Desc' 
+	END
+
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+EXEC(@strSelect + @strFrom + @strWhere + @strOrderBy)
+
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]

@@ -1,0 +1,59 @@
+﻿ 
+ 
+
+<div id="contentflexslider$ModuleID" class="$EffectThemeName" style="width:${xf.ViewEffectSetting("width","600")}px;">
+  <ul class="slides">
+       #if($DataList.Count > 0)
+                #foreach($DataItem in $DataList)
+                     <li> 
+                       
+                             <div class="flex-image image-link"><a  href="${xf.GoUrl($DataItem)}"  title="${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}"><img src="${xf.ThumbnailUrl($DataItem)}" style="width:100%"  alt="${xf.ViewContent("Name",$DataItem)}" /></a>
+                            </div>
+                            <div class="flex-caption">
+                               <h3><a  href="${xf.GoUrl($DataItem)}">${xf.ViewContent("Name",$DataItem)}</a></h3>
+										${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}
+                            </div>     
+                                 
+                      
+                    </li>
+                #end
+        #end
+    </ul>
+  </div>
+  <script type="text/javascript">
+      jQuery(document).ready(function ($) {
+          base_photo_hover();
+          /* Slider
+          * ---------------------------------------------- */
+          jQuery('#contentflexslider$ModuleID').flexslider({
+              animationLoop: true,
+              animation: "slide",
+              slideshowSpeed: ${xf.ViewEffectSetting("SlideshowSpeed","3000")},
+              itemWidth: ${xf.ViewEffectSetting("itemWidth",130)},
+              controlNav: ${xf.ViewEffectSetting("controlNav","true")},
+              directionNav: ${xf.ViewEffectSetting("directionNav","true")},
+              maxItems: ${xf.ViewEffectSetting("maxItems",3)},
+              move: ${xf.ViewEffectSetting("move",1)},
+              itemMargin: ${xf.ViewEffectSetting("itemMargin",10)}
+          });
+          // ---------------------------------------
+          // PHOTO
+          // ---------------------------------------
+
+          function base_photo_hover() {
+              // Photo Hover
+              jQuery('.image-zoom, .image-link').unbind().hoverIntent({
+                  over: function () {
+                      jQuery('a img', jQuery(this)).stop().animate({
+                          opacity: 0.4
+                      }, 150);
+                  },
+                  out: function () {
+                      jQuery('a img', jQuery(this)).stop().animate({
+                          opacity: 1
+                      }, 150);
+                  }
+              });
+          }
+      });
+</script>

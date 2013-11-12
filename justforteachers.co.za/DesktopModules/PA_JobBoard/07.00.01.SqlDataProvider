@@ -1,0 +1,70 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 07.00.01            *****/
+/************************************************************/
+
+/****** Object:  UserDefinedFunction {databaseOwner}[U1_ZipDistance]    Script Date: 02/21/2011 12:08:46 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[U1_ZipDistance]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[U1_ZipDistance]
+
+GO
+
+/****** Object:  UserDefinedFunction {databaseOwner}[U1_ZipDistance]    Script Date: 02/21/2011 12:09:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE FUNCTION {databaseOwner}[U1_ZipDistance] (@zip1 CHAR(5), @zip2 CHAR(5))
+RETURNS DECIMAL(11,2)
+AS
+BEGIN
+	IF (@zip1 IS NULL AND @zip2 <> '0')
+	BEGIN
+		RETURN 9999
+	END
+
+	IF ((@zip1 IS NULL) OR (@zip2 IS NULL) OR (LEN(@zip1) <> 5) OR (LEN(@zip2) <> 5))
+	BEGIN
+		RETURN NULL
+	END
+
+	DECLARE @dist DECIMAL(11,2),
+			@lat1 FLOAT,
+			@lat2 FLOAT,
+			@lon1 FLOAT,
+			@lon2 FLOAT
+
+	SET	@lat1 = (SELECT	(11*lat)/630
+				 FROM	U1_Zips
+				 WHERE	Zip = @zip1)	
+	SET	@lat2 = (SELECT	(11*lat)/630
+				 FROM	U1_Zips
+				 WHERE	Zip = @zip2)	
+	SET	@lon1 = (SELECT	(11*lon)/630
+				 FROM	U1_Zips
+				 WHERE	Zip = @zip1)	
+	SET	@lon2 = (SELECT	(11*lon)/630
+				 FROM	U1_Zips
+				 WHERE	Zip = @zip2)	
+
+	IF @lat1 = @lat2 AND @lon1 = @lon2 SET @dist = 0
+
+	ELSE SET @dist = (SELECT	3963.1 * acos((cos(@lat1) * cos(@lon1) * cos(@lat2) * cos(@lon2)) +
+											  (cos(@lat1) * sin(@lon1) * cos(@lat2) * sin(@lon2)) +
+											  (sin(@lat1) * sin(@lat2))))
+
+	RETURN ROUND(@dist,0)
+
+END
+
+GO

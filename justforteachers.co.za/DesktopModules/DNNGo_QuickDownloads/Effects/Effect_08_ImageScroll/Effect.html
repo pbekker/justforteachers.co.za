@@ -1,0 +1,33 @@
+﻿
+<div id="ImageScroll${ModuleID}" class="$EffectThemeName" style="width:${xf.ViewEffectSetting("width",700)}px; height:${xf.ViewEffectSetting("height",200)}px;">
+    #if($DataList.Count > 0) 
+        #foreach($DataItem in $DataList)
+            
+                <a href="${xf.GoUrl($DataItem)}" title="${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}" ><img src="${xf.ThumbnailUrl($DataItem,${xf.ViewEffectSetting("item_width",300)},${xf.ViewEffectSetting("item_height",200)},"HW")}" title="${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}"  id="$DataItem.ID"  alt="${xf.ViewContent("Name",$DataItem)}" /></a>                             
+           
+        #end 
+    #end
+</div>
+
+<!-- Plugin initialization -->
+<script type="text/javascript">
+	// Initialize the plugin with no custom options
+    jQuery(document).ready(function () {
+        // None of the options are set
+        jQuery("div#ImageScroll${ModuleID}").smoothDivScroll({
+			// Autoscrolling
+            autoScrollingMode: '${xf.ViewEffectSetting("autoScrollingMode","onStart")}', // always, onStart or empty (no auto scrolling) String
+            autoScrollingDirection: '${xf.ViewEffectSetting("ScrollDirection","endlessLoopLeft")}', // right, left, backAndForth, endlessLoopRight, endlessLoopLeft String
+			autoScrollingStep: ${xf.ViewEffectSetting("ScrollingStep",1)}, // Pixels
+			autoScrollingInterval: ${xf.ViewEffectSetting("ScrollingInterval",10)}, // Milliseconds
+			manualContinuousScrolling: true,
+			// Touch scrolling
+			touchScrolling: ${xf.ViewEffectSetting("touchScrolling","true")},
+			// Easing for when the scrollToElement method is used
+			scrollToAnimationDuration: ${xf.ViewEffectSetting("AnimationDuration",1000)}, // Milliseconds
+            mousewheelScrolling: 'allDirections'
+        });
+
+ 
+    });
+</script>

@@ -1,0 +1,58 @@
+/* General */
+.DnnModule-2SexyContent { margin:0px; padding:0px;  }
+ul.apple-style { margin:0px; padding:0px; }
+ul.apple-style li { margin:0px; padding:0px; list-style:none; }
+ul.apple-style .block { display:block; height:100%; text-align:left; vertical-align:top; }
+ul.apple-style li .more { color:#0088CC; background:url(link-arrow.jpg) right center no-repeat; padding-right:10px; font-size:14px; }
+ul.apple-style li:hover .more { text-decoration:underline;}
+
+/* grid2col-big-specs */
+ul.big-specs li.column { width:490px; height:390px; padding-bottom:40px; float:left; }
+ul.big-specs li a { padding:10px 0px 10px 0px; color:#000; }
+ul.big-specs li a:hover {color:#333; text-decoration:none; }
+ul.big-specs li h1 { text-align:center; font-size:30px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#333; margin:0px; }
+ul.big-specs li h3 { text-align:center; font-size:18px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#333; margin:0px; }
+ul.big-specs li p { text-align:center; font-size:14px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#666666; padding:0 55px 35px 55px; }
+
+
+/* grid3col-teasers */
+ul.grid3col-teasers li.column { width:325px; float:left; height:120px; margin-bottom:20px; border-right:1px solid #E6E6E6; }
+
+ul.grid3col-teasers li h3 { font-size:16px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#000; margin:0px; font-weight:bold; line-height:22px; }
+
+ul.grid3col-teasers li a { color:#000; padding:5px 25px 5px 25px;  }
+ul.grid3col-teasers li a:hover {color:#333; text-decoration:none; }
+ul.grid3col-teasers li span.more { font-size:12px; }
+
+/* grid4col-quick-box */
+ul.grid4col-quick-box li { list-style:none; width:245px; float:left; height:167px; background:url(bg-quickbox.jpg)}
+ul.grid4col-quick-box li:hover { background:url(bg-quickbox-hover.jpg); }
+ul.grid4col-quick-box li a { color:#000; padding:14px 8px 8px 8px; }
+ul.grid4col-quick-box li a:hover {color:#333; text-decoration:none; }
+
+ul.grid4col-quick-box li h2 { text-align:center; font-size:16px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#000; margin:0px; font-weight:normal; line-height:23px; }
+ul.grid4col-quick-box li div { position:absolute; bottom:28px; left:38px; }
+
+/* specs-with-picture-narrow */
+ul.specs-with-picture-narrow li { width:326px; float:left; height:383px; background:url(bg-specs-with-picture-narrow.jpg)}
+ul.specs-with-picture-narrow li:hover { background:url(bg-specs-with-picture-narrow-hover.jpg) }
+ul.specs-with-picture-narrow li a { color:#000; padding:26px 26px 8px 26px; }
+ul.specs-with-picture-narrow li a:hover {color:#333; text-decoration:none; }
+
+ul.specs-with-picture-narrow li h2 { font-size:18px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#000; margin:0px; font-weight:bold; line-height:34px; }
+ul.specs-with-picture-narrow li h3 { font-size:18px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#000; margin:0px; font-weight:normal; line-height:22px; }
+ul.specs-with-picture-narrow li p { font-size:14px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#333333;  }
+
+ul.specs-with-picture-narrow li img { position:absolute; bottom:5px; margin:0px 0px 0px 80px; }
+
+
+/* specs-with-picture-standard */
+ul.specs-with-picture-standard li { width:490px; float:left; height:284px; background:url(bg-specs-with-picture-standard.jpg)}
+ul.specs-with-picture-standard li:hover { background:url(bg-specs-with-picture-standard-hover.jpg) }
+ul.specs-with-picture-standard li a { color:#000; padding:26px 26px 8px 26px; }
+ul.specs-with-picture-standard li a:hover {color:#333; text-decoration:none; }
+
+ul.specs-with-picture-standard li h2 { width:300px; font-size:18px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#000; margin:0px; font-weight:bold; line-height:34px; }
+ul.specs-with-picture-standard li h3 { width:300px; font-size:18px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#666666; margin:0px; font-weight:normal; line-height:22px; }
+ul.specs-with-picture-standard li p { font-size:14px; font-family:"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif; color:#333333;  }
+ul.specs-with-picture-standard li img { float:right; margin-top:50px; }

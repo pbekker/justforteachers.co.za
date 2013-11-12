@@ -1,0 +1,21 @@
+﻿ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] DROP
+CONSTRAINT [FK_jb_ClassifiedsItem_jb_ClassifiedsCat]
+GO
+
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ADD
+[LastUpdate] [datetime] NULL CONSTRAINT [DF_jb_ClassifiedsItem_LastUpdate] DEFAULT (getdate())
+GO
+
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [CreatedByUser] [int] NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [ExpireDate] [datetime] NULL
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ALTER COLUMN [Authed] [bit] NOT NULL
+GO
+
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ADD CONSTRAINT [DF_jb_ClassifiedsItem_ExpireDate] DEFAULT (null) FOR [ExpireDate]
+GO
+
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] ADD CONSTRAINT [DF_jb_ClassifiedsItem_Authed] DEFAULT (1) FOR [Authed]
+GO
+
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] WITH NOCHECK ADD
+CONSTRAINT [FK_jb_ClassifiedsItem_jb_ClassifiedsCat] FOREIGN KEY ([CategoryID]) REFERENCES {databaseOwner}[jb_ClassifiedsCat] ([CategoryID])

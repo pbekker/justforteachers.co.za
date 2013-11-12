@@ -1,0 +1,41 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 07.00.19            *****/
+/************************************************************/
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscription_Jedi_ListingPeriodByUserID]    Script Date: 08/22/2011 23:00:15 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_MySubscription_Jedi_ListingPeriodByUserID]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_MySubscription_Jedi_ListingPeriodByUserID]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_MySubscription_Jedi_ListingPeriodByUserID]    Script Date: 08/22/2011 23:01:07 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_MySubscription_Jedi_ListingPeriodByUserID]
+		@UserID INT,
+		@ModuleID INT	
+	AS
+	SET NOCOUNT ON
+	DECLARE	@PlanID INT
+	DECLARE @DefaultExpirationDays INT
+	SET @PlanID = (SELECT PlanID FROM jb_MySubscription WHERE UserID = @UserID)
+	SET  @DefaultExpirationDays = (SELECT ISNULL(SettingValue, 0) AS SettingValue FROM {objectQualifier}ModuleSettings WHERE  ModuleId = @ModuleID AND SettingName = 'ExpirationDays')
+	SELECT IsNull(ListingPeriod, @DefaultExpirationDays) FROM jb_SubscriptionPlan WHERE PlanID = @PlanID
+
+GO

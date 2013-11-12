@@ -1,0 +1,8 @@
+/*-------- BlackTitle --------*/
+.BlackTitle_style { min-width:160px;}
+.BlackTitle_c_menu { float:left; }
+.BlackTitle_c_help  { float:right; padding-top:2px; }
+.BlackTitle_top_style { padding:5px 1px; margin:0px; }
+.BlackTitle_top_height { height:25px; line-height:25px; }
+.BlackTitle_content { padding:2px 2px; text-align:left; }
+.BlackTitle_footer { height:12px; line-height:12px; overflow:hidden; }

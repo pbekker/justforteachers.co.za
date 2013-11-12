@@ -1,0 +1,8 @@
+/*-------- Container05 --------*/
+.Container05_style { min-width:160px; background:#EBEBEB; border: 1px solid #CCCCCC; webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;box-shadow: 0 0 8px 0 rgba(0,0,0,.4); -webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,.4); -moz-box-shadow: 0 0 8px 0 rgba(0,0,0,.4); }
+.Container05_c_menu { float:left; }
+.Container05_c_help  { float:right; padding-top:8px; }
+.Container05_top { height:38px; padding:2px 8px 0 11px; }
+.Container05_top_height { height:38px; line-height:38px; }
+.Container05_content { padding:2px 11px 11px 11px; text-align:left; }
+.Container05_footer { height:14px; line-height:14px; overflow:hidden; }

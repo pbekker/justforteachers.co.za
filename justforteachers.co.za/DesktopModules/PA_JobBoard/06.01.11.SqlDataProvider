@@ -1,0 +1,31 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.11            *****/
+/************************************************************/
+
+/****** Object:  Table {databaseOwner}[jb_Zips]    Script Date: 02/21/2011 12:07:57 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_Zips]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_Zips]
+
+GO
+
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_ZipDistance]    Script Date: 02/21/2011 12:08:46 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ZipDistance]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[jb_ZipDistance]
+
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_UtilUploadLatLongData]    Script Date: 02/23/2011 11:39:21 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UtilUploadLatLongData]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UtilUploadLatLongData]
+
+GO

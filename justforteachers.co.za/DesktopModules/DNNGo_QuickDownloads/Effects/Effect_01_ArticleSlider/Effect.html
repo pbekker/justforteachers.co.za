@@ -1,0 +1,42 @@
+﻿<div class="$EffectThemeName loading" id="ArticleSlider$ModuleID" style="width:${xf.ViewEffectSetting("Width","600")}px; height:${xf.ViewEffectSetting("Height","340")}px;">
+		#if($DataList.Count > 0)
+		<ul class="slides">
+			#foreach($DataItem in $DataList)
+	    	<li><img src="${xf.ViewPicture($DataItem)}" style="width:${xf.ViewEffectSetting("Width","600")}px; height:${xf.ViewEffectSetting("Height","340")}px;"  alt="" title="" /><div class="flex-caption"><h1><a href="${xf.GoUrl($DataItem)}">$DataItem.Name</a></h1><p>${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",150)},"...")}</p></div>
+	    	</li>
+	    	#end
+		</ul>
+	#end
+</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(jQuery) {  
+  /* Slider
+   * ---------------------------------------------- */
+  jQuery('#ArticleSlider$ModuleID').flexslider({
+    animation: "${xf.ViewEffectSetting("Animation","fade")}",
+    slideshowSpeed: ${xf.ViewEffectSetting("SlideshowSpeed","4000")},
+    animationDuration: ${xf.ViewEffectSetting("AnimationDuration","600")},
+    controlNav:false,
+    directionNav:true,
+    mousewheel:false,
+    pausePlay:true,
+    start: function(){
+      jQuery('#ArticleSlider$ModuleID').removeClass('loading');
+    },
+    before:function(){
+      jQuery('#ArticleSlider$ModuleID .flex-caption').animate({ 
+        bottom: -300,
+        opacity: 0
+      });
+    },    
+    after:function(){
+      jQuery('#ArticleSlider$ModuleID .flex-caption').animate({ 
+        bottom: 15,
+        opacity: 1
+      }, {easing:'easeOutExpo'});
+    }
+  });
+});
+</script>
+

@@ -1,0 +1,82 @@
+ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories ADD
+	UNCPathStore nvarchar(750) NULL
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesAdd
+		@CategoryName nvarchar(255),
+		@CategoryDescription ntext,
+		@CategoryImageURL nvarchar(2000),
+		@DateAdded datetime,
+		@ParentCategoryId int,
+		@PortalId int,
+		@ModuleId int,
+		@IsPortalSpecific bit,
+		@CreatedByUserId int,
+		@EnableEmailPublishing bit,
+		@KeyWords nvarchar(2000),
+		@Enabled bit,
+		@IsRSSFeed bit,
+		@RSSFeedURL nvarchar(2000),
+		@EmailRoles nvarchar(500),
+		@TreeId int,
+		@TreePath nvarchar(750),
+		@AWSAccessKeyID nvarchar(750),
+		@AWSSecretAccessKey nvarchar(750),
+		@UNCPathStore nvarchar(750)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRCategories
+		(CategoryName,CategoryDescription,CategoryImageURL,DateAdded,ParentCategoryId,PortalId,ModuleId,IsPortalSpecific,CreatedByUserId,EnableEmailPublishing,KeyWords,Enabled,IsRSSFeed,RSSFeedURL,EmailRoles,TreeId,TreePath,AWSAccessKeyID,AWSSecretAccessKey,UNCPathStore)
+		VALUES
+		(@CategoryName,@CategoryDescription,@CategoryImageURL,@DateAdded,@ParentCategoryId,@PortalId,@ModuleId,@IsPortalSpecific,@CreatedByUserId,@EnableEmailPublishing,@KeyWords,@Enabled,@IsRSSFeed,@RSSFeedURL,@EmailRoles,@TreeId,@TreePath,@AWSAccessKeyID,@AWSSecretAccessKey,@UNCPathStore)
+	SELECT SCOPE_IDENTITY()
+GO
+
+ALTER PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRCategoriesUpdate
+		@FileCategoryId int,
+		@CategoryName nvarchar(255),
+		@CategoryDescription ntext,
+		@CategoryImageURL nvarchar(2000),
+		@DateAdded datetime,
+		@ParentCategoryId int,
+		@PortalId int,
+		@ModuleId int,
+		@IsPortalSpecific bit,
+		@CreatedByUserId int,
+		@EnableEmailPublishing bit,
+		@KeyWords nvarchar(2000),
+		@Enabled bit,
+		@IsRSSFeed bit,
+		@RSSFeedURL nvarchar(2000),
+		@EmailRoles nvarchar(500),
+		@TreeId int,
+		@TreePath nvarchar(750),
+		@AWSAccessKeyID nvarchar(750),
+		@AWSSecretAccessKey nvarchar(750),
+		@UNCPathStore nvarchar(750)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRCategories SET 
+		CategoryName=@CategoryName,
+		CategoryDescription=@CategoryDescription,
+		CategoryImageURL=@CategoryImageURL,
+		DateAdded=@DateAdded,
+		ParentCategoryId=@ParentCategoryId,
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		IsPortalSpecific=@IsPortalSpecific,
+		CreatedByUserId=@CreatedByUserId,
+		EnableEmailPublishing=@EnableEmailPublishing,
+		KeyWords=@KeyWords,
+		Enabled=@Enabled,
+		IsRSSFeed=@IsRSSFeed,
+		RSSFeedURL=@RSSFeedURL,
+		EmailRoles=@EmailRoles,
+		TreeId=@TreeId,
+		TreePath=@TreePath,
+		AWSAccessKeyID=@AWSAccessKeyID,
+		AWSSecretAccessKey=@AWSSecretAccessKey,
+		UNCPathStore=@UNCPathStore
+	WHERE
+		FileCategoryId=@FileCategoryId
+GO

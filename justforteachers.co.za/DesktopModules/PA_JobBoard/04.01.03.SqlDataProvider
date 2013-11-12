@@ -1,0 +1,33 @@
+﻿if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlanGetByModuleID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_SubscriptionPlanGetByModuleID]
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_SubscriptionPlanGetByModuleID
+		@ModuleID	int,
+		@Key nvarchar(20) = 'ACTIVE'
+	AS
+	SET NOCOUNT ON
+
+
+	IF UPPER(@Key) = 'ADMIN' 
+		SELECT jb_SubscriptionPlan.*, {databaseOwner}{objectQualifier}Roles.RoleName		
+		FROM {databaseOwner}jb_SubscriptionPlan, {databaseOwner}{objectQualifier}Roles
+		WHERE ModuleID=@ModuleID
+		AND jb_SubscriptionPlan.RoleId = {databaseOwner}{objectQualifier}Roles.RoleId
+		ORDER BY ViewOrder ASC
+	ELSE
+		SELECT jb_SubscriptionPlan.*, {databaseOwner}{objectQualifier}Roles.RoleName		
+		FROM {databaseOwner}jb_SubscriptionPlan, {databaseOwner}{objectQualifier}Roles
+		WHERE ModuleID=@ModuleID
+		AND jb_SubscriptionPlan.RoleId = {databaseOwner}{objectQualifier}Roles.RoleId
+		AND IsActive = 1
+		ORDER BY ViewOrder ASC
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON

@@ -1,0 +1,437 @@
+﻿/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanAdd]    Script Date: 04/26/2010 16:44:50 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanAdd]    Script Date: 04/26/2010 16:45:17 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_SubscriptionPlanAdd]
+		@PortalID int,
+		@ModuleID int,
+		@RoleID int,
+		@PlanName nvarchar(50),
+		@Description nvarchar(255),
+		@IsActive bit,
+		@ViewOrder int,
+		@Fee money,
+		@Limit int,
+		@ExpirationPeriod int,
+		@BillingFrequency int,
+		@BillingPeriod int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_SubscriptionPlan
+		(PortalID,ModuleID,RoleID,PlanName,Description,IsActive,ViewOrder,Fee,Limit,ExpirationPeriod,BillingFrequency,BillingPeriod)
+		VALUES
+		(@PortalID,@ModuleID,@RoleID,@PlanName,@Description,@IsActive,@ViewOrder,@Fee,@Limit,@ExpirationPeriod,@BillingFrequency,@BillingPeriod)
+	SELECT SCOPE_IDENTITY()
+
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanUpdate]    Script Date: 04/26/2010 16:45:31 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_SubscriptionPlanUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_SubscriptionPlanUpdate]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_SubscriptionPlanUpdate]    Script Date: 04/26/2010 16:46:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_SubscriptionPlanUpdate]
+		@PlanID int,
+		@PortalID int,
+		@ModuleID int,
+		@RoleID int,
+		@PlanName nvarchar(50),
+		@Description nvarchar(255),
+		@IsActive bit,
+		@ViewOrder int,
+		@Fee money,
+		@Limit int,
+		@ExpirationPeriod int,
+		@BillingFrequency int,
+		@BillingPeriod int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_SubscriptionPlan SET 
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		RoleID=@RoleID,
+		PlanName=@PlanName,
+		Description=@Description,
+		IsActive=@IsActive,
+		ViewOrder=@ViewOrder,
+		Fee=@Fee,
+		Limit=@Limit,
+		ExpirationPeriod=@ExpirationPeriod,
+		BillingFrequency=@BillingFrequency,
+		BillingPeriod=@BillingPeriod
+	WHERE
+		PlanID=@PlanID
+
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifieds]    Script Date: 04/28/2010 11:31:09 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifieds]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifieds]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifieds]    Script Date: 04/28/2010 11:31:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE  PROCEDURE {databaseOwner}[jb_GetClassifieds]
+@ModuleID int,
+@CategoryID int = -1,
+@Key nvarchar(20) = 'ACTIVE',
+@Param int = 0 
+AS
+
+	IF UPPER(@Key) = 'ADMIN' 
+		IF @CategoryID = -1
+			BEGIN			
+				select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+				from   jb_ClassifiedsItem
+				where  ModuleID = @ModuleID
+				--and    (ExpireDate > GetDate() or ExpireDate is null)
+				--and CategoryID = @CategoryID
+				Order By CreatedDate Desc
+			END
+		ELSE
+			BEGIN			
+				select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem_vw.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem_vw.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+				from   jb_ClassifiedsItem_vw
+				where  ModuleID = @ModuleID
+				--and    (ExpireDate > GetDate() or ExpireDate is null)
+				and UCategoryID = @CategoryID
+				Order By CreatedDate Desc
+			END
+
+	ELSE IF UPPER(@Key) = 'AUTHED' 
+		IF @CategoryID = -1	
+			BEGIN		
+				select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+				from   jb_ClassifiedsItem
+				where  ModuleID = @ModuleID
+				and   Authed = 1
+				--and CategoryID = @CategoryID
+				Order By CreatedDate Desc
+	
+			END
+		ELSE
+			BEGIN		
+				select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem_vw.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem_vw.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+				from   jb_ClassifiedsItem_vw
+				where  ModuleID = @ModuleID
+				and   Authed = 1
+				and UCategoryID = @CategoryID
+				Order By CreatedDate Desc
+	
+			END
+	
+	ELSE IF UPPER(@Key) = 'LST_MY' 
+		BEGIN			
+			select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			--and    (ExpireDate > GetDate() or ExpireDate is null)
+			--and CategoryID = @CategoryID
+			and CreatedByUser  = @Param
+			Order By CreatedDate Desc
+		END	
+	ELSE IF UPPER(@Key) = 'LST_EXPIRED' 
+		BEGIN			
+			select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and  ExpireDate is not null
+			and    (ExpireDate < GetDate())
+			Order By CreatedDate Desc
+		END	
+	ELSE IF UPPER(@Key) = 'LST_UNAPPROVED' 
+		BEGIN			
+			select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and   Authed = 0
+			Order By CreatedDate Desc
+		END	
+	ELSE IF UPPER(@Key) = 'LST_WBE' 
+		BEGIN			
+			select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and    (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0
+			and     datediff(day, getdate(), ExpireDate) < @Param
+			Order By CreatedDate Desc
+		END	
+	ELSE IF UPPER(@Key) = 'LST_NEWLISTINGS' 
+		BEGIN				
+			select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and     datediff(day,CreatedDate,getdate()) < @Param and Authed <> 0
+			Order By CreatedDate Desc
+		END
+	ELSE IF UPPER(@Key) = 'LST_FEATURED'  -- CategoryID does not matter here
+		BEGIN			
+			select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			--and    (ExpireDate > GetDate() or ExpireDate is null) 
+			--and    Authed <> 0
+			and   Featured = 1
+			Order By CreatedDate Desc	
+		END	
+	ELSE IF UPPER(@Key) = 'LST_FEATURED_ACTIVE'  -- CategoryID does not matter here
+		BEGIN			
+			select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and    (ExpireDate > GetDate() or ExpireDate is null) 
+			and    Authed <> 0
+			and   Featured = 1
+			Order By CreatedDate Desc	
+		END	
+	ELSE IF UPPER(@Key) = 'LST_VIEWCOUNT_TOP'  
+		BEGIN			
+			SET ROWCOUNT 10
+			select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and    (ExpireDate > GetDate() or ExpireDate is null) 
+			and    Authed <> 0
+			ORDER BY ViewCount DESC
+		
+		END	
+	ELSE IF UPPER(@Key) = 'LST_VIEWCOUNT_BOTTOM' 
+		BEGIN		
+			SET ROWCOUNT 10
+			select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and    (ExpireDate > GetDate() or ExpireDate is null) 
+			and    Authed <> 0
+			ORDER BY ViewCount ASC
+		END	
+	ELSE IF UPPER(@Key) = 'LST_HASAPPLICANT'  -- CategoryID does not matter here
+		BEGIN			
+			select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) > 0
+			Order By CreatedDate Desc	
+		END	
+	ELSE IF UPPER(@Key) = 'COUNT' 
+		BEGIN		
+			
+			--Variables used for all calculations 
+			DECLARE
+			@COUNT_LST_MY AS  INT,
+			@COUNT_LST_EXPIRED AS  INT,
+			@COUNT_LST_UNAPPROVED AS  INT,
+			@COUNT_LST_WBE7  AS  INT,
+			@COUNT_LST_WBE30  AS  INT,
+			@COUNT_LST_FEATURED AS INT,
+			@COUNT_LST_HASAPPLICANT AS INT		
+	
+			SET @COUNT_LST_MY 		= (select  count(ItemID)  from   jb_ClassifiedsItem  	where  ModuleID = @ModuleID and CreatedByUser  = @Param)
+			SET @COUNT_LST_EXPIRED  		= (select  count(ItemID)  from   jb_ClassifiedsItem    where  ModuleID = @ModuleID and  ExpireDate is not null AND (ExpireDate < GetDate()))
+			SET @COUNT_LST_UNAPPROVED  	= (select  count(ItemID)  from   jb_ClassifiedsItem  	where  ModuleID = @ModuleID  and   Authed = 0) 
+			SET @COUNT_LST_WBE7  		= (select  count(ItemID)  from   jb_ClassifiedsItem    where  ModuleID = @ModuleID and  (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0  and datediff(day, getdate(), ExpireDate) < 7)
+			SET @COUNT_LST_WBE30  		= (select  count(ItemID)  from   jb_ClassifiedsItem    where  ModuleID = @ModuleID and  (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0  and datediff(day, getdate(), ExpireDate) < 30)
+			SET @COUNT_LST_FEATURED 	= (select  count(ItemID)  from   jb_ClassifiedsItem     where  ModuleID = @ModuleID and   Featured = 1)	
+			SET @COUNT_LST_HASAPPLICANT     = (select  count(ItemID)  from   jb_ClassifiedsItem     where  ModuleID = @ModuleID and   ((SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) > 0))	
+			select @COUNT_LST_MY AS  'COUNT_LST_MY', 
+				@COUNT_LST_EXPIRED AS  'COUNT_LST_EXPIRED',  
+				@COUNT_LST_UNAPPROVED AS  'COUNT_LST_UNAPPROVED', 
+				@COUNT_LST_WBE7 AS  'COUNT_LST_WBE7',  
+				@COUNT_LST_WBE30  AS  'COUNT_LST_WBE30',
+				@COUNT_LST_FEATURED AS 'COUNT_LST_FEATURED',
+				@COUNT_LST_HASAPPLICANT AS 'COUNT_LST_HASAPPLICANT'
+			
+			
+		END	
+	ELSE
+		IF @CategoryID = -1
+			BEGIN			
+				select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+				from   jb_ClassifiedsItem
+				where  ModuleID = @ModuleID
+				and    (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0
+				--and CategoryID = @CategoryID
+				Order By CreatedDate Desc
+	
+			END
+		ELSE
+			BEGIN			
+				select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem_vw.ItemID ) AS JobAppCnt, (select CategoryName from jb_ClassifiedsCat where jb_ClassifiedsCat.CategoryID = jb_ClassifiedsItem_vw.CategoryID) AS 'CategoryName', {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+				from   jb_ClassifiedsItem_vw
+				where  ModuleID = @ModuleID
+				and    (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0
+				and UCategoryID = @CategoryID
+				Order By CreatedDate Desc
+	
+			END
+
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Adv]    Script Date: 04/28/2010 11:31:48 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsSearch_Adv]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Adv]
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Adv]    Script Date: 04/28/2010 11:32:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Adv]
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@EmploymentType nvarchar(50),
+@SalaryFrom  int,
+@Zip nvarchar(50) = NULL
+
+AS
+IF @Zip = ''
+SET @Zip = null
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+
+SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+	, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+	FROM jb_ClassifiedsItem
+	WHERE  jb_ClassifiedsItem.ItemID IN
+	(
+	SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+	FROM jb_ClassifiedsItem_vw
+	WHERE ModuleID = @ModuleID
+	AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+	AND ((UCategoryID IN(SELECT * FROM [#RETURN])) OR (@CurrentCategoryID = -1))
+	AND (JB_EmpType = @EmploymentType)
+	AND (JB_StartingSalary >= @SalaryFrom)		
+	and ((JB_JobTitle like '%' + @SearchText + '%' or 
+					JB_JobCode like '%' + @SearchText + '%' or 
+					JB_JobLocation like '%' + @SearchText + '%' or 
+					JB_ReqEducation like '%' + @SearchText + '%' or 									
+					JB_Travel like '%' + @SearchText + '%' or 
+					JB_NumberOpening like '%' + @SearchText + '%' or 
+					Message like '%' + @SearchText + '%'  or
+					JB_CompanyName like '%' + @SearchText + '%'  or
+					JB_ContactInfo like '%' + @SearchText + '%'  or
+					JB_ContactEmail like '%' + @SearchText + '%'  or 
+					CreatedDate    like '%' + @SearchText + '%'  or 
+					ExpireDate like '%' + @SearchText + '%'  or 
+					JB_AddReqList	like '%' + @SearchText + '%'  or 
+					JB_BenefitsList like '%' + @SearchText + '%'  )  OR (@SearchText IS NULL))
+	AND  ((it_Postal = @Zip) OR (@Zip IS NULL)) 
+	) 
+	Order By Rank Desc
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Bsc]    Script Date: 04/28/2010 11:33:21 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsSearch_Bsc]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Bsc]
+
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Bsc]    Script Date: 04/28/2010 11:33:45 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Bsc]
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@Zip nvarchar(50) = NULL
+AS
+IF @Zip = ''
+SET @Zip = null
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+FROM jb_ClassifiedsItem
+WHERE  jb_ClassifiedsItem.ItemID IN
+(
+SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+FROM jb_ClassifiedsItem_vw
+WHERE ModuleID = @ModuleID
+AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+AND ((UCategoryID IN(SELECT * FROM [#RETURN])) OR (@CurrentCategoryID = -1))		
+AND ((JB_JobTitle like '%' + @SearchText + '%' or 
+				JB_JobCode like '%' + @SearchText + '%' or 
+				JB_JobLocation like '%' + @SearchText + '%' or 
+				JB_EmpType like '%' + @SearchText + '%' or 
+				JB_ReqEducation like '%' + @SearchText + '%' or 									
+				JB_Travel like '%' + @SearchText + '%' or 
+				JB_StartingSalary like '%' + @SearchText + '%' or 
+				CAST(JB_HourlyRate As NVARCHAR(255)) like '%' + @SearchText + '%' or 	
+				JB_StartDate	like '%' + @SearchText + '%' or 
+				JB_NumberOpening like '%' + @SearchText + '%' or 
+				Message like '%' + @SearchText + '%'  or
+				JB_CompanyName like '%' + @SearchText + '%'  or
+				JB_ContactInfo like '%' + @SearchText + '%'  or
+				JB_ContactEmail like '%' + @SearchText + '%'  or 
+				CreatedDate    like '%' + @SearchText + '%'  or 
+				ExpireDate like '%' + @SearchText + '%'  or 
+				JB_AddReqList	like '%' + @SearchText + '%'  or 
+				JB_BenefitsList like '%' + @SearchText + '%'  )  OR (@SearchText IS NULL))
+AND  ((it_Postal = @Zip) OR (@Zip IS NULL)) 
+)
+Order By Rank Desc
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+
+GO
+

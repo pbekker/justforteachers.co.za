@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Script Permission="admin" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\Script.xsd" Title="Add DMX Search to DNN Search Results Page">
+ <Description>This script adds DMX search to your DNN Search Results page.</Description>
+ <Process>
+  <Run RunType="SQL">
+   <![CDATA[
+
+BEGIN
+DECLARE @SRT INT;
+SET @SRT = (SELECT TOP 1 t.TabId
+ FROM {databaseOwner}{objectQualifier}TabModules tm
+  INNER JOIN {databaseOwner}{objectQualifier}Modules m ON m.ModuleId=tm.ModuleId
+  INNER JOIN {databaseOwner}{objectQualifier}ModuleDefinitions md ON m.ModuleDefID = md.ModuleDefID
+  INNER JOIN {databaseOwner}{objectQualifier}DesktopModules dm ON dm.DesktopModuleID = md.DesktopModuleID
+  INNER JOIN {databaseOwner}{objectQualifier}Tabs t ON t.TabID = tm.TabId
+ WHERE dm.ModuleName IN ('Search Results', 'SearchResults')
+  AND m.PortalID=@PortalId);
+IF (SELECT COUNT(tm.TabId)
+FROM {databaseOwner}{objectQualifier}TabModules tm
+INNER JOIN {databaseOwner}{objectQualifier}Modules m ON m.ModuleId=tm.ModuleId
+INNER JOIN {databaseOwner}{objectQualifier}ModuleDefinitions md ON m.ModuleDefID = md.ModuleDefID
+INNER JOIN {databaseOwner}{objectQualifier}DesktopModules dm ON dm.DesktopModuleID = md.DesktopModuleID
+INNER JOIN {databaseOwner}{objectQualifier}Tabs t ON t.TabID = tm.TabId
+WHERE dm.ModuleName='Bring2mind\DMX' AND m.IsDeleted=0
+AND t.TabId=@SRT) = 0
+ BEGIN
+  DECLARE @MDID INT;
+  SELECT @MDID = md.ModuleDefID FROM {databaseOwner}{objectQualifier}ModuleDefinitions md
+   INNER JOIN {databaseOwner}{objectQualifier}DesktopModules dm ON dm.DesktopModuleID = md.DesktopModuleID
+   WHERE dm.ModuleName='Bring2mind\DMX';
+  DECLARE @MID INT;
+  INSERT INTO {databaseOwner}{objectQualifier}Modules (ModuleDefID, AllTabs, IsDeleted, InheritViewPermissions, PortalID)
+   VALUES (@MDID, 0, 0, 1, 0);
+  SELECT @MID = SCOPE_IDENTITY();
+  INSERT INTO {databaseOwner}{objectQualifier}TabModules (TabID, ModuleID, PaneName, ModuleOrder, CacheTime, Alignment, Visibility, DisplayTitle, DisplayPrint, DisplaySyndicate, ModuleTitle)
+   VALUES (@SRT, @MID, 'ContentPane', 2, 0, 'left', 0, 1, 1, 0, 'DMX Search Results');
+  INSERT INTO {databaseOwner}{objectQualifier}ModuleSettings (ModuleID, SettingName, SettingValue)
+   VALUES (@MID, 'DefaultViewPane', 'bring2mind/dmx/views/search.ascx');
+ END
+END
+
+
+ ]]></Run>
+  <Run RunType="CODE" Command="RestartApp">Bring2mind.DNN.Modules.DMX.Framework.ModuleController, BRING2MIND.DNN.MODULES.DMX.CORE</Run>
+ </Process>
+</Script>

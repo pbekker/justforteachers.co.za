@@ -1,0 +1,1 @@
+﻿INSERT INTO {databaseOwner}jb_Picklist ([PicklistGroup],[PicklistText],[PicklistValue],[ViewOrder])VALUES('SortOption','Rating','Avg_CustReview',9)

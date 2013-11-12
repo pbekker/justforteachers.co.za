@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active.Text" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Any.Text" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="cmdDeleteCurrentKey.Text" xml:space="preserve">
+    <value>Remove Current License</value>
+  </data>
+  <data name="cmdUpdate.Text" xml:space="preserve">
+    <value>Update License</value>
+  </data>
+  <data name="cmdUploadUpdate.Text" xml:space="preserve">
+    <value>Upload and Activate</value>
+  </data>
+  <data name="ControlTitle_backupconfigurationlicensing.Text" xml:space="preserve">
+    <value>Backup Configuration - Licensing</value>
+  </data>
+  <data name="dshLicensing.Text" xml:space="preserve">
+    <value>License Key and Details</value>
+  </data>
+  <data name="FullTrust.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCurrentDomain.Help" xml:space="preserve">
+    <value>Domain name (base URL) for which the module expects to have a valid license key.</value>
+  </data>
+  <data name="lblCurrentDomain.Text" xml:space="preserve">
+    <value>Current Domain (base URL)</value>
+  </data>
+  <data name="lblCurrentDNNInstanceSignature.Help" xml:space="preserve">
+    <value>This signature identifies your DotNetNuke Instance / Installation.&lt;br /&gt;&lt;br /&gt;
+&lt;b&gt;What is an Instance (a.k.a. 'Installation' or 'Codebase')?&lt;/b&gt;&lt;br/&gt;
+An instance of DNN can be defined as a single file system and IIS reference to an installation of DotNetNuke  &lt;a href="http://www.dotnetnuke.com/Resources/Blogs/EntryId/2778/What-to-Consider-Before-Hosting-Multiple-Portals-on-a-Single-DotNetNuke-Instance.aspx" target="_blank" class="CommandButton"&gt;[ref.]&lt;/a&gt;.
+
+</value>
+  </data>
+  <data name="lblCurrentDNNInstanceSignature.Text" xml:space="preserve">
+    <value>DNN Instance Signature</value>
+  </data>
+  <data name="lblLicense.Help" xml:space="preserve">
+    <value>Licensing information.</value>
+  </data>
+  <data name="lblLicense.Text" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="lblLicenseKey.Help" xml:space="preserve">
+    <value>Activate your License Key.</value>
+  </data>
+  <data name="lblLicenseKey.Text" xml:space="preserve">
+    <value>License Activation</value>
+  </data>
+  <data name="lblLicenseStatus.Help" xml:space="preserve">
+    <value>License Status.</value>
+  </data>
+  <data name="lblLicenseStatus.Text" xml:space="preserve">
+    <value>License Status</value>
+  </data>
+  <data name="lblLnkEmailDescription.Text" xml:space="preserve">
+    <value>(opens an email)</value>
+  </data>
+  <data name="lblModuleInfo.Help" xml:space="preserve">
+    <value>Product and context information.</value>
+  </data>
+  <data name="lblModuleInfo.Text" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="LicenseContactSupport.Message" xml:space="preserve">
+    <value>Please contact Support using the link below if you have any license problems or questions.</value>
+  </data>
+  <data name="LicenseExpired.Message" xml:space="preserve">
+    <value>&lt;li&gt;The License has expired.&lt;/li&gt;</value>
+  </data>
+  <data name="LicenseExpires.Message" xml:space="preserve">
+    <value>&lt;li&gt;The License expires on (yyyymmdd) {EXPIREDATE}&lt;/li&gt;</value>
+  </data>
+  <data name="LicenseExpiresMaintenanceWarning.Message" xml:space="preserve">
+    <value>&lt;li&gt;The maintenance period (where you can download and install for free new versions of the module) for your &lt;b&gt;PERPETUAL&lt;/b&gt; license will expire on [{1}].&lt;br /&gt;
+Your key will NOT expire. However, if you want to install newer versions of the product released after {1}, you'll need a new key.&lt;br /&gt;
+To review the available upgrade options, please visit &lt;a href="http://www.evotiva.com" target="_blank"&gt;www.evotiva.com&lt;/a&gt;.&lt;/li&gt;</value>
+  </data>
+  <data name="LicenseExpiresWarning.Message" xml:space="preserve">
+    <value>&lt;li&gt;Your {0} license will expire on [{1}].&lt;br /&gt;
+&lt;br /&gt;
+To review the available upgrade options, please visit &lt;a href="http://www.evotiva.com" target="_blank"&gt;www.evotiva.com&lt;/a&gt;.&lt;/li&gt;</value>
+  </data>
+  <data name="LicenseInvalid.Message" xml:space="preserve">
+    <value>Your License Key is invalid or corrupt. 
+Please contact support (&lt;a href="mailto:support@evotiva.com"&gt;support@evotiva.com&lt;/a&gt; if you have any question.
+If you delete the invalid License Key, the module will be on a valid state, fully functional for any 'localhost' or '*.local' site, like http://localhost/mytestsite or http://mytestsite.local.</value>
+  </data>
+  <data name="LicenseInvalidDomain.Message" xml:space="preserve">
+    <value>&lt;li&gt;Invalid domain, or domain mismatch.&lt;/li&gt;</value>
+  </data>
+  <data name="LicenseInvalidProduct.Message" xml:space="preserve">
+    <value>&lt;li&gt;Invalid product/version name, or product/version mismatch.&lt;/li&gt;</value>
+  </data>
+  <data name="LicenseInvalidServerSignature.Message" xml:space="preserve">
+    <value>&lt;li&gt;Invalid DNN Instance signature, or DNN Instance signature mismatch.&lt;/li&gt;</value>
+  </data>
+  <data name="LicenseValid.Message" xml:space="preserve">
+    <value>Registered to [&lt;b&gt;{USER}&lt;/b&gt;] [{KEY}] for:
+&lt;ul&gt;
+&lt;li&gt;[{PRODUCT}] Product &lt;/li&gt;
+&lt;li&gt;[{VERSION}] Version &lt;/li&gt;
+&lt;li&gt;[{DOMAIN}] Domain (Base URL)&lt;/li&gt;
+&lt;li&gt;[{CODEBASESIGNATURE}] DNN Instance Signature&lt;/li&gt;
+&lt;li&gt;[{EXPIREDATE}] License Expiration Date&lt;/li&gt;
+&lt;li&gt;[{MAINTDATE}] Maintenance Expiration Date&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="LicensingSettings.Text" xml:space="preserve">
+    <value>Licensing Information</value>
+  </data>
+  <data name="LicensiongOptions.Text" xml:space="preserve">
+    <value>Licensing Options</value>
+  </data>
+  <data name="lnkEmail.Text" xml:space="preserve">
+    <value>Request License Assistance</value>
+  </data>
+  <data name="lnkEmailAlt.Text" xml:space="preserve">
+    <value>Alternate Link</value>
+  </data>
+  <data name="lnkEmailAltHelp.Text" xml:space="preserve">
+    <value>(use it if the main link does not open in your email client)&lt;br /&gt;
+&lt;b&gt;Note:&lt;/b&gt;If your machine cannot open 'mailto' links, please use your web email account to send us an email to 'licensing@evotiva.com' specifying the 'Current Domain (base URL)' and your purchase Invoice Number.</value>
+  </data>
+  <data name="lnkEmailBody.Text" xml:space="preserve">
+    <value>=============================
+PLEASE PROVIDE THIS INFORMATION 
+Invoice Number: 
+Licensed to (Name): 
+Licensed to (Email): 
+Your Phone (optional): 
+Comments (optional): 
+
+LICENSE AND UTILIZATION INFORMATION 
+Domain (Base URL): {0}
+DNN Instance Signature: {1}
+=============================
+
+Product and Context Information:
+{2}
+
+Current License Details: 
+{3}
+
+Current License Status: 
+{4}
+
+=============================</value>
+  </data>
+  <data name="lnkEmailSubject.Text" xml:space="preserve">
+    <value>[{0}]%20-%20Request%20License%20Assistance%20({1})</value>
+  </data>
+  <data name="lnkEmailTo.Text" xml:space="preserve">
+    <value>support@evotiva.com</value>
+  </data>
+  <data name="lnkEmailToolTip.Text" xml:space="preserve">
+    <value>Request License Assitance</value>
+  </data>
+  <data name="MaintenanceExpired.Message" xml:space="preserve">
+    <value>&lt;li&gt;The maintenance period has finished.&lt;li&gt;</value>
+  </data>
+  <data name="ModuleInformation.Message" xml:space="preserve">
+    <value>&lt;b&gt;Product Name: &lt;/b&gt;&lt;MODULENAME&gt;
+&lt;br /&gt;&lt;b&gt;Product Version: &lt;/b&gt;&lt;MODULEVERSION&gt;
+&lt;br /&gt;&lt;b&gt;DotNetNuke Version: &lt;/b&gt;&lt;DNNVERSION&gt;
+&lt;br /&gt;&lt;b&gt;.NET Framework: &lt;/b&gt;&lt;DOTNET&gt;
+&lt;br /&gt;&lt;b&gt;Full Trust: &lt;/b&gt;&lt;FULLTRUST&gt;
+&lt;br /&gt;&lt;b&gt;Permissions: &lt;/b&gt;&lt;PERMISSIONS&gt;
+&lt;br /&gt;&lt;b&gt;Impersonate: &lt;/b&gt;&lt;IMPERSONATE&gt;
+&lt;br /&gt;&lt;b&gt;ASP.NET Identity: &lt;/b&gt;&lt;IDENTITY&gt;
+&lt;br /&gt;&lt;b&gt;Database information: &lt;/b&gt; &lt;DATABASEINFO&gt;</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="None.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="NotFullTrust.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Total.Text" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Unlimited.Text" xml:space="preserve">
+    <value>unlimited</value>
+  </data>
+  <data name="UploadConfirmation.Text" xml:space="preserve">
+    <value>Update the current license key with the contents of the selected file to be uploaded?</value>
+  </data>
+  <data name="UploadErrorFileNameEmpty.Text" xml:space="preserve">
+    <value>Please select a valid license file to upload (a  text file (.TXT) is expected).</value>
+  </data>
+  <data name="UploadErrorFileType.Text" xml:space="preserve">
+    <value>The chosen file is not of the expected file type. Note: a plain text file is expected,  not a ZIP or any other file format.</value>
+  </data>
+  <data name="DotNetNukeVersion.Text" xml:space="preserve">
+    <value>&lt;br /&gt;&lt;b&gt;DotNetNuke Version: &lt;/b&gt;</value>
+  </data>
+  <data name="HostAccess.Text" xml:space="preserve">
+    <value>&lt; Host Only &gt;</value>
+  </data>
+  <data name="Identity.Text" xml:space="preserve">
+    <value>&lt;br /&gt;&lt;b&gt;ASP.NET Identity: &lt;/b&gt;</value>
+  </data>
+  <data name="ModuleName.Text" xml:space="preserve">
+    <value>&lt;b&gt;Product Name: &lt;/b&gt;</value>
+  </data>
+  <data name="ModuleVersion.Text" xml:space="preserve">
+    <value>&lt;br /&gt;&lt;b&gt;Product Version: &lt;/b&gt;</value>
+  </data>
+  <data name="NETFramework.Text" xml:space="preserve">
+    <value>&lt;br /&gt;&lt;b&gt;.NET Framework: &lt;/b&gt;</value>
+  </data>
+  <data name="No.Text1" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="Permissions.Text" xml:space="preserve">
+    <value>&lt;br /&gt;&lt;b&gt;Permissions: &lt;/b&gt;</value>
+  </data>
+  <data name="cmdActivatelicenseOffline.Text" xml:space="preserve">
+    <value>Manual Activation</value>
+  </data>
+  <data name="cmdActivatelicenseOnline.Text" xml:space="preserve">
+    <value>Automated Activation</value>
+  </data>
+  <data name="cmdCancelActivation.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ComingSoon.Text" xml:space="preserve">
+    <value>Coming Soon...</value>
+  </data>
+  <data name="ConfirmDeleteLicenseKey.Text" xml:space="preserve">
+    <value>Confirm the removal of your current license key? This will reverert your installation to Demo Mode.</value>
+  </data>
+  <data name="lblLicenseDetails.Help" xml:space="preserve">
+    <value>License Details.</value>
+  </data>
+  <data name="lblLicenseDetails.Text" xml:space="preserve">
+    <value>License Details</value>
+  </data>
+  <data name="lblOfflineActivationDataInfo.Text" xml:space="preserve">
+    <value>&lt;b&gt;License Activation Procedure&lt;/b&gt;&lt;br /&gt;&lt;br/&gt;
+&lt;b&gt;Step I&lt;/b&gt;&lt;br /&gt;
+Please copy all the information found on the 1st. text box found below, and paste it into your favorite email application, fill the required information (i.e. 'PLEASE PROVIDE THIS INFORMATION'), and send the email to &lt;a href="mailto:licensing@evotiva.com"&gt;licensing@evotiva.com&lt;/a&gt;. &lt;br/&gt;&lt;br/&gt;
+&lt;b&gt;Step II&lt;/b&gt;&lt;br /&gt;
+You will get a reply email (typically, in less than 24 hrs.) including your license key as an attachment (a ".txt" file).&lt;br /&gt;
+Install it by pasting the file contents on the 2nd. text box found below, and clicking on the &lt;b&gt;'Update License'&lt;/b&gt; link.
+</value>
+  </data>
+  <data name="UploadSuccess.Text" xml:space="preserve">
+    <value>The License key was installed succesfully.</value>
+  </data>
+  <data name="NotAvailable.Text" xml:space="preserve">
+    <value>Not Available ({0}).</value>
+  </data>
+  <data name="LicenseActivationAutomated.Text" xml:space="preserve">
+    <value>Automated License Activation</value>
+  </data>
+  <data name="LicenseActivationManual.Text" xml:space="preserve">
+    <value>License Activation</value>
+  </data>
+  <data name="LicenseErrors.Message" xml:space="preserve">
+    <value>The following error conditions were detected in your License Key:</value>
+  </data>
+  <data name="LicenseValidWithNoWarningCommunity.Message" xml:space="preserve">
+    <value>Community (free) Edition License Key Valid and Active.&lt;br/&gt;&lt;br /&gt;
+&lt;b&gt;Community Edition: &lt;/b&gt; &lt;br /&gt;
+It is limited to up to {0}MB and {1} files (across all the enabled Evotiva Folder Types).&lt;br /&gt;&lt;br /&gt;
+Your DotNetNuke Installation currently holds &lt;b&gt;{2}MB&lt;/b&gt; in &lt;b&gt;{3}&lt;/b&gt; files being handled by DNNGlobalStorage.</value>
+  </data>
+  <data name="LicenseWarnings.Message" xml:space="preserve">
+    <value>Please notice that:</value>
+  </data>
+  <data name="ShortDateFormat.Text" xml:space="preserve">
+    <value>d MMM yyyy</value>
+  </data>
+  <data name="ShortDateTimeFormat.Text" xml:space="preserve">
+    <value>d MMM yyyy h:mm tt</value>
+  </data>
+  <data name="Subscription.Text" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="Temporary.Text" xml:space="preserve">
+    <value>Temporary</value>
+  </data>
+  <data name="lblContactUs.Help" xml:space="preserve">
+    <value>Comments / Questions? Product upgrades, Documentation,, ...</value>
+  </data>
+  <data name="lblContactUs.Text" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="lblContactUsMessage.Text" xml:space="preserve">
+    <value>For support, product upgrades, documentation, and more; please visit us at &lt;a href="http://www.evotiva.com" target="_blank"&gt;www,evotiva.com&lt;/a&gt;.</value>
+  </data>
+  <data name="LicenseInvalidDetails.Text" xml:space="preserve">
+    <value>The license file &lt;br /&gt;[{0}] &lt;br /&gt;could no be read, or its content is unknown.</value>
+  </data>
+  <data name="UploadErrorContentsEmpty.Text" xml:space="preserve">
+    <value>Please paste the contents of the provided license key.</value>
+  </data>
+  <data name="LongDateFormat.Text" xml:space="preserve">
+    <value>d MMM yyyy</value>
+  </data>
+  <data name="LongDateTimeFormat.Text" xml:space="preserve">
+    <value>d MMM yyyy h:mm tt</value>
+  </data>
+  <data name="lblSaveNotice.Text" xml:space="preserve">
+    <value>Note: Please click on Update (Save) and reload this form before updating your key. Otherwise, your changes will be lost.</value>
+  </data>
+  <data name="LicenseCommunityCountersWarning.Message" xml:space="preserve">
+    <value>&lt;li&gt;&lt;b&gt;DNNGlobalStorage Community Edition&lt;/b&gt; is limited to up to {0}MB and {1} files (across all the enabled Evotiva Folder Types).&lt;br /&gt;
+Your DotNetNuke Installation currently holds &lt;b&gt;{2}MB&lt;/b&gt; in &lt;b&gt;{3}&lt;/b&gt; files being handled by DNNGlobalStorage.  
+Please &lt;a href="http://www.evotiva.com/Products/DNNGlobalStorage.aspx" target="_blank"&gt;purchase&lt;/a&gt; the Professional edition, or remove some files.&lt;/li&gt;</value>
+  </data>
+  <data name="LicenseValidWithNoWarning.Message" xml:space="preserve">
+    <value>License Key Valid and Active.</value>
+  </data>
+</root>

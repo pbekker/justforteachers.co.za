@@ -1,0 +1,11 @@
+/*-------- Container04 --------*/
+.Container04_style { min-width:160px; }
+.Container04_c_menu { float:left; }
+.Container04_c_help  { float:right; padding-top:8px; }
+.Container04_top_bg { background:url(images/c_bg_04.jpg) repeat-x top; }
+.Container04_top_left { background:url(images/c_left_04.jpg) no-repeat left top;}
+.Container04_top_right { background:url(images/c_right_04.jpg) no-repeat right top; }
+.Container04_top_light { background:url(images/c_light_04.png) no-repeat center top; height:35px; padding:1px 13px 0 15px; }
+.Container04_top_height { height:35px; line-height:35px; }
+.Container04_content { padding:5px 8px; text-align:left; }
+.Container04_footer { height:14px; line-height:14px; overflow:hidden; }

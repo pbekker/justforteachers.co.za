@@ -1,0 +1,27 @@
+﻿.Category_Default .category_list,
+.Category_Default .category_list ul{
+	padding:0px!important;
+	margin:0px;
+}
+.Category_Default .category_list li{
+	list-style:none;
+}
+.Category_Default .category_list li a{
+	text-decoration:none;
+	border-bottom:1px dotted #CCCCCC;
+	padding:6px 0px 6px 20px;
+	background:url(images/list_icon.png) 0px 8px no-repeat;
+	display:block;
+	color:#111;
+}
+.Category_Default .category_list li a:hover{
+	text-decoration:underline;
+}
+.Category_Default .category_list li li a{
+	padding:3px 0px 3px 20px;
+	background:none;
+	border:none;
+}
+.Category_Default .category_list li li li a{
+	padding:3px 0px 3px 40px;
+}

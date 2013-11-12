@@ -1,0 +1,203 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.22            *****/
+/************************************************************/
+ALTER TABLE {databaseOwner}jb_JobApplication ADD 
+[SelectedResumeItemID] [int] NULL,
+[StatusWorkFlow] [nvarchar](50) NULL,
+[StatusInternal] [nvarchar](50) NULL,
+[NoteInternal] [nvarchar](255) NULL;
+ 
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationAdd]    Script Date: 02/27/2011 17:06:35 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationByjb_ClassifiedsItem]    Script Date: 02/27/2011 17:06:35 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationByjb_ClassifiedsItem]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationByjb_ClassifiedsItem]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGet]    Script Date: 02/27/2011 17:06:35 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGetAll]    Script Date: 02/27/2011 17:06:35 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGetByUser]    Script Date: 02/27/2011 17:06:35 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationGetByUser]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationGetByUser]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationUpdate]    Script Date: 02/27/2011 17:06:35 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationUpdate]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationAdd]    Script Date: 02/27/2011 17:07:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE {databaseOwner}[jb_JobApplicationAdd]
+		@JobID int,
+		@ModuleID int,
+		@CreatedByUser int,
+		@ApplicantName nvarchar(50),
+		@ApplicantEmail  nvarchar(100),
+		@Message ntext,
+		@SalaryReq nvarchar(50),
+		@JobLead nvarchar(50),
+		@Image Image,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@Image1 Image,
+		@ImageContentType1 nvarchar(50),
+		@ImageContentSize1 int,
+		@ImageFileName nvarchar(255),
+		@ImageFileName1 nvarchar(255),
+		@ViewCount INT,
+		@SelectedResumeItemID int,
+		@StatusWorkFlow nvarchar(50),
+		@StatusInternal nvarchar(50),
+		@NoteInternal nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_JobApplication
+		(JobID,ModuleID,CreatedByUser,CreatedDate,ApplicantName, ApplicantEmail, Message,SalaryReq,JobLead,[Image],ImageContentType,ImageContentSize,Image1,ImageContentType1,ImageContentSize1,ImageFileName,ImageFileName1,ViewCount,SelectedResumeItemID,StatusWorkFlow,StatusInternal,NoteInternal)
+		VALUES
+		(@JobID,@ModuleID,@CreatedByUser,getdate(),@ApplicantName, @ApplicantEmail, @Message,@SalaryReq,@JobLead,CAST(@Image AS Image),@ImageContentType,@ImageContentSize,CAST(@Image1 AS Image),@ImageContentType1,@ImageContentSize1,@ImageFileName,@ImageFileName1,@ViewCount,@SelectedResumeItemID,@StatusWorkFlow,@StatusInternal,@NoteInternal)
+	SELECT SCOPE_IDENTITY()
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationByjb_ClassifiedsItem]    Script Date: 02/27/2011 17:07:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_JobApplicationByjb_ClassifiedsItem]
+		@JobID int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}jb_JobApplication WHERE
+		JobID=@JobID
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGet]    Script Date: 02/27/2011 17:07:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_JobApplicationGet]
+		@ApplicationID int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}jb_JobApplication WHERE
+		ApplicationID=@ApplicationID
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGetAll]    Script Date: 02/27/2011 17:07:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_JobApplicationGetAll]
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}jb_JobApplication
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGetByUser]    Script Date: 02/27/2011 17:07:09 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE {databaseOwner}[jb_JobApplicationGetByUser]
+		@UserID int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}jb_JobApplication WHERE
+		CreatedByUser=@UserID
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationUpdate]    Script Date: 02/27/2011 17:07:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_JobApplicationUpdate]
+		@ApplicationID int,
+		@JobID int,
+		@ModuleID int,
+		@CreatedByUser int,
+		@ApplicantName nvarchar(50),
+		@ApplicantEmail nvarchar(100),
+		@Message ntext,
+		@SalaryReq nvarchar(50),
+		@JobLead nvarchar(50),
+		@Image Image,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@Image1 Image,
+		@ImageContentType1 nvarchar(50),
+		@ImageContentSize1 int,
+		@ImageFileName nvarchar(255),
+		@ImageFileName1 nvarchar(255),
+		@ViewCount INT,
+		@SelectedResumeItemID int,
+		@StatusWorkFlow nvarchar(50),
+		@StatusInternal nvarchar(50),
+		@NoteInternal nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_JobApplication SET 
+		JobID=@JobID,
+		ModuleID=@ModuleID,
+		CreatedByUser=@CreatedByUser,
+		ApplicantName=@ApplicantName,
+		ApplicantEmail=@ApplicantEmail,
+		Message=@Message,
+		SalaryReq=@SalaryReq,
+		JobLead=@JobLead,
+		[Image]=@Image,
+		ImageContentType=@ImageContentType,
+		ImageContentSize=@ImageContentSize,
+		Image1=@Image1,
+		ImageContentType1=@ImageContentType1,
+		ImageContentSize1=@ImageContentSize1,
+		ImageFileName=@ImageFileName,
+		ImageFileName1=@ImageFileName1,
+		ViewCount=@ViewCount,
+		SelectedResumeItemID=@SelectedResumeItemID,
+		StatusWorkFlow=@StatusWorkFlow,
+		StatusInternal=@StatusInternal,
+		NoteInternal=@NoteInternal
+	WHERE
+		ApplicationID=@ApplicationID
+
+GO
+

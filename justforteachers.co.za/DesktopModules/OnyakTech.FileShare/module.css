@@ -1,0 +1,157 @@
+/* ==============================================
+CSS STYLES FOR Module Fiel Share 2012 by Chris Onyak
+Copyright Chris Onyak 2012 All Rights Reserved
+www.OnyakTech.com - Sales@OnyakTech.com
+=================================================
+*/
+
+.SubDetails {
+    float: right;
+}
+
+.searchbutton {
+    clear: both;
+    float: right;
+    text-decoration: none !important;
+    border: 1px solid #B5B5B3;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 100px;
+    font-size: 12px;
+    font-family: arial, helvetica, sans-serif;
+    padding: 6px 20px;
+    -webkit-text-shadow: 0px 0px 0 rgba(0,0,0,0.3);
+    text-shadow: 0px 0px 0 rgba(0,0,0,0.3);
+    text-align: center;
+    color: #666666;
+    background-color: #FAFAF9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FAFAF9), to(#CCCCCA));
+    background-image: -webkit-linear-gradient(top, #FAFAF9, #CCCCCA);
+    background-image: -moz-linear-gradient(top, #FAFAF9, #CCCCCA);
+    background-image: -ms-linear-gradient(top, #FAFAF9, #CCCCCA);
+    background-image: -o-linear-gradient(top, #FAFAF9, #CCCCCA);
+    background-image: linear-gradient(to bottom, #FAFAF9, #CCCCCA);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#FAFAF9, endColorstr=#CCCCCA);
+}
+
+
+    .searchbutton:hover {
+        border: 1px solid #B5B5B3;
+        background-color: #F5F5EE;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#F5F5EE), top(#F7F7F5));
+        background-image: -webkit-linear-gradient(top, #F5F5EE, #F7F7F5);
+        background-image: -moz-linear-gradient(top, #F5F5EE, #F7F7F5);
+        background-image: -ms-linear-gradient(top, #F5F5EE, #F7F7F5);
+        background-image: -o-linear-gradient(top, #F5F5EE, #F7F7F5);
+        background-image: linear-gradient(to bottom, #F5F5EE, #F7F7F5);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#F5F5EE, endColorstr=#F7F7F5);
+    }
+
+
+.SmallHelpText {
+    font-size: 80%;
+    opacity: 0.5;
+}
+
+.StepSection {
+    vertical-align: middle;
+    border-left: .5em solid #eee;
+    padding: 0 2em;
+    margin: 10px 0px;
+    height: 50px;
+    border-bottom: 1px solid #eee;
+}
+
+.StepSectionNoBorder {
+    vertical-align: middle;
+    padding: 0 2em;
+    margin: 10px 0px;
+    height: 50px;
+    border-bottom: 1px solid #eee;
+}
+
+.HeadSection {
+    background: #eee;
+    height: 15px;
+    border: 1px solid #B6BABE;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.WelcomeImage {
+    -o-box-shadow: 12px 12px 29px #555;
+    -icab-box-shadow: 12px 12px 29px #555;
+    -khtml-box-shadow: 12px 12px 29px #555;
+    -moz-box-shadow: 12px 12px 29px #555;
+    -webkit-box-shadow: 12px 12px 29px #555;
+    box-shadow: 12px 12px 29px #555;
+}
+
+.heading, .debugheading {
+    margin: 1px;
+    color: #DDDDDD;
+    padding: 3px 10px;
+    cursor: pointer;
+    position: relative;
+    background-color: #343434;
+}
+
+    .heading:hover, .debugheading:hover {
+        color: white;
+        -webkit-text-shadow: 0 0 20px rgba(255, 255, 255, .5);
+        text-shadow: 0 0 20px rgba(255, 255, 255, .5);
+    }
+
+.content, .debugcontent {
+    padding: 5px 10px;
+    background-color: #fafafa;
+}
+
+.SelectedModule {
+    background: #eaeff3;
+    position: relative;
+    padding: 10px 29px;
+    margin: 50px 10px 10px 10px;
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF56AAD2', endColorstr='#FF0067A0');
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f5f9fc), color-stop(100%, #eaeff3));
+    background-image: -webkit-linear-gradient(top, #f5f9fc 0%,#eaeff3 100%);
+    background-image: -moz-linear-gradient(top, #f5f9fc 0%,#eaeff3 100%);
+    background-image: -o-linear-gradient(top, #f5f9fc 0%,#eaeff3 100%);
+    background-image: -ms-linear-gradient(top, #f5f9fc 0%,#eaeff3 100%);
+    background-image: linear-gradient(to top, #f5f9fc 0%,#eaeff3 100%);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.SelectionList {
+    padding: 10px 10px;
+    margin: 0px 20px 0px 20px;
+    border: 1px #eaeff3;
+    background-color: #eaeff3;
+    -webkit-box-shadow: 0px 0px 2px #000; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 0px 0px 2px #000; /* FF3.5 - 3.6 */
+    box-shadow: 0px 0px 2px #000; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+}
+
+.ONYAKDV_DISPLAYSECTION {
+    margin-top: 5px;margin-bottom: 5px;margin-right: 0;margin-left: 0;
+    background-color: #eaeff3;
+    -webkit-border-radius: 12px; /* Saf3-4, iOS 1-3.2, Android <e;1.6 */
+    -moz-border-radius: 12px; /* FF1-3.6 */
+    border-radius: 12px; /* Opera 10.5, IE9, Saf5, Chrome, FF4, iOS 4, Android 2.1+ */
+    padding: 5px 5px 5px 5px;
+}
+
+.NormalSmall {
+    font-size: x-small;
+    margin-left: 15px;
+}

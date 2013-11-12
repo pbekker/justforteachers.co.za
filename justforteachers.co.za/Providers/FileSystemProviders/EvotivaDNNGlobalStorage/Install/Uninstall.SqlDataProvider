@@ -1,0 +1,50 @@
+/************************************************************/
+/*****         Uninstall SqlDataProvider                *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****         Uninstall SqlDataProvider                *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+
+/* -- Folders and Files -- */
+-- this should cascade delete Files
+DELETE FROM {databaseOwner}{objectQualifier}Folders 
+	  WHERE FolderMappingID IN 
+			(SELECT FolderMappingID 
+			   FROM {databaseOwner}{objectQualifier}FolderMappings 
+			  WHERE FolderProviderType LIKE 'Evotiva-%' 
+			)
+GO
+
+/* -- Drop FolderMappings -- */
+-- this should cascade delete FolderMappingsSettings 
+DELETE FROM {databaseOwner}{objectQualifier}FolderMappings 
+      WHERE FolderProviderType LIKE 'Evotiva-%'
+GO
+
+
+SET QUOTED_IDENTIFIER OFF
+GO
+SET ANSI_NULLS ON
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

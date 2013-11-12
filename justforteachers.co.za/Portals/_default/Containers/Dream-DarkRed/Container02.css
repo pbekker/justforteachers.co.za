@@ -1,0 +1,8 @@
+/*-------- Container02 --------*/
+.Container02_style { min-width:160px; }
+.Container02_c_menu { float:left; }
+.Container02_c_help  { float:right; padding-top:2px; }
+.Container02_top_style { padding:3px 2px; border-bottom:#9E1927 solid 1px; margin:0px; height:25px; }
+.Container02_top_height { height:25px; line-height:25px; }
+.Container02_content { padding:5px 2px 5px 2px; text-align:left; }
+.Container02_footer { height:12px; line-height:12px; overflow:hidden; }

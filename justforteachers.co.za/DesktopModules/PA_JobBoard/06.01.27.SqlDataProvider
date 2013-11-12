@@ -1,0 +1,63 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.27            *****/
+/************************************************************/
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_UtilGetDistinctLocation]    Script Date: 03/03/2011 23:56:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UtilGetDistinctLocation]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UtilGetDistinctLocation]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGetByEmployer]    Script Date: 03/04/2011 00:00:58 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_JobApplicationGetByEmployer]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_JobApplicationGetByEmployer]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_UtilGetDistinctLocation]    Script Date: 03/03/2011 23:56:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE {databaseOwner}[jb_UtilGetDistinctLocation]
+@ModuleId int
+as
+SELECT Distinct it_Postal FROM jb_ClassifiedsItem
+WHERE ModuleID = @ModuleId
+AND LEN(LTRIM(RTRIM(it_Postal))) > 0
+AND it_Postal IS NOT NULL
+AND Authed = 1
+
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_JobApplicationGetByEmployer]    Script Date: 03/04/2011 00:01:38 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE {databaseOwner}[jb_JobApplicationGetByEmployer]
+		@EmployerID INT,
+		@IsAdmin BIT = 0
+	AS
+	SET NOCOUNT ON
+	IF (@IsAdmin = 1)
+		BEGIN
+			SELECT * FROM jb_JobApplication
+		END
+	ELSE
+		BEGIN
+			SELECT * FROM jb_JobApplication
+			WHERE JobID IN (SELECT ItemID FROM jb_ClassifiedsItem WHERE CreatedByUser = @EmployerID)
+		END
+	
+GO

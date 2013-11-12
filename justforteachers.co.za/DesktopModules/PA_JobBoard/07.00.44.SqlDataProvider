@@ -1,0 +1,40 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 07.00.44            *****/
+/************************************************************/
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_UserCategoryByCategoryID]    Script Date: 11/30/2011 16:08:17 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE {databaseOwner}[jb_UserCategoryByCategoryID]
+		@ModuleID int,
+		@CurrentCategoryID int,
+		@GroupName nvarchar(255),
+		@ItemID int = NULL
+	AS
+--DECLARE @ModuleID int, @CurrentCategoryID int, @GroupName nvarchar(255), @ItemID int SET @ModuleID = 382 SET @CurrentCategoryID = 6 SET @GroupName = 'Subscription' SET @ItemID = 47
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#RETURN] ([CategoryID]) SELECT DISTINCT CategoryID FROM jb_ItemCategory WHERE ItemID = @ItemID
+BEGIN	
+	SELECT DISTINCT jb_UserCategory.UserID, Users.Email, Users.DisplayName
+	FROM jb_UserCategory, Users 
+	WHERE jb_UserCategory.UserID = Users.UserID
+	AND jb_UserCategory.CategoryID IN(SELECT * FROM [#RETURN]) 
+	AND jb_UserCategory.GroupName=@GroupName
+END
+DROP TABLE [#RETURN]
+
+GO

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DNNGo_QuickDownloads>
+  <Settings>
+
+    <Setting>
+      <Name><![CDATA[columnstyle]]></Name>
+      <Alias><![CDATA[Column Style]]></Alias>
+      <Width><![CDATA[120]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[column_two]]></DefaultValue>
+      <ControlType><![CDATA[DropDownList]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[column_one,column_two,column_three]]></ListContent>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[False]]></Required>
+      <Verification><![CDATA[]]></Verification>
+    </Setting>
+    <Setting>
+      <Name><![CDATA[thumbnail_width]]></Name>
+      <Alias><![CDATA[Thumbnail Width]]></Alias>
+      <Width><![CDATA[100]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[200]]></DefaultValue>
+      <ControlType><![CDATA[TextBox]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[]]></ListContent>
+      <Description><![CDATA[px]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[integer]]></Verification>
+    </Setting>
+    <Setting>
+      <Name><![CDATA[summarynumber]]></Name>
+      <Alias><![CDATA[Summary Number]]></Alias>
+      <Width><![CDATA[100]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[200]]></DefaultValue>
+      <ControlType><![CDATA[TextBox]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[]]></ListContent>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[integer]]></Verification>
+    </Setting>
+    
+    
+    <Setting>
+      <Name><![CDATA[fadeshow]]></Name>
+      <Alias><![CDATA[Fade Show]]></Alias>
+      <Width><![CDATA[100]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[100]]></DefaultValue>
+      <ControlType><![CDATA[TextBox]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[]]></ListContent>
+      <Description><![CDATA[ms]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[integer]]></Verification>
+    </Setting>
+    <Setting>
+      <Name><![CDATA[navigationbar]]></Name>
+      <Alias><![CDATA[Navigation bar]]></Alias>
+      <Width><![CDATA[100]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[true]]></DefaultValue>
+      <ControlType><![CDATA[CheckBox]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[]]></ListContent>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[False]]></Required>
+      <Verification><![CDATA[]]></Verification>
+    </Setting>
+  </Settings>
+</DNNGo_QuickDownloads>
+
+
+

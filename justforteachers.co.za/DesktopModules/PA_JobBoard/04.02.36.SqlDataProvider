@@ -1,0 +1,242 @@
+﻿if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_AddClassifieds]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_AddClassifieds]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UpdateClassifieds]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UpdateClassifieds]
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_AddClassifieds  
+@ModuleID       int,
+@UserName       nvarchar(100),
+@JB_JobTitle	nvarchar(255),
+@JB_JobCode	nvarchar(50),
+@JB_JobLocation	nvarchar(50),
+@JB_EmpType	nvarchar(50),
+@JB_ReqEducation	nvarchar(50),
+@JB_YearExp	int,
+@JB_Travel	nvarchar(50),
+@JB_StartingSalary	int,
+@JB_HourlyRate money,
+@JB_OtherSalary nvarchar(50),
+@JB_StartDate	datetime,
+@JB_NumberOpening	int,
+@Message	ntext,
+@JB_CompanyName	nvarchar(150),
+@JB_AddReqList	ntext,
+@JB_BenefitsList	ntext,
+@Image image, 
+@ImageContentType nvarchar(50), 
+@ImageContentSize int, 
+@Image1 image, 
+@ImageContentType1 nvarchar(50), 
+@ImageContentSize1 int, 
+@JB_ContactInfo	nvarchar(2000),
+@JB_ContactEmail	nvarchar(150),
+@PosterPassword	nvarchar(50),
+@ExpireDate	datetime,
+@Authed	bit,
+@CategoryID       int,
+@Featured	bit,
+@it_Postal nvarchar(50), 
+@ItemID   int OUTPUT
+AS
+
+IF DATEPART(YYYY,@ExpireDate) = '1900'
+	SET @ExpireDate = null
+
+
+insert into jb_ClassifiedsItem(
+  ModuleID,
+  CreatedByUser,
+  CreatedDate,
+  JB_JobTitle,
+  JB_JobCode,
+  JB_JobLocation,
+  JB_EmpType,
+  JB_ReqEducation,
+  JB_YearExp,
+  JB_Travel,
+  JB_StartingSalary,
+  JB_HourlyRate,
+  JB_OtherSalary,
+  JB_StartDate, 
+  JB_NumberOpening, 
+  Message,
+  JB_CompanyName,
+  JB_AddReqList,
+  JB_BenefitsList,
+  Image,
+  ImageContentType,
+  ImageContentSize,
+  Image1,
+  ImageContentType1,
+  ImageContentSize1,
+  JB_ContactInfo,
+  JB_ContactEmail,
+  PosterPassword,
+  ExpireDate,
+  Authed,
+Featured,
+  CategoryID,
+it_Postal	
+)
+values (
+  @ModuleID,
+  @UserName,
+  getdate(),
+@JB_JobTitle,
+@JB_JobCode,
+@JB_JobLocation,
+@JB_EmpType,
+@JB_ReqEducation,
+@JB_YearExp,
+@JB_Travel,
+@JB_StartingSalary,
+@JB_HourlyRate,
+@JB_OtherSalary,
+@JB_StartDate,
+@JB_NumberOpening,
+@Message,
+@JB_CompanyName,
+@JB_AddReqList,
+@JB_BenefitsList,
+@Image, 
+@ImageContentType, 
+@ImageContentSize, 
+@Image1, 
+@ImageContentType1, 
+@ImageContentSize1, 
+@JB_ContactInfo,
+@JB_ContactEmail,
+@PosterPassword,
+@ExpireDate,
+@Authed,
+@Featured,
+@CategoryID,
+@it_Postal	
+	
+)
+SELECT
+   @ItemID = @@Identity
+
+IF (SELECT SettingValue FROM {objectQualifier}ModuleSettings WHERE ModuleID = @ModuleID AND SettingName = 'PF_ItemsCountOption') =  'TABLE'
+	BEGIN				
+		EXEC jb_UtilUpdateItemsCount @CategoryID, 0
+	END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_UpdateClassifieds
+	@ItemID         int,
+	@UserName       nvarchar(100),
+	@JB_JobTitle	nvarchar(255),
+	@JB_JobCode	nvarchar(50),
+	@JB_JobLocation	nvarchar(50),
+	@JB_EmpType	nvarchar(50),
+	@JB_ReqEducation	nvarchar(50),
+	@JB_YearExp	int,
+	@JB_Travel	nvarchar(50),
+	@JB_StartingSalary	int,
+	@JB_HourlyRate money,
+	@JB_OtherSalary nvarchar(50),
+	@JB_StartDate	datetime,
+	@JB_NumberOpening	int,
+	@Message	ntext,
+	@JB_CompanyName	nvarchar(150),
+	@JB_AddReqList	ntext,
+	@JB_BenefitsList	ntext,
+	@Image image, 
+	@ImageContentType nvarchar(50), 
+	@ImageContentSize int, 
+	@Image1 image, 
+	@ImageContentType1 nvarchar(50), 
+	@ImageContentSize1 int, 
+	@JB_ContactInfo	nvarchar(2000),
+	@JB_ContactEmail	nvarchar(150),
+	@PosterPassword	nvarchar(50),
+	@ExpireDate	datetime,
+	@Authed	bit,
+	@CategoryID       int,
+	@Featured	bit,
+	@it_Postal nvarchar(50), 
+	@ActionCode nvarchar(50)
+AS
+IF DATEPART(YYYY,@ExpireDate) = '1900'
+	SET @ExpireDate = null
+
+update jb_ClassifiedsItem
+	set    	--CreatedByUser   = @UserName,
+	         	--CreatedDate     = GetDate(),
+		LastUpdate	 = GetDate(),
+	      	JB_JobTitle = @JB_JobTitle,
+		JB_JobCode = @JB_JobCode,
+		JB_JobLocation = @JB_JobLocation,
+		JB_EmpType =  @JB_EmpType,
+		JB_ReqEducation = @JB_ReqEducation,
+		JB_YearExp = @JB_YearExp,
+		JB_Travel = @JB_Travel,
+		JB_StartingSalary = @JB_StartingSalary,
+		JB_HourlyRate = @JB_HourlyRate,
+		JB_OtherSalary = @JB_OtherSalary,
+		JB_StartDate = @JB_StartDate,
+		JB_NumberOpening = @JB_NumberOpening,
+		Message = @Message,
+		JB_CompanyName = @JB_CompanyName,
+		JB_AddReqList	= @JB_AddReqList,
+		JB_BenefitsList = @JB_BenefitsList,
+		JB_ContactInfo = @JB_ContactInfo,
+		JB_ContactEmail = @JB_ContactEmail,
+		--PosterPassword	= @PosterPassword,
+		ExpireDate = @ExpireDate,
+		Authed = @Authed,
+		Featured =  @Featured,
+		CategoryID = @CategoryID,
+		it_Postal = @it_Postal
+	where  ItemID = @ItemID
+
+If @ActionCode =  'ChangePassword'
+BEGIN
+	UPDATE jb_ClassifiedsItem
+	SET 	PosterPassword	= @PosterPassword 
+	WHERE ItemID = @ItemID
+END
+	
+
+IF @ImageContentSize > 0   OR  @ImageContentSize = -1
+BEGIN
+	UPDATE    jb_ClassifiedsItem
+	SET 	Image = @Image, 
+		ImageContentType = @ImageContentType, 
+		ImageContentSize = @ImageContentSize 
+	WHERE
+		ItemID = @ItemID
+END
+IF @ImageContentSize1 > 0   OR  @ImageContentSize1 = -1
+BEGIN
+	UPDATE    jb_ClassifiedsItem
+	SET 	Image1 = @Image1, 
+		ImageContentType1 = @ImageContentType1, 
+		ImageContentSize1 = @ImageContentSize1 
+	WHERE
+		ItemID = @ItemID
+END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON

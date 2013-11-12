@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DNNGo_QuickDownloads>
+  <XmlDB>
+    <Name>
+      <![CDATA[Effect_07_UnoSlider]]>
+    </Name>
+    <Description>
+      <![CDATA[UnoSlider is an advanced image and content slider which is built with responsive design and mobile devices in mind.]]>
+    </Description>
+    <Version>
+      <![CDATA[01.00.00]]>
+    </Version>
+    <Thumbnails>
+      <![CDATA[http://www.dnngo.net/DesktopModules/DNNGo_QuickDownloads/Effects/Effect_07_UnoSlider/preview.jpg]]>
+    </Thumbnails>
+    <EffectScript>
+      <![CDATA[unoslider.js,unoslider.css]]>
+    </EffectScript>
+    <GlobalScript>
+      <![CDATA[jquery.prettyPhoto.js,jquery.prettyPhoto.css]]>
+    </GlobalScript>
+ 
+    <DemoUrl>
+      <![CDATA[http://www.dnngo.net/OurModules/QuickDownloads.aspx]]>
+    </DemoUrl>
+    <SettingName>
+      <![CDATA[Effect]]>
+    </SettingName>
+    <DisplayEffect>
+      <![CDATA[true]]>
+    </DisplayEffect>
+    <DataListOption>
+      <![CDATA[Effect]]>
+    </DataListOption>
+  </XmlDB>
+</DNNGo_QuickDownloads>

@@ -1,0 +1,335 @@
+/*-- style for DNN Job Board PA --*/
+	.JediCss_CompanyName
+	{		
+		font-family: Tahoma, Arial, Helvetica;
+		font-size: 11px;
+		font-weight: bold;
+		font-style: italic;	
+		color: black;	
+	}
+	.JediCss_TopStrip
+	{
+		/* Gray Theme*/
+		background-color: #cccccc; 
+		font-family: Verdana;
+		font-size:14px;
+		font-weight:bold;
+	}
+	.JediCss_TableHeader
+	{
+		
+		color:black;
+		background-color: #cccccc; 
+		font-family: Verdana;
+		font-weight:bold;
+		
+	}
+	TD.JediCss_dgHeaderAltItem, .JediCss_dgHeaderAltItem
+	{	
+		background-color: #dddddd; 
+		white-space: normal;
+		
+	}
+	.JediCss_ParentCategory
+	{
+		/* Gray Theme*/
+		background-color: #cccccc; 
+		font-family: Verdana;
+		font-size:14px;
+		font-weight:bold;
+	}
+	.JediCss_ChildCategory
+	{
+		
+		
+	}
+	.JediCss_ListingsPanel
+	{
+		background-color: #f5f5f5;
+		
+	}
+	.JediCss_AnnouncementPanel
+	{
+		background-color: Black;
+		font-family: Verdana;
+		font-size:11px;
+		color:White;		
+	}
+	.JediCss_Confirmation
+	{
+		background-color:  #f5f5f5;
+		
+	}
+	.JediCss_ItemTop
+	{
+		font-family: Verdana;
+		font-size:11px;
+		font-weight:bold;
+		border-top: #cccccc 1px solid;
+		white-space: normal;
+		
+	}
+
+
+
+	.JediCss_ItemBottom
+	{
+			font-family: Tahoma, Arial, Helvetica;
+		font-size: 11px;
+		font-weight: normal;
+		line-height: 12px     
+		
+	}
+
+	.JediCss_MoreInfoTitle
+	{
+		
+		font-family: Verdana;
+		font-size:13px;
+		font-weight:bold;
+		
+		
+	}
+	
+	
+	.JediCss_FeaturesChecklist
+	{
+		
+		background-color: Transparent;
+		
+		
+	}
+	
+	.JediCss_AddItem
+	{
+		
+		background-color: Transparent;
+		
+		
+	}
+	.JediCss_DashedLine
+	{
+		BORDER-TOP: #999999 1px dashed; 
+		MARGIN: 3px 0px; 
+		COLOR: #ffffff; 
+		HEIGHT: 0px
+			
+	}
+	TD.JediCss_LeftDashedLine
+	{
+		BORDER-LEFT: #bdbdbd 1px dashed; 
+		white-space: normal;	
+	}
+	TD.JediCss_RightDashedLine
+	{
+		BORDER-RIGHT: #bdbdbd 1px dashed; 	
+		white-space: normal;
+	}
+	TD.JediCss_RightDottedLine
+	{
+		BORDER-RIGHT: #cccccc 1px dotted; 	
+		white-space: normal;
+	}
+	.JediCss_pnlQuickSearch
+	{
+		background-color: #969696;
+		/*background-color: Transparent; */			
+	}
+		
+		/* Style for ModalPopup */
+	.JediCss_modalPopup 
+	{
+		background-color:#ffffff;
+		border-style: solid 2px #003366;
+		padding: 8px;
+		max-height: 300px;		
+	}
+
+	.JediCss_modalBackground 
+	{
+		background-color:Gray;
+		filter: alpha(opacity=55);
+		opacity: 0.55;
+	}
+	.JediCss_Button 
+	{
+		color: #777777; 
+		font-size: 12px; 
+		font-weight: bold; 
+		padding: 0px 4px 2px 4px; 
+		border: 1px solid #CCCCCC; 
+		cursor: pointer;
+	}
+.JediCss_IPNWait
+{	
+	font-family: Verdana;
+	font-size:13px;
+	font-weight:bold;
+	
+}
+.JediCss_Miles
+{	
+	font-weight:bold;
+	color: #E56717;	
+}
+.Speerio-Tabs { width:100%; color: black; font-family: Verdana,Arial,Helvetica,Sans Serif}
+.Speerio-TabLeftSpacer {width:10%;  BORDER-BOTTOM: 1px solid black}
+.Speerio-TabRightSpacer {width:10%; BORDER-BOTTOM: 1px solid black}
+.Speerio-SelectedTab { width:20%; BORDER-RIGHT: 1px solid black; BORDER-TOP: 1px solid black; BORDER-LEFT: 1px solid black; background-color: #F7F7F7}
+.Speerio-LeftTab {cursor: hand; width:20%;  BORDER-TOP: 1px solid #cccccc; BORDER-LEFT: 1px solid #cccccc; CURSOR: hand; BORDER-BOTTOM: 1px solid black}
+.Speerio-RightTab {cursor: hand; width:20%;  BORDER-RIGHT: 1px solid #cccccc; BORDER-TOP: 1px solid #cccccc; BORDER-LEFT: medium none; CURSOR: hand; BORDER-BOTTOM: 1px solid black}
+.Speerio-TabLabel { font-size: 8pt; font-weight: bold; color: black; font-family: Verdana,Arial,Helvetica,Sans Serif}
+.Speerio-Div {background-color: #F7F7F7}
+
+
+/* ==============================================
+   MISC: 
+   ==============================================
+*/ 
+HRDashed { 
+    height: 10px; 
+    color: #FFFFFF; 
+    border-top: 1px dashed #999999; 
+    margin: 3px 0px;
+  }
+  
+  
+  .JediCss_AutoComplete_CompletionListElement 
+{  
+    visibility : hidden; 
+    margin : 0px! important; 
+    background-color : inherit; 
+    color : black; 
+    border : solid 1px gray; 
+    cursor : pointer; 
+    text-align : left; 
+    list-style-type : none; 
+    font-family : Verdana; 
+    font-size: 11px; 
+    padding : 0; 
+} 
+.JediCss_AutoComplete_ListItem 
+{ 
+    background-color: white; 
+    padding : 1px; 
+}      
+.JediCss_AutoComplete_HighlightedListItem 
+{ 
+    background-color: #c3ebf9; 
+    padding : 1px; 
+}
+
+/* ==============================================
+   RATING: ASP.NET AjaxControlToolKit Original
+   ============================================== 
+*/ 
+.RatingStar
+{
+font-size: 0pt;   
+width: 18px;   
+height: 18px;   
+margin: 0px;   
+padding: 0px;   
+cursor: pointer;   
+display: block;   
+background-repeat: no-repeat;
+}
+ 
+.RatingStarEmpty {
+background-image:url("Images/RatingStarsNf.png");
+background-position:0 0;
+background-repeat:no-repeat;
+}
+.RatingStarSaved {
+background-image:url("Images/RatingStarsNf.png");
+background-position:-18px 0;
+background-repeat:no-repeat;
+}
+.RatingStarFilled {
+background-image:url("Images/RatingStarsNf.png");
+background-position:-36px 0;
+background-repeat:no-repeat;
+}
+/* ==============================================
+   RATING: MS ASP.NET AjaxControlToolKit 
+   ============================================== 
+*/ 
+.RatingStar_Ms   
+{   
+font-size: 0pt;   
+width: 13px;   
+height: 12px;   
+margin: 0px;   
+padding: 0px;   
+cursor: pointer;   
+display: block;   
+background-repeat: no-repeat;   
+}   
+
+.RatingStarFilled_Ms
+{
+background-image: url("Images/RatingStarFilled.png"); 
+}
+
+.RatingStarEmpty_Ms
+{
+background-image: url("Images/RatingStarEmpty.png"); 
+}
+
+.RatingStarSaved_Ms
+{
+background-image: url("Images/RatingStarSaved.png"); 
+}
+
+/* ==============================================
+   RATING: Nf
+   ============================================== 
+*/
+.RatingStar_Nf
+{
+font-size: 0pt;   
+width: 18px;   
+height: 18px;   
+margin: 0px;   
+padding: 0px;   
+cursor: pointer;   
+display: block;   
+background-repeat: no-repeat;
+}
+ 
+.RatingStarEmpty_Nf {
+background-image:url("Images/RatingStarsNf.png");
+background-position:0 0;
+background-repeat:no-repeat;
+}
+.RatingStarSaved_Nf {
+background-image:url("Images/RatingStarsNf.png");
+background-position:-18px 0;
+background-repeat:no-repeat;
+}
+.RatingStarFilled_Nf {
+background-image:url("Images/RatingStarsNf.png");
+background-position:-36px 0;
+background-repeat:no-repeat;
+}
+	
+/* ==============================================
+   ModalPopuu
+   ============================================== 
+*/
+.ModalBackground
+{
+  background-color:Gray;
+  filter:alpha(opacity=55);
+  opacity:0.55;  
+}
+ 
+.ModalWindow
+{
+  border: solid1px#c0c0c0;
+  background:#f0f0f0;
+  padding: 0px10px10px10px;
+  position:absolute;
+  top:-1000px;
+}
+ 

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DNNGo_QuickDownloads>
+  <XmlDB>
+    <Name>
+      <![CDATA[DashBoard_Author]]>
+    </Name>
+    <Description>
+      <![CDATA[]]>
+    </Description>
+    <Version>
+      <![CDATA[01.00.00]]>
+    </Version>
+    <Thumbnails>
+      <![CDATA[http://www.dnngo.net/DesktopModules/DNNGo_QuickDownloads/Effects/DashBoard_Author/preview.jpg]]>
+    </Thumbnails>
+    <EffectScript>
+      <![CDATA[]]>
+    </EffectScript>
+    <GlobalScript>
+      <![CDATA[]]>
+    </GlobalScript>
+    <DemoUrl>
+      <![CDATA[http://www.dnngo.net/OurModules/QuickDownloads/Example1.aspx]]>
+    </DemoUrl>
+    <SettingName>
+      <![CDATA[Effect]]>
+    </SettingName>
+    <DisplayEffect>
+      <![CDATA[false]]>
+    </DisplayEffect>
+    <DataListOption>
+      <![CDATA[Author]]>
+    </DataListOption>
+</XmlDB>
+</DNNGo_QuickDownloads>

@@ -1,0 +1,62 @@
+<div class="download_tab">
+	<div class="ranking_tabs">
+				<ul class="ui-tabs-nav clearfix">
+					<li class="ui-state-default"><a href="#tabs-1">Recent</a></li>
+					<li class="ui-state-default"><a href="#tabs-2">Populer</a></li>
+					<li class="ui-state-default"><a href="#tabs-3">Tag</a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="tabs-1" class="ui-tabs-panel ui-tabs-hide">
+						#set($DataList1 = ${xf.ViewArticleRankingList("time",1,4)})
+									#if($DataList1.Count > 0)
+										<ul class="QuickDownloads_RankingList">
+										#foreach($DataItem in $DataList1)
+											<li class="clearfix">
+												<div class="post_thum"><a href="${xf.GoUrl($DataItem)}"><img src="${xf.ViewPicture($DataItem)}" style="width:90px;" alt="" title="" /></a>
+												</div>
+												<h4 class="post_title"><a href="${xf.GoUrl($DataItem)}">$DataItem.Name</a></h4>
+												<div class="post_date">$DataItem.LastTime.ToString()</div>
+											</li>
+										#end
+										</ul>
+						#end
+					</div>
+					<div id="tabs-2" class="ui-tabs-panel ui-tabs-hide">
+						#set($DataList3 = ${xf.ViewArticleRankingList("download",1,4)})
+									#if($DataList3.Count > 0)
+										<ul class="QuickDownloads_RankingList">
+										#foreach($DataItem in $DataList3)
+											<li class="clearfix">
+												<div class="post_thum"><a href="${xf.GoUrl($DataItem)}"><img src="${xf.ViewPicture($DataItem)}" style="width:90px;" alt="" title="" /></a>
+												</div>
+												<h4 class="post_title"><a href="${xf.GoUrl($DataItem)}">$DataItem.Name</a></h4>
+												<div class="post_date">$DataItem.LastTime.ToString()</div>
+											</li>
+										#end
+										</ul>
+									#end
+					</div>
+					<div id="tabs-3" class="ui-tabs-panel ui-tabs-hide">
+						#set($DataList2 = ${xf.ViewTagList("random",1,10)})
+							#if($DataList2.Count > 0)
+								<div class="tagcloud clearfix">
+									#foreach($DataItem in $DataList2)
+									       <a href="${xf.GoUrl($DataItem)}" >$DataItem.ContentText</a> 
+									#end  
+								</div>
+							#end
+					</div>
+			</div>
+	</div>
+</div>
+<script type="text/javascript">
+			$(function(){
+				// Tabs
+				$('.download_tab .ranking_tabs').tabs({
+					event:'click', //The event on which to trigger the accordion.
+					fx:{ opacity: 'toggle',duration:150 },
+					collapsible:false, //Whether all the sections can be closed at once. Allows collapsing the active section by the triggering event (click is the default).
+					selected:0 
+				});
+			});
+		</script>

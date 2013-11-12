@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllCat.Text" xml:space="preserve">
+    <value>Show Last 20 Files</value>
+  </data>
+  <data name="chkAllowAnnonComment.Text" xml:space="preserve">
+    <value>Allow Anonymous Users to Comment Files</value>
+  </data>
+  <data name="chkAllowAnnonRating.Text" xml:space="preserve">
+    <value>Allow Anonymous Users to Rate Files</value>
+  </data>
+  <data name="chkAllowComments.Text" xml:space="preserve">
+    <value>Allow Comments (Read and Submit - All Users)</value>
+  </data>
+  <data name="chkAllowEmailSubscriptions.Text" xml:space="preserve">
+    <value>Allow Email Subscriptions</value>
+  </data>
+  <data name="chkAllowFileAttachments.Text" xml:space="preserve">
+    <value>Allow File Attachments</value>
+  </data>
+  <data name="chkAllowPublishAcrossPortals.Text" xml:space="preserve">
+    <value>Allow Files to be published to other portals</value>
+  </data>
+  <data name="chkAllowPublishToRoles.Text" xml:space="preserve">
+    <value>Allow Files to be published to roles</value>
+  </data>
+  <data name="chkAllowPublishToUser.Text" xml:space="preserve">
+    <value>Allow Files to be published to specific users</value>
+  </data>
+  <data name="chkAllowRating.Text" xml:space="preserve">
+    <value>Allow Ratings (All Users)</value>
+  </data>
+  <data name="chkAllowRecentComments.Text" xml:space="preserve">
+    <value>Display Recent Comments in File List</value>
+  </data>
+  <data name="chkEnableEncryption.Text" xml:space="preserve">
+    <value>Enable URL Encryption</value>
+  </data>
+  <data name="chkHideCategoryTree.Text" xml:space="preserve">
+    <value>Hide Category Selection Tree</value>
+  </data>
+  <data name="chkMustBeApproved.Text" xml:space="preserve">
+    <value>Files Must Be Approved Before Published</value>
+  </data>
+  <data name="chkRSSApprovalRequired.Text" xml:space="preserve">
+    <value>New RSS Feed Files Must Be Approved Before Published</value>
+  </data>
+  <data name="chkShowCategorySelection.Text" xml:space="preserve">
+    <value>Show Category Selection</value>
+  </data>
+  <data name="chkShowSearch.Text" xml:space="preserve">
+    <value>Show Search </value>
+  </data>
+  <data name="chkTop40Only.Text" xml:space="preserve">
+    <value>Show Last 40 Files Only In All Categories (Does not limit Searching)</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>File Share Settings</value>
+  </data>
+  <data name="lblApprovedEmail.Help" xml:space="preserve">
+    <value>This is the email template to use when a new File is approved.  The email is sent to the creator.</value>
+  </data>
+  <data name="lblApprovedEmail.Text" xml:space="preserve">
+    <value>Approved Email Template</value>
+  </data>
+  <data name="lblApprovedEmailSubject.Help" xml:space="preserve">
+    <value>This is the subject of the emails to be used when notifying File authors when their postings have been approved.</value>
+  </data>
+  <data name="lblApprovedEmailSubject.Text" xml:space="preserve">
+    <value>Approved File Email Subject</value>
+  </data>
+  <data name="lblCatFilter.Text" xml:space="preserve">
+    <value>Category Filter:</value>
+  </data>
+  <data name="lblCommentEmailBody.Help" xml:space="preserve">
+    <value>This is the email body to be used when sending emails about new comments</value>
+  </data>
+  <data name="lblCommentEmailBody.Text" xml:space="preserve">
+    <value>New Comment Email Body</value>
+  </data>
+  <data name="lblCommentEmailSubject.Help" xml:space="preserve">
+    <value>This is the subject of the emails to be sent out when a new comment is posted on an File</value>
+  </data>
+  <data name="lblCommentEmailSubject.Text" xml:space="preserve">
+    <value>New Comment Email Subject</value>
+  </data>
+  <data name="lblCommentTemplate.Text" xml:space="preserve">
+    <value>File Comment Template</value>
+  </data>
+  <data name="lblDisplayListItemTemplate.Help" xml:space="preserve">
+    <value>This is HTML Template used to display each File in the Files list when searching Files</value>
+  </data>
+  <data name="lblDisplayListItemTemplate.Text" xml:space="preserve">
+    <value>File List Item Display Template</value>
+  </data>
+  <data name="lblDisplayTemplate.Help" xml:space="preserve">
+    <value>This is the HTML Template used when displaying the full File</value>
+  </data>
+  <data name="lblDisplayTemplate.Text" xml:space="preserve">
+    <value>File Display Template</value>
+  </data>
+  <data name="lblNewFileEmail.Help" xml:space="preserve">
+    <value>This is the email template to use when sending people in the Approval roles notifications about new Files.</value>
+  </data>
+  <data name="lblNewFileEmail.Text" xml:space="preserve">
+    <value>New File Approved Email Template</value>
+  </data>
+  <data name="lblNewFileEmailSubject.Help" xml:space="preserve">
+    <value>The email subject to use when sending approvers an email notification of new Files they need to approve</value>
+  </data>
+  <data name="lblNewFileEmailSubject.Text" xml:space="preserve">
+    <value>New File Approved Email Subject</value>
+  </data>
+  <data name="lblRedirectAfterSubmitURL.Help" xml:space="preserve">
+    <value>This is the web page authors will be redirected to after they submit a new File.</value>
+  </data>
+  <data name="lblRedirectAfterSubmitURL.Text" xml:space="preserve">
+    <value>URL To Redirect After New File Submit</value>
+  </data>
+  <data name="lblSendEmailFromAddress.Help" xml:space="preserve">
+    <value>This is the email address all emails will be sent from</value>
+  </data>
+  <data name="lblSendEmailFromAddress.Text" xml:space="preserve">
+    <value>Send Email From Address</value>
+  </data>
+  <data name="lblSubscriptionEmailBody.Help" xml:space="preserve">
+    <value>This is the email body of the emails sent out to people who have subscribed to be notified of new listings in a specific category.</value>
+  </data>
+  <data name="lblSubscriptionEmailBody.Text" xml:space="preserve">
+    <value>Subecription Email Body</value>
+  </data>
+  <data name="lblSubscriptionEmailSubject.Help" xml:space="preserve">
+    <value>This is the email subject of the emails sent out to people who have subscribed to be notified via email of new Files posted to a category</value>
+  </data>
+  <data name="lblSubscriptionEmailSubject.Text" xml:space="preserve">
+    <value>Subscription Email Subject</value>
+  </data>
+  <data name="plRequiresApproval.Help" xml:space="preserve">
+    <value>Check to require all Files to be approved before they are published.</value>
+  </data>
+  <data name="chkHideCategoryLinks.Text" xml:space="preserve">
+    <value>Hide Category Links displayed at the top of the File listings</value>
+  </data>
+  <data name="chkModuleInstanceFilesOnly.Text" xml:space="preserve">
+    <value>Display Files created with this instance of File Share only</value>
+  </data>
+  <data name="chkRemovePaging.Text" xml:space="preserve">
+    <value>Remove Pagination and display only the latest Files</value>
+  </data>
+  <data name="lblCheckOutItemListing.Help" xml:space="preserve">
+    <value>This is the template used to display items in the My Bundle screen</value>
+  </data>
+  <data name="lblCheckOutItemListing.Text" xml:space="preserve">
+    <value>My Bundle Item Listing Template</value>
+  </data>
+  <data name="lblEmailDeliveryTemplate.Help" xml:space="preserve">
+    <value>This is the email template used when sending emails out with a link to a bundled zip file.</value>
+  </data>
+  <data name="lblEmailDeliveryTemplate.Text" xml:space="preserve">
+    <value>Email Template for File Delivery Notices</value>
+  </data>
+  <data name="lblMissingImageTemplate.Help" xml:space="preserve">
+    <value>This is the HTML that will be added to an entry in the My Bundle listing if the related file is not found on the server. </value>
+  </data>
+  <data name="lblMissingImageTemplate.Text" xml:space="preserve">
+    <value>Missing File Template in My Bundle</value>
+  </data>
+  <data name="lblOrderEmailToTemplate.Help" xml:space="preserve">
+    <value>This is the email template used when sending out emails to a list of people (Email Download) from the My Bundle screen.</value>
+  </data>
+  <data name="lblOrderEmailToTemplate.Text" xml:space="preserve">
+    <value>Email File Bundle Template</value>
+  </data>
+  <data name="chkEnableSingleFileDownload.Text" xml:space="preserve">
+    <value>Allow Single File Download</value>
+  </data>
+  <data name="lblTemplateSamples.Text" xml:space="preserve">
+    <value>&lt;table cellpadding="2" cellspacing="2" border="1"&gt;
+	&lt;tr&gt;
+		&lt;td class="Normal"&gt;&lt;strong&gt;File List Item Display Template Samples&lt;/strong&gt; 
+		- Provided to give you an idea on how you can customize the look of your 
+		file listing&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td  class="Normal"&gt;
+		&lt;img border="0" src="SAMPLETEMPLATEIMAGEPATH1"&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td  class="Normal"&gt;&amp;lt;b&amp;gt;&amp;lt;a href=&amp;quot;[VIEWLINK]&amp;quot;&amp;gt;[TITLE]&amp;lt;/a&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;br&amp;gt;&amp;lt;i&amp;gt;&amp;lt;font 
+		size=&amp;quot;1&amp;quot;&amp;gt;[DATEPUBLISHED]&amp;lt;/font&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;br&amp;gt;&lt;br&gt;&amp;lt;font 
+		size=&amp;quot;1&amp;quot;&amp;gt;[PREMIUMIMAGE]([VIEWCOUNTIMAGE] Views) [TOTALVOTES] Votes 
+		&amp;amp;nbsp;&amp;amp;nbsp; Comments: [TOTALCOMMENTS]&amp;lt;/font&amp;gt;&lt;br&gt;&amp;lt;br&amp;gt;[SUMMARY]&amp;lt;br&amp;gt;&amp;lt;a 
+		href=&amp;quot;[VIEWLINK]&amp;quot;&amp;gt;View Complete Details and Download Options&amp;lt;/a&amp;gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td  class="Normal"&gt;
+		&lt;img border="0" src="SAMPLETEMPLATEIMAGEPATH2"&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td  class="Normal"&gt;[PREMIUMIMAGE][QUICKADDTOBUNDLE] - &amp;lt;a href=&amp;quot;[VIEWLINK]&amp;quot;&amp;gt;[TITLE]&amp;lt;/a&amp;gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;/table&gt;</value>
+  </data>
+  <data name="lblTemplateTags.Text" xml:space="preserve">
+    <value>&lt;table cellpadding="0" cellspacing="0"&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;strong&gt;Token&lt;/strong&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[RATINGIMAGE]&lt;/td&gt;
+		&lt;td&gt;Displays a Thumb-Up Image or a Thumb-Down image based on the current votes.&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[PREMIUMIMAGE]&lt;/td&gt;
+		&lt;td&gt;Displays an image indicating if the entry is a &amp;quot;Premium&amp;quot; or 
+		&amp;quot;Priority&amp;quot; listing.&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td style="height: 19px"&gt;[TOTALCOMMENTS]&lt;/td&gt;
+		&lt;td style="height: 19px"&gt;Displayes the total number of comments for the 
+		entry.&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[TOTALVOTES]&lt;/td&gt;
+		&lt;td&gt;Displays the total number of postive and negative votes for the 
+		entry.&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[VIEWCOUNTIMAGE]&lt;/td&gt;
+		&lt;td&gt;Displays the View Count Image&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[COMMENTS]&lt;/td&gt;
+		&lt;td&gt;Displays the Comments for the current entry.&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td style="height: 19px"&gt;[TITLELINK]&lt;/td&gt;
+		&lt;td style="height: 19px"&gt;Displays the Title of the entry as a clickable link that will open 
+		the entry detail screen.&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[VIEWLINK]&lt;/td&gt;
+		&lt;td&gt;Displays the URL to open the File, can be used to create your own 
+		hyperlink tag&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[INSTANTDOWNLOAD]&lt;/td&gt;
+		&lt;td&gt;Downloads the first file in the group instantly without going to checkout&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[DATEPUBLISHED]&lt;/td&gt;
+		&lt;td&gt;Displays the date the entry was published&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[TITLE]&lt;/td&gt;
+		&lt;td&gt;Displays the Title of the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[SUMMARY]&lt;/td&gt;
+		&lt;td&gt;Displays the Summary of the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[BODY]&lt;/td&gt;
+		&lt;td&gt;Displays the Body of the entry&lt;/td&gt;
+	&lt;/tr&gt;
+		&lt;tr&gt;
+		&lt;td&gt;[DATEAPPROVED]&lt;/td&gt;
+		&lt;td&gt;Displays the date the entry was approved&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[DATECREATED]&lt;/td&gt;
+		&lt;td&gt;Displays the date the entry was created&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[EMAILCOUNT]&lt;/td&gt;
+		&lt;td&gt;Displays the total number of emails sent for the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[DATEMODIFIED]&lt;/td&gt;
+		&lt;td&gt;Displays the date the entry was last modified&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[KEYWORDS]&lt;/td&gt;
+		&lt;td&gt;Displays the Key Words for the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td style="height: 19px"&gt;[LASTVIEWDATE]&lt;/td&gt;
+		&lt;td style="height: 19px"&gt;Displays the last time the entry detail was viewed.&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[NEGATIVERATINGS]&lt;/td&gt;
+		&lt;td&gt;Displays the total negative ratings for the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[POSITIVERATINGS]&lt;/td&gt;
+		&lt;td&gt;Displays the total positive ratings for the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;[PREMIUM]&lt;/td&gt;
+		&lt;td&gt;Displays True or False for the Premium (Priority) status of the 
+		entry&lt;/td&gt;
+	&lt;/tr&gt;
+    &lt;tr&gt;
+		&lt;td&gt;[VIEWCOUNT]&lt;/td&gt;
+		&lt;td&gt;Displays the total times the entry detail was viewed&lt;/td&gt;
+	&lt;/tr&gt;
+	    &lt;tr&gt;
+		&lt;td&gt;[ARCHIVEDDATE]&lt;/td&gt;
+		&lt;td&gt;Displays the archive date for the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	    &lt;tr&gt;
+		&lt;td&gt;[CREATEDBYUSERNAME]&lt;/td&gt;
+		&lt;td&gt;Displays the user name of the person that created the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	    &lt;tr&gt;
+		&lt;td&gt;[CREATEDBYUSERID]&lt;/td&gt;
+		&lt;td&gt;Displays the User ID of the person that created the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	    &lt;tr&gt;
+		&lt;td&gt;[CREATEDBYDISPLAYNAME]&lt;/td&gt;
+		&lt;td&gt;Displays the display name of the person that created the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	    &lt;tr&gt;
+		&lt;td&gt;[CREATEDBYEMAIL]&lt;/td&gt;
+		&lt;td&gt;Displays the email address of the person that created the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	    &lt;tr&gt;
+		&lt;td&gt;[CREATEDBYFIRSTNAME]&lt;/td&gt;
+		&lt;td&gt;Displays the first name of the person that created the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	    &lt;tr&gt;
+		&lt;td&gt;[CREATEDBYLASTNAME]&lt;/td&gt;
+		&lt;td&gt;Displays the last name of the person that created the entry&lt;/td&gt;
+	&lt;/tr&gt;
+	    &lt;tr&gt;
+		&lt;td&gt;[QUICKADDTOBUNDLE]&lt;/td&gt;
+		&lt;td&gt;(Master List Only) Displays an image that when clicked will add all files related to the entry to the current users Bundle&lt;/td&gt;
+	&lt;/tr&gt;
+	    
+&lt;/table&gt;</value>
+  </data>
+  <data name="chkEnableSimpleMode.Text" xml:space="preserve">
+    <value>Enable Simple Mode (Text Descriptions, Limited Options, etc)</value>
+  </data>
+  <data name="chkEnableAnonUserSingleFileDownload.Text" xml:space="preserve">
+    <value>Allow Anonymous Users to Download Single Files</value>
+  </data>
+  <data name="chkHideRSSOutGoing.Text" xml:space="preserve">
+    <value>Hide Outgoing RSS Feed</value>
+  </data>
+  <data name="chkShowDataGrid.Text" xml:space="preserve">
+    <value>Show Files in Data Grid, Leave UnChecked for Standard Templated Listing</value>
+  </data>
+  <data name="chkShowUserFilesOnly.Text" xml:space="preserve">
+    <value>Show only files uploaded by the current user</value>
+  </data>
+  <data name="chkEnableJQueryMobile.Text" xml:space="preserve">
+    <value>Enable Mobile Device Features (Requires jQuery 1.6.4 or newer.  You can set this in the Host Settings.)</value>
+  </data>
+  <data name="chkShowOnlyCategporiesCreatedWithThisInstance.Text" xml:space="preserve">
+    <value>Show Categories created in this module instance only</value>
+  </data>
+  <data name="chkAllowAttributeSearch.Text" xml:space="preserve">
+    <value>Enable Attribute Search</value>
+  </data>
+  <data name="chkEnableAdvancedSearch.Text" xml:space="preserve">
+    <value>Enable Advanced Search (Requires Attribute Templates)</value>
+  </data>
+  <data name="chkAllowDisplayToggle.Text" xml:space="preserve">
+    <value>Allow users to toggle display mode</value>
+  </data>
+</root>

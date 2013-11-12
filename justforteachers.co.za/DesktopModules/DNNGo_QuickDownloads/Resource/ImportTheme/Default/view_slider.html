@@ -1,0 +1,43 @@
+ 
+<div class="flexslider loading" style="width:${xf.ViewXmlSetting("Width","500")}px; height:${xf.ViewXmlSetting("Height","400")}px;">
+	#set($DataList1 = ${xf.ViewArticleRankingList(${xf.ViewXmlSetting("ViewType","time")},1,${xf.ViewXmlSetting("Number",5)},${xf.ViewXmlSetting("Featured","no")})})
+		#if($DataList1.Count > 0)
+		<ul class="slides">
+			#foreach($DataItem in $DataList1)
+	    	<li><img src="${xf.ViewPicture($DataItem)}" style="width:${xf.ViewXmlSetting("Width","500")}px; height:${xf.ViewXmlSetting("Height","400")}px;"  alt="" title="" /><div class="flex-caption"><h1><a href="${xf.GoUrl($DataItem)}">$DataItem.Name</a></h1><p>${xf.ViewSummary($DataItem,100)}</p></div>
+	    	</li>
+	    	#end
+		</ul>
+	#end
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function(jQuery) {  
+  /* Slider
+   * ---------------------------------------------- */
+  jQuery('.flexslider').flexslider({
+    animation: "${xf.ViewXmlSetting("Animation","fade")}",
+    slideshowSpeed: ${xf.ViewXmlSetting("SlideshowSpeed","4000")},
+    animationDuration: ${xf.ViewXmlSetting("AnimationDuration","600")},
+    controlNav:false,
+    directionNav:true,
+    mousewheel:false,
+    pausePlay:true,
+    start: function(){
+      jQuery('.flexslider').removeClass('loading');
+    },
+    before:function(){
+      jQuery('.flexslider .flex-caption').animate({ 
+        bottom: -300,
+        opacity: 0
+      });
+    },    
+    after:function(){
+      jQuery('.flexslider .flex-caption').animate({ 
+        bottom: 15,
+        opacity: 1
+      }, {easing:'easeOutExpo'});
+    }
+  });
+});
+</script>
+

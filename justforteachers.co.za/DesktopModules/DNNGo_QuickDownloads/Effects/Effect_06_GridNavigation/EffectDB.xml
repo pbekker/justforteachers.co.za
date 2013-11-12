@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DNNGo_QuickDownloads>
+  <XmlDB>
+    <Name>
+      <![CDATA[Effect_06_GridNavigation]]>
+    </Name>
+    <Description>
+      <![CDATA[Grid Navigation Effects with jQuery]]>
+    </Description>
+    <Version>
+      <![CDATA[01.00.00]]>
+    </Version>
+    <Thumbnails>
+      <![CDATA[http://www.dnngo.net/DesktopModules/DNNGo_QuickDownloads/Effects/Effect_06_GridNavigation/preview.jpg]]>
+    </Thumbnails>
+    <EffectScript>
+      <![CDATA[jquery.gridnav.js]]>
+    </EffectScript>
+    <GlobalScript>
+      <![CDATA[jquery.easing.js,jquery.mousewheel.min.js]]>
+    </GlobalScript>
+    <DisplayByNormal>
+      <![CDATA[Description,Thumbnails,UrlLink,UrlLinkType]]>
+    </DisplayByNormal>
+    <DisplayByModule>
+      <![CDATA[Description,ViewType]]>
+    </DisplayByModule>
+    <DemoUrl>
+      <![CDATA[http://www.dnngo.net/OurModules/QuickDownloads.aspx]]>
+    </DemoUrl>
+    <SettingName>
+      <![CDATA[Effect]]>
+    </SettingName>
+    <DisplayEffect>
+      <![CDATA[true]]>
+    </DisplayEffect>
+    <DataListOption>
+      <![CDATA[Effect]]>
+    </DataListOption>
+  </XmlDB>
+</DNNGo_QuickDownloads>

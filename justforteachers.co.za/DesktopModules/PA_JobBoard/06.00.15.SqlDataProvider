@@ -1,0 +1,107 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.00.15            *****/
+/************************************************************/
+
+/****** Object:  View {databaseOwner}[jb_ClassifiedsItem_vw]    Script Date: 01/25/2011 17:24:56 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ClassifiedsItem_vw]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+DROP VIEW {databaseOwner}[jb_ClassifiedsItem_vw]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_ImageFileName_Update]    Script Date: 01/26/2011 11:38:17 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ImageFileName_Update]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ImageFileName_Update]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]    Script Date: 01/26/2011 11:38:17 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]
+GO
+
+/****** Object:  View {databaseOwner}[jb_ClassifiedsItem_vw]    Script Date: 01/25/2011 17:25:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW {databaseOwner}[jb_ClassifiedsItem_vw]
+AS
+SELECT     jb_ClassifiedsItem.*, UnionCategory.[CategoryID] AS UCategoryID
+FROM         (SELECT     ItemID, CategoryID
+		FROM         jb_ClassifiedsItem
+		UNION
+		SELECT     *
+		FROM         jb_ItemCategory) AS UnionCategory 
+LEFT OUTER JOIN {databaseOwner}jb_ClassifiedsItem ON UnionCategory.ItemID = jb_ClassifiedsItem.ItemID
+
+
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_ImageFileName_Update]    Script Date: 01/26/2011 11:38:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}[jb_ImageFileName_Update]
+ @ItemID         int,
+ @ImageFileName      nvarchar(255),
+ @AttachedFileName	  nvarchar(255)
+AS
+BEGIN		
+		UPDATE jb_ClassifiedsItem WITH(ROWLOCK, UPDLOCK)
+			SET ImageFileName = IsNull(NULLIF(@ImageFileName,''),ImageFileName), 		
+			AttachedFileName = IsNull(NULLIF(@AttachedFileName,''),AttachedFileName)
+		WHERE ItemID = @ItemID
+END
+
+
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]    Script Date: 01/26/2011 12:54:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]
+@ItemID         INT,
+@IsImage bit = 0
+AS
+
+
+SET NOCOUNT ON
+BEGIN
+	IF @IsImage = 1
+		BEGIN				
+			UPDATE    jb_ClassifiedsItem
+			SET 	Image = null,
+				ImageContentType = '',
+				ImageContentSize = 0
+
+			WHERE
+				ItemID = @ItemID
+		END
+	ELSE
+		BEGIN				
+			UPDATE  jb_ClassifiedsItem
+			SET 	Image1 = null,
+				ImageContentType1 = '',
+				ImageContentSize1 = 0,
+				AttachedFileName = ''
+			WHERE
+				ItemID = @ItemID
+		END
+				
+END
+
+GO

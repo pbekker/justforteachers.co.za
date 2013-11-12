@@ -1,0 +1,270 @@
+
+-- *** Droping stored procedures for table OnyakTechFLSRSearchTemplateDetails ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGetSearchTemplateDetailByHeaderId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGetSearchTemplateDetailByHeaderId
+GO
+
+-- *** Droping stored procedures for table OnyakTechFLSRSearchTemplateHeader ***
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderAdd') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderAdd
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderDelete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderDelete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderCountAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderCountAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderDeleteAll') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderDeleteAll
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetSearchTemplateByModuleId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetSearchTemplateByModuleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetSearchTemplateByPortalId') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetSearchTemplateByPortalId
+GO
+
+-- ***************  Create table definitions  ******************
+
+-- *** Create table OnyakTechFLSRSearchTemplateDetails ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails (
+		 [TemplateDetailId] int IDENTITY (1, 1) NOT NULL,
+		 [TemplateHeaderId] int NOT NULL,
+		 [AttributeId] int NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRSearchTemplateDetails') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRSearchTemplateDetails PRIMARY KEY CLUSTERED (TemplateDetailId) ON [PRIMARY]
+GO
+
+-- *** Create table OnyakTechFLSRSearchTemplateHeader ***
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	CREATE TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader (
+		 [TemplateHeaderId] int IDENTITY (1, 1) NOT NULL,
+		 [PortalId] int NOT NULL,
+		 [ModuleId] int NOT NULL,
+		 [TemplateName] nvarchar(255) NOT NULL,
+		 [ExpectedFileCount] int NOT NULL
+	) ON [PRIMARY]
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}OnyakTechFLSRSearchTemplateHeader') and OBJECTPROPERTY(id, N'IsPrimaryKey') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader ADD CONSTRAINT 
+		PK_{objectQualifier}OnyakTechFLSRSearchTemplateHeader PRIMARY KEY CLUSTERED (TemplateHeaderId) ON [PRIMARY]
+GO
+
+-- ***************  Create relations (foreign keys)  ******************
+
+-- ***************  Create stored procedures  ******************
+
+-- *** Create stored procedures for table OnyakTechFLSRSearchTemplateDetails ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsAdd
+		@TemplateHeaderId int,
+		@AttributeId int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails
+		(TemplateHeaderId,AttributeId)
+		VALUES
+		(@TemplateHeaderId,@AttributeId)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsUpdate
+		@TemplateDetailId int,
+		@TemplateHeaderId int,
+		@AttributeId int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails SET 
+		TemplateHeaderId=@TemplateHeaderId,
+		AttributeId=@AttributeId
+	WHERE
+		TemplateDetailId=@TemplateDetailId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsDelete
+		@TemplateDetailId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails WHERE
+		TemplateDetailId=@TemplateDetailId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGet
+		@TemplateDetailId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails WHERE
+		TemplateDetailId=@TemplateDetailId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetailsGetSearchTemplateDetailByHeaderId
+		@TemplateHeaderId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateDetails 
+	WHERE TemplateHeaderId=@TemplateHeaderId
+GO
+
+-- *** Create stored procedures for table OnyakTechFLSRSearchTemplateHeader ***
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderAdd
+		@PortalId int,
+		@ModuleId int,
+		@TemplateName nvarchar(255),
+		@ExpectedFileCount int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader
+		(PortalId,ModuleId,TemplateName,ExpectedFileCount)
+		VALUES
+		(@PortalId,@ModuleId,@TemplateName,@ExpectedFileCount)
+	SELECT SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderUpdate
+		@TemplateHeaderId int,
+		@PortalId int,
+		@ModuleId int,
+		@TemplateName nvarchar(255),
+		@ExpectedFileCount int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader SET 
+		PortalId=@PortalId,
+		ModuleId=@ModuleId,
+		TemplateName=@TemplateName,
+		ExpectedFileCount=@ExpectedFileCount
+	WHERE
+		TemplateHeaderId=@TemplateHeaderId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderDelete
+		@TemplateHeaderId int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader WHERE
+		TemplateHeaderId=@TemplateHeaderId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGet
+		@TemplateHeaderId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader WHERE
+		TemplateHeaderId=@TemplateHeaderId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetSearchTemplateByModuleId
+		@ModuleId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader 
+	WHERE ModuleId=@ModuleId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeaderGetSearchTemplateByPortalId
+		@PortalId int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}{objectQualifier}OnyakTechFLSRSearchTemplateHeader 
+	WHERE PortalId=@PortalId
+GO
+

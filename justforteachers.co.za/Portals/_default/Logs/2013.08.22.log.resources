@@ -1,0 +1,41 @@
+2013-08-22 19:42:22,904 [mystique][Thread:6][FATAL] DotNetNuke.Framework.PageBase - An error has occurred while loading page.
+System.Web.HttpException (0x80004005): Validation of viewstate MAC failed. If this application is hosted by a Web Farm or cluster, ensure that <machineKey> configuration specifies the same validationKey and validation algorithm. AutoGenerate cannot be used in a cluster. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 196.208.211.31
+	Port: 49930
+	Referer: http://www.justforteachers.co.za/login.aspx?ReturnUrl=/privacy.aspx&popUp=true
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (iPad; CPU OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B329
+	ViewState: 7jQNCYzm6RJqA5gH2Ucl7BPVGAMeICCd6InWnqz/dJ4lmb+lpERff7aVtBItUHEm2TicmgfWUhse7NI+QYK6//AwEyKObPoiLA8pfKv2aoATwz2Fb9jj1j0uPc2boTJMUUFzCVt3VDLSq+cmWXOWTgm1gWWpSjvJjsedVyEkQTbn2FrI6QV9+uJ4JmHSYugeLjS/X74FgoYFcHnjaNaYLpMm1Ts8P/bYj9Z0GdwnRsmLOkTJ2SGjsswlgjwLXWTTymbOtrB/rpS68KgwGVw5RypxDCX2J9CumOVQ4Rg0vkgmMCImnu13u5xvhIIGkV1nTED3ZpkcNIwsBUPolVlxJ+q5KPwoVb9R8ajL0jpE3I0JZQyajo1vZLf8+PazezrDQeaZKssan1XEREiTFE+GlX/OjqkxLDcjqyFxMAIA9+jx1BL+xtCwkt+k/DpHjneXS/N6ozqyWQ5Fad8rQuYclPTZsyEVlIcMAvAEho5e5vM9oJvNiv7zcLHYOXK3KcMyVYtMyjNKIlqtTvb/7Z1+uG6DN5DgnIv+Um3dxgKcO8u1NyWj3mO5YSk4OupRC8engBMDMgB29MPKYSaXXpWY+drBlIFBVA05KiI6pNuGOaTf88VMKRZTXieh3p3nfzF+UpRExNJXEKcXfsclH2XKBJt7nt03N873ytXF0FTKjI53i0pU9Lir0AkCzgOnUSf1bbdPwN+ZVNzvQb25LuwZnPvHfINPTtHJlRj...
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.ObjectStateFormatter.System.Web.UI.IStateFormatter2.Deserialize(String serializedState, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+2013-08-22 19:42:22,951 [mystique][Thread:6][ERROR] DotNetNuke.Services.Exceptions.Exceptions - DotNetNuke.Services.Exceptions.PageLoadException: Validation of viewstate MAC failed. If this application is hosted by a Web Farm or cluster, ensure that <machineKey> configuration specifies the same validationKey and validation algorithm. AutoGenerate cannot be used in a cluster. ---> System.Web.HttpException: Validation of viewstate MAC failed. If this application is hosted by a Web Farm or cluster, ensure that <machineKey> configuration specifies the same validationKey and validation algorithm. AutoGenerate cannot be used in a cluster. ---> System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: 196.208.211.31
+	Port: 49930
+	Referer: http://www.justforteachers.co.za/login.aspx?ReturnUrl=/privacy.aspx&popUp=true
+	Path: /Default.aspx
+	User-Agent: Mozilla/5.0 (iPad; CPU OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B329
+	ViewState: 7jQNCYzm6RJqA5gH2Ucl7BPVGAMeICCd6InWnqz/dJ4lmb+lpERff7aVtBItUHEm2TicmgfWUhse7NI+QYK6//AwEyKObPoiLA8pfKv2aoATwz2Fb9jj1j0uPc2boTJMUUFzCVt3VDLSq+cmWXOWTgm1gWWpSjvJjsedVyEkQTbn2FrI6QV9+uJ4JmHSYugeLjS/X74FgoYFcHnjaNaYLpMm1Ts8P/bYj9Z0GdwnRsmLOkTJ2SGjsswlgjwLXWTTymbOtrB/rpS68KgwGVw5RypxDCX2J9CumOVQ4Rg0vkgmMCImnu13u5xvhIIGkV1nTED3ZpkcNIwsBUPolVlxJ+q5KPwoVb9R8ajL0jpE3I0JZQyajo1vZLf8+PazezrDQeaZKssan1XEREiTFE+GlX/OjqkxLDcjqyFxMAIA9+jx1BL+xtCwkt+k/DpHjneXS/N6ozqyWQ5Fad8rQuYclPTZsyEVlIcMAvAEho5e5vM9oJvNiv7zcLHYOXK3KcMyVYtMyjNKIlqtTvb/7Z1+uG6DN5DgnIv+Um3dxgKcO8u1NyWj3mO5YSk4OupRC8engBMDMgB29MPKYSaXXpWY+drBlIFBVA05KiI6pNuGOaTf88VMKRZTXieh3p3nfzF+UpRExNJXEKcXfsclH2XKBJt7nt03N873ytXF0FTKjI53i0pU9Lir0AkCzgOnUSf1bbdPwN+ZVNzvQb25LuwZnPvHfINPTtHJlRj...
+   --- End of inner exception stack trace ---
+   at System.Web.UI.ViewStateException.ThrowError(Exception inner, String persistedState, String errorPageMessage, Boolean macValidationError)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.ObjectStateFormatter.System.Web.UI.IStateFormatter2.Deserialize(String serializedState, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   at System.Web.UI.Page.LoadPageStateFromPersistenceMedium()
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   --- End of inner exception stack trace ---
+2013-08-22 19:45:30,340 [mystique][Thread:31][ERROR] DotNetNuke.Services.FileSystem.FileServerHandler - System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at DotNetNuke.Services.FileSystem.FileServerHandler.ProcessRequest(HttpContext context)

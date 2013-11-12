@@ -1,0 +1,25 @@
+﻿Begin Transaction
+
+Declare @ChangeLogID int
+Declare @AttributeSetID int
+Declare @AttributeSetName nvarchar(100) = '2SexyContent-Template-ContentTypes'
+
+-- Insert ChangeLog and define ChangeLog ID
+Insert Into ToSIC_EAV_ChangeLog ([Timestamp], [User])
+Values (GETDATE(), 'System')
+Set @ChangeLogID = @@Identity
+
+-- Check if it already exists, otherwise exit
+Select @AttributeSetID = AttributeSetID 
+From ToSIC_EAV_AttributeSets
+Where StaticName = @AttributeSetName
+
+If NOT @AttributeSetID IS NULL
+Begin
+	-- Update IsTitle Fields
+	UPDATE ToSIC_EAV_AttributesInSets SET IsTitle = 0 WHERE (SortOrder = 1 OR SortOrder = 2) AND AttributeSetID = @AttributeSetID
+End
+
+UPDATE ToSIC_EAV_AttributeSets SET Scope = '2SexyContent-System' WHERE StaticName = @AttributeSetName
+
+Commit

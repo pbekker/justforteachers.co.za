@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DNNGo_QuickDownloads>
+  <Settings>
+
+    <Setting>
+      <Name><![CDATA[thumbnail_width]]></Name>
+      <Alias><![CDATA[Thumbnail Width]]></Alias>
+      <Width><![CDATA[100]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[200]]></DefaultValue>
+      <ControlType><![CDATA[TextBox]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[]]></ListContent>
+      <Description><![CDATA[px]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[integer]]></Verification>
+    </Setting>
+    <Setting>
+      <Name><![CDATA[summarynumber]]></Name>
+      <Alias><![CDATA[Summary Number]]></Alias>
+      <Width><![CDATA[100]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[200]]></DefaultValue>
+      <ControlType><![CDATA[TextBox]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[]]></ListContent>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[integer]]></Verification>
+    </Setting>
+  </Settings>
+</DNNGo_QuickDownloads>
+
+
+

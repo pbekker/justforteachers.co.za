@@ -1,0 +1,120 @@
+﻿if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_CountChildren]') and xtype in (N'FN', N'IF', N'TF'))
+drop function {databaseOwner}[jb_CountChildren]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_CountChildrenAdmin]') and xtype in (N'FN', N'IF', N'TF'))
+drop function {databaseOwner}[jb_CountChildrenAdmin]
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE FUNCTION {databaseOwner}jb_CountChildren
+(@id int, @cChildren int, @CurrentDate datetime)
+RETURNS bigint 
+AS
+BEGIN
+IF EXISTS (SELECT   
+	     jb_ClassifiedsItem_vw.UCategoryID   
+	    
+	FROM         
+	    {databaseOwner}jb_ClassifiedsCat 
+	INNER JOIN
+	    {databaseOwner}jb_ClassifiedsItem_vw  
+	ON 
+	    {databaseOwner}jb_ClassifiedsCat.CategoryID = {databaseOwner}jb_ClassifiedsItem_vw.UCategoryID
+	WHERE 
+	    {databaseOwner}jb_ClassifiedsCat.ParentID = @id OR {databaseOwner}jb_ClassifiedsItem_vw.UCategoryID = @id)
+	OR
+	 EXISTS(SELECT {databaseOwner}jb_ClassifiedsCat.CategoryID FROM {databaseOwner}jb_ClassifiedsCat WHERE IsNull(jb_ClassifiedsCat.ParentID,0) =  0)
+	
+BEGIN 
+   SET @cChildren = @cChildren + (
+     SELECT 
+        Count( jb_ClassifiedsItem.CategoryID) 
+        FROM 
+             jb_ClassifiedsItem_vw as jb_ClassifiedsItem
+        WHERE 
+            jb_ClassifiedsItem.UCategoryID = @id
+	and    (ExpireDate >@CurrentDate or ExpireDate is null) and Authed <> 0)
+	
+  SELECT 
+              @cChildren = {databaseOwner}jb_CountChildren({databaseOwner}jb_ClassifiedsCat.CategoryID, @cChildren, @CurrentDate ) 
+            FROM 
+              {databaseOwner}jb_ClassifiedsCat
+            WHERE 
+              {databaseOwner}jb_ClassifiedsCat.ParentID = @id 
+	
+END 
+  RETURN @cChildren 
+END 
+ 
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE FUNCTION {databaseOwner}jb_CountChildrenAdmin
+(@id int, @cChildren int, @CurrentDate datetime)
+RETURNS bigint 
+AS
+BEGIN
+IF EXISTS (SELECT   
+	     jb_ClassifiedsItem_vw.UCategoryID   
+	    
+	FROM         
+	    {databaseOwner}jb_ClassifiedsCat 
+	INNER JOIN
+	    {databaseOwner}jb_ClassifiedsItem_vw  
+	ON 
+	    {databaseOwner}jb_ClassifiedsCat.CategoryID = {databaseOwner}jb_ClassifiedsItem_vw.UCategoryID
+	WHERE 
+	    {databaseOwner}jb_ClassifiedsCat.ParentID = @id OR {databaseOwner}jb_ClassifiedsItem_vw.UCategoryID = @id)
+	OR
+	 EXISTS(SELECT {databaseOwner}jb_ClassifiedsCat.CategoryID FROM {databaseOwner}jb_ClassifiedsCat WHERE IsNull(jb_ClassifiedsCat.ParentID,0) =  0)
+	
+BEGIN 
+   SET @cChildren = @cChildren + (
+     SELECT 
+        Count( jb_ClassifiedsItem.CategoryID) 
+        FROM 
+             jb_ClassifiedsItem_vw as jb_ClassifiedsItem
+        WHERE 
+            jb_ClassifiedsItem.UCategoryID = @id)
+	--and    (ExpireDate >@CurrentDate or ExpireDate is null) and Authed <> 0)
+	
+  SELECT 
+              @cChildren = {databaseOwner}jb_CountChildrenAdmin({databaseOwner}jb_ClassifiedsCat.CategoryID, @cChildren, @CurrentDate ) 
+            FROM 
+              {databaseOwner}jb_ClassifiedsCat
+            WHERE 
+              {databaseOwner}jb_ClassifiedsCat.ParentID = @id 
+	
+END 
+  RETURN @cChildren 
+END 
+ 
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON

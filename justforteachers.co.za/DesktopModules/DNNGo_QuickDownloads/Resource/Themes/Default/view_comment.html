@@ -1,0 +1,100 @@
+###Custom print subordinate comment macro Start
+#macro(PrintChilds $DataItemY)
+	<ul class="child">
+	#foreach($DataItemX in  $Module.GetComments($DataItemY.ID))
+		#if($DataItemX.ParentID == $DataItemY.ID)
+			<li class="depth-2">
+				<div class="comments_details clearfix">
+					<div class="comment_avatar"><img src="${xf.ViewUserPic($DataItemX)}" width="62" height="62" /></div>
+					<div class="comment_content">
+						<div class="comment_author">
+                              #if( $DataItemX.WebSite != '' )
+                                        <a href="$DataItemX.WebSite" target="_blank"  rel="nofollow">$DataItemX.UserName</a>
+                                    #else
+                                        <a href="javascript:;">$DataItemX.UserName</a>
+                                    #end
+                        </div>
+						
+						<div class="comment_text">$DataItemX.ContentText
+								
+						</div>
+						<div class="comment_date">$DataItemX.CreateTime
+							#if(   $LoginComment ==0 || $Module.Userid > 0)
+									${xf.ViewReplyButton($DataItemX,"Reply")}
+								#end
+						</div>
+					</div>
+				</div>
+			</li>
+		#end
+	#end
+	</ul>
+#end				
+###Custom print subordinate comment macro end
+
+
+
+
+				
+	
+	<div class="comments_box">
+    	#if($CommentList.Count >0)
+        <h3>Comments</h3>
+		<ul class="comments_list">
+			#foreach($DataItem in $CommentList)
+				#if($DataItem.ParentID == 0)
+				<li class="depth-1">
+					<div class="comments_details clearfix">
+						<div class="comment_avatar"><img src="${xf.ViewUserPic($DataItem)}" width="62" height="62" /></div>
+						<div class="comment_content">
+							<div class="comment_author">
+                                    #if( $DataItem.WebSite != '' )
+                                        <a href="$DataItem.WebSite" target="_blank"  rel="nofollow">$DataItem.UserName</a>
+                                    #else
+                                        <a href="javascript:;">$DataItem.UserName</a>
+                                    #end
+                            </div>
+							
+							<div class="comment_text">$DataItem.ContentText
+								
+							</div>
+							<div class="comment_date">$DataItem.CreateTime
+							    #if(   $LoginComment ==0 || $Module.Userid > 0)
+									${xf.ViewReplyButton($DataItem,"Reply")}
+								#end</div>
+						</div>
+					</div>
+					#PrintChilds($DataItem)
+				</li>
+				#end
+			#end
+		</ul>
+        #end
+		<div class="download_page">
+			${Pager}
+		</div>
+	</div>
+
+#if($EnabledComment == 1)		
+	#if(   $LoginComment ==0 || $Module.Userid > 0)
+    	<h3 >Post a Comment</h3>
+		<div class="comment_form" id="comment_form">
+			#if($Module.Userid == -1)	
+				<div class="form_row"><label class="form_title">Name <span class="form_required">*</span></label>${xf.ViewCommentTextBox("UserName",200,true)}</div>
+				<div class="form_row"><label class="form_title">Email <span class="form_required">*</span></label>${xf.ViewCommentTextBox("Email",200,true,"email")}</div>
+                
+			#else
+				<div class="form_row"><label class="form_title">Name <span class="form_required">*</span></label>$UserInfo.DisplayName</div>
+			#end
+            <div class="form_row"><label class="form_title">WebSite </label>${xf.ViewCommentTextBox("WebSite",200,false,"url")}</div>
+			<div class="form_row"><label class="form_title">Comment <span class="form_required">*</span></label>${xf.ViewCommentTextArea(300,6,true)}</div>
+			<div class="submit_button clearfix">${xf.ViewHtmlButton("Submit",true)}</div>
+		</div>
+	#else
+		You need to <a href="${xf.GoLogin()}"> login </a> in order to comment
+	#end
+#else
+	Comment function is not open
+#end
+
+

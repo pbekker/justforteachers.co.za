@@ -1,0 +1,6568 @@
+﻿if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_BuildCategoryPath]') and xtype in (N'FN', N'IF', N'TF'))
+drop function {databaseOwner}[jb_BuildCategoryPath]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_CountChildren]') and xtype in (N'FN', N'IF', N'TF'))
+drop function {databaseOwner}[jb_CountChildren]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_CountChildrenAdmin]') and xtype in (N'FN', N'IF', N'TF'))
+drop function {databaseOwner}[jb_CountChildrenAdmin]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_LPAD]') and xtype in (N'FN', N'IF', N'TF'))
+drop function {databaseOwner}[jb_LPAD]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_udf_AttributeValueString]') and xtype in (N'FN', N'IF', N'TF'))
+drop function {databaseOwner}[jb_udf_AttributeValueString]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_udf_WordCount]') and xtype in (N'FN', N'IF', N'TF'))
+drop function {databaseOwner}[jb_udf_WordCount]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_AddClassifieds]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_AddClassifieds]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_AddClassifiedsCategory]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_AddClassifiedsCategory]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ClassifiedsCheckCategoryPayment]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ClassifiedsCheckCategoryPayment]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ClassifiedsCheckPosterPassword]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ClassifiedsCheckPosterPassword]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_DeleteClassifieds]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_DeleteClassifieds]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_DeleteClassifiedsCategory]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_DeleteClassifiedsCategory]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifieds]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifieds]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsCategories]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsCategories]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsCategoriesCompleteList]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsCategoriesCompleteList]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsCategoriesCount]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsCategoriesCount]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsSearch_Adv]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsSearch_Adv]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetClassifiedsSearch_Bsc]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetClassifiedsSearch_Bsc]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetMainImage]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetMainImage]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetSingleClassifieds]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetSingleClassifieds]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetSingleClassifiedsCategory]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetSingleClassifiedsCategory]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_GetSingleClassifiedsPhoto]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_GetSingleClassifiedsPhoto]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ImageFileName_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ImageFileName_Update]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemAttributeAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemAttributeAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemAttributeByjb_Item]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemAttributeByjb_Item]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemAttributeCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemAttributeCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemAttributeDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemAttributeDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemAttributeDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemAttributeDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemAttributeGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemAttributeGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemAttributeGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemAttributeGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemAttributeUpdate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemAttributeUpdate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemCategoryAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemCategoryAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemCategoryByjb_Category]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemCategoryByjb_Category]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemCategoryByjb_Item]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemCategoryByjb_Item]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemCategoryCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemCategoryCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemCategoryDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemCategoryDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemCategoryDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemCategoryDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemCategoryGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemCategoryGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemCategoryGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemCategoryGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFileAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemFileAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFileByjb_Item]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemFileByjb_Item]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFileCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemFileCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFileCountFilesByItemID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemFileCountFilesByItemID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFileDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemFileDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFileDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemFileDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFileGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemFileGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFileGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemFileGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFileUpdate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemFileUpdate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFileUpdateUtil]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemFileUpdateUtil]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImageAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemImageAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImageByjb_Item]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemImageByjb_Item]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImageCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemImageCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImageDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemImageDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImageDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemImageDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImageGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemImageGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImageGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemImageGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImageGetMainImageID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemImageGetMainImageID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImageUpdate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemImageUpdate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImageUpdateUtil]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemImageUpdateUtil]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReviewAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReviewAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReviewByjb_Item]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReviewByjb_Item]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReviewCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReviewCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReviewDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReviewDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReviewDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReviewDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReviewGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReviewGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReviewGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReviewGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReviewUpdate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReviewUpdate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReview_Jedi_Approve]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReview_Jedi_Approve]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReview_Jedi_Byjb_Item]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReview_Jedi_Byjb_Item]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReview_Jedi_GetAverageByItemID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReview_Jedi_GetAverageByItemID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReview_Jedi_HelpfulYesNoIncrement]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReview_Jedi_HelpfulYesNoIncrement]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReview_Jedi_ModifyReview]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReview_Jedi_ModifyReview]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReview_Jedi_ReviewCountByItemID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemReview_Jedi_ReviewCountByItemID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemUpdate_Jedi_FileNameTG]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_ItemUpdate_Jedi_FileNameTG]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_JobApplicationAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_JobApplicationAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_JobApplicationByjb_ClassifiedsItem]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_JobApplicationByjb_ClassifiedsItem]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_JobApplicationCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_JobApplicationCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_JobApplicationDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_JobApplicationDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_JobApplicationDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_JobApplicationDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_JobApplicationGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_JobApplicationGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_JobApplicationGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_JobApplicationGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_JobApplicationGetByUser]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_JobApplicationGetByUser]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_JobApplicationUpdate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_JobApplicationUpdate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionGetByModuleID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionGetByModuleID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionGetByUserID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionGetByUserID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionUpdate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionUpdate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionUpdate_ByTxnID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionUpdate_ByTxnID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscriptionUpdate_OverrideByAdmin]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscriptionUpdate_OverrideByAdmin]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscription_Verify]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_MySubscription_Verify]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetailAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrderDetailAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetailBy_pp_txn_id]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrderDetailBy_pp_txn_id]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetailByjb_Orders]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrderDetailByjb_Orders]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetailCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrderDetailCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetailDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrderDetailDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetailDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrderDetailDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetailGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrderDetailGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetailGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrderDetailGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetailUpdate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrderDetailUpdate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetail_CountBoughtByThisUser]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrderDetail_CountBoughtByThisUser]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersByjb_Customer]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersByjb_Customer]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersByjb_Customer_pp_payer_email]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersByjb_Customer_pp_payer_email]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersCount_pp_ByTransactionID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersCount_pp_ByTransactionID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersDelete_pp]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersDelete_pp]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersGetByUserID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersGetByUserID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersGet_pp]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersGet_pp]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersGet_pp_CheckIPNCompleted]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersGet_pp_CheckIPNCompleted]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersGet_pp_SinglePriceCheck]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersGet_pp_SinglePriceCheck]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersLogin]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersLogin]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersUpdate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersUpdate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersUpdate_lc_PriceCheck]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersUpdate_lc_PriceCheck]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersUpdate_pp]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersUpdate_pp]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrdersUpdate_pp_PriceCheck]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_OrdersUpdate_pp_PriceCheck]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_Orders_pp_IsDuplicate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_Orders_pp_IsDuplicate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_PicklistAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_PicklistAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_PicklistCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_PicklistCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_PicklistCountAllByGroup]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_PicklistCountAllByGroup]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_PicklistDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_PicklistDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_PicklistDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_PicklistDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_PicklistGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_PicklistGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_PicklistGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_PicklistGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_PicklistGetByGroup]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_PicklistGetByGroup]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_PicklistGetByGroup_DefaultSortOption]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_PicklistGetByGroup_DefaultSortOption]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_PicklistUpdate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_PicklistUpdate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlanAdd]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_SubscriptionPlanAdd]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlanCountAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_SubscriptionPlanCountAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlanDelete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_SubscriptionPlanDelete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlanDeleteAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_SubscriptionPlanDeleteAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlanGet]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_SubscriptionPlanGet]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlanGetAll]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_SubscriptionPlanGetAll]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlanGetByModuleID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_SubscriptionPlanGetByModuleID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlanUpdate]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_SubscriptionPlanUpdate]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlan_Jedi_GetSinglePlanFee]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_SubscriptionPlan_Jedi_GetSinglePlanFee]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UpdateClassifieds]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UpdateClassifieds]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UpdateClassifiedsAdsCount]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UpdateClassifiedsAdsCount]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UpdateClassifiedsAuthed]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UpdateClassifiedsAuthed]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UpdateClassifiedsCategory]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UpdateClassifiedsCategory]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UpdateClassifiedsViewCount]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UpdateClassifiedsViewCount]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UpdateClassifieds_approval]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UpdateClassifieds_approval]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_UtilXferLegacyData]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_UtilXferLegacyData]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_rw_CheckProductIDExist]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_rw_CheckProductIDExist]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_rw_DeleteProductID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_rw_DeleteProductID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_rw_DeleteReview]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_rw_DeleteReview]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_rw_GetAllDistinctProductID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_rw_GetAllDistinctProductID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_rw_GetAverage]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_rw_GetAverage]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_rw_GetLastReview]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_rw_GetLastReview]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_rw_GetReviewCount]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_rw_GetReviewCount]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_rw_GetReviews]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_rw_GetReviews]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_rw_InsertReview]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[jb_rw_InsertReview]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ClassifiedsItem_vw]') and OBJECTPROPERTY(id, N'IsView') = 1)
+drop view {databaseOwner}[jb_ClassifiedsItem_vw]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemAttribute]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_ItemAttribute]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemCategory]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_ItemCategory]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemFile]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_ItemFile]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemImage]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_ItemImage]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_ItemReview]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_ItemReview]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_JobApplication]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_JobApplication]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_MySubscription]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_MySubscription]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_OrderDetail]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_OrderDetail]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_Orders]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_Orders]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_Picklist]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_Picklist]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[jb_SubscriptionPlan]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table {databaseOwner}[jb_SubscriptionPlan]
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE FUNCTION {databaseOwner}jb_BuildCategoryPath
+(
+	@CategoryPath_in	nvarchar(1024)
+)
+
+RETURNS nvarchar(1024)
+AS
+BEGIN
+	-- Declare variables
+	Declare @ParentID as int
+	Declare @level as int
+	Declare @CategoryName as nvarchar(50)
+	Declare @CategoryPath_out as nvarchar(1024)
+
+	-- Initialise the level number (on the first pass this will be blank)
+	Set @level = case when isnumeric(substring(@CategoryPath_in, 10, 2)) = 1
+			then cast(substring(@CategoryPath_in, 10, 2) as int)
+			else 0 end
+	-- Get the current menu parent key and option description
+	Select @ParentID = ParentID,
+		@CategoryName = rtrim(CategoryName)
+	from {databaseOwner}jb_ClassifiedsCat
+	where CategoryID = cast(left(@CategoryPath_in,9) as int)
+
+	-- If we have reached the top level (parent is null)
+	-- Prepare the final output string (being the level number and path string)
+	If (@ParentID is null) OR (@ParentID = 0)
+	 Begin
+		Set @CategoryPath_out = right('00' + cast(@level as varchar(2)),2)
+			+ rtrim(@CategoryName)
+			+ substring(@CategoryPath_in,12,1024)
+ 	 End	
+
+	-- If we are not yet at the top level (parent is not null)
+	-- Build the output string prefixed by the parent number 
+	--  and feed back through the UDF
+	else 
+ 	 Begin
+		Set @level = @level + 1
+		Set @CategoryPath_out =  right('000000000' + cast(@ParentID as varchar(9)),9)
+			+ right('00' + cast(@level as varchar(2)),2)
+			+ ' > ' -- option separator
+			+ rtrim(@CategoryName)
+			+ substring(@CategoryPath_in,12,1024)
+		Set @CategoryPath_out = {databaseOwner}jb_BuildCategoryPath(@CategoryPath_out)
+	 End
+
+	--  having reached the top level and built the final string, exit the UDF
+	RETURN @CategoryPath_out
+
+END
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE FUNCTION {databaseOwner}jb_CountChildren
+(@id int, @cChildren int, @CurrentDate datetime)
+RETURNS bigint 
+AS
+BEGIN
+IF EXISTS (SELECT   
+	     jb_ClassifiedsItem_vw.UCategoryID   
+	    
+	FROM         
+	    {databaseOwner}jb_ClassifiedsCat 
+	INNER JOIN
+	    {databaseOwner}jb_ClassifiedsItem_vw  
+	ON 
+	    {databaseOwner}jb_ClassifiedsCat.CategoryID = {databaseOwner}jb_ClassifiedsItem_vw.UCategoryID
+	WHERE 
+	    {databaseOwner}jb_ClassifiedsCat.ParentID = @id OR {databaseOwner}jb_ClassifiedsItem_vw.UCategoryID = @id)
+	OR
+	 EXISTS(SELECT {databaseOwner}jb_ClassifiedsCat.CategoryID FROM {databaseOwner}jb_ClassifiedsCat WHERE jb_ClassifiedsCat.ParentID =  0)
+	
+BEGIN 
+   SET @cChildren = @cChildren + (
+     SELECT 
+        Count( jb_ClassifiedsItem.CategoryID) 
+        FROM 
+             jb_ClassifiedsItem_vw as jb_ClassifiedsItem
+        WHERE 
+            jb_ClassifiedsItem.UCategoryID = @id
+	and    (ExpireDate >@CurrentDate or ExpireDate is null) and Authed <> 0)
+	
+  SELECT 
+              @cChildren = {databaseOwner}jb_CountChildren({databaseOwner}jb_ClassifiedsCat.CategoryID, @cChildren, @CurrentDate ) 
+            FROM 
+              {databaseOwner}jb_ClassifiedsCat
+            WHERE 
+              {databaseOwner}jb_ClassifiedsCat.ParentID = @id 
+	
+END 
+  RETURN @cChildren 
+END 
+ 
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE FUNCTION {databaseOwner}jb_CountChildrenAdmin
+(@id int, @cChildren int, @CurrentDate datetime)
+RETURNS bigint 
+AS
+BEGIN
+IF EXISTS (SELECT   
+	     jb_ClassifiedsItem_vw.UCategoryID   
+	    
+	FROM         
+	    {databaseOwner}jb_ClassifiedsCat 
+	INNER JOIN
+	    {databaseOwner}jb_ClassifiedsItem_vw  
+	ON 
+	    {databaseOwner}jb_ClassifiedsCat.CategoryID = {databaseOwner}jb_ClassifiedsItem_vw.UCategoryID
+	WHERE 
+	    {databaseOwner}jb_ClassifiedsCat.ParentID = @id OR {databaseOwner}jb_ClassifiedsItem_vw.UCategoryID = @id)
+	OR
+	 EXISTS(SELECT {databaseOwner}jb_ClassifiedsCat.CategoryID FROM {databaseOwner}jb_ClassifiedsCat WHERE jb_ClassifiedsCat.ParentID =  0)
+	
+BEGIN 
+   SET @cChildren = @cChildren + (
+     SELECT 
+        Count( jb_ClassifiedsItem.CategoryID) 
+        FROM 
+             jb_ClassifiedsItem_vw as jb_ClassifiedsItem
+        WHERE 
+            jb_ClassifiedsItem.UCategoryID = @id)
+	--and    (ExpireDate >@CurrentDate or ExpireDate is null) and Authed <> 0)
+	
+  SELECT 
+              @cChildren = {databaseOwner}jb_CountChildrenAdmin({databaseOwner}jb_ClassifiedsCat.CategoryID, @cChildren, @CurrentDate ) 
+            FROM 
+              {databaseOwner}jb_ClassifiedsCat
+            WHERE 
+              {databaseOwner}jb_ClassifiedsCat.ParentID = @id 
+	
+END 
+  RETURN @cChildren 
+END 
+ 
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE function {databaseOwner}jb_LPAD(@s varchar(255), @n int, @p varchar(255) ) 
+--Returns a string s1 left-padded to length i with a sequence of characters s2. 
+returns varchar(255)
+as
+BEGIN
+return REPLICATE(@p,@n)+@s
+END
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE FUNCTION {databaseOwner}jb_udf_AttributeValueString
+(@ItemID int)
+RETURNS nvarchar(4000)
+AS
+BEGIN
+	DECLARE @AttributeValue nvarchar(4000), @AVDelimiter char
+	SET @AVDelimiter = ','
+	SELECT @AttributeValue = COALESCE(@AttributeValue + @AVDelimiter, '') + AttributeValue FROM jb_ItemAttribute WHERE ItemID = @ItemID
+	RETURN @AttributeValue
+END
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE FUNCTION {databaseOwner}jb_udf_WordCount
+(@Word VARCHAR(15), 
+@Phrase VARCHAR(1000))
+RETURNS SMALLINT
+AS
+BEGIN
+/* If @Word or @Phrase is NULL the function returns 0 */
+IF @Word IS NULL OR @Phrase IS NULL RETURN 0
+/* @BiggerWord is a string one character longer than @Word */
+DECLARE @BiggerWord VARCHAR(21)
+SELECT @BiggerWord = @Word + 'x'
+/* Replace @Word with @BiggerWord in @Phrase */
+DECLARE @BiggerPhrase VARCHAR(2000)
+SELECT @BiggerPhrase = REPLACE (@Phrase, @Word, @BiggerWord)
+/* The length difference between @BiggerPhrase and @phrase
+   is the number we''re looking for */
+RETURN LEN(@BiggerPhrase) - LEN(@Phrase)
+END
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE TABLE {databaseOwner}[jb_ItemAttribute] (
+	[AttributeID] [int] IDENTITY (1, 1) NOT NULL ,
+	[ItemID] [int] NOT NULL ,
+	[AttributeName] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[AttributeValue] [nvarchar] (2000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE {databaseOwner}[jb_ItemCategory] (
+	[ItemID] [int] NOT NULL ,
+	[CategoryID] [int] NOT NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE {databaseOwner}[jb_ItemFile] (
+	[FileID] [int] IDENTITY (1, 1) NOT NULL ,
+	[ItemID] [int] NOT NULL ,
+	[PortalID] [int] NULL ,
+	[ModuleID] [int] NULL ,
+	[CreatedDate] [datetime] NULL ,
+	[FileName] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Description] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Image] [image] NULL ,
+	[ImageContentType] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ImageContentSize] [int] NULL ,
+	[ImageFileName] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ViewOrder] [int] NULL ,
+	[CreatedByUser] [int] NULL 
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE {databaseOwner}[jb_ItemImage] (
+	[ImageID] [int] IDENTITY (1, 1) NOT NULL ,
+	[ItemID] [int] NOT NULL ,
+	[PortalID] [int] NULL ,
+	[ModuleID] [int] NULL ,
+	[Description] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Image] [image] NULL ,
+	[ImageContentType] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ImageContentSize] [int] NULL ,
+	[ImageFileName] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ViewOrder] [int] NULL ,
+	[ImageCode] [int] NOT NULL ,
+	[IsMainImage] [bit] NOT NULL 
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE {databaseOwner}[jb_ItemReview] (
+	[ReviewID] [int] IDENTITY (1, 1) NOT NULL ,
+	[ItemID] [int] NOT NULL ,
+	[PortalID] [int] NULL ,
+	[ModuleID] [int] NULL ,
+	[Name] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Email] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[CreatedByUser] [int] NULL ,
+	[Rating] [int] NULL ,
+	[Comment] [ntext] COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Helpful_Yes] [int] NULL ,
+	[Helpful_No] [int] NULL ,
+	[Approved] [bit] NULL ,
+	[CreatedDate] [datetime] NULL ,
+	[ReviewCode] [int] NULL 
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE {databaseOwner}[jb_JobApplication] (
+	[ApplicationID] [int] IDENTITY (1, 1) NOT NULL ,
+	[JobID] [int] NULL ,
+	[ModuleID] [int] NULL ,
+	[CreatedByUser] [int] NULL ,
+	[CreatedDate] [datetime] NULL ,
+	[ApplicantName] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ApplicantEmail] [nvarchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Message] [ntext] COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[SalaryReq] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[JobLead] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Image] [image] NULL ,
+	[ImageContentType] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ImageContentSize] [int] NULL ,
+	[Image1] [image] NULL ,
+	[ImageContentType1] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ImageContentSize1] [int] NULL ,
+	[ImageFileName] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ImageFileName1] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ViewCount] [int] NULL 
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE {databaseOwner}[jb_MySubscription] (
+	[SubscriptionID] [int] IDENTITY (1, 1) NOT NULL ,
+	[PortalID] [int] NOT NULL ,
+	[ModuleID] [int] NULL ,
+	[UserID] [int] NOT NULL ,
+	[PlanID] [int] NOT NULL ,
+	[TransactionID] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[DateCreated] [datetime] NULL ,
+	[DateStart] [datetime] NULL ,
+	[DateEnd] [datetime] NULL ,
+	[DateRenew] [datetime] NULL ,
+	[Limit] [int] NULL ,
+	[Used] [int] NULL ,
+	[IsActive] [bit] NOT NULL ,
+	[Status] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE {databaseOwner}[jb_OrderDetail] (
+	[OrderID] [int] NOT NULL ,
+	[ProductID] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ProductName] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Quantity] [int] NULL ,
+	[UnitCost] [money] NULL ,
+	[Subtotal] [money] NULL ,
+	[IsPayPal] [bit] NULL ,
+	[txn_id] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE {databaseOwner}[jb_Orders] (
+	[OrderID] [int] IDENTITY (1, 1) NOT NULL ,
+	[PortalID] [int] NULL ,
+	[ModuleID] [int] NULL ,
+	[UserID] [int] NULL ,
+	[OrderDate] [datetime] NULL ,
+	[ShipDate] [datetime] NULL ,
+	[Status] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[AuthCode] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Reference] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[TransactionID] [nvarchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Comments] [nvarchar] (500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[CustomerID] [int] NULL ,
+	[DownloadItems] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[TotalGross] [money] NULL ,
+	[TotalSub] [money] NULL ,
+	[TotalTax] [money] NULL ,
+	[TotalShipping] [money] NULL ,
+	[ShoppingCartMode] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[IsPayPal] [bit] NULL ,
+	[PriceCheck] [money] NULL ,
+	[IsCorrectAmount] [bit] NULL ,
+	[payer_email] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[payer_id] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[payment_status] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[txn_id] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[txn_type] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[mc_gross] [money] NULL ,
+	[mc_fee] [money] NULL ,
+	[payment_date] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[invoice] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[custom] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[pending_reason] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[payment_type] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[num_cart_items] [int] NULL ,
+	[mc_shipping] [money] NULL ,
+	[mc_handling] [money] NULL ,
+	[mc_tax] [money] NULL ,
+	[shipping] [money] NULL ,
+	[tax] [money] NULL ,
+	[first_name] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[last_name] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[address_street] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[address_city] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[address_state] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[address_zip] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[address_country] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[address_status] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[pwd] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE {databaseOwner}[jb_Picklist] (
+	[PicklistID] [int] IDENTITY (1, 1) NOT NULL ,
+	[PicklistGroup] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[PicklistText] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[PicklistValue] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ViewOrder] [int] NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE {databaseOwner}[jb_SubscriptionPlan] (
+	[PlanID] [int] IDENTITY (1, 1) NOT NULL ,
+	[PortalID] [int] NOT NULL ,
+	[ModuleID] [int] NULL ,
+	[RoleID] [int] NOT NULL ,
+	[PlanName] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[Description] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[IsActive] [bit] NOT NULL ,
+	[ViewOrder] [int] NOT NULL ,
+	[Fee] [money] NOT NULL ,
+	[Limit] [int] NULL ,
+	[ExpirationPeriod] [int] NULL ,
+	[BillingFrequency] [int] NOT NULL ,
+	[BillingPeriod] [int] NOT NULL 
+) ON [PRIMARY]
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemAttribute] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_ItemAttribute] PRIMARY KEY  CLUSTERED 
+	(
+		[AttributeID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemCategory] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_ItemCategory] PRIMARY KEY  CLUSTERED 
+	(
+		[ItemID],
+		[CategoryID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemFile] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_ItemFile] PRIMARY KEY  CLUSTERED 
+	(
+		[FileID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemImage] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_ItemImage] PRIMARY KEY  CLUSTERED 
+	(
+		[ImageID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemReview] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_ItemReview] PRIMARY KEY  CLUSTERED 
+	(
+		[ReviewID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_JobApplication] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_JobApplication] PRIMARY KEY  CLUSTERED 
+	(
+		[ApplicationID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_MySubscription] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_Subscription] PRIMARY KEY  CLUSTERED 
+	(
+		[SubscriptionID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_OrderDetail] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_OrderDetail] PRIMARY KEY  CLUSTERED 
+	(
+		[OrderID],
+		[ProductID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_Orders] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_Orders] PRIMARY KEY  CLUSTERED 
+	(
+		[OrderID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_Picklist] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_Picklist] PRIMARY KEY  CLUSTERED 
+	(
+		[PicklistID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_SubscriptionPlan] WITH NOCHECK ADD 
+	CONSTRAINT [PK_jb_SubscriptionPlan] PRIMARY KEY  CLUSTERED 
+	(
+		[PlanID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemImage] ADD 
+	CONSTRAINT [DF_jb_ItemImage_ImageCode] DEFAULT (40) FOR [ImageCode],
+	CONSTRAINT [DF_jb_ItemImage_IsMainImage] DEFAULT (0) FOR [IsMainImage]
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemReview] ADD 
+	CONSTRAINT [DF_jb_ItemReview_Helpful_Yes] DEFAULT (0) FOR [Helpful_Yes],
+	CONSTRAINT [DF_jb_ItemReview_Helpful_No] DEFAULT (0) FOR [Helpful_No],
+	CONSTRAINT [DF_jb_ItemReview_ReviewCode] DEFAULT (40) FOR [ReviewCode]
+GO
+
+ALTER TABLE {databaseOwner}[jb_JobApplication] ADD 
+	CONSTRAINT [DF_jb_Application_JobLead] DEFAULT (0) FOR [JobLead],
+	CONSTRAINT [DF_jb_Application_ImageFileName] DEFAULT ('') FOR [ImageFileName],
+	CONSTRAINT [DF_jb_Application_ViewCount] DEFAULT (0) FOR [ViewCount]
+GO
+
+ALTER TABLE {databaseOwner}[jb_OrderDetail] ADD 
+	CONSTRAINT [DF_jb_OrderDetail_IsPayPal] DEFAULT (1) FOR [IsPayPal]
+GO
+
+ALTER TABLE {databaseOwner}[jb_Orders] ADD 
+	CONSTRAINT [DF_jb_Orders_IsPayPal] DEFAULT (1) FOR [IsPayPal],
+	CONSTRAINT [DF_jb_Orders_IsCorrectAmount] DEFAULT (0) FOR [IsCorrectAmount]
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemAttribute] ADD 
+	CONSTRAINT [FK_jb_ItemAttribute_jb_Item] FOREIGN KEY 
+	(
+		[ItemID]
+	) REFERENCES {databaseOwner}[jb_ClassifiedsItem] (
+		[ItemID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE 
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemCategory] ADD 
+	CONSTRAINT [FK_jb_ItemCategory_jb_Category] FOREIGN KEY 
+	(
+		[CategoryID]
+	) REFERENCES {databaseOwner}[jb_ClassifiedsCat] (
+		[CategoryID]
+	),
+	CONSTRAINT [FK_jb_ItemCategory_jb_Item] FOREIGN KEY 
+	(
+		[ItemID]
+	) REFERENCES {databaseOwner}[jb_ClassifiedsItem] (
+		[ItemID]
+	)
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemFile] ADD 
+	CONSTRAINT [FK_jb_ItemFile_jb_Item] FOREIGN KEY 
+	(
+		[ItemID]
+	) REFERENCES {databaseOwner}[jb_ClassifiedsItem] (
+		[ItemID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE 
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemImage] ADD 
+	CONSTRAINT [FK_jb_ItemImage_jb_Item] FOREIGN KEY 
+	(
+		[ItemID]
+	) REFERENCES {databaseOwner}[jb_ClassifiedsItem] (
+		[ItemID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE 
+GO
+
+ALTER TABLE {databaseOwner}[jb_ItemReview] ADD 
+	CONSTRAINT [FK_jb_ItemReview_jb_Item] FOREIGN KEY 
+	(
+		[ItemID]
+	) REFERENCES {databaseOwner}[jb_ClassifiedsItem] (
+		[ItemID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE 
+GO
+
+ALTER TABLE {databaseOwner}[jb_JobApplication] ADD 
+	CONSTRAINT [FK_jb_JobApplication_jb_ClassifiedsItem] FOREIGN KEY 
+	(
+		[JobID]
+	) REFERENCES {databaseOwner}[jb_ClassifiedsItem] (
+		[ItemID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE VIEW {databaseOwner}jb_ClassifiedsItem_vw
+AS
+SELECT     jb_ClassifiedsItem.*, UnionCategory.[CategoryID] AS UCategoryID
+FROM         (SELECT     ItemID, CategoryID
+		FROM         jb_ClassifiedsItem
+		UNION
+		SELECT     *
+		FROM         jb_ItemCategory) AS UnionCategory 
+LEFT OUTER JOIN {databaseOwner}jb_ClassifiedsItem ON UnionCategory.ItemID = jb_ClassifiedsItem.ItemID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_AddClassifieds  
+@ModuleID       int,
+@UserName       nvarchar(100),
+@JB_JobTitle	nvarchar(255),
+@JB_JobCode	nvarchar(50),
+@JB_JobLocation	nvarchar(50),
+@JB_EmpType	nvarchar(50),
+@JB_ReqEducation	nvarchar(50),
+@JB_YearExp	int,
+@JB_Travel	nvarchar(50),
+@JB_StartingSalary	int,
+@JB_HourlyRate money,
+@JB_OtherSalary nvarchar(50),
+@JB_StartDate	datetime,
+@JB_NumberOpening	int,
+@Message	ntext,
+@JB_CompanyName	nvarchar(150),
+@JB_AddReqList	ntext,
+@JB_BenefitsList	ntext,
+@Image image, 
+@ImageContentType nvarchar(50), 
+@ImageContentSize int, 
+@Image1 image, 
+@ImageContentType1 nvarchar(50), 
+@ImageContentSize1 int, 
+@JB_ContactInfo	nvarchar(2000),
+@JB_ContactEmail	nvarchar(150),
+@PosterPassword	nvarchar(50),
+@ExpireDate	datetime,
+@Authed	bit,
+@CategoryID       int,
+@Featured	bit,
+@ItemID   int OUTPUT
+AS
+
+IF DATEPART(YYYY,@ExpireDate) = '1900'
+	SET @ExpireDate = null
+
+
+insert into jb_ClassifiedsItem(
+  ModuleID,
+  CreatedByUser,
+  CreatedDate,
+  JB_JobTitle,
+  JB_JobCode,
+  JB_JobLocation,
+  JB_EmpType,
+  JB_ReqEducation,
+  JB_YearExp,
+  JB_Travel,
+  JB_StartingSalary,
+  JB_HourlyRate,
+  JB_OtherSalary,
+  JB_StartDate, 
+  JB_NumberOpening, 
+  Message,
+  JB_CompanyName,
+  JB_AddReqList,
+  JB_BenefitsList,
+  Image,
+  ImageContentType,
+  ImageContentSize,
+  Image1,
+  ImageContentType1,
+  ImageContentSize1,
+  JB_ContactInfo,
+  JB_ContactEmail,
+  PosterPassword,
+  ExpireDate,
+  Authed,
+Featured,
+  CategoryID
+)
+values (
+  @ModuleID,
+  @UserName,
+  getdate(),
+@JB_JobTitle,
+@JB_JobCode,
+@JB_JobLocation,
+@JB_EmpType,
+@JB_ReqEducation,
+@JB_YearExp,
+@JB_Travel,
+@JB_StartingSalary,
+@JB_HourlyRate,
+@JB_OtherSalary,
+@JB_StartDate,
+@JB_NumberOpening,
+@Message,
+@JB_CompanyName,
+@JB_AddReqList,
+@JB_BenefitsList,
+@Image, 
+@ImageContentType, 
+@ImageContentSize, 
+@Image1, 
+@ImageContentType1, 
+@ImageContentSize1, 
+@JB_ContactInfo,
+@JB_ContactEmail,
+@PosterPassword,
+@ExpireDate,
+@Authed,
+@Featured,
+@CategoryID
+	
+)
+SELECT
+   @ItemID = @@Identity
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE procedure {databaseOwner}jb_AddClassifiedsCategory
+@ModuleID			int,
+@CategoryName       nvarchar(100),
+@ParentID			int = null,
+@PaymentRequired bit,
+@Price money,
+@EnableListings bit = 1
+as
+
+IF @ParentID = 0 OR @ParentID = -1
+SET @ParentID = null
+
+insert into jb_ClassifiedsCat(
+  ModuleID,
+  CategoryName,
+  ParentID,
+  PaymentRequired,
+  Price,
+  EnableListings
+)
+values (
+  @ModuleID,
+  @CategoryName,
+  @ParentID,
+  @PaymentRequired,
+  @Price,
+  @EnableListings
+)
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE Procedure {databaseOwner}jb_ClassifiedsCheckCategoryPayment
+(
+    @CategoryID int,
+    @Price Money OUTPUT
+)
+AS
+/*
+Price
+0  Payment is not required, this category is free
+>0 Payment is required and then return the amount
+*/
+IF EXISTS (SELECT * FROM jb_ClassifiedsCat WHERE CategoryID = @CategoryID)
+	BEGIN
+		IF (SELECT PaymentRequired FROM jb_ClassifiedsCat WHERE CategoryID = @CategoryID) = 1
+			SELECT @Price = (SELECT  IsNull(Price, 0)  FROM jb_ClassifiedsCat WHERE CategoryID = @CategoryID) 
+		ELSE
+			SELECT @Price = 0
+	
+	END
+ELSE
+	BEGIN
+		SELECT @Price = 0
+	END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE Procedure {databaseOwner}jb_ClassifiedsCheckPosterPassword
+(
+    @ItemID int,
+    @Password nvarchar(50),
+    @ReturnCode int OUTPUT
+)
+AS
+IF  (SELECT PosterPassword FROM jb_ClassifiedsItem WHERE ItemID = @ItemID AND PosterPassword = @Password) = @Password
+	BEGIN
+	SELECT @ReturnCode = 1
+	END
+ELSE
+	BEGIN
+	SELECT @ReturnCode = 0
+	END
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_DeleteClassifieds
+(
+    @ItemID int
+)
+AS
+DELETE FROM
+    jb_ClassifiedsItem
+WHERE
+    ItemID = @ItemID
+
+Delete
+from  jb_rw_tabReviews
+where  ID_PRODUCT = @ItemID
+
+
+DELETE FROM {databaseOwner}jb_ItemCategory WHERE ItemID=@ItemID
+
+DELETE FROM {databaseOwner}jb_JobApplication WHERE JobID=@ItemID
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_DeleteClassifiedsCategory
+(
+   @CategoryID   int,
+   @ReturnCode int OUTPUT	
+)
+AS
+if not exists ( select * from jb_ClassifiedsCat where ParentID = @CategoryID )
+	
+	BEGIN
+	SELECT  @ReturnCode =  @CategoryID
+	DELETE FROM
+	    jb_ClassifiedsCat
+	
+	WHERE
+	    CategoryID = @CategoryID
+	
+	
+	DELETE FROM
+	    jb_ClassifiedsItem
+	
+	WHERE
+	    CategoryID = @CategoryID
+
+	DELETE FROM {databaseOwner}jb_ItemCategory WHERE  CategoryID = @CategoryID
+
+	END
+ELSE
+	SELECT  @ReturnCode = -1
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_GetClassifieds
+@ModuleID int,
+@CategoryID int = -1,
+@Key nvarchar(20) = 'ACTIVE',
+@Param int = 0 
+AS
+
+	IF UPPER(@Key) = 'ADMIN' 
+		IF @CategoryID = -1
+			BEGIN			
+				select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+				from   jb_ClassifiedsItem
+				where  ModuleID = @ModuleID
+				--and    (ExpireDate > GetDate() or ExpireDate is null)
+				--and CategoryID = @CategoryID
+				Order By CreatedDate Desc
+			END
+		ELSE
+			BEGIN			
+				select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+				from   jb_ClassifiedsItem_vw
+				where  ModuleID = @ModuleID
+				--and    (ExpireDate > GetDate() or ExpireDate is null)
+				and UCategoryID = @CategoryID
+				Order By CreatedDate Desc
+			END
+
+	ELSE IF UPPER(@Key) = 'AUTHED' 
+		IF @CategoryID = -1	
+			BEGIN		
+				select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+				from   jb_ClassifiedsItem
+				where  ModuleID = @ModuleID
+				and   Authed = 1
+				--and CategoryID = @CategoryID
+				Order By CreatedDate Desc
+	
+			END
+		ELSE
+			BEGIN		
+				select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+				from   jb_ClassifiedsItem_vw
+				where  ModuleID = @ModuleID
+				and   Authed = 1
+				and UCategoryID = @CategoryID
+				Order By CreatedDate Desc
+	
+			END
+	
+	ELSE IF UPPER(@Key) = 'LST_MY' 
+		BEGIN			
+			select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			--and    (ExpireDate > GetDate() or ExpireDate is null)
+			--and CategoryID = @CategoryID
+			and CreatedByUser  = @Param
+			Order By CreatedDate Desc
+		END	
+	ELSE IF UPPER(@Key) = 'LST_EXPIRED' 
+		BEGIN			
+			select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and  ExpireDate is not null
+			and    (ExpireDate < GetDate())
+			Order By CreatedDate Desc
+		END	
+	ELSE IF UPPER(@Key) = 'LST_UNAPPROVED' 
+		BEGIN			
+			select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and   Authed = 0
+			Order By CreatedDate Desc
+		END	
+	ELSE IF UPPER(@Key) = 'LST_WBE' 
+		BEGIN			
+			select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and    (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0
+			and     datediff(day, getdate(), ExpireDate) < @Param
+			Order By CreatedDate Desc
+		END	
+	ELSE IF UPPER(@Key) = 'LST_NEWLISTINGS' 
+		BEGIN				
+			select * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and     datediff(day,CreatedDate,getdate()) < @Param and Authed <> 0
+			Order By CreatedDate Desc
+		END
+	ELSE IF UPPER(@Key) = 'LST_FEATURED'  -- CategoryID does not matter here
+		BEGIN			
+			select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			--and    (ExpireDate > GetDate() or ExpireDate is null) 
+			--and    Authed <> 0
+			and   Featured = 1
+			Order By CreatedDate Desc	
+		END	
+	ELSE IF UPPER(@Key) = 'LST_FEATURED_ACTIVE'  -- CategoryID does not matter here
+		BEGIN			
+			select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and    (ExpireDate > GetDate() or ExpireDate is null) 
+			and    Authed <> 0
+			and   Featured = 1
+			Order By CreatedDate Desc	
+		END	
+	ELSE IF UPPER(@Key) = 'LST_VIEWCOUNT_TOP'  
+		BEGIN			
+			SET ROWCOUNT 10
+			select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and    (ExpireDate > GetDate() or ExpireDate is null) 
+			and    Authed <> 0
+			ORDER BY ViewCount DESC
+		
+		END	
+	ELSE IF UPPER(@Key) = 'LST_VIEWCOUNT_BOTTOM' 
+		BEGIN		
+			SET ROWCOUNT 10
+			select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+			from   jb_ClassifiedsItem
+			where  ModuleID = @ModuleID
+			and    (ExpireDate > GetDate() or ExpireDate is null) 
+			and    Authed <> 0
+			ORDER BY ViewCount ASC
+		END	
+	ELSE IF UPPER(@Key) = 'COUNT' 
+		BEGIN		
+			
+			--Variables used for all calculations 
+			DECLARE
+			@COUNT_LST_MY AS  INT,
+			@COUNT_LST_EXPIRED AS  INT,
+			@COUNT_LST_UNAPPROVED AS  INT,
+			@COUNT_LST_WBE7  AS  INT,
+			@COUNT_LST_WBE30  AS  INT,
+			@COUNT_LST_FEATURED AS INT			
+			SET @COUNT_LST_MY 		= (select  count(ItemID)  from   jb_ClassifiedsItem  	where  ModuleID = @ModuleID and CreatedByUser  = @Param)
+			SET @COUNT_LST_EXPIRED  		= (select  count(ItemID)  from   jb_ClassifiedsItem    where  ModuleID = @ModuleID and  ExpireDate is not null AND (ExpireDate < GetDate()))
+			SET @COUNT_LST_UNAPPROVED  	= (select  count(ItemID)  from   jb_ClassifiedsItem  	where  ModuleID = @ModuleID  and   Authed = 0) 
+			SET @COUNT_LST_WBE7  		= (select  count(ItemID) from   jb_ClassifiedsItem    	where  ModuleID = @ModuleID and  (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0  and datediff(day, getdate(), ExpireDate) < 7)
+			SET @COUNT_LST_WBE30  		= (select  count(ItemID) from   jb_ClassifiedsItem    	where  ModuleID = @ModuleID and  (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0  and datediff(day, getdate(), ExpireDate) < 30)
+			SET @COUNT_LST_FEATURED 	= (select  count(ItemID)  from  jb_ClassifiedsItem     where  ModuleID = @ModuleID and   Featured = 1)	
+			select @COUNT_LST_MY AS  'COUNT_LST_MY', 
+				@COUNT_LST_EXPIRED AS  'COUNT_LST_EXPIRED',  
+				@COUNT_LST_UNAPPROVED AS  'COUNT_LST_UNAPPROVED', 
+				@COUNT_LST_WBE7 AS  'COUNT_LST_WBE7',  
+				@COUNT_LST_WBE30  AS  'COUNT_LST_WBE30',
+				@COUNT_LST_FEATURED AS 'COUNT_LST_FEATURED'
+			
+			
+		END	
+	ELSE
+		IF @CategoryID = -1
+			BEGIN			
+				select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+				from   jb_ClassifiedsItem
+				where  ModuleID = @ModuleID
+				and    (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0
+				--and CategoryID = @CategoryID
+				Order By CreatedDate Desc
+	
+			END
+		ELSE
+			BEGIN			
+				select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+				from   jb_ClassifiedsItem_vw
+				where  ModuleID = @ModuleID
+				and    (ExpireDate > GetDate() or ExpireDate is null) and Authed <> 0
+				and UCategoryID = @CategoryID
+				Order By CreatedDate Desc
+	
+			END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE procedure {databaseOwner}jb_GetClassifiedsCategories
+@ParentID   int,
+@moduleID	int
+as
+select *, {databaseOwner}jb_CountChildren(CategoryID, 0, Getdate()) AS ItemsCount, {databaseOwner}jb_CountChildrenAdmin(CategoryID, 0, Getdate()) AS ItemsCountAdmin
+from   jb_ClassifiedsCat
+where  (IsNull(ParentID, 0) = @ParentID AND moduleID = @moduleID)
+order by CategoryName
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_GetClassifiedsCategoriesCompleteList
+	(
+	@ModuleID int,
+	@Key nvarchar(20) = 'DDL' -- (DS, DDL_CATPATH, DDL_CATPATH_NC, DDL_CATPATH_EL, DDL, DDL_ADMINPANEL, DDL_ADDITEM, DDL_SEARCH)
+	)
+	AS
+
+	IF UPPER(@Key) = 'DS' 
+		BEGIN		
+			Select ClassifiedsCat.*, 
+				{databaseOwner}jb_CountChildren(ClassifiedsCat.CategoryID, 0, Getdate()) AS ItemsCount, 
+				{databaseOwner}jb_CountChildrenAdmin(ClassifiedsCat.CategoryID, 0, Getdate()) AS ItemsCountAdmin,
+				cast(left(CategoryString, 2) as int) as [LEVEL],
+				rtrim(CategoryName) as [CategoryName],	
+				substring(CategoryString, 3, 1024) as [CategoryPath], 
+				(SELECT CategoryName From jb_ClassifiedsCat c2 WHERE c2.CategoryID = ClassifiedsCat.ParentID) AS 'ParentName',
+				(SELECT COUNT(CategoryID) FROM [jb_ClassifiedsCat]  WHERE [ParentID] = ClassifiedsCat.CategoryID) AS [ChildrenCount]
+			 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+					, ClassifiedsCat.*
+			   	from jb_ClassifiedsCat as ClassifiedsCat WHERE ModuleID=@ModuleID
+				) as ClassifiedsCat
+			where CategoryString IS NOT NULL
+			order by substring(CategoryString,3,1024)
+				
+		END	
+	ELSE  IF UPPER(@Key) = 'DDL_CATPATH' 
+		BEGIN		
+			Select CategoryID AS [CategoryID], 
+				cast(left(CategoryString, 2) as int) as [LEVEL],
+				rtrim(CategoryName) as [CategoryName],	
+				substring(CategoryString, 3, 1024) as [CategoryPath], 
+				(SELECT COUNT(CategoryID) FROM [jb_ClassifiedsCat]  WHERE [ParentID] = ClassifiedsCat.CategoryID) AS [ChildrenCount]
+			 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+					, ClassifiedsCat.CategoryID CategoryID, ClassifiedsCat.CategoryName CategoryName
+			   	from jb_ClassifiedsCat as ClassifiedsCat WHERE ModuleID=@ModuleID
+				) as ClassifiedsCat
+			where CategoryString IS NOT NULL
+			order by substring(CategoryString,3,1024)
+		END
+	ELSE  IF UPPER(@Key) = 'DDL_CATPATH_NC' 
+		BEGIN		
+			Select CategoryID AS [CategoryID], 
+				cast(left(CategoryString, 2) as int) as [LEVEL],
+				rtrim(CategoryName) as [CategoryName],	
+				substring(CategoryString, 3, 1024) as [CategoryPath], 
+				ClassifiedsCat. [ChildrenCount]
+			 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+					, ClassifiedsCat.CategoryID CategoryID, ClassifiedsCat.CategoryName CategoryName,
+					(SELECT COUNT(CategoryID) FROM [jb_ClassifiedsCat]  WHERE [ParentID] = ClassifiedsCat.CategoryID) AS [ChildrenCount]
+			   	from jb_ClassifiedsCat as ClassifiedsCat WHERE ModuleID=@ModuleID
+				) as ClassifiedsCat
+			where ClassifiedsCat.[ChildrenCount] = 0  AND CategoryString IS NOT NULL
+			order by substring(CategoryString,3,1024)
+		END
+	 ELSE IF UPPER(@Key) = 'DDL_CATPATH_EL' 
+		BEGIN		
+			Select CategoryID AS [CategoryID], 
+				cast(left(CategoryString, 2) as int) as [LEVEL],
+				rtrim(CategoryName) as [CategoryName],	
+				substring(CategoryString, 3, 1024) as [CategoryPath], 
+				(SELECT COUNT(CategoryID) FROM [jb_ClassifiedsCat]  WHERE [ParentID] = ClassifiedsCat.CategoryID) AS [ChildrenCount]
+			 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+					, ClassifiedsCat.CategoryID CategoryID, ClassifiedsCat.CategoryName CategoryName
+			   	from jb_ClassifiedsCat as ClassifiedsCat  WHERE ModuleID=@ModuleID AND EnableListings = 1
+				) as ClassifiedsCat
+			where CategoryString IS NOT NULL
+			order by substring(CategoryString,3,1024)
+		END	
+	ELSE 	-- DDL, DDL_ADMINPANEL, DDL_ADDITEM, DDL_SEARCH
+		BEGIN	
+			CREATE TABLE [#RETURN] ([CategoryID] int, [CategoryName] nVARCHAR(512))				
+			IF UPPER(@Key) = 'DDL_ADMINPANEL' 
+				BEGIN
+					INSERT INTO [#RETURN] 
+					VALUES (0,  '-- NO PARENT --')
+
+					INSERT INTO [#RETURN] 				
+					Select CategoryID AS [CategoryID],  substring(CategoryString, 3, 1024) as [CategoryPath]
+					 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+							, ClassifiedsCat.CategoryID CategoryID
+					   	from jb_ClassifiedsCat as ClassifiedsCat  WHERE ModuleID=@ModuleID
+						) as ClassifiedsCat
+					where CategoryString IS NOT NULL
+					order by substring(CategoryString,3,1024)
+				END
+			ELSE  IF UPPER(@Key) = 'DDL_SEARCH' 
+				BEGIN
+					INSERT INTO [#RETURN] 
+					VALUES (-1,  '-- ALL Categories --')
+
+					INSERT INTO [#RETURN] 				
+					Select CategoryID AS [CategoryID],  substring(CategoryString, 3, 1024) as [CategoryPath]
+					 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+							, ClassifiedsCat.CategoryID CategoryID
+					   	from jb_ClassifiedsCat as ClassifiedsCat  WHERE ModuleID=@ModuleID
+						) as ClassifiedsCat
+					where CategoryString IS NOT NULL
+					order by substring(CategoryString,3,1024)
+				END
+			ELSE -- DDL, DDL_ADDITEM
+				BEGIN
+					INSERT INTO [#RETURN] 				
+					Select CategoryID AS [CategoryID],  substring(CategoryString, 3, 1024) as [CategoryPath]
+					 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+							, ClassifiedsCat.CategoryID CategoryID
+					   	from jb_ClassifiedsCat as ClassifiedsCat  WHERE ModuleID=@ModuleID AND EnableListings = 1
+						) as ClassifiedsCat
+					where CategoryString IS NOT NULL
+					order by substring(CategoryString,3,1024)
+				END			
+			
+						
+			SELECT  *  FROM [#RETURN]
+
+			DROP TABLE [#RETURN]
+
+		END
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE procedure {databaseOwner}jb_GetClassifiedsCategoriesCount
+@ModuleID	int,
+@ParentID   int = 0,
+@Key nvarchar(20) = 'ALL',  -- ALL, SUB 
+@CategoriesCount int  OUTPUT
+as
+
+IF UPPER(@Key) = 'SUB' 
+	BEGIN
+		SET @CategoriesCount = (select COUNT(CategoryID) 
+		from   jb_ClassifiedsCat
+		where IsNull(ParentID, 0)  = @ParentID AND ModuleID = @ModuleID  AND EnableListings = 1)
+	END
+ELSE
+	BEGIN
+		SET @CategoriesCount = (select COUNT(CategoryID) 
+		from   jb_ClassifiedsCat
+		where ModuleID = @ModuleID  AND EnableListings = 1)
+	END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_GetClassifiedsSearch_Adv
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@EmploymentType nvarchar(50),
+@SalaryFrom  int
+AS
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+	IF @CurrentCategoryID = -1
+		BEGIN
+			IF @SearchBy = 'JB_JobCode' 
+				BEGIN
+					SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+					, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+					FROM jb_ClassifiedsItem
+					WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = @ModuleID
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+					--AND UCategoryID IN(SELECT * FROM [#RETURN])
+					AND (JB_JobCode = @SearchText )	
+					AND (JB_EmpType = @EmploymentType)
+					AND (JB_StartingSalary >= @SalaryFrom)			
+					--and (JB_JobTitle like '%' + @SearchText + '%' or 
+									--JB_JobCode like '%' + @SearchText + '%' or 
+									--JB_JobLocation like '%' + @SearchText + '%' or 
+									--JB_ReqEducation like '%' + @SearchText + '%' or 
+									--JB_Travel like '%' + @SearchText + '%' or 									
+									--JB_NumberOpening like '%' + @SearchText + '%' or 
+									--Message like '%' + @SearchText + '%'  or
+									--JB_CompanyName like '%' + @SearchText + '%'  or
+									--JB_ContactInfo like '%' + @SearchText + '%'  or
+									--JB_ContactEmail like '%' + @SearchText + '%'  or 
+									--CreatedDate    like '%' + @SearchText + '%'  or 
+									--ExpireDate like '%' + @SearchText + '%'  or 
+									--JB_AddReqList	like '%' + @SearchText + '%'  or 
+									--JB_BenefitsList like '%' + @SearchText + '%'  )
+					) Order By Rank Desc
+				END			
+		             ELSE
+				BEGIN
+					SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+					, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+					FROM jb_ClassifiedsItem
+					WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = @ModuleID
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+					--AND UCategoryID IN(SELECT * FROM [#RETURN])
+					--AND (JB_JobCode = @SearchText )	
+					AND (JB_EmpType = @EmploymentType)
+					AND (JB_StartingSalary >= @SalaryFrom)		
+					and (JB_JobTitle like '%' + @SearchText + '%' or 
+									JB_JobCode like '%' + @SearchText + '%' or 
+									JB_JobLocation like '%' + @SearchText + '%' or 
+									JB_ReqEducation like '%' + @SearchText + '%' or 
+									JB_Travel like '%' + @SearchText + '%' or 
+									JB_NumberOpening like '%' + @SearchText + '%' or 
+									Message like '%' + @SearchText + '%'  or
+									JB_CompanyName like '%' + @SearchText + '%'  or
+									JB_ContactInfo like '%' + @SearchText + '%'  or
+									JB_ContactEmail like '%' + @SearchText + '%'  or 
+									CreatedDate    like '%' + @SearchText + '%'  or 
+									ExpireDate like '%' + @SearchText + '%'  or 
+									JB_AddReqList	like '%' + @SearchText + '%'  or 
+									JB_BenefitsList like '%' + @SearchText + '%'  )
+	      	
+		
+					) Order By Rank Desc
+				END			
+		END
+	ELSE
+		BEGIN
+			IF @SearchBy = 'JB_JobCode' 
+				BEGIN
+					SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+					, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+					FROM jb_ClassifiedsItem
+					WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = @ModuleID
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+					AND UCategoryID IN(SELECT * FROM [#RETURN])
+					AND (JB_JobCode = @SearchText )
+					AND (JB_EmpType = @EmploymentType)
+					AND (JB_StartingSalary >= @SalaryFrom)		
+					--and (JB_JobTitle like '%' + @SearchText + '%' or 
+									--JB_JobCode like '%' + @SearchText + '%' or 
+									--JB_JobLocation like '%' + @SearchText + '%' or 
+									--JB_ReqEducation like '%' + @SearchText + '%' or 									
+									--JB_Travel like '%' + @SearchText + '%' or 									
+									--JB_NumberOpening like '%' + @SearchText + '%' or 
+									--Message like '%' + @SearchText + '%'  or
+									--JB_CompanyName like '%' + @SearchText + '%'  or
+									--JB_ContactInfo like '%' + @SearchText + '%'  or
+									--JB_ContactEmail like '%' + @SearchText + '%'  or
+									--CreatedDate    like '%' + @SearchText + '%'  or 
+									--ExpireDate like '%' + @SearchText + '%'  or 
+									--JB_AddReqList	like '%' + @SearchText + '%'  or 
+									--JB_BenefitsList like '%' + @SearchText + '%'  )
+					) Order By Rank Desc
+				END
+			ELSE
+				BEGIN
+					SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+					, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+					FROM jb_ClassifiedsItem
+					WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = @ModuleID
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+					AND UCategoryID IN(SELECT * FROM [#RETURN])
+					--AND (JB_JobCode = @SearchText )	
+					AND (JB_EmpType = @EmploymentType)
+					AND (JB_StartingSalary >= @SalaryFrom)		
+					and (JB_JobTitle like '%' + @SearchText + '%' or 
+									JB_JobCode like '%' + @SearchText + '%' or 
+									JB_JobLocation like '%' + @SearchText + '%' or 
+									JB_ReqEducation like '%' + @SearchText + '%' or 									
+									JB_Travel like '%' + @SearchText + '%' or 
+									JB_NumberOpening like '%' + @SearchText + '%' or 
+									Message like '%' + @SearchText + '%'  or
+									JB_CompanyName like '%' + @SearchText + '%'  or
+									JB_ContactInfo like '%' + @SearchText + '%'  or
+									JB_ContactEmail like '%' + @SearchText + '%'  or 
+									CreatedDate    like '%' + @SearchText + '%'  or 
+									ExpireDate like '%' + @SearchText + '%'  or 
+									JB_AddReqList	like '%' + @SearchText + '%'  or 
+									JB_BenefitsList like '%' + @SearchText + '%'  )
+					) Order By Rank Desc
+				END
+			
+		END
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_GetClassifiedsSearch_Bsc
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255)
+AS
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+	IF @CurrentCategoryID = -1
+		BEGIN
+			IF @SearchBy = 'JB_JobCode' 
+				BEGIN
+					
+					SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+					, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+					FROM jb_ClassifiedsItem
+					WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = @ModuleID
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+					--AND UCategoryID IN(SELECT * FROM [#RETURN])
+					AND (JB_JobCode = @SearchText )		
+					--and (JB_JobTitle like '%' + @SearchText + '%' or 
+									--JB_JobCode like '%' + @SearchText + '%' or 
+									--JB_JobLocation like '%' + @SearchText + '%' or 
+									--JB_EmpType like '%' + @SearchText + '%' or 
+									--JB_ReqEducation like '%' + @SearchText + '%' or 
+									--JB_Travel like '%' + @SearchText + '%' or
+									--JB_StartingSalary like '%' + @SearchText + '%' or 
+									--JB_HourlyRate like '%' + @SearchText + '%' or 
+									--JB_StartDate	like '%' + @SearchText + '%' or 									
+									--JB_NumberOpening like '%' + @SearchText + '%' or 
+									--Message like '%' + @SearchText + '%'  or
+									--JB_CompanyName like '%' + @SearchText + '%'  or
+									--JB_ContactInfo like '%' + @SearchText + '%'  or
+									--JB_ContactEmail like '%' + @SearchText + '%'  or 
+									--CreatedDate    like '%' + @SearchText + '%'  or 
+									--ExpireDate like '%' + @SearchText + '%'  or 
+									--JB_AddReqList	like '%' + @SearchText + '%'  or 
+									--JB_BenefitsList like '%' + @SearchText + '%'  )
+					) Order By Rank Desc
+				END			
+		             ELSE
+				BEGIN
+					SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+					, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank		
+					FROM jb_ClassifiedsItem
+					WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = @ModuleID
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+					--AND UCategoryID IN(SELECT * FROM [#RETURN])
+					--AND (JB_JobCode = @SearchText )			
+					and (JB_JobTitle like '%' + @SearchText + '%' or 
+									JB_JobCode like '%' + @SearchText + '%' or 
+									JB_JobLocation like '%' + @SearchText + '%' or 
+									JB_EmpType like '%' + @SearchText + '%' or 
+									JB_ReqEducation like '%' + @SearchText + '%' or 
+									JB_Travel like '%' + @SearchText + '%' or 
+									JB_StartingSalary like '%' + @SearchText + '%' or 
+									CAST(JB_HourlyRate As NVARCHAR(255)) like '%' + @SearchText + '%' or 	
+									JB_StartDate	like '%' + @SearchText + '%' or 
+									JB_NumberOpening like '%' + @SearchText + '%' or 
+									Message like '%' + @SearchText + '%'  or
+									JB_CompanyName like '%' + @SearchText + '%'  or
+									JB_ContactInfo like '%' + @SearchText + '%'  or
+									JB_ContactEmail like '%' + @SearchText + '%'  or 
+									CreatedDate    like '%' + @SearchText + '%'  or 
+									ExpireDate like '%' + @SearchText + '%'  or 
+									JB_AddReqList	like '%' + @SearchText + '%'  or 
+									JB_BenefitsList like '%' + @SearchText + '%'  )
+	      	
+		
+					) Order By Rank Desc
+				END			
+		END
+	ELSE
+		BEGIN
+			IF @SearchBy = 'JB_JobCode' 
+				BEGIN
+					SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+					, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+					FROM jb_ClassifiedsItem
+					WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = @ModuleID
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+					AND UCategoryID IN(SELECT * FROM [#RETURN])
+					AND (JB_JobCode = @SearchText )
+					--and (JB_JobTitle like '%' + @SearchText + '%' or 
+									--JB_JobCode like '%' + @SearchText + '%' or 
+									--JB_JobLocation like '%' + @SearchText + '%' or 
+									--JB_EmpType like '%' + @SearchText + '%' or 
+									--JB_ReqEducation like '%' + @SearchText + '%' or 									
+									--JB_Travel like '%' + @SearchText + '%' or 	
+									--JB_StartingSalary like '%' + @SearchText + '%' or 
+									--JB_HourlyRate like '%' + @SearchText + '%' or 
+									--JB_StartDate	like '%' + @SearchText + '%' or 								
+									--JB_NumberOpening like '%' + @SearchText + '%' or 
+									--Message like '%' + @SearchText + '%'  or
+									--JB_CompanyName like '%' + @SearchText + '%'  or
+									--JB_ContactInfo like '%' + @SearchText + '%'  or
+									--JB_ContactEmail like '%' + @SearchText + '%'  or
+									--CreatedDate    like '%' + @SearchText + '%'  or 
+									--ExpireDate like '%' + @SearchText + '%'  or 
+									--JB_AddReqList	like '%' + @SearchText + '%'  or 
+									--JB_BenefitsList like '%' + @SearchText + '%'  )
+					) Order By Rank Desc
+				END
+			ELSE
+				BEGIN
+					SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+					, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR))  AS Rank
+					FROM jb_ClassifiedsItem
+					WHERE  jb_ClassifiedsItem.ItemID IN
+					(
+					SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+					FROM jb_ClassifiedsItem_vw
+					WHERE ModuleID = @ModuleID
+					AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+					AND UCategoryID IN(SELECT * FROM [#RETURN])
+					--AND (JB_JobCode = @SearchText )	
+					and (JB_JobTitle like '%' + @SearchText + '%' or 
+									JB_JobCode like '%' + @SearchText + '%' or 
+									JB_JobLocation like '%' + @SearchText + '%' or 
+									JB_EmpType like '%' + @SearchText + '%' or 
+									JB_ReqEducation like '%' + @SearchText + '%' or 									
+									JB_Travel like '%' + @SearchText + '%' or 
+									JB_StartingSalary like '%' + @SearchText + '%' or 
+									CAST(JB_HourlyRate As NVARCHAR(255)) like '%' + @SearchText + '%' or 	
+									JB_StartDate	like '%' + @SearchText + '%' or 
+									JB_NumberOpening like '%' + @SearchText + '%' or 
+									Message like '%' + @SearchText + '%'  or
+									JB_CompanyName like '%' + @SearchText + '%'  or
+									JB_ContactInfo like '%' + @SearchText + '%'  or
+									JB_ContactEmail like '%' + @SearchText + '%'  or 
+									CreatedDate    like '%' + @SearchText + '%'  or 
+									ExpireDate like '%' + @SearchText + '%'  or 
+									JB_AddReqList	like '%' + @SearchText + '%'  or 
+									JB_BenefitsList like '%' + @SearchText + '%'  )
+					) Order By Rank Desc
+				END
+			
+		END
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE  PROCEDURE {databaseOwner}jb_GetMainImage
+@ItemID   int
+AS 
+SELECT ISNULL( ImageFileName, '') FROM  jb_ClassifiedsItem
+WHERE  ItemID = @ItemID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_GetSingleClassifieds
+@ItemID   int,
+@ModuleId int
+as
+select  jb_ClassifiedsItem.*,
+DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire           
+from   jb_ClassifiedsItem
+where  ItemID = @ItemID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE procedure {databaseOwner}jb_GetSingleClassifiedsCategory
+@CategoryID   int
+as
+select *, IsNull(ParentID, 0) AS FixParentID	
+from   jb_ClassifiedsCat
+where  (CategoryID = @CategoryID)
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_GetSingleClassifiedsPhoto
+@ItemID   int
+as
+select *
+      
+from   jb_ClassifiedsItem
+where  ItemID = @ItemID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_ImageFileName_Update
+ @ItemID         int,
+ @ImageFileName      nvarchar(255)
+AS
+	BEGIN
+		
+		update jb_ClassifiedsItem WITH(ROWLOCK, UPDLOCK)
+		set    	ImageFileName =  @ImageFileName
+					
+			where  ItemID = @ItemID
+	END
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+-- *** Create stored procedures for table jb_ItemAttribute ***
+
+CREATE PROCEDURE {databaseOwner}jb_ItemAttributeAdd
+		@ItemID int,
+		@AttributeName nvarchar(50),
+		@AttributeValue nvarchar(2000)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_ItemAttribute
+		(ItemID,AttributeName,AttributeValue)
+		VALUES
+		(@ItemID,@AttributeName,@AttributeValue)
+	SELECT SCOPE_IDENTITY()
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemAttributeByjb_Item
+		@ItemID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		AttributeID,ItemID,AttributeName,AttributeValue
+	FROM {databaseOwner}jb_ItemAttribute WHERE
+		ItemID=@ItemID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemAttributeCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_ItemAttribute
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemAttributeDelete
+		@AttributeID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemAttribute WHERE
+		AttributeID=@AttributeID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemAttributeDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemAttribute
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemAttributeGet
+		@AttributeID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		AttributeID,ItemID,AttributeName,AttributeValue
+	FROM {databaseOwner}jb_ItemAttribute WHERE
+		AttributeID=@AttributeID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemAttributeGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		AttributeID,ItemID,AttributeName,AttributeValue
+	FROM {databaseOwner}jb_ItemAttribute 
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemAttributeUpdate
+		@AttributeID int,
+		@ItemID int,
+		@AttributeName nvarchar(50),
+		@AttributeValue nvarchar(2000)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_ItemAttribute SET 
+		ItemID=@ItemID,
+		AttributeName=@AttributeName,
+		AttributeValue=@AttributeValue
+	WHERE
+		AttributeID=@AttributeID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+-- *** Create stored procedures for table jb_ItemCategory ***
+
+CREATE PROCEDURE {databaseOwner}jb_ItemCategoryAdd
+		@ItemID int,
+		@CategoryID int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_ItemCategory
+		(ItemID,CategoryID)
+		VALUES
+		(@ItemID,@CategoryID)
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemCategoryByjb_Category
+		@CategoryID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ItemID,CategoryID
+	FROM {databaseOwner}jb_ItemCategory WHERE
+		CategoryID=@CategoryID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemCategoryByjb_Item
+		@ItemID int
+	AS
+	SET NOCOUNT ON
+	Select ClassifiedsCat.[CategoryID] AS [CategoryID],  substring(CategoryString, 3, 1024) as [CategoryPath]
+	 from (Select {databaseOwner}jb_BuildCategoryPath (cast(CategoryID as varchar(9))) as CategoryString
+			, ClassifiedsCat.CategoryID CategoryID
+	   	from jb_ClassifiedsCat as ClassifiedsCat) as ClassifiedsCat, jb_ItemCategory
+	where CategoryString IS NOT NULL
+	AND ClassifiedsCat.[CategoryID] =  jb_ItemCategory.[CategoryID]
+	AND jb_ItemCategory.[ItemID]=@ItemID
+	order by substring(CategoryString,3,1024)
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemCategoryCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_ItemCategory
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemCategoryDelete
+		@ItemID int,
+		@CategoryID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemCategory WHERE
+		ItemID=@ItemID AND CategoryID=@CategoryID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemCategoryDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemCategory
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemCategoryGet
+		@ItemID int,
+		@CategoryID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ItemID,CategoryID
+	FROM {databaseOwner}jb_ItemCategory WHERE
+		ItemID=@ItemID AND CategoryID=@CategoryID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemCategoryGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ItemID,CategoryID
+	FROM {databaseOwner}jb_ItemCategory 
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+-- *** Create stored procedures for table jb_ItemFile ***
+
+CREATE PROCEDURE {databaseOwner}jb_ItemFileAdd
+		@ItemID int,
+		@PortalID int,
+		@ModuleID int,
+		@FileName nvarchar(50),
+		@Description nvarchar(50),
+		@Image binary,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@ImageFileName nvarchar(255),
+		@ViewOrder int,
+		@CreatedByUser int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_ItemFile
+		(ItemID,PortalID,ModuleID,CreatedDate,FileName,Description,Image,ImageContentType,ImageContentSize,ImageFileName,ViewOrder,CreatedByUser)
+		VALUES
+		(@ItemID,@PortalID,@ModuleID,getdate(),@FileName,@Description,@Image,@ImageContentType,@ImageContentSize,@ImageFileName,@ViewOrder,@CreatedByUser)
+	SELECT SCOPE_IDENTITY()
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemFileByjb_Item
+		@ItemID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		FileID,ItemID,PortalID,ModuleID,CreatedDate,FileName,Description,Image,ImageContentType,ImageContentSize,ImageFileName,ViewOrder,CreatedByUser
+	FROM {databaseOwner}jb_ItemFile WHERE
+		ItemID=@ItemID
+	ORDER BY ViewOrder, FileID
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemFileCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_ItemFile
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemFileCountFilesByItemID
+		@ItemID int
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_ItemFile
+	WHERE ItemID=@ItemID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemFileDelete
+		@FileID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemFile WHERE
+		FileID=@FileID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemFileDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemFile
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemFileGet
+		@FileID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		FileID,ItemID,PortalID,ModuleID,CreatedDate,FileName,Description,Image,ImageContentType,ImageContentSize,ImageFileName,ViewOrder,CreatedByUser
+	FROM {databaseOwner}jb_ItemFile WHERE
+		FileID=@FileID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemFileGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		FileID,ItemID,PortalID,ModuleID,CreatedDate,FileName,Description,Image,ImageContentType,ImageContentSize,ImageFileName,ViewOrder,CreatedByUser
+	FROM {databaseOwner}jb_ItemFile 
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemFileUpdate
+		@FileID int,
+		@ItemID int,
+		@PortalID int,
+		@ModuleID int,
+		@FileName nvarchar(50),
+		@Description nvarchar(50),
+		@Image binary,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@ImageFileName nvarchar(255),
+		@ViewOrder int,
+		@CreatedByUser int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_ItemFile SET 
+		ItemID=@ItemID,
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		--FileName=@FileName,
+		Description=@Description,
+		--Image=@Image,
+		--ImageContentType=@ImageContentType,
+		--ImageContentSize=@ImageContentSize,
+		--ImageFileName=@ImageFileName,
+		ViewOrder=@ViewOrder,
+		CreatedByUser=@CreatedByUser
+	WHERE
+		FileID=@FileID
+
+IF @ImageContentSize > 0  OR  @ImageContentSize = -1
+	BEGIN
+		UPDATE {databaseOwner}jb_ItemFile
+		SET 	FileName=@FileName,
+			Image = @Image, 
+			ImageContentType = @ImageContentType, 
+			ImageContentSize = @ImageContentSize,
+			ImageFileName=@ImageFileName
+		WHERE
+			FileID=@FileID
+	END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_ItemFileUpdateUtil
+		@FileID int,
+		@Description nvarchar(50) = '',
+		@ViewOrder int = 0,
+		@Key nvarchar(50) = 'VIEWORDER_DESCRIPTION'
+		
+		
+	AS
+	
+	SET NOCOUNT ON
+	IF UPPER(@Key) = 'VIEWORDER_DESCRIPTION'
+		BEGIN
+			UPDATE {databaseOwner}jb_ItemFile SET 
+				Description=@Description,
+				ViewOrder=@ViewOrder
+			WHERE FileID = @FileID
+		END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_ItemImageAdd
+		@ItemID int,
+		@PortalID int,
+		@ModuleID int,
+		@Description nvarchar(50),
+		@Image binary,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@ImageFileName nvarchar(255),
+		@ViewOrder int,
+		@ImageCode int = 40,
+		@IsMainImage bit = 0
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_ItemImage
+		(ItemID,PortalID,ModuleID,Description,Image,ImageContentType,ImageContentSize,ImageFileName,ViewOrder, ImageCode, IsMainImage)
+		VALUES
+		(@ItemID,@PortalID,@ModuleID,@Description,@Image,@ImageContentType,@ImageContentSize,@ImageFileName,@ViewOrder, @ImageCode, @IsMainImage)
+	SELECT SCOPE_IDENTITY()
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemImageByjb_Item
+		@ItemID int
+	AS
+	SET NOCOUNT ON
+	SELECT *
+	FROM {databaseOwner}jb_ItemImage WHERE
+		ItemID=@ItemID
+	ORDER BY ViewOrder, ImageID
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemImageCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_ItemImage
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemImageDelete
+		@ImageID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemImage WHERE
+		ImageID=@ImageID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemImageDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemImage
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemImageGet
+		@ImageID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ImageID,ItemID,PortalID,ModuleID,Description,Image,ImageContentType,ImageContentSize,ImageFileName,ViewOrder
+	FROM {databaseOwner}jb_ItemImage WHERE
+		ImageID=@ImageID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemImageGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ImageID,ItemID,PortalID,ModuleID,Description,Image,ImageContentType,ImageContentSize,ImageFileName,ViewOrder
+	FROM {databaseOwner}jb_ItemImage 
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemImageGetMainImageID
+		@ItemID int
+	AS
+	SET NOCOUNT ON
+	SELECT ImageID
+		
+	FROM {databaseOwner}jb_ItemImage WHERE
+		ItemID=@ItemID
+	AND IsMainImage = 1
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemImageUpdate
+		@ImageID int,
+		@ItemID int,
+		@PortalID int,
+		@ModuleID int,
+		@Description nvarchar(50),
+		@Image binary,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@ImageFileName nvarchar(255),
+		@ViewOrder int,
+		@ImageCode int = 40,
+		@IsMainImage bit = 0
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_ItemImage SET 
+		ItemID=@ItemID,
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		Description=@Description,
+		Image=@Image,
+		ImageContentType=@ImageContentType,
+		ImageContentSize=@ImageContentSize,
+		--ImageFileName=@ImageFileName,
+		ViewOrder=@ViewOrder,
+		ImageCode=@ImageCode,
+		IsMainImage=@IsMainImage
+	WHERE
+		ImageID=@ImageID
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemImageUpdateUtil
+		@ImageID int,
+		@Description nvarchar(50) = '',
+		@ViewOrder int = 0,
+		@Key nvarchar(50) = 'MAINIMAGE'
+		
+		
+	AS
+	
+	SET NOCOUNT ON
+	IF UPPER(@Key) = 'MAINIMAGE' 
+		BEGIN
+			UPDATE {databaseOwner}jb_ItemImage SET 
+				IsMainImage=0
+			WHERE
+				ItemID=(SELECT ItemID FROM jb_ItemImage WHERE ImageID = @ImageID)
+		
+			UPDATE {databaseOwner}jb_ItemImage SET 
+				IsMainImage=1
+			WHERE ImageID = @ImageID
+		END
+	ELSE 
+		BEGIN
+	
+			UPDATE {databaseOwner}jb_ItemImage SET 
+				Description=@Description,
+				ViewOrder=@ViewOrder
+			WHERE ImageID = @ImageID
+		END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+-- *** Create stored procedures for table jb_ItemReview ***
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReviewAdd
+		@ItemID int,
+		@PortalID int,
+		@ModuleID int,
+		@Name nvarchar(50),
+		@Email nvarchar(50),
+		@CreatedByUser int,
+		@Rating int,
+		@Comment ntext,
+		@Helpful_Yes int,
+		@Helpful_No int,
+		@Approved bit
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_ItemReview
+		(ItemID,PortalID,ModuleID,Name,Email,CreatedByUser,Rating,Comment,Helpful_Yes,Helpful_No,Approved,CreatedDate)
+		VALUES
+		(@ItemID,@PortalID,@ModuleID,@Name,@Email,@CreatedByUser,@Rating,@Comment,@Helpful_Yes,@Helpful_No,@Approved,getdate())
+	SELECT SCOPE_IDENTITY()
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReviewByjb_Item
+		@ItemID int,
+		@Admin bit = 0
+	AS
+	SET NOCOUNT ON
+	IF @Admin = 1  
+		BEGIN
+			SELECT *  
+			FROM {databaseOwner}jb_ItemReview			
+			WHERE ItemID=@ItemID
+			ORDER BY CreatedDate DESC
+		END
+	ELSE
+		BEGIN
+			SELECT *  
+			FROM {databaseOwner}jb_ItemReview	
+			WHERE ItemID=@ItemID AND Approved = 1
+			ORDER BY CreatedDate DESC
+		END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReviewCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_ItemReview
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReviewDelete
+		@ReviewID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemReview WHERE
+		ReviewID=@ReviewID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReviewDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemReview
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReviewGet
+		@ReviewID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ReviewID,ItemID,PortalID,ModuleID,Name,Email,CreatedByUser,Rating,Comment,Helpful_Yes,Helpful_No,Approved,CreatedDate
+	FROM {databaseOwner}jb_ItemReview WHERE
+		ReviewID=@ReviewID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReviewGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ReviewID,ItemID,PortalID,ModuleID,Name,Email,CreatedByUser,Rating,Comment,Helpful_Yes,Helpful_No,Approved,CreatedDate
+	FROM {databaseOwner}jb_ItemReview 
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReviewUpdate
+		@ReviewID int,
+		@ItemID int,
+		@PortalID int,
+		@ModuleID int,
+		@Name nvarchar(50),
+		@Email nvarchar(50),
+		@CreatedByUser int,
+		@Rating int,
+		@Comment ntext,
+		@Helpful_Yes int,
+		@Helpful_No int,
+		@Approved bit
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_ItemReview SET 
+		ItemID=@ItemID,
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		Name=@Name,
+		Email=@Email,
+		CreatedByUser=@CreatedByUser,
+		Rating=@Rating,
+		Comment=@Comment,
+		Helpful_Yes=@Helpful_Yes,
+		Helpful_No=@Helpful_No,
+		Approved=@Approved
+	WHERE
+		ReviewID=@ReviewID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReview_Jedi_Approve
+		@ReviewID int,
+		@Approved bit
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_ItemReview SET 
+		Approved=@Approved
+	WHERE
+		ReviewID=@ReviewID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReview_Jedi_Byjb_Item
+		@ItemID int,
+		@Admin bit = 0
+	AS
+	SET NOCOUNT ON
+	IF @Admin = 1  
+		BEGIN
+			SELECT *  
+			FROM {databaseOwner}jb_ItemReview			
+			WHERE ItemID=@ItemID
+			ORDER BY CreatedDate DESC
+		END
+	ELSE
+		BEGIN
+			SELECT *  
+			FROM {databaseOwner}jb_ItemReview	
+			WHERE ItemID=@ItemID AND Approved = 1
+			ORDER BY CreatedDate DESC
+		END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReview_Jedi_GetAverageByItemID
+		@ItemID int
+	AS
+	SET NOCOUNT ON
+	DECLARE @average AS real
+	DECLARE @total AS real
+	DECLARE @records AS int
+	SET @total = (SELECT SUM(CAST(Rating AS real)) FROM {databaseOwner}jb_ItemReview WHERE ItemID=@ItemID  AND Approved = 1) 
+	SET @records = ( SELECT COUNT(*) FROM {databaseOwner}jb_ItemReview WHERE ItemID=@ItemID  AND Approved = 1)
+	IF @records > 0
+		SET @average = @total / @records
+	ELSE
+		SET @average = -1
+	SELECT @average AS average
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReview_Jedi_HelpfulYesNoIncrement
+		@ReviewID int,
+		@YesNo varchar(3)
+	AS
+	SET NOCOUNT ON
+	IF UPPER(@YesNo) = 'YES'
+		BEGIN
+			UPDATE {databaseOwner}jb_ItemReview WITH(ROWLOCK, UPDLOCK)
+			SET 
+				Helpful_Yes = Helpful_Yes + 1	
+			WHERE
+				ReviewID=@ReviewID
+			SELECT Helpful_Yes FROM {databaseOwner}jb_ItemReview WHERE ReviewID=@ReviewID
+		END
+	
+	ELSE
+		BEGIN
+			UPDATE {databaseOwner}jb_ItemReview WITH(ROWLOCK, UPDLOCK)
+			SET 
+				Helpful_No = Helpful_No + 1	
+			WHERE
+				ReviewID=@ReviewID
+			SELECT Helpful_No FROM {databaseOwner}jb_ItemReview WHERE ReviewID=@ReviewID
+		END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReview_Jedi_ModifyReview
+		@ReviewID int,
+		@Name nvarchar(50),
+		@Email nvarchar(50),
+		@Rating int,
+		@Comment ntext,		
+		@Approved bit
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_ItemReview SET 		
+		Name=@Name,
+		Email=@Email,
+		Rating=@Rating,
+		Comment=@Comment,		
+		Approved=@Approved
+	WHERE
+		ReviewID=@ReviewID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_ItemReview_Jedi_ReviewCountByItemID
+	@ItemID int 
+	AS
+	SET NOCOUNT ON	
+	DECLARE @Records AS int
+	SET @Records = (SELECT COUNT(*) FROM {databaseOwner}jb_ItemReview WHERE ItemID = @ItemID  AND Approved = 1)
+	SELECT @Records  AS ReviewCount
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_ItemUpdate_Jedi_FileNameTG
+		@ItemID int,
+		@TargetTable nvarchar(50),  
+		@IsImage bit = 1,
+		@ImageOrFileID int = -1, --ImageID, FileID
+		@FileName nvarchar(255) = ''
+		
+	AS
+	SET NOCOUNT ON
+	BEGIN
+	IF UPPER(@TargetTable) = 'ITEM' 
+		BEGIN
+			IF @IsImage = 1
+				BEGIN				
+					UPDATE {databaseOwner}jb_ClassifiedsItem WITH(ROWLOCK, UPDLOCK)
+					SET    	ImageFileName =  @FileName	
+					WHERE   ItemID = @ItemID
+				END
+						
+		END
+	ELSE IF UPPER(@TargetTable) = 'ITEMFILE'
+		BEGIN
+			UPDATE {databaseOwner}jb_ItemFile WITH(ROWLOCK, UPDLOCK)
+			SET    	ImageFileName =  @FileName	
+			WHERE   FileID = @ImageOrFileID 
+		END
+	ELSE IF UPPER(@TargetTable) = 'ITEMIMAGE'
+		BEGIN
+			UPDATE {databaseOwner}jb_ItemImage WITH(ROWLOCK, UPDLOCK)
+			SET    	ImageFileName =  @FileName	
+			WHERE   ImageID = @ImageOrFileID 
+		END
+	END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_JobApplicationAdd
+		@JobID int,
+		@ModuleID int,
+		@CreatedByUser int,
+		@ApplicantName nvarchar(50),
+		@ApplicantEmail  nvarchar(100),
+		@Message ntext,
+		@SalaryReq nvarchar(50),
+		@JobLead nvarchar(50),
+		@Image Image,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@Image1 Image,
+		@ImageContentType1 nvarchar(50),
+		@ImageContentSize1 int,
+		@ImageFileName nvarchar(255),
+		@ImageFileName1 nvarchar(255),
+		@ViewCount int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_JobApplication
+		(JobID,ModuleID,CreatedByUser,CreatedDate,ApplicantName, ApplicantEmail, Message,SalaryReq,JobLead,[Image],ImageContentType,ImageContentSize,Image1,ImageContentType1,ImageContentSize1,ImageFileName,ImageFileName1,ViewCount)
+		VALUES
+		(@JobID,@ModuleID,@CreatedByUser,getdate(),@ApplicantName, @ApplicantEmail, @Message,@SalaryReq,@JobLead,CAST(@Image AS Image),@ImageContentType,@ImageContentSize,CAST(@Image1 AS Image),@ImageContentType1,@ImageContentSize1,@ImageFileName,@ImageFileName1,@ViewCount)
+	SELECT SCOPE_IDENTITY()
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_JobApplicationByjb_ClassifiedsItem
+		@JobID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ApplicationID,JobID,ModuleID,CreatedByUser,CreatedDate,ApplicantName, ApplicantEmail, Message,SalaryReq,JobLead,Image,ImageContentType,ImageContentSize,Image1,ImageContentType1,ImageContentSize1,ImageFileName,ImageFileName1,ViewCount
+	FROM {databaseOwner}jb_JobApplication WHERE
+		JobID=@JobID
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_JobApplicationCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_JobApplication
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_JobApplicationDelete
+		@ApplicationID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_JobApplication WHERE
+		ApplicationID=@ApplicationID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_JobApplicationDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_JobApplication
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_JobApplicationGet
+		@ApplicationID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ApplicationID,JobID,ModuleID,CreatedByUser,CreatedDate,ApplicantName, ApplicantEmail, Message,SalaryReq,JobLead,Image,ImageContentType,ImageContentSize,Image1,ImageContentType1,ImageContentSize1,ImageFileName,ImageFileName1,ViewCount
+	FROM {databaseOwner}jb_JobApplication WHERE
+		ApplicationID=@ApplicationID
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_JobApplicationGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ApplicationID,JobID,ModuleID,CreatedByUser,CreatedDate,ApplicantName,ApplicantEmail, Message,SalaryReq,JobLead,Image,ImageContentType,ImageContentSize,Image1,ImageContentType1,ImageContentSize1,ImageFileName,ImageFileName1,ViewCount
+	FROM {databaseOwner}jb_JobApplication
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}jb_JobApplicationGetByUser
+		@UserID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		ApplicationID,JobID,ModuleID,CreatedByUser,CreatedDate,ApplicantName, ApplicantEmail, Message,SalaryReq,JobLead,Image,ImageContentType,ImageContentSize,Image1,ImageContentType1,ImageContentSize1,ImageFileName,ImageFileName1,ViewCount
+	FROM {databaseOwner}jb_JobApplication WHERE
+		CreatedByUser=@UserID
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_JobApplicationUpdate
+		@ApplicationID int,
+		@JobID int,
+		@ModuleID int,
+		@CreatedByUser int,
+		@ApplicantName nvarchar(50),
+		@ApplicantEmail nvarchar(100),
+		@Message ntext,
+		@SalaryReq nvarchar(50),
+		@JobLead nvarchar(50),
+		@Image Image,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@Image1 Image,
+		@ImageContentType1 nvarchar(50),
+		@ImageContentSize1 int,
+		@ImageFileName nvarchar(255),
+		@ImageFileName1 nvarchar(255),
+		@ViewCount int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_JobApplication SET 
+		JobID=@JobID,
+		ModuleID=@ModuleID,
+		CreatedByUser=@CreatedByUser,
+		ApplicantName=@ApplicantName,
+		ApplicantEmail=@ApplicantEmail,
+		Message=@Message,
+		SalaryReq=@SalaryReq,
+		JobLead=@JobLead,
+		[Image]=@Image,
+		ImageContentType=@ImageContentType,
+		ImageContentSize=@ImageContentSize,
+		Image1=@Image1,
+		ImageContentType1=@ImageContentType1,
+		ImageContentSize1=@ImageContentSize1,
+		ImageFileName=@ImageFileName,
+		ImageFileName1=@ImageFileName1,
+		ViewCount=@ViewCount
+	WHERE
+		ApplicationID=@ApplicationID
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+-- ***************  Create stored procedures  ******************
+
+-- *** Create stored procedures for table jb_MySubscription ***
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionAdd
+		@PortalID int,
+		@ModuleID int,
+		@UserID int,
+		@PlanID int,
+		@TransactionID nvarchar(50),
+		@DateCreated datetime,
+		@DateStart datetime,
+		@DateEnd datetime,
+		@DateRenew datetime,
+		@Limit int,
+		@Used int,
+		@IsActive bit,
+		@Status nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_MySubscription
+		(PortalID,ModuleID,UserID,PlanID,TransactionID,DateCreated,DateStart,DateEnd,DateRenew,Limit,Used,IsActive,Status)
+		VALUES
+		(@PortalID,@ModuleID,@UserID,@PlanID,@TransactionID,@DateCreated,@DateStart,@DateEnd,@DateRenew,@Limit,@Used,@IsActive,@Status)
+	SELECT SCOPE_IDENTITY()
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_MySubscription
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionDelete
+		@SubscriptionID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_MySubscription WHERE
+		SubscriptionID=@SubscriptionID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_MySubscription
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionGet
+		@SubscriptionID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		SubscriptionID,PortalID,ModuleID,UserID,PlanID,TransactionID,DateCreated,DateStart,DateEnd,DateRenew,Limit,Used,IsActive,Status
+	FROM {databaseOwner}jb_MySubscription WHERE
+		SubscriptionID=@SubscriptionID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		SubscriptionID,PortalID,ModuleID,UserID,PlanID,TransactionID,DateCreated,DateStart,DateEnd,DateRenew,Limit,Used,IsActive,Status
+	FROM {databaseOwner}jb_MySubscription 
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionGetByModuleID
+		@ModuleID	int,
+		@Key nvarchar(20) = 'ACTIVE'
+	AS
+	SET NOCOUNT ON
+	
+	IF UPPER(@Key) = 'ADMIN' 
+		SELECT *
+		FROM {databaseOwner}jb_MySubscription 
+		WHERE ModuleID=@ModuleID
+		ORDER BY UserID ASC
+	ELSE
+		SELECT *
+		FROM {databaseOwner}jb_MySubscription 
+		WHERE ModuleID=@ModuleID
+		AND IsActive = 1
+		ORDER BY UserID ASC
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionGetByUserID
+		@UserID int
+	AS
+	SET NOCOUNT ON
+	SELECT *, 
+	(SELECT COUNT(ItemID) FROM jb_ClassifiedsItem WHERE CreatedByUser = @UserID AND CreatedDate BETWEEN  jb_MySubscription.DateStart AND jb_MySubscription.DateEnd) AS 'LST_Used',
+	(jb_MySubscription.[Limit]) - (SELECT COUNT(ItemID) FROM jb_ClassifiedsItem WHERE CreatedByUser = @UserID AND CreatedDate BETWEEN  jb_MySubscription.DateStart AND jb_MySubscription.DateEnd) AS 'LST_Remain'
+			
+	FROM {databaseOwner}jb_MySubscription WHERE
+		UserID=@UserID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionUpdate
+		@SubscriptionID int,
+		@PortalID int,
+		@ModuleID int,
+		@UserID int,
+		@PlanID int,
+		@TransactionID nvarchar(50),
+		@DateCreated datetime,
+		@DateStart datetime,
+		@DateEnd datetime,
+		@DateRenew datetime,
+		@Limit int,
+		@Used int,
+		@IsActive bit,
+		@Status nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_MySubscription SET 
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		UserID=@UserID,
+		PlanID=@PlanID,
+		TransactionID=@TransactionID,
+		DateCreated=@DateCreated,
+		DateStart=@DateStart,
+		DateEnd=@DateEnd,
+		DateRenew=@DateRenew,
+		Limit=@Limit,
+		Used=@Used,
+		IsActive=@IsActive,
+		Status=@Status
+	WHERE
+		SubscriptionID=@SubscriptionID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionUpdate_ByTxnID
+		@txn_id nvarchar(255)
+	AS
+--Update jb_SubscriptionPlan
+-- This is called by jb_OrdersAdd
+DECLARE
+@PortalID int,
+@ModuleID int,
+@UserID int,
+@PlanID int,
+@TransactionID nvarchar(50),
+@DateCreated datetime,
+@DateStart datetime,
+@DateEnd datetime,
+@DateRenew datetime,
+@Limit int,
+@Used int,
+@IsActive bit,
+@Status nvarchar(255),
+@ExpirationPeriod int
+
+SELECT TOP 1
+@PortalID = {databaseOwner}jb_Orders.PortalID, 
+@ModuleID = {databaseOwner}jb_Orders.ModuleID, 
+@UserID	= {databaseOwner}jb_Orders.UserID, 
+@PlanID = {databaseOwner}jb_SubscriptionPlan.PlanID, 
+@TransactionID = {databaseOwner}jb_Orders.txn_id,                      
+@DateCreated = {databaseOwner}jb_Orders.OrderDate, 
+@DateStart = {databaseOwner}jb_Orders.OrderDate,
+@DateEnd = DateAdd(DAY, {databaseOwner}jb_SubscriptionPlan.Limit, {databaseOwner}jb_Orders.OrderDate),
+@DateRenew = NULL,
+@Limit = {databaseOwner}jb_SubscriptionPlan.Limit,
+@ExpirationPeriod = {databaseOwner}jb_SubscriptionPlan.ExpirationPeriod
+FROM {databaseOwner}jb_OrderDetail 
+INNER JOIN {databaseOwner}jb_Orders ON {databaseOwner}jb_OrderDetail.txn_id = {databaseOwner}jb_Orders.txn_id 
+INNER JOIN {databaseOwner}jb_SubscriptionPlan ON {databaseOwner}jb_OrderDetail.ProductID = {databaseOwner}jb_SubscriptionPlan.PlanID
+WHERE {databaseOwner}jb_Orders.txn_id = @txn_id
+ORDER BY jb_Orders.[OrderID] DESC
+
+
+IF NOT EXISTS(SELECT * FROM {databaseOwner}jb_MySubscription WHERE UserID = @UserID)
+	BEGIN
+		
+		INSERT INTO {databaseOwner}jb_MySubscription
+		(PortalID,ModuleID,UserID,PlanID,TransactionID,DateCreated,DateStart,DateEnd,DateRenew,Limit,Used,IsActive,Status)
+		VALUES
+		(@PortalID,@ModuleID,@UserID,@PlanID,@TransactionID,@DateCreated,@DateStart,@DateEnd,@DateRenew,@Limit,NULL, 0,'ADD')
+	END
+ELSE
+
+	BEGIN
+		
+		SELECT --@DateEnd = DATEADD(DAY, @Limit, jb_MySubscription.DateEnd),
+			  @DateEnd = CASE WHEN jb_MySubscription.DateEnd > GetDate() THEN  DATEADD(DAY, @Limit, jb_MySubscription.DateEnd)  ELSE  DATEADD(DAY, @Limit, GetDate()) END, 
+			@Limit = @Limit + jb_MySubscription.[Limit],
+			@DateRenew = GetDate()
+		FROM {databaseOwner}jb_MySubscription WHERE jb_MySubscription.UserID = @UserID
+		
+		--IF @DateEnd > GetDate()
+			--SET @DateEnd = DATEADD(DAY, @Limit, @DateEnd)
+		--ELSE
+		 	--SET @DateEnd = DATEADD(DAY, @Limit, GetDate())
+
+		UPDATE {databaseOwner}jb_MySubscription 
+		SET 
+			PortalID=@PortalID,
+			ModuleID=@ModuleID,
+			UserID=@UserID,
+			PlanID=@PlanID,
+			TransactionID=@TransactionID,
+			--DateCreated=@DateCreated,
+			--DateStart=@DateStart,
+			DateEnd=@DateEnd,
+			DateRenew=@DateRenew,
+			Limit=@Limit,
+			--Used=@Used,
+			--IsActive=@IsActive,
+			Status='UPDATE'
+		WHERE jb_MySubscription.UserID = @UserID
+	END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscriptionUpdate_OverrideByAdmin
+		@SubscriptionID int,
+		@DateEnd datetime,		
+		@Limit int,		
+		@IsActive bit
+		
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_MySubscription SET		
+		DateEnd=@DateEnd,		
+		Limit=@Limit,		
+		IsActive=@IsActive,
+		Status='OVERRIDE'
+	WHERE
+		SubscriptionID=@SubscriptionID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_MySubscription_Verify
+		@UserID int
+	AS
+	
+IF  EXISTS(SELECT UserID FROM jb_MySubscription WHERE UserID = @UserID AND IsActive = 1) 
+	BEGIN
+		DECLARE
+		@DateStart datetime,
+		@DateEnd datetime,
+		@Limit int,
+		@Used int,
+		@Remain int
+		
+		SELECT @DateStart =   jb_MySubscription.DateStart,
+			@DateEnd =   jb_MySubscription.DateEnd,
+			@Limit = jb_MySubscription.[Limit]
+		FROM {databaseOwner}jb_MySubscription WHERE jb_MySubscription.UserID = @UserID
+	
+		SET @Used = (SELECT COUNT(ItemID) FROM jb_ClassifiedsItem WHERE CreatedByUser = @UserID AND CreatedDate BETWEEN @DateStart AND @DateEnd)
+		SET @Remain = (@Limit - @Used)
+		--Print GetDate()
+		--Print  @DateEnd
+		--Print '@Limit' 
+		--Print  @Limit
+		--Print '@Used'
+		--Print @Used
+		--Print '@Remain'
+		--Print @Remain
+		
+		IF  @DateEnd >= GetDate()
+			SELECT   @Remain  -- has to be > 0 to be able able to post new listings
+
+		ELSE
+			BEGIN
+				SELECT 'EX' --already  pass end date
+			END		
+	END
+ELSE
+	BEGIN
+		SELECT 'NA'  -- no UserID found
+	END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+-- *** Create stored procedures for table jb_OrderDetail ***
+CREATE PROCEDURE {databaseOwner}jb_OrderDetailAdd
+		@OrderID int,
+		@ProductID nvarchar(50),
+		@ProductName nvarchar(50),
+		@Quantity int,
+		@UnitCost money,
+		@Subtotal money,
+		@IsPayPal bit,
+		@txn_id nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	IF @OrderID = -6
+		SET @OrderID = null
+	INSERT INTO {databaseOwner}jb_OrderDetail
+		(OrderID,ProductID,ProductName,Quantity,UnitCost,Subtotal,IsPayPal,txn_id)
+		VALUES
+		(@OrderID,@ProductID,@ProductName,@Quantity,@UnitCost,@Subtotal,@IsPayPal,@txn_id)
+
+	IF (SELECT Reference FROM {databaseOwner}jb_Orders WHERE OrderID = @OrderID) = 'SubscriptionFee'
+		BEGIN
+			EXEC {databaseOwner}jb_MySubscriptionUpdate_ByTxnID @txn_id
+		END
+
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrderDetailBy_pp_txn_id
+		@txn_id nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	SELECT *
+		
+	FROM {databaseOwner}jb_OrderDetail WHERE
+		txn_id=@txn_id
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrderDetailByjb_Orders
+		@OrderID int
+	AS
+	SET NOCOUNT ON
+	SELECT *
+		
+	FROM {databaseOwner}jb_OrderDetail WHERE
+		OrderID=@OrderID
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrderDetailCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_OrderDetail
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrderDetailDelete
+		@ProductID nvarchar(50),
+		@txn_id nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_OrderDetail WHERE
+		ProductID=@ProductID AND txn_id=@txn_id
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrderDetailDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_OrderDetail
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrderDetailGet
+		@ProductID nvarchar(50),
+		@txn_id nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	SELECT
+		OrderID,ProductID,ProductName,Quantity,UnitCost,Subtotal,IsPayPal,txn_id
+	FROM {databaseOwner}jb_OrderDetail WHERE
+		ProductID=@ProductID AND txn_id=@txn_id
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrderDetailGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		OrderID,ProductID,ProductName,Quantity,UnitCost,Subtotal,IsPayPal,txn_id
+	FROM {databaseOwner}jb_OrderDetail 
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrderDetailUpdate
+		@OrderID int,
+		@ProductID nvarchar(50),
+		@ProductName nvarchar(50),
+		@Quantity int,
+		@UnitCost money,
+		@Subtotal money,
+		@IsPayPal bit,
+		@txn_id nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_OrderDetail SET 
+		OrderID=@OrderID,
+		ProductName=@ProductName,
+		Quantity=@Quantity,
+		UnitCost=@UnitCost,
+		Subtotal=@Subtotal,
+		IsPayPal=@IsPayPal
+	WHERE
+		ProductID=@ProductID AND txn_id=@txn_id
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE Procedure {databaseOwner}jb_OrderDetail_CountBoughtByThisUser
+(
+   @ProductID nvarchar(50),
+    @UserID int
+)
+AS
+SET NOCOUNT ON
+SELECT  COUNT(*) 
+FROM    
+    jb_OrderDetail INNER JOIN jb_Orders 
+  ON jb_OrderDetail.OrderID = jb_Orders.OrderID
+WHERE 
+jb_OrderDetail.ProductID = @ProductID
+AND jb_Orders.UserID = @UserID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersAdd
+		@PortalID int,
+		@ModuleID int,
+		@UserID int,		
+		@Status nvarchar(50),
+		@AuthCode nvarchar(50),
+		@Reference nvarchar(50),
+		@TransactionID nvarchar(100),
+		@Comments nvarchar(500),
+		@CustomerID int,
+		@DownloadItems nvarchar(255),
+		@TotalGross	money = null,
+		@TotalSub	money = null,
+		@TotalTax	money= null,
+		@TotalShipping	money=null,
+		@ShoppingCartMode	nvarchar(50),
+		@IsPayPal bit = 1,		
+		@payer_email nvarchar(255),
+		@payer_id nvarchar(255),
+		@payment_status nvarchar(255),
+		@txn_id nvarchar(255),
+		@txn_type nvarchar(255),
+		@mc_gross money,
+		@mc_fee money,
+		@payment_date  nvarchar(255),
+		@invoice	nvarchar(255),
+		@custom	nvarchar(255),
+		@pending_reason	nvarchar(255),
+		@payment_type	nvarchar(255),
+		@num_cart_items	int = null,
+		@mc_shipping	money  = 0,
+		@mc_handling	money = 0,
+		@mc_tax	money= 0,
+		@shipping	money	= 0,
+		@tax		money	= 0,
+		@first_name	nvarchar(255),
+		@last_name	nvarchar(255),
+		@address_street	nvarchar(255),
+		@address_city	nvarchar(255),
+		@address_state	nvarchar(255),
+		@address_zip	nvarchar(255),
+		@address_country	nvarchar(255),
+		@address_status	nvarchar(255),
+		@pwd 		nvarchar(50)
+	AS
+	SET NOCOUNT ON
+	
+	INSERT INTO {databaseOwner}jb_Orders
+		(PortalID ,ModuleID,UserID,OrderDate, Status,AuthCode,Reference,TransactionID,Comments,CustomerID,DownloadItems, TotalGross, TotalSub, TotalTax, TotalShipping, ShoppingCartMode,
+		 IsPayPal,  payer_email,payer_id,payment_status,txn_id,txn_type,mc_gross,mc_fee,payment_date,
+		invoice		,
+		custom		,
+		pending_reason	,
+		payment_type	,
+		num_cart_items	,
+		mc_shipping	,
+		mc_handling	,
+		mc_tax		,
+		shipping		,
+		tax		,
+		first_name	,
+		last_name	,
+		address_street	,
+		address_city	,
+		address_state	,
+		address_zip	,
+		address_country	,
+		address_status,
+		pwd
+		)
+		VALUES
+		(@PortalID,@ModuleID,@UserID, GetDate(), @Status,@AuthCode,@Reference,@TransactionID,@Comments,@CustomerID,@DownloadItems, @TotalGross, @TotalSub, @TotalTax, @TotalShipping, @ShoppingCartMode,
+		@IsPayPal, @payer_email,@payer_id,@payment_status,@txn_id,@txn_type,@mc_gross,@mc_fee,@payment_date,
+		@invoice		,
+		@custom		,
+		@pending_reason	,
+		@payment_type		,
+		@num_cart_items	,
+		@mc_shipping		,
+		@mc_handling		,
+		@mc_tax		,
+		@shipping		,
+		@tax			,
+		@first_name		,
+		@last_name		,
+		@address_street	,
+		@address_city		,
+		@address_state		,
+		@address_zip		,
+		@address_country	,
+		@address_status	,
+		@pwd
+		)
+	SELECT SCOPE_IDENTITY()
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersByjb_Customer
+		@CustomerID int
+	AS
+	SET NOCOUNT ON
+	SELECT *		
+	FROM {databaseOwner}jb_Orders WHERE
+		CustomerID=@CustomerID
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersByjb_Customer_pp_payer_email
+		@payer_email nvarchar(255) 
+	AS
+	SET NOCOUNT ON
+	SELECT *		
+	FROM {databaseOwner}jb_Orders WHERE
+		payer_email=@payer_email
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_Orders
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersCount_pp_ByTransactionID
+	@txn_id nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_Orders WHERE txn_id=@txn_id AND txn_id IS NOT NULL
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersDelete
+		@OrderID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_Orders WHERE
+		OrderID=@OrderID
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_Orders
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersDelete_pp
+		@txn_id nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_Orders WHERE
+		txn_id=@txn_id
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersGet
+		@OrderID int
+	AS
+	SET NOCOUNT ON
+	SELECT *
+	FROM {databaseOwner}jb_Orders WHERE
+		OrderID=@OrderID
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT *		
+	FROM {databaseOwner}jb_Orders
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersGetByUserID
+		@ModuleID	int,
+		@UserID int
+	AS
+	SET NOCOUNT ON
+	SELECT *
+	FROM {databaseOwner}jb_Orders WHERE  ModuleID=@ModuleID
+	AND UserID=@UserID
+	AND Reference = 'SubscriptionFee'
+	
+	ORDER BY OrderID ASC
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersGet_pp
+		@txn_id nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	SELECT *		
+	FROM {databaseOwner}jb_Orders WHERE
+		txn_id=@txn_id
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersGet_pp_CheckIPNCompleted
+		@txn_id nvarchar(255)
+	AS
+	
+IF EXISTS (SELECT PriceCheck 	FROM jb_Orders  WHERE txn_id=@txn_id)
+	BEGIN
+		SELECT PriceCheck 	FROM jb_Orders  WHERE txn_id=@txn_id
+	
+	END
+ELSE
+	BEGIN
+		SELECT 0
+	END
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersGet_pp_SinglePriceCheck
+		@txn_id nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	SELECT PriceCheck
+	FROM jb_Orders 
+	WHERE
+		txn_id=@txn_id
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersLogin
+(
+    @txn_id nvarchar(255),
+    @pwd nvarchar(50),
+    @hte int = 0 
+)
+AS
+IF  EXISTS(SELECT OrderID FROM jb_Orders WHERE txn_id = @txn_id AND pwd = @pwd) 
+	BEGIN
+	-- hte > 0, password will expire in hte hours
+	IF @hte > 0  
+		BEGIN
+			IF  EXISTS(SELECT OrderID FROM jb_Orders WHERE txn_id = @txn_id AND pwd = @pwd  AND (DATEDIFF( hour, OrderDate, GetDate())  < @hte))
+				SELECT 1	
+			ELSE
+				SELECT -1 -- password has been expired
+		END
+	 -- hte = 0, password will not expire
+	ELSE
+		BEGIN
+			SELECT   1 -- (SELECT OrderID FROM jb_Orders WHERE txn_id = @txn_id AND pwd = @pwd)
+		END		
+	END
+ELSE
+	BEGIN
+		SELECT 0
+	END
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersUpdate
+		@OrderID int,
+		@PortalID int,
+		@ModuleID int,
+		@UserID int,		
+		@ShipDate datetime,
+		@Status nvarchar(50),
+		@AuthCode nvarchar(50),
+		@Reference nvarchar(50),
+		@TransactionID nvarchar(100),
+		@Comments nvarchar(500),
+		@CustomerID int,
+		@DownloadItems nvarchar(255),
+		@TotalGross	money = null,
+		@TotalSub	money = null,
+		@TotalTax	money= null,
+		@TotalShipping	money=null,
+		@ShoppingCartMode	nvarchar(50),
+		@IsPayPal bit = 1,
+		@PriceCheck money,
+		@IsCorrectAmount bit = 0,
+		@payer_email nvarchar(255),
+		@payer_id nvarchar(255),
+		@payment_status nvarchar(255),
+		@txn_id nvarchar(255),
+		@txn_type nvarchar(255),
+		@mc_gross  money,
+		@mc_fee money,
+		@payment_date nvarchar(255),
+		@invoice	nvarchar(255),
+		@custom	nvarchar(255),
+		@pending_reason	nvarchar(255),
+		@payment_type	nvarchar(255),
+		@num_cart_items	int = null,
+		@mc_shipping	money = 0,
+		@mc_handling	money = 0,
+		@mc_tax	money	= 0,
+		@shipping	money	= 0,
+		@tax		money	= 0,
+		@first_name	nvarchar(255),
+		@last_name	nvarchar(255),
+		@address_street	nvarchar(255),
+		@address_city	nvarchar(255),
+		@address_state	nvarchar(255),
+		@address_zip	nvarchar(255),
+		@address_country	nvarchar(255),
+		@address_status	nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_Orders SET 
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		UserID=@UserID,		
+		ShipDate=@ShipDate,
+		Status=@Status,
+		AuthCode=@AuthCode,
+		Reference=@Reference,
+		TransactionID=@TransactionID,
+		Comments=@Comments,
+		CustomerID=@CustomerID,
+		DownloadItems=@DownloadItems,
+		TotalGross =@TotalGross,
+		TotalSub=@TotalSub,
+		TotalTax=@TotalTax,
+		TotalShipping=@TotalShipping,
+		ShoppingCartMode=@ShoppingCartMode	,
+		IsPayPal =@IsPayPal,
+		PriceCheck=@PriceCheck,
+		IsCorrectAmount=@IsCorrectAmount,
+		payer_email=@payer_email,
+		payer_id=@payer_id,
+		payment_status=@payment_status,
+		txn_id=@txn_id,
+		txn_type=@txn_type,
+		mc_gross=@mc_gross,
+		mc_fee=@mc_fee,
+		payment_date=@payment_date
+		,invoice=@invoice	
+		,custom=@custom	
+		,pending_reason=@pending_reason	
+		,payment_type=@payment_type	
+		,num_cart_items=@num_cart_items	
+		,mc_shipping=@mc_shipping	
+		,mc_handling=@mc_handling	
+		,mc_tax=@mc_tax	
+		,shipping=@shipping	
+		,tax=@tax		
+		,first_name=@first_name	
+		,last_name=@last_name	
+		,address_street=@address_street	
+		,address_city=@address_city	
+		,address_state=@address_state	
+		,address_zip=@address_zip	
+		,address_country=@address_country	
+		,address_status=@address_status
+	WHERE
+		OrderID=@OrderID
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersUpdate_lc_PriceCheck
+		@OrderID int,		
+		@PriceCheck decimal,
+		@IsCorrectAmount bit = 0,
+		@payer_email nvarchar(255),
+		@payer_id nvarchar(255),
+		@payment_status nvarchar(255),
+		@txn_id nvarchar(255),
+		@txn_type nvarchar(255),
+		@mc_gross money,
+		@mc_fee money,
+		@payment_date nvarchar(255),
+		@invoice	nvarchar(255),
+		@custom	nvarchar(255),
+		@pending_reason	nvarchar(255),
+		@payment_type	nvarchar(255),
+		@num_cart_items	int = null,
+		@mc_shipping	money = 0,
+		@mc_handling	money = 0,
+		@mc_tax	money	= 0,
+		@shipping	money	= 0,
+		@tax		money 	= 0,
+		@first_name	nvarchar(255),
+		@last_name	nvarchar(255),
+		@address_street	nvarchar(255),
+		@address_city	nvarchar(255),
+		@address_state	nvarchar(255),
+		@address_zip	nvarchar(255),
+		@address_country	nvarchar(255),
+		@address_status	nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_Orders SET 	
+		Status='PriceCheck',	
+		PriceCheck=@PriceCheck,
+		IsCorrectAmount=@IsCorrectAmount,
+		payer_email=@payer_email,
+		payer_id=@payer_id,
+		payment_status=@payment_status,
+		txn_id=@txn_id,
+		txn_type=@txn_type,
+		mc_gross=@mc_gross,
+		mc_fee=@mc_fee,
+		payment_date=@payment_date
+		,invoice=@invoice	
+		,custom=@custom	
+		,pending_reason=@pending_reason	
+		,payment_type=@payment_type	
+		,num_cart_items=@num_cart_items	
+		,mc_shipping=@mc_shipping	
+		,mc_handling=@mc_handling	
+		,mc_tax=@mc_tax	
+		,shipping=@shipping	
+		,tax=@tax		
+		,first_name=@first_name	
+		,last_name=@last_name	
+		,address_street=@address_street	
+		,address_city=@address_city	
+		,address_state=@address_state	
+		,address_zip=@address_zip	
+		,address_country=@address_country	
+		,address_status=@address_status
+	WHERE
+		OrderID=@OrderID
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersUpdate_pp
+		@OrderID int,
+		@PortalID int,
+		@ModuleID int,
+		@UserID int,		
+		@ShipDate datetime,
+		@Status nvarchar(50),
+		@AuthCode nvarchar(50),
+		@Reference nvarchar(50),
+		@TransactionID nvarchar(100),
+		@Comments nvarchar(500),
+		@CustomerID int,
+		@DownloadItems nvarchar(255),
+		@TotalGross	money = null,
+		@TotalSub	money = null,
+		@TotalTax	money = null,
+		@TotalShipping	money =null,
+		@ShoppingCartMode	nvarchar(50),
+		@IsPayPal bit = 1,
+		@PriceCheck money,
+		@IsCorrectAmount bit = 0,
+		@payer_email nvarchar(255),
+		@payer_id nvarchar(255),
+		@payment_status nvarchar(255),
+		@txn_id nvarchar(255),
+		@txn_type nvarchar(255),
+		@mc_gross money,
+		@mc_fee money,
+		@payment_date nvarchar(255),
+		@invoice	nvarchar(255),
+		@custom	nvarchar(255),
+		@pending_reason	nvarchar(255),
+		@payment_type	nvarchar(255),
+		@num_cart_items	int = null,
+		@mc_shipping	money = 0,
+		@mc_handling	money = 0,
+		@mc_tax	money	= 0,
+		@shipping	money	= 0,
+		@tax		money	= 0,
+		@first_name	nvarchar(255),
+		@last_name	nvarchar(255),
+		@address_street	nvarchar(255),
+		@address_city	nvarchar(255),
+		@address_state	nvarchar(255),
+		@address_zip	nvarchar(255),
+		@address_country	nvarchar(255),
+		@address_status	nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_Orders SET 
+		-- OrderID=@OrderID,
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		UserID=@UserID,		
+		ShipDate=@ShipDate,
+		Status=@Status,
+		AuthCode=@AuthCode,
+		Reference=@Reference,
+		TransactionID=@TransactionID,
+		Comments=@Comments,
+		CustomerID=@CustomerID,
+		DownloadItems=@DownloadItems,
+		TotalGross =@TotalGross,
+		TotalSub=@TotalSub,
+		TotalTax=@TotalTax,
+		TotalShipping=@TotalShipping,
+		ShoppingCartMode=@ShoppingCartMode	,
+		IsPayPal =@IsPayPal,
+		PriceCheck=@PriceCheck,
+		IsCorrectAmount=@IsCorrectAmount,
+		payer_email=@payer_email,
+		payer_id=@payer_id,
+		payment_status=@payment_status,
+		--txn_id=@txn_id,
+		txn_type=@txn_type,
+		mc_gross=@mc_gross,
+		mc_fee=@mc_fee,
+		payment_date=@payment_date
+		,invoice=@invoice	
+		,custom=@custom	
+		,pending_reason=@pending_reason	
+		,payment_type=@payment_type	
+		,num_cart_items=@num_cart_items	
+		,mc_shipping=@mc_shipping	
+		,mc_handling=@mc_handling	
+		,mc_tax=@mc_tax	
+		,shipping=@shipping	
+		,tax=@tax		
+		,first_name=@first_name	
+		,last_name=@last_name	
+		,address_street=@address_street	
+		,address_city=@address_city	
+		,address_state=@address_state	
+		,address_zip=@address_zip	
+		,address_country=@address_country	
+		,address_status=@address_status
+	WHERE
+		txn_id=@txn_id
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_OrdersUpdate_pp_PriceCheck
+		@TotalSub money,
+		@TotalTax money,
+		@TotalShipping money,
+		@PriceCheck money,
+		@IsCorrectAmount bit, 
+		@txn_id nvarchar(255)
+	AS
+	UPDATE {databaseOwner}jb_Orders SET 
+		TotalSub=@TotalSub,
+		TotalTax=@TotalTax,
+		TotalShipping=@TotalShipping,
+		PriceCheck=@PriceCheck,
+		IsCorrectAmount=@IsCorrectAmount		
+	WHERE
+		txn_id=@txn_id
+
+	IF @IsCorrectAmount = 1
+	BEGIN
+		UPDATE {databaseOwner}jb_MySubscription 
+		SET 
+			IsActive=1,
+			Status='PRICECHECK'
+		WHERE jb_MySubscription.TransactionID = @txn_id
+	END
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE Procedure {databaseOwner}jb_Orders_pp_IsDuplicate
+(
+    @txn_id nvarchar(255)
+)
+AS
+SET NOCOUNT ON
+DECLARE @IsDuplicate AS bit 
+IF EXISTS(SELECT *  FROM jb_Orders  WHERE txn_id = @txn_id) 
+	BEGIN
+	SET @IsDuplicate = 1
+	END
+ELSE
+	BEGIN
+	SET @IsDuplicate = 0
+	END
+SELECT @IsDuplicate AS IsDuplicate
+
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+-- ***************  Create stored procedures  ******************
+
+-- *** Create stored procedures for table jb_Picklist ***
+
+CREATE PROCEDURE {databaseOwner}jb_PicklistAdd
+		@PicklistGroup nvarchar(255),
+		@PicklistText nvarchar(255),
+		@PicklistValue nvarchar(255),
+		@ViewOrder int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_Picklist
+		(PicklistGroup,PicklistText,PicklistValue,ViewOrder)
+		VALUES
+		(@PicklistGroup,@PicklistText,@PicklistValue,@ViewOrder)
+	SELECT SCOPE_IDENTITY()
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_PicklistCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_Picklist
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_PicklistCountAllByGroup
+	@PicklistGroup nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_Picklist WHERE PicklistGroup=@PicklistGroup
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_PicklistDelete
+		@PicklistID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_Picklist WHERE
+		PicklistID=@PicklistID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_PicklistDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_Picklist
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_PicklistGet
+		@PicklistID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		PicklistID,PicklistGroup,PicklistText,PicklistValue,ViewOrder
+	FROM {databaseOwner}jb_Picklist WHERE
+		PicklistID=@PicklistID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_PicklistGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		PicklistID,PicklistGroup,PicklistText,PicklistValue,ViewOrder
+	FROM {databaseOwner}jb_Picklist 
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_PicklistGetByGroup
+		@PicklistGroup nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	SELECT
+		PicklistID,PicklistGroup,PicklistText,PicklistValue,ViewOrder
+	FROM {databaseOwner}jb_Picklist 
+	WHERE PicklistGroup=@PicklistGroup
+	ORDER BY ViewOrder, PicklistValue ASC
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_PicklistGetByGroup_DefaultSortOption
+		@PicklistGroup nvarchar(255)
+	AS
+	SET NOCOUNT ON
+	SELECT TOP 1 PicklistValue
+	FROM {databaseOwner}jb_Picklist 
+	WHERE PicklistGroup=@PicklistGroup
+	ORDER BY ViewOrder, PicklistValue ASC
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_PicklistUpdate
+		@PicklistID int,
+		@PicklistGroup nvarchar(255),
+		@PicklistText nvarchar(255),
+		@PicklistValue nvarchar(255),
+		@ViewOrder int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_Picklist SET 
+		PicklistGroup=@PicklistGroup,
+		PicklistText=@PicklistText,
+		PicklistValue=@PicklistValue,
+		ViewOrder=@ViewOrder
+	WHERE
+		PicklistID=@PicklistID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_SubscriptionPlanAdd
+		@PortalID int,
+		@ModuleID int,
+		@RoleID int,
+		@PlanName nvarchar(50),
+		@Description nvarchar(255),
+		@IsActive bit,
+		@ViewOrder int,
+		@Fee decimal,
+		@Limit int,
+		@ExpirationPeriod int,
+		@BillingFrequency int,
+		@BillingPeriod int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_SubscriptionPlan
+		(PortalID,ModuleID,RoleID,PlanName,Description,IsActive,ViewOrder,Fee,Limit,ExpirationPeriod,BillingFrequency,BillingPeriod)
+		VALUES
+		(@PortalID,@ModuleID,@RoleID,@PlanName,@Description,@IsActive,@ViewOrder,@Fee,@Limit,@ExpirationPeriod,@BillingFrequency,@BillingPeriod)
+	SELECT SCOPE_IDENTITY()
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_SubscriptionPlanCountAll
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_SubscriptionPlan
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_SubscriptionPlanDelete
+		@PlanID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_SubscriptionPlan WHERE
+		PlanID=@PlanID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_SubscriptionPlanDeleteAll
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_SubscriptionPlan
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_SubscriptionPlanGet
+		@PlanID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		PlanID,PortalID,ModuleID,RoleID,PlanName,Description,IsActive,ViewOrder,Fee,Limit,ExpirationPeriod,BillingFrequency,BillingPeriod
+	FROM {databaseOwner}jb_SubscriptionPlan WHERE
+		PlanID=@PlanID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_SubscriptionPlanGetAll
+	AS
+	SET NOCOUNT ON
+	SELECT
+		PlanID,PortalID,ModuleID,RoleID,PlanName,Description,IsActive,ViewOrder,Fee,Limit,ExpirationPeriod,BillingFrequency,BillingPeriod
+	FROM {databaseOwner}jb_SubscriptionPlan
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_SubscriptionPlanGetByModuleID
+		@ModuleID	int,
+		@Key nvarchar(20) = 'ACTIVE'
+	AS
+	SET NOCOUNT ON
+
+
+	IF UPPER(@Key) = 'ADMIN' 
+		SELECT jb_SubscriptionPlan.*, Roles.RoleName		
+		FROM {databaseOwner}jb_SubscriptionPlan, Roles
+		WHERE ModuleID=@ModuleID
+		AND jb_SubscriptionPlan.RoleId = Roles.RoleId
+		ORDER BY ViewOrder ASC
+	ELSE
+		SELECT jb_SubscriptionPlan.*, Roles.RoleName		
+		FROM {databaseOwner}jb_SubscriptionPlan, Roles
+		WHERE ModuleID=@ModuleID
+		AND jb_SubscriptionPlan.RoleId = Roles.RoleId
+		AND IsActive = 1
+		ORDER BY ViewOrder ASC
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_SubscriptionPlanUpdate
+		@PlanID int,
+		@PortalID int,
+		@ModuleID int,
+		@RoleID int,
+		@PlanName nvarchar(50),
+		@Description nvarchar(255),
+		@IsActive bit,
+		@ViewOrder int,
+		@Fee decimal,
+		@Limit int,
+		@ExpirationPeriod int,
+		@BillingFrequency int,
+		@BillingPeriod int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_SubscriptionPlan SET 
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		RoleID=@RoleID,
+		PlanName=@PlanName,
+		Description=@Description,
+		IsActive=@IsActive,
+		ViewOrder=@ViewOrder,
+		Fee=@Fee,
+		Limit=@Limit,
+		ExpirationPeriod=@ExpirationPeriod,
+		BillingFrequency=@BillingFrequency,
+		BillingPeriod=@BillingPeriod
+	WHERE
+		PlanID=@PlanID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_SubscriptionPlan_Jedi_GetSinglePlanFee
+		@PlanID int	
+	AS
+	SET NOCOUNT ON
+	SELECT IsNull(Fee, 0)  FROM jb_SubscriptionPlan WHERE PlanID = @PlanID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_UpdateClassifieds
+	@ItemID         int,
+	@UserName       nvarchar(100),
+	@JB_JobTitle	nvarchar(255),
+	@JB_JobCode	nvarchar(50),
+	@JB_JobLocation	nvarchar(50),
+	@JB_EmpType	nvarchar(50),
+	@JB_ReqEducation	nvarchar(50),
+	@JB_YearExp	int,
+	@JB_Travel	nvarchar(50),
+	@JB_StartingSalary	int,
+	@JB_HourlyRate money,
+	@JB_OtherSalary nvarchar(50),
+	@JB_StartDate	datetime,
+	@JB_NumberOpening	int,
+	@Message	ntext,
+	@JB_CompanyName	nvarchar(150),
+	@JB_AddReqList	ntext,
+	@JB_BenefitsList	ntext,
+	@Image image, 
+	@ImageContentType nvarchar(50), 
+	@ImageContentSize int, 
+	@Image1 image, 
+	@ImageContentType1 nvarchar(50), 
+	@ImageContentSize1 int, 
+	@JB_ContactInfo	nvarchar(2000),
+	@JB_ContactEmail	nvarchar(150),
+	@PosterPassword	nvarchar(50),
+	@ExpireDate	datetime,
+	@Authed	bit,
+	@CategoryID       int,
+	@Featured	bit,
+	@ActionCode nvarchar(50)
+AS
+IF DATEPART(YYYY,@ExpireDate) = '1900'
+	SET @ExpireDate = null
+
+update jb_ClassifiedsItem
+	set    	--CreatedByUser   = @UserName,
+	         	--CreatedDate     = GetDate(),
+		LastUpdate	 = GetDate(),
+	      	JB_JobTitle = @JB_JobTitle,
+		JB_JobCode = @JB_JobCode,
+		JB_JobLocation = @JB_JobLocation,
+		JB_EmpType =  @JB_EmpType,
+		JB_ReqEducation = @JB_ReqEducation,
+		JB_YearExp = @JB_YearExp,
+		JB_Travel = @JB_Travel,
+		JB_StartingSalary = @JB_StartingSalary,
+		JB_HourlyRate = @JB_HourlyRate,
+		JB_OtherSalary = @JB_OtherSalary,
+		JB_StartDate = @JB_StartDate,
+		JB_NumberOpening = @JB_NumberOpening,
+		Message = @Message,
+		JB_CompanyName = @JB_CompanyName,
+		JB_AddReqList	= @JB_AddReqList,
+		JB_BenefitsList = @JB_BenefitsList,
+		JB_ContactInfo = @JB_ContactInfo,
+		JB_ContactEmail = @JB_ContactEmail,
+		--PosterPassword	= @PosterPassword,
+		ExpireDate = @ExpireDate,
+		Authed = @Authed,
+		Featured =  @Featured,
+		CategoryID = @CategoryID
+	where  ItemID = @ItemID
+
+If @ActionCode =  'ChangePassword'
+BEGIN
+	UPDATE jb_ClassifiedsItem
+	SET 	PosterPassword	= @PosterPassword 
+	WHERE ItemID = @ItemID
+END
+	
+
+IF @ImageContentSize > 0   OR  @ImageContentSize = -1
+BEGIN
+	UPDATE    jb_ClassifiedsItem
+	SET 	Image = @Image, 
+		ImageContentType = @ImageContentType, 
+		ImageContentSize = @ImageContentSize 
+	WHERE
+		ItemID = @ItemID
+END
+IF @ImageContentSize1 > 0   OR  @ImageContentSize1 = -1
+BEGIN
+	UPDATE    jb_ClassifiedsItem
+	SET 	Image1 = @Image1, 
+		ImageContentType1 = @ImageContentType1, 
+		ImageContentSize1 = @ImageContentSize1 
+	WHERE
+		ItemID = @ItemID
+END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_UpdateClassifiedsAdsCount
+@CategoryID	int
+as
+update jb_ClassifiedsCat
+set    	AdsCount = AdsCount + 1	
+	 where CategoryID = @CategoryID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_UpdateClassifiedsAuthed
+@ItemID         int,
+@Authed bit
+as
+update jb_ClassifiedsItem WITH(ROWLOCK, UPDLOCK)
+set    	Authed = @Authed
+	where  ItemID = @ItemID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE procedure {databaseOwner}jb_UpdateClassifiedsCategory
+@CategoryID			int,
+@CategoryName       nvarchar(100),
+@ParentID			int,
+@PaymentRequired bit,
+@Price money,
+@EnableListings bit = 1
+as
+
+IF @ParentID = 0 OR @ParentID = -1
+SET @ParentID = null
+
+update jb_ClassifiedsCat
+set
+  CategoryName = @CategoryName,
+  ParentID = @ParentID,
+  PaymentRequired =  @PaymentRequired,
+  Price = @Price,
+  EnableListings = @EnableListings  
+  where CategoryID = @CategoryID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE  PROCEDURE {databaseOwner}jb_UpdateClassifiedsViewCount
+@ItemID         int
+as
+update jb_ClassifiedsItem WITH(ROWLOCK, UPDLOCK)
+set    	ViewCount = ViewCount + 1	
+	where  ItemID = @ItemID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE  PROCEDURE {databaseOwner}jb_UpdateClassifieds_RemoveMainFile
+@ItemID         int
+AS
+
+
+UPDATE  jb_ClassifiedsItem
+SET 	Image1 = null,
+	ImageContentType1 = '',
+	ImageContentSize1 = 0
+WHERE
+	ItemID = @ItemID
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+CREATE  PROCEDURE {databaseOwner}jb_UpdateClassifieds_approval
+	@ItemID         int,	
+	@ExpireDate	datetime,
+	@Authed	bit,
+	@Featured	bit
+
+AS
+
+
+IF DATEPART(YYYY,@ExpireDate) = '1900'
+	SET @ExpireDate = null
+
+update jb_ClassifiedsItem
+	set    	LastUpdate	 = GetDate(),
+		ExpireDate = @ExpireDate,
+		Authed = @Authed,
+		Featured =  @Featured		
+	where  ItemID = @ItemID
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}jb_UtilXferLegacyData	
+@Key nvarchar(20) = ''	
+	
+AS
+IF UPPER(@Key) = 'REVIEWS'
+BEGIN
+	INSERT INTO {databaseOwner}jb_ItemReview(ItemID,[Name], Comment, Rating, Approved, CreatedDate, ReviewCode)
+	SELECT ID_PRODUCT, AUTHOR, REVIEW, RATING, 1, ReviewDate, 30
+	FROM jb_rw_tabReviews  WHERE ID_PRODUCT IN (SELECT ItemID FROM jb_ClassifiedsItem)
+
+END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE Procedure {databaseOwner}jb_rw_CheckProductIDExist
+(
+    @ProductID nvarchar(50),
+    @ReturnCode int OUTPUT
+)
+AS
+IF  (SELECT COUNT(*) FROM jb_rw_tabReviews WHERE ID_PRODUCT = @ProductID) > 0
+	BEGIN
+	SELECT @ReturnCode = 1
+	END
+ELSE
+	BEGIN
+	SELECT @ReturnCode = 0
+	END
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+create procedure {databaseOwner}jb_rw_DeleteProductID
+@ProductID nvarchar(50)
+as
+delete
+from  jb_rw_tabReviews
+where  ID_PRODUCT = @ProductID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+create procedure {databaseOwner}jb_rw_DeleteReview
+@ReviewID int
+as
+delete
+from  jb_rw_tabReviews
+where  ID_REVIEW = @ReviewID
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_rw_GetAllDistinctProductID
+AS
+	SELECT DISTINCT  ID_PRODUCT
+	FROM jb_rw_tabReviews
+	ORDER BY  ID_PRODUCT ASC
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_rw_GetAverage
+	@productid	nvarchar(50)
+AS
+	DECLARE @average AS real
+	DECLARE @total AS real
+	DECLARE @records AS real
+	SET @total = (SELECT SUM(CAST(Rating AS real)) FROM jb_rw_tabReviews WHERE ID_PRODUCT=@productid) 
+	SET @records = ( SELECT COUNT(*) FROM jb_rw_tabReviews WHERE ID_PRODUCT=@productid)
+	--IF @records > 0
+		SET @average = @total / @records
+	--ELSE
+		--SET @average = 0
+	SELECT @average AS average
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_rw_GetLastReview
+	@productid	nvarchar(50)
+AS
+	SELECT TOP 1 author, review, rating, ReviewDate
+	FROM jb_rw_tabReviews
+	WHERE ID_PRODUCT=@productid AND status=1
+	ORDER BY ReviewDate DESC
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_rw_GetReviewCount
+	@productid	nvarchar(50)
+AS
+	DECLARE @records AS real
+	SET @records = ( SELECT COUNT(*) FROM jb_rw_tabReviews WHERE ID_PRODUCT=@productid)
+	SELECT @records  AS ReviewCount
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_rw_GetReviews
+	@productid	nvarchar(50)
+AS
+	SELECT * 
+	FROM jb_rw_tabReviews
+	WHERE ID_PRODUCT=@productid AND status=1
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+CREATE PROCEDURE {databaseOwner}jb_rw_InsertReview
+	@productid	nvarchar(50),
+	@author	nvarchar(50),
+	@review	nvarchar(4000),
+	@rating		nvarchar(1)
+AS
+	INSERT INTO jb_rw_tabReviews
+		(ID_PRODUCT, AUTHOR, REVIEW, RATING, STATUS)
+	VALUES
+		(@productid, @author, @review, @rating, 1)
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+

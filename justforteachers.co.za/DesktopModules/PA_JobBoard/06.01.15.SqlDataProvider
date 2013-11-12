@@ -1,0 +1,38 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.15            *****/
+/************************************************************/
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetResume_CreatedByUser]    Script Date: 02/25/2011 14:32:14 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetResume_CreatedByUser]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetResume_CreatedByUser]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetResume_CreatedByUser]    Script Date: 02/25/2011 14:32:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_GetResume_CreatedByUser]
+@ModuleID int,
+@CreatedByUser int
+as
+select *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire
+from   rm_ClassifiedsItem
+where  ModuleID = @ModuleID
+--and    (ExpireDate > GetDate() or ExpireDate is null) 
+and CreatedByUser = @CreatedByUser
+Order By CreatedDate Desc
+
+GO
+

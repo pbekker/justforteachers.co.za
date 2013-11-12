@@ -1,0 +1,39 @@
+﻿ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] DROP CONSTRAINT [DF_jb_ClassifiedsItem_Authed]
+GO
+ALTER TABLE {databaseOwner}[jb_ClassifiedsItem] WITH NOCHECK ADD CONSTRAINT [DF_jb_ClassifiedsItem_Authed] DEFAULT (0) FOR [Authed]
+GO
+
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_udf_GetAvgReview]    Script Date: 04/27/2010 10:57:37 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_udf_GetAvgReview]') AND xtype in (N'FN', N'IF', N'TF'))
+DROP FUNCTION {databaseOwner}[jb_udf_GetAvgReview]
+GO
+
+/****** Object:  UserDefinedFunction {databaseOwner}[jb_udf_GetAvgReview]    Script Date: 04/27/2010 10:57:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE FUNCTION {databaseOwner}[jb_udf_GetAvgReview]
+(@ItemID int)
+RETURNS real
+AS
+BEGIN
+	DECLARE @average AS real
+	DECLARE @total AS real
+	DECLARE @records AS real
+	SET @total = (SELECT SUM(CAST(Rating AS real)) FROM {databaseOwner}jb_ItemReview WHERE ItemID=@ItemID  AND Approved = 1) 
+	SET @records = ( SELECT COUNT(*) FROM {databaseOwner}jb_ItemReview WHERE ItemID=@ItemID AND Approved = 1)
+	IF @records > 0
+		SET @average = @total / @records
+	ELSE
+		SET @average = -1
+	RETURN @average
+END
+
+
+
+GO

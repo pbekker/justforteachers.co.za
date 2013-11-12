@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DNNGo_QuickDownloads>
+  <XmlDB>
+    
+    <Name>
+      <![CDATA[Effect_03_FlexSlider]]>
+    </Name>
+    
+    <Description>
+      <![CDATA[]]>
+    </Description>
+    
+    <Version>
+      <![CDATA[01.00.00]]>
+    </Version>
+    
+    <Thumbnails>
+      <![CDATA[http://www.dnngo.net/DesktopModules/DNNGo_QuickDownloads/Effects/Effect_03_FlexSlider/preview.jpg]]>
+    </Thumbnails>
+    <EffectScript>
+      <![CDATA[jquery.flexslider.js,jquery.hoverIntent.min.js]]>
+    </EffectScript>
+    <GlobalScript>
+      <![CDATA[]]>
+    </GlobalScript>
+ 
+    <DemoUrl>
+      <![CDATA[http://www.dnngo.net/OurModules/QuickDownloads.aspx]]>
+    </DemoUrl>
+    <SettingName>
+      <![CDATA[Effect]]>
+    </SettingName>
+    <DisplayEffect>
+      <![CDATA[true]]>
+    </DisplayEffect>
+    <DataListOption>
+      <![CDATA[Effect]]>
+    </DataListOption>
+</XmlDB>
+</DNNGo_QuickDownloads>

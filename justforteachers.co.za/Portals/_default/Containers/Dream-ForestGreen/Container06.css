@@ -1,0 +1,18 @@
+/*-------- Container06 --------*/
+.Container06_style { min-width:160px; background:#D9D9D9; }
+.Container06_c_menu { float:left; }
+.Container06_c_help  { float:right; padding-top:8px; }
+.Container06_top_bg { background:url(images/c_bg_03.jpg) repeat-x top; }
+.Container06_top_left { background:url(images/c_left_03.jpg) no-repeat 8px center; }
+.Container06_top_light { background:url(images/c_light_03.png) no-repeat center top; height:35px; padding:1px 5px 0px 22px; }
+.Container06_top_height { height:35px; line-height:35px; }
+.Container06_content { padding:6px 10px 8px 10px; text-align:left; }
+.Container06_shadow_left { background:url(images/c_shadowl_06.png) no-repeat left top; }
+.Container06_shadow_right { background:url(images/c_shadowr_06.jpg) no-repeat right top; }
+.Container06_shadow_center { background:url(images/c_shadowc_06.png) repeat-x top; height:16px; margin:0 80px; }
+
+
+
+
+
+

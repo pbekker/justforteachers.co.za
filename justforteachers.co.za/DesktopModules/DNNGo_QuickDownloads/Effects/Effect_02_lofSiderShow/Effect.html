@@ -1,0 +1,68 @@
+﻿ #set($width =( ${xf.ViewEffectSetting("width",580)} +${xf.ViewEffectSetting("navigatorWidth",180)}) )
+ 
+ <div id="jslidernews$ModuleID" class="$EffectThemeName" style="width:${width}px; height:${xf.ViewEffectSetting("height","260")}px;">
+	<div class="preload"><div></div></div>            
+            <div  class="button-previous">Previous</div>                
+    		 <!-- MAIN CONTENT --> 
+              <div class="main-slider-content ${xf.ViewEffectSetting("NavigatorPosition","left")}-description" style="width:${xf.ViewEffectSetting("width","580")}px; height:${xf.ViewEffectSetting("height","300")}px;">
+                <ul class="sliders-wrap-inner" style="width:${xf.ViewEffectSetting("width","580")}px; height:${xf.ViewEffectSetting("height","580")}px;">
+                    #if($DataList.Count > 0)
+                         #foreach($DataItem in $DataList)
+                             <li style="width:${xf.ViewEffectSetting("width","600")}px; height:${xf.ViewEffectSetting("height","260")}px;">
+
+                                     <a href="${xf.GoUrl($DataItem)}" class="main-slider-img"><img style="width:${xf.ViewEffectSetting("width","580")}px; height:${xf.ViewEffectSetting("height","260")}px;" class="main-slider-img" src="${xf.ViewPicture($DataItem)}" title="$DataItem.Name" ></a>   
+                                     <div class="slider-description">
+                                         <h3 ><a href="${xf.GoUrl($DataItem)}">${xf.ViewContent("Name",$DataItem)}</a></h3>
+										 ${xf.ViewSummary($DataItem,${xf.ViewEffectSetting("summarynumber",200)},"...")}
+                                      </div>  
+                                                 
+                            </li> 
+                         #end
+                    #end
+                  </ul>  	
+               </div>
+ 		   <!-- END MAIN CONTENT --> 
+           <!-- NAVIGATOR -->
+           <!--navigator -->
+           	<div class="navigator-content ${xf.ViewEffectSetting("NavigatorPosition","left")}-navigator">
+                  <div class="navigator-wrapper">
+                        <ul class="navigator-wrap-inner">
+                             #if($DataList.Count > 0)
+                                    #foreach($DataItem in $DataList)
+                                     <li>
+                                        <div class="navigator-wrap">
+                                            <img src="${xf.ThumbnailUrl($DataItem)}" />
+                                        </div>    
+                                    </li>
+                                    #end
+                            #end
+                        </ul>
+                  </div>
+   
+             </div> 
+            <div class="button-next">Next</div>
+            <div class="button-control"><span></span></div>
+ </div> 
+
+ <script type="text/javascript">
+     jQuery(document).ready(function () {
+         var buttons1 = { previous: jQuery('#jslidernews$ModuleID .button-previous'),
+             next: jQuery('#jslidernews$ModuleID .button-next')
+         };
+         jQuery('#jslidernews$ModuleID').lofJSidernews({
+             direction: '${xf.ViewEffectSetting("direction","default")}', //opacity                        
+             easing: '${xf.ViewEffectSetting("easing","easeInOutExpo")}',
+             interval: ${xf.ViewEffectSetting("interval",5000)},
+             duration: ${xf.ViewEffectSetting("duration",1200)},
+             auto: ${xf.ViewEffectSetting("auto","true")}, //false
+             mainWidth: ${xf.ViewEffectSetting("width",580)},
+             mainHeight: ${xf.ViewEffectSetting("height",260)},
+             navigatorHeight: ${xf.ViewEffectSetting("height",270)}/${xf.ViewEffectSetting("maxItemDisplay",3)},
+             navigatorWidth: ${xf.ViewEffectSetting("navigatorWidth",180)},
+             maxItemDisplay: ${xf.ViewEffectSetting("maxItemDisplay",3)},
+             buttons: buttons1
+         });
+
+        
+     });
+</script>

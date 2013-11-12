@@ -1,0 +1,5 @@
+﻿.sc-message { display:block; padding-left:25px; min-height:20px; margin-top:3px; }
+.sc-message-Error { color:red; background:url(../../images/red-error_16px.gif) no-repeat top left; }
+.sc-message-Success { color:green; background:url(../../images/success-icn.png) no-repeat top left; }
+.sc-releaseinfo-header { font-weight:bold; padding-right:5px; padding-left:0px; }
+.Mod2SexyContentInstallerC a { text-decoration:underline; }

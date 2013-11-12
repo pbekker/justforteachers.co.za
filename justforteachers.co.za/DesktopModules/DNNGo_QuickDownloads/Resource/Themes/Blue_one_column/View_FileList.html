@@ -1,0 +1,56 @@
+﻿#if($Navigation.IsView)
+		<div class="page_meta">
+				$Navigation.Title: <span> $Navigation.Content</span><a href="${xf.GoUrl()}">Return</a>
+		</div>
+		#if($Navigation.AuthorID >0)
+		<div class="author_info clearfix">
+			<div class="thum"><img src="${xf.ViewAuthorPic($Navigation.AuthorID)}" /></div>
+			<div class="author_desc">${xf.ViewAuthorBiography($Navigation.AuthorID)}</div>
+		</div>
+        #end
+	#end
+
+
+#if($DataList.Count > 0)
+    <div class="blueonecolumn_wrapper">
+        <div class="download_sort">
+            <div class="sort_tab">
+                <span>Sort order：</span>
+                ${xf.ViewRankingBar("CreatedDate","Latest",1,"cur")}
+                ${xf.ViewRankingBar("ClickCount","Download most",1,"cur")}
+            </div>
+            <div class="date_rss"><a href="${xf.GoRssUrl()}" target="_blank"><img src="${xf.ThemePath}images/rss.png" alt="RSS" title="RSS" /></a></div>
+        </div>
+        <ul class="clearfix blueonecolumn_list">
+            #foreach($DataItem in $DataList)
+                <li class="date_item" >
+                    <div class="thumb">
+                        <a href="${xf.GoUrl($DataItem)}"><img style="width: 150px" src="${xf.ViewPicture($DataItem)}" alt='${xf.ViewContent("Name",$DataItem)}' /></a>
+                    </div>
+                    <h3 class="d_title"><a href="${xf.GoUrl($DataItem)}">${xf.ViewContent("Name",$DataItem)}</a></h3>
+                    <div class="date_attr clearfix">
+                        <span>Category:  ${xf.ViewCategories($DataItem)}</span>
+                        <span>Download Count: $DataItem.ClickCount</span>
+                        <span>Published Date: $DataItem.CreatedDate.ToShortDateString()</span>
+                    </div>
+                    <div class="date_overview">
+                        ${xf.ViewSummary($DataItem,100,"...")}
+                    </div>
+                    <div class="clearfix date_more">
+                        #if($Module.IsEditable)
+                            <span class="blog_edit"><a href="${xf.GoEditUrl($DataItem)}">[Edit]</a></span>
+                        #end
+                        <a href="${xf.GoUrl($DataItem)}" class="more_link post_but">Read More ...</a></div>
+                </li>
+                #end
+        </ul>
+        <div class="download_page">
+            ${Pager}
+        </div>
+    </div>
+                
+
+#else
+        No entry of any article
+#end
+ 

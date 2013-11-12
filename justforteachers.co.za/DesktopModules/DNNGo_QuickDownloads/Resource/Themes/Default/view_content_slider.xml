@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<theme>
+  <Name>
+    <![CDATA[ Content Slider ]]>
+  </Name>
+  <Description>
+    <![CDATA[ Content Slider ]]>
+  </Description>
+
+  <Version>
+    <![CDATA[01.00.00]]>
+  </Version>
+  <Thumbnails>
+    <![CDATA[]]>
+  </Thumbnails>
+  <EffectScript>
+    <![CDATA[jquery.flexslider.js]]>
+  </EffectScript>
+  <GlobalScript>
+    <![CDATA[]]>
+  </GlobalScript>
+  <DemoUrl>
+    <![CDATA[]]>
+  </DemoUrl>
+  
+  <ThemeSettings>
+  <ThemeSetting> 
+    <Name>
+        <![CDATA[ ViewType ]]>
+    </Name>
+      <Alias>
+        <![CDATA[ Sort By ]]>
+      </Alias>
+    <ControlType>
+      <![CDATA[ RadioButton ]]>
+    </ControlType>
+    <ListContent>
+        <![CDATA[ time,view,random,comment ]]>
+    </ListContent>
+    <DefaultValue>
+      <![CDATA[ time ]]>
+    </DefaultValue>
+  </ThemeSetting>
+   <ThemeSetting> 
+    <Name>
+        <![CDATA[ Featured ]]>
+    </Name>
+      <Alias>
+        <![CDATA[ Featured Articles to Top ]]>
+      </Alias>
+    <ControlType>
+      <![CDATA[ RadioButton ]]>
+    </ControlType>
+    <ListContent>
+        <![CDATA[ yes,no ]]>
+    </ListContent>
+    <DefaultValue>
+      <![CDATA[ no ]]>
+    </DefaultValue>
+  </ThemeSetting> 
+  <ThemeSetting> 
+    <Name>
+        <![CDATA[ Number ]]>
+    </Name>
+    <Alias>
+        <![CDATA[ Number of Articles ]]>
+    </Alias>
+    <ControlType>
+      <![CDATA[ text ]]>
+    </ControlType>
+    <DefaultValue>
+      <![CDATA[ 5 ]]>
+    </DefaultValue>
+    <Required>
+        <![CDATA[ true ]]>
+    </Required>
+    <Verification>
+      <![CDATA[ number ]]>
+    </Verification>
+  </ThemeSetting>
+    <ThemeSetting>
+      <Name>
+        <![CDATA[ ItemWidth ]]>
+      </Name>
+      <DefaultValue>
+        <![CDATA[ 230 ]]>
+      </DefaultValue>
+      <Width>
+        <![CDATA[100]]>
+      </Width>
+      <Rows>
+        <![CDATA[1]]>
+      </Rows>
+      <ControlType>
+        <![CDATA[ text ]]>
+      </ControlType>
+      <Description>
+        <![CDATA[ px ]]>
+      </Description>
+      <Required>
+        <![CDATA[ true ]]>
+      </Required>
+      <Verification>
+        <![CDATA[ number ]]>
+      </Verification>
+    </ThemeSetting>
+    <ThemeSetting>
+      <Name>
+        <![CDATA[ MaxItems ]]>
+      </Name>
+      <DefaultValue>
+        <![CDATA[ 4 ]]>
+      </DefaultValue>
+      <Width>
+        <![CDATA[100]]>
+      </Width>
+      <Rows>
+        <![CDATA[1]]>
+      </Rows>
+      <ControlType>
+        <![CDATA[ text ]]>
+      </ControlType>
+      <Required>
+        <![CDATA[ true ]]>
+      </Required>
+      <Verification>
+        <![CDATA[ number ]]>
+      </Verification>
+    </ThemeSetting>
+    <ThemeSetting>
+      <Name>
+        <![CDATA[ Move ]]>
+      </Name>
+      <DefaultValue>
+        <![CDATA[ 1 ]]>
+      </DefaultValue>
+      <Width>
+        <![CDATA[100]]>
+      </Width>
+      <Rows>
+        <![CDATA[1]]>
+      </Rows>
+      <ControlType>
+        <![CDATA[ text ]]>
+      </ControlType>
+      <Required>
+        <![CDATA[ true ]]>
+      </Required>
+      <Verification>
+        <![CDATA[ number ]]>
+      </Verification>
+    </ThemeSetting>
+    <ThemeSetting>
+      <Name>
+        <![CDATA[ ControlNav ]]>
+      </Name>
+      <DefaultValue>
+        <![CDATA[ true ]]>
+      </DefaultValue>
+      <ControlType>
+        <![CDATA[ RadioButton ]]>
+      </ControlType>
+      <ListContent>
+        <![CDATA[ true,false ]]>
+      </ListContent>
+    </ThemeSetting>
+    <ThemeSetting>
+      <Name>
+        <![CDATA[ DirectionNav ]]>
+      </Name>
+      <DefaultValue>
+        <![CDATA[ true ]]>
+      </DefaultValue>
+      <ControlType>
+        <![CDATA[ RadioButton ]]>
+      </ControlType>
+      <ListContent>
+        <![CDATA[ true,false ]]>
+      </ListContent>
+    </ThemeSetting>
+</ThemeSettings>
+</theme>

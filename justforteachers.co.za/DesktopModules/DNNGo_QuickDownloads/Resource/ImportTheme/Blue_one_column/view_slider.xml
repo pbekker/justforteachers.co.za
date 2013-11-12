@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<theme>
+  <Name>
+    <![CDATA[ View Slider ]]>
+  </Name>
+  <Description>
+    <![CDATA[ View Slider ]]>
+  </Description>
+  <Version>
+    <![CDATA[01.00.00]]>
+  </Version>
+  <Thumbnails>
+    <![CDATA[]]>
+  </Thumbnails>
+  <EffectScript>
+    <![CDATA[jquery.flexslider.js]]>
+  </EffectScript>
+  <GlobalScript>
+    <![CDATA[]]>
+  </GlobalScript>
+  <DemoUrl>
+    <![CDATA[]]>
+  </DemoUrl>
+  <ThemeSettings>
+    <ThemeSetting>
+      <Name>
+        <![CDATA[ Width ]]>
+      </Name>
+      <Alias>
+        <![CDATA[ Width ]]>
+      </Alias>
+      <DefaultValue>
+        <![CDATA[ 500 ]]>
+      </DefaultValue>
+      <Width>
+        <![CDATA[100]]>
+      </Width>
+      <Rows>
+        <![CDATA[1]]>
+      </Rows>
+      <ControlType>
+        <![CDATA[ text ]]>
+      </ControlType>
+      <ListContent>
+        <![CDATA[  ]]>
+      </ListContent>
+      <Description>
+        <![CDATA[ px ]]>
+      </Description>
+      <Required>
+        <![CDATA[ true ]]>
+      </Required>
+      <Verification>
+        <![CDATA[ number ]]>
+      </Verification>
+  </ThemeSetting>
+    <ThemeSetting>
+      <Name>
+        <![CDATA[ Height ]]>
+      </Name>
+      <Alias>
+        <![CDATA[ Height ]]>
+      </Alias>
+      <DefaultValue>
+        <![CDATA[ 400 ]]>
+      </DefaultValue>
+      <Width>
+        <![CDATA[100]]>
+      </Width>
+      <Rows>
+        <![CDATA[1]]>
+      </Rows>
+      <ControlType>
+        <![CDATA[ text ]]>
+      </ControlType>
+      <ListContent>
+        <![CDATA[  ]]>
+      </ListContent>
+      <Description>
+        <![CDATA[ px ]]>
+      </Description>
+      <Required>
+        <![CDATA[ true ]]>
+      </Required>
+      <Verification>
+        <![CDATA[ number ]]>
+      </Verification>
+  </ThemeSetting>
+  <ThemeSetting> 
+    <Name>
+        <![CDATA[ ViewType ]]>
+    </Name>
+      <Alias>
+        <![CDATA[ Sort By ]]>
+      </Alias>
+    <ControlType>
+      <![CDATA[ RadioButton ]]>
+    </ControlType>
+    <ListContent>
+        <![CDATA[ time,view,random,comment ]]>
+    </ListContent>
+    <DefaultValue>
+      <![CDATA[ time ]]>
+    </DefaultValue>
+  </ThemeSetting>
+   <ThemeSetting> 
+    <Name>
+        <![CDATA[ Featured ]]>
+    </Name>
+      <Alias>
+        <![CDATA[ Featured Articles to Top ]]>
+      </Alias>
+    <ControlType>
+      <![CDATA[ RadioButton ]]>
+    </ControlType>
+    <ListContent>
+        <![CDATA[ yes,no ]]>
+    </ListContent>
+    <DefaultValue>
+      <![CDATA[ no ]]>
+    </DefaultValue>
+  </ThemeSetting> 
+  <ThemeSetting> 
+    <Name>
+        <![CDATA[ Number ]]>
+    </Name>
+    <Alias>
+        <![CDATA[ Number of Articles ]]>
+    </Alias>
+    <ControlType>
+      <![CDATA[ text ]]>
+    </ControlType>
+    <DefaultValue>
+      <![CDATA[ 5 ]]>
+    </DefaultValue>
+    <Required>
+        <![CDATA[ true ]]>
+    </Required>
+    <Verification>
+      <![CDATA[ number ]]>
+    </Verification>
+  </ThemeSetting>
+  <ThemeSetting>
+    <Name>
+      <![CDATA[ Animation ]]>
+    </Name>
+    <Alias>
+      <![CDATA[ Animation ]]>
+    </Alias>
+    <ControlType>
+      <![CDATA[ RadioButton ]]>
+    </ControlType>
+    <ListContent>
+      <![CDATA[ fade,slide ]]>
+    </ListContent>
+    <DefaultValue>
+      <![CDATA[ fade ]]>
+    </DefaultValue>
+    <Required>
+      <![CDATA[ true ]]>
+    </Required>
+    <Verification>
+      <![CDATA[ number ]]>
+    </Verification>
+    
+  </ThemeSetting>  
+  <ThemeSetting> 
+    <Name>
+      <![CDATA[ SlideshowSpeed ]]>
+    </Name>
+    <Alias>
+      <![CDATA[ SlideshowSpeed ]]>
+    </Alias>
+    <ControlType>
+      <![CDATA[ text ]]>
+    </ControlType>
+    <DefaultValue>
+      <![CDATA[ 4000 ]]>
+    </DefaultValue>
+    <Description>
+      <![CDATA[ ms ]]>
+    </Description>    
+    <Width>
+      <![CDATA[100]]>
+     </Width>
+    <Required>
+        <![CDATA[ true ]]>
+    </Required>
+    <Verification>
+      <![CDATA[ number ]]>
+    </Verification>    
+  </ThemeSetting> 
+  <ThemeSetting> 
+    <Name>
+      <![CDATA[ AnimationDuration ]]>
+    </Name>
+    <Alias>
+      <![CDATA[ AnimationDuration ]]>
+    </Alias>
+    <ControlType>
+      <![CDATA[ text ]]>
+    </ControlType>
+    <DefaultValue>
+      <![CDATA[ 600 ]]>
+    </DefaultValue>
+    <Description>
+      <![CDATA[ ms ]]>
+    </Description>    
+    <Width>
+      <![CDATA[100]]>
+     </Width>
+    <Required>
+        <![CDATA[ true ]]>
+    </Required>
+    <Verification>
+      <![CDATA[ number ]]>
+    </Verification>    
+  </ThemeSetting>
+</ThemeSettings>
+</theme>

@@ -1,0 +1,219 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 07.02.20            *****/
+/************************************************************/
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Adv]    Script Date: 02/13/2013 11:38:16 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsSearch_Adv]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Adv]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Bsc]    Script Date: 02/13/2013 11:38:16 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_GetClassifiedsSearch_Bsc]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Bsc]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Adv]    Script Date: 02/13/2013 11:38:16 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+
+
+
+CREATE  PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Adv]
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@EmploymentType nvarchar(50),
+@SalaryFrom  int,
+@Location nvarchar(50) = NULL,
+@SearchAttributeString BIT = 0
+
+AS
+
+IF @Location = ''
+SET @Location = null
+DECLARE @RadiusPostal NVARCHAR(50)
+SET @RadiusPostal = (SELECT TOP 1 it_Postal FROM jb_ClassifiedsItem WHERE it_City + ', ' + it_Region + ' ' + it_City + ' ' + it_Region + ' ' + it_Postal LIKE '%' + @Location+ '%' AND Isnull(it_Postal, '') <> '')
+SET @RadiusPostal = Isnull(@RadiusPostal, @Location)
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+
+SELECT CASE WHEN @SearchBy = 'RADIUS' THEN  {databaseOwner}jb_ZipDistance(it_Postal, IsNull(@RadiusPostal,0)) END AS Miles, *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+	, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR) + CASE WHEN @SearchAttributeString = 1 THEN ' ' + {databaseOwner}jb_udf_AttributeValueString(ItemID) ELSE '' END)  AS Rank
+	FROM jb_ClassifiedsItem
+	WHERE  jb_ClassifiedsItem.ItemID IN
+	(
+	SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+	FROM jb_ClassifiedsItem_vw
+	WHERE ModuleID = @ModuleID
+	AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+	AND ((UCategoryID IN(SELECT * FROM [#RETURN])) OR (@CurrentCategoryID = -1))
+	AND (JB_EmpType = @EmploymentType)
+	AND (JB_StartingSalary >= @SalaryFrom)		
+	and ((JB_JobTitle like '%' + @SearchText + '%' or 
+					JB_JobCode like '%' + @SearchText + '%' or 
+					JB_JobLocation like '%' + @SearchText + '%' or 
+					JB_ReqEducation like '%' + @SearchText + '%' or 									
+					JB_Travel like '%' + @SearchText + '%' or 
+					JB_NumberOpening like '%' + @SearchText + '%' or 
+					Message like '%' + @SearchText + '%'  or
+					info1	like '%' + @SearchText + '%' or 
+					info2	like '%' + @SearchText + '%' or 
+					info3	like '%' + @SearchText + '%' or 					
+					JB_CompanyName like '%' + @SearchText + '%'  or
+					JB_ContactInfo like '%' + @SearchText + '%'  or
+					JB_ContactEmail like '%' + @SearchText + '%'  or 
+					CreatedDate    like '%' + @SearchText + '%'  or 
+					ExpireDate like '%' + @SearchText + '%'  or 
+					JB_AddReqList	like '%' + @SearchText + '%'  OR 
+					it_Name like '%' + @SearchText + '%' or 
+					it_Unit like '%' + @SearchText + '%' or 
+					it_Street like '%' + @SearchText + '%' or 
+					it_City like '%' + @SearchText + '%' or 
+					it_Region like '%' + @SearchText + '%' or 									
+					it_Country like '%' + @SearchText + '%' or 
+					it_Postal like '%' + @SearchText + '%' or 
+					it_Phone like '%' + @SearchText + '%' OR 
+					REPLACE(it_Phone, ' ', '') like '%' + @SearchText + '%' OR 
+					it_Fax like '%' + @SearchText + '%' or 
+					it_Email like '%' + @SearchText + '%' or 					
+					CASE WHEN @SearchAttributeString = 1 THEN {databaseOwner}jb_udf_AttributeValueString(ItemID) END like '%' + @SearchText + '%'  OR 
+					JB_BenefitsList like '%' + @SearchText + '%'  )  OR (@SearchText IS NULL))
+	AND  ((it_City + ', ' + it_Region + ' ' + it_City + ' ' + it_Region + ' ' + it_Postal + ' ' + JB_JobLocation LIKE '%' + @Location+ '%') OR (@Location IS NULL) OR (@SearchBy = 'RADIUS')) 
+	) 
+	Order By Rank Desc
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Bsc]    Script Date: 02/13/2013 11:38:16 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+
+
+
+CREATE  PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Bsc]
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@Location nvarchar(50) = NULL,
+@SearchAttributeString BIT = 0
+AS
+
+IF @Location = ''
+SET @Location = null
+DECLARE @RadiusPostal NVARCHAR(50)
+SET @RadiusPostal = (SELECT TOP 1 it_Postal FROM jb_ClassifiedsItem WHERE it_City + ', ' + it_Region + ' ' + it_City + ' ' + it_Region + ' ' + it_Postal LIKE '%' + @Location+ '%' AND Isnull(it_Postal, '') <> '')
+SET @RadiusPostal = Isnull(@RadiusPostal, @Location)
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+SELECT CASE WHEN @SearchBy = 'RADIUS' THEN  {databaseOwner}jb_ZipDistance(it_Postal, IsNull(@RadiusPostal,0)) END AS Miles, *, DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR) + CASE WHEN @SearchAttributeString = 1 THEN ' ' + {databaseOwner}jb_udf_AttributeValueString(ItemID) ELSE '' END)  AS Rank
+FROM jb_ClassifiedsItem
+WHERE  jb_ClassifiedsItem.ItemID IN
+(
+SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+FROM jb_ClassifiedsItem_vw
+WHERE ModuleID = @ModuleID
+AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+AND ((UCategoryID IN(SELECT * FROM [#RETURN])) OR (@CurrentCategoryID = -1))		
+AND ((JB_JobTitle like '%' + @SearchText + '%' or 
+				JB_JobCode like '%' + @SearchText + '%' or 
+				JB_JobLocation like '%' + @SearchText + '%' or 
+				JB_EmpType like '%' + @SearchText + '%' or 
+				JB_ReqEducation like '%' + @SearchText + '%' or 									
+				JB_Travel like '%' + @SearchText + '%' or 
+				JB_StartingSalary like '%' + @SearchText + '%' or 
+				CAST(JB_HourlyRate As NVARCHAR(255)) like '%' + @SearchText + '%' or 	
+				JB_StartDate	like '%' + @SearchText + '%' or 
+				JB_NumberOpening like '%' + @SearchText + '%' or 
+				Message like '%' + @SearchText + '%'  or
+				info1	like '%' + @SearchText + '%' or 
+				info2	like '%' + @SearchText + '%' or 
+				info3	like '%' + @SearchText + '%' or 
+				JB_CompanyName like '%' + @SearchText + '%'  or
+				JB_ContactInfo like '%' + @SearchText + '%'  or
+				JB_ContactEmail like '%' + @SearchText + '%'  or 
+				CreatedDate    like '%' + @SearchText + '%'  or 
+				ExpireDate like '%' + @SearchText + '%'  or 
+				JB_AddReqList	like '%' + @SearchText + '%'  OR 
+				it_Name like '%' + @SearchText + '%' or 
+				it_Unit like '%' + @SearchText + '%' or 
+				it_Street like '%' + @SearchText + '%' or 
+				it_City like '%' + @SearchText + '%' or 
+				it_Region like '%' + @SearchText + '%' or 									
+				it_Country like '%' + @SearchText + '%' or 
+				it_Postal like '%' + @SearchText + '%' or 
+				it_Phone like '%' + @SearchText + '%' OR 
+				REPLACE(it_Phone, ' ', '') like '%' + @SearchText + '%' OR 
+				it_Fax like '%' + @SearchText + '%' or 
+				it_Email like '%' + @SearchText + '%' or 
+				CASE WHEN @SearchAttributeString = 1 THEN {databaseOwner}jb_udf_AttributeValueString(ItemID) END like '%' + @SearchText + '%'  OR 
+				JB_BenefitsList like '%' + @SearchText + '%'  )  OR (@SearchText IS NULL))
+AND  ((it_City + ', ' + it_Region + ' ' + it_City + ' ' + it_Region + ' ' + it_Postal + ' ' + JB_JobLocation LIKE '%' + @Location+ '%') OR (@Location IS NULL) OR (@SearchBy = 'RADIUS')) 
+)
+Order By Rank Desc
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+
+GO
+

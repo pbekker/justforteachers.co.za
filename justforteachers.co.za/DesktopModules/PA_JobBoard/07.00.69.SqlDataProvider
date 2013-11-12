@@ -1,0 +1,57 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 07.00.69            *****/
+/************************************************************/
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]    Script Date: 03/05/2012 12:51:56 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]
+GO
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]    Script Date: 03/05/2012 12:52:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE {databaseOwner}[jb_UpdateClassifieds_RemoveMainFile]
+@ItemID         INT,
+@IsImage bit = 0
+AS
+
+
+SET NOCOUNT ON
+BEGIN
+	IF @IsImage = 1
+		BEGIN				
+			UPDATE    jb_ClassifiedsItem
+			SET 	Image = null,
+				ImageContentType = '',
+				ImageContentSize = 0,
+				ImageFileName = ''
+
+			WHERE
+				ItemID = @ItemID
+		END
+	ELSE
+		BEGIN				
+			UPDATE  jb_ClassifiedsItem
+			SET 	Image1 = null,
+				ImageContentType1 = '',
+				ImageContentSize1 = 0,
+				AttachedFileName = ''
+			WHERE
+				ItemID = @ItemID
+		END
+				
+END
+GO

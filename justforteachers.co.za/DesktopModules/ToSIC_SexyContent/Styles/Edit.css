@@ -1,0 +1,49 @@
+﻿/* Included in EAVManagement.ascx & EditContentGroup.ascx */
+
+/* Styles for EAV Management UI */
+table.EAVAttributeSets { width:100%; margin:8px 0 8px 0; }
+table.EAVAttributeSets td, table.EAVAttributeSets th { border:1px solid #DDD; }
+table.EAVAttributeSets th { background:#FFF; padding:4px; font-size:13px; color:#000; font-weight:bold; text-align:left; }
+table.EAVAttributeSets td { padding:4px; }
+table.EAVAttributeSets a { color:#036; font-weight:bold; }
+
+
+/* Styles for Edit UI */
+
+/* General */
+.dnnFormError { position: absolute; }
+.eav-form .dnnFormItem input[type="text"], .eav-form .dnnFormItem input[type="password"], .eav-form .dnnFormItem input[type="email"], .eav-form .dnnFormItem input[type="tel"], .eav-form .dnnFormItem select, .eav-form .dnnFormItem textarea { width:279px; }
+.btnReference { float: right; }
+.eav-message-defaultfirst { margin-top: 30px; }
+.eav-field { width:100%; }
+
+.dnn-7 .eav-form .eav-field { padding-bottom:0px; }
+
+.dnnSexyContentEditList .GridItemDropIndicator_Default { z-index:1000; }
+.dnnSexyContentEditList .sc-list-itemedit { display:block; line-height:20px; }
+
+/* DateTime */
+.dnn-7 .dnnFormItem .RadPicker_Default {
+    margin-bottom: 18px !important;
+    width: 296px !important;
+}
+
+/* File */
+.sc-browsefile {
+    background: none repeat scroll 0 0 #D4D5D5;
+    border-radius: 4px 4px 4px 4px;
+    color: #000000 !important;
+    display: block;
+    float: left;
+    font-size: 14px;
+    height: 28px;
+    margin-left: 3px;
+    text-align: center;
+    width: 29px;
+    text-decoration:none;
+}
+.eav-form .eav-field[data-fieldtype='File'] input[type='text'] { float:left; width:247px; }
+
+/* String */
+.eav-field-control > select { width:298px!important; }
+.dnnFormItem input[type="text"], .dnnFormItem textarea { min-width:0!important; }

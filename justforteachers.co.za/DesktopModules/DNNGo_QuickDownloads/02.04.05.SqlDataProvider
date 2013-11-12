@@ -1,0 +1,22 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+
+if  exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}GO_QuickDownloads]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	 ALTER TABLE {databaseOwner}[{objectQualifier}GO_QuickDownloads] ADD
+		Tags nvarchar(256) NULL,
+		ViewCount int NOT NULL CONSTRAINT DF_GO_QuickDownloads_ViewCount DEFAULT 0,
+		TopStatus tinyint NOT NULL CONSTRAINT DF_GO_QuickDownloads_TopStatus DEFAULT 0,
+		Feature tinyint NOT NULL CONSTRAINT DF_GO_QuickDownloads_Feature DEFAULT 0,
+		PublishTime datetime NOT NULL CONSTRAINT DF_GO_QuickDownloads_PublishTime DEFAULT getdate()
+END
+
+ 

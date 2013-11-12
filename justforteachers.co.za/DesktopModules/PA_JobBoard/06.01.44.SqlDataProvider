@@ -1,0 +1,63 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****              SqlDataProvider 06.01.44            *****/
+/************************************************************/
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailAdd]    Script Date: 03/23/2011 10:14:50 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_OrderDetailAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_OrderDetailAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_OrderDetailAdd]    Script Date: 03/23/2011 10:14:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- *** Create stored procedures for table jb_OrderDetail ***
+CREATE PROCEDURE {databaseOwner}[jb_OrderDetailAdd]
+		@OrderID int,
+		@ProductID nvarchar(50),
+		@ProductName nvarchar(50),
+		@Quantity int,
+		@UnitCost money,
+		@Subtotal money,
+		@IsPayPal bit,
+		@txn_id nvarchar(255),
+		@ItemID INT = -1
+	AS
+	SET NOCOUNT ON
+	IF @OrderID = -6
+		SET @OrderID = null
+	INSERT INTO {databaseOwner}jb_OrderDetail
+		(OrderID,ProductID,ProductName,Quantity,UnitCost,Subtotal,IsPayPal,txn_id)
+		VALUES
+		(@OrderID,@ProductID,@ProductName,@Quantity,@UnitCost,@Subtotal,@IsPayPal,@txn_id)
+	
+	DECLARE @Reference nvarchar(50)
+	DECLARE @ListingPeriod INT
+	SET @Reference = (SELECT Reference FROM {databaseOwner}jb_Orders WHERE OrderID = @OrderID)
+	IF (@Reference = 'SubscriptionFee')
+		BEGIN
+			EXEC jb_MySubscriptionUpdate_ByTxnID @txn_id
+		END
+	ELSE IF (@Reference = 'RenewalFee')
+		BEGIN
+			SET @ListingPeriod = (SELECT IsNull(ListingPeriod,0) FROM jb_SubscriptionPlan WHERE PlanID = @ProductID)
+			UPDATE jb_ClassifiedsItem SET ExpireDate = 
+			CASE 
+				WHEN @ListingPeriod = 0 THEN NULL  
+				ELSE CASE 
+					WHEN ExpireDate < GetDate() THEN DATEADD(DAY, @ListingPeriod, GetDate())	   
+					ELSE DATEADD(DAY, @ListingPeriod, ExpireDate)	
+					END
+				END
+			WHERE ItemID = @ItemID
+		END	
+GO

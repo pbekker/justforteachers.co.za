@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DNNGo_QuickDownloads>
+  <Settings>
+    <Setting>
+      <Name><![CDATA[event]]></Name>
+      <Alias><![CDATA[Event]]></Alias>
+      <Width><![CDATA[120]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[click]]></DefaultValue>
+      <ControlType><![CDATA[DropDownList]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[click,mouseover]]></ListContent>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[]]></Verification>
+    </Setting>
+    <Setting>
+      <Name><![CDATA[duration]]></Name>
+      <Alias><![CDATA[Duration]]></Alias>
+      <Width><![CDATA[100]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[150]]></DefaultValue>
+      <ControlType><![CDATA[TextBox]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[]]></ListContent>
+      <Description><![CDATA[ms]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[integer]]></Verification>
+    </Setting>
+    <Setting>
+      <Name><![CDATA[thumbnail_width]]></Name>
+      <Alias><![CDATA[Thumbnail Width]]></Alias>
+      <Width><![CDATA[100]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[80]]></DefaultValue>
+      <ControlType><![CDATA[TextBox]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[]]></ListContent>
+      <Description><![CDATA[px]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[integer]]></Verification>
+    </Setting>
+
+
+  <Setting>
+    <Name><![CDATA[Recent_Number]]></Name>
+    <Alias><![CDATA[Recent Number]]></Alias>
+    <Width><![CDATA[100]]></Width>
+    <Rows><![CDATA[1]]></Rows>
+    <DefaultValue><![CDATA[4]]></DefaultValue>
+    <ControlType><![CDATA[TextBox]]></ControlType>
+    <Direction><![CDATA[Vertical]]></Direction>
+    <ListContent><![CDATA[]]></ListContent>
+    <Description><![CDATA[]]></Description>
+    <Required><![CDATA[True]]></Required>
+    <Verification><![CDATA[integer]]></Verification>
+  </Setting>
+  <Setting>
+    <Name><![CDATA[Popular_Number]]></Name>
+    <Alias><![CDATA[Popular Number]]></Alias>
+    <Width><![CDATA[100]]></Width>
+    <Rows><![CDATA[1]]></Rows>
+    <DefaultValue><![CDATA[4]]></DefaultValue>
+    <ControlType><![CDATA[TextBox]]></ControlType>
+    <Direction><![CDATA[Vertical]]></Direction>
+    <ListContent><![CDATA[]]></ListContent>
+    <Description><![CDATA[]]></Description>
+    <Required><![CDATA[True]]></Required>
+    <Verification><![CDATA[integer]]></Verification>
+  </Setting>
+    <Setting>
+      <Name><![CDATA[Tags_Number]]></Name>
+      <Alias><![CDATA[Tags Number]]></Alias>
+      <Width><![CDATA[100]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[20]]></DefaultValue>
+      <ControlType><![CDATA[TextBox]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[]]></ListContent>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[integer]]></Verification>
+    </Setting>
+
+
+  </Settings>
+</DNNGo_QuickDownloads>
+
+
+

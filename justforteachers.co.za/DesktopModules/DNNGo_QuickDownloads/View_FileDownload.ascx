@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="View_FileDownload.ascx.cs" Inherits="DNNGo.Modules.QuickDownloads.View_FileDownload" %>
+<asp:Literal ID="liContent" runat="server"></asp:Literal>

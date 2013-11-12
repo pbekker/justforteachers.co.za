@@ -1,0 +1,23 @@
+﻿ALTER TABLE {databaseOwner}jb_ClassifiedsCat ADD 
+[ItemCount] [int] NULL ,
+[ItemCountAdmin] [int] NULL ,
+[Thumb_Image] [image] NULL ,
+[Thumb_ImageContentType] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Thumb_ImageContentSize] [int] NULL ,
+[Thumb_ImageFileName] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[File_Image] [image] NULL ,
+[File_ImageContentType] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[File_ImageContentSize] [int] NULL ,
+[File_ImageFileName] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL;
+
+ALTER TABLE {databaseOwner}jb_ClassifiedsItem ADD 
+[it_Name] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[it_Unit] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[it_Street] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[it_City] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[it_Region] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[it_Country] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[it_Postal] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[it_Phone] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[it_Fax] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[it_Email] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL;

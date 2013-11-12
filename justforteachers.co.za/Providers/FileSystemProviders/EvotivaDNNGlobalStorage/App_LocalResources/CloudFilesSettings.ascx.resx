@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CloudFiles.Text" xml:space="preserve">
+    <value>RackSpace CloudFiles</value>
+  </data>
+  <data name="CloudFilesAdvancedSettings.Text" xml:space="preserve">
+    <value>CloudFiles - Advanced Settings</value>
+  </data>
+  <data name="CloudFilesBasicSettings.Text" xml:space="preserve">
+    <value>CloudFiles - Basic Settings</value>
+  </data>
+  <data name="CloudFilesTestError.Text" xml:space="preserve">
+    <value>CloudFiles: &lt;br /&gt;{0}</value>
+  </data>
+  <data name="CloudFilesTestOK.Text" xml:space="preserve">
+    <value>CloudFiles operation successfully completed.</value>
+  </data>
+  <data name="cmdCancelNewBucket.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="cmdNewBucket.Text" xml:space="preserve">
+    <value>Create New Container</value>
+  </data>
+  <data name="cmdRefreshBuckets.Text" xml:space="preserve">
+    <value>Refresh Containers List.</value>
+  </data>
+  <data name="cmdSaveBucket.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="lblCloudFilesUserName.Help" xml:space="preserve">
+    <value>Your Cloud Files User Name.</value>
+  </data>
+  <data name="lblCloudFilesUserName.Text" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="lblCloudFilesContainerName.Help" xml:space="preserve">
+    <value>It is a container for objects stored in RackSpace Cloud Files.</value>
+  </data>
+  <data name="lblCloudFilesContainerName.Text" xml:space="preserve">
+    <value>Container Name</value>
+  </data>
+  <data name="lblCloudFilesInfo.Text" xml:space="preserve">
+    <value>&lt;ul&gt;
+
+&lt;li&gt;Don't have a &lt;b&gt;Cloud Files&lt;/b&gt; account?  &lt;a  href="http://www.rackspace.com/cloud/cloud_hosting_products/files/" target="_blank" class="CommandButton"&gt;Click here to create an account&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;
+&lt;/li&gt;
+
+&lt;li&gt;You can manage your account, access keys, and review account activity online at &lt;a href="https://manage.rackspacecloud.com/" target="_blank" class="CommandButton"&gt;https://manage.rackspacecloud.com&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;
+&lt;/li&gt;
+
+&lt;li&gt;A &lt;b&gt;Container&lt;/b&gt; holds your objects stored in Cloud Files. If it is defined as 'Public', it will be CDN-enabled.&lt;br /&gt;&lt;br /&gt;
+&lt;/li&gt;
+
+&lt;li&gt;From any CloudFiles GUI front-end application (like the &lt;a  target="_blank" class="CommandButton" href="https://manage.rackspacecloud.com"&gt;Cloud Control Panel&lt;/a&gt;), you can create/configure/manage your containers, folders, files, permissions, and other settings.&lt;br /&gt;
+Besides the &lt;a  target="_blank" class="CommandButton" href="https://manage.rackspacecloud.com"&gt;Cloud Control Panel&lt;/a&gt;, there are other available CloudFiles client options,  like (among others): &lt;a href="http://www.cloudberrylab.com" target="_blank" class="CommandButton"&gt;
+CloudBerry OpenStack Explorer Freeware&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;
+&lt;/li&gt;
+
+&lt;/ul&gt;</value>
+  </data>
+  <data name="lblCloudFilesIsDisabled.Help" xml:space="preserve">
+    <value>You can use this setting to temporarily 'turn off' all access to the configured container.</value>
+  </data>
+  <data name="lblCloudFilesIsDisabled.Text" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="lblCloudFilesTest.Help" xml:space="preserve">
+    <value>Click on the [Test] button to verify the configured settings.</value>
+  </data>
+  <data name="lblCloudFilesTest.Text" xml:space="preserve">
+    <value>Test Settings</value>
+  </data>
+  <data name="lblCloudFilesApiAccessKey.Help" xml:space="preserve">
+    <value>Your CloudFiles' API Access Key. For your protection, you should never share your API access keys with anyone.</value>
+  </data>
+  <data name="lblCloudFilesApiAccessKey.Text" xml:space="preserve">
+    <value>API Access Key</value>
+  </data>
+  <data name="lblEnforceReadOnlyAccess.Help" xml:space="preserve">
+    <value>Use this option to prevent any update on the CloudFiles repository. &lt;br /&gt;
+Files creation, update or rename requests will be ignored.&lt;br /&gt;
+This setting is useful if you want to 'plug' a CloudFiles repository you already have, ensuring that its content will not be updated in any way from the DotNetNuke site.</value>
+  </data>
+  <data name="lblEnforceReadOnlyAccess.Text" xml:space="preserve">
+    <value>Enforce Ready Only Access</value>
+  </data>
+  <data name="lblShowCloudFilesInfo.Help" xml:space="preserve">
+    <value>About RackSpace Cloud Files.</value>
+  </data>
+  <data name="lblShowCloudFilesInfo.Text" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="MissingCredentials.Text" xml:space="preserve">
+    <value>Please check the provided CloudFiles Credentials.</value>
+  </data>
+  <data name="MissingNewContainerName.Text" xml:space="preserve">
+    <value>Please type the name for the new Container.</value>
+  </data>
+  <data name="ShowCloudFilesInfo.Text" xml:space="preserve">
+    <value>Show / Hide</value>
+  </data>
+  <data name="valCloudFilesUserName.ErrorMessage" xml:space="preserve">
+    <value>Please type your User Name.</value>
+  </data>
+  <data name="valCloudFilesContainerName.ErrorMessage" xml:space="preserve">
+    <value>Please select a Container. &lt;br /&gt;You can click on 'Create New Container' to add a new one.</value>
+  </data>
+  <data name="valCloudFilesApiAccessKey.ErrorMessage" xml:space="preserve">
+    <value>Please type your API Access Key.</value>
+  </data>
+  <data name="ConfigureLicenseFirst.Text" xml:space="preserve">
+    <value>Your license is invalid, or not suitable for your current environment. &lt;br /&gt;
+Without a license key, this product is fully functional on any 'localhost' or '*.local' site.&lt;br /&gt;
+Please configure your License before setting up the CloudFiles options.</value>
+  </data>
+  <data name="lblRootFolder.Help" xml:space="preserve">
+    <value>You can choose any (&lt;b&gt;already created&lt;/b&gt;) CloudFile folder to act as the root folder regarding the connection from this web site.&lt;br /&gt;&lt;br /&gt;
+This allows you to provide a segmented view of your ClouydFiles Container, instead of providing access to all its content.&lt;br /&gt;&lt;br /&gt;
+Let's say you have lots of folders in your Container, and you want to access from this web site just a specific folders tree, not everything.&lt;br /&gt;&lt;br /&gt;
+Example 1: myfolder&lt;br /&gt;
+Example 2: myfolder/mysubfolder&lt;br /&gt;
+etc.&lt;br /&gt;
+Note: you should type the folders path with the same 'case' as they are in CloudFiles.</value>
+  </data>
+  <data name="lblRootFolder.Text" xml:space="preserve">
+    <value>Root Folder</value>
+  </data>
+  <data name="lblHideFilesLocation.Help" xml:space="preserve">
+    <value>Regardless of the Container's accessibility (public or private access), the files will be like served directly from your web site (not linked from their real location).</value>
+  </data>
+  <data name="lblHideFilesLocation.Text" xml:space="preserve">
+    <value>Hide Files Location</value>
+  </data>
+  <data name="lblLocalRootFolder.Help" xml:space="preserve">
+    <value>You can define a 'fake' root folder under which the Cloud Files content defined by the connection will be added.&lt;br /&gt;&lt;br /&gt;
+For example, you can name this same as the Container name, or whatever works for you.&lt;br /&gt;&lt;br /&gt;
+
+&lt;b&gt;Note&lt;/b&gt;: this folder will &lt;b&gt;not&lt;/b&gt; be created in Cloud Files, and in the DNN's File Manager Folders Tree, you'll see it as a standad (default provider) folder.&lt;br /&gt;Remember this folder is only an arbitrary root you can define for your files. It will exist just in your DNN site.&lt;br /&gt;If you add a file to this folder, it will be a local file, not a file in CloudFiles.&lt;br /&gt;&lt;br /&gt;
+
+&lt;b&gt;Warning&lt;/b&gt;: Use this setting if you really need it. Unexpected things could happen if you (in DNN) create a new CloudFiles folder outside this defined root. For example, once you perform a 'Synchonize' operation, the new folder will appear on the DNN root (if this was where you've created it), and it also will appear under this 'fake' root.
+</value>
+  </data>
+  <data name="lblLocalRootFolder.Text" xml:space="preserve">
+    <value>Local Root Folder</value>
+  </data>
+  <data name="lblIsPublicContainer.Help" xml:space="preserve">
+    <value>A public container will be CDN-enabled, and users will be able to access its objects anonymously by means of the CDN Url.</value>
+  </data>
+  <data name="lblIsPublicContainer.Text" xml:space="preserve">
+    <value>Is Public?</value>
+  </data>
+  <data name="lblNewContainerHead.Text" xml:space="preserve">
+    <value>New Container:</value>
+  </data>
+  <data name="lblNewContainerName.Help" xml:space="preserve">
+    <value>The name for the new Container.</value>
+  </data>
+  <data name="lblNewContainerName.Text" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="lblUseSSL.Help" xml:space="preserve">
+    <value>Use SSL for CDN Urls. &lt;br /&gt;This setting only makes sense for 'Public' Containers.</value>
+  </data>
+  <data name="lblUseSSL.Text" xml:space="preserve">
+    <value>Use SSL</value>
+  </data>
+  <data name="lblCloudFilesAccountLocation.Help" xml:space="preserve">
+    <value>To access the Authentication Service, you must know whether your account is US-based or UK-based.</value>
+  </data>
+  <data name="lblCloudFilesAccountLocation.Text" xml:space="preserve">
+    <value>Account Location</value>
+  </data>
+  <data name="MappingNotUnique.ErrorMessage" xml:space="preserve">
+    <value>There is already a mapping featuring the same key settings.</value>
+  </data>
+</root>

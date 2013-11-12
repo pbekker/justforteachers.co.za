@@ -1,0 +1,41 @@
+﻿/* Author List */
+.Author_Default .author_list{
+	padding:0px!important;
+	margin:0px;
+}
+.Author_Default .author_list li{
+	list-style:none;
+	margin-bottom:10px;
+}
+.Author_Default .author_list li .thum{
+	float:left;
+	margin-right: 10px;
+}
+.Author_Default .author_list li .thum img{
+	width:100px;
+}
+.Author_Default .author_list li .author_name{
+	font-size:12px;
+	font-style:italic;
+	color: #111111;
+}
+.Author_Default .author_list li .author_name a{
+	font-size:12px;
+	font-style:italic;
+	color: #111111;
+	text-decoration:none;
+}
+.Author_Default .author_list li .author_name a:hover{
+	text-decoration:underline;
+}
+.Author_Default .author_list li .post_title {
+    font: bold 13px/16px Arial;
+	margin:3px 0px;
+}
+.Author_Default .author_list li .post_title a {
+	text-decoration:none;
+	color: #111111;
+}
+.Author_Default .author_list li .post_title a:hover{
+	text-decoration:underline;
+}

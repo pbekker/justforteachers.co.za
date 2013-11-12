@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DNNGo_QuickDownloads>
+  <Settings>
+    <Setting>
+      <Name>
+        <![CDATA[ Width ]]>
+      </Name>
+      <Alias>
+        <![CDATA[ Width ]]>
+      </Alias>
+      <DefaultValue>
+        <![CDATA[ 600 ]]>
+      </DefaultValue>
+      <Width>
+        <![CDATA[100]]>
+      </Width>
+      <Rows>
+        <![CDATA[1]]>
+      </Rows>
+      <ControlType>
+        <![CDATA[ text ]]>
+      </ControlType>
+      <ListContent>
+        <![CDATA[  ]]>
+      </ListContent>
+      <Description>
+        <![CDATA[ px ]]>
+      </Description>
+      <Required>
+        <![CDATA[ true ]]>
+      </Required>
+      <Verification>
+        <![CDATA[ number ]]>
+      </Verification>
+    </Setting>
+    <Setting>
+      <Name>
+        <![CDATA[ Height ]]>
+      </Name>
+      <Alias>
+        <![CDATA[ Height ]]>
+      </Alias>
+      <DefaultValue>
+        <![CDATA[ 340 ]]>
+      </DefaultValue>
+      <Width>
+        <![CDATA[100]]>
+      </Width>
+      <Rows>
+        <![CDATA[1]]>
+      </Rows>
+      <ControlType>
+        <![CDATA[ text ]]>
+      </ControlType>
+      <ListContent>
+        <![CDATA[  ]]>
+      </ListContent>
+      <Description>
+        <![CDATA[ px ]]>
+      </Description>
+      <Required>
+        <![CDATA[ true ]]>
+      </Required>
+      <Verification>
+        <![CDATA[ number ]]>
+      </Verification>
+    </Setting>
+ 
+ 
+    <Setting>
+      <Name><![CDATA[Animation]]></Name>
+      <Alias><![CDATA[Animation]]></Alias>
+      <Width><![CDATA[120]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[fade]]></DefaultValue>
+      <ControlType><![CDATA[DropDownList]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[fade,slide]]></ListContent>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[]]></Verification>
+    </Setting>
+    <Setting>
+      <Name>
+        <![CDATA[ SlideshowSpeed ]]>
+      </Name>
+      <Alias>
+        <![CDATA[ SlideshowSpeed ]]>
+      </Alias>
+      <ControlType>
+        <![CDATA[ text ]]>
+      </ControlType>
+      <DefaultValue>
+        <![CDATA[ 4000 ]]>
+      </DefaultValue>
+      <Description>
+        <![CDATA[ ms ]]>
+      </Description>
+      <Width>
+        <![CDATA[100]]>
+      </Width>
+      <Required>
+        <![CDATA[ true ]]>
+      </Required>
+      <Verification>
+        <![CDATA[ number ]]>
+      </Verification>
+    </Setting>
+    <Setting>
+      <Name>
+        <![CDATA[ AnimationDuration ]]>
+      </Name>
+      <Alias>
+        <![CDATA[ AnimationDuration ]]>
+      </Alias>
+      <ControlType>
+        <![CDATA[ text ]]>
+      </ControlType>
+      <DefaultValue>
+        <![CDATA[ 600 ]]>
+      </DefaultValue>
+      <Description>
+        <![CDATA[ ms ]]>
+      </Description>
+      <Width>
+        <![CDATA[100]]>
+      </Width>
+      <Required>
+        <![CDATA[ true ]]>
+      </Required>
+      <Verification>
+        <![CDATA[ number ]]>
+      </Verification>
+    </Setting>
+
+    <Setting>
+      <Name><![CDATA[summarynumber]]></Name>
+      <Alias><![CDATA[Summary Number]]></Alias>
+      <Width><![CDATA[100]]></Width>
+      <Rows><![CDATA[1]]></Rows>
+      <DefaultValue><![CDATA[150]]></DefaultValue>
+      <ControlType><![CDATA[TextBox]]></ControlType>
+      <Direction><![CDATA[Vertical]]></Direction>
+      <ListContent><![CDATA[]]></ListContent>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[True]]></Required>
+      <Verification><![CDATA[integer]]></Verification>
+    </Setting>
+  </Settings>
+</DNNGo_QuickDownloads>
+
+
+

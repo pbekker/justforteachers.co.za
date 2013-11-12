@@ -1,0 +1,406 @@
+﻿/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Adv]    Script Date: 07/30/2010 16:58:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER  PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Adv]
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@EmploymentType nvarchar(50),
+@SalaryFrom  int,
+@Zip nvarchar(50) = NULL
+
+AS
+IF @Zip = ''
+SET @Zip = null
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+
+SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+	, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR)+ ' ' + {databaseOwner}jb_udf_AttributeValueString(ItemID))  AS Rank
+	FROM jb_ClassifiedsItem
+	WHERE  jb_ClassifiedsItem.ItemID IN
+	(
+	SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+	FROM jb_ClassifiedsItem_vw
+	WHERE ModuleID = @ModuleID
+	AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+	AND ((UCategoryID IN(SELECT * FROM [#RETURN])) OR (@CurrentCategoryID = -1))
+	AND (JB_EmpType = @EmploymentType)
+	AND (JB_StartingSalary >= @SalaryFrom)		
+	and ((JB_JobTitle like '%' + @SearchText + '%' or 
+					JB_JobCode like '%' + @SearchText + '%' or 
+					JB_JobLocation like '%' + @SearchText + '%' or 
+					JB_ReqEducation like '%' + @SearchText + '%' or 									
+					JB_Travel like '%' + @SearchText + '%' or 
+					JB_NumberOpening like '%' + @SearchText + '%' or 
+					Message like '%' + @SearchText + '%'  or
+					JB_CompanyName like '%' + @SearchText + '%'  or
+					JB_ContactInfo like '%' + @SearchText + '%'  or
+					JB_ContactEmail like '%' + @SearchText + '%'  or 
+					CreatedDate    like '%' + @SearchText + '%'  or 
+					ExpireDate like '%' + @SearchText + '%'  or 
+					JB_AddReqList	like '%' + @SearchText + '%'  OR 					
+					{databaseOwner}jb_udf_AttributeValueString(ItemID) like '%' + @SearchText + '%'  OR 
+					JB_BenefitsList like '%' + @SearchText + '%'  )  OR (@SearchText IS NULL))
+	AND  ((it_Postal = @Zip) OR (@Zip IS NULL)) 
+	) 
+	Order By Rank Desc
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+
+/****** Object:  StoredProcedure {databaseOwner}[jb_GetClassifiedsSearch_Bsc]    Script Date: 07/30/2010 16:59:53 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER  PROCEDURE {databaseOwner}[jb_GetClassifiedsSearch_Bsc]
+@ModuleID int,
+@CurrentCategoryID int,
+@SearchBy nvarchar(20),
+@SearchText nvarchar(255),
+@Zip nvarchar(50) = NULL
+AS
+IF @Zip = ''
+SET @Zip = null
+--Scan all categories to be search
+DECLARE @CategoryID int
+CREATE TABLE [#SCAN] ([CategoryID] int)
+CREATE TABLE [#RETURN] ([CategoryID] int)
+INSERT INTO [#RETURN] ([CategoryID]) VALUES (@CurrentCategoryID)
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [PARENTID] = @CurrentCategoryID AND [ModuleID] = @ModuleID ORDER BY [CategoryName] ASC
+WHILE EXISTS(SELECT * FROM [#SCAN])
+BEGIN
+SELECT @CategoryID = [CategoryID] FROM [#SCAN]
+DELETE FROM [#SCAN] WHERE [CategoryID] = @CategoryID
+INSERT INTO [#RETURN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [CategoryID] = @CategoryID  ORDER BY [CategoryName] ASC
+INSERT INTO [#SCAN] SELECT [CategoryID] FROM [jb_ClassifiedsCat] WHERE [ModuleID] = @ModuleID AND [PARENTID] = @CategoryID
+END
+
+SELECT * , DATEDIFF(day, GetDate(), ExpireDate) AS DaysToExpire, (SELECT COUNT(ApplicationID) FROM jb_JobApplication WHERE jb_JobApplication.JobID = jb_ClassifiedsItem.ItemID ) AS JobAppCnt, {databaseOwner}jb_udf_GetAvgReview(ItemID) AS 'Avg_CustReview'
+, 3 * {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle) + {databaseOwner}jb_udf_WordCount(@SearchText, JB_JobTitle  + ' ' +  CAST(Message AS NVARCHAR)  + ' ' +  CAST(JB_JobCode AS NVARCHAR) + ' ' +  CAST(JB_CompanyName AS NVARCHAR) + ' ' + {databaseOwner}jb_udf_AttributeValueString(ItemID))  AS Rank
+FROM jb_ClassifiedsItem
+WHERE  jb_ClassifiedsItem.ItemID IN
+(
+SELECT DISTINCT  jb_ClassifiedsItem_vw.ItemID
+FROM jb_ClassifiedsItem_vw
+WHERE ModuleID = @ModuleID
+AND  (ExpireDate > GetDate() OR ExpireDate is null) AND Authed <> 0
+AND ((UCategoryID IN(SELECT * FROM [#RETURN])) OR (@CurrentCategoryID = -1))		
+AND ((JB_JobTitle like '%' + @SearchText + '%' or 
+				JB_JobCode like '%' + @SearchText + '%' or 
+				JB_JobLocation like '%' + @SearchText + '%' or 
+				JB_EmpType like '%' + @SearchText + '%' or 
+				JB_ReqEducation like '%' + @SearchText + '%' or 									
+				JB_Travel like '%' + @SearchText + '%' or 
+				JB_StartingSalary like '%' + @SearchText + '%' or 
+				CAST(JB_HourlyRate As NVARCHAR(255)) like '%' + @SearchText + '%' or 	
+				JB_StartDate	like '%' + @SearchText + '%' or 
+				JB_NumberOpening like '%' + @SearchText + '%' or 
+				Message like '%' + @SearchText + '%'  or
+				JB_CompanyName like '%' + @SearchText + '%'  or
+				JB_ContactInfo like '%' + @SearchText + '%'  or
+				JB_ContactEmail like '%' + @SearchText + '%'  or 
+				CreatedDate    like '%' + @SearchText + '%'  or 
+				ExpireDate like '%' + @SearchText + '%'  or 
+				JB_AddReqList	like '%' + @SearchText + '%'  OR 
+				{databaseOwner}jb_udf_AttributeValueString(ItemID) like '%' + @SearchText + '%'  OR 
+				JB_BenefitsList like '%' + @SearchText + '%'  )  OR (@SearchText IS NULL))
+AND  ((it_Postal = @Zip) OR (@Zip IS NULL)) 
+)
+Order By Rank Desc
+
+DROP TABLE [#SCAN] 
+DROP TABLE [#RETURN]
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ItemVideo_jb_ClassifiedsItem]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ItemVideo] DROP CONSTRAINT [FK_jb_ItemVideo_jb_ClassifiedsItem]
+GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[FK_jb_ItemVideo_jb_Item]') AND type = 'F')
+ALTER TABLE {databaseOwner}[jb_ItemVideo] DROP CONSTRAINT [FK_jb_ItemVideo_jb_Item]
+GO
+/****** Object:  Table {databaseOwner}[jb_ItemVideo]    Script Date: 07/30/2010 16:17:44 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideo]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+DROP TABLE {databaseOwner}[jb_ItemVideo]
+/****** Object:  Table {databaseOwner}[jb_ItemVideo]    Script Date: 07/30/2010 16:14:52 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE {databaseOwner}[jb_ItemVideo](
+	[VideoID] [int] IDENTITY(1,1) NOT NULL,
+	[ItemID] [int] NOT NULL,
+	[PortalID] [int] NULL,
+	[ModuleID] [int] NULL,
+	[CreatedDate] [datetime] NULL,
+	[URL] [nvarchar](1000) NULL,
+	[FileName] [nvarchar](50) NULL,
+	[Description] [nvarchar](50) NULL,
+	[Image] [image] NULL,
+	[ImageContentType] [nvarchar](50) NULL,
+	[ImageContentSize] [int] NULL,
+	[ImageFileName] [nvarchar](255) NULL,
+	[ViewOrder] [int] NULL,
+	[CreatedByUser] [int] NULL,
+ CONSTRAINT [PK_jb_ItemVideo] PRIMARY KEY CLUSTERED 
+(
+	[VideoID] ASC
+) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+ALTER TABLE {databaseOwner}[jb_ItemVideo]  WITH CHECK ADD  CONSTRAINT [FK_jb_ItemVideo_jb_ClassifiedsItem] FOREIGN KEY([ItemID])
+REFERENCES {databaseOwner}[jb_ClassifiedsItem] ([ItemID])
+GO
+ALTER TABLE {databaseOwner}[jb_ItemVideo] CHECK CONSTRAINT [FK_jb_ItemVideo_jb_ClassifiedsItem]
+GO
+ALTER TABLE {databaseOwner}[jb_ItemVideo]  WITH NOCHECK ADD  CONSTRAINT [FK_jb_ItemVideo_jb_Item] FOREIGN KEY([ItemID])
+REFERENCES {databaseOwner}[jb_ClassifiedsItem] ([ItemID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE {databaseOwner}[jb_ItemVideo] CHECK CONSTRAINT [FK_jb_ItemVideo_jb_Item]
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoAdd]    Script Date: 07/30/2010 16:27:25 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoAdd]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoAdd]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoByjb_ClassifiedsItem]    Script Date: 07/30/2010 16:27:25 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoByjb_ClassifiedsItem]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoByjb_ClassifiedsItem]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoCountAll]    Script Date: 07/30/2010 16:27:25 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoCountAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoCountAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoDelete]    Script Date: 07/30/2010 16:27:25 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoDelete]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoDelete]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoDeleteAll]    Script Date: 07/30/2010 16:27:25 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoDeleteAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoDeleteAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoGet]    Script Date: 07/30/2010 16:27:25 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoGet]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoGet]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoGetAll]    Script Date: 07/30/2010 16:27:25 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoGetAll]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoGetAll]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoUpdate]    Script Date: 07/30/2010 16:27:25 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoUpdate]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoUpdate]
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoUpdateUtil]    Script Date: 07/30/2010 16:27:25 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[jb_ItemVideoUpdateUtil]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}[jb_ItemVideoUpdateUtil]
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoAdd]    Script Date: 07/30/2010 16:27:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- *** Create stored procedures for table jb_ItemVideo ***
+
+CREATE PROCEDURE {databaseOwner}[jb_ItemVideoAdd]
+		@ItemID int,
+		@PortalID int,
+		@ModuleID int,
+		@URL nvarchar(1000),
+		@FileName nvarchar(50),
+		@Description nvarchar(50),
+		@Image binary,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@ImageFileName nvarchar(255),
+		@ViewOrder int,
+		@CreatedByUser int
+	AS
+	SET NOCOUNT ON
+	INSERT INTO {databaseOwner}jb_ItemVideo
+		(ItemID,PortalID,ModuleID,CreatedDate,URL,FileName,Description,Image,ImageContentType,ImageContentSize,ImageFileName,ViewOrder,CreatedByUser)
+		VALUES
+		(@ItemID,@PortalID,@ModuleID,getdate(),@URL,@FileName,@Description,@Image,@ImageContentType,@ImageContentSize,@ImageFileName,@ViewOrder,@CreatedByUser)
+	SELECT SCOPE_IDENTITY()
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoByjb_ClassifiedsItem]    Script Date: 07/30/2010 16:27:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_ItemVideoByjb_ClassifiedsItem]
+		@ItemID int
+	AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM {databaseOwner}jb_ItemVideo WHERE
+		ItemID=@ItemID
+	ORDER BY ViewOrder, VideoID
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoCountAll]    Script Date: 07/30/2010 16:27:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_ItemVideoCountAll]
+	AS
+	SET NOCOUNT ON
+	SELECT count(*) FROM {databaseOwner}jb_ItemVideo
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoDelete]    Script Date: 07/30/2010 16:27:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_ItemVideoDelete]
+		@VideoID int
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemVideo WHERE
+		VideoID=@VideoID
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoDeleteAll]    Script Date: 07/30/2010 16:27:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_ItemVideoDeleteAll]
+	AS
+	SET NOCOUNT ON
+	DELETE FROM {databaseOwner}jb_ItemVideo
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoGet]    Script Date: 07/30/2010 16:27:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_ItemVideoGet]
+		@VideoID int
+	AS
+	SET NOCOUNT ON
+	SELECT
+		VideoID,ItemID,PortalID,ModuleID,CreatedDate,URL,FileName,Description,Image,ImageContentType,ImageContentSize,ImageFileName,ViewOrder,CreatedByUser
+	FROM {databaseOwner}jb_ItemVideo WHERE
+		VideoID=@VideoID
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoGetAll]    Script Date: 07/30/2010 16:27:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_ItemVideoGetAll]
+	AS
+	SET NOCOUNT ON
+	SELECT
+		VideoID,ItemID,PortalID,ModuleID,CreatedDate,URL,FileName,Description,Image,ImageContentType,ImageContentSize,ImageFileName,ViewOrder,CreatedByUser
+	FROM {databaseOwner}jb_ItemVideo 
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoUpdate]    Script Date: 07/30/2010 16:27:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[jb_ItemVideoUpdate]
+		@VideoID int,
+		@ItemID int,
+		@PortalID int,
+		@ModuleID int,
+		@URL nvarchar(1000),
+		@FileName nvarchar(50),
+		@Description nvarchar(50),
+		@Image binary,
+		@ImageContentType nvarchar(50),
+		@ImageContentSize int,
+		@ImageFileName nvarchar(255),
+		@ViewOrder int,
+		@CreatedByUser int
+	AS
+	SET NOCOUNT ON
+	UPDATE {databaseOwner}jb_ItemVideo SET 
+		ItemID=@ItemID,
+		PortalID=@PortalID,
+		ModuleID=@ModuleID,
+		URL=@URL,
+		FileName=@FileName,
+		Description=@Description,
+		Image=@Image,
+		ImageContentType=@ImageContentType,
+		ImageContentSize=@ImageContentSize,
+		ImageFileName=@ImageFileName,
+		ViewOrder=@ViewOrder,
+		CreatedByUser=@CreatedByUser
+	WHERE
+		VideoID=@VideoID
+
+GO
+/****** Object:  StoredProcedure {databaseOwner}[jb_ItemVideoUpdateUtil]    Script Date: 07/30/2010 16:27:28 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+
+
+
+CREATE PROCEDURE {databaseOwner}[jb_ItemVideoUpdateUtil]
+		@VideoID INT,
+		@URL nvarchar(1000),
+		@Description nvarchar(50) = '',
+		@ViewOrder int = 0,
+		@Key nvarchar(50) = 'URL_VIEWORDER_DESCRIPTION'
+		
+		
+	AS
+	
+	SET NOCOUNT ON
+	IF UPPER(@Key) = 'URL_VIEWORDER_DESCRIPTION'
+		BEGIN
+			UPDATE {databaseOwner}jb_ItemVideo SET 
+				URL=@URL,
+				Description=@Description,
+				ViewOrder=@ViewOrder
+			WHERE VideoID = @VideoID
+		END
