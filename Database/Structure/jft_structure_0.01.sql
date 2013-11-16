@@ -1,12 +1,44 @@
 USE jft
 GO
 
+/** drop existing tables that we made **/
+
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'FeaturedResources')
 DROP TABLE FeaturedResources
 GO
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceRating')
+DROP TABLE  ResourceRating
+GO
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceTopics')
+DROP TABLE  ResourceTopics
+GO
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceLanguage')
+DROP TABLE  ResourceLanguage
+GO
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'File')
+DROP TABLE  [File]
+GO
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'FileType')
+DROP TABLE  FileType
+GO
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'Resource')
+DROP TABLE  [Resource]
+GO
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceFile')
+DROP TABLE  ResourceFile
+GO
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceType')
+DROP TABLE  ResourceType
+GO
+
+/** end drops **/
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFeaturedResources')
+DROP TABLE bhdFeaturedResources
+GO
 
 BEGIN TRANSACTION
-CREATE TABLE dbo.FeaturedResources
+CREATE TABLE dbo.bhdFeaturedResources
 	(
 	resourceId int NOT NULL,
 	isFrontPage bit NOT NULL,
@@ -15,37 +47,37 @@ CREATE TABLE dbo.FeaturedResources
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
 GO
-ALTER TABLE dbo.FeaturedResources ADD CONSTRAINT
-	DF_FeaturedResources_isActive DEFAULT (1) FOR isActive
+ALTER TABLE dbo.bhdFeaturedResources ADD CONSTRAINT
+	DF_bhdFeaturedResources_isActive DEFAULT (1) FOR isActive
 GO
-ALTER TABLE dbo.FeaturedResources SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE dbo.bhdFeaturedResources SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
-IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceRating')
-DROP TABLE  ResourceRating
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceRating')
+DROP TABLE  bhdResourceRating
 GO
 
 BEGIN TRANSACTION
 GO
-CREATE TABLE dbo.ResourceRating
+CREATE TABLE dbo.bhdResourceRating
 	(
 	resourceId int NOT NULL,
 	userId int NOT NULL,
 	rating int NOT NULL
 	)  ON [PRIMARY]
 GO
-ALTER TABLE dbo.ResourceRating SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE dbo.bhdResourceRating SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
-IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceTopics')
-DROP TABLE  ResourceTopics
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceTopics')
+DROP TABLE  bhdResourceTopics
 GO
 
 BEGIN TRANSACTION
 GO
-CREATE TABLE dbo.ResourceTopics
+CREATE TABLE dbo.bhdResourceTopics
 	(
 	id int NOT NULL IDENTITY (1, 1),
 	parentId int NULL,
@@ -55,81 +87,81 @@ CREATE TABLE dbo.ResourceTopics
 	)  ON [PRIMARY]
 	 TEXTIMAGE_ON [PRIMARY]
 GO
-ALTER TABLE dbo.ResourceTopics ADD CONSTRAINT
-	DF_ResourceTopics_isActive DEFAULT (1) FOR isActive
+ALTER TABLE dbo.bhdResourceTopics ADD CONSTRAINT
+	DF_bhdResourceTopics_isActive DEFAULT (1) FOR isActive
 GO
-ALTER TABLE dbo.ResourceTopics ADD CONSTRAINT
-	PK_ResourceTopics PRIMARY KEY CLUSTERED 
+ALTER TABLE dbo.bhdResourceTopics ADD CONSTRAINT
+	PK_bhdResourceTopics PRIMARY KEY CLUSTERED 
 	(
 	id
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
 GO
-ALTER TABLE dbo.ResourceTopics SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE dbo.bhdResourceTopics SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
-IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceLanguage')
-DROP TABLE  ResourceLanguage
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceLanguage')
+DROP TABLE  bhdResourceLanguage
 GO
 
 BEGIN TRANSACTION
 GO
-CREATE TABLE dbo.ResourceLanguage
+CREATE TABLE dbo.bhdResourceLanguage
 	(
 	id int NOT NULL IDENTITY (1, 1),
 	name varchar(255) NOT NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
 GO
-ALTER TABLE dbo.ResourceLanguage ADD CONSTRAINT
-	DF_ResourceLanguage_isActive DEFAULT (1) FOR isActive
+ALTER TABLE dbo.bhdResourceLanguage ADD CONSTRAINT
+	DF_bhdResourceLanguage_isActive DEFAULT (1) FOR isActive
 GO
-ALTER TABLE dbo.ResourceLanguage ADD CONSTRAINT
-	PK_ResourceLanguage PRIMARY KEY CLUSTERED 
+ALTER TABLE dbo.bhdResourceLanguage ADD CONSTRAINT
+	PK_bhdResourceLanguage PRIMARY KEY CLUSTERED 
 	(
 	id
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
 GO
-ALTER TABLE dbo.ResourceLanguage SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE dbo.bhdResourceLanguage SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
-IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceType')
-DROP TABLE  ResourceType
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceType')
+DROP TABLE bhdResourceType
 GO
 
 BEGIN TRANSACTION
 GO
-CREATE TABLE dbo.ResourceType
+CREATE TABLE dbo.bhdResourceType
 	(
 	id int NOT NULL IDENTITY (1, 1),
 	name varchar(255) NOT NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
 GO
-ALTER TABLE dbo.ResourceType ADD CONSTRAINT
-	DF_ResourceType_isActive DEFAULT (1) FOR isActive
+ALTER TABLE dbo.bhdResourceType ADD CONSTRAINT
+	DF_bhdResourceType_isActive DEFAULT (1) FOR isActive
 GO
-ALTER TABLE dbo.ResourceType ADD CONSTRAINT
-	PK_ResourceType PRIMARY KEY CLUSTERED 
+ALTER TABLE dbo.bhdResourceType ADD CONSTRAINT
+	PK_bhdResourceType PRIMARY KEY CLUSTERED 
 	(
 	id
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
 GO
-ALTER TABLE dbo.ResourceType SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE dbo.bhdResourceType SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
-IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'Resource')
-DROP TABLE  [Resource]
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResource')
+DROP TABLE  bhdResource
 GO
 
 BEGIN TRANSACTION
 GO
-CREATE TABLE dbo.[Resource]
+CREATE TABLE dbo.bhdResource
 	(
 	id int NOT NULL IDENTITY (1, 1),
 	name varchar(255) NOT NULL,
@@ -146,21 +178,21 @@ CREATE TABLE dbo.[Resource]
 	 TEXTIMAGE_ON [PRIMARY]
 GO
 ALTER TABLE dbo.Resource ADD CONSTRAINT
-	DF_Resource_isActive DEFAULT (1) FOR isActive
+	DF_bhdResource_isActive DEFAULT (1) FOR isActive
 GO
-ALTER TABLE dbo.Resource ADD CONSTRAINT
-	PK_Resource PRIMARY KEY CLUSTERED 
+ALTER TABLE dbo.bhdResource ADD CONSTRAINT
+	PK_bhdResource PRIMARY KEY CLUSTERED 
 	(
 	id
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
 GO
-ALTER TABLE dbo.Resource SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE dbo.bhdResource SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
-IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'FileType')
-DROP TABLE  FileType
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFileType')
+DROP TABLE bhdFileType
 GO
 
 BEGIN TRANSACTION
@@ -169,30 +201,31 @@ CREATE TABLE dbo.FileType
 	(
 	id int NOT NULL IDENTITY (1, 1),
 	name varchar(255) NOT NULL,
+	icon Image NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.FileType ADD CONSTRAINT
-	DF_FileType_isActive DEFAULT (1) FOR isActive
+	DF_bhdFileType_isActive DEFAULT (1) FOR isActive
 GO
 ALTER TABLE dbo.FileType ADD CONSTRAINT
-	PK_FileType PRIMARY KEY CLUSTERED 
+	PK_bhdFileType PRIMARY KEY CLUSTERED 
 	(
 	id
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
 GO
-ALTER TABLE dbo.FileType SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE dbo.bhdFileType SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
-IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'File')
-DROP TABLE  [File]
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFile')
+DROP TABLE  bhdFile
 GO
 
 BEGIN TRANSACTION
 GO
-CREATE TABLE dbo.[File]
+CREATE TABLE dbo.bhdFile
 	(
 	id int NOT NULL IDENTITY (1, 1),
 	fileTypeId int NOT NULL,
@@ -204,32 +237,32 @@ CREATE TABLE dbo.[File]
 	 TEXTIMAGE_ON [PRIMARY]
 GO
 ALTER TABLE dbo.[File] ADD CONSTRAINT
-	DF_File_isActive DEFAULT (1) FOR isActive
+	DF_bhdFile_isActive DEFAULT (1) FOR isActive
 GO
-ALTER TABLE dbo.[File] ADD CONSTRAINT
-	PK_File PRIMARY KEY CLUSTERED 
+ALTER TABLE dbo.bhdFile ADD CONSTRAINT
+	PK_bhdFile PRIMARY KEY CLUSTERED 
 	(
 	id
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
 GO
-ALTER TABLE dbo.[File] SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE dbo.bhdFile SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
-IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceFile')
-DROP TABLE  ResourceFile
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceFile')
+DROP TABLE  bhdResourceFile
 GO
 
 
 BEGIN TRANSACTION
 GO
-CREATE TABLE dbo.ResourceFile
+CREATE TABLE dbo.bhdResourceFile
 	(
 	fileId int NOT NULL,
 	resourceId int NOT NULL
 	)  ON [PRIMARY]
 GO
-ALTER TABLE dbo.ResourceFile SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE dbo.bhdResourceFile SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
