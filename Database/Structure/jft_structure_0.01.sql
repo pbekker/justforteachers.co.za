@@ -177,7 +177,7 @@ CREATE TABLE dbo.bhdResource
 	)  ON [PRIMARY]
 	 TEXTIMAGE_ON [PRIMARY]
 GO
-ALTER TABLE dbo.Resource ADD CONSTRAINT
+ALTER TABLE dbo.bhdResource ADD CONSTRAINT
 	DF_bhdResource_isActive DEFAULT (1) FOR isActive
 GO
 ALTER TABLE dbo.bhdResource ADD CONSTRAINT
@@ -197,7 +197,7 @@ GO
 
 BEGIN TRANSACTION
 GO
-CREATE TABLE dbo.FileType
+CREATE TABLE dbo.bhdFileType
 	(
 	id int NOT NULL IDENTITY (1, 1),
 	name varchar(255) NOT NULL,
@@ -205,10 +205,10 @@ CREATE TABLE dbo.FileType
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
 GO
-ALTER TABLE dbo.FileType ADD CONSTRAINT
+ALTER TABLE dbo.bhdFileType ADD CONSTRAINT
 	DF_bhdFileType_isActive DEFAULT (1) FOR isActive
 GO
-ALTER TABLE dbo.FileType ADD CONSTRAINT
+ALTER TABLE dbo.bhdFileType ADD CONSTRAINT
 	PK_bhdFileType PRIMARY KEY CLUSTERED 
 	(
 	id
@@ -236,7 +236,7 @@ CREATE TABLE dbo.bhdFile
 	)  ON [PRIMARY]
 	 TEXTIMAGE_ON [PRIMARY]
 GO
-ALTER TABLE dbo.[File] ADD CONSTRAINT
+ALTER TABLE dbo.bhdFile ADD CONSTRAINT
 	DF_bhdFile_isActive DEFAULT (1) FOR isActive
 GO
 ALTER TABLE dbo.bhdFile ADD CONSTRAINT
