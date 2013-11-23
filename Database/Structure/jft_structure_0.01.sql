@@ -1,4 +1,4 @@
-USE jft
+USE justfyty_justfo
 GO
 
 /** drop existing tables that we made **/
@@ -82,7 +82,7 @@ CREATE TABLE dbo.bhdResourceTopics
 	id int NOT NULL IDENTITY (1, 1),
 	parentId int NULL,
 	name varchar(255) NOT NULL,
-	Description varchar(MAX) NOT NULL,
+	[description] varchar(MAX) NOT NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
 	 TEXTIMAGE_ON [PRIMARY]
@@ -254,7 +254,6 @@ IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceFile')
 DROP TABLE  bhdResourceFile
 GO
 
-
 BEGIN TRANSACTION
 GO
 CREATE TABLE dbo.bhdResourceFile
@@ -266,3 +265,121 @@ GO
 ALTER TABLE dbo.bhdResourceFile SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdPublishInformation')
+DROP TABLE  bhdPublishInformation
+GO
+
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdPublishInformation
+	(
+	id int NOT NULL IDENTITY (1, 1),
+	publisherId int NOT NULL,
+	authorId int NOT NULL,
+	publishYear int NOT NULL,
+	isActive bit NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdPublishInformation ADD CONSTRAINT
+	DF_bhdPublishInformation_isActive DEFAULT (1) FOR isActive
+GO
+ALTER TABLE dbo.bhdPublishInformation ADD CONSTRAINT
+	PK_bhdPublishInformation PRIMARY KEY CLUSTERED 
+	(
+	id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.bhdPublishInformation SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceAuthor')
+DROP TABLE  bhdResourceAuthor
+GO
+
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdResourceAuthor
+	(
+	authorId int NOT NULL,
+	fileId int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdResourceAuthor SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdAuthor')
+DROP TABLE  bhdAuthor
+GO
+
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdAuthor
+	(
+	id int NOT NULL IDENTITY (1, 1),
+	name varchar(255) NOT NULL,
+	surname varchar(255) NOT NULL,
+	isActive bit NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdAuthor ADD CONSTRAINT
+	DF_bhdAuthor_isActive DEFAULT (1) FOR isActive
+GO
+ALTER TABLE dbo.bhdAuthor ADD CONSTRAINT
+	PK_bhdAuthor PRIMARY KEY CLUSTERED 
+	(
+	id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdPublisher')
+DROP TABLE  bhdPublisher
+GO
+
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdPublisher
+	(
+	id int NOT NULL IDENTITY (1, 1),
+	name varchar(255) NOT NULL,
+	surname varchar(255) NOT NULL,
+	isActive bit NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdPublisher ADD CONSTRAINT
+	DF_bhdPublisher_isActive DEFAULT (1) FOR isActive
+GO
+ALTER TABLE dbo.bhdPublisher ADD CONSTRAINT
+	PK_bhdPublisher PRIMARY KEY CLUSTERED 
+	(
+	id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+IF NOT EXISTS(SELECT * FROM bhdResourceLanguage)
+BEGIN
+	INSERT INTO bhdResourceLanguage (name, isActive)
+	VALUES ('English', 1), ('Afrikaans', 1)
+END
+
+IF NOT EXISTS(SELECT * FROM bhdResourceTopics)
+BEGIN
+	INSERT INTO bhdResourceTopics (parentId, name, [description], isActive)
+	VALUES (NULL, 'FET', 'FET LEVEL RESOURCES', 1)
+			,(NULL, 'GET', 'GET LEVEL RESOURCES', 1)
+			,(1, 'English Lit', 'literature resources', 1)
+			,(1, 'Afrikaans', 'afrikaans stuff.', 1)
+	
+END
+
+IF NOT EXISTS(SELECT * FROM bhdResourceType)
+BEGIN
+	INSERT INTO bhdResourceType (name, isActive)
+	VALUES ('Book', 1), ('Website', 1), ('Lesson Plan', 1)
+	
+END
