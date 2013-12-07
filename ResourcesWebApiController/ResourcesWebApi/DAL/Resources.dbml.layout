@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.75" name="Resources">
+  <DataContextMoniker Name="/ResourcesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a9cd0f6e-8696-45de-ba9f-4981779fa4a5" absoluteBounds="0.75, 0.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdFeaturedResource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="67673895-1fce-4aa8-b22d-4042e31af477" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ab19bf7e-28dc-4d62-8ec0-c27faa7d4da3" absoluteBounds="3.75, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6dd5872b-533b-44bb-9f6a-15f28da15603" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1372889e-e70c-45ee-ba00-83edb4251e77" absoluteBounds="0.75, 3.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7e244939-1f40-4094-b536-22fa53179688" absoluteBounds="0.765, 4.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="150fa59a-9c06-4542-8a7a-b743e6701e40" absoluteBounds="3.75, 3.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdFileType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d9739627-4607-4cbb-960f-9fdd6de0620e" absoluteBounds="3.765, 4.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d3867382-0d25-4434-8962-431ce35d95d1" absoluteBounds="6.75, 0.75, 2, 2.9247054036458326">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7ad3b405-f47e-4cc9-a642-b2805a954706" absoluteBounds="6.765, 1.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1ef02936-99cc-4635-b5f9-7420d4348d0e" absoluteBounds="0.75, 6.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f4e208b2-c57f-4f0d-a5c4-cfd1b557358a" absoluteBounds="0.765, 7.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8b19c296-ec36-471f-a81c-11b4fed94978" absoluteBounds="3.75, 6.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceLanguage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="65df119e-27c1-4310-8881-c9dc5f0b563b" absoluteBounds="3.765, 7.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e88076a7-7c41-4db5-903d-0f326f60687d" absoluteBounds="6.75, 4.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceRating" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fca17a75-a0f0-4276-b7df-4daa3858b583" absoluteBounds="6.765, 5.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="546836ef-6b2f-44b7-ac90-6985bffb36f8" absoluteBounds="6.75, 7.75, 2, 1.7708968098958335">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceTopic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ac6bacee-da14-423d-9c8f-486944960cef" absoluteBounds="6.765, 8.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
