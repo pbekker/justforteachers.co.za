@@ -41,6 +41,7 @@ BEGIN TRANSACTION
 CREATE TABLE dbo.bhdFeaturedResources
 	(
 	resourceId int NOT NULL,
+	portalId int NOT NULL,
 	isFrontPage bit NOT NULL,
 	startDate datetime NOT NULL,
 	endDate datetime NOT NULL,
