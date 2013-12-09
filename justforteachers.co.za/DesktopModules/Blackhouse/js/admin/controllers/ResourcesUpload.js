@@ -1,7 +1,8 @@
-﻿app.controller('Resources', ['$scope', "ResourcesApi", function ($scope, ResourcesApi) {
+﻿app.controller('ResourcesUpload', ['$scope', "ResourcesApi", function ($scope, ResourcesApi) {
 
     $scope.files = [];
     $scope.defaults = undefined;
+    $scope.returnedFiles = [{preview:""}];
 
     ResourcesApi.get.creationPayload(function (data) {
         console.log("Success: ", data);
@@ -12,8 +13,8 @@
         if (!$scope.files.length) {
             $scope.imageRequired = true;
         } else {
-            ResourcesApi.post.createResource($scope.data, $scope.files, function () {
-                console.log("Success: ", arguments);
+            ResourcesApi.post.createResource($scope.data, $scope.files, function (data) {
+            console.log("Success: ", arguments);
             });
         }
     }

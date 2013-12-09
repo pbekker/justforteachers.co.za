@@ -192,6 +192,13 @@ namespace ResourceData
 				return this.GetTable<bhdResourceTopic>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sps_getResourceList")]
+		public ISingleResult<sps_getResourceListResult> sps_getResourceList([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> active)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), active);
+			return ((ISingleResult<sps_getResourceListResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.bhdAuthor")]
@@ -1864,6 +1871,158 @@ namespace ResourceData
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class sps_getResourceListResult
+	{
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _language;
+		
+		private string _topic;
+		
+		private string _type;
+		
+		private string _description;
+		
+		private System.DateTime _uploadDate;
+		
+		private int _uploadUser;
+		
+		public sps_getResourceListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_language", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string language
+		{
+			get
+			{
+				return this._language;
+			}
+			set
+			{
+				if ((this._language != value))
+				{
+					this._language = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string topic
+		{
+			get
+			{
+				return this._topic;
+			}
+			set
+			{
+				if ((this._topic != value))
+				{
+					this._topic = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string type
+		{
+			get
+			{
+				return this._type;
+			}
+			set
+			{
+				if ((this._type != value))
+				{
+					this._type = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this._description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uploadDate", DbType="DateTime NOT NULL")]
+		public System.DateTime uploadDate
+		{
+			get
+			{
+				return this._uploadDate;
+			}
+			set
+			{
+				if ((this._uploadDate != value))
+				{
+					this._uploadDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uploadUser", DbType="Int NOT NULL")]
+		public int uploadUser
+		{
+			get
+			{
+				return this._uploadUser;
+			}
+			set
+			{
+				if ((this._uploadUser != value))
+				{
+					this._uploadUser = value;
+				}
 			}
 		}
 	}

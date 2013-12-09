@@ -2,24 +2,8 @@
 
 <script src="/DesktopModules/Blackhouse/js/admin.js"></script>
 
-<%--<asp:Label runat ="server" ID="output" />
-
-<asp:Label runat="server" ID="lblResName" Text="Resource Name" /><br />
-<asp:TextBox runat="server" ID="txtResourceName" ToolTip="Please enter the name of your resource..." /><br />
-
-<asp:Label runat="server" ID="lblResDescription" Text="Resource Name" /><br />
-<asp:TextBox runat="server" ID="txtResourceDesc" ToolTip="Please enter the description of your resource..."  AutoPostBack="False" TextMode="MultiLine" Rows="5" /><br />
-
-<asp:Label runat="server" ID="lblResType" Text="Resource Type" /><br />
-<asp:DropDownList runat="server" ID="ddlTypes" ToolTip="Please select the type of resource..." /><br />
-
-<asp:Label runat="server" ID="lblResLang" Text="Resource Language" /><br />
-<asp:DropDownList runat="server" ID="ddlLanguages" ToolTip="Please select the language of resource..." /><br />
-
-<asp:Label runat="server" ID="lblResTopic" Text="Resource Topic" /><br />
-<asp:DropDownList runat="server" ID="ddlTopics" ToolTip="Please select the topic of resource..." /><br />--%>
 <div ng-app="resource-manager">
-    <div ng-controller="Resources">
+    <div ng-controller="ResourcesUpload">
         <div class="form-group">
 	        <label for="ResourceName" class="form-label">Resource Name *</label>
 	        <div class="form-controls">
@@ -60,8 +44,37 @@
 
         <div file-upload></div>
 
-        <a ng-click="add()" ng-controller="Resources">Save</a>
+        <a ng-click="add()">Save</a>
 
+        <div ng-repeat="file in returnedFiles">
+
+            <div class="preview-column">
+                <img src="{{file.preview}}"/>
+            </div> 
+            <div class="form-column">
+
+                <div class="form-group">
+	                <label for="FileAuthorName" class="form-label">Author Name *</label>
+	                <div class="form-controls">
+		                <input type="text" name="AuthorName" id="Text1" class="form-control" ng-model="file.ResourceName" ng-maxlength="70" required>
+	                </div>
+                </div>
+
+                <div class="form-group">
+	                <label for="FileYear" class="form-label">Year *</label>
+	                <div class="form-controls">
+		                <textarea name="FileYear" id="Textarea1" class="form-control" ng-model="file.ResourceDescription" required></textarea>
+	                </div>
+                </div>
+
+                <div class="form-group">
+	                <label for="FilePublisher" class="form-label">Publisher *</label>
+	                <div class="form-controls">
+		                <input type="text" name="FilePublisher"  class="form-control" ng-model="file.ResourceTypeId" ng-options="c.ListId as c.ListValue for c in defaults.types" required>
+	                </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

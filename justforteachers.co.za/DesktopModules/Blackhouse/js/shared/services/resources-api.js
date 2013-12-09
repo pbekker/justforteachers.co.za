@@ -2,20 +2,24 @@ app.factory('ResourcesApi', ['$http', function ($http) {
 
     $http.defaults.useXDomain = true;
 
-    var baseURL = "http://localhost:27645/api/resourceupload"
+    var baseURL = "http://localhost:27645/api"
+        uploadURL = baseURL + "/resourceupload",
+        resourcelistURL = baseURL + "/resourcelist"
 
     return {
         get: {
             creationPayload: function (callback) {
-                $http.get(baseURL).success(callback);
+                $http.get(uploadURL).success(callback);
+            },
+
+            listPayLoad: function (callback) {
+                $http.get(resourcelistURL).success(callback);
             }
         },
         post: {
             createResource: function (data, files, success) {
-
-
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', baseURL, true);
+                xhr.open('POST', uploadURL, true);
                 //xhr.responseType = 'text';
                 xhr.onload = function (e) {
 
@@ -72,13 +76,19 @@ app.factory('ResourcesApi', ['$http', function ($http) {
                     data: { model: data, files: files }
                 }).
 		        success(function (data, status, headers, config) {
-		            console.log("success!", arguments);
+		            success(data);
 		        }).
 		        error(function (data, status, headers, config) {
 		            console.log("failed!", arguments);
 		        });
             }
+        },
+        put: {
+            appendResources: function () {
+
+            }
         }
+
     }
 
 
