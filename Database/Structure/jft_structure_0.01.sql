@@ -45,6 +45,7 @@ CREATE TABLE dbo.bhdFeaturedResources
 	isFrontPage bit NOT NULL,
 	startDate datetime NOT NULL,
 	endDate datetime NOT NULL,
+	sequence int NOT NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
 GO

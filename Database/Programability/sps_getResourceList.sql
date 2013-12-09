@@ -17,6 +17,7 @@ BEGIN
 		r.name,
 		l.name [language],
 		t.name [topic],
+		rt.name [type],
 		r.[description],
 		r.uploadDate,
 		r.uploadUser
@@ -24,6 +25,7 @@ BEGIN
 	FROM bhdResource r	(NOLOCK)
 		JOIN bhdResourceLanguage l (NOLOCK) ON l.id = r.languageId
 		JOIN bhdResourceTopics t (NOLOCK) ON t.id = r.topicId
+		JOIN bhdResourceType rt (NOLOCK) ON rt.id = r.typeId
 	WHERE r.isActive = @active
 END
 GO
