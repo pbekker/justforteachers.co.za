@@ -1,30 +1,42 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceListings.ascx.cs" Inherits="Blackhouse.Resources.ResourceListings" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceFeatured.ascx.cs" Inherits="Blackhouse.Resources.ResourceFeatured" %>
 
 <script src="/DesktopModules/Blackhouse/js/admin.js"></script>
 <style>
-    .resource-listing {
+    .resource-box {
         display:block;
         background: #ececec;
         border: 1px solid #e5e5e5;
         padding: 5px;
         margin: 5px;
+        max-width: 31%;
+        float: left;
     }
-    .resource-listing a {
+    .resource-box a {
+        text-overflow: ellipsis;
+        overflow: hidden;
         font-size: 16px;
         line-height: 26px;
         text-decoration: none;
+
     }
-    .resource-listing p {
+    .resource-box a:visited {
+        color: #930916;
+    }
+    .resource-box p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
         font-size: 12px;
         line-height: 14px;
+        max-height: 42px;
     }
 </style>
 
 <div ng-app="resource-manager">
-    <div ng-controller="ResourcesList">
+    <div ng-controller="ResourcesFeatured">
         <div ng-repeat="resource in defaults">
-            <div class="resource-listing">
-                <a ng-click="selectResourse(resource)">{{resource.ResourceName}}</a>
+            <div class="resource-box">
+                <a href="#">{{resource.ResourceName}}</a>
                 <p>{{resource.ResourceDescription}}</p>
                 <span><b>Type:</b> {{resource.ResourceType}}</span>
                 <span><b>Topic:</b> {{resource.ResourceTopic}}</span>
@@ -34,4 +46,3 @@
         </div>
     </div>
 </div>
-<asp:LinkButton runat="server" ID="lnkAdd" Text ="Add a resource" OnClick="lnkAdd_Click" />

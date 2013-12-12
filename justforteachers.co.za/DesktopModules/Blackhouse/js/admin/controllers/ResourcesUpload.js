@@ -14,7 +14,6 @@
             $scope.imageRequired = true;
         } else {
             ResourcesApi.post.createResource($scope.data, $scope.files, function (data) {
-            console.log("Success: ", arguments);
             });
         }
     }

@@ -4,7 +4,10 @@ app.factory('ResourcesApi', ['$http', function ($http) {
 
     var baseURL = "http://localhost:27645/api"
         uploadURL = baseURL + "/resourceupload",
-        resourcelistURL = baseURL + "/resourcelist"
+        resourcelistURL = baseURL + "/resourcelist",
+        resourcefeaturedURL = baseURL + "/resourcefeature",
+        resourceapproveURL = baseURL + "/resourceapprove",
+        resourceviewURL = baseURL + '/resources/'
 
     return {
         get: {
@@ -14,7 +17,20 @@ app.factory('ResourcesApi', ['$http', function ($http) {
 
             listPayLoad: function (callback) {
                 $http.get(resourcelistURL).success(callback);
+            },
+
+            featuredPayLoad: function (callback) {
+                $http.get(resourcefeaturedURL).success(callback);
+            },
+
+            approvalPayload: function (callback) {
+                $http.get(resourceapproveURL).success(callback);
+            },
+
+            resourceView: function (id, callback) {
+                $http.get(resourceviewURL+id).success(callback);
             }
+
         },
         post: {
             createResource: function (data, files, success) {

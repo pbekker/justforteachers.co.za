@@ -1,14 +1,17 @@
-﻿app.controller('ResourcesList', ['$scope', "ResourcesApi", function ($scope, ResourcesApi) {
+﻿app.controller('ResourcesList', ['$scope', "ResourcesApi", 'ResourcesTemp', function ($scope, ResourcesApi, ResourcesTemp) {
 
     $scope.files = [];
     $scope.defaults = undefined;
     $scope.returnedFiles = [{ preview: "" }];
 
     ResourcesApi.get.listPayLoad(function (data) {
-        console.log("Success: ", data);
-        console.log("info: ", data.resourceList );
         $scope.defaults = data.resourceList;
     });
+
+
+    $scope.selectResource = function (resource) {
+        ResourcesTemp.selectResourceId = resource.ResourceId;
+    }
 
     //$scope.add = function () {
     //    if (!$scope.files.length) {

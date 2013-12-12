@@ -26827,7 +26827,10 @@ app.factory('ResourcesApi', ['$http', function ($http) {
 
     var baseURL = "http://localhost:27645/api"
         uploadURL = baseURL + "/resourceupload",
-        resourcelistURL = baseURL + "/resourcelist"
+        resourcelistURL = baseURL + "/resourcelist",
+        resourcefeaturedURL = baseURL + "/resourcefeature",
+        resourceapproveURL = baseURL + "/resourceapprove",
+        resourceviewURL = baseURL + '/resources/'
 
     return {
         get: {
@@ -26837,7 +26840,20 @@ app.factory('ResourcesApi', ['$http', function ($http) {
 
             listPayLoad: function (callback) {
                 $http.get(resourcelistURL).success(callback);
+            },
+
+            featuredPayLoad: function (callback) {
+                $http.get(resourcefeaturedURL).success(callback);
+            },
+
+            approvalPayload: function (callback) {
+                $http.get(resourceapproveURL).success(callback);
+            },
+
+            resourceView: function (id, callback) {
+                $http.get(resourceviewURL+id).success(callback);
             }
+
         },
         post: {
             createResource: function (data, files, success) {
@@ -26916,17 +26932,74 @@ app.factory('ResourcesApi', ['$http', function ($http) {
 
 
 }]);
-app.controller('ResourcesList', ['$scope', "ResourcesApi", function ($scope, ResourcesApi) {
+app.factory('ResourcesTemp', [function () {
+
+    return {
+        selectedResourseID: ""
+    }
+    
+
+
+}]);
+app.controller('ResourcesApproval', ['$scope', "ResourcesApi", function ($scope, ResourcesApi) {
+
+    $scope.files = [];
+    $scope.defaults = undefined;
+    $scope.returnedFiles = [{ preview: "" }];
+
+    ResourcesApi.get.approvalPayload(function (data) {
+        console.log("Success: ", data);
+        console.log("info: ", data.resourceList);
+        $scope.defaults = data.resourceList;
+    });
+
+}]);
+app.controller('ResourceView', ['$scope', "ResourcesApi", 'ResourcesTemp', function ($scope, ResourcesApi, ResourcesTemp) {
+
+    $scope.files = [];
+    $scope.defaults = undefined;
+    $scope.returnedFiles = [{ preview: "" }];
+
+    ResourcesApi.get.resourceView(id, function (data) {
+        $scope.defaults = data;
+    });
+
+
+    $scope.$watch(function () { return ResourcesTemp.selectedResourceId; }, function () {
+
+        if (ResourcesTemp.selectedResourceId) {
+            ResourcesApi.get.resourceView(ResourcesTemp.selectedResourceId, function (data) {
+                $scope.defaults = data;
+            });
+        }
+    });
+
+}]);
+app.controller('ResourcesFeatured', ['$scope', "ResourcesApi", function ($scope, ResourcesApi) {
+
+    $scope.files = [];
+    $scope.defaults = undefined;
+    $scope.returnedFiles = [{ preview: "" }];
+
+    ResourcesApi.get.featuredPayLoad(function (data) {
+        $scope.defaults = data.resourceList;
+    });
+
+}]);
+app.controller('ResourcesList', ['$scope', "ResourcesApi", 'ResourcesTemp', function ($scope, ResourcesApi, ResourcesTemp) {
 
     $scope.files = [];
     $scope.defaults = undefined;
     $scope.returnedFiles = [{ preview: "" }];
 
     ResourcesApi.get.listPayLoad(function (data) {
-        console.log("Success: ", data);
-        console.log("info: ", data.resourceList );
         $scope.defaults = data.resourceList;
     });
+
+
+    $scope.selectResource = function (resource) {
+        ResourcesTemp.selectResourceId = resource.ResourceId;
+    }
 
     //$scope.add = function () {
     //    if (!$scope.files.length) {
@@ -26968,7 +27041,6 @@ app.controller('ResourcesUpload', ['$scope', "ResourcesApi", function ($scope, R
             $scope.imageRequired = true;
         } else {
             ResourcesApi.post.createResource($scope.data, $scope.files, function (data) {
-            console.log("Success: ", arguments);
             });
         }
     }

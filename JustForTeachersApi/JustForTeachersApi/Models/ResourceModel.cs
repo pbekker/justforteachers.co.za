@@ -61,4 +61,13 @@ namespace JustForTeachersApi.Models
         public string ResourceUploadDate { get; set; }
     }
 
+    public class ResourceFeaturedPayload
+    {
+        public List<ResourceList> resourceList { get; set; }
+    }
+
+    public class ResourceApprovePayload
+    {
+        public List<ResourceList> resourceList { get; set; }
+    }
 }

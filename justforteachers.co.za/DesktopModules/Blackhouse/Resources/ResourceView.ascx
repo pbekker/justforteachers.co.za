@@ -1,32 +1,35 @@
-﻿<%@ Control Language="C#" ClassName="Blackhouse.Resources.ResourceView" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceView.ascx.cs" Inherits="Blackhouse.Resources.ResourceView" %>
+
+<script src="/DesktopModules/Blackhouse/js/admin.js"></script>
+
+<style>
+    .resource-box {
+        display:block;
+        background: #ececec;
+        border: 1px solid #e5e5e5;
+        padding: 5px;
+        margin: 5px;
+    }
+    .resource-box a {
+        font-size: 16px;
+        line-height: 26px;
+        text-decoration: none;
+    }
+    .resource-box p {
+        font-size: 12px;
+        line-height: 14px;
+    }
+</style>
 
 <div ng-app="resource-manager">
-    <div ng-controller="Resources">
-        <div ng-repeat="resource in returnedResources">
-            <div class="form-group">
-                <label for="resourceName" class="form-lable">Resource Name</label>
-	            <label name="resourceName" class="form-label">{{resource.resourceName}}</label>
-            </div>
-
-            <div class="form-group">
-                <label for="resourceDescription" class="form-lable">Resource Name</label>
-	            <label name="resourceDescription" class="form-label">{{resource.resourceDescription}}</label>
-            </div>
-
-            <div class="form-group">
-                <label for="resourceType" class="form-lable">Resource Name</label>
-	            <label name="resourceType" class="form-label">{{resource.resourceType}}</label>
-            </div>
-
-            <div class="form-group">
-                <label for="resourceTopic" class="form-lable">Resource Name</label>
-	            <label name="resourceTopic" class="form-label">{{resource.resourceTopic}}</label>
-            </div>
-
-            <div class="form-group">
-                <label for="resourceLanguage" class="form-lable">Resource Name</label>
-	            <label name="resourceLanguage" class="form-label">{{resource.resourceLanguage}}</label>
-            </div>
+    <div ng-controller="ResourceView">
+        <div class="resource-box">
+            <a href="#">{{defaults.ResourceName}}</a>
+            <p>{{defaults.ResourceDescription}}</p>
+            <span><b>Type:</b> {{defaults.ResourceType}}</span>
+            <span><b>Topic:</b> {{defaults.ResourceTopic}}</span>
+            <span><b>Language:</b> {{defaults.ResourceLanguage}}</span>
+            <p><b>Uploaded:</b> {{defaults.ResourceUploadDate}}</p>
         </div>
     </div>
 </div>
