@@ -4,7 +4,22 @@
     $scope.defaults = undefined;
     $scope.returnedFiles = [{ preview: "" }];
 
-    ResourcesApi.get.resourceView(id, function (data) {
+
+    parseQueryString = function () {
+        var str = window.location.search;
+        var objURL = {};
+        str.replace(
+            new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+            function ($0, $1, $2, $3) {
+                objURL[$1] = $3;
+            }
+        );
+        return objURL;
+    };
+
+    var params = parseQueryString();
+
+    ResourcesApi.get.resourceView(params["resourceid"], function (data) {
         $scope.defaults = data;
     });
 
@@ -17,5 +32,7 @@
             });
         }
     });
+
+
 
 }]);

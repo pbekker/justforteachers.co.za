@@ -26929,7 +26929,7 @@ app.factory('ResourcesApi', ['$http', function ($http) {
 app.factory('ResourcesTemp', [function () {
 
     return {
-        selectedResourseID: ""
+        selectedResourceID: ""
     }
     
 

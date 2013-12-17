@@ -25,5 +25,5 @@ namespace Blackhouse.Resources
         {
             Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceEdit", "mid=" + ModuleContext.ModuleId.ToString()));
         }
-}
+    }
 }

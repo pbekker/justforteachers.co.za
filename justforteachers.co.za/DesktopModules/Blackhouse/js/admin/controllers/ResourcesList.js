@@ -1,4 +1,4 @@
-﻿app.controller('ResourcesList', ['$scope', "ResourcesApi", 'ResourcesTemp', function ($scope, ResourcesApi, ResourcesTemp) {
+﻿app.controller('ResourcesList', ['$scope', "ResourcesApi", "ResourcesTemp", function ($scope, ResourcesApi, ResourcesTemp) {
 
     $scope.files = [];
     $scope.defaults = undefined;
@@ -11,6 +11,7 @@
 
     $scope.selectResource = function (resource) {
         ResourcesTemp.selectResourceId = resource.ResourceId;
+        window.open("?mid=789&ctl=resourceView&resourceid=" + ResourcesTemp.selectResourceId, "_self");
     }
 
     //$scope.add = function () {

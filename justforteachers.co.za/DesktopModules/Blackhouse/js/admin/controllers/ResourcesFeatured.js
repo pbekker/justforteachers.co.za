@@ -8,4 +8,9 @@
         $scope.defaults = data.resourceList;
     });
 
+    $scope.selectResource = function (resource) {
+        var gotoresource = resource.ResourceId;
+        window.open("?mid=789&ctl=resourceView&resourceid=" + gotoresource, "_self");
+    }
+
 }]);

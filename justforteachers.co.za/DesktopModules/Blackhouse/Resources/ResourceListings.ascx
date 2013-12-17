@@ -24,7 +24,7 @@
     <div ng-controller="ResourcesList">
         <div ng-repeat="resource in defaults">
             <div class="resource-listing">
-                <a ng-click="selectResourse(resource)">{{resource.ResourceName}}</a>
+                <a ng-click="selectResource(resource)">{{resource.ResourceName}}</a>
                 <p>{{resource.ResourceDescription}}</p>
                 <span><b>Type:</b> {{resource.ResourceType}}</span>
                 <span><b>Topic:</b> {{resource.ResourceTopic}}</span>

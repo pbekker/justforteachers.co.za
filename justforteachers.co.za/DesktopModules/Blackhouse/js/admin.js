@@ -26935,7 +26935,7 @@ app.factory('ResourcesApi', ['$http', function ($http) {
 app.factory('ResourcesTemp', [function () {
 
     return {
-        selectedResourseID: ""
+        selectedResourceID: ""
     }
     
 
@@ -26960,7 +26960,22 @@ app.controller('ResourceView', ['$scope', "ResourcesApi", 'ResourcesTemp', funct
     $scope.defaults = undefined;
     $scope.returnedFiles = [{ preview: "" }];
 
-    ResourcesApi.get.resourceView(id, function (data) {
+
+    parseQueryString = function () {
+        var str = window.location.search;
+        var objURL = {};
+        str.replace(
+            new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+            function ($0, $1, $2, $3) {
+                objURL[$1] = $3;
+            }
+        );
+        return objURL;
+    };
+
+    var params = parseQueryString();
+
+    ResourcesApi.get.resourceView(params["resourceid"], function (data) {
         $scope.defaults = data;
     });
 
@@ -26974,6 +26989,8 @@ app.controller('ResourceView', ['$scope', "ResourcesApi", 'ResourcesTemp', funct
         }
     });
 
+
+
 }]);
 app.controller('ResourcesFeatured', ['$scope', "ResourcesApi", function ($scope, ResourcesApi) {
 
@@ -26985,8 +27002,13 @@ app.controller('ResourcesFeatured', ['$scope', "ResourcesApi", function ($scope,
         $scope.defaults = data.resourceList;
     });
 
+    $scope.selectResource = function (resource) {
+        var gotoresource = resource.ResourceId;
+        window.open("?mid=789&ctl=resourceView&resourceid=" + gotoresource, "_self");
+    }
+
 }]);
-app.controller('ResourcesList', ['$scope', "ResourcesApi", 'ResourcesTemp', function ($scope, ResourcesApi, ResourcesTemp) {
+app.controller('ResourcesList', ['$scope', "ResourcesApi", "ResourcesTemp", function ($scope, ResourcesApi, ResourcesTemp) {
 
     $scope.files = [];
     $scope.defaults = undefined;
@@ -26999,6 +27021,7 @@ app.controller('ResourcesList', ['$scope', "ResourcesApi", 'ResourcesTemp', func
 
     $scope.selectResource = function (resource) {
         ResourcesTemp.selectResourceId = resource.ResourceId;
+        window.open("?mid=789&ctl=resourceView&resourceid=" + ResourcesTemp.selectResourceId, "_self");
     }
 
     //$scope.add = function () {

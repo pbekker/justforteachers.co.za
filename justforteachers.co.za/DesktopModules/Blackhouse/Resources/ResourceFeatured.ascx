@@ -36,7 +36,7 @@
     <div ng-controller="ResourcesFeatured">
         <div ng-repeat="resource in defaults">
             <div class="resource-box">
-                <a href="#">{{resource.ResourceName}}</a>
+                <a ng-click="selectResource(resource)">{{resource.ResourceName}}</a>
                 <p>{{resource.ResourceDescription}}</p>
                 <span><b>Type:</b> {{resource.ResourceType}}</span>
                 <span><b>Topic:</b> {{resource.ResourceTopic}}</span>
