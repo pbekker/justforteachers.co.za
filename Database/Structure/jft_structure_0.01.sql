@@ -428,6 +428,86 @@ ALTER TABLE dbo.bhdKeyword SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdLink')
+DROP TABLE bhdLink
+GO
+
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdLink
+	(
+	linkId int NOT NULL,
+	url varchar(MAX) NOT NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdLink ADD CONSTRAINT
+	PK_bhdLink PRIMARY KEY CLUSTERED 
+	(
+	linkId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.bhdLink SET (LOCK_ESCALATION = TABLE)
+GO
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceLink')
+DROP TABLE bhdResourceLink
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdResourceLink
+	(
+	linkId int NOT NULL,
+	resourceId int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdResourceLink SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceBundle')
+DROP TABLE bhdResourceBundle
+GO
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdResourceBundle
+	(
+	bundleId int NOT NULL,
+	name varchar(255) NOT NULL,
+	[description] varchar(max) NOT NULL,
+	isActive bit NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdResourceBundle ADD CONSTRAINT
+	PK_bhdResourceBundle PRIMARY KEY CLUSTERED 
+	(
+	bundleId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.bhdResourceLink SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceBundleFile')
+DROP TABLE bhdResourceBundleFile
+GO
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdResourceBundleFile
+	(
+	bundleId int NOT NULL,
+	resourceFileId int NOT NULL,
+	isFavourite bit NOT NULL
+	)  ON [PRIMARY]
+GO
+
+ALTER TABLE dbo.bhdResourceBundleFile SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
 /*************************** LOOK UP TABLES ************************************/
 IF NOT EXISTS(SELECT * FROM bhdResourceLanguage)
 BEGIN
