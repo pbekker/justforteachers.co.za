@@ -68,12 +68,15 @@ namespace JustForTeachersApi.Controllers
                 dc.SubmitChanges();
 
                 var result = Request.Content.ReadAsFormDataAsync();
+                Stream streamIn = await Request.Content.ReadAsStreamAsync();
+                StreamReader streamReader = new StreamReader(streamIn);
+                string jsonstring = streamReader.ReadToEnd();
                 if (result != null)
                 {
                     List<FeaturedResourceModel> featuredModel;
                     try
                     {
-                        List<FeaturedResourceModel> tmp = (List<FeaturedResourceModel>)JsonConvert.DeserializeObject(result.ToString(), typeof(List<FeaturedResourceModel>));
+                        List<FeaturedResourceModel> tmp = (List<FeaturedResourceModel>)JsonConvert.DeserializeObject(jsonstring.ToString(), typeof(List<FeaturedResourceModel>));
                         featuredModel = tmp;
                     }
                     catch (Exception ex)
@@ -89,8 +92,8 @@ namespace JustForTeachersApi.Controllers
                             feat.resourceId = item.ResourceId;
                             feat.portalId = item.PortalId;
                             feat.sequence = item.Sequence;
-                            feat.startDate = item.startDate;
-                            feat.endDate = item.endDate;
+                            //feat.startDate = item.startDate;
+                            //feat.endDate = item.endDate;
                             feat.isActive = true;
                             dc.bhdFeaturedResources.InsertOnSubmit(feat);
                             dc.SubmitChanges();

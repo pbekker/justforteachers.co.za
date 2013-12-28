@@ -21,8 +21,6 @@ namespace JustForTeachersApi.Models
         public int ResourceId { get; set; }
         public int PortalId { get; set; }
         public int Sequence { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
     }
 
     public class UploadFile
