@@ -30,7 +30,6 @@ GO
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceType')
 DROP TABLE  ResourceType
 GO
-
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceFormat')
 DROP TABLE bhdResourceFormat
 GO

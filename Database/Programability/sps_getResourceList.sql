@@ -38,7 +38,7 @@ BEGIN
 		JOIN bhdResourceLanguage l (NOLOCK) ON l.id = r.languageId
 		JOIN bhdResourceTopics t (NOLOCK) ON t.id = r.topicId
 		JOIN bhdResourceType rt (NOLOCK) ON rt.id = r.typeId
-		JOIN bhdResourceRating rr (NOLOCK) ON rr.resourceId = r.id
+		LEFT JOIN bhdResourceRating rr (NOLOCK) ON rr.resourceId = r.id
 	WHERE r.isActive = @active
 	)
 

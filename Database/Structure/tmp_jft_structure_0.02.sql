@@ -205,3 +205,130 @@ GO
 ALTER TABLE dbo.bhdResourceAuthor SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
+
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceBundle SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResource SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdLink SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceLink ADD CONSTRAINT
+	FK_bhdResourceLink_bhdLink FOREIGN KEY
+	(
+	linkId
+	) REFERENCES dbo.bhdLink
+	(
+	linkId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceLink ADD CONSTRAINT
+	FK_bhdResourceLink_bhdResource FOREIGN KEY
+	(
+	resourceId
+	) REFERENCES dbo.bhdResource
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceLink SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdKeyword SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceKeyword ADD CONSTRAINT
+	FK_bhdResourceKeyword_bhdKeyword FOREIGN KEY
+	(
+	KeywordId
+	) REFERENCES dbo.bhdKeyword
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceKeyword ADD CONSTRAINT
+	FK_bhdResourceKeyword_bhdResource FOREIGN KEY
+	(
+	Resourceid
+	) REFERENCES dbo.bhdResource
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceKeyword SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdFile SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceBundleFile ADD CONSTRAINT
+	FK_bhdResourceBundleFile_bhdResourceBundle FOREIGN KEY
+	(
+	bundleId
+	) REFERENCES dbo.bhdResourceBundle
+	(
+	bundleId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceBundleFile ADD CONSTRAINT
+	FK_bhdResourceBundleFile_bhdFile FOREIGN KEY
+	(
+	resourceFileId
+	) REFERENCES dbo.bhdFile
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceBundleFile SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.bhdFile SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdFileData ADD CONSTRAINT
+	FK_bhdFileData_bhdFile FOREIGN KEY
+	(
+	fileId
+	) REFERENCES dbo.bhdFile
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdFileData SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
