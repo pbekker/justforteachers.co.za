@@ -70,6 +70,7 @@ CREATE TABLE dbo.bhdResourceRating
 	resourceId int NOT NULL,
 	userId int NOT NULL,
 	rating int NOT NULL
+	CONSTRAINT pk_ResourceRating PRIMARY KEY (resourceId, userId)
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.bhdResourceRating SET (LOCK_ESCALATION = TABLE)
@@ -524,4 +525,10 @@ BEGIN
 	INSERT INTO bhdResourceType (name, isActive)
 	VALUES ('Book', 1), ('Website', 1), ('Lesson Plan', 1)
 	
+END
+
+IF NOT EXISTS(SELECT * FROM bhdFileType)
+BEGIN
+	INSERT INTO bhdFileType (name, extension, isActive)
+	VALUES ('Word', 'docx', 1)
 END
