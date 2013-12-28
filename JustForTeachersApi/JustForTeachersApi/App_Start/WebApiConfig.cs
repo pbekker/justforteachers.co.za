@@ -12,10 +12,15 @@ namespace JustForTeachersApi
 
             config.EnableCors();
 
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //); 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{id}/{orderby}/{order}",
+                defaults: new { id = RouteParameter.Optional, orderby = RouteParameter.Optional, order = RouteParameter.Optional }
             );
         }
     }

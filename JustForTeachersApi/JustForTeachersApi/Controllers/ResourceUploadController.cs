@@ -44,14 +44,6 @@ namespace JustForTeachersApi.Controllers
             return payload;
         }
 
-        // GET api/resourceupload/5
-        [HttpGet]
-        [AllowAnonymous]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/resourceupload
         [HttpPost]
         [AllowAnonymous]
@@ -87,20 +79,21 @@ namespace JustForTeachersApi.Controllers
 
                 //send the object to the resource maker stuff
                 int ResourceId = ResourceUploadHelper.UploadResourceData(uploadModel);
-                
-                //get the files
-                foreach (MultipartFileData file in result.FileData) {
-                    ResourceUploadHelper.UploadResourceFile(file);
-                    //generate a preview for the image
-                    ResourceUploadHelper.GenerateFilePreview(file.LocalFileName);
+
+                if (ResourceId != 0)
+                {
+                    //get the files
+                    foreach (MultipartFileData file in result.FileData)
+                    {
+                        ResourceUploadHelper.UploadResourceFile(file, ResourceId);
+                        //generate a preview for the image
+                        //ResourceUploadHelper.GenerateFilePreview(file.LocalFileName);
+                    }
                 }
-
-
-
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. " + ex.Message + " 400-3");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. " + ex.Message + ". 400-3");
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, "Success");
@@ -112,6 +105,8 @@ namespace JustForTeachersApi.Controllers
         [AllowAnonymous]
         public void Put(int id, [FromBody]string value)
         {
+            //this is where you edit the resource
+
         }
 
         // DELETE api/resourceupload/5
@@ -119,6 +114,21 @@ namespace JustForTeachersApi.Controllers
         [AllowAnonymous]
         public void Delete(int id)
         {
+            //this is where we deactivate resources
+            using (ResourcesDataContext dc = new ResourcesDataContext())
+            {
+                var r = (from d in dc.bhdResources
+                         join l in dc.bhdResourceLanguages on d.languageId equals l.id
+                         join top in dc.bhdResourceTopics on d.topicId equals top.id
+                         join typ in dc.bhdResourceTypes on d.typeId equals typ.id
+                         where d.id == id
+                         select d).FirstOrDefault();
+                if (r != null)
+                {
+                    r.isActive = false;
+                    dc.SubmitChanges();
+                }
+            }
         }
 
     }

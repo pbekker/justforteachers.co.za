@@ -17,7 +17,7 @@ namespace JustForTeachersApi.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ResourceFeatureController : ApiController
     {
-        // GET api/resourceupload
+        // GET api/resourcefeature
         [HttpGet]
         [AllowAnonymous]
         public ResourceFeaturedPayload Get()
@@ -43,78 +43,73 @@ namespace JustForTeachersApi.Controllers
             return payload;
         }
 
-        // GET api/resourceupload/5
+        // GET api/resourcefeature/5
         [HttpGet]
         [AllowAnonymous]
-        public string Get(int id)
+        public async Task<HttpResponseMessage> Get(int id)
         {
-            return "value";
+            return Request.CreateResponse(HttpStatusCode.BadRequest, "This method is not supported (GET) with a parameter. 400-1");
         }
 
-        // POST api/resourceupload
+        // POST api/resourcefeature
         [HttpPost]
         [AllowAnonymous]
         public async Task<HttpResponseMessage> Post()
         {
-            try
+            using (ResourcesDataContext dc = new ResourcesDataContext())
             {
-                if (!Request.Content.IsMimeMultipartContent())
+                var r = (from d in dc.bhdFeaturedResources
+                         select d);
+                foreach (var feature in r)
                 {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Unable to turn the data into a valid resource, check if you sent eveything through. 400-1");
+                    feature.isActive = false;
+                    feature.isFrontPage = false;
                 }
+                dc.SubmitChanges();
 
-                var root = HttpContext.Current.Server.MapPath("~/Uploads/Tmp");
-                Directory.CreateDirectory(root);
-                var provider = new MultipartFormDataStreamProvider(root);
-                var result = await Request.Content.ReadAsMultipartAsync(provider);
-                if (result.FormData["model"] == null)
+                var result = Request.Content.ReadAsFormDataAsync();
+                if (result != null)
                 {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Unable to turn the data into a valid resource, check if you sent eveything through. 400-2");
+                    List<FeaturedResourceModel> featuredModel;
+                    try
+                    {
+                        List<FeaturedResourceModel> tmp = (List<FeaturedResourceModel>)JsonConvert.DeserializeObject(result.ToString(), typeof(List<FeaturedResourceModel>));
+                        featuredModel = tmp;
+                    }
+                    catch (Exception ex)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+                    }
+
+                    if (featuredModel != null)
+                    {
+                        foreach (FeaturedResourceModel item in featuredModel)
+                        {
+                            bhdFeaturedResource feat = new bhdFeaturedResource();
+                            feat.resourceId = item.ResourceId;
+                            feat.portalId = item.PortalId;
+                            feat.sequence = item.Sequence;
+                            feat.startDate = item.startDate;
+                            feat.endDate = item.endDate;
+                            feat.isActive = true;
+                            dc.bhdFeaturedResources.InsertOnSubmit(feat);
+                            dc.SubmitChanges();
+                        }
+                    }
                 }
-
-                // serialize that shit
-                string model = result.FormData["model"];
-                UploadData uploadModel;
-                try
-                {
-                    uploadModel = JsonConvert.DeserializeObject<UploadData>(model);
-                }
-                catch (Exception ex)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
-                }
-
-                //send the object to the resource maker stuff
-                int ResourceId = ResourceUploadHelper.UploadResourceData(uploadModel);
-
-                //get the files
-                foreach (MultipartFileData file in result.FileData)
-                {
-                    ResourceUploadHelper.UploadResourceFile(file);
-                    //generate a preview for the image
-                    ResourceUploadHelper.GenerateFilePreview(file.LocalFileName);
-                }
-
-
-
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. " + ex.Message + " 400-3");
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, "Success");
-
         }
 
-        // PUT api/resourceupload/5
+        // PUT api/resourcefeature/5
         [HttpPut]
         [AllowAnonymous]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/resourceupload/5
+        // DELETE api/resourcefeature/5
         [HttpDelete]
         [AllowAnonymous]
         public void Delete(int id)

@@ -3,6 +3,8 @@
     $scope.files = [];
     $scope.defaults = undefined;
     $scope.returnedFiles = [{ preview: "" }];
+    $scope.moduleId;
+
 
     ResourcesApi.get.listPayLoad(function (data) {
         $scope.defaults = data.resourceList;
@@ -11,7 +13,7 @@
 
     $scope.selectResource = function (resource) {
         ResourcesTemp.selectResourceId = resource.ResourceId;
-        window.open("?mid=789&ctl=resourceView&resourceid=" + ResourcesTemp.selectResourceId, "_self");
+        window.open(window.location + "?mid=" + $scope.moduleId + "&ctl=resourceView&resourceid=" + ResourcesTemp.selectResourceId, "_self");
     }
 
     //$scope.add = function () {

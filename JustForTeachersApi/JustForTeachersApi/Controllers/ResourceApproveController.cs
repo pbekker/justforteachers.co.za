@@ -17,7 +17,7 @@ namespace JustForTeachersApi.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ResourceApproveController : ApiController
     {
-        // GET api/resourceupload
+        // GET api/resourceapprove
         [HttpGet]
         [AllowAnonymous]
         public ResourceApprovePayload Get()
@@ -31,7 +31,7 @@ namespace JustForTeachersApi.Controllers
                          join top in dc.bhdResourceTopics on d.topicId equals top.id
                          join typ in dc.bhdResourceTypes on d.typeId equals typ.id
                          where !d.isActive && !d.approvalDate.HasValue && !d.approvalUser.HasValue
-                         select new { d.name, d.description, d.uploadDate, d.id, language = l.name , topic = top.name, type = typ.name });
+                         select new { d.name, d.description, d.uploadDate, d.id, language = l.name , topic = top.name, type = typ.name }).Take(20);
                 foreach (var item in r)
                 {
                     ResourceList tmpPayload = new ResourceList();
@@ -48,82 +48,82 @@ namespace JustForTeachersApi.Controllers
             return payload;
         }
 
-        // GET api/resourceupload/5
+        // GET api/resourceapprove/5
         [HttpGet]
         [AllowAnonymous]
-        public string Get(int id)
+        public ResourceApprovePayload Get(int id)
         {
-            return "value";
+            //id is page num
+            int skip = id * 20;
+            ResourceApprovePayload payload = new ResourceApprovePayload();
+            payload.resourceList = new List<ResourceList>();
+            using (ResourcesDataContext dc = new ResourcesDataContext())
+            {
+                var r = (from d in dc.bhdResources
+                         join l in dc.bhdResourceLanguages on d.languageId equals l.id
+                         join top in dc.bhdResourceTopics on d.topicId equals top.id
+                         join typ in dc.bhdResourceTypes on d.typeId equals typ.id
+                         where !d.isActive && !d.approvalDate.HasValue && !d.approvalUser.HasValue
+                         select new { d.name, d.description, d.uploadDate, d.id, language = l.name, topic = top.name, type = typ.name }).Skip(skip).Take(20);
+                foreach (var item in r)
+                {
+                    ResourceList tmpPayload = new ResourceList();
+                    tmpPayload.ResourceName = item.name;
+                    tmpPayload.ResourceDescription = item.description;
+                    tmpPayload.ResourceLanguage = item.language;
+                    tmpPayload.ResourceTopic = item.topic;
+                    tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
+                    tmpPayload.ResourceId = item.id;
+                    tmpPayload.ResourceType = item.type;
+                    payload.resourceList.Add(tmpPayload);
+                }
+            }
+            return payload;
         }
 
-        // POST api/resourceupload
+        // GET api/resourceapprove/5/orderby
+        [HttpGet]
+        [AllowAnonymous]
+        public string Get(int id, string orderby)
+        {
+            return "ordered";
+        }
+        
+        // POST api/resourceapprove
         [HttpPost]
         [AllowAnonymous]
         public async Task<HttpResponseMessage> Post()
         {
-            try
-            {
-                if (!Request.Content.IsMimeMultipartContent())
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Unable to turn the data into a valid resource, check if you sent eveything through. 400-1");
-                }
-
-                var root = HttpContext.Current.Server.MapPath("~/Uploads/Tmp");
-                Directory.CreateDirectory(root);
-                var provider = new MultipartFormDataStreamProvider(root);
-                var result = await Request.Content.ReadAsMultipartAsync(provider);
-                if (result.FormData["model"] == null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Unable to turn the data into a valid resource, check if you sent eveything through. 400-2");
-                }
-
-                // serialize that shit
-                string model = result.FormData["model"];
-                UploadData uploadModel;
-                try
-                {
-                    uploadModel = JsonConvert.DeserializeObject<UploadData>(model);
-                }
-                catch (Exception ex)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
-                }
-
-                //send the object to the resource maker stuff
-                int ResourceId = ResourceUploadHelper.UploadResourceData(uploadModel);
-
-                //get the files
-                foreach (MultipartFileData file in result.FileData)
-                {
-                    ResourceUploadHelper.UploadResourceFile(file);
-                    //generate a preview for the image
-                    ResourceUploadHelper.GenerateFilePreview(file.LocalFileName);
-                }
-
-
-
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. " + ex.Message + " 400-3");
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK, "Success");
-
+            return Request.CreateResponse(HttpStatusCode.BadRequest, "I do not know what you are trying to do, you can not post an approve with no id. (POST) not supported here. 400-1");
         }
 
-        // PUT api/resourceupload/5
+        // PUT api/resourceapprove/5
         [HttpPut]
         [AllowAnonymous]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/resourceupload/5
+        // DELETE api/resourceapprove/5
         [HttpDelete]
         [AllowAnonymous]
         public void Delete(int id)
         {
+            //this is where we deactivate resources
+            using (ResourcesDataContext dc = new ResourcesDataContext())
+            {
+                var r = (from d in dc.bhdResources
+                         join l in dc.bhdResourceLanguages on d.languageId equals l.id
+                         join top in dc.bhdResourceTopics on d.topicId equals top.id
+                         join typ in dc.bhdResourceTypes on d.typeId equals typ.id
+                         where d.id == id
+                         select d).FirstOrDefault();
+                if (r != null)
+                {
+                    r.isActive = false;
+                    dc.SubmitChanges();
+                }
+            }
         }
 
     }

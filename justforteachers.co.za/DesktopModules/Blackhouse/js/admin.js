@@ -26814,13 +26814,16 @@ angular.module('chieffancypants.loadingBar', [])
   });       // wtf javascript. srsly
 })();       //
 
-var app = angular.module('resource-manager', [
+var app = angular.module('app', [
     'ngRoute',
     'ngAnimate',
     'ngSanitize',
     'chieffancypants.loadingBar',
     'ui.bootstrap'
-]);
+
+]).config(function($locationProvider){
+    $locationProvider.html5Mode(true).hashPrefix('!');
+});
 app.factory('ResourcesApi', ['$http', function ($http) {
 
     $http.defaults.useXDomain = true;
@@ -26954,31 +26957,15 @@ app.controller('ResourcesApproval', ['$scope', "ResourcesApi", function ($scope,
     });
 
 }]);
-app.controller('ResourceView', ['$scope', "ResourcesApi", 'ResourcesTemp', function ($scope, ResourcesApi, ResourcesTemp) {
+app.controller('ResourceView', ['$scope', "ResourcesApi", 'ResourcesTemp', '$location', function ($scope, ResourcesApi, ResourcesTemp, $location) {
 
     $scope.files = [];
     $scope.defaults = undefined;
-    $scope.returnedFiles = [{ preview: "" }];
+    $scope.returnedFiles = [{ preview: "" }];    
 
-
-    parseQueryString = function () {
-        var str = window.location.search;
-        var objURL = {};
-        str.replace(
-            new RegExp("([^?=&]+)(=([^&]*))?", "g"),
-            function ($0, $1, $2, $3) {
-                objURL[$1] = $3;
-            }
-        );
-        return objURL;
-    };
-
-    var params = parseQueryString();
-
-    ResourcesApi.get.resourceView(params["resourceid"], function (data) {
+    ResourcesApi.get.resourceView($location.search().resourceid, function (data) {
         $scope.defaults = data;
     });
-
 
     $scope.$watch(function () { return ResourcesTemp.selectedResourceId; }, function () {
 
@@ -27013,6 +27000,8 @@ app.controller('ResourcesList', ['$scope', "ResourcesApi", "ResourcesTemp", func
     $scope.files = [];
     $scope.defaults = undefined;
     $scope.returnedFiles = [{ preview: "" }];
+    $scope.moduleId;
+
 
     ResourcesApi.get.listPayLoad(function (data) {
         $scope.defaults = data.resourceList;
@@ -27021,7 +27010,7 @@ app.controller('ResourcesList', ['$scope', "ResourcesApi", "ResourcesTemp", func
 
     $scope.selectResource = function (resource) {
         ResourcesTemp.selectResourceId = resource.ResourceId;
-        window.open("?mid=789&ctl=resourceView&resourceid=" + ResourcesTemp.selectResourceId, "_self");
+        window.open(window.location + "?mid=" + $scope.moduleId + "&ctl=resourceView&resourceid=" + ResourcesTemp.selectResourceId, "_self");
     }
 
     //$scope.add = function () {
@@ -27184,3 +27173,29 @@ app.directive('fileUpload', ['$rootScope', function ($rootScope) {
         }
     };
 }]);
+
+app.filter('truncate', function () {
+    return function (text, length) {
+        if (isNaN(length))
+            length = 10;
+
+        if (text.length <= length) {
+            return text;
+        } else {
+            return String(text).substring(0, length) + "...";
+        }
+    };
+});
+app.directive('valueSetter', function ($parse) {
+    return function (scope, element, attrs) {
+        if (attrs.ngModel) {
+            $parse(attrs.ngModel).assign(scope, element.val());
+        }
+    };
+})
+var app2 = angular.module('resource-featured', [
+    'app'
+])
+var app1 = angular.module('resource-manager', [
+    'app'
+]);

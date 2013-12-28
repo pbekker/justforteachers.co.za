@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceFeatured.ascx.cs" Inherits="Blackhouse.Resources.ResourceFeatured" %>
 
-<script src="/DesktopModules/Blackhouse/js/admin.js"></script>
+
 <style>
     .resource-box {
         display:block;
@@ -32,17 +32,16 @@
     }
 </style>
 
-<div ng-app="resource-manager">
-    <div ng-controller="ResourcesFeatured">
-        <div ng-repeat="resource in defaults">
-            <div class="resource-box">
-                <a ng-click="selectResource(resource)">{{resource.ResourceName}}</a>
-                <p>{{resource.ResourceDescription}}</p>
-                <span><b>Type:</b> {{resource.ResourceType}}</span>
-                <span><b>Topic:</b> {{resource.ResourceTopic}}</span>
-                <span><b>Language:</b> {{resource.ResourceLanguage}}</span>
-                <p><b>Uploaded:</b> {{resource.ResourceUploadDate}}</p>
-            </div>
+<div ng-app="resource-featured" ng-controller="ResourcesFeatured">
+    <div ng-repeat="resource in defaults">
+        <div class="resource-box">
+            <a ng-click="selectResource(resource)">{{resource.ResourceName}}</a>
+            <p>{{resource.ResourceDescription}}</p>
+            <span><b>Type:</b> {{resource.ResourceType}}</span>
+            <span><b>Topic:</b> {{resource.ResourceTopic}}</span>
+            <span><b>Language:</b> {{resource.ResourceLanguage}}</span>
+            <p><b>Uploaded:</b> {{resource.ResourceUploadDate}}</p>
         </div>
     </div>
+    <input type="hidden" name="moduleId" ng-model="moduleId" value="<%= ModuleContext.ModuleId %>" value-setter />
 </div>

@@ -29,11 +29,18 @@ namespace JustForTeachersApi
                 dc.bhdResources.InsertOnSubmit(r);
                 dc.SubmitChanges();
                 retId = r.id;
+
+                bhdResourceRating rr = new bhdResourceRating();
+                rr.resourceId = r.id;
+                rr.rating = 1;
+                rr.userId = 1; // TODO: Update when the user is passed through.
+                dc.bhdResourceRatings.InsertOnSubmit(rr);
+                dc.SubmitChanges();
             }
             return retId;
         }
 
-        public static void UploadResourceFile(MultipartFileData file)
+        public static void UploadResourceFile(MultipartFileData file, int resourceId)
         {
             //so we need to check the filetype
             var filetype = file.Headers.ContentType;
@@ -46,7 +53,6 @@ namespace JustForTeachersApi
                 using (ResourcesDataContext dc = new ResourcesDataContext())
                 {
                     bhdFile f = new bhdFile();
-                    f.data = bytes;
                     f.size = bytes.Length;
                     f.name = file.Headers.ContentDisposition.FileName;
                     f.isActive = true;
@@ -54,6 +60,18 @@ namespace JustForTeachersApi
                     dc.bhdFiles.InsertOnSubmit(f);
                     dc.SubmitChanges();
                     fileId = f.id;
+
+                    bhdFileData fd = new bhdFileData();
+                    fd.fileId = f.id;
+                    fd.data = bytes;
+                    dc.bhdFileDatas.InsertOnSubmit(fd);
+                    dc.SubmitChanges();
+
+                    bhdResourceFile rf = new bhdResourceFile();
+                    rf.resourceId = resourceId;
+                    rf.fileId = f.id;
+                    dc.bhdResourceFiles.InsertOnSubmit(rf);
+                    dc.SubmitChanges();
                 }
             }
 

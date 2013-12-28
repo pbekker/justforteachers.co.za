@@ -6,6 +6,8 @@
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="surname" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdAuthor_bhdPublishInformation" Member="bhdPublishInformations" ThisKey="id" OtherKey="authorId" Type="bhdPublishInformation" />
+      <Association Name="bhdAuthor_bhdResourceAuthor" Member="bhdResourceAuthors" ThisKey="id" OtherKey="authorId" Type="bhdResourceAuthor" />
     </Type>
   </Table>
   <Table Name="dbo.bhdResourceType" Member="bhdResourceTypes">
@@ -13,15 +15,19 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdResourceType_bhdResource" Member="bhdResources" ThisKey="id" OtherKey="typeId" Type="bhdResource" />
     </Type>
   </Table>
   <Table Name="dbo.bhdFeaturedResources" Member="bhdFeaturedResources">
     <Type Name="bhdFeaturedResource">
       <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="portalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="isFrontPage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="startDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="endDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="sequence" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdResource_bhdFeaturedResource" Member="bhdResource" ThisKey="resourceId" OtherKey="id" Type="bhdResource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdFile" Member="bhdFiles">
@@ -30,16 +36,41 @@
       <Column Name="fileTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="size" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="data" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdFile_bhdResourceAuthor" Member="bhdResourceAuthors" ThisKey="id" OtherKey="fileId" Type="bhdResourceAuthor" />
+      <Association Name="bhdFile_bhdResourceBundleFile" Member="bhdResourceBundleFiles" ThisKey="id" OtherKey="resourceFileId" Type="bhdResourceBundleFile" />
+      <Association Name="bhdFileType_bhdFile" Member="bhdFileType" ThisKey="fileTypeId" OtherKey="id" Type="bhdFileType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdFileData" Member="bhdFileDatas">
+    <Type Name="bhdFileData">
+      <Column Name="fileId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="data" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
     </Type>
   </Table>
   <Table Name="dbo.bhdFileType" Member="bhdFileTypes">
     <Type Name="bhdFileType">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="extension" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
       <Column Name="icon" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdFileType_bhdFile" Member="bhdFiles" ThisKey="id" OtherKey="fileTypeId" Type="bhdFile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdKeyword" Member="bhdKeywords">
+    <Type Name="bhdKeyword">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="value" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdKeyword_bhdResourceKeyword" Member="bhdResourceKeywords" ThisKey="id" OtherKey="KeywordId" Type="bhdResourceKeyword" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdLink" Member="bhdLinks">
+    <Type Name="bhdLink">
+      <Column Name="linkId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="url" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="bhdLink_bhdResourceLink" Member="bhdResourceLinks" ThisKey="linkId" OtherKey="linkId" Type="bhdResourceLink" />
     </Type>
   </Table>
   <Table Name="dbo.bhdPublisher" Member="bhdPublishers">
@@ -48,6 +79,7 @@
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="surname" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdPublisher_bhdPublishInformation" Member="bhdPublishInformations" ThisKey="id" OtherKey="publisherId" Type="bhdPublishInformation" />
     </Type>
   </Table>
   <Table Name="dbo.bhdPublishInformation" Member="bhdPublishInformations">
@@ -57,6 +89,8 @@
       <Column Name="authorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="publishYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdAuthor_bhdPublishInformation" Member="bhdAuthor" ThisKey="authorId" OtherKey="id" Type="bhdAuthor" IsForeignKey="true" />
+      <Association Name="bhdPublisher_bhdPublishInformation" Member="bhdPublisher" ThisKey="publisherId" OtherKey="id" Type="bhdPublisher" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdResource" Member="bhdResources">
@@ -72,18 +106,54 @@
       <Column Name="approvalDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="approvalUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdResource_bhdFeaturedResource" Member="bhdFeaturedResources" ThisKey="id" OtherKey="resourceId" Type="bhdFeaturedResource" />
+      <Association Name="bhdResource_bhdResourceKeyword" Member="bhdResourceKeywords" ThisKey="id" OtherKey="Resourceid" Type="bhdResourceKeyword" />
+      <Association Name="bhdResource_bhdResourceLink" Member="bhdResourceLinks" ThisKey="id" OtherKey="resourceId" Type="bhdResourceLink" />
+      <Association Name="bhdResource_bhdResourceRating" Member="bhdResourceRatings" ThisKey="id" OtherKey="resourceId" Type="bhdResourceRating" />
+      <Association Name="bhdResourceType_bhdResource" Member="bhdResourceType" ThisKey="typeId" OtherKey="id" Type="bhdResourceType" IsForeignKey="true" />
+      <Association Name="bhdResourceLanguage_bhdResource" Member="bhdResourceLanguage" ThisKey="languageId" OtherKey="id" Type="bhdResourceLanguage" IsForeignKey="true" />
+      <Association Name="bhdResourceTopic_bhdResource" Member="bhdResourceTopic" ThisKey="topicId" OtherKey="id" Type="bhdResourceTopic" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdResourceAuthor" Member="bhdResourceAuthors">
     <Type Name="bhdResourceAuthor">
       <Column Name="authorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="fileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="bhdAuthor_bhdResourceAuthor" Member="bhdAuthor" ThisKey="authorId" OtherKey="id" Type="bhdAuthor" IsForeignKey="true" />
+      <Association Name="bhdFile_bhdResourceAuthor" Member="bhdFile" ThisKey="fileId" OtherKey="id" Type="bhdFile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdResourceBundle" Member="bhdResourceBundles">
+    <Type Name="bhdResourceBundle">
+      <Column Name="bundleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdResourceBundle_bhdResourceBundleFile" Member="bhdResourceBundleFiles" ThisKey="bundleId" OtherKey="bundleId" Type="bhdResourceBundleFile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdResourceBundleFile" Member="bhdResourceBundleFiles">
+    <Type Name="bhdResourceBundleFile">
+      <Column Name="bundleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="resourceFileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isFavourite" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdFile_bhdResourceBundleFile" Member="bhdFile" ThisKey="resourceFileId" OtherKey="id" Type="bhdFile" IsForeignKey="true" />
+      <Association Name="bhdResourceBundle_bhdResourceBundleFile" Member="bhdResourceBundle" ThisKey="bundleId" OtherKey="bundleId" Type="bhdResourceBundle" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdResourceFile" Member="bhdResourceFiles">
     <Type Name="bhdResourceFile">
-      <Column Name="fileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fileId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdResourceKeyword" Member="bhdResourceKeywords">
+    <Type Name="bhdResourceKeyword">
+      <Column Name="Resourceid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KeywordId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="bhdKeyword_bhdResourceKeyword" Member="bhdKeyword" ThisKey="KeywordId" OtherKey="id" Type="bhdKeyword" IsForeignKey="true" />
+      <Association Name="bhdResource_bhdResourceKeyword" Member="bhdResource" ThisKey="Resourceid" OtherKey="id" Type="bhdResource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdResourceLanguage" Member="bhdResourceLanguages">
@@ -91,13 +161,23 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdResourceLanguage_bhdResource" Member="bhdResources" ThisKey="id" OtherKey="languageId" Type="bhdResource" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdResourceLink" Member="bhdResourceLinks">
+    <Type Name="bhdResourceLink">
+      <Column Name="linkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="bhdLink_bhdResourceLink" Member="bhdLink" ThisKey="linkId" OtherKey="linkId" Type="bhdLink" IsForeignKey="true" />
+      <Association Name="bhdResource_bhdResourceLink" Member="bhdResource" ThisKey="resourceId" OtherKey="id" Type="bhdResource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdResourceRating" Member="bhdResourceRatings">
     <Type Name="bhdResourceRating">
-      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="rating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="bhdResource_bhdResourceRating" Member="bhdResource" ThisKey="resourceId" OtherKey="id" Type="bhdResource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdResourceTopics" Member="bhdResourceTopics">
@@ -107,19 +187,71 @@
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdResourceTopic_bhdResource" Member="bhdResources" ThisKey="id" OtherKey="topicId" Type="bhdResource" />
     </Type>
   </Table>
+  <Function Name="dbo.sps_getResourceBundleByUserId" Method="sps_getResourceBundleByUserId">
+    <Parameter Name="userId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sps_getResourceBundleByUserIdResult">
+      <Column Name="bundleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="fileid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fileName" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="fileSize" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fileType" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="fileExtension" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.sps_getResourceList" Method="sps_getResourceList">
     <Parameter Name="active" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="pageNumber" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pageSize" Type="System.Int32" DbType="Int" />
+    <Parameter Name="orderby" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="orderDirection" Type="System.String" DbType="Char(4)" />
     <ElementType Name="sps_getResourceListResult">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="language" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="topic" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="type" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="rating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="uploadDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="uploadUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sps_getResourceRating" Method="sps_getResourceRating">
+    <Parameter Name="resourceId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="userId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sps_getResourceRatingResult">
+      <Column Name="sumRating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="countRating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rated" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sps_getResourceTopic" Method="sps_getResourceTopic">
+    <Parameter Name="parentId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sps_getResourceTopicResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="parentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="topicId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="linkedResources" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sps_getResourceTopicList" Method="sps_getResourceTopicList">
+    <Parameter Name="active" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="sps_getResourceTopicListResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="parentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="parentName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="parentDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.sps_getFeaturedResources" Method="sps_getFeaturedResources">
