@@ -50,6 +50,7 @@ CREATE TABLE dbo.bhdFeaturedResources
 	endDate datetime NOT NULL,
 	sequence int NOT NULL,
 	isActive bit NOT NULL
+	CONSTRAINT pk_ResourceRating PRIMARY KEY (resourceId)
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.bhdFeaturedResources ADD CONSTRAINT
@@ -236,6 +237,7 @@ CREATE TABLE dbo.bhdFileData
 	(
 	fileId int NOT NULL,
 	data image NOT NULL
+	CONSTRAINT pk_FileData PRIMARY KEY (fileId)
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.bhdFileData SET (LOCK_ESCALATION = TABLE)
@@ -281,6 +283,7 @@ CREATE TABLE dbo.bhdResourceFile
 	(
 	fileId int NOT NULL,
 	resourceId int NOT NULL
+	CONSTRAINT pk_ResourceFile PRIMARY KEY (fileId, resourceId)
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.bhdResourceFile SET (LOCK_ESCALATION = TABLE)
