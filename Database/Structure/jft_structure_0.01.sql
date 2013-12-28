@@ -204,6 +204,7 @@ CREATE TABLE dbo.bhdFileType
 	(
 	id int NOT NULL IDENTITY (1, 1),
 	name varchar(255) NOT NULL,
+	extension VARCHAR(5) NOT NULL,
 	icon Image NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
@@ -222,6 +223,22 @@ ALTER TABLE dbo.bhdFileType SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFileData')
+DROP TABLE bhdFileData
+GO
+
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdFileData
+	(
+	fileId int NOT NULL,
+	data image NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdFileData SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFile')
 DROP TABLE  bhdFile
 GO
@@ -234,10 +251,8 @@ CREATE TABLE dbo.bhdFile
 	fileTypeId int NOT NULL,
 	name varchar(255) NOT NULL,
 	size int NOT NULL,
-	data image NOT NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
-	 TEXTIMAGE_ON [PRIMARY]
 GO
 ALTER TABLE dbo.bhdFile ADD CONSTRAINT
 	DF_bhdFile_isActive DEFAULT (1) FOR isActive
@@ -475,6 +490,7 @@ GO
 CREATE TABLE dbo.bhdResourceBundle
 	(
 	bundleId int NOT NULL,
+	userId int NOT NULL,
 	name varchar(255) NOT NULL,
 	[description] varchar(max) NOT NULL,
 	isActive bit NOT NULL
