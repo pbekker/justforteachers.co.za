@@ -31,6 +31,10 @@ IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceType')
 DROP TABLE  ResourceType
 GO
 
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceFormat')
+DROP TABLE bhdResourceFormat
+GO
+
 /** end drops **/
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFeaturedResources')
@@ -171,7 +175,6 @@ CREATE TABLE dbo.bhdResource
 	typeId int NOT NULL,
 	languageId int NOT NULL,
 	topicId int NOT NULL,
-	formatId int NOT NULL,
 	uploadDate datetime NOT NULL,
 	uploadUser int NOT NULL,
 	approvalDate datetime NULL,
@@ -410,30 +413,6 @@ CREATE TABLE dbo.bhdKeyword
 GO
 ALTER TABLE dbo.bhdKeyword ADD CONSTRAINT
 	PK_bhdKeyword PRIMARY KEY CLUSTERED 
-	(
-	id
-	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-
-GO
-ALTER TABLE dbo.bhdKeyword SET (LOCK_ESCALATION = TABLE)
-GO
-COMMIT
-
-IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceFormat')
-DROP TABLE bhdResourceFormat
-GO
-
-BEGIN TRANSACTION
-GO
-CREATE TABLE dbo.bhdResourceFormat
-	(
-	id int NOT NULL,
-	value varchar(250) NOT NULL,
-	isActive bit NOT NULL
-	)  ON [PRIMARY]
-GO
-ALTER TABLE dbo.bhdResourceFormat ADD CONSTRAINT
-	PK_bhdResourceFormat PRIMARY KEY CLUSTERED 
 	(
 	id
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]

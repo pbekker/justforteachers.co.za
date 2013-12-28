@@ -56,6 +56,7 @@ BEGIN
 	WHERE
 		r.rowNumber >= @startRow AND r.rowNumber <= @endRow 
 	ORDER BY
+		r.id,
 		CASE WHEN @orderby = 'name' AND @orderDirection = 'ASC' THEN r.name END,
 		CASE WHEN @orderby = 'name' AND @orderDirection != 'ASC' THEN r.name END DESC,
 		CASE WHEN @orderby = 'rating' AND @orderDirection = 'ASC' THEN r.rating END, 
