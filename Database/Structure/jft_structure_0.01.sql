@@ -50,7 +50,7 @@ CREATE TABLE dbo.bhdFeaturedResources
 	endDate datetime NOT NULL,
 	sequence int NOT NULL,
 	isActive bit NOT NULL
-	CONSTRAINT pk_ResourceRating PRIMARY KEY (resourceId)
+	CONSTRAINT pk_FeaturedResources PRIMARY KEY (resourceId)
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.bhdFeaturedResources ADD CONSTRAINT
