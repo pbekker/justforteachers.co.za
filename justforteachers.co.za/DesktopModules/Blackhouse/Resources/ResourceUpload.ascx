@@ -1,6 +1,32 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceUpload.ascx.cs" Inherits="Blackhouse.Resources.ResourceUpload" %>
 
-<script src="/DesktopModules/Blackhouse/js/admin.js"></script>
+    <div class="wrapper">
+        <div class="form-group">
+            <asp:Label runat="server" Text="Resource Name *" /><br />
+            <asp:TextBox runat="server" ID="txtResourceName" /><br /><br />
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" Text="Resource Description" /><br />
+            <asp:TextBox runat="server" ID="txtResourceDescription" TextMode="MultiLine" Rows="5" /><br /><br />
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" Text="Resource Type *" /><br />
+            <asp:DropDownList runat="server" id="ddlResourceType" /><br /><br />
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" Text="Resource Topic *" /><br />
+            <asp:DropDownList runat="server" id="ddlResourceTopic" /><br /><br />
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" Text="Resource Language *" /><br />
+            <asp:DropDownList runat="server" id="ddlResourceLanguage" /><br /><br />
+        </div>
+    </div>
+
+    <asp:LinkButton runat="server" ID="lnkSave" Text="Next..." />
+    <%-- TODO: Add file upload here --%>
+
+<%--<script src="/DesktopModules/Blackhouse/js/admin.js"></script>
 
 <div ng-app="resource-manager">
     <div ng-controller="ResourcesUpload">
@@ -77,4 +103,4 @@
         </div>
     </div>
 </div>
-
+--%>

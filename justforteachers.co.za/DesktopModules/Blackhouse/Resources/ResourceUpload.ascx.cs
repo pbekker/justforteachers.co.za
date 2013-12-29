@@ -8,8 +8,6 @@ using DotNetNuke.UI.Modules;
 using System.Net;
 using Newtonsoft.Json;
 
-
-
 namespace Blackhouse.Resources
 {
     public partial class ResourceUpload : ModuleUserControlBase
@@ -18,16 +16,16 @@ namespace Blackhouse.Resources
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //WebClient client = new WebClient();
-            //string url = dashboardUrlBase + "resourceupload";
-            ////'User' is a Model class that I have defined.
-            //ResourcePayload result = JsonConvert.DeserializeObject<ResourcePayload>(client.DownloadString(url));
-            //List<GenDropList> types = result.types;
-            //List<GenDropList> topics = result.topics;
-            //List<GenDropList> languages = result.languages;
-            //FillDropDown(ddlTypes, types);
-            //FillDropDown(ddlTopics, topics);
-            //FillDropDown(ddlLanguages, languages);
+            WebClient client = new WebClient();
+            string url = dashboardUrlBase + "resourceupload";
+            //'User' is a Model class that I have defined.
+            ResourcePayload result = JsonConvert.DeserializeObject<ResourcePayload>(client.DownloadString(url));
+            List<GenDropList> types = result.types;
+            List<GenDropList> topics = result.topics;
+            List<GenDropList> languages = result.languages;
+            FillDropDown(ddlResourceType, types);
+            FillDropDown(ddlResourceTopic, topics);
+            FillDropDown(ddlResourceLanguage, languages);
         }
 
         public static void FillDropDown(DropDownList target, List<GenDropList> data)

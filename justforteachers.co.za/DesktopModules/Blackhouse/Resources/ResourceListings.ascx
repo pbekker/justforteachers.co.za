@@ -1,7 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceListings.ascx.cs" Inherits="Blackhouse.Resources.ResourceListings" %>
 
-<base href="/" />
-<script src="/DesktopModules/Blackhouse/js/admin.js"></script>
 <style>
     .resource-listing {
         display:block;
@@ -21,7 +19,29 @@
     }
 </style>
 
-<div ng-app="resource-manager">
+<asp:Repeater runat="server" ID="rptListings" OnItemCommand="rptListings_ItemCommand">
+
+    <ItemTemplate>
+        <div class="resource-listing">
+            <h3><asp:LinkButton runat="server" ID="lblResourceName" Text='<%#Eval("ResourceName") %>' CommandArgument='<%#Eval("ResourceId") %>' /></h3>
+            <p><asp:Label runat="server" ID="lblResourceDescription" Text='<%#Eval("ResourceDescription") %>' /></p>
+            <span><b>Type:</b> <asp:Label runat="server" ID="ResourceType" Text='<%#Eval("ResourceType") %>' /></span><br />
+            <span><b>Topic:</b> <asp:Label runat="server" ID="ResourceTopic" Text='<%#Eval("ResourceTopic") %>' /></span><br />
+            <span><b>Language:</b> <asp:Label runat="server" ID="ResourceLanguage" Text='<%#Eval("ResourceLanguage") %>' /></span><br />
+            <p><b>Uploaded:</b> <asp:Label runat="server" ID="ResourceUploadDate" Text='<%#Eval("ResourceUploadDate") %>' /></p>
+        </div>
+    </ItemTemplate>
+
+</asp:Repeater>
+
+<asp:LinkButton runat="server" ID="lnkAdd" Text ="Add a resource" OnClick="lnkAdd_Click" />
+
+
+<%--<base href="/" />
+<script src="/DesktopModules/Blackhouse/js/admin.js"></script>--%>
+
+
+<%--<div ng-app="resource-manager">
     <div ng-controller="ResourcesList">
         <div ng-repeat="resource in defaults">
             <div class="resource-listing">
@@ -38,4 +58,4 @@
 
     </div>
 </div>
-<asp:LinkButton runat="server" ID="lnkAdd" Text ="Add a resource" OnClick="lnkAdd_Click" />
+<asp:LinkButton runat="server" ID="lnkAdd" Text ="Add a resource" OnClick="lnkAdd_Click" />--%>
