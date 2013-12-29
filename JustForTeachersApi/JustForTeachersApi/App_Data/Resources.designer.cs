@@ -36,6 +36,9 @@ namespace ResourceData
     partial void InsertbhdResourceType(bhdResourceType instance);
     partial void UpdatebhdResourceType(bhdResourceType instance);
     partial void DeletebhdResourceType(bhdResourceType instance);
+    partial void InsertbhdFeaturedResource(bhdFeaturedResource instance);
+    partial void UpdatebhdFeaturedResource(bhdFeaturedResource instance);
+    partial void DeletebhdFeaturedResource(bhdFeaturedResource instance);
     partial void InsertbhdFile(bhdFile instance);
     partial void UpdatebhdFile(bhdFile instance);
     partial void DeletebhdFile(bhdFile instance);
@@ -611,8 +614,10 @@ namespace ResourceData
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.bhdFeaturedResources")]
-	public partial class bhdFeaturedResource
+	public partial class bhdFeaturedResource : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _resourceId;
 		
@@ -628,11 +633,35 @@ namespace ResourceData
 		
 		private bool _isActive;
 		
+		private EntityRef<bhdResource> _bhdResource;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnresourceIdChanging(int value);
+    partial void OnresourceIdChanged();
+    partial void OnportalIdChanging(int value);
+    partial void OnportalIdChanged();
+    partial void OnisFrontPageChanging(bool value);
+    partial void OnisFrontPageChanged();
+    partial void OnstartDateChanging(System.DateTime value);
+    partial void OnstartDateChanged();
+    partial void OnendDateChanging(System.DateTime value);
+    partial void OnendDateChanged();
+    partial void OnsequenceChanging(int value);
+    partial void OnsequenceChanged();
+    partial void OnisActiveChanging(bool value);
+    partial void OnisActiveChanged();
+    #endregion
+		
 		public bhdFeaturedResource()
 		{
+			this._bhdResource = default(EntityRef<bhdResource>);
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_resourceId", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_resourceId", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int resourceId
 		{
 			get
@@ -643,7 +672,15 @@ namespace ResourceData
 			{
 				if ((this._resourceId != value))
 				{
+					if (this._bhdResource.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnresourceIdChanging(value);
+					this.SendPropertyChanging();
 					this._resourceId = value;
+					this.SendPropertyChanged("resourceId");
+					this.OnresourceIdChanged();
 				}
 			}
 		}
@@ -659,7 +696,11 @@ namespace ResourceData
 			{
 				if ((this._portalId != value))
 				{
+					this.OnportalIdChanging(value);
+					this.SendPropertyChanging();
 					this._portalId = value;
+					this.SendPropertyChanged("portalId");
+					this.OnportalIdChanged();
 				}
 			}
 		}
@@ -675,7 +716,11 @@ namespace ResourceData
 			{
 				if ((this._isFrontPage != value))
 				{
+					this.OnisFrontPageChanging(value);
+					this.SendPropertyChanging();
 					this._isFrontPage = value;
+					this.SendPropertyChanged("isFrontPage");
+					this.OnisFrontPageChanged();
 				}
 			}
 		}
@@ -691,7 +736,11 @@ namespace ResourceData
 			{
 				if ((this._startDate != value))
 				{
+					this.OnstartDateChanging(value);
+					this.SendPropertyChanging();
 					this._startDate = value;
+					this.SendPropertyChanged("startDate");
+					this.OnstartDateChanged();
 				}
 			}
 		}
@@ -707,7 +756,11 @@ namespace ResourceData
 			{
 				if ((this._endDate != value))
 				{
+					this.OnendDateChanging(value);
+					this.SendPropertyChanging();
 					this._endDate = value;
+					this.SendPropertyChanged("endDate");
+					this.OnendDateChanged();
 				}
 			}
 		}
@@ -723,7 +776,11 @@ namespace ResourceData
 			{
 				if ((this._sequence != value))
 				{
+					this.OnsequenceChanging(value);
+					this.SendPropertyChanging();
 					this._sequence = value;
+					this.SendPropertyChanged("sequence");
+					this.OnsequenceChanged();
 				}
 			}
 		}
@@ -739,8 +796,66 @@ namespace ResourceData
 			{
 				if ((this._isActive != value))
 				{
+					this.OnisActiveChanging(value);
+					this.SendPropertyChanging();
 					this._isActive = value;
+					this.SendPropertyChanged("isActive");
+					this.OnisActiveChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdResource_bhdFeaturedResource", Storage="_bhdResource", ThisKey="resourceId", OtherKey="id", IsForeignKey=true)]
+		public bhdResource bhdResource
+		{
+			get
+			{
+				return this._bhdResource.Entity;
+			}
+			set
+			{
+				bhdResource previousValue = this._bhdResource.Entity;
+				if (((previousValue != value) 
+							|| (this._bhdResource.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._bhdResource.Entity = null;
+						previousValue.bhdFeaturedResource = null;
+					}
+					this._bhdResource.Entity = value;
+					if ((value != null))
+					{
+						value.bhdFeaturedResource = this;
+						this._resourceId = value.id;
+					}
+					else
+					{
+						this._resourceId = default(int);
+					}
+					this.SendPropertyChanged("bhdResource");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -760,6 +875,10 @@ namespace ResourceData
 		private int _size;
 		
 		private bool _isActive;
+		
+		private EntityRef<bhdFileData> _bhdFileData;
+		
+		private EntitySet<bhdResourceFile> _bhdResourceFiles;
 		
 		private EntityRef<bhdFileType> _bhdFileType;
 		
@@ -781,6 +900,8 @@ namespace ResourceData
 		
 		public bhdFile()
 		{
+			this._bhdFileData = default(EntityRef<bhdFileData>);
+			this._bhdResourceFiles = new EntitySet<bhdResourceFile>(new Action<bhdResourceFile>(this.attach_bhdResourceFiles), new Action<bhdResourceFile>(this.detach_bhdResourceFiles));
 			this._bhdFileType = default(EntityRef<bhdFileType>);
 			OnCreated();
 		}
@@ -889,6 +1010,48 @@ namespace ResourceData
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdFile_bhdFileData", Storage="_bhdFileData", ThisKey="id", OtherKey="fileId", IsUnique=true, IsForeignKey=false)]
+		public bhdFileData bhdFileData
+		{
+			get
+			{
+				return this._bhdFileData.Entity;
+			}
+			set
+			{
+				bhdFileData previousValue = this._bhdFileData.Entity;
+				if (((previousValue != value) 
+							|| (this._bhdFileData.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._bhdFileData.Entity = null;
+						previousValue.bhdFile = null;
+					}
+					this._bhdFileData.Entity = value;
+					if ((value != null))
+					{
+						value.bhdFile = this;
+					}
+					this.SendPropertyChanged("bhdFileData");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdFile_bhdResourceFile", Storage="_bhdResourceFiles", ThisKey="id", OtherKey="fileId")]
+		public EntitySet<bhdResourceFile> bhdResourceFiles
+		{
+			get
+			{
+				return this._bhdResourceFiles;
+			}
+			set
+			{
+				this._bhdResourceFiles.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdFileType_bhdFile", Storage="_bhdFileType", ThisKey="fileTypeId", OtherKey="id", IsForeignKey=true)]
 		public bhdFileType bhdFileType
 		{
@@ -942,6 +1105,18 @@ namespace ResourceData
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_bhdResourceFiles(bhdResourceFile entity)
+		{
+			this.SendPropertyChanging();
+			entity.bhdFile = this;
+		}
+		
+		private void detach_bhdResourceFiles(bhdResourceFile entity)
+		{
+			this.SendPropertyChanging();
+			entity.bhdFile = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.bhdFileData")]
@@ -953,6 +1128,8 @@ namespace ResourceData
 		private int _fileId;
 		
 		private System.Data.Linq.Binary _data;
+		
+		private EntityRef<bhdFile> _bhdFile;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -966,6 +1143,7 @@ namespace ResourceData
 		
 		public bhdFileData()
 		{
+			this._bhdFile = default(EntityRef<bhdFile>);
 			OnCreated();
 		}
 		
@@ -980,6 +1158,10 @@ namespace ResourceData
 			{
 				if ((this._fileId != value))
 				{
+					if (this._bhdFile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnfileIdChanging(value);
 					this.SendPropertyChanging();
 					this._fileId = value;
@@ -1005,6 +1187,40 @@ namespace ResourceData
 					this._data = value;
 					this.SendPropertyChanged("data");
 					this.OndataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdFile_bhdFileData", Storage="_bhdFile", ThisKey="fileId", OtherKey="id", IsForeignKey=true)]
+		public bhdFile bhdFile
+		{
+			get
+			{
+				return this._bhdFile.Entity;
+			}
+			set
+			{
+				bhdFile previousValue = this._bhdFile.Entity;
+				if (((previousValue != value) 
+							|| (this._bhdFile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._bhdFile.Entity = null;
+						previousValue.bhdFileData = null;
+					}
+					this._bhdFile.Entity = value;
+					if ((value != null))
+					{
+						value.bhdFileData = this;
+						this._fileId = value.id;
+					}
+					else
+					{
+						this._fileId = default(int);
+					}
+					this.SendPropertyChanged("bhdFile");
 				}
 			}
 		}
@@ -1842,6 +2058,10 @@ namespace ResourceData
 		
 		private bool _isActive;
 		
+		private EntityRef<bhdFeaturedResource> _bhdFeaturedResource;
+		
+		private EntitySet<bhdResourceFile> _bhdResourceFiles;
+		
 		private EntitySet<bhdResourceRating> _bhdResourceRatings;
 		
 		private EntityRef<bhdResourceType> _bhdResourceType;
@@ -1880,6 +2100,8 @@ namespace ResourceData
 		
 		public bhdResource()
 		{
+			this._bhdFeaturedResource = default(EntityRef<bhdFeaturedResource>);
+			this._bhdResourceFiles = new EntitySet<bhdResourceFile>(new Action<bhdResourceFile>(this.attach_bhdResourceFiles), new Action<bhdResourceFile>(this.detach_bhdResourceFiles));
 			this._bhdResourceRatings = new EntitySet<bhdResourceRating>(new Action<bhdResourceRating>(this.attach_bhdResourceRatings), new Action<bhdResourceRating>(this.detach_bhdResourceRatings));
 			this._bhdResourceType = default(EntityRef<bhdResourceType>);
 			this._bhdResourceLanguage = default(EntityRef<bhdResourceLanguage>);
@@ -2119,6 +2341,48 @@ namespace ResourceData
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdResource_bhdFeaturedResource", Storage="_bhdFeaturedResource", ThisKey="id", OtherKey="resourceId", IsUnique=true, IsForeignKey=false)]
+		public bhdFeaturedResource bhdFeaturedResource
+		{
+			get
+			{
+				return this._bhdFeaturedResource.Entity;
+			}
+			set
+			{
+				bhdFeaturedResource previousValue = this._bhdFeaturedResource.Entity;
+				if (((previousValue != value) 
+							|| (this._bhdFeaturedResource.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._bhdFeaturedResource.Entity = null;
+						previousValue.bhdResource = null;
+					}
+					this._bhdFeaturedResource.Entity = value;
+					if ((value != null))
+					{
+						value.bhdResource = this;
+					}
+					this.SendPropertyChanged("bhdFeaturedResource");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdResource_bhdResourceFile", Storage="_bhdResourceFiles", ThisKey="id", OtherKey="resourceId")]
+		public EntitySet<bhdResourceFile> bhdResourceFiles
+		{
+			get
+			{
+				return this._bhdResourceFiles;
+			}
+			set
+			{
+				this._bhdResourceFiles.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdResource_bhdResourceRating", Storage="_bhdResourceRatings", ThisKey="id", OtherKey="resourceId")]
 		public EntitySet<bhdResourceRating> bhdResourceRatings
 		{
@@ -2252,6 +2516,18 @@ namespace ResourceData
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_bhdResourceFiles(bhdResourceFile entity)
+		{
+			this.SendPropertyChanging();
+			entity.bhdResource = this;
+		}
+		
+		private void detach_bhdResourceFiles(bhdResourceFile entity)
+		{
+			this.SendPropertyChanging();
+			entity.bhdResource = null;
 		}
 		
 		private void attach_bhdResourceRatings(bhdResourceRating entity)
@@ -2543,6 +2819,10 @@ namespace ResourceData
 		
 		private int _resourceId;
 		
+		private EntityRef<bhdFile> _bhdFile;
+		
+		private EntityRef<bhdResource> _bhdResource;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2555,6 +2835,8 @@ namespace ResourceData
 		
 		public bhdResourceFile()
 		{
+			this._bhdFile = default(EntityRef<bhdFile>);
+			this._bhdResource = default(EntityRef<bhdResource>);
 			OnCreated();
 		}
 		
@@ -2569,6 +2851,10 @@ namespace ResourceData
 			{
 				if ((this._fileId != value))
 				{
+					if (this._bhdFile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnfileIdChanging(value);
 					this.SendPropertyChanging();
 					this._fileId = value;
@@ -2589,11 +2875,83 @@ namespace ResourceData
 			{
 				if ((this._resourceId != value))
 				{
+					if (this._bhdResource.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnresourceIdChanging(value);
 					this.SendPropertyChanging();
 					this._resourceId = value;
 					this.SendPropertyChanged("resourceId");
 					this.OnresourceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdFile_bhdResourceFile", Storage="_bhdFile", ThisKey="fileId", OtherKey="id", IsForeignKey=true)]
+		public bhdFile bhdFile
+		{
+			get
+			{
+				return this._bhdFile.Entity;
+			}
+			set
+			{
+				bhdFile previousValue = this._bhdFile.Entity;
+				if (((previousValue != value) 
+							|| (this._bhdFile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._bhdFile.Entity = null;
+						previousValue.bhdResourceFiles.Remove(this);
+					}
+					this._bhdFile.Entity = value;
+					if ((value != null))
+					{
+						value.bhdResourceFiles.Add(this);
+						this._fileId = value.id;
+					}
+					else
+					{
+						this._fileId = default(int);
+					}
+					this.SendPropertyChanged("bhdFile");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdResource_bhdResourceFile", Storage="_bhdResource", ThisKey="resourceId", OtherKey="id", IsForeignKey=true)]
+		public bhdResource bhdResource
+		{
+			get
+			{
+				return this._bhdResource.Entity;
+			}
+			set
+			{
+				bhdResource previousValue = this._bhdResource.Entity;
+				if (((previousValue != value) 
+							|| (this._bhdResource.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._bhdResource.Entity = null;
+						previousValue.bhdResourceFiles.Remove(this);
+					}
+					this._bhdResource.Entity = value;
+					if ((value != null))
+					{
+						value.bhdResourceFiles.Add(this);
+						this._resourceId = value.id;
+					}
+					else
+					{
+						this._resourceId = default(int);
+					}
+					this.SendPropertyChanged("bhdResource");
 				}
 			}
 		}

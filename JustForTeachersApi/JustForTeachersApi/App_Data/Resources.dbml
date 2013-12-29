@@ -20,7 +20,7 @@
   </Table>
   <Table Name="dbo.bhdFeaturedResources" Member="bhdFeaturedResources">
     <Type Name="bhdFeaturedResource">
-      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="portalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="isFrontPage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="startDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
@@ -37,8 +37,10 @@
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="size" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdFile_bhdFileData" Member="bhdFileData" ThisKey="id" OtherKey="fileId" Type="bhdFileData" Cardinality="One" />
       <Association Name="bhdFile_bhdResourceAuthor" Member="bhdResourceAuthors" ThisKey="id" OtherKey="fileId" Type="bhdResourceAuthor" />
       <Association Name="bhdFile_bhdResourceBundleFile" Member="bhdResourceBundleFiles" ThisKey="id" OtherKey="resourceFileId" Type="bhdResourceBundleFile" />
+      <Association Name="bhdFile_bhdResourceFile" Member="bhdResourceFiles" ThisKey="id" OtherKey="fileId" Type="bhdResourceFile" />
       <Association Name="bhdFileType_bhdFile" Member="bhdFileType" ThisKey="fileTypeId" OtherKey="id" Type="bhdFileType" IsForeignKey="true" />
     </Type>
   </Table>
@@ -46,6 +48,7 @@
     <Type Name="bhdFileData">
       <Column Name="fileId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="data" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="bhdFile_bhdFileData" Member="bhdFile" ThisKey="fileId" OtherKey="id" Type="bhdFile" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdFileType" Member="bhdFileTypes">
@@ -106,7 +109,8 @@
       <Column Name="approvalDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="approvalUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="bhdResource_bhdFeaturedResource" Member="bhdFeaturedResources" ThisKey="id" OtherKey="resourceId" Type="bhdFeaturedResource" />
+      <Association Name="bhdResource_bhdFeaturedResource" Member="bhdFeaturedResource" ThisKey="id" OtherKey="resourceId" Type="bhdFeaturedResource" Cardinality="One" />
+      <Association Name="bhdResource_bhdResourceFile" Member="bhdResourceFiles" ThisKey="id" OtherKey="resourceId" Type="bhdResourceFile" />
       <Association Name="bhdResource_bhdResourceKeyword" Member="bhdResourceKeywords" ThisKey="id" OtherKey="Resourceid" Type="bhdResourceKeyword" />
       <Association Name="bhdResource_bhdResourceLink" Member="bhdResourceLinks" ThisKey="id" OtherKey="resourceId" Type="bhdResourceLink" />
       <Association Name="bhdResource_bhdResourceRating" Member="bhdResourceRatings" ThisKey="id" OtherKey="resourceId" Type="bhdResourceRating" />
@@ -146,6 +150,8 @@
     <Type Name="bhdResourceFile">
       <Column Name="fileId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="bhdFile_bhdResourceFile" Member="bhdFile" ThisKey="fileId" OtherKey="id" Type="bhdFile" IsForeignKey="true" />
+      <Association Name="bhdResource_bhdResourceFile" Member="bhdResource" ThisKey="resourceId" OtherKey="id" Type="bhdResource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdResourceKeyword" Member="bhdResourceKeywords">

@@ -92,8 +92,8 @@ namespace JustForTeachersApi.Controllers
                             feat.resourceId = item.ResourceId;
                             feat.portalId = item.PortalId;
                             feat.sequence = item.Sequence;
-                            //feat.startDate = item.startDate;
-                            //feat.endDate = item.endDate;
+                            feat.startDate = item.sDate;
+                            feat.endDate = item.eDate;
                             feat.isActive = true;
                             dc.bhdFeaturedResources.InsertOnSubmit(feat);
                             dc.SubmitChanges();

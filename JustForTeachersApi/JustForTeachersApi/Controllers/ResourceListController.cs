@@ -120,29 +120,5 @@ namespace JustForTeachersApi.Controllers
             }
             return payload;
         }
-
-        // POST api/ResourceList
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<HttpResponseMessage> Post()
-        {
-            return Request.CreateResponse(HttpStatusCode.BadRequest, "Resource List does not support the method (POST). 400-1");
-        }
-
-        // PUT api/ResourceList/5
-        [HttpPut]
-        [AllowAnonymous]
-        public async Task<HttpResponseMessage> Put(int id, [FromBody]string value)
-        {
-            return Request.CreateResponse(HttpStatusCode.BadRequest, "Resource List does not support the method (PUT). 400-2");
-        }
-
-        // DELETE api/ResourceList/5
-        [HttpDelete]
-        [AllowAnonymous]
-        public async Task<HttpResponseMessage> Delete(int id)
-        {
-            return Request.CreateResponse(HttpStatusCode.BadRequest, "Resource List does not support the method (PUT). 400-3");
-        }
     }
 }
