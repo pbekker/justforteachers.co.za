@@ -98,5 +98,21 @@ namespace JustForTeachersApi.Controllers
                 }
             }
         }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        public void Delete(int id, int fileid)
+        {
+            // how do I know if I need to remove a file or a whole bundle.
+            using (ResourcesDataContext dc = new ResourcesDataContext())
+            {
+                var rb = dc.bhdResourceBundles.Single((x) => x.bundleId == id);
+                if (rb != null)
+                {
+                    rb.isActive = false;
+                    dc.SubmitChanges();
+                }
+            }
+        }
     }
 }
