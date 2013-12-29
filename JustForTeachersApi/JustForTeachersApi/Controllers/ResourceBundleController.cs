@@ -87,7 +87,6 @@ namespace JustForTeachersApi.Controllers
         [AllowAnonymous]
         public void Delete(int id)
         {
-            // how do I know if I need to remove a file or a whole bundle.
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
                 var rb = dc.bhdResourceBundles.Single((x) => x.bundleId == id);
@@ -103,13 +102,12 @@ namespace JustForTeachersApi.Controllers
         [AllowAnonymous]
         public void Delete(int id, int fileid)
         {
-            // how do I know if I need to remove a file or a whole bundle.
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
-                var rb = dc.bhdResourceBundles.Single((x) => x.bundleId == id);
+                var rb = dc.bhdResourceBundleFiles.Single((x) => x.bundleId == id && x.resourceFileId == fileid);
                 if (rb != null)
                 {
-                    rb.isActive = false;
+                    dc.bhdResourceBundleFiles.DeleteOnSubmit(rb);
                     dc.SubmitChanges();
                 }
             }
