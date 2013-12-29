@@ -18,15 +18,15 @@ namespace JustForTeachersApi
             //    defaults: new { id = RouteParameter.Optional }
             //); 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}/{orderby}/{order}",
-                defaults: new { id = RouteParameter.Optional, orderby = RouteParameter.Optional, order = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "BundleApi",
                 routeTemplate: "api/{controller}/{id}/{fileid}",
                 defaults: new { id = RouteParameter.Optional, fileid = RouteParameter.Optional }
+            ); 
+            
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}/{orderby}/{order}",
+                defaults: new { id = RouteParameter.Optional, orderby = RouteParameter.Optional, order = RouteParameter.Optional }
             );
         }
     }
