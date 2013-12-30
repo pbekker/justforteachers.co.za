@@ -435,7 +435,7 @@ BEGIN TRANSACTION
 GO
 CREATE TABLE dbo.bhdLink
 	(
-	linkId int NOT NULL,
+	linkId int NOT NULL IDENTITY(1,1),
 	url varchar(MAX) NOT NULL
 	)  ON [PRIMARY]
 	 TEXTIMAGE_ON [PRIMARY]
