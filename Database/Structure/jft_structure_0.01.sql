@@ -171,7 +171,7 @@ GO
 CREATE TABLE dbo.bhdResource
 	(
 	id int NOT NULL IDENTITY (1, 1),
-	portalId NOT NULL,
+	portalId int NOT NULL,
 	name varchar(255) NOT NULL,
 	description varchar(MAX) NOT NULL,
 	typeId int NOT NULL,
