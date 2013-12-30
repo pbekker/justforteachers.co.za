@@ -171,6 +171,7 @@ GO
 CREATE TABLE dbo.bhdResource
 	(
 	id int NOT NULL IDENTITY (1, 1),
+	portalId NOT NULL,
 	name varchar(255) NOT NULL,
 	description varchar(MAX) NOT NULL,
 	typeId int NOT NULL,
@@ -209,6 +210,7 @@ CREATE TABLE dbo.bhdFileType
 	id int NOT NULL IDENTITY (1, 1),
 	name varchar(255) NOT NULL,
 	extension VARCHAR(5) NOT NULL,
+	contentType VARCHAR(255),
 	icon Image NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
@@ -458,6 +460,8 @@ CREATE TABLE dbo.bhdResourceLink
 	(
 	linkId int NOT NULL,
 	resourceId int NOT NULL
+	CONSTRAINT pk_ResourceLink PRIMARY KEY (linkId, resourceId)
+	
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.bhdResourceLink SET (LOCK_ESCALATION = TABLE)
