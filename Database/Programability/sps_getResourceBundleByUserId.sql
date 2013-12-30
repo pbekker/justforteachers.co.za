@@ -15,6 +15,7 @@ BEGIN
 		rb.bundleId,
 		rb.name,
 		rb.[description],
+		rbf.isFavourite,
 		f.id fileid,
 		f.name [fileName],
 		f.size [fileSize],
