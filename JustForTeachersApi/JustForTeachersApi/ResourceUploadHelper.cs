@@ -40,30 +40,26 @@ namespace JustForTeachersApi
             return retId;
         }
 
-        public static void UploadResourceFile(MultipartFileData file, int resourceId)
+        public static void UploadResourceFile(List<FileData> files, int resourceId)
         {
-            //so we need to check the filetype
-            var filetype = file.Headers.ContentType;
-            var filePath = file.LocalFileName;
-            int fileId = 0;
-            if (File.Exists(filePath))
+
+            //we get the information
+            foreach (FileData item in files)
             {
-                byte[] bytes = File.ReadAllBytes(filePath);
-                var length = bytes.Length;
                 using (ResourcesDataContext dc = new ResourcesDataContext())
                 {
+
                     bhdFile f = new bhdFile();
-                    f.size = bytes.Length;
-                    f.name = file.Headers.ContentDisposition.FileName;
+                    f.size = item.fileSize;
+                    f.name = item.fileName;
                     f.isActive = true;
                     f.fileTypeId = 1;
                     dc.bhdFiles.InsertOnSubmit(f);
                     dc.SubmitChanges();
-                    fileId = f.id;
 
                     bhdFileData fd = new bhdFileData();
                     fd.fileId = f.id;
-                    fd.data = bytes;
+                    fd.data = item.fileData;
                     dc.bhdFileDatas.InsertOnSubmit(fd);
                     dc.SubmitChanges();
 
@@ -72,9 +68,42 @@ namespace JustForTeachersApi
                     rf.fileId = f.id;
                     dc.bhdResourceFiles.InsertOnSubmit(rf);
                     dc.SubmitChanges();
+
                 }
             }
 
+            ////so we need to check the filetype
+            //var filetype = file.Headers.ContentType;
+            //var filePath = file.LocalFileName;
+            //int fileId = 0;
+            //if (File.Exists(filePath))
+            //{
+            //    byte[] bytes = File.ReadAllBytes(filePath);
+            //    var length = bytes.Length;
+            //    using (ResourcesDataContext dc = new ResourcesDataContext())
+            //    {
+            //        bhdFile f = new bhdFile();
+            //        f.size = bytes.Length;
+            //        f.name = file.Headers.ContentDisposition.FileName;
+            //        f.isActive = true;
+            //        f.fileTypeId = 1;
+            //        dc.bhdFiles.InsertOnSubmit(f);
+            //        dc.SubmitChanges();
+            //        fileId = f.id;
+
+            //        bhdFileData fd = new bhdFileData();
+            //        fd.fileId = f.id;
+            //        fd.data = bytes;
+            //        dc.bhdFileDatas.InsertOnSubmit(fd);
+            //        dc.SubmitChanges();
+
+            //        bhdResourceFile rf = new bhdResourceFile();
+            //        rf.resourceId = resourceId;
+            //        rf.fileId = f.id;
+            //        dc.bhdResourceFiles.InsertOnSubmit(rf);
+            //        dc.SubmitChanges();
+            //    }
+            //}
         }
 
         public static void GenerateFilePreview(string filePath)

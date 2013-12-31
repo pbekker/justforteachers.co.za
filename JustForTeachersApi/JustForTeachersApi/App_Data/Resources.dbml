@@ -56,6 +56,7 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="extension" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="contentType" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="icon" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="bhdFileType_bhdFile" Member="bhdFiles" ThisKey="id" OtherKey="fileTypeId" Type="bhdFile" />
@@ -71,7 +72,7 @@
   </Table>
   <Table Name="dbo.bhdLink" Member="bhdLinks">
     <Type Name="bhdLink">
-      <Column Name="linkId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="linkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="url" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="bhdLink_bhdResourceLink" Member="bhdResourceLinks" ThisKey="linkId" OtherKey="linkId" Type="bhdResourceLink" />
     </Type>
@@ -99,6 +100,7 @@
   <Table Name="dbo.bhdResource" Member="bhdResources">
     <Type Name="bhdResource">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="portalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="typeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -172,8 +174,8 @@
   </Table>
   <Table Name="dbo.bhdResourceLink" Member="bhdResourceLinks">
     <Type Name="bhdResourceLink">
-      <Column Name="linkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="linkId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="bhdLink_bhdResourceLink" Member="bhdLink" ThisKey="linkId" OtherKey="linkId" Type="bhdLink" IsForeignKey="true" />
       <Association Name="bhdResource_bhdResourceLink" Member="bhdResource" ThisKey="resourceId" OtherKey="id" Type="bhdResource" IsForeignKey="true" />
     </Type>

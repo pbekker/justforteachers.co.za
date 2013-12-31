@@ -49,28 +49,18 @@ namespace JustForTeachersApi.Controllers
         [AllowAnonymous]
         public async Task<HttpResponseMessage> Post()
         {
+            int ResourceId;
             try
             {
-                if (!Request.Content.IsMimeMultipartContent())
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Unable to turn the data into a valid resource, check if you sent eveything through. 400-1");
-                }
-
-                var root = HttpContext.Current.Server.MapPath("~/Uploads/Tmp");
-                Directory.CreateDirectory(root);
-                var provider = new MultipartFormDataStreamProvider(root);
-                var result = await Request.Content.ReadAsMultipartAsync(provider);
-                if (result.FormData["model"] == null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Unable to turn the data into a valid resource, check if you sent eveything through. 400-2");
-                }
-
+                var result = Request.Content.ReadAsFormDataAsync();
+                Stream streamIn = await Request.Content.ReadAsStreamAsync();
+                StreamReader streamReader = new StreamReader(streamIn);
+                string jsonstring = streamReader.ReadToEnd();
                 // serialize that shit
-                string model = result.FormData["model"];
                 UploadData uploadModel;
                 try
                 {
-                    uploadModel = JsonConvert.DeserializeObject<UploadData>(model);
+                    uploadModel = JsonConvert.DeserializeObject<UploadData>(jsonstring);
                 }
                 catch (Exception ex)
                 {
@@ -78,28 +68,110 @@ namespace JustForTeachersApi.Controllers
                 }
 
                 //send the object to the resource maker stuff
-                int ResourceId = ResourceUploadHelper.UploadResourceData(uploadModel);
+                ResourceId = ResourceUploadHelper.UploadResourceData(uploadModel);
 
-                if (ResourceId != 0)
-                {
-                    //get the files
-                    foreach (MultipartFileData file in result.FileData)
-                    {
-                        ResourceUploadHelper.UploadResourceFile(file, ResourceId);
-                        //generate a preview for the image
-                        //ResourceUploadHelper.GenerateFilePreview(file.LocalFileName);
-                    }
-                }
             }
             catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. " + ex.Message + ". 400-3");
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, "Success");
+            return Request.CreateResponse(HttpStatusCode.OK, ResourceId);
 
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> Post(int id)
+        {
+            try
+            {
+                var result = Request.Content.ReadAsFormDataAsync();
+                Stream streamIn = await Request.Content.ReadAsStreamAsync();
+                StreamReader streamReader = new StreamReader(streamIn);
+                string jsonstring = streamReader.ReadToEnd();
+
+                var temp = JsonConvert.DeserializeObject<List<FileData>>(jsonstring);
+
+                ResourceUploadHelper.UploadResourceFile(temp, id);
+
+                return Request.CreateResponse(HttpStatusCode.OK, "Success");
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. 400-1");
+            }
+
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> Post(int id, string type)
+        {
+            try
+            {
+                switch (type.ToLower())
+                {
+                    case "website":
+                        //this is for a website
+                        string websiteUrl = "";
+                        var result = Request.Content.ReadAsFormDataAsync();
+                        Stream streamIn = await Request.Content.ReadAsStreamAsync();
+                        StreamReader streamReader = new StreamReader(streamIn);
+                        string jsonstring = streamReader.ReadToEnd();
+
+                        var temp = JsonConvert.DeserializeObject<string>(jsonstring);
+                        websiteUrl = temp;
+                        using (ResourcesDataContext dc = new ResourcesDataContext())
+                        {
+                            bhdLink l = new bhdLink();
+                            l.url = websiteUrl;
+                            dc.bhdLinks.InsertOnSubmit(l);
+                            dc.SubmitChanges();
+
+                            bhdResourceLink rl = new bhdResourceLink();
+                            rl.linkId = l.linkId;
+                            rl.resourceId = id;
+                            dc.bhdResourceLinks.InsertOnSubmit(rl);
+                            dc.SubmitChanges();
+                        }
+                        break;
+                    case "lesson plan":
+                        string lessonsiteUrl = "";
+                        Stream lpstreamIn = await Request.Content.ReadAsStreamAsync();
+                        StreamReader lpstreamReader = new StreamReader(lpstreamIn);
+                        string lpjsonstring = lpstreamReader.ReadToEnd();
+
+                        LessonPlan lptemp = JsonConvert.DeserializeObject<LessonPlan>(lpjsonstring);
+                        websiteUrl = lptemp.linkUrl;
+                        using (ResourcesDataContext dc = new ResourcesDataContext())
+                        {
+                            bhdLink l = new bhdLink();
+                            l.url = websiteUrl;
+                            dc.bhdLinks.InsertOnSubmit(l);
+                            dc.SubmitChanges();
+
+                            bhdResourceLink rl = new bhdResourceLink();
+                            rl.linkId = l.linkId;
+                            rl.resourceId = id;
+                            dc.bhdResourceLinks.InsertOnSubmit(rl);
+                            dc.SubmitChanges();
+                        }
+
+                        ResourceUploadHelper.UploadResourceFile(lptemp.fileData, id);
+                        break;
+                    default:
+                        break;
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, "Success");
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. 400-9");
+                throw;
+            }
+        }
+        
         // PUT api/resourceupload/5
         [HttpPut]
         [AllowAnonymous]
@@ -130,6 +202,5 @@ namespace JustForTeachersApi.Controllers
                 }
             }
         }
-
     }
 }

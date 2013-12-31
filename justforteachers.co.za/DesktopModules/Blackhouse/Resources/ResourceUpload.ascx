@@ -1,6 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceUpload.ascx.cs" Inherits="Blackhouse.Resources.ResourceUpload" %>
+    <script>
+        $('#btUpload').click(function () { if (fileUpload.value.length == 0) { alert('No files selected.'); return false; } });
+    </script>
 
-    <div class="wrapper">
+    <div class="wrapper" id="divUploadform" runat="server">
         <div class="form-group">
             <asp:Label runat="server" Text="Resource Name *" /><br />
             <asp:TextBox runat="server" ID="txtResourceName" /><br /><br />
@@ -21,10 +24,50 @@
             <asp:Label runat="server" Text="Resource Language *" /><br />
             <asp:DropDownList runat="server" id="ddlResourceLanguage" /><br /><br />
         </div>
+        <asp:LinkButton runat="server" ID="lnkSave" Text="Next..." OnClick="lnkSave_Click" />
+    </div>
+    <asp:HiddenField runat="server" ID="hidResourceId" />
+
+    <div runat="server" id="divFileUpload">
+        <input type="file" id="myfile" multiple="multiple" name="myfile" runat="server" size="100" />
+        <br />
+        <asp:LinkButton ID="UploadFiles" runat="server" Text="Upload Files and Next..." OnClick="UploadFiles_Click" />
+        <br />
+        <asp:Label ID="Span1" runat="server"></asp:Label>
     </div>
 
-    <asp:LinkButton runat="server" ID="lnkSave" Text="Next..." />
-    <%-- TODO: Add file upload here --%>
+    <%-- TODO: Add file information collection here --%>
+
+    <div id="divFileinfo">
+        <asp:Repeater runat="server" ID="rptFileInfo">
+            <ItemTemplate>
+
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
+
+
+    <%-- TODO: Add website type upload --%>
+
+    <div runat="server" id="divWebsiteUpload">
+        <asp:Label runat="server" Text="Resource Web URL:" /><br />
+        <asp:TextBox runat="server" ID="txtWebUrl" />
+        <br />
+        <asp:LinkButton ID="lnkUploadWebsite" runat="server" Text="Save and View" OnClick="UploadWebsite_Click" />
+        <br />
+        <asp:Label ID="Span2" runat="server"></asp:Label>
+    </div>
+
+    <%-- TODO: Add lesson plan type upload --%>
+
+    <div runat="server" id="divLessonplan">
+        <asp:Label runat="server" Text="Resource Web URL:" /><br />
+        <asp:TextBox runat="server" ID="txtLessonWebUrl" /><br />
+        <asp:Label runat="server" Text="Resource Files:" /><br />
+        <input type="file" id="lessonfile" multiple="multiple" name="myfile" runat="server" size="100" /><br />
+        <asp:LinkButton ID="lnkUploadLessonPlan" runat="server" Text="Save and Next..." OnClick="UploadLessonPlan_Click" /><br />
+        <asp:Label ID="Span3" runat="server"></asp:Label>
+    </div>
 
 <%--<script src="/DesktopModules/Blackhouse/js/admin.js"></script>
 
@@ -72,7 +115,7 @@
 
         <a ng-click="add()">Save</a>
 
-        <div ng-repeat="file in returnedFiles">
+       <div ng-repeat="file in returnedFiles">
 
             <div class="preview-column">
                 <img src="{{file.preview}}"/>
@@ -102,5 +145,5 @@
             </div>
         </div>
     </div>
-</div>
---%>
+</div>--%>
+

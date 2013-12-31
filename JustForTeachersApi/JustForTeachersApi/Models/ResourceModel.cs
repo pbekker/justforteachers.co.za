@@ -39,6 +39,7 @@ namespace JustForTeachersApi.Models
         public int ResourceTypeId { get; set; }
         public int ResourceLanguageId { get; set; }
         public int ResourceTopicId { get; set; }
+        public int PortalId { get; set; }
     }
 
     public class GenDropList
@@ -80,7 +81,7 @@ namespace JustForTeachersApi.Models
         public List<ResourceList> resourceList { get; set; }
     }
 
-        public class ResourceBundle
+    public class ResourceBundle
     {
         public int bundleId {get; set;}
         public string name {get;set;}
@@ -91,5 +92,19 @@ namespace JustForTeachersApi.Models
 		public string fileType {get;set;}
 		public string fileExtension {get;set;}
         public bool isActive { get; set; }
+    }
+
+    public class FileData
+    {
+        public string fileName { get; set; }
+        public string fileType { get; set; }
+        public int fileSize { get; set; }
+        public byte[] fileData { get; set; }
+    }
+
+    public class LessonPlan
+    {
+        public List<FileData> fileData { get; set; }
+        public string linkUrl { get; set; }
     }
 }
