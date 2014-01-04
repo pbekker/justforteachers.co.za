@@ -1,0 +1,227 @@
+//************************************************************************//
+// Example: @include hide-text();
+//************************************************************************//
+@mixin hide-text{
+    overflow:hidden;
+    text-indent:-9000px;
+    display:block;
+}
+@mixin text-overflow{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+//************************************************************************//
+// Example: @include prefixer(border-radius, $radii, webkit ms spec);
+//************************************************************************//
+$prefix-for-webkit:    true !default;
+$prefix-for-mozilla:   true !default;
+$prefix-for-microsoft: true !default;
+$prefix-for-opera:     true !default;
+$prefix-for-spec:      true !default; // required for keyframe mixin
+
+@mixin prefixer ($property, $value, $prefixes) {
+  @each $prefix in $prefixes {
+    @if $prefix == webkit {
+      @if $prefix-for-webkit {
+        -webkit-#{$property}: $value;
+      }
+    }
+    @else if $prefix == moz {
+      @if $prefix-for-mozilla {
+        -moz-#{$property}: $value;
+      }
+    }
+    @else if $prefix == ms {
+      @if $prefix-for-microsoft {
+        -ms-#{$property}: $value;
+      }
+    }
+    @else if $prefix == o {
+      @if $prefix-for-opera {
+        -o-#{$property}: $value;
+      }
+    }
+    @else if $prefix == spec {
+      @if $prefix-for-spec {
+        #{$property}: $value;
+      }
+    }
+    @else  {
+      @warn "Unrecognized prefix: #{$prefix}";
+    }
+  }
+}
+
+@mixin disable-prefix-for-all() {
+  $prefix-for-webkit:    false;
+  $prefix-for-mozilla:   false;
+  $prefix-for-microsoft: false;
+  $prefix-for-opera:     false;
+  $prefix-for-spec:      false;
+}
+
+
+//************************************************************************//
+// Example: @include transition(all 0.15s ease-out);
+//************************************************************************//
+@mixin transition ($properties...) {
+  @if length($properties) >= 1 {
+    @include prefixer(transition, $properties, webkit moz spec);
+  }
+
+  @else {
+    $properties: all 0.15s ease-out;
+    @include prefixer(transition, $properties, webkit moz spec);
+  }
+}
+
+//************************************************************************//
+// Example: @include box-sizing(border-box);
+//************************************************************************//
+@mixin box-sizing ($box) {
+//  content-box | border-box | inherit
+  @include prefixer(box-sizing, $box, webkit moz spec);
+}
+
+
+//************************************************************************//
+// Example: @include placeholder();
+//************************************************************************//
+$placeholders: '-webkit-input-placeholder',
+               '-moz-placeholder',
+               '-ms-input-placeholder';
+
+@mixin placeholder {
+  @each $placeholder in $placeholders {
+    @if $placeholder == "-webkit-input-placeholder" {
+      &::#{$placeholder} {
+        @content;
+      }
+    }
+    @else if $placeholder == "-moz-placeholder" {
+      // FF 18-
+      &:#{$placeholder} {
+        @content;
+      }
+
+      // FF 19+
+      &::#{$placeholder} {
+        @content;
+      }
+    }
+    @else {
+      &:#{$placeholder} {
+        @content;
+      }
+    }
+  }
+}
+
+
+//************************************************************************//
+// Example: @include font-face('Metrize-Icons', '/fonts/Metrize-Icons');
+//************************************************************************//
+// Order of the includes matters, and it is: normal, bold, italic, bold+italic.
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false ) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+
+    @if $asset-pipeline == true {
+      src: font-url('#{$file-path}.eot');
+      src: font-url('#{$file-path}.eot?#iefix')          format('embedded-opentype'),
+           font-url('#{$file-path}.ttf')                 format('truetype');
+    } @else {
+      src: url('#{$file-path}.eot');
+      src: url('#{$file-path}.eot?#iefix')               format('embedded-opentype'),
+           url('#{$file-path}.ttf')                      format('truetype');
+    }
+  }
+}
+
+
+//************************************************************************//
+// Example: @include gradient(#fff, #000);
+//************************************************************************//
+@mixin gradient($start, $end) {
+  background: $start;
+  background: -moz-linear-gradient(top, $start 0%, $end 100%);
+  background: -webkit-linear-gradient(top, $start 0%,$end 100%);
+  background: linear-gradient(to bottom, $start 0%,$end 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start}', endColorstr='#{$end}',GradientType=0 );
+}
+
+//************************************************************************//
+// Example: @include gradient(#fff, #000);
+//************************************************************************//
+@mixin box-shadow($shadow) {
+  box-shadow: $shadow;
+}
+
+@function block-shadow($color, $size) {
+  $output: '';
+  @for $i from 1 through $size {
+     $output: $output + '#{$color} #{$i}px #{$i}px 0px';
+     @if $i < $size {
+       $output: $output + ', ';
+     }
+  }
+  @return unquote($output);
+}
+
+
+
+@mixin transform($property: none) {
+//  none | <transform-function>
+  @include prefixer(transform, $property, webkit moz ms o spec);
+}
+
+@mixin transform-origin($axes: 50%) {
+// x-axis - left | center | right  | length | %
+// y-axis - top  | center | bottom | length | %
+// z-axis -                          length
+  @include prefixer(transform-origin, $axes, webkit moz ms o spec);
+}
+
+@mixin transform-style ($style: flat) {
+  @include prefixer(transform-style, $style, webkit moz ms o spec);
+}
+
+
+// Flexbox goodies
+@mixin display-flex() {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin flex-count($count: 1) {
+  -webkit-box-flex: $count;
+  -webkit-flex: $count;
+  -moz-box-flex: $count;
+  -ms-flex: $count;
+  flex: $count;
+}
+
+@mixin flex-horizontal-align($align: center) {
+  -webkit-box-pack: $align;
+  -webkit-justify-content: $align;
+  -moz-box-pack: $align;
+  -ms-flex-pack: $align;
+  justify-content: $align;
+}
+
+@mixin flex-vertical-align($align: center) {
+  -webkit-box-align: $align;
+  -webkit-align-items: $align;
+  -moz-box-align: $align;
+  -ms-flex-align: $align;
+  align-items: $align;
+}
