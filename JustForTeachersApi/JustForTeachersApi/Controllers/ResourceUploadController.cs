@@ -93,9 +93,9 @@ namespace JustForTeachersApi.Controllers
 
                 var temp = JsonConvert.DeserializeObject<List<FileData>>(jsonstring);
 
-                ResourceUploadHelper.UploadResourceFile(temp, id);
+                List<ResourceFile> tmpReturn = ResourceUploadHelper.UploadResourceFile(temp, id);
 
-                return Request.CreateResponse(HttpStatusCode.OK, "Success");
+                return Request.CreateResponse(HttpStatusCode.OK, tmpReturn);
             }
             catch (Exception)
             {

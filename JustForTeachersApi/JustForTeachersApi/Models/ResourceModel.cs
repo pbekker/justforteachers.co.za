@@ -107,4 +107,22 @@ namespace JustForTeachersApi.Models
         public List<FileData> fileData { get; set; }
         public string linkUrl { get; set; }
     }
+
+    public class ResourceFile
+    {
+        public int fileid { get; set; }
+        public string filename { get; set; }
+    }
+
+    public class AuthorData
+    {
+        public string AuthorName { get; set; }
+        public string AuthorSurname { get; set; }
+    }
+
+    public class PublisherData
+    {
+        public string PublisherName { get; set; }
+        public string PublisherSurname { get; set; }
+    }
 }

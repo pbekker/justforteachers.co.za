@@ -40,14 +40,15 @@ namespace JustForTeachersApi
             return retId;
         }
 
-        public static void UploadResourceFile(List<FileData> files, int resourceId)
+        public static List<ResourceFile> UploadResourceFile(List<FileData> files, int resourceId)
         {
-
+            List<ResourceFile> resFileRet = new List<ResourceFile>();
             //we get the information
-            foreach (FileData item in files)
+            using (ResourcesDataContext dc = new ResourcesDataContext())
             {
-                using (ResourcesDataContext dc = new ResourcesDataContext())
+                foreach (FileData item in files)
                 {
+
 
                     bhdFile f = new bhdFile();
                     f.size = item.fileSize;
@@ -70,40 +71,18 @@ namespace JustForTeachersApi
                     dc.SubmitChanges();
 
                 }
+                var r = (from d in dc.bhdResourceFiles
+                         where d.resourceId == resourceId
+                         select d);
+                foreach (var resfile in r)
+                {
+                    ResourceFile tmpFileRes = new ResourceFile();
+                    tmpFileRes.fileid = resfile.fileId;
+                    tmpFileRes.filename = resfile.bhdFile.name;
+                    resFileRet.Add(tmpFileRes);
+                }
             }
-
-            ////so we need to check the filetype
-            //var filetype = file.Headers.ContentType;
-            //var filePath = file.LocalFileName;
-            //int fileId = 0;
-            //if (File.Exists(filePath))
-            //{
-            //    byte[] bytes = File.ReadAllBytes(filePath);
-            //    var length = bytes.Length;
-            //    using (ResourcesDataContext dc = new ResourcesDataContext())
-            //    {
-            //        bhdFile f = new bhdFile();
-            //        f.size = bytes.Length;
-            //        f.name = file.Headers.ContentDisposition.FileName;
-            //        f.isActive = true;
-            //        f.fileTypeId = 1;
-            //        dc.bhdFiles.InsertOnSubmit(f);
-            //        dc.SubmitChanges();
-            //        fileId = f.id;
-
-            //        bhdFileData fd = new bhdFileData();
-            //        fd.fileId = f.id;
-            //        fd.data = bytes;
-            //        dc.bhdFileDatas.InsertOnSubmit(fd);
-            //        dc.SubmitChanges();
-
-            //        bhdResourceFile rf = new bhdResourceFile();
-            //        rf.resourceId = resourceId;
-            //        rf.fileId = f.id;
-            //        dc.bhdResourceFiles.InsertOnSubmit(rf);
-            //        dc.SubmitChanges();
-            //    }
-            //}
+            return resFileRet;
         }
 
         public static void GenerateFilePreview(string filePath)

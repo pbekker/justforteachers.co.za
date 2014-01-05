@@ -38,10 +38,37 @@
 
     <%-- TODO: Add file information collection here --%>
 
-    <div id="divFileinfo">
-        <asp:Repeater runat="server" ID="rptFileInfo">
+    <div id="divFileinfo" runat="server">
+        <asp:Repeater runat="server" ID="rptFileInfo" OnItemCommand="rptFileInfo_ItemCommand" OnItemCreated="rptFileInfo_ItemCreated">
             <ItemTemplate>
-
+                <fieldset>
+                    <asp:Label runat="server" ID="lblFileName" Text='<%#Eval("filename") %>' /><br />
+                    <asp:Label runat="server" ID="lblAuthor" Text="Author" /><asp:Button runat="server" Text="Add Author" ID="btnAddAuthor" CommandName="author" /><br />
+                    <asp:DropDownList runat="server" ID="ddlAuthor" /><br />
+                    <asp:UpdatePanel ID="pnlAuthor" runat="server">
+                        <ContentTemplate>
+                            <asp:Label runat="server" Text="Author Name" ID="lblAName" /><br />
+                            <asp:TextBox runat="server" ID="txtAuthorName" /><br />
+                            <asp:Label runat="server" Text="Author Surname" ID="lblASurname" /><br />
+                            <asp:TextBox runat="server" ID="txtAuthorSurname" /><br />
+                            <asp:LinkButton runat="server" ID="btnAuthorAdd" Text="Add Author" />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    <asp:Label runat="server" ID="lblPublisher" Text="Publisher" /><asp:Button runat="server" Text="Add Publisher" ID="btnAddPublisher" CommandName="publisher" /><br />
+                    <asp:DropDownList runat="server" ID="ddlPublisher" /><br />
+                    <asp:UpdatePanel ID="pnlPublisher" runat="server">
+                        <ContentTemplate>
+                            <asp:Label runat="server" Text="Publisher Name" ID="lblPName" /><br />
+                            <asp:TextBox runat="server" ID="txtPublisherName" /><br />
+                            <asp:Label runat="server" Text="Publisher Surname" ID="lblPSurname" /><br />
+                            <asp:TextBox runat="server" ID="txtPublisherSurname" /><br />
+                            <asp:LinkButton runat="server" ID="lnkPublisherAdd" Text="Add Publisher" />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    <asp:Label runat="server" ID="lblYear" Text="Year" /><br />
+                    <asp:DropDownList runat="server" ID="ddlYear" /><br />
+                    <br />
+                </fieldset>
             </ItemTemplate>
         </asp:Repeater>
     </div>

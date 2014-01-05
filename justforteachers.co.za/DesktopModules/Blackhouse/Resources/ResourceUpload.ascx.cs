@@ -10,12 +10,14 @@ using Newtonsoft.Json;
 using System.IO;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Common;
+using System.Data;
 
 namespace Blackhouse.Resources
 {
     public partial class ResourceUpload : ModuleUserControlBase
     {
         protected string dashboardUrlBase = "http://localhost:27645/api/";
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,10 +68,10 @@ namespace Blackhouse.Resources
                         tmpFile.fileSize = userPostedFile.ContentLength;
                         tmpFile.fileType = userPostedFile.ContentType;
                         tmpFile.fileData = ReadFile(userPostedFile);
-                        Span1.Text += "<u>File #" + (i + 1) + "</u><br>";
-                        Span1.Text += "File Content Type: " + userPostedFile.ContentType + "<br>";
-                        Span1.Text += "File Size: " + userPostedFile.ContentLength + "kb<br>";
-                        Span1.Text += "File Name: " + userPostedFile.FileName + "<br>";
+                        //Span1.Text += "<u>File #" + (i + 1) + "</u><br>";
+                        //Span1.Text += "File Content Type: " + userPostedFile.ContentType + "<br>";
+                        //Span1.Text += "File Size: " + userPostedFile.ContentLength + "kb<br>";
+                        //Span1.Text += "File Name: " + userPostedFile.FileName + "<br>";
                         tmpFileDataList.Add(tmpFile);
                     }
                 }
@@ -77,6 +79,7 @@ namespace Blackhouse.Resources
                 {
                     Span1.Text += "Error: <br>" + Ex.Message;
                 }
+
             }
 
             HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/" + hidResourceId.Value) as HttpWebRequest;
@@ -93,13 +96,33 @@ namespace Blackhouse.Resources
                     streamWriter.Close();
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
-
+                //when we get the response we need to get the object returned.
+                //then show the author and publisher information upload.
+                Stream resp = httpResponse.GetResponseStream();
+                StreamReader reader = new StreamReader(resp);
+                string text = reader.ReadToEnd();
+                List<ResourceFile> result = JsonConvert.DeserializeObject<List<ResourceFile>>(text);
+                System.Diagnostics.Debug.WriteLine(result);
+                rptFileInfo.DataSource = result;
+                rptFileInfo.DataBind();
             }
             catch (Exception ex)
             {
                 lnkSave.Text = ex.ToString();
             }
 
+            divFileUpload.Visible = false;
+            divFileinfo.Visible = true;
+
+            ////now we need to get the author and publisher payloads and set them to the dropdowns
+            //WebClient aclient = new WebClient();
+            //string aurl = dashboardUrlBase + "resourcepublisher";
+            //List<GenDropList> authors = JsonConvert.DeserializeObject<List<GenDropList>>(aclient.DownloadString(aurl));
+            //FillDropDown(ddlAuthor, publishers);
+            //WebClient pclient = new WebClient();
+            //string purl = dashboardUrlBase + "resourcepublisher";
+            //List<GenDropList> publishers = JsonConvert.DeserializeObject<List<GenDropList>>(pclient.DownloadString(purl));
+            //FillDropDown(ddlPublisher, publishers);
         }
 
         private byte[] ReadFile(HttpPostedFile file)
@@ -177,6 +200,7 @@ namespace Blackhouse.Resources
             }
 
         }
+
         protected void UploadWebsite_Click(object sender, EventArgs e)
         {
             string type = "website";
@@ -215,6 +239,7 @@ namespace Blackhouse.Resources
                 Span2.Text = "No information has been added, please add information and try again.";
             Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + hidResourceId.Value);
         }
+
         protected void UploadLessonPlan_Click(object sender, EventArgs e)
         {
             LessonPlan tmpDataPack = new LessonPlan();
@@ -292,7 +317,114 @@ namespace Blackhouse.Resources
             }
 
         }
-    }
+        protected void rptFileInfo_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            //now we need to check what sent the command and then we must react accordingly
+            switch (((LinkButton)e.CommandSource).CommandName.ToLower())
+            {
+                case "author":
+                    //divAddAuthor.Visible = true;
+                    //divFileinfo.Visible = false;
+                    break;
+                case "publisher":
+                    //divAddPublisher.Visible = true;
+                    //divFileinfo.Visible = false;
+                    break;
+                case "addauthor":
+
+                    break;
+                case "addpublisher":
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected void rptFileInfo_ItemCreated(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.DataItem != null)
+            {
+                //populate the dropdowns
+                WebClient aclient = new WebClient();
+                string aurl = dashboardUrlBase + "resourceauthor";
+                List<GenDropList> authors = JsonConvert.DeserializeObject<List<GenDropList>>(aclient.DownloadString(aurl));
+                FillDropDown((DropDownList)e.Item.FindControl("ddlAuthor"), authors);
+
+                WebClient pclient = new WebClient();
+                string purl = dashboardUrlBase + "resourcepublisher";
+                List<GenDropList> publishers = JsonConvert.DeserializeObject<List<GenDropList>>(pclient.DownloadString(purl));
+                FillDropDown((DropDownList)e.Item.FindControl("ddlPublisher"), publishers);
+
+                //hide the add data
+                ((UpdatePanel)e.Item.FindControl("pnlAuthor")).Visible = false;
+                ((UpdatePanel)e.Item.FindControl("pnlPublisher")).Visible = false;
+            }
+        }
+        protected void lnkPublisherAdd_Click(object sender, EventArgs e)
+        {
+            //we can now add the publisher information
+            PublisherData tmpPData = new PublisherData();
+            tmpPData.PublisherName = txtPublisherName.Text;
+            tmpPData.PublisherSurname = txtPublisherSurname.Text;
+            //now post the data
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcepublisher") as HttpWebRequest;
+            request.ContentType = "text/json";
+            request.Method = "POST";
+            try
+            {
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(tmpPData);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+
+            }
+            catch (Exception ex)
+            {
+                lnkPublisherAdd.Text = ex.ToString();
+            }
+            //must update the file info
+            //divAddPublisher.Visible = false;
+            divFileinfo.Visible = true;
+
+        }
+        protected void btnAuthorAdd_Click(object sender, EventArgs e)
+        {
+            //we can now add the author information
+            AuthorData tmpAData = new AuthorData();
+            tmpAData.AuthorName = txtAuthorName.Text;
+            tmpAData.AuthorSurname = txtAuthorSurname.Text;
+            //now post the data
+            HttpWebRequest prequest = WebRequest.Create(dashboardUrlBase + "resourceauthor") as HttpWebRequest;
+            prequest.ContentType = "text/json";
+            prequest.Method = "POST";
+            try
+            {
+                using (var streamWriter = new StreamWriter(prequest.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(tmpAData);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)prequest.GetResponse();
+
+            }
+            catch (Exception ex)
+            {
+                btnAuthorAdd.Text = ex.ToString();
+            }
+            //must update the fileInfo
+            //divAddAuthor.Visible = false;
+            divFileinfo.Visible = true;
+        }
+}
     
     
     public class GenDropList
@@ -330,5 +462,22 @@ namespace Blackhouse.Resources
         public List<FileData> fileData { get; set; }
         public string linkUrl { get; set; }
     }
+    
+    public class ResourceFile
+    {
+        public int fileid { get; set; }
+        public string filename { get; set; }
+    }
 
+    public class AuthorData
+    {
+        public string AuthorName { get; set; }
+        public string AuthorSurname { get; set; }
+    }
+
+    public class PublisherData
+    {
+        public string PublisherName { get; set; }
+        public string PublisherSurname { get; set; }
+    }
 }
