@@ -1,0 +1,176 @@
+html, body, body>form {
+	height: 100%;
+}
+
+@include font-face('icons', '../fonts/jft');
+
+[data-icon]:before {
+	font-family: 'icons';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+
+.toolbar {
+	height: 44px;
+	background: #383838;
+}
+
+.navbar {
+	height: 100px;
+	background: #fff;
+	width: 100%;
+}
+
+.header {
+	background-color: #3498DB;
+	background-size: cover;
+	background-position: center center;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+}
+
+@media all and (min-width: 48em) {
+	.homepage.navbar {
+		position: fixed;
+		width: 100%;
+		z-index: 1;
+	}
+	.header.homepage {
+		position: fixed;
+		top: 100px;
+		bottom: 3%;
+		width: 100%;
+		height: auto;
+	}
+}
+
+
+.header-background {
+	min-width: 100%;
+	min-height: 100%;
+	max-height: 120%;
+	display: block;
+	position: absolute;
+}
+
+.header-blurb {
+	text-align: center;
+	color: #fff;
+	font-weight: 200;
+	padding: 0 30px;
+	position: absolute;
+	width: 100%;
+	bottom: 30px;
+	font-size: 16px;
+}
+
+
+.header-blurb h1 {
+	margin: 0;
+	font-weight: 200;
+}
+
+.header-blurb p {
+	margin: 0 auto 20px auto;
+	font-weight: 200;
+	max-width: 480px;
+}
+
+.page-title {
+	margin: 0;
+	font-weight: 200;
+	color: #fff;
+	position: relative;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 40px 20px;
+}
+
+.navbar-inner {
+	margin: 0 auto;
+	max-width: 1280px;
+}
+
+.menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+
+.logo {
+	max-height: 100%;
+	float: left;
+}
+
+.logo img {
+	display: block;
+	max-height: 100%;
+}
+
+
+.menu>li {
+	float: left;
+	background: #fff;
+	color: $color-alpha;
+}
+.menu a {
+	float: left;
+	line-height: 100px;
+	padding: 0 25px;
+	font-size: 14px;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	color: inherit;
+}
+.menu .active,
+.menu li:hover {
+	text-decoration: underline;
+	color: darken($color-alpha, 20%);
+}
+
+.menu>li div {
+	display: none;
+}
+
+.content {
+	background: #fff;
+}
+
+@media all and (min-width: 48em) {
+	.homepage ~ .content {
+		position: relative;
+		top: 97%;
+	}
+}
+
+
+
+.content-inner {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 30px;
+}
+
+.content-section {
+	overflow: hidden;
+}
+
+
+.right-pane {
+	float: right;
+	width: 300px;
+	min-height: 250px;
+}
+.right-pane + .content-pane {
+	margin-right: 330px;
+}
+
