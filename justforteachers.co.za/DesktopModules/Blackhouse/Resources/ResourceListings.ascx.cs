@@ -16,10 +16,11 @@ namespace Blackhouse.Resources
 {
     public partial class ResourceListings : ModuleUserControlBase
     {
+        protected string dashboardUrlBase = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"];
         protected void Page_Load(object sender, EventArgs e)
         {
             //get the information from the api
-            HttpWebRequest request = WebRequest.Create("http://localhost:27645/api/resourcelist/") as HttpWebRequest;
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcelist/") as HttpWebRequest;
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
             {
                 if (response.StatusCode != HttpStatusCode.OK)
