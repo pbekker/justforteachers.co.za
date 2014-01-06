@@ -18,7 +18,8 @@ namespace Blackhouse.Resources
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpWebRequest request = WebRequest.Create("http://localhost:27645/api/resourcebundle/" + PortalSettings.Current.UserInfo.UserID + "/") as HttpWebRequest;
+            string apiURL = System.Configuration.ConfigurationManager.AppSettings["apiURL"];
+            HttpWebRequest request = WebRequest.Create("http://" + apiURL + "resourcebundle/" + PortalSettings.Current.UserInfo.UserID + "/") as HttpWebRequest;
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
             {
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -29,9 +30,9 @@ namespace Blackhouse.Resources
 
                 Stream resp = response.GetResponseStream();
                 StreamReader reader = new StreamReader(resp);
-                string text = reader.ReadToEnd();
-                var temp = JsonConvert.DeserializeObject<List<ResourceBundle>>(text);
-                gvResourceBundle.DataSource = temp;
+                string jsonstring = reader.ReadToEnd();
+                List<ResourceBundle> rb = JsonConvert.DeserializeObject<List<ResourceBundle>>(jsonstring);
+                gvResourceBundle.DataSource = rb;
                 gvResourceBundle.DataBind();
            }
 
