@@ -331,6 +331,7 @@ CREATE TABLE dbo.bhdResourceAuthor
 	(
 	authorId int NOT NULL,
 	fileId int NOT NULL
+	CONSTRAINT pk_ResourceFile PRIMARY KEY (fileId, authorId)
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.bhdResourceAuthor SET (LOCK_ESCALATION = TABLE)
