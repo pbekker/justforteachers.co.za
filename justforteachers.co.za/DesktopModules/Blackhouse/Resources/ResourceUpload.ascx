@@ -37,40 +37,38 @@
     </div>
 
     <%-- TODO: Add file information collection here --%>
+    <div runat="server" id="divAuthorAdd">
+        <asp:Label runat="server" Text="Author Name" ID="lblAName" /><br />
+        <asp:TextBox runat="server" ID="txtAuthorName" /><br />
+        <asp:Label runat="server" Text="Author Surname" ID="lblASurname" /><br />
+        <asp:TextBox runat="server" ID="txtAuthorSurname" /><br />
+        <asp:LinkButton runat="server" ID="btnAuthorAdd" Text="Add Author" OnClick="btnAuthorAdd_Click" />
+    </div>
+
+    <div runat="server" id="divPublisherAdd">
+        <asp:Label runat="server" Text="Publisher Name" ID="lblPName" /><br />
+        <asp:TextBox runat="server" ID="txtPublisherName" /><br />
+        <asp:Label runat="server" Text="Publisher Surname" ID="lblPSurname" /><br />
+        <asp:TextBox runat="server" ID="txtPublisherSurname" /><br />
+        <asp:LinkButton runat="server" ID="lnkPublisherAdd" Text="Add Publisher" OnClick="lnkPublisherAdd_Click" />
+    </div>
 
     <div id="divFileinfo" runat="server">
-        <asp:Repeater runat="server" ID="rptFileInfo" OnItemCommand="rptFileInfo_ItemCommand" OnItemCreated="rptFileInfo_ItemCreated">
+        <asp:Repeater runat="server" ID="rptFileInfo" OnItemCommand="rptFileInfo_ItemCommand">
             <ItemTemplate>
                 <fieldset>
-                    <asp:Label runat="server" ID="lblFileName" Text='<%#Eval("filename") %>' /><br />
-                    <asp:Label runat="server" ID="lblAuthor" Text="Author" /><asp:Button runat="server" Text="Add Author" ID="btnAddAuthor" CommandName="author" /><br />
+                    <asp:Label runat="server" ID="lblFileName" Text='<%#Eval("filename") %>' /><asp:HiddenField runat="server" Value='<%#Eval("fileid") %>' ID="hidfileid" /> <br />
+                    <asp:Label runat="server" ID="lblAuthor" Text="Author" /><asp:LinkButton runat="server" Text="Add Author" ID="btnAddAuthor" CommandName="author" /><br />
                     <asp:DropDownList runat="server" ID="ddlAuthor" /><br />
-                    <asp:UpdatePanel ID="pnlAuthor" runat="server">
-                        <ContentTemplate>
-                            <asp:Label runat="server" Text="Author Name" ID="lblAName" /><br />
-                            <asp:TextBox runat="server" ID="txtAuthorName" /><br />
-                            <asp:Label runat="server" Text="Author Surname" ID="lblASurname" /><br />
-                            <asp:TextBox runat="server" ID="txtAuthorSurname" /><br />
-                            <asp:LinkButton runat="server" ID="btnAuthorAdd" Text="Add Author" />
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                    <asp:Label runat="server" ID="lblPublisher" Text="Publisher" /><asp:Button runat="server" Text="Add Publisher" ID="btnAddPublisher" CommandName="publisher" /><br />
+                    <asp:Label runat="server" ID="lblPublisher" Text="Publisher" /><asp:LinkButton runat="server" Text="Add Publisher" ID="btnAddPublisher" CommandName="publisher" /><br />
                     <asp:DropDownList runat="server" ID="ddlPublisher" /><br />
-                    <asp:UpdatePanel ID="pnlPublisher" runat="server">
-                        <ContentTemplate>
-                            <asp:Label runat="server" Text="Publisher Name" ID="lblPName" /><br />
-                            <asp:TextBox runat="server" ID="txtPublisherName" /><br />
-                            <asp:Label runat="server" Text="Publisher Surname" ID="lblPSurname" /><br />
-                            <asp:TextBox runat="server" ID="txtPublisherSurname" /><br />
-                            <asp:LinkButton runat="server" ID="lnkPublisherAdd" Text="Add Publisher" />
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
                     <asp:Label runat="server" ID="lblYear" Text="Year" /><br />
                     <asp:DropDownList runat="server" ID="ddlYear" /><br />
                     <br />
                 </fieldset>
             </ItemTemplate>
         </asp:Repeater>
+        <asp:LinkButton ID="lnkSaveFileInfo" runat="server" Text="Save and View..." OnClick="lnkSaveFileInfo_Click" />
     </div>
 
 

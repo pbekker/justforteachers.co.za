@@ -125,4 +125,12 @@ namespace JustForTeachersApi.Models
         public string PublisherName { get; set; }
         public string PublisherSurname { get; set; }
     }
+
+    public class FileInfoData
+    {
+        public int fileid { get; set; }
+        public int authorid { get; set; }
+        public int publisherid { get; set; }
+        public int publishYear { get; set; }
+    }
 }

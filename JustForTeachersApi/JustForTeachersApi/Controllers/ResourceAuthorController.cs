@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 
 namespace JustForTeachersApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ResourceAuthorController : ApiController
     {
         // GET api/resourceauthor

@@ -158,7 +158,9 @@ namespace JustForTeachersApi.Controllers
                             dc.SubmitChanges();
                         }
 
-                        ResourceUploadHelper.UploadResourceFile(lptemp.fileData, id);
+                        List<ResourceFile> tmpReturn = ResourceUploadHelper.UploadResourceFile(lptemp.fileData, id);
+                        
+                        return Request.CreateResponse(HttpStatusCode.OK, tmpReturn);
                         break;
                     default:
                         break;
