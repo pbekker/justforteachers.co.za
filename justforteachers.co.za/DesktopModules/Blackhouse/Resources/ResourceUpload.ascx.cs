@@ -311,6 +311,8 @@ namespace Blackhouse.Resources
                 rptFileInfo.DataSource = result;
                 rptFileInfo.DataBind();
                 updateAuthPub();
+                divLessonplan.Visible = false;
+                divFileinfo.Visible = true;
             }
             catch (Exception ex)
             {
