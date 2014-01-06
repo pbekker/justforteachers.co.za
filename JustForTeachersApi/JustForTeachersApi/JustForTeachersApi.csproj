@@ -271,6 +271,7 @@
     <None Include="App_Data\Resources.dbml.layout">
       <DependentUpon>Resources.dbml</DependentUpon>
     </None>
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

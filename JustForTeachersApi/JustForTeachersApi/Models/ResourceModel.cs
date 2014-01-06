@@ -92,6 +92,7 @@ namespace JustForTeachersApi.Models
 		public string fileType {get;set;}
 		public string fileExtension {get;set;}
         public bool isActive { get; set; }
+        public bool isFavourite { get; set; }
     }
 
     public class FileData

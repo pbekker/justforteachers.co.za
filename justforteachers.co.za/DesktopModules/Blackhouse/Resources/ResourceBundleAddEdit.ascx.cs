@@ -58,6 +58,7 @@ namespace Blackhouse.Resources
             newBundle.name = txtBundleName.Text;
             newBundle.description = txtBundleDescription.Text;
             newBundle.fileId = int.Parse(hidResourceFileId.Value);
+            newBundle.isFavourite = false;
             newBundleList.Add(newBundle);
 
             string jsonstring = JsonConvert.SerializeObject(newBundleList);
@@ -113,5 +114,6 @@ namespace Blackhouse.Resources
         public string fileType { get; set; }
         public string fileExtension { get; set; }
         public bool isActive { get; set; }
+        public bool isFavourite { get; set; }
     }
 }

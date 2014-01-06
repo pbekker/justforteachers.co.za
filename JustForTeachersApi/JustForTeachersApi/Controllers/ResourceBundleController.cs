@@ -109,8 +109,7 @@ namespace JustForTeachersApi.Controllers
                                 bhdResourceBundleFile newFile = new bhdResourceBundleFile();
                                 newFile.resourceFileId = rb.fileId;
                                 newFile.bundleId = id;
-                                //TODO: uncomment when dbml is redone.
-                                //newFile.isFavourite = rb.isFavourite;
+                                newFile.isFavourite = rb.isFavourite;
                                 dc.bhdResourceBundleFiles.InsertOnSubmit(newFile);
                                 dc.SubmitChanges();
                             }
@@ -119,8 +118,7 @@ namespace JustForTeachersApi.Controllers
                                 bhdResourceBundleFile currentfile = bundleFiles.Single((x) => x.resourceFileId == rb.fileId);
                                 currentfile.resourceFileId = rb.fileId;
                                 currentfile.bundleId = rb.bundleId;
-                                //TODO: uncomment when dbml is redone.
-                                //newFile.isFavourite = rb.isFavourite;
+                                currentfile.isFavourite = rb.isFavourite;
                                 dc.SubmitChanges();
                             }
                         }

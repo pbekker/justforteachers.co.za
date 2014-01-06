@@ -16,7 +16,7 @@ namespace Blackhouse.Resources
 {
     public partial class ResourceUpload : ModuleUserControlBase
     {
-        protected string dashboardUrlBase = "http://localhost:27645/api/";
+        protected string dashboardUrlBase = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"];
         public List<ResourceFile> fileinfo;
 
         protected void Page_Load(object sender, EventArgs e)
