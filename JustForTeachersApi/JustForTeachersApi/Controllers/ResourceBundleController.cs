@@ -63,6 +63,12 @@ namespace JustForTeachersApi.Controllers
                     dc.bhdResourceBundles.InsertOnSubmit(rb);
                     dc.SubmitChanges();
                     returnId = rb.bundleId;
+
+                    bhdResourceBundleFile rbf = new bhdResourceBundleFile();
+                    rbf.resourceFileId = newBundle.fileId;
+                    rbf.bundleId = returnId;
+                    dc.bhdResourceBundleFiles.InsertOnSubmit(rbf);
+                    dc.SubmitChanges();
                 }
             }
             catch (Exception ex) 
@@ -74,13 +80,69 @@ namespace JustForTeachersApi.Controllers
 
         [HttpPut]
         [AllowAnonymous]
-        public void Put(int id, [FromBody]string value)
+        public async Task<HttpResponseMessage> Put(int id)
         {
-            //TODO: this is the tricky one. How do we know if it is just adding a file or changing the bundle info?
-            using (ResourcesDataContext dc = new ResourcesDataContext())
+            try
             {
+                Stream streamIn = await Request.Content.ReadAsStreamAsync();
+                StreamReader streamReader = new StreamReader(streamIn);
+                string jsonstring = streamReader.ReadToEnd();
+                List<ResourceBundle> newBundles = JsonConvert.DeserializeObject<List<ResourceBundle>>(jsonstring);
 
+                using (ResourcesDataContext dc = new ResourcesDataContext())
+                {
+                    bhdResourceBundle currentBundle = dc.bhdResourceBundles.Single((x) => x.bundleId == id);
+                    List<bhdResourceBundleFile> bundleFiles = dc.bhdResourceBundleFiles.Where((x) => x.bundleId == id).ToList();
+
+                    if ((newBundles.Count() == 0 && id != 0) || (currentBundle.isActive != newBundles.First().isActive))
+                    {
+                        currentBundle.isActive = false;
+                        dc.SubmitChanges();
+                        return Request.CreateResponse(HttpStatusCode.OK, string.Format("Bundle {0} successfully removed.", currentBundle.name));
+                    }
+                    else if (newBundles.Count() > 0 && id != 0)
+                    {
+                        foreach (ResourceBundle rb in newBundles)
+                        {
+                            if (!bundleFiles.Any((x) => x.resourceFileId == rb.fileId))
+                            {
+                                bhdResourceBundleFile newFile = new bhdResourceBundleFile();
+                                newFile.resourceFileId = rb.fileId;
+                                newFile.bundleId = id;
+                                //TODO: uncomment when dbml is redone.
+                                //newFile.isFavourite = rb.isFavourite;
+                                dc.bhdResourceBundleFiles.InsertOnSubmit(newFile);
+                                dc.SubmitChanges();
+                            }
+                            else
+                            {
+                                bhdResourceBundleFile currentfile = bundleFiles.Single((x) => x.resourceFileId == rb.fileId);
+                                currentfile.resourceFileId = rb.fileId;
+                                currentfile.bundleId = rb.bundleId;
+                                //TODO: uncomment when dbml is redone.
+                                //newFile.isFavourite = rb.isFavourite;
+                                dc.SubmitChanges();
+                            }
+                        }
+
+                        bundleFiles = dc.bhdResourceBundleFiles.Where((x) => x.bundleId == id).ToList();
+                        foreach (bhdResourceBundleFile bf in bundleFiles)
+                        {
+                            if (!newBundles.Any((x) => x.fileId == bf.resourceFileId))
+                            {
+                                dc.bhdResourceBundleFiles.DeleteOnSubmit(bf);
+                                dc.SubmitChanges();
+                            }
+                        }
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK, string.Format("Bundle files sucessfully for {0}", currentBundle.name));
+                }
             }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. " + ex.Message + ". 400-3");
+            }
+            
         }
 
         [HttpDelete]

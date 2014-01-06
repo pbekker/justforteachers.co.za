@@ -10,7 +10,7 @@ using System.Web;
 
 namespace Blackhouse.Resources
 {
-    public class ResourceBundle
+    public partial class ResourceBundle
     {
         public int bundleId { get; set; }
         public string name { get; set; }
