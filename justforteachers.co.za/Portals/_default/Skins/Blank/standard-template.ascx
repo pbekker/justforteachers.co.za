@@ -39,8 +39,22 @@
 <div class="content">
 	<div class="content-section">
 		<div class="content-inner">
-			<div id="RightPane" class="right-pane" runat="server"></div>
 			<div id="ContentPane" class="content-pane" runat="server"></div>
+		</div>
+	</div>
+</div>
+<div class="content">
+	<div class="content-section">
+		<div class="content-inner">
+			<div id="RightPane" class="right-pane" runat="server"></div>
+			<div id="LeftPane" class="content-pane" runat="server"></div>
+		</div>
+	</div>
+</div>
+<div class="content">
+	<div class="content-section">
+		<div class="content-inner">
+			<div id="BottomPane" class="content-pane" runat="server"></div>
 		</div>
 	</div>
 </div>
