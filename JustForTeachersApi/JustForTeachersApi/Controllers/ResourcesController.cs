@@ -9,6 +9,7 @@ using JustForTeachersApi.Models;
 using System.Threading.Tasks;
 using System.Web;
 using System.IO;
+using System.IO.Compression;
 using System.Web.Http.Cors;
 using Newtonsoft.Json;
 
@@ -52,6 +53,45 @@ namespace JustForTeachersApi.Controllers
                 }
             }
             return tmpResource;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public HttpResponseMessage GetFile(List<int> id)
+        {
+            if (id.Count() == 0)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "No file id sent through.");
+
+            using (ResourcesDataContext db = new ResourcesDataContext())
+            {
+                if (id.Count() == 1)
+                {
+                    bhdFile currentFile = db.bhdFiles.Single((x) => x.id == id.First());
+                    bhdFileData fileData = db.bhdFileDatas.Single((x) => x.fileId == currentFile.id);
+                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+                    response.Content = new ByteArrayContent(fileData.data.ToArray());
+                    response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+                    response.Content.Headers.ContentDisposition.FileName = currentFile.name;
+                    return response;
+                }
+                else
+                {
+                    // do the zip 
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (ZipArchive zip = new ZipArchive(ms, ZipArchiveMode.Create, true))
+                        {
+                            foreach (int fileId in id)
+                            {
+                                
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            return Request.CreateResponse(HttpStatusCode.BadRequest, "No File(s) found.");
         }
 
         // POST api/resources

@@ -2,7 +2,7 @@ app.factory('ResourcesApi', ['$http', function ($http) {
 
     $http.defaults.useXDomain = true;
 
-    var baseURL = "http://localhost:27645/api"
+    var baseURL = "http://api.justforteachers.co.za/api"
         uploadURL = baseURL + "/resourceupload",
         resourcelistURL = baseURL + "/resourcelist",
         resourcefeaturedURL = baseURL + "/resourcefeature",
