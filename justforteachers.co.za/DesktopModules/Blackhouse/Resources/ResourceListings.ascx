@@ -46,6 +46,6 @@ div:hover .box:not(:hover) {
         </div>
     </ItemTemplate>
 </asp:Repeater>
-<div>
+<div style="clear:both;">
     <asp:LinkButton runat="server" ID="lnkAdd" Text ="Add a resource" OnClick="lnkAdd_Click" />
 </div>
