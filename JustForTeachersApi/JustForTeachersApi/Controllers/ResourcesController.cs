@@ -12,6 +12,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Web.Http.Cors;
 using Newtonsoft.Json;
+using Ionic.Zip;
 
 namespace JustForTeachersApi.Controllers
 {
@@ -66,28 +67,33 @@ namespace JustForTeachersApi.Controllers
             {
                 if (id.Count() == 1)
                 {
-                    bhdFile currentFile = db.bhdFiles.Single((x) => x.id == id.First());
-                    bhdFileData fileData = db.bhdFileDatas.Single((x) => x.fileId == currentFile.id);
+                    bhdFileData fileData = db.bhdFileDatas.Single((x) => x.fileId == id.First());
                     HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
                     response.Content = new ByteArrayContent(fileData.data.ToArray());
                     response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-                    response.Content.Headers.ContentDisposition.FileName = currentFile.name;
+                    response.Content.Headers.ContentDisposition.FileName = fileData.bhdFile.name + fileData.bhdFile.bhdFileType.extension;
                     return response;
                 }
                 else
-                {
-                    // do the zip 
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        using (ZipArchive zip = new ZipArchive(ms, ZipArchiveMode.Create, true))
-                        {
-                            foreach (int fileId in id)
-                            {
-                                
-                            }
-                        }
+                {       
 
+                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+                    string archiveName = String.Format("justforteachers-{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"));
+                    response.Content.Headers.ContentDisposition.FileName = archiveName;
+                    response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+                    FileStream fs = new FileStream();
+                    using(ZipFile zf = new ZipFile())
+                    {
+                        foreach (int fileId in id)
+                        {
+                            bhdFileData fileData = db.bhdFileDatas.Single((x) => x.fileId == id.First());
+                            zf.AddEntry(fileData.bhdFile.name + fileData.bhdFile.bhdFileType.extension, fileData.data.ToArray());
+                        }
+                        zf.Save(fs);
                     }
+                    BinaryReader br = new BinaryReader(fs);
+                    response.Content = new ByteArrayContent(br.ReadBytes(int.Parse(fs.Length.ToString())));
+                    return response;
                 }
             }
 
