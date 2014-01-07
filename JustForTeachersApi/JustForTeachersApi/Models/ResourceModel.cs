@@ -60,6 +60,26 @@ namespace JustForTeachersApi.Models
         public List<ResourceList> resourceList { get; set; }
     }
 
+    public class ResourceViewPayload
+    {
+        public ResourceList resourceInfo { get; set; }
+        public List<FileViewInfo> fileInfo { get; set; }
+        public List<LinkViewInfo> urlInfo { get; set; }
+    }
+    
+    public class FileViewInfo
+    {
+        public string FileName { get; set; } 
+        public int  FileSize { get; set; }
+        public string FileContentType { get; set; }
+        public int FileId { get; set; }
+    }
+
+    public class LinkViewInfo
+    {
+        public string resourceURL { get; set; }
+    }
+
     public class ResourceList
     {
         public int ResourceId { get; set; }
