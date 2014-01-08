@@ -504,12 +504,51 @@ CREATE TABLE dbo.bhdResourceBundleFile
 	bundleId int NOT NULL,
 	resourceFileId int NOT NULL,
 	isFavourite bit NOT NULL
+	CONSTRAINT pk_ResourceBundleFile PRIMARY KEY (bundleId, resourceFileId)
 	)  ON [PRIMARY]
 GO
 
 ALTER TABLE dbo.bhdResourceBundleFile SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceFormat')
+DROP TABLE bhdResourceFormat
+GO
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdResourceFormat
+	(
+	resourceId int NOT NULL,
+	formatId int NOT NULL
+	CONSTRAINT pk_ResourceFormat PRIMARY KEY (resourceid, formatId)
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdResourceFormat SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFormat')
+DROP TABLE bhdFormat
+GO
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.bhdFormat
+	(
+	id int NOT NULL,
+	name varchar(255) NOT NULL,
+	isActive bit NULL
+	CONSTRAINT pk_Format PRIMARY KEY (id)
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdFormat ADD CONSTRAINT
+	DF_bhdFormat_isActive DEFAULT 1 FOR isActive
+GO
+ALTER TABLE dbo.bhdFormat SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
 
 /*************************** LOOK UP TABLES ************************************/
 IF NOT EXISTS(SELECT * FROM bhdResourceLanguage)
@@ -521,17 +560,50 @@ END
 IF NOT EXISTS(SELECT * FROM bhdResourceTopics)
 BEGIN
 	INSERT INTO bhdResourceTopics (parentId, name, [description], isActive)
-	VALUES (NULL, 'FET', 'FET LEVEL RESOURCES', 1)
-			,(NULL, 'GET', 'GET LEVEL RESOURCES', 1)
-			,(1, 'English Lit', 'literature resources', 1)
-			,(1, 'Afrikaans', 'afrikaans stuff.', 1)
+	VALUES (NULL, 'FET', 'Further Education and Training (Grades 10 - 12)', 1)
+			,(NULL, 'GED (Grades 7 - 9)', 'GED Senior Phase (Grades 7 - 9)', 1)
+			,(NULL, 'GED (Grades 4 - 6)', 'GED Intermediate Phase (Grades 4 - 6)', 1)
+			,(NULL, 'GED (Grades 0 - 3)', 'GED Foundation Phase (Grades 0 - 3)', 1)
+			,(1, 'Accounting', '', 1)
+			,(1, 'Afrikaans', '', 1)
+			,(1, 'Agricultural Management', '', 1)
+			,(1, 'Practices','',1)
+			,(1, 'Agricultural Sciences', '', 1)
+			,(1, 'Agricultural Technology', '', 1)
+			,(1, 'Business Studies', '', 1)
+			,(1, 'Civil Technology', '', 1)
+			,(1, 'Computer Applications', '', 1)
+			,(1, 'Technology ', '', 1)
+			,(1, 'Consumer Studies', '', 1)
+			,(1, 'Dance Studies', '', 1)
+			,(1, 'Design', '', 1)
+			,(1, 'Dramatic Arts', '', 1)
+			,(1, 'Economics', '', 1)
+			,(1, 'Electrical Technology', '', 1)
+			,(1, 'Engineering Graphics and Design', '', 1)
+			,(1, 'English', '', 1)
+			,(1, 'Geography', '', 1)
+			,(1, 'History', '', 1)
+			,(1, 'Hospitality Studies', '', 1)
+			,(1, 'Information Technology', '', 1)
+			,(1, 'Life Sciences', '', 1)
+			,(1, 'Mathematics', '', 1)
+			,(1, 'Mathematics Literacy', '', 1)
+			,(1, 'Mechanical Technology', '', 1)
+			,(1, 'Music', '', 1)
+			,(1, 'Physical Science', '', 1)
+			,(1, 'Religion Studies', '', 1)
+			,(1, 'Tourism', '', 1)
+			,(1, 'Visual Arts', '', 1)
+			,(1, 'Xhosa', '', 1)
+			,(1, 'Zulu', '', 1)
 	
 END
 
 IF NOT EXISTS(SELECT * FROM bhdResourceType)
 BEGIN
 	INSERT INTO bhdResourceType (name, isActive)
-	VALUES ('Book', 1), ('Website', 1), ('Lesson Plan', 1)
+	VALUES ('File', 1), ('Website Link (URL)', 1)
 	
 END
 
