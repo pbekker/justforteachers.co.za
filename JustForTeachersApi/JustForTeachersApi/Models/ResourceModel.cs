@@ -154,4 +154,13 @@ namespace JustForTeachersApi.Models
         public int publisherid { get; set; }
         public int publishYear { get; set; }
     }
+
+    public class FileDownloadData
+    {
+        public string ContentType { get; set; }
+        public string ContentLength { get; set; }
+        public string ContentDisposition { get; set; }
+        public string ContentDispositionFileName { get; set; }
+        public byte[] FileData { get; set; }
+    }
 }

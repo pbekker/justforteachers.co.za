@@ -8,6 +8,8 @@ using DotNetNuke.UI.Modules;
 using System.Net;
 using Newtonsoft.Json;
 using DotNetNuke.Common;
+using System.IO;
+using System.Net.Http;
 
 namespace Blackhouse.Resources
 {
@@ -54,6 +56,45 @@ namespace Blackhouse.Resources
         {
             //this is where we will get the information needed for the files to be downloaded.
             //((LinkButton)e.CommandSource).CommandArgument)
+            List<int> tmpFileId = new List<int>();
+            tmpFileId.Add(int.Parse(((LinkButton)e.CommandSource).CommandArgument));
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcefile/1") as HttpWebRequest;
+            request.ContentType = "text/json";
+            request.Method = "PUT";
+            try
+            {
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(tmpFileId);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+                //when we get the response we need to get the object returned.
+                //then show the author and publisher information upload.
+                Stream resp = httpResponse.GetResponseStream();
+                StreamReader reader = new StreamReader(resp);
+                string text = reader.ReadToEnd();
+                FileDownloadData file = JsonConvert.DeserializeObject<FileDownloadData>(text);
+                Response.Clear();
+
+                Response.AddHeader("Content-Type", "image/jpeg");
+                Response.AddHeader("Content-Length", file.FileData.Length.ToString());
+                
+                Response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}; size={1}", file.ContentDispositionFileName, file.FileData.Length));
+
+                Response.BinaryWrite(file.FileData.ToArray());
+                Response.Flush();
+
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                //bleh..
+                ((LinkButton)e.CommandSource).Text = ex.Message;
+            }
         }
 }
 
@@ -88,4 +129,12 @@ namespace Blackhouse.Resources
         public string resourceURL { get; set; }
     }
 
+    public class FileDownloadData
+    {
+        public string ContentType { get; set; }
+        public string ContentLength { get; set; }
+        public string ContentDisposition { get; set; }
+        public string ContentDispositionFileName { get; set; }
+        public byte[] FileData { get; set; }
+    }
 }
