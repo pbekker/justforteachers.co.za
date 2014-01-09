@@ -20,13 +20,18 @@
 
 <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700'>
 <link rel="stylesheet" href="<%=skinpath%>css/screen.css" />
-
+<div class="toolbar homepage">
+	<div class="toolbar-inner">
+		<dnn:USER ID="dnnUser" runat="server" LegacyMode="false" />
+		<dnn:LOGIN ID="dnnLogin" CssClass="LoginLink" runat="server" LegacyMode="false" />		
+	</div>
+</div>
 <div class="navbar homepage">
 	<div class="navbar-inner">
 		<dnn:LOGO runat="server" id="dnnLOGO" CssClass="logo" />
-		<dnn:MENU MenuStyle="StandardMenu" runat="server"></dnn:MENU>
-		<dnn:USER ID="dnnUser" runat="server" LegacyMode="false" />
-		<dnn:LOGIN ID="dnnLogin" CssClass="LoginLink" runat="server" LegacyMode="false" />
+		<ul class="menu">
+			<dnn:MENU MenuStyle="StandardMenu" runat="server"></dnn:MENU>
+		</ul>
 	</div>
 </div>
 
@@ -76,11 +81,53 @@
 			</div>
 		</div>
 	</div>
-	<div class="content-section trending-items">
+	<div class="content-section">
 		<div class="content-inner">
-			<div id="ContentPane" runat="server">
+			<div id="TopPane" class="content-pane" runat="server"></div>
+		</div>
+	</div>
+	<div class="content-section">
+		<div class="content-inner">
+			<div id="TopRightPane" class="right-pane" runat="server"></div>
+			<div id="TopLeftPane" class="left-pane" runat="server"></div>
+			<div id="TopCenterPane" class="content-pane" runat="server"></div>
+		</div>
+	</div>
+	<div class="content-section">
+		<div class="content-inner">
+			<div id="ContentPane" class="content-pane" runat="server">
 			</div>
 		</div>
+	</div>
+	<div class="content-section">
+		<div class="content-inner">
+			<div id="LeftPane" class="half-pane" runat="server"></div>
+			<div id="LRightPane" class="half-pane" runat="server"></div>
+		</div>
+	</div>
+	<div class="content-section">
+		<div class="content-inner">
+			<div id="ContentPane2" class="content-pane" runat="server">
+			</div>
+		</div>
+	</div>
+	<div class="content-section">
+		<div class="content-inner">
+			<div id="BottomRightPane" class="right-pane" runat="server"></div>
+			<div id="BottomLeftPane" class="left-pane" runat="server"></div>
+			<div id="BottomCenterPane" class="content-pane" runat="server"></div>
+		</div>
+	</div>
+	<div class="content-section">
+		<div class="content-inner">
+			<div id="BottomPane" runat="server">
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<ul class="footer-inner">
+			<dnn:MENU MenuStyle="StandardMenu" runat="server"></dnn:MENU>
+		</ul>
 	</div>
 </div>
 

@@ -472,8 +472,52 @@ html, body, body > form {
   width: 100%;
 }
 
+.toolbar {
+  height: 44px;
+  background: #383838;
+}
+
+.registerGroup ul {
+  line-height: 44px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.registerGroup li {
+  float: left;
+}
+
+.loginGroup {
+  font-size: 13px;
+  float: right;
+  line-height: 44px;
+}
+
+.registerGroup a {
+  float: left;
+  padding: 0 10px;
+  font-size: 13px;
+}
+
+.loginGroup a {
+  padding: 0 10px;
+}
+
+.registerGroup a:hover
+.loginGroup a:hover {
+  color: #fff;
+}
+
 @media all and (min-width: 48em) {
   .homepage.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    top: 44px;
+  }
+
+  .homepage.toolbar {
     position: fixed;
     width: 100%;
     z-index: 1;
@@ -481,7 +525,7 @@ html, body, body > form {
 
   .header.homepage {
     position: fixed;
-    top: 100px;
+    top: 144px;
     bottom: 3%;
     width: 100%;
     height: auto;
@@ -555,7 +599,7 @@ html, body, body > form {
   color: #3498db;
 }
 
-.menu a {
+.menu > li > a {
   float: left;
   line-height: 100px;
   padding: 0 25px;
@@ -564,16 +608,34 @@ html, body, body > form {
   text-transform: uppercase;
   text-align: center;
   color: inherit;
+  position: relative;
 }
 
 .menu .active,
-.menu li:hover {
+.menu > li:hover {
   text-decoration: underline;
   color: #196090;
 }
 
-.menu > li div {
+.menu > li .subMenu {
   display: none;
+  position: absolute;
+  top: 100%;
+}
+
+.menu > li .subMenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 25px 25px 25px;
+  background: #fff;
+}
+
+.menu > li .subMenu ul a {
+  padding: 3px 0;
+}
+
+.menu > li:hover .subMenu {
+  display: block;
 }
 
 .content {
@@ -599,11 +661,52 @@ html, body, body > form {
 .right-pane {
   float: right;
   width: 300px;
-  min-height: 250px;
 }
 
-.right-pane + .content-pane {
+.right-pane {
+  float: left;
+  width: 300px;
+}
+
+.right-pane ~ .content-pane {
   margin-right: 330px;
+}
+
+.left-pane ~ .content-pane {
+  margin-left: 330px;
+}
+
+.half-pane {
+  width: 50%;
+  float: left;
+}
+
+.footer {
+  background: #f5f5f5;
+  overflow: hidden;
+}
+
+.footer-inner,
+.toolbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 30px;
+  list-style: none;
+}
+
+.footer-inner > li {
+  float: left;
+  width: 16.6%;
+}
+
+.footer-inner > li > a {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-inner .subMenu ul {
+  margin: 10px 0;
+  padding: 0 30px 0 0;
 }
 
 .header-btn {

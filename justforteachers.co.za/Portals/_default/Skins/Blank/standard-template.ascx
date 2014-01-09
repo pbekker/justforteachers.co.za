@@ -23,12 +23,18 @@
 
 
 
+<div class="toolbar">
+	<div class="toolbar-inner">
+		<dnn:USER ID="dnnUser" runat="server" LegacyMode="false" />
+		<dnn:LOGIN ID="dnnLogin" CssClass="LoginLink" runat="server" LegacyMode="false" />		
+	</div>
+</div>
 <div class="navbar">
 	<div class="navbar-inner">
 		<dnn:LOGO runat="server" id="dnnLOGO" CssClass="logo" />
-		<dnn:MENU MenuStyle="StandardMenu" runat="server"></dnn:MENU>
-		<dnn:USER ID="dnnUser" runat="server" LegacyMode="false" />
-		<dnn:LOGIN ID="dnnLogin" CssClass="LoginLink" runat="server" LegacyMode="false" />
+		<ul class="menu">
+			<dnn:MENU MenuStyle="StandardMenu" runat="server"></dnn:MENU>
+		</ul>
 	</div>
 </div>
 
@@ -42,20 +48,21 @@
 			<div id="ContentPane" class="content-pane" runat="server"></div>
 		</div>
 	</div>
-</div>
-<div class="content">
 	<div class="content-section">
 		<div class="content-inner">
 			<div id="RightPane" class="right-pane" runat="server"></div>
 			<div id="LeftPane" class="content-pane" runat="server"></div>
 		</div>
 	</div>
-</div>
-<div class="content">
 	<div class="content-section">
 		<div class="content-inner">
 			<div id="BottomPane" class="content-pane" runat="server"></div>
 		</div>
+	</div>
+	<div class="footer">
+		<ul class="footer-inner">
+			<dnn:MENU MenuStyle="StandardMenu" runat="server"></dnn:MENU>
+		</ul>
 	</div>
 </div>
 

@@ -15,11 +15,11 @@
   </xsl:template>
   
 <xsl:template match="root">
-<ul class="menu">
+
         <xsl:apply-templates select="node">
           <xsl:with-param name="nodeType">root</xsl:with-param>
         </xsl:apply-templates>
-</ul>
+
 </xsl:template>
   <xsl:template match="node">
     <xsl:param name="nodeType" />
