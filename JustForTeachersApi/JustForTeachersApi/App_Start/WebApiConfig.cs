@@ -19,6 +19,12 @@ namespace JustForTeachersApi
             //); 
 
             config.Routes.MapHttpRoute(
+                name: "Default2Api",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            ); 
+
+            config.Routes.MapHttpRoute(
                 name: "ResourceUpload",
                 routeTemplate: "api/{controller}/{id}/{type}",
                 defaults: new { id = RouteParameter.Optional, type = RouteParameter.Optional }

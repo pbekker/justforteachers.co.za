@@ -60,6 +60,26 @@ namespace JustForTeachersApi.Models
         public List<ResourceList> resourceList { get; set; }
     }
 
+    public class ResourceViewPayload
+    {
+        public ResourceList resourceInfo { get; set; }
+        public List<FileViewInfo> fileInfo { get; set; }
+        public List<LinkViewInfo> urlInfo { get; set; }
+    }
+    
+    public class FileViewInfo
+    {
+        public string FileName { get; set; } 
+        public int  FileSize { get; set; }
+        public string FileContentType { get; set; }
+        public int FileId { get; set; }
+    }
+
+    public class LinkViewInfo
+    {
+        public string resourceURL { get; set; }
+    }
+
     public class ResourceList
     {
         public int ResourceId { get; set; }
@@ -133,5 +153,14 @@ namespace JustForTeachersApi.Models
         public int authorid { get; set; }
         public int publisherid { get; set; }
         public int publishYear { get; set; }
+    }
+
+    public class FileDownloadData
+    {
+        public string ContentType { get; set; }
+        public string ContentLength { get; set; }
+        public string ContentDisposition { get; set; }
+        public string ContentDispositionFileName { get; set; }
+        public byte[] FileData { get; set; }
     }
 }

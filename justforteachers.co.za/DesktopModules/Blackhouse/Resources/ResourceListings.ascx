@@ -1,28 +1,42 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceListings.ascx.cs" Inherits="Blackhouse.Resources.ResourceListings" %>
 
 <style>
-    .resource-listing {
-        display:block;
-        background: #ececec;
-        border: 1px solid #e5e5e5;
-        padding: 5px;
-        margin: 5px;
-    }
-    .resource-listing a {
-        font-size: 16px;
-        line-height: 26px;
-        text-decoration: none;
-    }
-    .resource-listing p {
-        font-size: 12px;
-        line-height: 14px;
-    }
+div.box {
+    float:left;
+    width:223px;
+    padding: 5px;
+    border: 2px solid #FAFAFA;
+    margin: 2px;
+	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+}
+
+div.box h3 {
+    font-size: 24px;
+    line-height: 26px;
+    margin: 0;
+}
+div.box h3 a:link, div.box h3 a:hover {
+    text-decoration:none;
+}
+div.box p {
+    line-height: 14px;
+    font-size: 12px;
+    overflow: hidden;
+    height: 28px;
+	color: #333;
+	margin: 0;
+    margin-bottom: 4px;
+}
+
+div:hover .box:not(:hover) {
+    opacity: 0.4;
+}
+
 </style>
 
 <asp:Repeater runat="server" ID="rptListings" OnItemCommand="rptListings_ItemCommand">
-
     <ItemTemplate>
-        <div class="resource-listing">
+        <div class="box">
             <h3><asp:LinkButton runat="server" ID="lblResourceName" Text='<%#Eval("ResourceName") %>' CommandArgument='<%#Eval("ResourceId") %>' /></h3>
             <p><asp:Label runat="server" ID="lblResourceDescription" Text='<%#Eval("ResourceDescription") %>' /></p>
             <span><b>Type:</b> <asp:Label runat="server" ID="ResourceType" Text='<%#Eval("ResourceType") %>' /></span><br />
@@ -31,31 +45,7 @@
             <p><b>Uploaded:</b> <asp:Label runat="server" ID="ResourceUploadDate" Text='<%#Eval("ResourceUploadDate") %>' /></p>
         </div>
     </ItemTemplate>
-
 </asp:Repeater>
-
-<asp:LinkButton runat="server" ID="lnkAdd" Text ="Add a resource" OnClick="lnkAdd_Click" />
-
-
-<%--<base href="/" />
-<script src="/DesktopModules/Blackhouse/js/admin.js"></script>--%>
-
-
-<%--<div ng-app="resource-manager">
-    <div ng-controller="ResourcesList">
-        <div ng-repeat="resource in defaults">
-            <div class="resource-listing">
-                <a ng-click="selectResource(resource)">{{resource.ResourceName}}</a>
-                <p>{{resource.ResourceDescription | truncate:300}}</p>
-                <span><b>Type:</b> {{resource.ResourceType}}</span>
-                <span><b>Topic:</b> {{resource.ResourceTopic}}</span>
-                <span><b>Language:</b> {{resource.ResourceLanguage}}</span>
-                <p><b>Uploaded:</b> {{resource.ResourceUploadDate}}</p>
-            </div>
-        </div>
-
-        <input type="hidden" name="moduleId" ng-model="moduleId" value="<%= ModuleContext.ModuleId %>" value-setter />
-
-    </div>
+<div style="clear:both;">
+    <asp:LinkButton runat="server" ID="lnkAdd" Text ="Add a resource" OnClick="lnkAdd_Click" />
 </div>
-<asp:LinkButton runat="server" ID="lnkAdd" Text ="Add a resource" OnClick="lnkAdd_Click" />--%>

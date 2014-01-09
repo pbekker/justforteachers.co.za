@@ -29,10 +29,11 @@ namespace JustForTeachersApi.Controllers
         // GET api/resources/5
         [HttpGet]
         [AllowAnonymous]
-        public ResourceList Get(int id)
+        public ResourceViewPayload Get(int id)
         {
             //this is to get a resource
-            ResourceList tmpResource = new ResourceList();
+            ResourceViewPayload tmpResource = new ResourceViewPayload();
+            ResourceList tmpList = new ResourceList();
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
                 var r = (from d in dc.bhdResources
@@ -43,55 +44,26 @@ namespace JustForTeachersApi.Controllers
                          select new { ResourceName = d.name, ResourceDescription = d.description, ResourceUpload = d.uploadDate, ResourceId = d.id, ResourceLanguage = l.name, ResourceTopic = top.name, ResourceType = typ.name }).FirstOrDefault();
                 if (r != null)
                 {
-                    tmpResource.ResourceName = r.ResourceName;
-                    tmpResource.ResourceDescription = r.ResourceDescription;
-                    tmpResource.ResourceUploadDate = r.ResourceUpload.ToShortDateString();
-                    tmpResource.ResourceId = r.ResourceId;
-                    tmpResource.ResourceLanguage = r.ResourceLanguage;
-                    tmpResource.ResourceTopic = r.ResourceTopic;
-                    tmpResource.ResourceType = r.ResourceType;
+                    tmpList.ResourceName = r.ResourceName;
+                    tmpList.ResourceDescription = r.ResourceDescription;
+                    tmpList.ResourceUploadDate = r.ResourceUpload.ToShortDateString();
+                    tmpList.ResourceId = r.ResourceId;
+                    tmpList.ResourceLanguage = r.ResourceLanguage;
+                    tmpList.ResourceTopic = r.ResourceTopic;
+                    tmpList.ResourceType = r.ResourceType;
                 }
+                tmpResource.resourceInfo = tmpList;
+                List<FileViewInfo> files = (from f in dc.bhdResourceFiles
+                         where f.resourceId == r.ResourceId
+                                            select new FileViewInfo() { FileName = f.bhdFile.name, FileSize = f.bhdFile.size, FileContentType = f.bhdFile.bhdFileType.contentType, FileId = f.bhdFile.id }).ToList();
+                tmpResource.fileInfo = files;
+
+                List<LinkViewInfo> urls = (from u in dc.bhdResourceLinks
+                            where u.resourceId == r.ResourceId
+                            select new LinkViewInfo() { resourceURL = u.bhdLink.url }).ToList();
+                tmpResource.urlInfo = urls;
             }
             return tmpResource;
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public HttpResponseMessage GetFile(List<int> id)
-        {
-            if (id.Count() == 0)
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "No file id sent through.");
-
-            using (ResourcesDataContext db = new ResourcesDataContext())
-            {
-                if (id.Count() == 1)
-                {
-                    bhdFile currentFile = db.bhdFiles.Single((x) => x.id == id.First());
-                    bhdFileData fileData = db.bhdFileDatas.Single((x) => x.fileId == currentFile.id);
-                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-                    response.Content = new ByteArrayContent(fileData.data.ToArray());
-                    response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-                    response.Content.Headers.ContentDisposition.FileName = currentFile.name;
-                    return response;
-                }
-                else
-                {
-                    // do the zip 
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        using (ZipArchive zip = new ZipArchive(ms, ZipArchiveMode.Create, true))
-                        {
-                            foreach (int fileId in id)
-                            {
-                                
-                            }
-                        }
-
-                    }
-                }
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest, "No File(s) found.");
         }
 
         // POST api/resources
