@@ -29,10 +29,17 @@ namespace Blackhouse.Resources
                 //'User' is a Model class that I have defined.
                 ResourcePayload result = JsonConvert.DeserializeObject<ResourcePayload>(client.DownloadString(url));
                 List<GenDropList> types = result.types;
-                List<GenDropList> topics = result.topics;
                 List<GenDropList> languages = result.languages;
-                FillDropDown(ddlResourceType, types);
-                FillDropDown(ddlResourceTopic, topics);
+                try
+                {
+                    AddNodes(tvTopics.Nodes, 0, result.topics);
+                }
+                catch (Exception ex)
+                {
+                    spantree.InnerText = ex.Message;
+                }
+                //FillDropDown(ddlResourceType, types);
+                //FillDropDown(ddlResourceTopic, topics);
                 FillDropDown(ddlResourceLanguage, languages);
                 divFileUpload.Visible = false;
                 divWebsiteUpload.Visible = false;
@@ -40,6 +47,23 @@ namespace Blackhouse.Resources
                 divAuthorAdd.Visible = false;
                 divPublisherAdd.Visible = false;
                 divFileinfo.Visible = false;
+                divUploadform.Visible = false;
+                divTopics.Visible = false;
+            }
+        }
+
+        private void AddNodes(TreeNodeCollection nodes, int level, System.Data.DataTable dt)
+        {
+            string filterExp = string.Format("parentid='{0}'", level);
+            foreach (System.Data.DataRow r in dt.Select(filterExp))
+            {
+                TreeNode item = new TreeNode()
+                {
+                    Text = r["name"].ToString(),
+                    Value = r["id"].ToString()
+                };
+                this.AddNodes(item.ChildNodes, int.Parse(r["id"].ToString()), dt);
+                nodes.Add(item);
             }
         }
 
@@ -127,70 +151,72 @@ namespace Blackhouse.Resources
 
         protected void lnkSave_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int topicValue = int.Parse(ddlResourceTopic.SelectedValue);
-                int typeValue = int.Parse(ddlResourceType.SelectedValue);
-                int langValue = int.Parse(ddlResourceLanguage.SelectedValue);
-                //create the upload information
-                UploadData resourceData = new UploadData();
-                resourceData.ResourceName = txtResourceName.Text;
-                resourceData.ResourceDescription = txtResourceDescription.Text;
-                resourceData.ResourceTopicId = topicValue;
-                resourceData.ResourceTypeId = typeValue;
-                resourceData.ResourceLanguageId = langValue;
-                resourceData.PortalId = ModuleContext.PortalId;
+            //try
+            //{
+            //    //int topicValue = int.Parse(ddlResourceTopic.SelectedValue);
+            //    //int typeValue = int.Parse(ddlResourceType.SelectedValue);
+            //    int langValue = int.Parse(ddlResourceLanguage.SelectedValue);
+            //    //create the upload information
+            //    UploadData resourceData = new UploadData();
+            //    resourceData.ResourceName = txtResourceName.Text;
+            //    resourceData.ResourceDescription = txtResourceDescription.Text;
+            //    //resourceData.ResourceTopicId = topicValue;
+            //    //resourceData.ResourceTypeId = typeValue;
+            //    resourceData.ResourceLanguageId = langValue;
+            //    resourceData.PortalId = ModuleContext.PortalId;
 
-                //we have the information so now we send it through to the API and expect the resourceid back
-                HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/") as HttpWebRequest;
-                request.Method = "POST";
-                request.ContentType = "text/json";
-                try
-                {
-                    using (var streamWriter = new StreamWriter(request.GetRequestStream()))
-                    {
-                        string json = JsonConvert.SerializeObject(resourceData);
+            //    //we have the information so now we send it through to the API and expect the resourceid back
+            //    HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/") as HttpWebRequest;
+            //    request.Method = "POST";
+            //    request.ContentType = "text/json";
+            //    try
+            //    {
+            //        using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            //        {
+            //            string json = JsonConvert.SerializeObject(resourceData);
 
-                        streamWriter.Write(json);
-                        streamWriter.Flush();
-                        streamWriter.Close();
-                    }
-                    var httpResponse = (HttpWebResponse)request.GetResponse();
+            //            streamWriter.Write(json);
+            //            streamWriter.Flush();
+            //            streamWriter.Close();
+            //        }
+            //        var httpResponse = (HttpWebResponse)request.GetResponse();
 
-                }
-                catch (Exception ex)
-                {
-                    lnkSave.Text = ex.ToString();
-                }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        lnkSave.Text = ex.ToString();
+            //    }
 
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                {
-                    if (response.StatusCode != HttpStatusCode.OK)
-                        throw new Exception(String.Format("Server error (HTTP {0}: {1}).", response.StatusCode, response.StatusDescription));
-                    Stream resp = response.GetResponseStream();
-                    StreamReader reader = new StreamReader(resp);
-                    string text = reader.ReadToEnd();
-                    hidResourceId.Value = text;
+            //    using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            //    {
+            //        //if (response.StatusCode != HttpStatusCode.OK)
+            //        //    throw new Exception(String.Format("Server error (HTTP {0}: {1}).", response.StatusCode, response.StatusDescription));
+            //        //Stream resp = response.GetResponseStream();
+            //        //StreamReader reader = new StreamReader(resp);
+            //        //string text = reader.ReadToEnd();
+            //        //hidResourceId.Value = text;
 
-                    switch (ddlResourceType.SelectedItem.Text.ToLower())
-                    {
-                        case "website":
-                            divWebsiteUpload.Visible = true;
-                            break;
-                        case "lesson plan":
-                            divLessonplan.Visible = true;
-                            break;
-                        default:
-                            divFileUpload.Visible = true;
-                            break;
-                    }
-                    divUploadform.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                lnkSave.Text = ex.ToString();
-            }
+            //        //switch (ddlResourceType.SelectedItem.Text.ToLower())
+            //        //{
+            //        //    case "website":
+            //        //        divWebsiteUpload.Visible = true;
+            //        //        break;
+            //        //    case "lesson plan":
+            //        //        divLessonplan.Visible = true;
+            //        //        break;
+            //        //    default:
+            //        //        divFileUpload.Visible = true;
+            //        //        break;
+            //        //}
+            //        divUploadform.Visible = false;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    lnkSave.Text = ex.ToString();
+            //}
+            divUploadform.Visible = false;
+            divTopics.Visible = true;
 
         }
 
@@ -488,6 +514,44 @@ namespace Blackhouse.Resources
             }
             Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + hidResourceId.Value);
         }
+        protected void lnkFile_Click(object sender, EventArgs e)
+        {
+            divUploadform.Visible = true;
+            divChoose.Visible = false;
+            hidChoice.Value = "file";
+        }
+        protected void lnkURL_Click(object sender, EventArgs e)
+        {
+            divUploadform.Visible = true;
+            divChoose.Visible = false;
+            hidChoice.Value = "link";
+        }
+        protected void lnkBackToForm_Click(object sender, EventArgs e)
+        {
+            divTopics.Visible = false;
+            divUploadform.Visible = true;
+        }
+        protected void lnkTopic_Click(object sender, EventArgs e)
+        {
+            switch (hidChoice.Value.ToLower())
+            {
+                case "link":
+                    divWebsiteUpload.Visible = true;
+                    break;
+                case "file":
+                    divFileUpload.Visible = true;
+                    break;
+                default:
+                    break;
+            }
+            divTopics.Visible = false;
+        }
+        protected void lnkBack_Click(object sender, EventArgs e)
+        {
+            divUploadform.Visible = false;
+            hidChoice.Value = "";
+            divChoose.Visible = true;
+        }
 }
     
     
@@ -499,8 +563,8 @@ namespace Blackhouse.Resources
     public class ResourcePayload
     {
         public List<GenDropList> types { get; set; }
-        public List<GenDropList> topics { get; set; }
         public List<GenDropList> languages { get; set; }
+        public DataTable topics { get; set; }
     }
 
     public class UploadData

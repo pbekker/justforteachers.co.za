@@ -849,13 +849,39 @@
           max-width: 480px;
           margin: 20px auto;
         }
+        .box {
+          padding: 10px 20px;
+          display: inline-block;
+          border: 1px solid #E5E5E5;
+          color: #3498db;
+          text-decoration: none;
+          border-radius: 4px;
+          -webkit-transition: all 0.15s ease-out;
+          -moz-transition: all 0.15s ease-out;
+          transition: all 0.15s ease-out;
+          background-color: #ECECEC;
+          width: 100%;
+          text-align: center;
+        }
+        .box2 {
+          padding: 10px 20px;
+          display: inline-block;
+          border: 1px solid #E5E5E5;
+          text-decoration: none;
+          border-radius: 4px;
+          -webkit-transition: all 0.15s ease-out;
+          -moz-transition: all 0.15s ease-out;
+          transition: all 0.15s ease-out;
+          width: 100%;
+        }
     </style>
     
-    <script>
-        $('#btUpload').click(function () { if (fileUpload.value.length == 0) { alert('No files selected.'); return false; } });
-    </script>
-
-    <div class="wrapper" id="divUploadform" runat="server">
+<div class="box" runat="server" id="divChoose">
+    <asp:LinkButton runat="server" ID="lnkFile" CssClass="btn header-btn" OnClick="lnkFile_Click">[FILE RESOURCE]</asp:LinkButton>
+    <asp:LinkButton runat="server" ID="lnkURL" CssClass="btn header-btn" OnClick="lnkURL_Click">[LINKED RESOURCE]</asp:LinkButton>
+</div>
+<br />
+    <div class="box2" id="divUploadform" runat="server">
         <div class="form-group">
             <asp:Label runat="server" CssClass="label" Text="Resource Name *" /><br />
             <asp:TextBox runat="server" CssClass="text" ID="txtResourceName" /><br /><br />
@@ -864,21 +890,35 @@
             <asp:Label runat="server" CssClass="label" Text="Resource Description" /><br />
             <asp:TextBox runat="server" CssClass="text textarea"  ID="txtResourceDescription" TextMode="MultiLine" Rows="5" /><br /><br />
         </div>
-        <div class="form-group">
+<%--        <div class="form-group">
             <asp:Label runat="server" CssClass="label" Text="Resource Type *" /><br />
             <asp:DropDownList runat="server" CssClass="text" id="ddlResourceType" /><br /><br />
         </div>
         <div class="form-group">
             <asp:Label runat="server" CssClass="label" Text="Resource Topic *" /><br />
             <asp:DropDownList runat="server" CssClass="text" id="ddlResourceTopic" /><br /><br />
-        </div>
+        </div>--%>
         <div class="form-group">
             <asp:Label runat="server" CssClass="label" Text="Resource Language *" /><br />
             <asp:DropDownList runat="server" CssClass="text" id="ddlResourceLanguage" /><br /><br />
         </div>
-        <asp:LinkButton runat="server" ID="lnkSave" Text="Next..." OnClick="lnkSave_Click" />
+        <div class="box">
+            <asp:LinkButton runat="server" ID="lnkBack" Text="...Back" CssClass="btn header-btn" OnClick="lnkBack_Click" />
+            <asp:LinkButton runat="server" ID="lnkSave" Text="Next..." CssClass="btn header-btn" OnClick="lnkSave_Click" />
+        </div>
     </div>
     <asp:HiddenField runat="server" ID="hidResourceId" />
+    <asp:HiddenField runat="server" ID="hidChoice" />
+
+    <div class="box2" runat="server" id="divTopics">
+        <span runat="server" id="spantree"></span>
+        <asp:Label runat="server" CssClass="label" Text="Resource Topic" /><br />
+        <asp:TreeView runat="server" ID="tvTopics" />
+                <div class="box">
+            <asp:LinkButton runat="server" ID="lnkBackToForm" Text="...Back" CssClass="btn header-btn" OnClick="lnkBackToForm_Click" />
+            <asp:LinkButton runat="server" ID="lnkTopic" Text="Next..." CssClass="btn header-btn" OnClick="lnkTopic_Click" />
+        </div>
+    </div>
 
     <div runat="server" id="divFileUpload">
         <input type="file" id="myfile" multiple="multiple" name="myfile" runat="server" size="100" />
