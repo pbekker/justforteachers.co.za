@@ -36,6 +36,14 @@
 </div>
 
 <div class="header homepage" style="background-image:url(<%=skinpath%>img/03337_bluemountains_3840x2400.jpg)">
+
+	<div class="header-slideshow">
+		<img src="<%=skinpath%>img/banner1.png" alt="">
+		<img src="<%=skinpath%>img/banner2.png" alt="">
+		<img src="<%=skinpath%>img/banner3.png" alt="">
+		<img src="<%=skinpath%>img/banner4.png" alt="">
+	</div>
+
 	<div class="header-blurb">
 		<h1><%= Server.HtmlEncode(PortalSettings.ActiveTab.TabName) %></h1>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
@@ -131,3 +139,29 @@
 	</div>
 </div>
 
+<dnn:DnnJsInclude runat="server" FilePath="js/jquery.slides.js" PathNameAlias="SkinPath" />
+<script>
+	
+    $(function() {
+      $('.header-slideshow').slidesjs({
+        width: 930,
+        height: 320,
+        play: {
+        	active: false,
+          auto: true,
+          interval: 7000,
+          effect: 'fade'
+        },
+        effect: {
+          fade: {
+            speed: 400
+          }
+        },
+        navigation: false,
+        pagination: false
+      });
+    });
+ 
+  
+
+</script>

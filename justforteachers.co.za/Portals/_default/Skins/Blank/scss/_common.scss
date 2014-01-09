@@ -29,8 +29,6 @@ html, body, body>form {
 
 .header {
 	background-color: #3498DB;
-	background-size: cover;
-	background-position: center center;
 	position: relative;
 	overflow: hidden;
 	width: 100%;
@@ -72,28 +70,16 @@ html, body, body>form {
 	color: #fff;
  }
 
-@media all and (min-width: 48em) {
-	.homepage.navbar {
-		position: fixed;
-		width: 100%;
-		z-index: 2;
-		top: 44px;
-	}
-	.homepage.toolbar {
-		position: fixed;
-		width: 100%;
-		z-index: 1;
-	}
 
-	.header.homepage {
-		position: fixed;
-		top: 144px;
-		bottom: 3%;
-		width: 100%;
-		height: auto;
-	}
+.header-slideshow {
+
 }
 
+.header-slideshow img {
+	display: block;
+	min-height: 100%;
+	min-width: 100%;
+}
 
 .header-background {
 	min-width: 100%;
@@ -112,6 +98,7 @@ html, body, body>form {
 	width: 100%;
 	bottom: 30px;
 	font-size: 16px;
+	z-index: 100;
 }
 
 
@@ -205,15 +192,6 @@ html, body, body>form {
 .content {
 	background: #fff;
 }
-
-@media all and (min-width: 48em) {
-	.homepage ~ .content {
-		position: relative;
-		top: 97%;
-	}
-}
-
-
 
 .content-inner {
 	max-width: 1280px;
