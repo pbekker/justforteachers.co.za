@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -51,8 +52,8 @@ namespace JustForTeachersApi.Models
     public class ResourcePayload
     {
         public List<GenDropList> types { get; set; }
-        public List<GenDropList> topics { get; set; }
         public List<GenDropList> languages { get; set; }
+        public DataTable topics { get; set; }
     }
 
     public class ResourceListPayload

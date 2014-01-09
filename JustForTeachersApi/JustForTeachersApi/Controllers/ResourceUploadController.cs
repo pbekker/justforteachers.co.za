@@ -11,6 +11,7 @@ using System.Web;
 using System.IO;
 using System.Web.Http.Cors;
 using Newtonsoft.Json;
+using System.Data;
 
 
 namespace JustForTeachersApi.Controllers
@@ -31,15 +32,38 @@ namespace JustForTeachersApi.Controllers
                                        where d.isActive
                                        select new GenDropList() { ListId = d.id, ListValue = d.name }).ToList();
                 payload.types = r;
-                r = (from d in dc.bhdResourceTopics
-                     where d.isActive
-                     select new GenDropList() { ListId = d.id, ListValue = d.name }).ToList();
-                payload.topics = r;
+                //r = (from d in dc.bhdResourceTopics
+                //     where d.isActive
+                //     select new GenDropList() { ListId = d.id, ListValue = d.name }).ToList();
+                //payload.topics = r;
                 r = (from d in dc.bhdResourceLanguages
                      where d.isActive
                      select new GenDropList() { ListId = d.id, ListValue = d.name }).ToList();
                 payload.languages = r;
+                DataTable tmpDT = new DataTable();
+                DataColumn workCol = tmpDT.Columns.Add("id", typeof(Int32));
+                workCol.AllowDBNull = false;
+                workCol.Unique = true;
 
+                tmpDT.Columns.Add("parentid", typeof(Int32));
+                tmpDT.Columns.Add("name", typeof(String));
+
+                var tr = (from d in dc.bhdResourceTopics
+                          where d.isActive
+                          select new { d.id, d.parentId, d.name }).ToList();
+                foreach (var item in tr)
+                {
+                    
+                    DataRow workRow = tmpDT.NewRow();
+                    workRow["id"] = item.id;
+                    if (item.parentId == null)
+                        workRow["parentid"] = 0;
+                    else
+                        workRow["parentid"] = item.parentId;
+                    workRow["name"] = item.name;
+                    tmpDT.Rows.Add(workRow);
+                }
+                payload.topics = tmpDT;
             }
             return payload;
         }
