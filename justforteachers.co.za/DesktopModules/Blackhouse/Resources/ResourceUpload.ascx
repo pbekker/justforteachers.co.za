@@ -913,8 +913,12 @@
     <div class="box2" runat="server" id="divTopics">
         <span runat="server" id="spantree"></span>
         <asp:Label runat="server" CssClass="label" Text="Resource Topic" /><br />
-        <asp:TreeView runat="server" ID="tvTopics" />
-                <div class="box">
+        <asp:TreeView runat="server" ID="tvTopics" OnSelectedNodeChanged="tvTopics_SelectedNodeChanged" />
+        <div class="box" runat="server" id="spanSelectedTopicdiv">
+            <span runat="server" id="spanSelectedTopic"></span>
+            <asp:LinkButton runat="server" ID="lnkShowTreeAgain" Text="...Back" CssClass="btn header-btn" OnClick="lnkShowTreeAgain_Click"/>
+        </div>
+        <div class="box">
             <asp:LinkButton runat="server" ID="lnkBackToForm" Text="...Back" CssClass="btn header-btn" OnClick="lnkBackToForm_Click" />
             <asp:LinkButton runat="server" ID="lnkTopic" Text="Next..." CssClass="btn header-btn" OnClick="lnkTopic_Click" />
         </div>

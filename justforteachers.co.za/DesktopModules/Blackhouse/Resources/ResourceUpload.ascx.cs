@@ -49,6 +49,7 @@ namespace Blackhouse.Resources
                 divFileinfo.Visible = false;
                 divUploadform.Visible = false;
                 divTopics.Visible = false;
+                spanSelectedTopicdiv.Visible = false;
             }
         }
 
@@ -551,6 +552,25 @@ namespace Blackhouse.Resources
             divUploadform.Visible = false;
             hidChoice.Value = "";
             divChoose.Visible = true;
+        }
+        protected void tvTopics_SelectedNodeChanged(object sender, EventArgs e)
+        {
+            if (tvTopics.SelectedNode.Parent != null)
+            {
+                spanSelectedTopic.InnerText = tvTopics.SelectedNode.Parent.Text.ToString() + " > " + tvTopics.SelectedNode.Text.ToString();
+            }
+            else
+            {
+                spanSelectedTopic.InnerText = tvTopics.SelectedNode.Text.ToString();
+            }
+            tvTopics.Visible = false;
+            spanSelectedTopicdiv.Visible = true;
+        }
+        protected void lnkShowTreeAgain_Click(object sender, EventArgs e)
+        {
+            tvTopics.Visible = true;
+            spanSelectedTopic.InnerText = "";
+            spanSelectedTopicdiv.Visible = false;
         }
 }
     
