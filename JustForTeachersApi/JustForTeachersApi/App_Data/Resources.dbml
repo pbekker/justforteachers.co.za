@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="justfyty_justfo" EntityNamespace="ResourceData" ContextNamespace="ResourceData" Class="ResourcesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=RIAAN-PC;Initial Catalog=justfyty_justfo;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="justfyty_justfoConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=127.0.0.1;Initial Catalog=justfyty_justfo;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="justfyty_justfoConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.bhdAuthor" Member="bhdAuthors">
     <Type Name="bhdAuthor">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -196,6 +196,37 @@
       <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="bhdResourceTopic_bhdResource" Member="bhdResources" ThisKey="id" OtherKey="topicId" Type="bhdResource" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdMenu" Member="bhdMenus">
+    <Type Name="bhdMenu">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdMenu_bhdMenuPage" Member="bhdMenuPages" ThisKey="id" OtherKey="menuId" Type="bhdMenuPage" />
+      <Association Name="bhdMenu_bhdMenuItem" Member="bhdMenuItems" ThisKey="id" OtherKey="menuId" Type="bhdMenuItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdMenuPage" Member="bhdMenuPages">
+    <Type Name="bhdMenuPage">
+      <Column Name="menuId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tabId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="moduleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="bhdMenu_bhdMenuPage" Member="bhdMenu" ThisKey="menuId" OtherKey="id" Type="bhdMenu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdMenuItem" Member="bhdMenuItems">
+    <Type Name="bhdMenuItem">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="menuId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="text" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="hoverText" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="tabId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="moduleId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="url" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdMenu_bhdMenuItem" Member="bhdMenu" ThisKey="menuId" OtherKey="id" Type="bhdMenu" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.sps_getResourceBundleByUserId" Method="sps_getResourceBundleByUserId">

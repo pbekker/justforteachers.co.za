@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 23.75" name="Resources">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.375, 23.75" name="Resources">
   <DataContextMoniker Name="/ResourcesDataContext" />
   <nestedChildShapes>
     <classShape Id="3f24b92f-d9e0-4c7d-a7b0-d76f05f3ed76" absoluteBounds="6.5, 18.875, 2, 1.5785953776041666">
@@ -157,7 +157,7 @@
         <classShapeMoniker Id="94aced5b-fdfa-496a-925f-27a77a06c243" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.69314697265625); (3.5 : 6.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 6.69314697265625); (3.04166666666667 : 6.69314697265625 : JumpStart); (3.20833333333333 : 6.69314697265625 : JumpEnd); (3.5 : 6.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ResourcesDataContext/bhdResourceType/bhdResourceType_bhdResource" />
       <nodes>
         <classShapeMoniker Id="86195a03-b243-4e77-b18a-4ecac10195f2" />
@@ -171,7 +171,7 @@
         <classShapeMoniker Id="81de3839-8990-4a91-9fa0-3ef504a68eb3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 12.390625); (5.85416666666667 : 12.390625 : JumpStart); (6.02083333333333 : 12.390625 : JumpEnd); (9.25 : 12.390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 12.390625); (9.25 : 12.390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ResourcesDataContext/bhdFile/bhdFile_bhdResourceAuthor" />
       <nodes>
         <classShapeMoniker Id="57812528-b79d-4e92-b4bd-f9ff00640433" />
@@ -192,7 +192,7 @@
         <classShapeMoniker Id="3558b4ae-6a74-469b-952c-84df3736e1ce" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 11.7527234566306); (6.03125 : 11.2214734566306); (6.03125 : 6.59699625651042); (6.25 : 6.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 11.7527234566306); (5.87857443490112 : 11.3741490217295 : JumpStart); (5.99642556509888 : 11.2562978915317 : JumpEnd); (6.03125 : 11.2214734566306); (6.03125 : 6.59699625651042); (6.25 : 6.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ResourcesDataContext/bhdFile/bhdFile_bhdResourceFile" />
       <nodes>
         <classShapeMoniker Id="57812528-b79d-4e92-b4bd-f9ff00640433" />
@@ -227,7 +227,7 @@
         <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.5 : 9); (4.5 : 8.59699625651042); (5.94791666666667 : 8.59699625651042 : JumpStart); (6.11458333333333 : 8.59699625651042 : JumpEnd); (6.25 : 8.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.5 : 9); (4.5 : 8.59699625651042); (6.25 : 8.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ResourcesDataContext/bhdLink/bhdLink_bhdResourceLink" />
       <nodes>
         <classShapeMoniker Id="e2f38e1d-bdd8-4c24-85b2-74d6936a528e" />
@@ -241,7 +241,7 @@
         <classShapeMoniker Id="d0014647-ec34-4369-b2ea-dd04049751b0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 8.2420068359375); (5.875 : 8.6170068359375); (5.875 : 11.0681469726562); (5.94791666666667 : 11.0681469726562 : JumpStart); (6.11458333333333 : 11.0681469726562 : JumpEnd); (6.25 : 11.0681469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 8.2420068359375); (5.875 : 8.6170068359375); (5.875 : 11.0681469726562); (6.25 : 11.0681469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdResourceRating" />
       <nodes>
         <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
@@ -253,6 +253,38 @@
       <nodes>
         <classShapeMoniker Id="ad5d7a21-5eb1-4373-aafa-6da0e2c9b9f0" />
         <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b49e4bc5-1b04-4179-b272-9a125027b891" absoluteBounds="9.375, 2.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdMenu" />
+      <nestedChildShapes>
+        <elementListCompartment Id="82168aab-2987-4af1-927d-fbc0e148b882" absoluteBounds="9.39, 2.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a2e83886-73f4-4503-acd3-53afc7dbd10c" absoluteBounds="12.125, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdMenuPage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cc7a3c1c-8603-4f59-bd0d-9ef08a6ba593" absoluteBounds="12.14, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d43638bc-78d3-4120-a8ec-c408c4c02fb7" absoluteBounds="12.125, 3.125, 2, 2.3478011067708331">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdMenuItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="52f128ea-3d76-4ac8-9c72-e3e4a86a03db" absoluteBounds="12.14, 3.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(10.375 : 2.5); (10.375 : 1.69314697265625); (12.125 : 1.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdMenu/bhdMenu_bhdMenuPage" />
+      <nodes>
+        <classShapeMoniker Id="b49e4bc5-1b04-4179-b272-9a125027b891" />
+        <classShapeMoniker Id="a2e83886-73f4-4503-acd3-53afc7dbd10c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.375 : 3.60179768880208); (12.125 : 3.60179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdMenu/bhdMenu_bhdMenuItem" />
+      <nodes>
+        <classShapeMoniker Id="b49e4bc5-1b04-4179-b272-9a125027b891" />
+        <classShapeMoniker Id="d43638bc-78d3-4120-a8ec-c408c4c02fb7" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

@@ -81,6 +81,15 @@ namespace ResourceData
     partial void InsertbhdResourceTopic(bhdResourceTopic instance);
     partial void UpdatebhdResourceTopic(bhdResourceTopic instance);
     partial void DeletebhdResourceTopic(bhdResourceTopic instance);
+    partial void InsertbhdMenu(bhdMenu instance);
+    partial void UpdatebhdMenu(bhdMenu instance);
+    partial void DeletebhdMenu(bhdMenu instance);
+    partial void InsertbhdMenuPage(bhdMenuPage instance);
+    partial void UpdatebhdMenuPage(bhdMenuPage instance);
+    partial void DeletebhdMenuPage(bhdMenuPage instance);
+    partial void InsertbhdMenuItem(bhdMenuItem instance);
+    partial void UpdatebhdMenuItem(bhdMenuItem instance);
+    partial void DeletebhdMenuItem(bhdMenuItem instance);
     #endregion
 		
 		public ResourcesDataContext() : 
@@ -270,6 +279,30 @@ namespace ResourceData
 			get
 			{
 				return this.GetTable<bhdResourceTopic>();
+			}
+		}
+		
+		public System.Data.Linq.Table<bhdMenu> bhdMenus
+		{
+			get
+			{
+				return this.GetTable<bhdMenu>();
+			}
+		}
+		
+		public System.Data.Linq.Table<bhdMenuPage> bhdMenuPages
+		{
+			get
+			{
+				return this.GetTable<bhdMenuPage>();
+			}
+		}
+		
+		public System.Data.Linq.Table<bhdMenuItem> bhdMenuItems
+		{
+			get
+			{
+				return this.GetTable<bhdMenuItem>();
 			}
 		}
 		
@@ -3769,6 +3802,618 @@ namespace ResourceData
 		{
 			this.SendPropertyChanging();
 			entity.bhdResourceTopic = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.bhdMenu")]
+	public partial class bhdMenu : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _description;
+		
+		private bool _isActive;
+		
+		private EntitySet<bhdMenuPage> _bhdMenuPages;
+		
+		private EntitySet<bhdMenuItem> _bhdMenuItems;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    partial void OnisActiveChanging(bool value);
+    partial void OnisActiveChanged();
+    #endregion
+		
+		public bhdMenu()
+		{
+			this._bhdMenuPages = new EntitySet<bhdMenuPage>(new Action<bhdMenuPage>(this.attach_bhdMenuPages), new Action<bhdMenuPage>(this.detach_bhdMenuPages));
+			this._bhdMenuItems = new EntitySet<bhdMenuItem>(new Action<bhdMenuItem>(this.attach_bhdMenuItems), new Action<bhdMenuItem>(this.detach_bhdMenuItems));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this.OndescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Bit NOT NULL")]
+		public bool isActive
+		{
+			get
+			{
+				return this._isActive;
+			}
+			set
+			{
+				if ((this._isActive != value))
+				{
+					this.OnisActiveChanging(value);
+					this.SendPropertyChanging();
+					this._isActive = value;
+					this.SendPropertyChanged("isActive");
+					this.OnisActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdMenu_bhdMenuPage", Storage="_bhdMenuPages", ThisKey="id", OtherKey="menuId")]
+		public EntitySet<bhdMenuPage> bhdMenuPages
+		{
+			get
+			{
+				return this._bhdMenuPages;
+			}
+			set
+			{
+				this._bhdMenuPages.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdMenu_bhdMenuItem", Storage="_bhdMenuItems", ThisKey="id", OtherKey="menuId")]
+		public EntitySet<bhdMenuItem> bhdMenuItems
+		{
+			get
+			{
+				return this._bhdMenuItems;
+			}
+			set
+			{
+				this._bhdMenuItems.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_bhdMenuPages(bhdMenuPage entity)
+		{
+			this.SendPropertyChanging();
+			entity.bhdMenu = this;
+		}
+		
+		private void detach_bhdMenuPages(bhdMenuPage entity)
+		{
+			this.SendPropertyChanging();
+			entity.bhdMenu = null;
+		}
+		
+		private void attach_bhdMenuItems(bhdMenuItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.bhdMenu = this;
+		}
+		
+		private void detach_bhdMenuItems(bhdMenuItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.bhdMenu = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.bhdMenuPage")]
+	public partial class bhdMenuPage : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _menuId;
+		
+		private int _tabId;
+		
+		private int _moduleId;
+		
+		private EntityRef<bhdMenu> _bhdMenu;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnmenuIdChanging(int value);
+    partial void OnmenuIdChanged();
+    partial void OntabIdChanging(int value);
+    partial void OntabIdChanged();
+    partial void OnmoduleIdChanging(int value);
+    partial void OnmoduleIdChanged();
+    #endregion
+		
+		public bhdMenuPage()
+		{
+			this._bhdMenu = default(EntityRef<bhdMenu>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_menuId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int menuId
+		{
+			get
+			{
+				return this._menuId;
+			}
+			set
+			{
+				if ((this._menuId != value))
+				{
+					if (this._bhdMenu.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnmenuIdChanging(value);
+					this.SendPropertyChanging();
+					this._menuId = value;
+					this.SendPropertyChanged("menuId");
+					this.OnmenuIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tabId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int tabId
+		{
+			get
+			{
+				return this._tabId;
+			}
+			set
+			{
+				if ((this._tabId != value))
+				{
+					this.OntabIdChanging(value);
+					this.SendPropertyChanging();
+					this._tabId = value;
+					this.SendPropertyChanged("tabId");
+					this.OntabIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_moduleId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int moduleId
+		{
+			get
+			{
+				return this._moduleId;
+			}
+			set
+			{
+				if ((this._moduleId != value))
+				{
+					this.OnmoduleIdChanging(value);
+					this.SendPropertyChanging();
+					this._moduleId = value;
+					this.SendPropertyChanged("moduleId");
+					this.OnmoduleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdMenu_bhdMenuPage", Storage="_bhdMenu", ThisKey="menuId", OtherKey="id", IsForeignKey=true)]
+		public bhdMenu bhdMenu
+		{
+			get
+			{
+				return this._bhdMenu.Entity;
+			}
+			set
+			{
+				bhdMenu previousValue = this._bhdMenu.Entity;
+				if (((previousValue != value) 
+							|| (this._bhdMenu.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._bhdMenu.Entity = null;
+						previousValue.bhdMenuPages.Remove(this);
+					}
+					this._bhdMenu.Entity = value;
+					if ((value != null))
+					{
+						value.bhdMenuPages.Add(this);
+						this._menuId = value.id;
+					}
+					else
+					{
+						this._menuId = default(int);
+					}
+					this.SendPropertyChanged("bhdMenu");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.bhdMenuItem")]
+	public partial class bhdMenuItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _menuId;
+		
+		private string _text;
+		
+		private string _hoverText;
+		
+		private System.Nullable<int> _tabId;
+		
+		private System.Nullable<int> _moduleId;
+		
+		private string _url;
+		
+		private bool _isActive;
+		
+		private EntityRef<bhdMenu> _bhdMenu;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnmenuIdChanging(int value);
+    partial void OnmenuIdChanged();
+    partial void OntextChanging(string value);
+    partial void OntextChanged();
+    partial void OnhoverTextChanging(string value);
+    partial void OnhoverTextChanged();
+    partial void OntabIdChanging(System.Nullable<int> value);
+    partial void OntabIdChanged();
+    partial void OnmoduleIdChanging(System.Nullable<int> value);
+    partial void OnmoduleIdChanged();
+    partial void OnurlChanging(string value);
+    partial void OnurlChanged();
+    partial void OnisActiveChanging(bool value);
+    partial void OnisActiveChanged();
+    #endregion
+		
+		public bhdMenuItem()
+		{
+			this._bhdMenu = default(EntityRef<bhdMenu>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_menuId", DbType="Int NOT NULL")]
+		public int menuId
+		{
+			get
+			{
+				return this._menuId;
+			}
+			set
+			{
+				if ((this._menuId != value))
+				{
+					if (this._bhdMenu.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnmenuIdChanging(value);
+					this.SendPropertyChanging();
+					this._menuId = value;
+					this.SendPropertyChanged("menuId");
+					this.OnmenuIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string text
+		{
+			get
+			{
+				return this._text;
+			}
+			set
+			{
+				if ((this._text != value))
+				{
+					this.OntextChanging(value);
+					this.SendPropertyChanging();
+					this._text = value;
+					this.SendPropertyChanged("text");
+					this.OntextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hoverText", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string hoverText
+		{
+			get
+			{
+				return this._hoverText;
+			}
+			set
+			{
+				if ((this._hoverText != value))
+				{
+					this.OnhoverTextChanging(value);
+					this.SendPropertyChanging();
+					this._hoverText = value;
+					this.SendPropertyChanged("hoverText");
+					this.OnhoverTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tabId", DbType="Int")]
+		public System.Nullable<int> tabId
+		{
+			get
+			{
+				return this._tabId;
+			}
+			set
+			{
+				if ((this._tabId != value))
+				{
+					this.OntabIdChanging(value);
+					this.SendPropertyChanging();
+					this._tabId = value;
+					this.SendPropertyChanged("tabId");
+					this.OntabIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_moduleId", DbType="Int")]
+		public System.Nullable<int> moduleId
+		{
+			get
+			{
+				return this._moduleId;
+			}
+			set
+			{
+				if ((this._moduleId != value))
+				{
+					this.OnmoduleIdChanging(value);
+					this.SendPropertyChanging();
+					this._moduleId = value;
+					this.SendPropertyChanged("moduleId");
+					this.OnmoduleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_url", DbType="VarChar(MAX)")]
+		public string url
+		{
+			get
+			{
+				return this._url;
+			}
+			set
+			{
+				if ((this._url != value))
+				{
+					this.OnurlChanging(value);
+					this.SendPropertyChanging();
+					this._url = value;
+					this.SendPropertyChanged("url");
+					this.OnurlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Bit NOT NULL")]
+		public bool isActive
+		{
+			get
+			{
+				return this._isActive;
+			}
+			set
+			{
+				if ((this._isActive != value))
+				{
+					this.OnisActiveChanging(value);
+					this.SendPropertyChanging();
+					this._isActive = value;
+					this.SendPropertyChanged("isActive");
+					this.OnisActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bhdMenu_bhdMenuItem", Storage="_bhdMenu", ThisKey="menuId", OtherKey="id", IsForeignKey=true)]
+		public bhdMenu bhdMenu
+		{
+			get
+			{
+				return this._bhdMenu.Entity;
+			}
+			set
+			{
+				bhdMenu previousValue = this._bhdMenu.Entity;
+				if (((previousValue != value) 
+							|| (this._bhdMenu.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._bhdMenu.Entity = null;
+						previousValue.bhdMenuItems.Remove(this);
+					}
+					this._bhdMenu.Entity = value;
+					if ((value != null))
+					{
+						value.bhdMenuItems.Add(this);
+						this._menuId = value.id;
+					}
+					else
+					{
+						this._menuId = default(int);
+					}
+					this.SendPropertyChanged("bhdMenu");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
