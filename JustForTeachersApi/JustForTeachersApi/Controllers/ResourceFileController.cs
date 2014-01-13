@@ -27,10 +27,10 @@ namespace JustForTeachersApi.Controllers
             StreamReader streamReader = new StreamReader(streamIn);
             string jsonstring = streamReader.ReadToEnd();
             // serialize that shit
-            List<FileInfoData> uploadModel;
+            FileInfoData uploadModel;
             try
             {
-                uploadModel = JsonConvert.DeserializeObject<List<FileInfoData>>(jsonstring);
+                uploadModel = JsonConvert.DeserializeObject<FileInfoData>(jsonstring);
             }
             catch (Exception ex)
             {
@@ -40,19 +40,22 @@ namespace JustForTeachersApi.Controllers
             {
                 using (ResourcesDataContext dc = new ResourcesDataContext())
                 {
-                    foreach (FileInfoData item in uploadModel)
+                    if (uploadModel.authorid != 0)
                     {
                         bhdResourceAuthor authData = new bhdResourceAuthor();
-                        authData.authorId = item.authorid;
-                        authData.fileId = item.fileid;
+                        authData.authorId = uploadModel.authorid;
+                        authData.fileId = uploadModel.fileid;
                         dc.bhdResourceAuthors.InsertOnSubmit(authData);
                         dc.SubmitChanges();
+                    }
 
+                    if (uploadModel.publisherid != 0)
+                    {
                         bhdPublishInformation pubData = new bhdPublishInformation();
-                        pubData.authorId = item.authorid;
+                        pubData.authorId = uploadModel.authorid;
                         pubData.isActive = true;
-                        pubData.publisherId = item.publisherid;
-                        pubData.publishYear = item.publishYear;
+                        pubData.publisherId = uploadModel.publisherid;
+                        pubData.publishYear = uploadModel.publishYear;
                         dc.bhdPublishInformations.InsertOnSubmit(pubData);
                         dc.SubmitChanges();
                     }

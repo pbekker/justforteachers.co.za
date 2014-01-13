@@ -115,9 +115,9 @@ namespace JustForTeachersApi.Controllers
                 StreamReader streamReader = new StreamReader(streamIn);
                 string jsonstring = streamReader.ReadToEnd();
 
-                var temp = JsonConvert.DeserializeObject<List<FileData>>(jsonstring);
+                var temp = JsonConvert.DeserializeObject<FileData>(jsonstring);
 
-                List<ResourceFile> tmpReturn = ResourceUploadHelper.UploadResourceFile(temp, id);
+                ResourceFile tmpReturn = ResourceUploadHelper.UploadResourceFile(temp, id);
 
                 return Request.CreateResponse(HttpStatusCode.OK, tmpReturn);
             }
@@ -161,30 +161,30 @@ namespace JustForTeachersApi.Controllers
                         }
                         break;
                     case "lesson plan":
-                        string lessonsiteUrl = "";
-                        Stream lpstreamIn = await Request.Content.ReadAsStreamAsync();
-                        StreamReader lpstreamReader = new StreamReader(lpstreamIn);
-                        string lpjsonstring = lpstreamReader.ReadToEnd();
+                        //string lessonsiteUrl = "";
+                        //Stream lpstreamIn = await Request.Content.ReadAsStreamAsync();
+                        //StreamReader lpstreamReader = new StreamReader(lpstreamIn);
+                        //string lpjsonstring = lpstreamReader.ReadToEnd();
 
-                        LessonPlan lptemp = JsonConvert.DeserializeObject<LessonPlan>(lpjsonstring);
-                        websiteUrl = lptemp.linkUrl;
-                        using (ResourcesDataContext dc = new ResourcesDataContext())
-                        {
-                            bhdLink l = new bhdLink();
-                            l.url = websiteUrl;
-                            dc.bhdLinks.InsertOnSubmit(l);
-                            dc.SubmitChanges();
+                        //LessonPlan lptemp = JsonConvert.DeserializeObject<LessonPlan>(lpjsonstring);
+                        //websiteUrl = lptemp.linkUrl;
+                        //using (ResourcesDataContext dc = new ResourcesDataContext())
+                        //{
+                        //    bhdLink l = new bhdLink();
+                        //    l.url = websiteUrl;
+                        //    dc.bhdLinks.InsertOnSubmit(l);
+                        //    dc.SubmitChanges();
 
-                            bhdResourceLink rl = new bhdResourceLink();
-                            rl.linkId = l.linkId;
-                            rl.resourceId = id;
-                            dc.bhdResourceLinks.InsertOnSubmit(rl);
-                            dc.SubmitChanges();
-                        }
+                        //    bhdResourceLink rl = new bhdResourceLink();
+                        //    rl.linkId = l.linkId;
+                        //    rl.resourceId = id;
+                        //    dc.bhdResourceLinks.InsertOnSubmit(rl);
+                        //    dc.SubmitChanges();
+                        //}
 
-                        List<ResourceFile> tmpReturn = ResourceUploadHelper.UploadResourceFile(lptemp.fileData, id);
+                        //List<ResourceFile> tmpReturn = ResourceUploadHelper.UploadResourceFile(lptemp.fileData, id);
                         
-                        return Request.CreateResponse(HttpStatusCode.OK, tmpReturn);
+                        //return Request.CreateResponse(HttpStatusCode.OK, tmpReturn);
                         break;
                     default:
                         break;
