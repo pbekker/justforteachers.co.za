@@ -1,290 +1,302 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.375, 23.75" name="Resources">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.75, 23.75" name="Resources">
   <DataContextMoniker Name="/ResourcesDataContext" />
   <nestedChildShapes>
-    <classShape Id="3f24b92f-d9e0-4c7d-a7b0-d76f05f3ed76" absoluteBounds="6.5, 18.875, 2, 1.5785953776041666">
+    <classShape Id="cc96f7a6-adfa-463a-b607-89e948f5b047" absoluteBounds="6.5, 18.875, 2, 1.5785953776041666">
       <DataClassMoniker Name="/ResourcesDataContext/bhdAuthor" />
       <nestedChildShapes>
-        <elementListCompartment Id="bde1eb40-124b-4d9a-9622-09d75491730d" absoluteBounds="6.515, 19.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2da139bf-7704-4eb8-a5db-ace19614a7ef" absoluteBounds="6.515, 19.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="86195a03-b243-4e77-b18a-4ecac10195f2" absoluteBounds="0.75, 6, 2, 1.3862939453125005">
+    <classShape Id="8d792745-5673-41c2-95a6-78168e285a8c" absoluteBounds="0.75, 6, 2, 1.3862939453125005">
       <DataClassMoniker Name="/ResourcesDataContext/bhdResourceType" />
       <nestedChildShapes>
-        <elementListCompartment Id="62785eed-66f2-4640-951b-b13cbe9f1450" absoluteBounds="0.765, 6.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a6ab7939-b1e9-471f-b3de-0b25dc8929b7" absoluteBounds="0.765, 6.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="94aced5b-fdfa-496a-925f-27a77a06c243" absoluteBounds="6.25, 12.5, 2, 2.1554996744791666">
+    <classShape Id="da629c0f-221d-42ab-9555-663c0ec3d0b7" absoluteBounds="6.25, 12.5, 2, 2.1554996744791666">
       <DataClassMoniker Name="/ResourcesDataContext/bhdFeaturedResource" />
       <nestedChildShapes>
-        <elementListCompartment Id="6f832734-faec-4af0-9c25-b24365163bd7" absoluteBounds="6.265, 12.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="09ba7255-3f92-4da2-a286-d95aa93161ad" absoluteBounds="6.265, 12.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="57812528-b79d-4e92-b4bd-f9ff00640433" absoluteBounds="3.5, 11.75, 2, 1.7708968098958344">
+    <classShape Id="c231612c-0a59-4839-ac8e-8d2ca758960f" absoluteBounds="3.5, 11.75, 2, 1.7708968098958344">
       <DataClassMoniker Name="/ResourcesDataContext/bhdFile" />
       <nestedChildShapes>
-        <elementListCompartment Id="526b496d-8124-4b22-83bb-4b296d2f2bd2" absoluteBounds="3.515, 12.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9ceefeba-fab2-4ba7-9eed-9ac6f46dea91" absoluteBounds="3.515, 12.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b6ae5f1a-bd82-48dd-9ba1-dce9367fda1e" absoluteBounds="6.25, 16, 2, 1.1939925130208309">
+    <classShape Id="49b37968-afe7-4800-bcf2-7218bd91063f" absoluteBounds="6.25, 16, 2, 1.1939925130208309">
       <DataClassMoniker Name="/ResourcesDataContext/bhdFileData" />
       <nestedChildShapes>
-        <elementListCompartment Id="f6d26e72-cdd5-4d39-838e-96aa3d7d7433" absoluteBounds="6.265, 16.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="36f2154f-e915-4341-a7bd-c0b02ddcedc9" absoluteBounds="6.265, 16.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="72cbc93b-5748-4c99-836a-c84afe3ac7c2" absoluteBounds="0.75, 11.625, 2, 1.9631982421874987">
+    <classShape Id="0d522c56-e22b-45a8-9899-51fa55d83db7" absoluteBounds="0.75, 11.625, 2, 1.9631982421874987">
       <DataClassMoniker Name="/ResourcesDataContext/bhdFileType" />
       <nestedChildShapes>
-        <elementListCompartment Id="bf55d4e4-b1f7-4882-8654-975c92a3fdab" absoluteBounds="0.765, 12.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="cf2a4015-0e2c-432d-894a-a7dfd9b74466" absoluteBounds="0.765, 12.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0d5e7c23-e7b8-45a8-a2f8-3c46207bbac5" absoluteBounds="3.5, 2, 2, 1.3862939453125">
+    <classShape Id="7511e59f-af60-44ae-a23c-2ada7b41f4ab" absoluteBounds="8.75, 6, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdFormat" />
+      <nestedChildShapes>
+        <elementListCompartment Id="910ad5d0-bdee-4d68-8caf-b54fa26f0eb6" absoluteBounds="8.765, 6.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d569ba2c-7682-47d2-b36c-ee2d0f1bc231" absoluteBounds="3.5, 2, 2, 1.3862939453125">
       <DataClassMoniker Name="/ResourcesDataContext/bhdKeyword" />
       <nestedChildShapes>
-        <elementListCompartment Id="6d34fdaf-7370-4fcb-9520-6eb034c1af22" absoluteBounds="3.515, 2.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1eb49aef-999d-4767-afd1-ad2d757fb21b" absoluteBounds="3.515, 2.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e2f38e1d-bdd8-4c24-85b2-74d6936a528e" absoluteBounds="3.5, 9, 2, 1.1939925130208344">
+    <classShape Id="d6aa3049-f8e6-441f-85f5-77a621d1d203" absoluteBounds="3.5, 9, 2, 1.1939925130208344">
       <DataClassMoniker Name="/ResourcesDataContext/bhdLink" />
       <nestedChildShapes>
-        <elementListCompartment Id="d51f2ca3-d2c8-44cf-afd2-cf821003c390" absoluteBounds="3.515, 9.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="718756fa-55e0-4499-9e84-f783e8849919" absoluteBounds="3.515, 9.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="193c7682-436f-4eaa-82fd-1352f18b719a" absoluteBounds="6.5, 21.875, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdPublisher" />
-      <nestedChildShapes>
-        <elementListCompartment Id="980f2a2d-23b1-433d-8911-93c539baaddf" absoluteBounds="6.515, 22.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="d69b35b1-9a9c-4d8a-af77-3149d9978281" absoluteBounds="9.25, 18.75, 2, 1.7708968098958309">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdPublishInformation" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3a8e0d85-85b1-4b2c-9dc1-4b8952e800ec" absoluteBounds="9.265, 19.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ae270531-8bda-47bd-8237-448ed8ebb44d" absoluteBounds="3.5, 5.125, 2, 3.1170068359375014">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdResource" />
-      <nestedChildShapes>
-        <elementListCompartment Id="61ee676c-2f22-4ac6-b075-caa1742da21c" absoluteBounds="3.515, 5.585, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="81de3839-8990-4a91-9fa0-3ef504a68eb3" absoluteBounds="9.25, 12, 2, 1.1939925130208344">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceAuthor" />
-      <nestedChildShapes>
-        <elementListCompartment Id="1060381a-9f4a-40cf-acf1-b5246ae1a772" absoluteBounds="9.265, 12.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="7ce61072-4257-443c-af40-1682bceb06c5" absoluteBounds="6.5, 0.75, 2, 1.7708968098958327">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceBundle" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c90357b6-7443-4680-89ba-a4e718d0b4ad" absoluteBounds="6.515, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="3558b4ae-6a74-469b-952c-84df3736e1ce" absoluteBounds="9.25, 9, 2, 1.3862939453124987">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceBundleFile" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3a6db0fd-f4fb-49d7-8deb-90124b89ff3c" absoluteBounds="9.265, 9.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="0ca04e71-07ad-4f4f-9763-f85bd6e43d38" absoluteBounds="6.25, 6, 2, 1.1939925130208327">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceFile" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7d4f9b90-5bad-4c54-8a35-13812c6bc916" absoluteBounds="6.265, 6.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="1d503e9d-34c3-47e5-a97c-ced2527ade45" absoluteBounds="6.25, 4, 2, 1.1939925130208327">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceKeyword" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ba65c685-fde5-4492-a5a6-bc4a8b65bd6e" absoluteBounds="6.265, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="4a690eb5-5302-4c36-80a6-d4ab9f70d4a8" absoluteBounds="0.75, 3.625, 2, 1.3862939453125005">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceLanguage" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3074181c-aa32-46da-a192-095c98aee77a" absoluteBounds="0.765, 4.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="d0014647-ec34-4369-b2ea-dd04049751b0" absoluteBounds="6.25, 8, 2, 1.1939925130208344">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceLink" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7b21c88e-3dda-415c-9cbc-1a9526ce4dbb" absoluteBounds="6.265, 8.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="e567f653-dd61-4f7c-96a9-1785432dbb19" absoluteBounds="6.25, 10.375, 2, 1.3862939453124987">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceRating" />
-      <nestedChildShapes>
-        <elementListCompartment Id="f2a3118d-dac1-4a1f-8931-2f507049db63" absoluteBounds="6.265, 10.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ad5d7a21-5eb1-4373-aafa-6da0e2c9b9f0" absoluteBounds="0.75, 8.875, 2, 1.7708968098958344">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceTopic" />
-      <nestedChildShapes>
-        <elementListCompartment Id="d2a1305d-1a63-49c4-be8c-460b7543482e" absoluteBounds="0.765, 9.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(4.5 : 13.5208968098958); (4.5 : 16.5969962565104); (6.25 : 16.5969962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdFile/bhdFile_bhdFileData" />
-      <nodes>
-        <classShapeMoniker Id="57812528-b79d-4e92-b4bd-f9ff00640433" />
-        <classShapeMoniker Id="b6ae5f1a-bd82-48dd-9ba1-dce9367fda1e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 12.6354484049479); (3.5 : 12.6354484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdFileType/bhdFileType_bhdFile" />
-      <nodes>
-        <classShapeMoniker Id="72cbc93b-5748-4c99-836a-c84afe3ac7c2" />
-        <classShapeMoniker Id="57812528-b79d-4e92-b4bd-f9ff00640433" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 19.6642976888021); (9.25 : 19.6642976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdAuthor/bhdAuthor_bhdPublishInformation" />
-      <nodes>
-        <classShapeMoniker Id="3f24b92f-d9e0-4c7d-a7b0-d76f05f3ed76" />
-        <classShapeMoniker Id="d69b35b1-9a9c-4d8a-af77-3149d9978281" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 22.6642976888021); (10.25 : 22.6642976888021); (10.25 : 20.5208968098958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdPublisher/bhdPublisher_bhdPublishInformation" />
-      <nodes>
-        <classShapeMoniker Id="193c7682-436f-4eaa-82fd-1352f18b719a" />
-        <classShapeMoniker Id="d69b35b1-9a9c-4d8a-af77-3149d9978281" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.45076923076923 : 8.2420068359375); (5.9375 : 8.72873760516827); (5.9375 : 13.5777498372396); (6.25 : 13.5777498372396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdFeaturedResource" />
-      <nodes>
-        <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
-        <classShapeMoniker Id="94aced5b-fdfa-496a-925f-27a77a06c243" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.69314697265625); (3.04166666666667 : 6.69314697265625 : JumpStart); (3.20833333333333 : 6.69314697265625 : JumpEnd); (3.5 : 6.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdResourceType/bhdResourceType_bhdResource" />
-      <nodes>
-        <classShapeMoniker Id="86195a03-b243-4e77-b18a-4ecac10195f2" />
-        <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.40625 : 18.875); (8.40625 : 12.21875); (9.25 : 12.21875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdAuthor/bhdAuthor_bhdResourceAuthor" />
-      <nodes>
-        <classShapeMoniker Id="3f24b92f-d9e0-4c7d-a7b0-d76f05f3ed76" />
-        <classShapeMoniker Id="81de3839-8990-4a91-9fa0-3ef504a68eb3" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 12.390625); (9.25 : 12.390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdFile/bhdFile_bhdResourceAuthor" />
-      <nodes>
-        <classShapeMoniker Id="57812528-b79d-4e92-b4bd-f9ff00640433" />
-        <classShapeMoniker Id="81de3839-8990-4a91-9fa0-3ef504a68eb3" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 11.781330251252); (5.87857443490112 : 11.4027558163509 : JumpStart); (5.99642556509888 : 11.2849046861531 : JumpEnd); (6.125 : 11.156330251252); (6.125 : 9.78449625651042); (9.25 : 9.78449625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdFile/bhdFile_bhdResourceBundleFile" />
-      <nodes>
-        <classShapeMoniker Id="57812528-b79d-4e92-b4bd-f9ff00640433" />
-        <classShapeMoniker Id="3558b4ae-6a74-469b-952c-84df3736e1ce" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.40625 : 2.52089680989583); (8.40625 : 9.48924188476563); (9.25 : 9.48924188476563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdResourceBundle/bhdResourceBundle_bhdResourceBundleFile" />
-      <nodes>
-        <classShapeMoniker Id="7ce61072-4257-443c-af40-1682bceb06c5" />
-        <classShapeMoniker Id="3558b4ae-6a74-469b-952c-84df3736e1ce" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 11.7527234566306); (5.87857443490112 : 11.3741490217295 : JumpStart); (5.99642556509888 : 11.2562978915317 : JumpEnd); (6.03125 : 11.2214734566306); (6.03125 : 6.59699625651042); (6.25 : 6.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdFile/bhdFile_bhdResourceFile" />
-      <nodes>
-        <classShapeMoniker Id="57812528-b79d-4e92-b4bd-f9ff00640433" />
-        <classShapeMoniker Id="0ca04e71-07ad-4f4f-9763-f85bd6e43d38" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 6.23599812825521); (6.25 : 6.23599812825521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdResourceFile" />
-      <nodes>
-        <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
-        <classShapeMoniker Id="0ca04e71-07ad-4f4f-9763-f85bd6e43d38" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 2.98484537760417); (6.34375 : 2.98484537760417); (6.34375 : 4)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdKeyword/bhdKeyword_bhdResourceKeyword" />
-      <nodes>
-        <classShapeMoniker Id="0d5e7c23-e7b8-45a8-a2f8-3c46207bbac5" />
-        <classShapeMoniker Id="1d503e9d-34c3-47e5-a97c-ced2527ade45" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(4.5 : 5.125); (4.5 : 4.5624995); (6.25 : 4.5624995)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdResourceKeyword" />
-      <nodes>
-        <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
-        <classShapeMoniker Id="1d503e9d-34c3-47e5-a97c-ced2527ade45" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.09374975); (3.9687475 : 4.09374975); (3.9687475 : 5.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdResourceLanguage/bhdResourceLanguage_bhdResource" />
-      <nodes>
-        <classShapeMoniker Id="4a690eb5-5302-4c36-80a6-d4ab9f70d4a8" />
-        <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(4.5 : 9); (4.5 : 8.59699625651042); (6.25 : 8.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdLink/bhdLink_bhdResourceLink" />
-      <nodes>
-        <classShapeMoniker Id="e2f38e1d-bdd8-4c24-85b2-74d6936a528e" />
-        <classShapeMoniker Id="d0014647-ec34-4369-b2ea-dd04049751b0" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 8.19277506670673); (5.75 : 8.44277506670673); (5.75 : 7.5); (6.25 : 8)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdResourceLink" />
-      <nodes>
-        <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
-        <classShapeMoniker Id="d0014647-ec34-4369-b2ea-dd04049751b0" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 8.2420068359375); (5.875 : 8.6170068359375); (5.875 : 11.0681469726562); (6.25 : 11.0681469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdResourceRating" />
-      <nodes>
-        <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
-        <classShapeMoniker Id="e567f653-dd61-4f7c-96a9-1785432dbb19" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 8.87636122831531); (3.125 : 8.50136122831531); (3.125 : 5.87782148632813); (3.5 : 5.87782148632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdResourceTopic/bhdResourceTopic_bhdResource" />
-      <nodes>
-        <classShapeMoniker Id="ad5d7a21-5eb1-4373-aafa-6da0e2c9b9f0" />
-        <classShapeMoniker Id="ae270531-8bda-47bd-8237-448ed8ebb44d" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="b49e4bc5-1b04-4179-b272-9a125027b891" absoluteBounds="9.375, 2.5, 2, 1.5785953776041666">
+    <classShape Id="99107be3-0703-4035-bded-b56f97340a32" absoluteBounds="9.75, 2.75, 2, 1.5785953776041666">
       <DataClassMoniker Name="/ResourcesDataContext/bhdMenu" />
       <nestedChildShapes>
-        <elementListCompartment Id="82168aab-2987-4af1-927d-fbc0e148b882" absoluteBounds="9.39, 2.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c8f4da1d-5bf5-42f8-bd88-31440f1e5970" absoluteBounds="9.765, 3.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="a2e83886-73f4-4503-acd3-53afc7dbd10c" absoluteBounds="12.125, 1, 2, 1.3862939453125">
-      <DataClassMoniker Name="/ResourcesDataContext/bhdMenuPage" />
-      <nestedChildShapes>
-        <elementListCompartment Id="cc7a3c1c-8603-4f59-bd0d-9ef08a6ba593" absoluteBounds="12.14, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="d43638bc-78d3-4120-a8ec-c408c4c02fb7" absoluteBounds="12.125, 3.125, 2, 2.3478011067708331">
+    <classShape Id="c27d24b2-9081-460b-99bb-1a95c2ecb70f" absoluteBounds="12.5, 3.375, 2, 2.3478011067708326">
       <DataClassMoniker Name="/ResourcesDataContext/bhdMenuItem" />
       <nestedChildShapes>
-        <elementListCompartment Id="52f128ea-3d76-4ac8-9c72-e3e4a86a03db" absoluteBounds="12.14, 3.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="cb2aeaf3-39f8-41b6-8c1f-6a80217e7b4f" absoluteBounds="12.515, 3.835, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(10.375 : 2.5); (10.375 : 1.69314697265625); (12.125 : 1.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/ResourcesDataContext/bhdMenu/bhdMenu_bhdMenuPage" />
+    <classShape Id="55eb17c5-4984-40be-b66f-4c78be69b2e8" absoluteBounds="12.5, 1.25, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdMenuPage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0e70b143-31ec-40a3-9379-22bb31982a19" absoluteBounds="12.515, 1.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5f0b26a9-8b69-4cc1-9188-ab4c9982420b" absoluteBounds="6.5, 21.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdPublisher" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c7d4be61-6f83-4f99-a818-3e2fc5429c13" absoluteBounds="6.515, 22.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a9d9c7ab-2a2d-455a-968b-5799d34e8bf4" absoluteBounds="9.25, 18.75, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdPublishInformation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2ba4b6ec-d622-4bb2-9e23-9bdee6c710da" absoluteBounds="9.265, 19.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2491a43a-921f-4d2e-94d0-c6a038cd93c4" absoluteBounds="3.5, 5.125, 2, 3.1170068359375014">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3ee0cd0b-d4da-4b1c-89d7-fc295dc8de0c" absoluteBounds="3.515, 5.585, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0a5b7317-4f33-401d-a5d5-30d3aef73c22" absoluteBounds="9.25, 12, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceAuthor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7eeabe2f-4372-4bd4-8713-a20b33d8de0d" absoluteBounds="9.265, 12.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e990511a-4aed-4c71-8ad3-af65280ce484" absoluteBounds="6.5, 0.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceBundle" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3fdf98d7-547d-4f0c-8e1c-020ce5f494d7" absoluteBounds="6.515, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="72f089db-7928-4230-b378-f537ab2eb1ae" absoluteBounds="9.25, 9, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceBundleFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="70f6fc67-d858-4044-a7f4-b8394ec592ea" absoluteBounds="9.265, 9.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2aa00f88-eb0c-46ae-8757-ee96e0ec624c" absoluteBounds="6.25, 6, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f15321e0-d6f6-4fb4-bcb6-6b4ac401b6ef" absoluteBounds="6.265, 6.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="50ec92cd-bbd8-4d09-bf27-4a3e738e35ee" absoluteBounds="11.75, 7, 2, 1.1939925130208353">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceFormat" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be523c60-c65b-4777-bd06-1f7101cfe67b" absoluteBounds="11.765, 7.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0abf2361-85e6-441f-af83-dcc61964c6d9" absoluteBounds="6.25, 4, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceKeyword" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f917d9af-0892-44a9-b445-fdefb85f5803" absoluteBounds="6.265, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1e4e670c-807e-40f5-9ee1-1868cc86c3d9" absoluteBounds="0.75, 3.625, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceLanguage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="474fda21-0ea1-4be7-9d5b-e10039fce2c7" absoluteBounds="0.765, 4.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e8725497-a66b-4c85-8b9b-d50e501beeb1" absoluteBounds="6.25, 8, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceLink" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e22ed5a4-087b-46b9-a06c-6eb2c854b79c" absoluteBounds="6.265, 8.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="246e2766-5c1c-4d97-92b8-3d8cd9542b87" absoluteBounds="6.25, 10.375, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceRating" />
+      <nestedChildShapes>
+        <elementListCompartment Id="404c0e53-0f9b-4ccf-9aa3-e48373a11005" absoluteBounds="6.265, 10.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a98deb8a-93c8-43a1-950b-81d9ab62b809" absoluteBounds="0.75, 8.875, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/ResourcesDataContext/bhdResourceTopic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0974ee52-e0a2-4ea4-9149-be338b673700" absoluteBounds="0.765, 9.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.5 : 13.5208968098958); (4.5 : 16.5969962565104); (6.25 : 16.5969962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdFile/bhdFile_bhdFileData" />
       <nodes>
-        <classShapeMoniker Id="b49e4bc5-1b04-4179-b272-9a125027b891" />
-        <classShapeMoniker Id="a2e83886-73f4-4503-acd3-53afc7dbd10c" />
+        <classShapeMoniker Id="c231612c-0a59-4839-ac8e-8d2ca758960f" />
+        <classShapeMoniker Id="49b37968-afe7-4800-bcf2-7218bd91063f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.375 : 3.60179768880208); (12.125 : 3.60179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 12.6354484049479); (3.5 : 12.6354484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdFileType/bhdFileType_bhdFile" />
+      <nodes>
+        <classShapeMoniker Id="0d522c56-e22b-45a8-9899-51fa55d83db7" />
+        <classShapeMoniker Id="c231612c-0a59-4839-ac8e-8d2ca758960f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.75 : 3.85179768880208); (12.5 : 3.85179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ResourcesDataContext/bhdMenu/bhdMenu_bhdMenuItem" />
       <nodes>
-        <classShapeMoniker Id="b49e4bc5-1b04-4179-b272-9a125027b891" />
-        <classShapeMoniker Id="d43638bc-78d3-4120-a8ec-c408c4c02fb7" />
+        <classShapeMoniker Id="99107be3-0703-4035-bded-b56f97340a32" />
+        <classShapeMoniker Id="c27d24b2-9081-460b-99bb-1a95c2ecb70f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.75 : 2.75); (10.75 : 1.94314697265625); (12.5 : 1.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdMenu/bhdMenu_bhdMenuPage" />
+      <nodes>
+        <classShapeMoniker Id="99107be3-0703-4035-bded-b56f97340a32" />
+        <classShapeMoniker Id="55eb17c5-4984-40be-b66f-4c78be69b2e8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 19.6642976888021); (9.25 : 19.6642976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdAuthor/bhdAuthor_bhdPublishInformation" />
+      <nodes>
+        <classShapeMoniker Id="cc96f7a6-adfa-463a-b607-89e948f5b047" />
+        <classShapeMoniker Id="a9d9c7ab-2a2d-455a-968b-5799d34e8bf4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 22.6642976888021); (10.25 : 22.6642976888021); (10.25 : 20.5208968098958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdPublisher/bhdPublisher_bhdPublishInformation" />
+      <nodes>
+        <classShapeMoniker Id="5f0b26a9-8b69-4cc1-9188-ab4c9982420b" />
+        <classShapeMoniker Id="a9d9c7ab-2a2d-455a-968b-5799d34e8bf4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.45076923076923 : 8.2420068359375); (5.9375 : 8.72873760516827); (5.9375 : 13.5777498372396); (6.25 : 13.5777498372396)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdFeaturedResource" />
+      <nodes>
+        <classShapeMoniker Id="2491a43a-921f-4d2e-94d0-c6a038cd93c4" />
+        <classShapeMoniker Id="da629c0f-221d-42ab-9555-663c0ec3d0b7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.69314697265625); (3.04166666666667 : 6.69314697265625 : JumpStart); (3.20833333333333 : 6.69314697265625 : JumpEnd); (3.5 : 6.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdResourceType/bhdResourceType_bhdResource" />
+      <nodes>
+        <classShapeMoniker Id="8d792745-5673-41c2-95a6-78168e285a8c" />
+        <classShapeMoniker Id="2491a43a-921f-4d2e-94d0-c6a038cd93c4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.40625 : 18.875); (8.40625 : 12.21875); (9.25 : 12.21875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdAuthor/bhdAuthor_bhdResourceAuthor" />
+      <nodes>
+        <classShapeMoniker Id="cc96f7a6-adfa-463a-b607-89e948f5b047" />
+        <classShapeMoniker Id="0a5b7317-4f33-401d-a5d5-30d3aef73c22" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 12.390625); (5.85416666666667 : 12.390625 : JumpStart); (6.02083333333333 : 12.390625 : JumpEnd); (8.32291666666667 : 12.390625 : JumpStart); (8.48958333333333 : 12.390625 : JumpEnd); (9.25 : 12.390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdFile/bhdFile_bhdResourceAuthor" />
+      <nodes>
+        <classShapeMoniker Id="c231612c-0a59-4839-ac8e-8d2ca758960f" />
+        <classShapeMoniker Id="0a5b7317-4f33-401d-a5d5-30d3aef73c22" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 11.781330251252); (5.87857443490112 : 11.4027558163509 : JumpStart); (5.99642556509888 : 11.2849046861531 : JumpEnd); (6.125 : 11.156330251252); (6.125 : 9.78449625651042); (9.25 : 9.78449625651042)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdFile/bhdFile_bhdResourceBundleFile" />
+      <nodes>
+        <classShapeMoniker Id="c231612c-0a59-4839-ac8e-8d2ca758960f" />
+        <classShapeMoniker Id="72f089db-7928-4230-b378-f537ab2eb1ae" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.40625 : 2.52089680989583); (8.40625 : 9.48924188476563); (9.25 : 9.48924188476563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdResourceBundle/bhdResourceBundle_bhdResourceBundleFile" />
+      <nodes>
+        <classShapeMoniker Id="e990511a-4aed-4c71-8ad3-af65280ce484" />
+        <classShapeMoniker Id="72f089db-7928-4230-b378-f537ab2eb1ae" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 11.7527234566306); (5.87857443490112 : 11.3741490217295 : JumpStart); (5.99642556509888 : 11.2562978915317 : JumpEnd); (6.03125 : 11.2214734566306); (6.03125 : 6.59699625651042); (6.25 : 6.59699625651042)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdFile/bhdFile_bhdResourceFile" />
+      <nodes>
+        <classShapeMoniker Id="c231612c-0a59-4839-ac8e-8d2ca758960f" />
+        <classShapeMoniker Id="2aa00f88-eb0c-46ae-8757-ee96e0ec624c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.23599812825521); (6.25 : 6.23599812825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdResourceFile" />
+      <nodes>
+        <classShapeMoniker Id="2491a43a-921f-4d2e-94d0-c6a038cd93c4" />
+        <classShapeMoniker Id="2aa00f88-eb0c-46ae-8757-ee96e0ec624c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 2.98484537760417); (6.34375 : 2.98484537760417); (6.34375 : 4)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdKeyword/bhdKeyword_bhdResourceKeyword" />
+      <nodes>
+        <classShapeMoniker Id="d569ba2c-7682-47d2-b36c-ee2d0f1bc231" />
+        <classShapeMoniker Id="0abf2361-85e6-441f-af83-dcc61964c6d9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 5.125); (4.5 : 4.5624995); (6.25 : 4.5624995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdResourceKeyword" />
+      <nodes>
+        <classShapeMoniker Id="2491a43a-921f-4d2e-94d0-c6a038cd93c4" />
+        <classShapeMoniker Id="0abf2361-85e6-441f-af83-dcc61964c6d9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.09374975); (3.9687475 : 4.09374975); (3.9687475 : 5.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdResourceLanguage/bhdResourceLanguage_bhdResource" />
+      <nodes>
+        <classShapeMoniker Id="1e4e670c-807e-40f5-9ee1-1868cc86c3d9" />
+        <classShapeMoniker Id="2491a43a-921f-4d2e-94d0-c6a038cd93c4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 9); (4.5 : 8.59699625651042); (5.72242531800881 : 8.59699625651042 : JumpStart); (5.88909198467548 : 8.59699625651042 : JumpEnd); (5.94791666666667 : 8.59699625651042 : JumpStart); (6.11458333333333 : 8.59699625651042 : JumpEnd); (6.25 : 8.59699625651042)]" fixedFrom="Algorithm" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdLink/bhdLink_bhdResourceLink" />
+      <nodes>
+        <classShapeMoniker Id="d6aa3049-f8e6-441f-85f5-77a621d1d203" />
+        <classShapeMoniker Id="e8725497-a66b-4c85-8b9b-d50e501beeb1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 8.19277506670673); (5.75 : 8.44277506670673); (5.75 : 7.5); (5.97232443490112 : 7.72232443490112 : JumpStart); (6.09017556509888 : 7.84017556509888 : JumpEnd); (6.25 : 8)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdResourceLink" />
+      <nodes>
+        <classShapeMoniker Id="2491a43a-921f-4d2e-94d0-c6a038cd93c4" />
+        <classShapeMoniker Id="e8725497-a66b-4c85-8b9b-d50e501beeb1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 8.2420068359375); (5.875 : 8.6170068359375); (5.875 : 11.0681469726562); (5.94791666666667 : 11.0681469726562 : JumpStart); (6.20833333333333 : 11.0681469726562 : JumpEnd); (6.25 : 11.0681469726562)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdResource/bhdResource_bhdResourceRating" />
+      <nodes>
+        <classShapeMoniker Id="2491a43a-921f-4d2e-94d0-c6a038cd93c4" />
+        <classShapeMoniker Id="246e2766-5c1c-4d97-92b8-3d8cd9542b87" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 8.87636122831531); (3.125 : 8.50136122831531); (3.125 : 5.87782148632813); (3.5 : 5.87782148632813)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResourcesDataContext/bhdResourceTopic/bhdResourceTopic_bhdResource" />
+      <nodes>
+        <classShapeMoniker Id="a98deb8a-93c8-43a1-950b-81d9ab62b809" />
+        <classShapeMoniker Id="2491a43a-921f-4d2e-94d0-c6a038cd93c4" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
