@@ -192,8 +192,56 @@ namespace Blackhouse.Resources
 
         protected void UploadWebsite_Click(object sender, EventArgs e)
         {
-            string type = "website";
-            Span2.Text = "";
+            int ResourceId = 0;
+            //ok, now we need to get all the information for the save
+            //reource basic infortmation
+            UploadData resourceData = new UploadData();
+            resourceData.PortalId = ModuleContext.PortalId;
+            resourceData.ResourceDescription = txtResourceDescription.Text;
+            resourceData.ResourceLanguageId = int.Parse(ddlResourceLanguage.SelectedValue);
+            resourceData.ResourceName = txtResourceName.Text;
+            resourceData.ResourceTopicId = int.Parse(hidTopicId.Value);
+            resourceData.ResourceTypeId = 1;
+
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/") as HttpWebRequest;
+            request.Method = "POST";
+            request.ContentType = "text/json";
+            try
+            {
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(resourceData);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.ToString());
+            }
+
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            {
+                if (response.StatusCode != HttpStatusCode.OK)
+                    throw new Exception(String.Format("Server error (HTTP {0}: {1}).", response.StatusCode, response.StatusDescription));
+                Stream resp = response.GetResponseStream();
+                StreamReader reader = new StreamReader(resp);
+                string text = reader.ReadToEnd();
+                ResourceId = int.Parse(text);
+            }
+            //end of basic information
+
+            //now it is tags
+
+
+
+            //end of tags
+
+            //now it has URL
             string url = "";
             if (txtWebUrl.Text != "" && txtWebUrl.Text != " ")
             {
@@ -201,32 +249,35 @@ namespace Blackhouse.Resources
                     url = "http://" + txtWebUrl.Text.ToLower();
                 else
                     url = txtWebUrl.Text.ToLower();
-
-                //now we need to upload the information for this resource
-                HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/" + hidResourceId.Value + "/" + type + "/") as HttpWebRequest;
-                request.Method = "POST";
-                request.ContentType = "text/json";
-                try
-                {
-                    using (var streamWriter = new StreamWriter(request.GetRequestStream()))
-                    {
-                        string json = JsonConvert.SerializeObject(url);
-
-                        streamWriter.Write(json);
-                        streamWriter.Flush();
-                        streamWriter.Close();
-                    }
-                    var httpResponse = (HttpWebResponse)request.GetResponse();
-
-                }
-                catch (Exception ex)
-                {
-                    Span2.Text = ex.ToString();
-                }
             }
             else
+            {
                 Span2.Text = "No information has been added, please add information and try again.";
-            Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + hidResourceId.Value);
+                return;
+            }
+            HttpWebRequest urlRequest = WebRequest.Create(dashboardUrlBase + "resourceupload/" + ResourceId + "/website") as HttpWebRequest;
+            urlRequest.ContentType = "text/json";
+            urlRequest.Method = "POST";
+            try
+            {
+                using (var streamWriter = new StreamWriter(urlRequest.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(url);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)urlRequest.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                lnkSaveFileInfo.Text = ex.ToString();
+                return;
+            }
+            //end of url
+
+            Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + ResourceId);
         }
 
         protected void UploadLessonPlan_Click(object sender, EventArgs e)
@@ -468,7 +519,6 @@ namespace Blackhouse.Resources
                 //end of tags
 
                 //now its the files
-
                 List<FileInfoData> tmpFileData = new List<FileInfoData>();
                 List<FileData> newFileData = new List<FileData>();
                 int filecounter = 0;
