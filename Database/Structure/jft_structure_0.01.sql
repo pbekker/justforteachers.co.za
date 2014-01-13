@@ -703,3 +703,17 @@ VALUES ('Data handling', '', @topicId, 1),
 	   ('Patterns, relationships and representations', '', @topicId, 1),
 	   ('Probability', '', @topicId, 1)
 END
+
+IF EXISTS (SELECT * FROM bhdResourceTopics (NOLOCK) WHERE name = 'Physical Science')
+ AND NOT EXISTS (SELECT * FROM bhdResourceTopics WHERE name = 'Electricity and magnetism')
+BEGIN
+SELECT @topicId = id FROM bhdResourceTopics rt (NOLOCK)
+WHERE rt.name = 'Physical Science'
+INSERT INTO  bhdResourceTopics (name, [description], parentId, isActive)
+VALUES ('Electricity and magnetism', '', @topicId, 1),
+	   ('Chemical change', '', @topicId, 1),
+	   ('Chemical systems', '', @topicId, 1),
+	   ('Matter and materials', '', @topicId, 1),
+	   ('Mechanics', '', @topicId, 1),
+	   ('Waves, sound and light', '', @topicId, 1)
+END
