@@ -597,6 +597,7 @@ BEGIN
 			,(1, 'Visual Arts', '', 1)
 			,(1, 'Xhosa', '', 1)
 			,(1, 'Zulu', '', 1)
+			,(1, 'Life Orientation', '', 1)
 	
 END
 
@@ -611,4 +612,94 @@ IF NOT EXISTS(SELECT * FROM bhdFileType)
 BEGIN
 	INSERT INTO bhdFileType (name, extension, isActive)
 	VALUES ('Word', 'docx', 1)
+END
+
+DECLARE @topicId int
+IF EXISTS (SELECT * FROM bhdResourceTopics (NOLOCK) WHERE name like '%Life Sciences%')
+ AND NOT EXISTS (SELECT * FROM bhdResourceTopics WHERE name = 'Environmental Studies')
+BEGIN
+SELECT @topicId = id FROM bhdResourceTopics rt (NOLOCK)
+WHERE rt.name like '%Life Sciences%'
+
+INSERT INTO  bhdResourceTopics (name, [description], parentId, isActive)
+VALUES ('Environmental Studies', '', @topicId, 1),
+	   ('Diversity, Change and Continuity', '', @topicId, 1),
+	   ('Life at molecular, Cellular and Tissue Level', '', @topicId, 1),
+	   ('Life Processes in Plants and Animals', '', @topicId, 1)
+
+END
+
+
+IF EXISTS (SELECT * FROM bhdResourceTopics (NOLOCK) WHERE name like '%Geography%')
+ AND NOT EXISTS (SELECT * FROM bhdResourceTopics WHERE name = 'Human and environment interaction')
+BEGIN
+SELECT @topicId = id FROM bhdResourceTopics rt (NOLOCK)
+WHERE rt.name like '%Geography%'
+INSERT INTO  bhdResourceTopics (name, [description], parentId, isActive)
+VALUES ('Human and environment interaction', '', @topicId, 1),
+	   ('Place', '', @topicId, 1),
+	   ('Spatial distribution patterns', '', @topicId, 1),
+	   ('Spatial processes', '', @topicId, 1)
+
+END
+
+IF EXISTS (SELECT * FROM bhdResourceTopics (NOLOCK) WHERE name like '%History%')
+ AND NOT EXISTS (SELECT * FROM bhdResourceTopics WHERE name = 'Cause and effect')
+BEGIN
+SELECT @topicId = id FROM bhdResourceTopics rt (NOLOCK)
+WHERE rt.name like '%History%'
+INSERT INTO  bhdResourceTopics (name, [description], parentId, isActive)
+VALUES ('Cause and effect', '', @topicId, 1),
+	   ('Change and continuity ', '', @topicId, 1),
+	   ('Multi - perspectivity', '', @topicId, 1),
+	   ('Sources and evidence', '', @topicId, 1),
+	   ('Time and chronology', '', @topicId, 1)
+END
+
+IF EXISTS (SELECT * FROM bhdResourceTopics (NOLOCK) WHERE name like '%Life Orientation%')
+ AND NOT EXISTS (SELECT * FROM bhdResourceTopics WHERE name = 'Careers and career choices')
+BEGIN
+SELECT @topicId = id FROM bhdResourceTopics rt (NOLOCK)
+WHERE rt.name like '%Life Orientation%'
+INSERT INTO  bhdResourceTopics (name, [description], parentId, isActive)
+VALUES ('Careers and career choices', '', @topicId, 1),
+	   ('Democracy & human rights', '', @topicId, 1),
+	   ('Development of self in society', '', @topicId, 1),
+	   ('Physical education', '', @topicId, 1),
+	   ('Social and environmental responsibility', '', @topicId, 1),
+	   ('Study skills', '', @topicId, 1)
+END
+
+IF EXISTS (SELECT * FROM bhdResourceTopics (NOLOCK) WHERE name = 'Mathematics')
+ AND NOT EXISTS (SELECT * FROM bhdResourceTopics WHERE name = 'Careers and career choices')
+BEGIN
+SELECT @topicId = id FROM bhdResourceTopics rt (NOLOCK)
+WHERE rt.name = 'Mathematics'
+INSERT INTO  bhdResourceTopics (name, [description], parentId, isActive)
+VALUES ('Algebra', '', @topicId, 1),
+	   ('Analytical geometry', '', @topicId, 1),
+	   ('Differential calculus', '', @topicId, 1),
+	   ('Finance, growth, decay', '', @topicId, 1),
+	   ('Functions', '', @topicId, 1),
+	   ('Euclidean Geometry and measurement', '', @topicId, 1),
+	   ('Number patterns, sequences, series', '', @topicId, 1),
+	   ('Probability', '', @topicId, 1),
+	   ('Statistics', '', @topicId, 1),
+	   ('Trigonometry', '', @topicId, 1)
+END
+
+IF EXISTS (SELECT * FROM bhdResourceTopics (NOLOCK) WHERE name = 'Mathematics Literacy')
+ AND NOT EXISTS (SELECT * FROM bhdResourceTopics WHERE name = 'Data handling')
+BEGIN
+SELECT @topicId = id FROM bhdResourceTopics rt (NOLOCK)
+WHERE rt.name = 'Mathematics Literacy'
+INSERT INTO  bhdResourceTopics (name, [description], parentId, isActive)
+VALUES ('Data handling', '', @topicId, 1),
+	   ('Finance', '', @topicId, 1),
+	   ('Interpreting and communication answers', '', @topicId, 1),
+	   ('Maps, plans and other representations of the physical world', '', @topicId, 1),
+	   ('Measurement', '', @topicId, 1),
+	   ('Numbers and calculations with numbers', '', @topicId, 1),
+	   ('Patterns, relationships and representations', '', @topicId, 1),
+	   ('Probability', '', @topicId, 1)
 END
