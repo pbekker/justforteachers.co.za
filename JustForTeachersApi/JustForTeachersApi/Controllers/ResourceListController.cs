@@ -120,5 +120,59 @@ namespace JustForTeachersApi.Controllers
             }
             return payload;
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> Post(int id)
+        {
+            try
+            {
+                var result = Request.Content.ReadAsFormDataAsync();
+                Stream streamIn = await Request.Content.ReadAsStreamAsync();
+                StreamReader streamReader = new StreamReader(streamIn);
+                string jsonstring = streamReader.ReadToEnd();
+
+                var temp = JsonConvert.DeserializeObject<TagsInfo>(jsonstring);
+
+                using (ResourcesDataContext dc = new ResourcesDataContext())
+                {
+                    foreach (var item in temp.tags)
+                	{
+                        var r = (from d in dc.bhdKeywords
+                                 where d.isActive && d.value == item
+                                 select d).FirstOrDefault();
+                        if (r != null)
+                        {
+                            bhdResourceKeyword tmpResourceKeyword = new bhdResourceKeyword();
+                            tmpResourceKeyword.KeywordId = r.id;
+                            tmpResourceKeyword.Resourceid = id;
+                            dc.bhdResourceKeywords.InsertOnSubmit(tmpResourceKeyword);
+                            dc.SubmitChanges();
+                        }
+                        else
+                        {
+                            bhdKeyword tmpkeyword = new bhdKeyword();
+                            tmpkeyword.value = item;
+                            tmpkeyword.isActive = true;
+                            dc.bhdKeywords.InsertOnSubmit(tmpkeyword);
+                            dc.SubmitChanges();
+
+                            bhdResourceKeyword tmpResourceKeyword = new bhdResourceKeyword();
+                            tmpResourceKeyword.KeywordId = tmpkeyword.id;
+                            tmpResourceKeyword.Resourceid = id;
+                            dc.bhdResourceKeywords.InsertOnSubmit(tmpResourceKeyword);
+                            dc.SubmitChanges();
+                        }
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, "Success");
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. 400-1");
+            }
+
+        }
     }
 }

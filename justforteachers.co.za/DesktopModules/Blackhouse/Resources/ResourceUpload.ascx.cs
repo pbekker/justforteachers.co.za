@@ -201,9 +201,9 @@ namespace Blackhouse.Resources
             resourceData.ResourceLanguageId = int.Parse(ddlResourceLanguage.SelectedValue);
             resourceData.ResourceName = txtResourceName.Text;
             resourceData.ResourceTopicId = int.Parse(hidTopicId.Value);
-            resourceData.ResourceTypeId = 1;
+            resourceData.ResourceTypeId = 2;
 
-            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/") as HttpWebRequest;
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/" ) as HttpWebRequest;
             request.Method = "POST";
             request.ContentType = "text/json";
             try
@@ -236,9 +236,62 @@ namespace Blackhouse.Resources
             //end of basic information
 
             //now it is tags
+            List<string> tagsSend = new List<string>();
+            string tags = txtResourceTags.Text;
+            if (tags.Contains(","))
+            {
+                //these tags must be split
+                string[] tagsList = tags.Split(",");
+                foreach (var item in tagsList)
+                {
+                    string tmp = item;
+                    if (tmp.StartsWith(" "))
+                    {
+                        tmp = tmp.Remove(0, 1);
+                    }
+                    if (item.EndsWith(" "))
+                    {
+                        tmp = tmp.Remove(tmp.Length - 1, 1);
+                    }
+                    tagsSend.Add(tmp);
+                }
+            }
+            else
+            {
+                if (tags.StartsWith(" "))
+                {
+                    tags = tags.Substring(0, 1);
+                }
+                if (tags.EndsWith(" "))
+                {
+                    tags = tags.Substring(tags.Length - 2, 1);
+                }
+                tagsSend.Add(tags);
+            }
+            TagsInfo tmpTags = new TagsInfo();
+            tmpTags.ResourceId = ResourceId;
+            tmpTags.tags = new List<string>();
+            tmpTags.tags = tagsSend;
 
+            HttpWebRequest tagrequest = WebRequest.Create(dashboardUrlBase + "resourcelist/" + ResourceId) as HttpWebRequest;
+            tagrequest.Method = "POST";
+            tagrequest.ContentType = "text/json";
+            try
+            {
+                using (var streamWriter = new StreamWriter(tagrequest.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(tmpTags);
 
-
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)tagrequest.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                lnkSaveFileInfo.Text = ex.ToString();
+            }
             //end of tags
 
             //now it has URL
@@ -513,9 +566,62 @@ namespace Blackhouse.Resources
                 //end of basic information
 
                 //now it is tags
+                List<string> tagsSend = new List<string>();
+                string tags = txtResourceTags.Text;
+                if (tags.Contains(","))
+                {
+                    //these tags must be split
+                    string[] tagsList = tags.Split(",");
+                    foreach (var item in tagsList)
+                    {
+                        string tmp = item;
+                        if (tmp.StartsWith(" "))
+                        {
+                            tmp = tmp.Substring(0, 1);
+                        }
+                        if (item.EndsWith(" "))
+                        {
+                            tmp = tmp.Substring(tmp.Length - 2, 1);
+                        }
+                        tagsSend.Add(tmp);
+                    }
+                }
+                else
+                {
+                    if (tags.StartsWith(" "))
+                    {
+                        tags = tags.Substring(0, 1);
+                    }
+                    if (tags.EndsWith(" "))
+                    {
+                        tags = tags.Substring(tags.Length - 2, 1);
+                    }
+                    tagsSend.Add(tags);
+                }
+                TagsInfo tmpTags = new TagsInfo();
+                tmpTags.ResourceId = ResourceId;
+                tmpTags.tags = new List<string>();
+                tmpTags.tags = tagsSend;
 
+                HttpWebRequest tagrequest = WebRequest.Create(dashboardUrlBase + "resourcelist/" + ResourceId) as HttpWebRequest;
+                tagrequest.Method = "POST";
+                tagrequest.ContentType = "text/json";
+                try
+                {
+                    using (var streamWriter = new StreamWriter(tagrequest.GetRequestStream()))
+                    {
+                        string json = JsonConvert.SerializeObject(tmpTags);
 
-
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                    }
+                    var httpResponse = (HttpWebResponse)tagrequest.GetResponse();
+                }
+                catch (Exception ex)
+                {
+                    lnkSaveFileInfo.Text = ex.ToString();
+                }
                 //end of tags
 
                 //now its the files
@@ -740,5 +846,11 @@ namespace Blackhouse.Resources
         public int authorid { get; set; }
         public int publisherid { get; set; }
         public int publishYear { get; set; }
+    }
+
+    public class TagsInfo
+    {
+        public int ResourceId { get; set; }
+        public List<string> tags { get; set; }
     }
 }
