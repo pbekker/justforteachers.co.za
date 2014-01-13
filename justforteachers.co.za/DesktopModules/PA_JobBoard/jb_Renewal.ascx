@@ -2,8 +2,8 @@
 <%@ Control language="vb" Inherits="DotNetNuke.jb_Renewal" CodeBehind="jb_Renewal.ascx.vb" AutoEventWireup="false" Explicit="True" %>
 <TABLE width="100%" align="center">
 	<TR>
-		<TD align="left" width="50%"><asp:hyperlink id="hplBackLink" Runat="server" cssclass="NormalBold" Text="< Back to Previous Page"></asp:hyperlink></TD>
-		<TD align="right" width="50%"><asp:hyperlink id="hplModuleHome" Visible="True" runat="server" cssclass="NormalBold" Text="Home">Go to Module Home</asp:hyperlink></TD>
+		<TD align="left" width="50%"><asp:hyperlink id="hplBackLink" resourcekey="[RESX:Nav_PreviousPage].Text" Runat="server" cssclass="NormalBold" Text="< Back to Previous Page"></asp:hyperlink></TD>
+		<TD align="right" width="50%"><asp:hyperlink id="hplModuleHome" resourcekey="[RESX:Nav_ModuleHome].Text" Visible="True" runat="server" cssclass="NormalBold" Text="Home">Go to Module Home</asp:hyperlink></TD>
 	</TR>
 </TABLE>
 <asp:panel id="pnlMessage" Runat="server" CssClass="Normal" HorizontalAlign="Center">
@@ -52,7 +52,7 @@
 			</asp:TemplateColumn>			
 			<asp:TemplateColumn HeaderText="Renew" ItemStyle-HorizontalAlign="Center" Visible="True">
 				<ItemTemplate>
-					<asp:LinkButton id="lnkBtnSubscribe" CommandName="subscribe" runat="server" text="Renew" CausesValidation="False"></asp:LinkButton>
+					<asp:LinkButton id="lnkBtnRenew" CommandName="renew" runat="server" text="Renew" CausesValidation="False"></asp:LinkButton>
 				</ItemTemplate>
 			</asp:TemplateColumn>
 		</Columns>

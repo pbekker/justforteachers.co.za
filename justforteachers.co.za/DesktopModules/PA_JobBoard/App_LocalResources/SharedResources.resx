@@ -119,6 +119,12 @@
   </resheader>
   <data name="[RESX:DefaultLocationItem].Text" xml:space="preserve">
     <value>-- ALL Locations --</value>
+   </data>
+  <data name="[RESX:DefaultListItem_SearchCategory_AllCategory].Text" xml:space="preserve">
+    <value>-- ALL Categories --</value>
+  </data>
+  <data name="[RESX:DefaultListItem_ParentCategory_NoParent].Text" xml:space="preserve">
+    <value>-- No Parent --</value>
   </data>
   <data name="[RESX:ResultCount].Text" xml:space="preserve">
     <value>{0} result(s)</value>
@@ -170,6 +176,44 @@
 	Message: [Message]
 	</value>
  </data>
+	<data name="[RESX:Review_Detailed_Review_Template_Star].Text" xml:space="preserve">
+    <value>&lt;table align="left"&gt;
+	&lt;tr&gt;
+		&lt;td Width="105" align="left"&gt;Service:&lt;/td&gt;&lt;td align="left"&gt;[AVG1]&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td Width="105" align="left"&gt;Price:&lt;/td&gt;&lt;td align="left"&gt;[AVG2]&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td Width="105" align="left"&gt;Support:&lt;/td&gt;&lt;td align="left"&gt;[AVG3]&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td Width="105" align="left"&gt;Product Quality:&lt;/td&gt;&lt;td align="left"&gt;[AVG4]&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td Width="105" align="left"&gt;Delivery:&lt;/td&gt;&lt;td align="left"&gt;[AVG5]&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</value>
+  </data>
+	<data name="[RESX:Review_Detailed_Review_Template_Bar].Text" xml:space="preserve">
+    <value>&lt;table align="left" border="0"&gt;
+	&lt;tr&gt;
+		&lt;td Width="105" align="left"&gt;Service:&lt;/td&gt;&lt;td align="left" title="[TITLE1]" style="background-color: #f5f5f5;width: 150px;"&gt;[AVG1]&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td Width="105" align="left"&gt;Price:&lt;/td&gt;&lt;td align="left" title="[TITLE2]" style="background-color: #f5f5f5;width: 150px;"&gt;[AVG2]&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td Width="105" align="left"&gt;Support:&lt;/td&gt;&lt;td align="left" title="[TITLE3]" style="background-color: #f5f5f5;width: 150px;"&gt;[AVG3]&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td Width="105" align="left"&gt;Product Quality:&lt;/td&gt;&lt;td align="left" title="[TITLE4]" style="background-color: #f5f5f5;width: 150px;"&gt;[AVG4]&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td Width="105" align="left"&gt;Delivery:&lt;/td&gt;&lt;td align="left" title="[TITLE5]" style="background-color: #f5f5f5;width: 150px;"&gt;[AVG5]&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</value>
+  </data>
   <data name="[RESX:PageOption_Job_ConfirmSubmission].Text" xml:space="preserve">
     <value>Your application has been submitted. Your ApplicationID is &lt;b&gt;{0}&lt;/b&gt;.&lt;br&gt;Please keep this number for future reference.</value>
   </data>
@@ -203,6 +247,9 @@
 	<data name="[RESX:CRUD_FirstSectionRequired].Text" xml:space="preserve">
     <value>Information on the first section is required.</value>
   </data>
+	<data name="[RESX:CRUD_MainImageRequired].Text" xml:space="preserve">
+    <value>Main image on the first section is required.</value>
+  </data>
 	<data name="[RESX:CRUD_ConfirmUpdate_ViewOrder_Description].Text" xml:space="preserve">
     <value>All View Order and Description have been updated.</value>
   </data>
@@ -232,6 +279,12 @@
   </data>
 	<data name="[RESX:Msg_NotEnable].Text" xml:space="preserve">
     <value>Not enable</value>
+  </data>
+	<data name="[RESX:Search_HideOptions].Text" xml:space="preserve">
+    <value>Hide Options</value>
+  </data>
+	<data name="[RESX:Search_MoreOptions].Text" xml:space="preserve">
+    <value>More Options</value>
   </data>
 	<data name="[RESX:EntityName_Listing].Text" xml:space="preserve">
     <value>Listing</value>

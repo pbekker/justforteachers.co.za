@@ -112,6 +112,9 @@
 	<data name="[RESX:RelatedFiles].Text" xml:space="preserve">
     <value>Add Files</value>
   </data>
+	<data name="[RESX:RelatedCoupons].Text" xml:space="preserve">
+    <value>Add Coupons</value>
+  </data>
 	<data name="[RESX:YouTubeVideos].Text" xml:space="preserve">
     <value>YouTube Videos</value>
   </data>

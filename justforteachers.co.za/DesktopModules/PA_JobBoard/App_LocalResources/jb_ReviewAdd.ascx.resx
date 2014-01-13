@@ -136,10 +136,4 @@
 	<data name="[RESX:CRUD_ExceedLimit].Text" xml:space="preserve">
     <value>Limit Exceeded</value>
   </data>
-	<data name="cmdReturn.Text" xml:space="preserve">
-		<value>Return to listing(s)</value>
-	</data>
-	<data name="cmdReturnHome.Text" xml:space="preserve">
-		<value>Return to Module Home</value>
-	</data>
 </root>

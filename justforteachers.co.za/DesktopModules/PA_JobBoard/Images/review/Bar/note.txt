@@ -1,0 +1,1 @@
+Replace BarCustom.png with your own custom color if needed.

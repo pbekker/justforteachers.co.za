@@ -7,6 +7,23 @@
 		font-style: italic;	
 		color: black;	
 	}
+	.JediCss_DatagridTable
+	{
+		border: 1px solid #cccccc;		
+	}
+	.JediCss_DatagridTable TD
+	{	
+		border: 1px solid #cccccc;
+	}
+	.JediCss_FeaturedListings
+	{
+		border: 1px solid #cccccc;			
+	}
+	.JediCss_FeaturedListings TD
+	{	
+		border: 0px solid #cccccc;
+		padding:2px 0px 2px 3px;
+	}
 	.JediCss_TopStrip
 	{
 		/* Gray Theme*/
@@ -42,11 +59,41 @@
 	{
 		
 		
-	}
-	.JediCss_ListingsPanel
+	}	
+	.JediCss_BoxPanel
 	{
 		background-color: #f5f5f5;
-		
+		border: 1px solid #dddddd;	
+	}	
+	.JediCss_Coupon 
+	{ 
+		background-color: #f5f5f5;
+		border: 1px dashed #dddddd;	
+		padding: 5px 5px 5px 5px;
+		width: 100%;
+		height:auto;
+	}
+	.JediCss_CouponName 
+	{ 
+		font-family: Verdana;		
+		font-weight:bold;
+	}
+	.JediCss_CouponDesc 
+	{ 
+		font-family: Verdana;	
+		font-weight:normal;
+	}
+	.JediCss_CouponCode 
+	{ 
+		font-family: Verdana;
+		font-size:9px;
+		font-weight:normal;	
+	}
+	.JediCss_CouponExp 
+	{ 
+		font-family: Verdana;
+		font-size:9px;
+		font-weight:normal;	
 	}
 	.JediCss_AnnouncementPanel
 	{
@@ -151,15 +198,12 @@
 		filter: alpha(opacity=55);
 		opacity: 0.55;
 	}
-	.JediCss_Button 
-	{
-		color: #777777; 
-		font-size: 12px; 
-		font-weight: bold; 
-		padding: 0px 4px 2px 4px; 
-		border: 1px solid #CCCCCC; 
-		cursor: pointer;
-	}
+.JediCss_Button 
+{
+	padding: 0px 4px 2px 4px; 
+	border: 1px solid #dddddd; 
+	cursor: pointer;
+}
 .JediCss_IPNWait
 {	
 	font-family: Verdana;
@@ -171,6 +215,21 @@
 {	
 	font-weight:bold;
 	color: #E56717;	
+}
+/* Detailed Review Style */
+.JediCss_DetailedReviewResults 
+{
+    font-family: Tahoma, Arial, Helvetica;
+    font-size: 12px;
+    font-weight: normal;
+}
+.JediCss_DetailedReviewTemplateUL
+{
+
+}
+.JediCss_DetailedReviewTemplateLI
+{
+
 }
 .Speerio-Tabs { width:100%; color: black; font-family: Verdana,Arial,Helvetica,Sans Serif}
 .Speerio-TabLeftSpacer {width:10%;  BORDER-BOTTOM: 1px solid black}

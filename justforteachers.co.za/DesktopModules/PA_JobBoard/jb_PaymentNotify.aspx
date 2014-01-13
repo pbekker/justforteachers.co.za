@@ -685,7 +685,7 @@
 								<IMG src="images/ico-mail.gif">&nbsp;
 								<asp:HyperLink id="hplContactAdmin" runat="server" CssClass="Normal" text="Contact Admin"></asp:HyperLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<IMG src="images/ico-home.gif">&nbsp;
-								<asp:linkbutton id="cmdReturnHome" runat="server" CssClass="Normal" Text="Return to Module Home."
+								<asp:linkbutton id="cmdReturnHome" resourcekey="[RESX:Nav_ModuleHome].Text" runat="server" CssClass="Normal" Text="Return to Module Home."
 									BorderStyle="none" CausesValidation="False">Return to Module Home</asp:linkbutton><BR>
 								<BR>
 							</P>

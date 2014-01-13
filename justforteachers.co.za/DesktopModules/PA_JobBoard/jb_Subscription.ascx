@@ -2,8 +2,8 @@
 <%@ Control language="vb" Inherits="DotNetNuke.jb_Subscription" CodeBehind="jb_Subscription.ascx.vb" AutoEventWireup="false" Explicit="True" %>
 <TABLE width="100%" align="center">
 	<TR>
-		<TD align="left" width="50%"><asp:hyperlink id="hplBackLink" Runat="server" cssclass="NormalBold" Text="< Back to Previous Page"></asp:hyperlink></TD>
-		<TD align="right" width="50%"><asp:hyperlink id="hplModuleHome" Visible="True" runat="server" cssclass="NormalBold" Text="Home">Go to Module Home</asp:hyperlink></TD>
+		<TD align="left" width="50%"><asp:hyperlink id="hplBackLink" resourcekey="[RESX:Nav_PreviousPage].Text" Runat="server" cssclass="NormalBold" Text="< Back to Previous Page"></asp:hyperlink></TD>
+		<TD align="right" width="50%"><asp:hyperlink id="hplModuleHome" resourcekey="[RESX:Nav_ModuleHome].Text" Visible="True" runat="server" cssclass="NormalBold" Text="Home">Go to Module Home</asp:hyperlink></TD>
 	</TR>
 </TABLE>
 <asp:panel id="pnlMessage" Runat="server" CssClass="Normal" HorizontalAlign="Center">
@@ -96,7 +96,10 @@
 										<td class="NormalBold" nowrap>Listing Used:</td>
 										<td class="Normal" nowrap>&nbsp;<%#DataBinder.Eval(Container.DataItem, "LST_Used")%></td>
 									</tr>
-								
+									<tr>
+										<td class="NormalBold" nowrap>Quick Links:</td>
+										<td class="Normal" nowrap>&nbsp;<asp:HyperLink ID="hplLST_MY" Visible="True" NavigateUrl='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "main", "&filterkey=LST_MY") %>' runat="server">My Listings</asp:HyperLink></td>
+									</tr>								
 								</table>
 							</ItemTemplate>
 						</asp:TemplateColumn>

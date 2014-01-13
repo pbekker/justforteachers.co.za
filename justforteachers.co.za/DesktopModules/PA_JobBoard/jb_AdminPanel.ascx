@@ -13,9 +13,9 @@
 		<TABLE width="100%" align="center">
 			<TR>
 				<TD align="left" width="50%">
-					<asp:hyperlink id="hplBackLink" Runat="server" Text="< Back to Previous Page" cssclass="NormalBold"></asp:hyperlink></TD>
+					<asp:hyperlink id="hplBackLink" resourcekey="[RESX:Nav_PreviousPage].Text" Runat="server" Text="< Back to Previous Page" cssclass="NormalBold"></asp:hyperlink></TD>
 				<TD align="right" width="50%">
-					<asp:hyperlink id="hplModuleHome" Text="Home" cssclass="NormalBold" Visible="True" runat="server">Go to Module Home</asp:hyperlink></TD>
+					<asp:hyperlink id="hplModuleHome" resourcekey="[RESX:Nav_ModuleHome].Text" Text="Home" cssclass="NormalBold" Visible="True" runat="server">Go to Module Home</asp:hyperlink></TD>
 			</TR>
 		</TABLE>
 		<TABLE id="tblCategory" cellSpacing="0" cellPadding="0" width="100%" runat="server">
@@ -91,12 +91,12 @@
 								</ItemTemplate>
 								<EditItemTemplate>
 									<asp:TextBox ID="txtPrice_Edit" CssClass="Normal" text='<%# DotNetNuke.jb_Uconversion.ConvertDouble(DataBinder.Eval(Container.DataItem, "Price")).ToString("##0.00") %>' Runat="server" />
-									<asp:regularexpressionvalidator id="valCurrencyFormat_Edit" runat="server" CssClass="NormalRed" ErrorMessage="Invalid"
+									<asp:regularexpressionvalidator id="valCurrencyFormat_Edit" runat="server" CssClass="NormalRed" ErrorMessage="#.##"
 									ControlToValidate="txtPrice_Edit" Display="Dynamic" ValidationExpression="^\d+(?:\.\d{0,2})?$" Enabled="True"></asp:regularexpressionvalidator>
 								</EditItemTemplate>
 								<FooterTemplate>
 									<asp:TextBox id="txtPrice_Add" CssClass="Normal" Runat="server" EnableViewState="True"></asp:TextBox>
-									<asp:regularexpressionvalidator id="valCurrencyFormat_Add" runat="server" CssClass="NormalRed" ErrorMessage="Invalid"
+									<asp:regularexpressionvalidator id="valCurrencyFormat_Add" runat="server" CssClass="NormalRed" ErrorMessage="#.##"
 									ControlToValidate="txtPrice_Add" Display="Dynamic" ValidationExpression="^\d+(?:\.\d{0,2})?$" Enabled="True"></asp:regularexpressionvalidator>
 								</FooterTemplate>
 							</asp:TemplateColumn>

@@ -1186,7 +1186,7 @@ Object.extend(Object.extend(Ajax.Updater.prototype, Ajax.Request.prototype), {
 
     if (!this.options.evalScripts) response = response.stripScripts();
 
-    if (receiver = $(receiver)) {
+    if (receiver = _$(receiver)) {
       if (this.options.insertion)
         new this.options.insertion(receiver, response);
       else
@@ -1242,10 +1242,10 @@ Ajax.PeriodicalUpdater.prototype = Object.extend(new Ajax.Base(), {
     this.updater = new Ajax.Updater(this.container, this.url, this.options);
   }
 });
-function $(element) {
+function _$(element) {
   if (arguments.length > 1) {
     for (var i = 0, elements = [], length = arguments.length; i < length; i++)
-      elements.push($(arguments[i]));
+      elements.push(_$(arguments[i]));
     return elements;
   }
   if (typeof element == 'string')
@@ -1256,7 +1256,7 @@ function $(element) {
 if (Prototype.BrowserFeatures.XPath) {
   document._getElementsByXPath = function(expression, parentElement) {
     var results = [];
-    var query = document.evaluate(expression, $(parentElement) || document,
+    var query = document.evaluate(expression, _$(parentElement) || document,
       null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
     for (var i = 0, length = query.snapshotLength; i < length; i++)
       results.push(query.snapshotItem(i));
@@ -1269,7 +1269,7 @@ if (Prototype.BrowserFeatures.XPath) {
   }
 
 } else document.getElementsByClassName = function(className, parentElement) {
-  var children = ($(parentElement) || document.body).getElementsByTagName('*');
+  var children = (_$(parentElement) || document.body).getElementsByTagName('*');
   var elements = [], child;
   for (var i = 0, length = children.length; i < length; i++) {
     child = children[i];
@@ -1321,40 +1321,40 @@ Element.extend.cache = {
 
 Element.Methods = {
   visible: function(element) {
-    return $(element).style.display != 'none';
+    return _$(element).style.display != 'none';
   },
 
   toggle: function(element) {
-    element = $(element);
+    element = _$(element);
     Element[Element.visible(element) ? 'hide' : 'show'](element);
     return element;
   },
 
   hide: function(element) {
-    $(element).style.display = 'none';
+    _$(element).style.display = 'none';
     return element;
   },
 
   show: function(element) {
-    $(element).style.display = '';
+    _$(element).style.display = '';
     return element;
   },
 
   remove: function(element) {
-    element = $(element);
+    element = _$(element);
     element.parentNode.removeChild(element);
     return element;
   },
 
   update: function(element, html) {
     html = typeof html == 'undefined' ? '' : html.toString();
-    $(element).innerHTML = html.stripScripts();
+    _$(element).innerHTML = html.stripScripts();
     setTimeout(function() {html.evalScripts()}, 10);
     return element;
   },
 
   replace: function(element, html) {
-    element = $(element);
+    element = _$(element);
     html = typeof html == 'undefined' ? '' : html.toString();
     if (element.outerHTML) {
       element.outerHTML = html.stripScripts();
@@ -1369,7 +1369,7 @@ Element.Methods = {
   },
 
   inspect: function(element) {
-    element = $(element);
+    element = _$(element);
     var result = '<' + element.tagName.toLowerCase();
     $H({'id': 'id', 'className': 'class'}).each(function(pair) {
       var property = pair.first(), attribute = pair.last();
@@ -1380,7 +1380,7 @@ Element.Methods = {
   },
 
   recursivelyCollect: function(element, property) {
-    element = $(element);
+    element = _$(element);
     var elements = [];
     while (element = element[property])
       if (element.nodeType == 1)
@@ -1389,55 +1389,55 @@ Element.Methods = {
   },
 
   ancestors: function(element) {
-    return $(element).recursivelyCollect('parentNode');
+    return _$(element).recursivelyCollect('parentNode');
   },
 
   descendants: function(element) {
-    return $A($(element).getElementsByTagName('*')).each(Element.extend);
+    return $A(_$(element).getElementsByTagName('*')).each(Element.extend);
   },
 
   firstDescendant: function(element) {
-    element = $(element).firstChild;
+    element = _$(element).firstChild;
     while (element && element.nodeType != 1) element = element.nextSibling;
-    return $(element);
+    return _$(element);
   },
 
   immediateDescendants: function(element) {
-    if (!(element = $(element).firstChild)) return [];
+    if (!(element = _$(element).firstChild)) return [];
     while (element && element.nodeType != 1) element = element.nextSibling;
-    if (element) return [element].concat($(element).nextSiblings());
+    if (element) return [element].concat(_$(element).nextSiblings());
     return [];
   },
 
   previousSiblings: function(element) {
-    return $(element).recursivelyCollect('previousSibling');
+    return _$(element).recursivelyCollect('previousSibling');
   },
 
   nextSiblings: function(element) {
-    return $(element).recursivelyCollect('nextSibling');
+    return _$(element).recursivelyCollect('nextSibling');
   },
 
   siblings: function(element) {
-    element = $(element);
+    element = _$(element);
     return element.previousSiblings().reverse().concat(element.nextSiblings());
   },
 
   match: function(element, selector) {
     if (typeof selector == 'string')
       selector = new Selector(selector);
-    return selector.match($(element));
+    return selector.match(_$(element));
   },
 
   up: function(element, expression, index) {
-    element = $(element);
-    if (arguments.length == 1) return $(element.parentNode);
+    element = _$(element);
+    if (arguments.length == 1) return _$(element.parentNode);
     var ancestors = element.ancestors();
     return expression ? Selector.findElement(ancestors, expression, index) :
       ancestors[index || 0];
   },
 
   down: function(element, expression, index) {
-    element = $(element);
+    element = _$(element);
     if (arguments.length == 1) return element.firstDescendant();
     var descendants = element.descendants();
     return expression ? Selector.findElement(descendants, expression, index) :
@@ -1445,23 +1445,23 @@ Element.Methods = {
   },
 
   previous: function(element, expression, index) {
-    element = $(element);
-    if (arguments.length == 1) return $(Selector.handlers.previousElementSibling(element));
+    element = _$(element);
+    if (arguments.length == 1) return _$(Selector.handlers.previousElementSibling(element));
     var previousSiblings = element.previousSiblings();
     return expression ? Selector.findElement(previousSiblings, expression, index) :
       previousSiblings[index || 0];
   },
 
   next: function(element, expression, index) {
-    element = $(element);
-    if (arguments.length == 1) return $(Selector.handlers.nextElementSibling(element));
+    element = _$(element);
+    if (arguments.length == 1) return _$(Selector.handlers.nextElementSibling(element));
     var nextSiblings = element.nextSiblings();
     return expression ? Selector.findElement(nextSiblings, expression, index) :
       nextSiblings[index || 0];
   },
 
   getElementsBySelector: function() {
-    var args = $A(arguments), element = $(args.shift());
+    var args = $A(arguments), element = _$(args.shift());
     return Selector.findChildElements(element, args);
   },
 
@@ -1470,7 +1470,7 @@ Element.Methods = {
   },
 
   readAttribute: function(element, name) {
-    element = $(element);
+    element = _$(element);
     if (Prototype.Browser.IE) {
       if (!element.attributes) return null;
       var t = Element._attributeTranslations;
@@ -1483,11 +1483,11 @@ Element.Methods = {
   },
 
   getHeight: function(element) {
-    return $(element).getDimensions().height;
+    return _$(element).getDimensions().height;
   },
 
   getWidth: function(element) {
-    return $(element).getDimensions().width;
+    return _$(element).getDimensions().width;
   },
 
   classNames: function(element) {
@@ -1495,7 +1495,7 @@ Element.Methods = {
   },
 
   hasClassName: function(element, className) {
-    if (!(element = $(element))) return;
+    if (!(element = _$(element))) return;
     var elementClassName = element.className;
     if (elementClassName.length == 0) return false;
     if (elementClassName == className ||
@@ -1505,19 +1505,19 @@ Element.Methods = {
   },
 
   addClassName: function(element, className) {
-    if (!(element = $(element))) return;
+    if (!(element = _$(element))) return;
     Element.classNames(element).add(className);
     return element;
   },
 
   removeClassName: function(element, className) {
-    if (!(element = $(element))) return;
+    if (!(element = _$(element))) return;
     Element.classNames(element).remove(className);
     return element;
   },
 
   toggleClassName: function(element, className) {
-    if (!(element = $(element))) return;
+    if (!(element = _$(element))) return;
     Element.classNames(element)[element.hasClassName(className) ? 'remove' : 'add'](className);
     return element;
   },
@@ -1534,7 +1534,7 @@ Element.Methods = {
 
   // removes whitespace-only text node children
   cleanWhitespace: function(element) {
-    element = $(element);
+    element = _$(element);
     var node = element.firstChild;
     while (node) {
       var nextNode = node.nextSibling;
@@ -1546,25 +1546,25 @@ Element.Methods = {
   },
 
   empty: function(element) {
-    return $(element).innerHTML.blank();
+    return _$(element).innerHTML.blank();
   },
 
   descendantOf: function(element, ancestor) {
-    element = $(element), ancestor = $(ancestor);
+    element = _$(element), ancestor = _$(ancestor);
     while (element = element.parentNode)
       if (element == ancestor) return true;
     return false;
   },
 
   scrollTo: function(element) {
-    element = $(element);
+    element = _$(element);
     var pos = Position.cumulativeOffset(element);
     window.scrollTo(pos[0], pos[1]);
     return element;
   },
 
   getStyle: function(element, style) {
-    element = $(element);
+    element = _$(element);
     style = style == 'float' ? 'cssFloat' : style.camelize();
     var value = element.style[style];
     if (!value) {
@@ -1576,11 +1576,11 @@ Element.Methods = {
   },
 
   getOpacity: function(element) {
-    return $(element).getStyle('opacity');
+    return _$(element).getStyle('opacity');
   },
 
   setStyle: function(element, styles, camelized) {
-    element = $(element);
+    element = _$(element);
     var elementStyle = element.style;
 
     for (var property in styles)
@@ -1594,15 +1594,15 @@ Element.Methods = {
   },
 
   setOpacity: function(element, value) {
-    element = $(element);
+    element = _$(element);
     element.style.opacity = (value == 1 || value === '') ? '' :
       (value < 0.00001) ? 0 : value;
     return element;
   },
 
   getDimensions: function(element) {
-    element = $(element);
-    var display = $(element).getStyle('display');
+    element = _$(element);
+    var display = _$(element).getStyle('display');
     if (display != 'none' && display != null) // Safari bug
       return {width: element.offsetWidth, height: element.offsetHeight};
 
@@ -1624,7 +1624,7 @@ Element.Methods = {
   },
 
   makePositioned: function(element) {
-    element = $(element);
+    element = _$(element);
     var pos = Element.getStyle(element, 'position');
     if (pos == 'static' || !pos) {
       element._madePositioned = true;
@@ -1640,7 +1640,7 @@ Element.Methods = {
   },
 
   undoPositioned: function(element) {
-    element = $(element);
+    element = _$(element);
     if (element._madePositioned) {
       element._madePositioned = undefined;
       element.style.position =
@@ -1653,7 +1653,7 @@ Element.Methods = {
   },
 
   makeClipping: function(element) {
-    element = $(element);
+    element = _$(element);
     if (element._overflow) return element;
     element._overflow = element.style.overflow || 'auto';
     if ((Element.getStyle(element, 'overflow') || 'visible') != 'hidden')
@@ -1662,7 +1662,7 @@ Element.Methods = {
   },
 
   undoClipping: function(element) {
-    element = $(element);
+    element = _$(element);
     if (!element._overflow) return element;
     element.style.overflow = element._overflow == 'auto' ? '' : element._overflow;
     element._overflow = null;
@@ -1690,7 +1690,7 @@ if (Prototype.Browser.Opera) {
 }
 else if (Prototype.Browser.IE) {
   Element.Methods.getStyle = function(element, style) {
-    element = $(element);
+    element = _$(element);
     style = (style == 'float' || style == 'cssFloat') ? 'styleFloat' : style.camelize();
     var value = element.style[style];
     if (!value && element.currentStyle) value = element.currentStyle[style];
@@ -1710,7 +1710,7 @@ else if (Prototype.Browser.IE) {
   };
 
   Element.Methods.setOpacity = function(element, value) {
-    element = $(element);
+    element = _$(element);
     var filter = element.getStyle('filter'), style = element.style;
     if (value == 1 || value === '') {
       style.filter = filter.replace(/alpha\([^\)]*\)/gi,'');
@@ -1723,7 +1723,7 @@ else if (Prototype.Browser.IE) {
 
   // IE is missing .innerHTML support for TABLE-related elements
   Element.Methods.update = function(element, html) {
-    element = $(element);
+    element = _$(element);
     html = typeof html == 'undefined' ? '' : html.toString();
     var tagName = element.tagName.toUpperCase();
     if (['THEAD','TBODY','TR','TD'].include(tagName)) {
@@ -1754,7 +1754,7 @@ else if (Prototype.Browser.IE) {
 }
 else if (Prototype.Browser.Gecko) {
   Element.Methods.setOpacity = function(element, value) {
-    element = $(element);
+    element = _$(element);
     element.style.opacity = (value == 1) ? 0.999999 :
       (value === '') ? '' : (value < 0.00001) ? 0 : value;
     return element;
@@ -1779,7 +1779,7 @@ Element._attributeTranslations = {
       return element.getAttribute(attribute, 2);
     },
     _flag: function(element, attribute) {
-      return $(element).hasAttribute(attribute) ? attribute : null;
+      return _$(element).hasAttribute(attribute) ? attribute : null;
     },
     style: function(element) {
       return element.style.cssText.toLowerCase();
@@ -1807,7 +1807,7 @@ Element.Methods.Simulated = {
   hasAttribute: function(element, attribute) {
     var t = Element._attributeTranslations, node;
     attribute = t.names[attribute] || attribute;
-    node = $(element).getAttributeNode(attribute);
+    node = _$(element).getAttributeNode(attribute);
     return node && node.specified;
   }
 };
@@ -1922,7 +1922,7 @@ Abstract.Insertion = function(adjacency) {
 
 Abstract.Insertion.prototype = {
   initialize: function(element, content) {
-    this.element = $(element);
+    this.element = _$(element);
     this.content = content.stripScripts();
 
     if (this.adjacency && this.element.insertAdjacentHTML) {
@@ -2014,7 +2014,7 @@ Insertion.After.prototype = Object.extend(new Abstract.Insertion('afterEnd'), {
 Element.ClassNames = Class.create();
 Element.ClassNames.prototype = {
   initialize: function(element) {
-    this.element = $(element);
+    this.element = _$(element);
   },
 
   _each: function(iterator) {
@@ -2383,7 +2383,7 @@ Object.extend(Selector, {
     },
 
     id: function(nodes, root, id, combinator) {
-      var targetNode = $(id), h = Selector.handlers;
+      var targetNode = _$(id), h = Selector.handlers;
       if (!nodes && root == document) return targetNode ? [targetNode] : [];
       if (nodes) {
         if (combinator) {
@@ -2612,19 +2612,19 @@ Object.extend(Selector, {
   }
 });
 
-function $$() {
+function _$$() {
   return Selector.findChildElements(document, $A(arguments));
 }
 var Form = {
   reset: function(form) {
-    $(form).reset();
+    _$(form).reset();
     return form;
   },
 
   serializeElements: function(elements, getHash) {
     var data = elements.inject({}, function(result, element) {
       if (!element.disabled && element.name) {
-        var key = element.name, value = $(element).getValue();
+        var key = element.name, value = _$(element).getValue();
         if (value != null) {
          	if (key in result) {
             if (result[key].constructor != Array) result[key] = [result[key]];
@@ -2646,7 +2646,7 @@ Form.Methods = {
   },
 
   getElements: function(form) {
-    return $A($(form).getElementsByTagName('*')).inject([],
+    return $A(_$(form).getElementsByTagName('*')).inject([],
       function(elements, child) {
         if (Form.Element.Serializers[child.tagName.toLowerCase()])
           elements.push(Element.extend(child));
@@ -2656,7 +2656,7 @@ Form.Methods = {
   },
 
   getInputs: function(form, typeName, name) {
-    form = $(form);
+    form = _$(form);
     var inputs = form.getElementsByTagName('input');
 
     if (!typeName && !name) return $A(inputs).map(Element.extend);
@@ -2672,32 +2672,32 @@ Form.Methods = {
   },
 
   disable: function(form) {
-    form = $(form);
+    form = _$(form);
     Form.getElements(form).invoke('disable');
     return form;
   },
 
   enable: function(form) {
-    form = $(form);
+    form = _$(form);
     Form.getElements(form).invoke('enable');
     return form;
   },
 
   findFirstElement: function(form) {
-    return $(form).getElements().find(function(element) {
+    return _$(form).getElements().find(function(element) {
       return element.type != 'hidden' && !element.disabled &&
         ['input', 'select', 'textarea'].include(element.tagName.toLowerCase());
     });
   },
 
   focusFirstElement: function(form) {
-    form = $(form);
+    form = _$(form);
     form.findFirstElement().activate();
     return form;
   },
 
   request: function(form, options) {
-    form = $(form), options = Object.clone(options || {});
+    form = _$(form), options = Object.clone(options || {});
 
     var params = options.parameters;
     options.parameters = form.serialize(true);
@@ -2718,19 +2718,19 @@ Form.Methods = {
 
 Form.Element = {
   focus: function(element) {
-    $(element).focus();
+    _$(element).focus();
     return element;
   },
 
   select: function(element) {
-    $(element).select();
+    _$(element).select();
     return element;
   }
 }
 
 Form.Element.Methods = {
   serialize: function(element) {
-    element = $(element);
+    element = _$(element);
     if (!element.disabled && element.name) {
       var value = element.getValue();
       if (value != undefined) {
@@ -2743,22 +2743,22 @@ Form.Element.Methods = {
   },
 
   getValue: function(element) {
-    element = $(element);
+    element = _$(element);
     var method = element.tagName.toLowerCase();
     return Form.Element.Serializers[method](element);
   },
 
   clear: function(element) {
-    $(element).value = '';
+    _$(element).value = '';
     return element;
   },
 
   present: function(element) {
-    return $(element).value != '';
+    return _$(element).value != '';
   },
 
   activate: function(element) {
-    element = $(element);
+    element = _$(element);
     try {
       element.focus();
       if (element.select && (element.tagName.toLowerCase() != 'input' ||
@@ -2769,14 +2769,14 @@ Form.Element.Methods = {
   },
 
   disable: function(element) {
-    element = $(element);
+    element = _$(element);
     element.blur();
     element.disabled = true;
     return element;
   },
 
   enable: function(element) {
-    element = $(element);
+    element = _$(element);
     element.disabled = false;
     return element;
   }
@@ -2841,7 +2841,7 @@ Abstract.TimedObserver = function() {}
 Abstract.TimedObserver.prototype = {
   initialize: function(element, frequency, callback) {
     this.frequency = frequency;
-    this.element   = $(element);
+    this.element   = _$(element);
     this.callback  = callback;
 
     this.lastValue = this.getValue();
@@ -2882,7 +2882,7 @@ Form.Observer.prototype = Object.extend(new Abstract.TimedObserver(), {
 Abstract.EventObserver = function() {}
 Abstract.EventObserver.prototype = {
   initialize: function(element, callback) {
-    this.element  = $(element);
+    this.element  = _$(element);
     this.callback = callback;
 
     this.lastValue = this.getValue();
@@ -2952,7 +2952,7 @@ Object.extend(Event, {
   KEY_PAGEDOWN: 34,
 
   element: function(event) {
-    return $(event.target || event.srcElement);
+    return _$(event.target || event.srcElement);
   },
 
   isLeftClick: function(event) {
@@ -3013,7 +3013,7 @@ Object.extend(Event, {
   },
 
   observe: function(element, name, observer, useCapture) {
-    element = $(element);
+    element = _$(element);
     useCapture = useCapture || false;
 
     if (name == 'keypress' &&
@@ -3024,7 +3024,7 @@ Object.extend(Event, {
   },
 
   stopObserving: function(element, name, observer, useCapture) {
-    element = $(element);
+    element = _$(element);
     useCapture = useCapture || false;
 
     if (name == 'keypress' &&
@@ -3183,11 +3183,11 @@ var Position = {
     }, arguments[2] || {})
 
     // find page position of source
-    source = $(source);
+    source = _$(source);
     var p = Position.page(source);
 
     // find coordinate system to use
-    target = $(target);
+    target = _$(target);
     var delta = [0, 0];
     var parent = null;
     // delta [0,0] will do fine with position: fixed elements,
@@ -3211,7 +3211,7 @@ var Position = {
   },
 
   absolutize: function(element) {
-    element = $(element);
+    element = _$(element);
     if (element.style.position == 'absolute') return;
     Position.prepare();
 
@@ -3234,7 +3234,7 @@ var Position = {
   },
 
   relativize: function(element) {
-    element = $(element);
+    element = _$(element);
     if (element.style.position == 'relative') return;
     Position.prepare();
 

@@ -8,11 +8,11 @@
 					<TABLE id="tblNavItemEdit1" width="100%" align="center" runat="server">
 						<TR>
 							<TD id="tdBackLink" align="left" width="33%" runat="server" visible="True">
-								<asp:hyperlink id="hplBackLink" Runat="server" Text="Back to Previous Page" cssclass="NormalBold" resourcekey="[RESX:Nav_PreviousPage].Text"></asp:hyperlink></TD>
+								<asp:hyperlink id="hplBackLink" resourcekey="[RESX:Nav_PreviousPage].Text" Runat="server" Text="Back to Previous Page" cssclass="NormalBold"></asp:hyperlink></TD>
 							<TD id="tdItemInfo" align="center" width="34%" runat="server" visible="True">
-								<asp:LinkButton id="lnkItemInfo" runat="server" cssclass="NormalBold" CausesValidation="False" resourcekey="[RESX:Nav_ItemPage].Text">View Item Page</asp:LinkButton></TD>
+								<asp:LinkButton id="lnkItemInfo" resourcekey="[RESX:Nav_ItemPage].Text" runat="server" cssclass="NormalBold" CausesValidation="False">View Item Page</asp:LinkButton></TD>
 							<TD id="tdMainPage" align="right" width="33%" runat="server" visible="True">
-								<asp:hyperlink id="hplMainPage" Visible="True" runat="server" cssclass="NormalBold" resourcekey="[RESX:Nav_ModuleHome].Text"></asp:hyperlink></TD>
+								<asp:hyperlink id="hplMainPage" resourcekey="[RESX:Nav_ModuleHome].Text" Visible="True" runat="server" cssclass="NormalBold"></asp:hyperlink></TD>
 						</TR>
 					</TABLE>
 				</TD>
@@ -39,6 +39,9 @@
     Visible="<%# DotNetNuke.jb_Dispatch.dsp_ItemFile %>" runat="server"><IMG id="imgFile" src="~/DesktopModules/PA_JobBoard/images/module/NavItemEdit/ico-file.gif"
 					align="absMiddle" border="0" runat="server">
 				<asp:LinkButton id="lnkBtnFile" runat="server" cssclass="NormalBold" CausesValidation="False" resourcekey="[RESX:RelatedFiles].Text">Related Files</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+			<TD id="tdCoupon"  valign=middle noWrap width="10%" Visible="<%# DotNetNuke.jb_Dispatch.dsp_ItemCoupon %>" runat="server">
+				<IMG id="imgCoupon" align=absmiddle src="~/DesktopModules/PA_JobBoard/images/module/NavItemEdit/ico-Coupon.png" border="0" runat="server">
+				<asp:LinkButton id="lnkBtnCoupon" runat="server" cssclass="NormalBold" CausesValidation="False" resourcekey="[RESX:RelatedCoupons].Text">Related Coupons</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 			<TD id="tdVideo" vAlign=middle noWrap width="10%" 
     Visible="<%# DotNetNuke.jb_Dispatch.dsp_ItemVideo %>" runat="server"><IMG id="imgVideo" src="~/DesktopModules/PA_JobBoard/images/module/NavItemEdit/ico-YouTube.gif"
 					align="absMiddle" border="0" runat="server">

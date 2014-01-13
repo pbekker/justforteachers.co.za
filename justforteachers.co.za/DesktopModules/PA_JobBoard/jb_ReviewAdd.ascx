@@ -28,9 +28,59 @@
 		</TR>
 		<TR>
 			<TD vAlign="top" noWrap>
-				<asp:Label id="lbxRating" Runat="server" CssClass="Normal" text="Rating:"></asp:Label></TD>
+				<asp:Label id="lbxRating" Runat="server" CssClass="Normal" text="Overall Rating:"></asp:Label></TD>
 			<TD vAlign="top" noWrap>
 				<asp:RadioButtonList id="rblRating_Add" runat="server" Width="100%"></asp:RadioButtonList></TD>
+		</TR>
+		<TR id="trDetailedRating" runat="server" visible="false">
+			<TD vAlign="top" noWrap>
+				<asp:Label id="lbxDetailedRating" Runat="server" CssClass="Normal" text="Detailed Ratings:"></asp:Label></TD>
+			<TD vAlign="top" noWrap>
+			    <asp:Label id="lbxRating_Service" Runat="server" CssClass="Normal" Width="100" text="Service:"></asp:Label>
+				<asp:RadioButtonList ID="rblRating_Service" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                    <asp:ListItem Text="Excellent" Value="5" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Very Good" Value="4"></asp:ListItem>
+                    <asp:ListItem Text="Good" Value="3"></asp:ListItem>
+                    <asp:ListItem Text="Fair" Value="2"></asp:ListItem>
+                    <asp:ListItem Text="Bad" Value="1"></asp:ListItem>
+                </asp:RadioButtonList> 
+                <br />
+                <asp:Label id="lbxRating_Price" Runat="server" CssClass="Normal" Width="100" text="Price:"></asp:Label>
+				<asp:RadioButtonList ID="rblRating_Price" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                    <asp:ListItem Text="Excellent" Value="5" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Very Good" Value="4"></asp:ListItem>
+                    <asp:ListItem Text="Good" Value="3"></asp:ListItem>
+                    <asp:ListItem Text="Fair" Value="2"></asp:ListItem>
+                    <asp:ListItem Text="Bad" Value="1"></asp:ListItem>
+                </asp:RadioButtonList> 
+                 <br />
+                <asp:Label id="lbxRating_Support" Runat="server" CssClass="Normal" Width="100" text="Support:"></asp:Label>
+				<asp:RadioButtonList ID="rblRating_Support" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                    <asp:ListItem Text="Excellent" Value="5" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Very Good" Value="4"></asp:ListItem>
+                    <asp:ListItem Text="Good" Value="3"></asp:ListItem>
+                    <asp:ListItem Text="Fair" Value="2"></asp:ListItem>
+                    <asp:ListItem Text="Bad" Value="1"></asp:ListItem>
+                </asp:RadioButtonList> 
+                 <br />
+                <asp:Label id="lbxRating_ProductQuality" Runat="server" CssClass="Normal" Width="100" text="Product Quality:"></asp:Label>
+				<asp:RadioButtonList ID="rblRating_ProductQuality" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                    <asp:ListItem Text="Excellent" Value="5" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Very Good" Value="4"></asp:ListItem>
+                    <asp:ListItem Text="Good" Value="3"></asp:ListItem>
+                    <asp:ListItem Text="Fair" Value="2"></asp:ListItem>
+                    <asp:ListItem Text="Bad" Value="1"></asp:ListItem>
+                </asp:RadioButtonList> 
+                 <br />
+                <asp:Label id="lbxRating_Delivery" Runat="server" CssClass="Normal" Width="100" text="Delivery:"></asp:Label>
+				<asp:RadioButtonList ID="rblRating_Delivery" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                    <asp:ListItem Text="Excellent" Value="5" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Very Good" Value="4"></asp:ListItem>
+                    <asp:ListItem Text="Good" Value="3"></asp:ListItem>
+                    <asp:ListItem Text="Fair" Value="2"></asp:ListItem>
+                    <asp:ListItem Text="Bad" Value="1"></asp:ListItem>
+                </asp:RadioButtonList> 
+            </TD>
 		</TR>
 		<TR>
 			<TD vAlign="top" noWrap>
@@ -59,9 +109,9 @@
 		<TR>
 			<TD align="center">
 				<asp:panel id="pnlReturnNav" Runat="server" Visible="True">&nbsp; 
-<asp:linkbutton id="cmdReturn" resourcekey="cmdReturn.Text" Text="Return to listing(s)" runat="server" CausesValidation="False"></asp:linkbutton>
+<asp:linkbutton id="cmdReturn" resourcekey="[RESX:Nav_PreviousPage].Text" Text="Return to listing(s)" runat="server" CausesValidation="False"></asp:linkbutton>
 <asp:label id="lblEmptySpace" runat="server" Visible="True">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</asp:label>&nbsp; 
-<asp:linkbutton id="cmdReturnHome" resourcekey="cmdReturnHome.Text" Text="Return to Module Home" runat="server" CausesValidation="False"></asp:linkbutton></asp:panel></TD>
+<asp:linkbutton id="cmdReturnHome" resourcekey="[RESX:Nav_ModuleHome].Text" Text="Return to Module Home" runat="server" CausesValidation="False"></asp:linkbutton></asp:panel></TD>
 		</TR>
 	</TABLE>
 </asp:panel>

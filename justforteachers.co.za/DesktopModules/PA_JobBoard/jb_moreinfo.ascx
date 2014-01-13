@@ -9,7 +9,7 @@
 	</TR>
 	<TR>
 		<TD vAlign="top" width="90%">
-			<!-- COLUMN 1 --><asp:panel id="Panel1" runat="server" BorderWidth="0" BorderStyle="Outset" Visible="true" HorizontalAlign="Center"
+			<!-- COLUMN 1 --><asp:panel id="Panel1" runat="server" Visible="true" HorizontalAlign="Center"
 				Width="100%">
 				<TABLE id="tblMoreInfoCol1" border="0" cellSpacing="0" cellPadding="3" width="100%" runat="server">
 					<TR>
@@ -25,10 +25,14 @@
 					</TR>
 					<tr id="trFacebook" runat="server" align="left" visble="false">
 				        <td>
-			                <asp:panel id="pnlFacebook" runat="server" BorderWidth="0" HorizontalAlign="Left" Visible="true"
-				                Width="100%" BorderStyle="Outset">
+			                <asp:panel id="pnlFacebook" runat="server" HorizontalAlign="Left" Visible="true" Width="100%">
                                 <iframe src="http://www.facebook.com/plugins/like.php?href=<%= DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "info", "&ItemID=" & Request.Params("ItemID"))%>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true" style="border:none; overflow:hidden;height:60px"></iframe>
 			                </asp:panel>             				    
+				        </td>				
+				    </tr>	
+				    <tr id="trSocialBookmarkingScript" runat="server" align="left" visble="true">
+				        <td>			             
+                              <asp:Literal ID="ltrSocialBookmarkingScript" runat="server"></asp:Literal>		
 				        </td>				
 				    </tr>		
 					<TR id="trAverageReview" runat="server">
@@ -81,7 +85,7 @@
 					<TR id="trItemLocation_EmbeddedMap" runat="server" visible="false">
 						<TD class="Normal" vAlign="top" align="left"></TD>
 						<TD class="Normal" vAlign="top" align="left">
-							  <asp:panel id="pnlShowEmbeddedMap" runat="server" BorderWidth="0" HorizontalAlign="Left" Visible="true" Width="100%" BorderStyle="Outset">
+							  <asp:panel id="pnlShowEmbeddedMap" runat="server" HorizontalAlign="Left" Visible="true" Width="100%">
                                 <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
                                     width='<%= DotNetNuke.jb_Uconversion.ConvertSetting(Settings("Setting_EmbeddedMapWidth"), "425") %>' 
                                     height='<%= DotNetNuke.jb_Uconversion.ConvertSetting(Settings("Setting_EmbeddedMapHeight"), "350") %>'
@@ -157,7 +161,7 @@
 					<TR id="trItemAttribute" runat="server" visible="False">
 						<TD vAlign="top" colSpan="2" align="left">
 							<asp:label id="lbxItemAttribute" Visible="False" runat="server" CssClass="JediCss_MoreInfoTitle">Additional Information:</asp:label>
-							<asp:datagrid id="dgItemAttribute" Width="100%" Visible="True" runat="server" Cssclass="Normal"
+							<asp:datagrid id="dgItemAttribute" CellPadding="3" Visible="True" runat="server" CssClass="JediCss_DatagridTable"
 								ItemStyle-CssClass="Normal" AutoGenerateColumns="False" PagerStyle-HorizontalAlign="Right"
 								Allowsorting="True" PagerStyle-PrevPageText="Prev" PagerStyle-NextPageText="Next" PagerStyle-mode="NumericPages"
 								AllowPaging="False" HeaderStyle-CssClass="NormalBold" ShowHeader="False" DataKeyField="AttributeID">
@@ -190,8 +194,7 @@
 					</TR>
 					<TR>
 						<TD colSpan="2" align="left"> <!-- COL1: pnlItemImage -->  
-							<asp:panel id="pnlItemImage" Width="100%" Visible="True" BorderStyle="Outset" BorderWidth="0"
-								runat="server">
+							<asp:panel id="pnlItemImage" Width="100%" Visible="True" runat="server">
 								<BR> <!-- We will use DataList here to show additional images horizontally -->
 								<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
 									<TR>
@@ -215,7 +218,7 @@
 								</TABLE>
 							</asp:panel> 
 			                <!-- COL1: pnlItemVideo -->
-			                <asp:panel id="pnlItemVideo" runat="server" Width="100%" Visible="True" BorderWidth="0" BorderStyle="Outset">
+			                <asp:panel id="pnlItemVideo" runat="server" Width="100%" Visible="True">
 				                <BR> <!-- We will use Repeater here to show YouTube videos -->
 				                <TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
 					                <TR>
@@ -242,9 +245,45 @@
 					                </TR>
 				                </TABLE>
 			                </asp:panel>
-			                <!-- COL1: pnlItemFile -->
-							<asp:panel id="pnlItemFile" Width="100%" Visible="True" BorderStyle="Outset" BorderWidth="0"
-								runat="server">
+			                <!-- COL1: pnlItemCoupon -->
+			<asp:panel id="pnlItemCoupon" runat="server" Width="100%" Visible="False" BorderWidth="0">
+				<BR> 
+				<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
+					<TR>
+						<TD class="JediCss_MoreInfoTitle" align="left">Related Coupons:
+						</TD>
+					</TR>
+					<TR>
+						<TD>
+							  <asp:DataList id="dlItemCoupon" runat="server" Width="50%" RepeatColumns="1" DataKeyField="InfoID"
+								HeaderStyle-CssClass="SubHead_Info" RepeatLayout="Table" ItemStyle-Wrap="false" ItemStyle-VerticalAlign="Top"
+								RepeatDirection="Horizontal" HeaderStyle-HorizontalAlign="Left" HeaderStyle-Wrap="False">
+								<ItemTemplate>	
+								       <table class="JediCss_Coupon" border="0" width="50%">
+							                <tr>
+							                    <td colspan="2" class="JediCss_CouponName"><%#DataBinder.Eval(Container.DataItem, "InfoName")%>&nbsp;</td>
+							                </tr> 
+							                <tr>
+							                    <td colspan="2" class="JediCss_CouponDesc"><%#DataBinder.Eval(Container.DataItem, "InfoDesc")%>&nbsp;</td>
+							                </tr> 
+							                <tr>
+							                    <td align="left" class="JediCss_CouponCode">							                         
+							                        <%#DataBinder.Eval(Container.DataItem, "InfoCode")%>&nbsp;
+							                    </td>
+							                    <td align="right" class="JediCss_CouponCode">&nbsp;							                    
+							                        <%#IIf(DataBinder.Eval(Container.DataItem, "IsNeverExpires") = True, "Never Expires", "Exp: " & Container.DataItem("DateExpired"))%>
+							                    </td>
+							                </tr>
+							        </table>
+							        <div style="height:5px;">&nbsp;</div> 							        
+								</ItemTemplate>							
+							</asp:DataList>
+						</TD>
+					</TR>
+				</TABLE>
+			</asp:panel>
+			<!-- COL1: pnlItemFile -->
+							<asp:panel id="pnlItemFile" Width="100%" Visible="True" runat="server">
 								<BR> <!-- We will use DataList here to show additional images horizontally -->
 								<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
 									<TR>
@@ -253,7 +292,7 @@
 									</TR>
 									<TR>
 										<TD align="left">
-											<asp:datagrid id="dgItemFile" Width="100%" runat="server" Cssclass="Normal" ItemStyle-CssClass="Normal"
+											<asp:datagrid id="dgItemFile" runat="server" CellPadding="3" CssClass="JediCss_DatagridTable" ItemStyle-CssClass="Normal"
 												AutoGenerateColumns="False" PagerStyle-HorizontalAlign="Right" Allowsorting="True" PagerStyle-PrevPageText="Prev"
 												PagerStyle-NextPageText="Next" PagerStyle-mode="NumericPages" AllowPaging="False" HeaderStyle-CssClass="NormalBold"
 												ShowHeader="True" DataKeyField="FileID" HeaderStyle-HorizontalAlign="Center" ShowFooter="False"
@@ -326,7 +365,7 @@
 			</asp:panel>
 			
 			<!-- COL1: pnlItemCategory -->
-			<asp:panel id="pnlItemCategory" runat="server" BorderWidth="0" BorderStyle="Outset" Visible="True"
+			<asp:panel id="pnlItemCategory" runat="server" Visible="True"
 				Width="100%"><BR> <!-- We will use DataList here to show additional images horizontally -->
 				<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
 					<TR>
@@ -335,7 +374,7 @@
 					</TR>
 					<TR>
 						<TD align="left">
-							<asp:datagrid id="dgItemCategory" Width="100%" Visible="True" runat="server" Cssclass="Normal"
+							<asp:datagrid id="dgItemCategory" Width="100%" BorderWidth="0" Visible="True" runat="server" CssClass="JediCss_DatagridTable"
 								ItemStyle-HorizontalAlign="Left" ItemStyle-CssClass="Normal" AutoGenerateColumns="False" PagerStyle-HorizontalAlign="Right"
 								Allowsorting="True" PagerStyle-PrevPageText="Prev" PagerStyle-NextPageText="Next" PagerStyle-mode="NumericPages"
 								AllowPaging="False" HeaderStyle-CssClass="JediCss_TableHeader" ShowHeader="False" DataKeyField="CategoryID"
@@ -344,6 +383,7 @@
 									<asp:BoundColumn DataField="CategoryID" ItemStyle-HorizontalAlign="Center" HeaderText="CategoryID"
 										Visible="False" ReadOnly="True" />
 									<asp:TemplateColumn HeaderText="Also list under" FooterStyle-Wrap="False">
+									    <ItemStyle BorderWidth="0" />
 										<ItemTemplate>
 											<asp:HyperLink CssClass="Normal" NavigateUrl='<%# DotNetNuke.jb_Utility.GetApplicationPath() & "?tabid=" & Me.TabId  & "&action=cat&parentid=" & DataBinder.Eval(Container.DataItem,"CategoryID") %>' id="hplCategoryName" runat="server">
 												<%# DataBinder.Eval(Container.DataItem, "CategoryPath") & " (" & DataBinder.Eval(Container.DataItem, "CategoryID") & ")"  %>
@@ -359,16 +399,14 @@
 			<asp:label id="lblSeparator_pnlPageOptions" runat="server" CssClass="Normal">
 				<br>
 			</asp:label>
-			<asp:panel id="pnlPageOptions" Runat="server" BorderWidth="0" BorderStyle="Outset" Width="100%"
-				CssClass="Normal" visible="true">
+			<asp:panel id="pnlPageOptions" Runat="server" Width="100%" CssClass="Normal" visible="true">
 				<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
 					<TR>
 						<TD class="JediCss_MoreInfoTitle" vAlign="top" align="left">
 							<asp:Label id="lbxPageOptions" Runat="server" text="Page Options">Page Options</asp:Label></TD>
 					</TR>
 				</TABLE>
-				<asp:panel id="pnlPageOptionsNav" Width="100%" HorizontalAlign="Left" Visible="true" BorderStyle="Outset"
-					BorderWidth="0" runat="server">
+				<asp:panel id="pnlPageOptionsNav" Width="100%" HorizontalAlign="Left" Visible="true" runat="server">
 					<asp:table id="tblPageOptionsNav" Runat="server" Width="100%" HorizontalAlign="Center" CellPadding="3"
 						CellSpacing="0">
 						<asp:TableRow Visible="False">
@@ -560,8 +598,7 @@
 				<asp:label id="lblMessage_PageOptions" runat="server" CssClass="NormalRed"></asp:label>
 			</asp:panel><br>
 			<!-- JOP APPLICANT -->
-			<asp:panel id="pnlJobApplicant" Runat="server" BorderWidth="0" BorderStyle="Outset" Width="100%"
-				CssClass="Normal" visible="true" >
+			<asp:panel id="pnlJobApplicant" Runat="server" Width="100%" CssClass="Normal" visible="true" >
 				<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
 					<TR>
 						<TD class="JediCss_MoreInfoTitle" vAlign="top" align="left">
@@ -569,7 +606,7 @@
 					</TR>
 				</TABLE>
 				<BR>
-				<asp:datagrid id="dgJobApplicant" runat="server" Cssclass="Normal" ItemStyle-CssClass="Normal" CellPadding="3"
+				<asp:datagrid id="dgJobApplicant" runat="server" CssClass="JediCss_DatagridTable" ItemStyle-CssClass="Normal" CellPadding="3"
 					AutoGenerateColumns="False" PagerStyle-HorizontalAlign="Right" Allowsorting="True" PagerStyle-PrevPageText="Prev"
 					PagerStyle-NextPageText="Next" PagerStyle-mode="NumericPages" AllowPaging="False" HeaderStyle-CssClass="JediCss_TableHeader"
 					DataKeyField="ApplicationID" HeaderStyle-HorizontalAlign="Center" ShowFooter="False" EnableViewState="True"
@@ -649,15 +686,36 @@
 				</asp:datagrid>
 				<asp:Label id="lblMessage_JobApplicant" runat="server" CssClass="NormalRed"></asp:Label>
 			</asp:panel>
-			
+			<!-- COL1: pnlDetailedReview -->
+            <asp:panel id="pnlDetailedReview" Runat="server" HorizontalAlign="Center" Visible="False" Width="100%">
+                 <br /> 
+                 <table border="0" cellSpacing="0" cellPadding="3" width="100%">
+                  <tr>
+                       <td class="JediCss_MoreInfoTitle" align="left">Detailed Reviews:
+                       </td>
+                  </tr>
+                  <tr>
+                       <td>
+                             <asp:Literal ID="ltrDetailedReview" runat="server"></asp:Literal> 
+                       </td>
+                  </tr>
+              </table>
+            </asp:panel> 
 			<!-- COL1: pnlReview -->
-			<asp:panel id="pnlReview" Runat="server" BorderWidth="0" BorderStyle="Outset" Visible="False"
-				HorizontalAlign="Center" Width="100%" BorderColor="black"><BR>
-				<A name="REVIEW"></A>
-				<asp:datagrid id="dgItemReview" Width="100%" BorderStyle="Outset" BorderWidth="0" runat="server"
-					Cssclass="Normal" ItemStyle-CssClass="Normal" AutoGenerateColumns="False" PagerStyle-HorizontalAlign="Right"
+			<asp:panel id="pnlReview" Runat="server" HorizontalAlign="Center" Visible="False" Width="100%">
+			    <br /> 
+                <table border="0" cellSpacing="0" cellPadding="3" width="100%">
+	                <tr>
+		                <td class="JediCss_MoreInfoTitle" align="left">User Reviews:
+		                </td>
+	                </tr>
+	                <tr>
+		                <td>
+			                <A name="REVIEW"></A>	
+				            <asp:datagrid id="dgItemReview" Width="100%" runat="server" BorderWidth="0"
+					CssClass="JediCss_DatagridTable" ItemStyle-CssClass="Normal" AutoGenerateColumns="False" PagerStyle-HorizontalAlign="Right"
 					Allowsorting="True" PagerStyle-PrevPageText="Prev" PagerStyle-NextPageText="Next" PagerStyle-mode="NumericPages"
-					AllowPaging="False" HeaderStyle-CssClass="SubHead_Info" ShowHeader="True" DataKeyField="ReviewID"
+					AllowPaging="False" HeaderStyle-CssClass="SubHead_Info" ShowHeader="False" DataKeyField="ReviewID"
 					HeaderStyle-HorizontalAlign="Left" ShowFooter="False" EnableViewState="True">
 					<Columns>
 						<asp:BoundColumn DataField="ReviewID" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top"
@@ -665,9 +723,6 @@
 						<asp:TemplateColumn HeaderText="Customer Reviews" ItemStyle-VerticalAlign="Top" ItemStyle-Wrap="True"
 							FooterStyle-VerticalAlign="Top" FooterStyle-Wrap="False" HeaderStyle-CssClass="JediCss_MoreInfoTitle"
 							ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="0" HeaderStyle-BorderWidth="0">
-							<HeaderTemplate>
-								Customer Reviews:<br>
-							</HeaderTemplate>
 							<ItemTemplate>
 								<asp:Label id="lbxHelpfulTop" CssClass="Normal" runat="server" Visible='<%# DotNetNuke.jb_Uconversion.ConvertBoolean(Settings("Setting_ReviewHelpful"))%>' Text='<%#  DataBinder.Eval(Container.DataItem,"Helpful_Yes") & " of " & (DataBinder.Eval(Container.DataItem,"Helpful_Yes") + DataBinder.Eval(Container.DataItem,"Helpful_No")) &  " people found the following review helpful:<br>" %>'/>
 								<img src='<%# BindRatingImage(DataBinder.Eval(Container.DataItem, "Rating")) %>'>
@@ -735,11 +790,14 @@
 						</asp:TemplateColumn>
 					</Columns>
 				</asp:datagrid>
-				<asp:Label id="lblMessage_ItemReview" runat="server" CssClass="NormalRed"></asp:Label>
-			</asp:panel></TD>
+				            <asp:Label id="lblMessage_ItemReview" runat="server" CssClass="NormalRed"></asp:Label>
+			            </td>
+	                </tr>
+                </table>
+			</asp:panel>
+		</TD>
 		<TD vAlign="top" width="10%">
-			<!-- COLUMN 2 --><asp:panel id="pnlEdit" runat="server" BorderWidth="1" BorderStyle="Outset" Visible="true"
-				HorizontalAlign="Center" Width="100%">
+			<!-- COLUMN 2 --><asp:panel id="pnlEdit" runat="server" CssClass="JediCss_BoxPanel" Visible="true" HorizontalAlign="Center" Width="100%">
 				<TABLE class="Normal" border="0" cellSpacing="0" cellPadding="3" width="100%" height="100%">
 					<TR id="trItemID_pnlEdit" runat="server">
 						<TD align="left">&nbsp;
@@ -780,8 +838,7 @@
 					</TR>
 				</TABLE>
 			</asp:panel><br />
-			<asp:Panel ID="pnlAnonymousEdit" runat="server" BorderWidth="1" HorizontalAlign="Center" Visible="true"
-				Width="100%" BorderStyle="Outset">
+			<asp:Panel ID="pnlAnonymousEdit" runat="server" CssClass="JediCss_BoxPanel" HorizontalAlign="Center" Visible="true" Width="100%">
                 <TABLE height="100%" cellSpacing="0" cellPadding="3" width="100%" border="0">
                     <tr>
                         <td>

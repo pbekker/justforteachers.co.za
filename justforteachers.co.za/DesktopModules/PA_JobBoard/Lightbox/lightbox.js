@@ -117,7 +117,7 @@ var Lightbox = {
 		this.enableSlideshow = this.options.enableSlideshow;
 		this.overlayOpacity = Math.max(Math.min(this.options.overlayOpacity,1),0);
 		this.playSlides = this.options.autoPlay;
-		this.container = $(this.options.containerID);
+		this.container = _$(this.options.containerID);
 		this.relAttribute = this.options.relAttribute;
 		this.updateImageList();
 		
@@ -238,7 +238,7 @@ var Lightbox = {
 		}
 		
 		if(this.options.initImage != ''){
-			this.start($(this.options.initImage));
+			this.start(_$(this.options.initImage));
 		}
 	},
 	
@@ -271,7 +271,7 @@ var Lightbox = {
 
 		// stretch overlay to fill page and fade in
 		var pageSize = this.getPageSize();
-		$(this.getID('overlay')).setStyle({height:pageSize.pageHeight+'px'});
+		_$(this.getID('overlay')).setStyle({height:pageSize.pageHeight+'px'});
 		new Effect.Appear(this.getID('overlay'), { duration: this.overlayDuration, from: 0, to: this.overlayOpacity });
 
 		this.imageArray = [];
@@ -308,8 +308,8 @@ var Lightbox = {
 		var pageScroll = this.getPageScroll();
 		var lightboxTop = pageScroll.y + (pageSize.winHeight / 15);
 
-		$(this.getID('lightbox')).setStyle({ top: lightboxTop + 'px' }).show();
-		$(this.getID('lightbox')).setStyle({ zIndex: 100009 }).show(); 
+		_$(this.getID('lightbox')).setStyle({ top: lightboxTop + 'px' }).show();
+		_$(this.getID('lightbox')).setStyle({ zIndex: 100009 }).show(); 
 		this.changeImage(this.startImage);
 	},
 
@@ -324,18 +324,18 @@ var Lightbox = {
 		this.pauseSlideShow();
 
 		// hide elements during transition
-		$(this.getID('loading')).show();
-		$(this.getID('lightboxImage')).hide();
-		$(this.getID('hoverNav')).hide();
-		$(this.getID('imageDataContainer')).hide();
-		$(this.getID('numberDisplay')).hide();
-		$(this.getID('detailsNav')).hide();
+		_$(this.getID('loading')).show();
+		_$(this.getID('lightboxImage')).hide();
+		_$(this.getID('hoverNav')).hide();
+		_$(this.getID('imageDataContainer')).hide();
+		_$(this.getID('numberDisplay')).hide();
+		_$(this.getID('detailsNav')).hide();
 		
 		var imgPreloader = new Image();
 		
 		// once image is preloaded, resize image container
 		imgPreloader.onload=function(){
-			$(Lightbox.getID('lightboxImage')).src = imgPreloader.src;
+			_$(Lightbox.getID('lightboxImage')).src = imgPreloader.src;
 			Lightbox.resizeImageContainer(imgPreloader.width,imgPreloader.height);
 		}
 		imgPreloader.src = this.imageArray[this.activeImage].link;
@@ -350,7 +350,7 @@ var Lightbox = {
 	//
 	resizeImageContainer: function(imgWidth,imgHeight) {
 		// get current height and width
-		var cDims = $(this.getID('outerImageContainer')).getDimensions();
+		var cDims = _$(this.getID('outerImageContainer')).getDimensions();
 
 		// scalars based on change from old to new
 		var xScale = ((imgWidth  + (this.options.borderSize * 2)) / cDims.width) * 100;
@@ -369,9 +369,9 @@ var Lightbox = {
 			if(navigator.appVersion.indexOf('MSIE')!=-1){ this.pause(250); } else { this.pause(100);} 
 		}
 
-		$(this.getID('prevLinkImg')).setStyle({height:imgHeight+'px'});
-		$(this.getID('nextLinkImg')).setStyle({height:imgHeight+'px'});
-		$(this.getID('imageDataContainer')).setStyle({width:(imgWidth+(this.options.borderSize * 2))+'px'});
+		_$(this.getID('prevLinkImg')).setStyle({height:imgHeight+'px'});
+		_$(this.getID('nextLinkImg')).setStyle({height:imgHeight+'px'});
+		_$(this.getID('imageDataContainer')).setStyle({width:(imgWidth+(this.options.borderSize * 2))+'px'});
 
 		this.showImage();
 	},
@@ -381,7 +381,7 @@ var Lightbox = {
 	//	Display image and begin preloading neighbors.
 	//
 	showImage: function(){
-		$(this.getID('loading')).hide();
+		_$(this.getID('loading')).hide();
 		new Effect.Appear(this.getID('lightboxImage'), { duration: 0.5, queue: 'end', afterFinish: function(){	Lightbox.updateDetails(); } });
 		this.preloadNeighborImages();
 	},
@@ -391,8 +391,8 @@ var Lightbox = {
 	//	Display caption, image number, and bottom nav.
 	//
 	updateDetails: function() {
-		$(this.getID('caption')).show();
-		$(this.getID('caption')).update(this.imageArray[this.activeImage].title);
+		_$(this.getID('caption')).show();
+		_$(this.getID('caption')).update(this.imageArray[this.activeImage].title);
 		
 		// if image is part of set display 'Image x of y' 
 		if(this.imageArray.length > 1){
@@ -400,11 +400,11 @@ var Lightbox = {
 			if(this.options.showGroupName && this.groupName != ''){
 				num_display += ' '+this.options.strings.numDisplaySeparator+' '+this.groupName;
 			}
-			$(this.getID('numberDisplay')).update(num_display).show();
+			_$(this.getID('numberDisplay')).update(num_display).show();
 			if(!this.enableSlideshow){
-				$(this.getID('slideShowControl')).hide();
+				_$(this.getID('slideShowControl')).hide();
 			}
-			$(this.getID('detailsNav')).show();
+			_$(this.getID('detailsNav')).show();
 		}
 		
 		new Effect.Parallel(
@@ -420,7 +420,7 @@ var Lightbox = {
 	//
 	updateNav: function() {
 		if(this.imageArray.length > 1){
-			$(this.getID('hoverNav')).show();
+			_$(this.getID('hoverNav')).show();
 			if(this.enableSlideshow){
 				if(this.playSlides){
 					this.startSlideShow();
@@ -438,7 +438,7 @@ var Lightbox = {
 	startSlideShow: function(){
 		this.playSlides = true;
 		this.slideShowTimer = new PeriodicalExecuter(function(pe){ Lightbox.showNext(); pe.stop(); },this.options.slideTime);
-		$(this.getID('slideShowControl')).update(this.options.strings.stopSlideshow);
+		_$(this.getID('slideShowControl')).update(this.options.strings.stopSlideshow);
 	},
 	
 	//
@@ -450,7 +450,7 @@ var Lightbox = {
 		if(this.slideShowTimer){
 			this.slideShowTimer.stop();
 		}
-		$(this.getID('slideShowControl')).update(this.options.strings.startSlideshow);
+		_$(this.getID('slideShowControl')).update(this.options.strings.startSlideshow);
 	},
 
 	//
@@ -589,7 +589,7 @@ var Lightbox = {
 	end: function() {
 		this.disableKeyboardNav();
 		this.pauseSlideShow();
-		$(this.getID('lightbox')).hide();
+		_$(this.getID('lightbox')).hide();
 		new Effect.Fade(this.getID('overlay'), { duration:this.overlayDuration });
 		this.showBadObjects();
 	},
@@ -603,7 +603,7 @@ var Lightbox = {
 		for(var i=0; i<tags.length; i++){
 			els = document.getElementsByTagName(tags[i]);
 			for(var j=0; j<els.length; j++){
-				$(els[j]).setStyle({visibility:'visible'});
+				_$(els[j]).setStyle({visibility:'visible'});
 			}
 		}
 	},
@@ -617,7 +617,7 @@ var Lightbox = {
 		for(var i=0; i<tags.length; i++){
 			els = document.getElementsByTagName(tags[i]);
 			for(var j=0; j<els.length; j++){
-				$(els[j]).setStyle({visibility:'hidden'});
+				_$(els[j]).setStyle({visibility:'hidden'});
 			}
 		}
 	},

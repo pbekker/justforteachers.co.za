@@ -165,6 +165,7 @@
 						<TD align="left" width="80%">
 							<asp:checkbox id="chkUploadPhoto" runat="server" cssclass="Normal" Text="Upload company logo to database (will overwrite existing logo)"
 								Visible="False" Checked="True"></asp:checkbox><input class="Normal" id="ImageFileUpload" type="file" size="53" runat="server" />
+							<asp:requiredfieldvalidator id="req_ImageFileUpload" runat="server" ControlToValidate="ImageFileUpload" ErrorMessage="Required" CssClass="NormalRed" Display="Dynamic"></asp:requiredfieldvalidator>
 							<asp:regularexpressionvalidator id="valImg0" runat="server" ControlToValidate="ImageFileUpload" ErrorMessage="Not a valid file extension"
 								CssClass="NormalRed" Display="Dynamic" Enabled="False" ValidationExpression="^(([a-zA-Z]:)|(\\{2}\w+)\$?)(\\(\w[\w ]*.*))+\.([jJ][pP][gG]|[gG][iI][fF]|[bB][mM][pP]|[pP][nN][gG]|[jJ][pP][eE]|[jJ][pP][eE][gG])$"></asp:regularexpressionvalidator>
 							<asp:panel id="pnlImagesMain" runat="server" Width="100%" Visible="False">
@@ -258,9 +259,9 @@
 						<BR>
 						<asp:label id="lblConfirm" runat="server"></asp:label><BR>
 						<BR>						
-						<asp:linkbutton id="cmdReturn" runat="server" CssClass="Normal" Text="Return to the previous page"
+						<asp:linkbutton id="cmdReturn" resourcekey="[RESX:Nav_PreviousPage].Text" runat="server" CssClass="Normal" Text="Return to the previous page"
 							BorderStyle="none" CausesValidation="False"></asp:linkbutton>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<asp:linkbutton id="cmdReturnHome" runat="server" CssClass="Normal" Text="Return to Job Board Home"
+						<asp:linkbutton id="cmdReturnHome" resourcekey="[RESX:Nav_ModuleHome].Text" runat="server" CssClass="Normal" Text="Return to Job Board Home"
 							BorderStyle="none" CausesValidation="False"></asp:linkbutton><BR>
 						<BR>
 						<BR>

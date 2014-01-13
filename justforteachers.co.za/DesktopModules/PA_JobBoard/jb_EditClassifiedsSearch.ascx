@@ -98,6 +98,12 @@
 						</asp:TableCell>
 					</asp:TableRow>
 					<asp:TableRow>
+						<asp:TableCell CssClass="Normal" Wrap="False">Roles that can manage job applications:</asp:TableCell>
+						<asp:TableCell>
+							<asp:CheckBoxList id="chkAuth_ManageJobApplications" RepeatColumns="4" cssclass="Normal" runat="server" />
+						</asp:TableCell>
+					</asp:TableRow>
+					<asp:TableRow>
 						<asp:TableCell CssClass="Normal" Wrap="False">Roles that can add listings:</asp:TableCell>
 						<asp:TableCell>
 							<asp:CheckBoxList id="chkAuthEditRoles" RepeatColumns="4" cssclass="Normal" runat="server" />
@@ -149,6 +155,12 @@
 						<asp:TableCell CssClass="Normal" Wrap="True">Roles that can add item attributes:</asp:TableCell>
 						<asp:TableCell>
 							<asp:CheckBoxList id="chkAuth_ItemAttribute" RepeatColumns="4" cssclass="Normal" runat="server" />
+						</asp:TableCell>
+					</asp:TableRow>
+					<asp:TableRow Visible="true">
+					    <asp:TableCell CssClass="Normal" Wrap="True">Roles that can add coupons:</asp:TableCell>
+						<asp:TableCell>
+							<asp:CheckBoxList id="chkAuth_ItemCoupon" RepeatColumns="4" cssclass="Normal" runat="server" />
 						</asp:TableCell>
 					</asp:TableRow>
 					<asp:TableRow>
@@ -268,6 +280,25 @@
 						    <asp:TableCell CssClass="Normal">Show Featured Jobs:</asp:TableCell>
 						    <asp:TableCell>
 							    <asp:radiobuttonlist id="optShowFeaturedListings" runat="server" CssClass="Normal" RepeatDirection="Horizontal">
+								    <asp:ListItem Value="1">Yes</asp:ListItem>
+								    <asp:ListItem Value="0">No</asp:ListItem>
+							    </asp:radiobuttonlist>
+						    </asp:TableCell>
+					    </asp:TableRow>
+					    <asp:TableRow>
+						    <asp:TableCell CssClass="Normal">Prioritize Featured Listings:</asp:TableCell>
+						    <asp:TableCell>
+							    <asp:radiobuttonlist id="optMoveFeaturedListings" runat="server" CssClass="Normal" RepeatDirection="Horizontal">
+								    <asp:ListItem Value="0">Do not move</asp:ListItem>
+								    <asp:ListItem Value="1">Always on top</asp:ListItem>
+								    <asp:ListItem Value="2">Always on top except radius search</asp:ListItem>
+							    </asp:radiobuttonlist>
+						    </asp:TableCell>
+					    </asp:TableRow>
+					    <asp:TableRow>
+						    <asp:TableCell CssClass="Normal">Show Item Count:</asp:TableCell>
+						    <asp:TableCell>
+							    <asp:radiobuttonlist id="optShowItemCount" runat="server" CssClass="Normal" RepeatDirection="Horizontal">
 								    <asp:ListItem Value="1">Yes</asp:ListItem>
 								    <asp:ListItem Value="0">No</asp:ListItem>
 							    </asp:radiobuttonlist>
@@ -449,6 +480,15 @@
 							    </asp:radiobuttonlist>
 						    </asp:TableCell>
 						</asp:TableRow>
+						<asp:TableRow ID="trEnableCoupon" Runat="server" Visible="True">
+						    <asp:TableCell CssClass="Normal">Enable Coupon:</asp:TableCell>
+						    <asp:TableCell>
+							    <asp:radiobuttonlist id="optEnableCoupon" runat="server" CssClass="Normal" RepeatDirection="Horizontal">
+								    <asp:ListItem Value="1">Yes</asp:ListItem>
+								    <asp:ListItem Value="0">No</asp:ListItem>
+							    </asp:radiobuttonlist>
+						    </asp:TableCell>
+					    </asp:TableRow>
 						<asp:TableRow Visible="False">
 						    <asp:TableCell CssClass="Normal">Currency Symbol:</asp:TableCell>
 						    <asp:TableCell CssClass="Normal">
@@ -550,6 +590,7 @@
 							    <asp:radiobuttonlist id="optEnableCompanyLogo" runat="server" CssClass="Normal" RepeatDirection="Horizontal">
 								    <asp:ListItem Value="0">Hidden</asp:ListItem>
 								    <asp:ListItem Value="1">Optional</asp:ListItem>	
+								    <asp:ListItem Value="2">Required</asp:ListItem>
 							    </asp:radiobuttonlist>
 						    </asp:TableCell>
 						</asp:TableRow>
@@ -823,7 +864,7 @@
 					    <asp:TableCell CssClass="Normal">Inquiry send to:</asp:TableCell>
 					    <asp:TableCell CssClass="Normal">
 						    <asp:radiobuttonlist id="optInquirySendTo" runat="server" CssClass="Normal" RepeatDirection="Horizontal">
-							    <asp:ListItem Value="poster">Poster</asp:ListItem>
+							    <asp:ListItem Value="poster">User</asp:ListItem>
 							    <asp:ListItem Value="admin">Admin</asp:ListItem>
 						    </asp:radiobuttonlist>
 					    </asp:TableCell>
@@ -894,7 +935,7 @@
 							<asp:checkbox id="chkEnableQuickSearch" CssClass="Normal" Runat="server" AutoPostBack="True" Text="Enable Quick Search?" Checked="True"></asp:checkbox>
 						</td>
 					</tr>
-					<tr id="trEnableMoreSearch" runat="server" visible="False">
+					<tr id="trEnableMoreSearch" runat="server" visible="True">
 						<td class="Normal" width="30%">
 						    <asp:label id="lblEnableMoreSearch" runat="server" CssClass="Normal">More Search Options:</asp:label>
 						</td>
@@ -1109,6 +1150,34 @@
 					        <asp:comparevalidator id="comp_txtReviewCookieInterval" CssClass="NormalRed" Runat="server" ControlToValidate="txtReviewCookieInterval" ErrorMessage="Must be integer" Operator="DataTypeCheck" Type="Integer"></asp:comparevalidator>
 					    </td>
 					</tr>
+					<tr id="trEnableDetailedReview" runat="server" visible="True">
+						<td class="Normal" width="30%"><asp:label id="lbxEnableDetailedReview" runat="server" CssClass="Normal">Detailed Review:</asp:label></td>
+						<td class="Normal" align="left" width="70%">
+						    <asp:checkbox id="chkEnableDetailedReview" CssClass="Normal" Visible="True" Runat="server" Enabled="True" Text="Enable Detailed Review?"></asp:checkbox>
+						    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						    <asp:label id="lblDetailedReviewStyle" runat="server" CssClass="Normal">Detailed Review Style:</asp:label>
+						    <asp:dropdownlist id="ddlDetailedReviewStyle" runat="server" cssClass="Normal">
+								<asp:ListItem Value="Star">Star</asp:ListItem>													
+								<asp:ListItem Value="BarRed.png">Bar: Red</asp:ListItem>
+								<asp:ListItem Value="BarGreen.png">Bar: Green</asp:ListItem>
+								<asp:ListItem Value="BarBlue.png">Bar: Blue</asp:ListItem>
+								<asp:ListItem Value="BarYellow.png">Bar: Yellow</asp:ListItem>
+								<asp:ListItem Value="BarCyan.png">Bar: Cyan</asp:ListItem>
+								<asp:ListItem Value="BarPurple.png">Bar: Purple</asp:ListItem>
+								<asp:ListItem Value="BarOrange.png">Bar: Orange</asp:ListItem>
+								<asp:ListItem Value="BarCustom.png">Bar: Custom</asp:ListItem>
+							</asp:dropdownlist>
+						</td>
+					</tr>
+					<tr id="trReviewMode" runat="server" visible="false">
+						<td class="Normal" width="30%"><asp:label id="lblReviewMode" runat="server" CssClass="Normal">Review Mode:</asp:label></td>
+						<td class="Normal" align="left" width="70%">
+						    <asp:dropdownlist id="ddlReviewMode" runat="server" cssClass="Normal">
+								<asp:ListItem Value="basic">Basic Ratings</asp:ListItem>								
+								<asp:ListItem Value="detailed">Detailed Ratings</asp:ListItem>
+							</asp:dropdownlist>
+						</td>
+					</tr>
 					<tr id="trReviewAddRoles" runat="server" visible="False">
 					    <td class="Normal" width="30%">
 					        <asp:label id="lblReviewAddRoles" runat="server" CssClass="Normal">Roles that can add review:</asp:label><br />
@@ -1157,6 +1226,19 @@
 						    <asp:checkbox id="chkEnableFacebookLikeBtn" CssClass="Normal" Runat="server" Text="Enable Facebook Like button?"></asp:checkbox>
 					    </td>
 				    </tr>
+				    <tr id="trSocialBookmarkingScript" runat="server" visible="True">
+					    <td class="Normal" width="30%">
+					        <asp:label id="lblSocialBookmarkingScript" runat="server" CssClass="Normal">Social Bookmarking:</asp:label>
+					    </td>
+					    <td class="Normal" align="left" width="70%">
+					         <asp:checkbox id="chkEnableSocialBookmarkingScript" CssClass="Normal" Runat="server" Text="Enable Social Bookmarking?"></asp:checkbox>
+						     <asp:label id="lbxEnterEnableSocialBookmarkingScript" runat="server" CssClass="Normal">Please Enter script below:</asp:label>
+						     <br />
+						     <asp:textbox id="txtSocialBookmarkingScript" runat="server" CssClass="Normal" Width="575px" TextMode="MultiLine" Rows="5"></asp:textbox>
+					        <br />
+					        <asp:label id="lbxSocialBookmarkingNote" runat="server" CssClass="Normal">Note: Script can be generated from social bookmarking service website such as <a href="http://www.addthis.com" target="_blank">AddThis.com</a></asp:label>
+					    </td>
+				    </tr>				   
 			    </table>
 			</DIV>
 		</td>
@@ -1375,7 +1457,7 @@
 						<asp:TableCell>
 							<asp:textbox id="txtPrice" runat="server" cssclass="Normal" MaxLength="10" Width="50px" TextMode="SingleLine" Enabled="False"></asp:textbox>
 							<asp:requiredfieldvalidator id="valRequiredPrice" runat="server" ControlToValidate="txtPrice" ErrorMessage="Required" CssClass="NormalRed" Enabled="False" Visible="True" Display="Dynamic"></asp:requiredfieldvalidator>
-							<asp:regularexpressionvalidator id="valCurrencyFormat" runat="server" CssClass="NormalRed" ErrorMessage="Invalid Price." ControlToValidate="txtPrice" ValidationExpression="^\d+(?:\.\d{0,2})?$" Visible="True" Enabled="False" Display="Dynamic"></asp:regularexpressionvalidator>
+							<asp:regularexpressionvalidator id="valCurrencyFormat" runat="server" CssClass="NormalRed" ErrorMessage="#.##" ControlToValidate="txtPrice" ValidationExpression="^\d+(?:\.\d{0,2})?$" Visible="True" Enabled="False" Display="Dynamic"></asp:regularexpressionvalidator>
 							<br />
 							<asp:label id="lbxPrice" Runat="server" CssClass="Normal">Note: This only apply to Flat Fee. If you are using Per Category Fee, please enter 0 above.</asp:label>
 						</asp:TableCell>
@@ -1433,12 +1515,12 @@
 										</ItemTemplate>
 										<EditItemTemplate>
 											<asp:TextBox ID="txtFee" Width="35" CssClass="Normal" text='<%# DotNetNuke.jb_Uconversion.ConvertDouble(DataBinder.Eval(Container.DataItem, "Fee")).ToString("##0.00") %>' Runat="server" />*
-											<asp:regularexpressionvalidator id="valFeeFormat" runat="server" CssClass="Normal" ErrorMessage="Invalid" ControlToValidate="txtFee"
+											<asp:regularexpressionvalidator id="valFeeFormat" runat="server" CssClass="Normal" ErrorMessage="#.##" ControlToValidate="txtFee"
 												Display="Dynamic" ValidationExpression="^\d+(?:\.\d{0,2})?$" Enabled="True"></asp:regularexpressionvalidator>
 										</EditItemTemplate>
 										<FooterTemplate>
 											<asp:TextBox id="txtFee_Add" Width="35" CssClass="Normal" Runat="server" EnableViewState="True"></asp:TextBox>*
-											<asp:regularexpressionvalidator id="valFeeFormat_Add" runat="server" CssClass="Normal" ErrorMessage="Invalid" ControlToValidate="txtFee_Add"
+											<asp:regularexpressionvalidator id="valFeeFormat_Add" runat="server" CssClass="Normal" ErrorMessage="#.##" ControlToValidate="txtFee_Add"
 												Display="Dynamic" ValidationExpression="^\d+(?:\.\d{0,2})?$" Enabled="True"></asp:regularexpressionvalidator>
 										</FooterTemplate>
 									</asp:TemplateColumn>
@@ -1606,17 +1688,17 @@
 										</ItemTemplate>
 										<EditItemTemplate>
 											<asp:TextBox ID="txtFee" Width="35" CssClass="Normal" text='<%# DotNetNuke.jb_Uconversion.ConvertDouble(DataBinder.Eval(Container.DataItem, "Fee")).ToString("##0.00") %>' Runat="server" />*
-											<asp:regularexpressionvalidator id="valFeeFormat" runat="server" CssClass="Normal" ErrorMessage="Invalid" ControlToValidate="txtFee"
-												Display="Dynamic" ValidationExpression="^\d+(?:\.\d{0,2})?$" Enabled="False"></asp:regularexpressionvalidator>
-										     <asp:CompareValidator id="comp_txtFee" runat="server" CssClass="Normal" Display="Dynamic" ControlToValidate="txtFee" ErrorMessage="> 0" Type="Currency" Operator="GreaterThan" ValueToCompare="0"></asp:CompareValidator>
+											<asp:regularexpressionvalidator id="valFeeFormat" runat="server" CssClass="Normal" ErrorMessage="#.##" ControlToValidate="txtFee"
+												Display="Dynamic" ValidationExpression="^\d+(?:\.\d{0,2})?$" Enabled="True"></asp:regularexpressionvalidator>
+										     <asp:CompareValidator id="comp_txtFee" runat="server" CssClass="Normal" Display="Dynamic" ControlToValidate="txtFee" ErrorMessage=">= 0" Type="Currency" Operator="GreaterThanEqual" ValueToCompare="0"></asp:CompareValidator>
 										</EditItemTemplate>
 										<FooterTemplate>
 											<asp:TextBox id="txtFee_Add" Width="35" CssClass="Normal" Runat="server" EnableViewState="True"></asp:TextBox>*
-											<asp:regularexpressionvalidator id="valFeeFormat_Add" runat="server" CssClass="Normal" ErrorMessage="Invalid" ControlToValidate="txtFee_Add"
-												Display="Dynamic" ValidationExpression="^\d+(?:\.\d{0,2})?$" Enabled="False"></asp:regularexpressionvalidator>
-										    <asp:CompareValidator id="comp_txtFee_Add" runat="server" CssClass="Normal" Display="Dynamic" ControlToValidate="txtFee_Add" ErrorMessage="> 0" Type="Currency" Operator="GreaterThan" ValueToCompare="0"></asp:CompareValidator>
+											<asp:regularexpressionvalidator id="valFeeFormat_Add" runat="server" CssClass="Normal" ErrorMessage="#.##" ControlToValidate="txtFee_Add"
+												Display="Dynamic" ValidationExpression="^\d+(?:\.\d{0,2})?$" Enabled="True"></asp:regularexpressionvalidator>
+											<asp:CompareValidator id="comp_txtFee_Add" runat="server" CssClass="Normal" Display="Dynamic" ControlToValidate="txtFee_Add" ErrorMessage=">= 0" Type="Currency" Operator="GreaterThanEqual" ValueToCompare="0"></asp:CompareValidator>
 										</FooterTemplate>
-									</asp:TemplateColumn>
+									</asp:TemplateColumn>	
 									<asp:TemplateColumn HeaderText="Listing<br/>Period<br/>(Days)">
 										<ItemTemplate>
 											<asp:Label ID="lblListingPeriod" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "ListingPeriod") %>' Runat="server"/>
@@ -1660,6 +1742,9 @@
 									<asp:EditCommandColumn ButtonType="LinkButton" EditText="Edit" CancelText="Cancel" UpdateText="Update" />
 								</Columns>
 							</asp:datagrid>
+							<ul>								
+								<li>Enter 0 for Renewal Fee to allow free renewal. New expiration date will be extended from date of renewal.</li>			
+							</ul>
 							<asp:Label id="lblMessage_RenewalOption" runat="server" CssClass="NormalRed">&nbsp;</asp:Label>
 						</asp:TableCell>
 					</asp:TableRow>

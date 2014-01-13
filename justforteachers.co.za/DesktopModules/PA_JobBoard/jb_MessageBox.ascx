@@ -9,9 +9,9 @@
 		<TR>
 			<TD align="center">
 				<asp:panel id="pnlReturnNav" Runat="server" Visible="True"><BR>&nbsp; 
-<asp:linkbutton id="cmdReturn" resourcekey="cmdReturn.Text" runat="server" CausesValidation="False" Text="Return to previous page"></asp:linkbutton>
+<asp:linkbutton id="cmdReturn" resourcekey="[RESX:Nav_PreviousPage].Text" runat="server" CausesValidation="False" Text="Return to previous page"></asp:linkbutton>
 <asp:label id="lblEmptySpace" runat="server" Visible="True">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</asp:label>&nbsp; 
-<asp:linkbutton id="cmdReturnHome" resourcekey="cmdReturnHome.Text" runat="server" CausesValidation="False" Text="Return to Job Board Home"></asp:linkbutton></asp:panel></TD>
+<asp:linkbutton id="cmdReturnHome" resourcekey="[RESX:Nav_ModuleHome].Text" runat="server" CausesValidation="False" Text="Return to Job Board Home"></asp:linkbutton></asp:panel></TD>
 		</TR>
 	</TABLE>
 </asp:panel>

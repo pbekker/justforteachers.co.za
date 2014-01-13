@@ -9,7 +9,7 @@
 		<TR>
 			<TD align="center"><BR>
 				<BR>				
-				<asp:linkbutton id="cmdReturnHome" CssClass="Normal" runat="server" BorderStyle="none" CausesValidation="False"
+				<asp:linkbutton id="cmdReturnHome" resourcekey="[RESX:Nav_ModuleHome].Text" CssClass="Normal" runat="server" BorderStyle="none" CausesValidation="False"
 					Text="Return to Job Board Home"></asp:linkbutton></TD>
 		</TR>
 	</TABLE>

@@ -1,5 +1,5 @@
 ﻿<dotnetnuke type="Package" version="5.0">
-  <packages><package name="PA_JobBoard" type="Module" version="7.2.20">
+  <packages><package name="PA_JobBoard" type="Module" version="7.4.0">
   <friendlyName>DNJ :: Job Board</friendlyName>
   <description>Job Board module by DotNetJedi</description>
   <owner>
@@ -254,9 +254,29 @@
           <name>07.02.20.SqlDataProvider</name>
           <version>07.02.20</version>
         </script>
+        <script type="Install">
+          <name>07.03.02.SqlDataProvider</name>
+          <version>07.03.02</version>
+        </script>
+        <script type="Install">
+          <name>07.03.06.SqlDataProvider</name>
+          <version>07.03.06</version>
+        </script>
+        <script type="Install">
+          <name>07.03.10.SqlDataProvider</name>
+          <version>07.03.10</version>
+        </script>
+        <script type="Install">
+          <name>07.03.11.SqlDataProvider</name>
+          <version>07.03.11</version>
+        </script>
+        <script type="Install">
+          <name>07.03.12.SqlDataProvider</name>
+          <version>07.03.12</version>
+        </script>
         <script type="UnInstall">
           <name>Uninstall.SqlDataProvider</name>
-          <version>7.2.20</version>
+          <version>7.4.0</version>
         </script>
       </scripts>
     </component>
@@ -2729,6 +2749,57 @@
         <file>
           <path>App_LocalResources</path>
           <name>jb_Address.ascx.resx</name>
+        </file>
+        <file>
+          <path>Images\review\Bar</path>
+          <name>BarBlack.png</name>
+        </file>
+        <file>
+          <path>Images\review\Bar</path>
+          <name>BarBlue.png</name>
+        </file>
+        <file>
+          <path>Images\review\Bar</path>
+          <name>BarCustom.png</name>
+        </file>
+        <file>
+          <path>Images\review\Bar</path>
+          <name>BarCyan.png</name>
+        </file>
+        <file>
+          <path>Images\review\Bar</path>
+          <name>BarGreen.png</name>
+        </file>
+        <file>
+          <path>Images\review\Bar</path>
+          <name>BarOrange.png</name>
+        </file>
+        <file>
+          <path>Images\review\Bar</path>
+          <name>BarPurple.png</name>
+        </file>
+        <file>
+          <path>Images\review\Bar</path>
+          <name>BarRed.png</name>
+        </file>
+        <file>
+          <path>Images\review\Bar</path>
+          <name>BarYellow.png</name>
+        </file>
+        <file>
+          <path>Images\review\Bar</path>
+          <name>note.txt</name>
+        </file>
+        <file>
+          <name>jb_ManageCoupon.ascx</name>
+        </file>
+        <file>
+          <path>Images\module\NavItemEdit</path>
+          <name>ico-Coupon.png</name>
+        </file>
+        <file>
+          <path>Images\module\NavItemEdit</path>
+          <name>ico-Coupon2.png</name>
         </file>
         <file>
           <name>jb_Address.ascx</name>

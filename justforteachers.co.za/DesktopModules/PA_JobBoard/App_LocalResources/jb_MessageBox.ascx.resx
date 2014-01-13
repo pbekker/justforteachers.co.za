@@ -166,10 +166,4 @@
 	<data name="pp.Text" xml:space="preserve">
 		<value></value>
 	</data>
-	<data name="cmdReturn.Text" xml:space="preserve">
-		<value>Return to previous page</value>
-	</data>
-		<data name="cmdReturnHome.Text" xml:space="preserve">
-		<value>Return to Job Board Home</value>
-	</data>
 </root>
