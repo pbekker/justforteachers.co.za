@@ -58,6 +58,7 @@ namespace JustForTeachersApi.Models
 
     public class ResourceListPayload
     {
+        public int count { get; set; }
         public List<ResourceList> resourceList { get; set; }
     }
 
