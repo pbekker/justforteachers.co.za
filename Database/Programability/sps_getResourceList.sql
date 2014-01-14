@@ -31,6 +31,7 @@ BEGIN
 		r.[description],
 		r.uploadDate,
 		r.uploadUser,
+		r.previewFileId,
 		ROW_NUMBER() OVER 
                      (ORDER BY r.id) AS rowNumber
 					 
@@ -52,6 +53,7 @@ BEGIN
 		r.[description],
 		r.uploadDate,
 		r.uploadUser,
+		r.previewFileId,
 		(SELECT COUNT(*) FROM resources) total
 	FROM resources r (NOLOCK)
 	WHERE

@@ -181,6 +181,7 @@ CREATE TABLE dbo.bhdResource
 	uploadUser int NOT NULL,
 	approvalDate datetime NULL,
 	approvalUser int NULL,
+	previewFileId int NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
 	 TEXTIMAGE_ON [PRIMARY]

@@ -34,10 +34,11 @@ div:hover .box:not(:hover) {
 
 </style>
 
-<asp:Repeater runat="server" ID="rptListings" OnItemCommand="rptListings_ItemCommand">
+<asp:Repeater runat="server" ID="rptListings" OnItemCommand="rptListings_ItemCommand" OnItemDataBound="rptListings_ItemDataBound">
     <ItemTemplate>
         <div class="box">
             <h3><asp:LinkButton runat="server" ID="lblResourceName" Text='<%#Eval("ResourceName") %>' CommandArgument='<%#Eval("ResourceId") %>' /></h3>
+            <asp:Image runat="server" ID="imgPreviewImage" />
             <p><asp:Label runat="server" ID="lblResourceDescription" Text='<%#Eval("ResourceDescription") %>' /></p>
             <span><b>Type:</b> <asp:Label runat="server" ID="ResourceType" Text='<%#Eval("ResourceType") %>' /></span><br />
             <span><b>Topic:</b> <asp:Label runat="server" ID="ResourceTopic" Text='<%#Eval("ResourceTopic") %>' /></span><br />

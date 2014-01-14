@@ -12,14 +12,28 @@ using System.IO;
 using System.Web.Http.Cors;
 using Newtonsoft.Json;
 using Ionic.Zip;
+using System.Web.Mvc;
 
 namespace JustForTeachersApi.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ResourceFileController : ApiController
     {
-        [HttpPost]
-        [AllowAnonymous]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.AllowAnonymous]
+        public FileResult Get(int id)
+        {
+            using (ResourcesDataContext db = new ResourcesDataContext())
+            {
+                if (id == 0)
+                    id = 1;
+                bhdFile fileInfo = db.bhdFiles.Single((x) => x.id == id);
+                return new FileContentResult(fileInfo.bhdFileData.data.ToArray(), fileInfo.bhdFileType.contentType);
+             }
+        }
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.AllowAnonymous]
         public async Task<HttpResponseMessage> Post()
         {
             var result = Request.Content.ReadAsFormDataAsync();
@@ -69,8 +83,8 @@ namespace JustForTeachersApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, "Sucess");
         }
 
-        [HttpPut]
-        [AllowAnonymous]
+        [System.Web.Http.HttpPut]
+        [System.Web.Http.AllowAnonymous]
         public async Task<HttpResponseMessage> Put()
         {
             var result = Request.Content.ReadAsFormDataAsync();

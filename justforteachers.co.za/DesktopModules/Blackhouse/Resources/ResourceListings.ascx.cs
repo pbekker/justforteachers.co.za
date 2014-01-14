@@ -51,7 +51,17 @@ namespace Blackhouse.Resources
         {
             Response.Redirect(Request.Url.ToString() + "&mid=" + ModuleContext.ModuleId.ToString() + "&ctl=resourceView&resourceid=" + ((LinkButton)e.CommandSource).CommandArgument);
         }
-}
+        protected void rptListings_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.AlternatingItem ||
+                e.Item.ItemType == ListItemType.Item)
+            {
+                ResourceList item = (ResourceList)e.Item.DataItem;
+                Image previewFile = (Image)e.Item.FindControl("imgPreviewImage");
+                previewFile.ImageUrl = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("/resourcefile/{0}", item.PreviewFileId);
+            }
+        }
+    }
 
     public class ResourceList
     {
@@ -62,6 +72,7 @@ namespace Blackhouse.Resources
         public string ResourceType { get; set; }
         public string ResourceLanguage { get; set; }
         public string ResourceUploadDate { get; set; }
+        public int PreviewFileId { get; set; }
     }
 
     public class ResourceListPayload
