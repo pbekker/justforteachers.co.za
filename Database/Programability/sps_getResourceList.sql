@@ -51,7 +51,8 @@ BEGIN
 		r.rating,
 		r.[description],
 		r.uploadDate,
-		r.uploadUser
+		r.uploadUser,
+		(SELECT COUNT(*) FROM resources) total
 	FROM resources r (NOLOCK)
 	WHERE
 		r.rowNumber >= @startRow AND r.rowNumber <= @endRow 
@@ -62,7 +63,8 @@ BEGIN
 		CASE WHEN @orderby = 'rating' AND @orderDirection != 'ASC' THEN r.rating END DESC,
 		CASE WHEN @orderby = 'uploadDate' AND @orderDirection = 'ASC' THEN r.uploadDate END,
 		CASE WHEN @orderby = 'uploadDate' AND @orderDirection != 'ASC' THEN r.uploadDate END DESC
+
+	
 END
 GO
-
-EXEC sps_getResourceList 1, 1, 20, 'qwe', 'qwe'
+EXEC sps_getResourceList 0, 1, 20, 'qwe', 'qwe'
