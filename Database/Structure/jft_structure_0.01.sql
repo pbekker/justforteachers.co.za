@@ -399,6 +399,7 @@ CREATE TABLE dbo.bhdResourceKeyword
 	(
 	Resourceid int NOT NULL,
 	KeywordId int NOT NULL
+	CONSTRAINT pk_ResourceKeyword PRIMARY KEY (ResourceId, KeywordId)
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.bhdResourceKeyword SET (LOCK_ESCALATION = TABLE)
@@ -413,7 +414,7 @@ BEGIN TRANSACTION
 GO
 CREATE TABLE dbo.bhdKeyword
 	(
-	id int NOT NULL,
+	id int NOT NULL IDENTITY(1, 1),
 	value varchar(250) NOT NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]

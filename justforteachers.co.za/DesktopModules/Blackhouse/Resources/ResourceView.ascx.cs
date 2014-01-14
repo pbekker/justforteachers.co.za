@@ -28,6 +28,7 @@ namespace Blackhouse.Resources
                     //'User' is a Model class that I have defined.
                     ResourceViewPayload result = JsonConvert.DeserializeObject<ResourceViewPayload>(client.DownloadString(url));
 
+                    hidResourceId.Value = result.resourceInfo.ResourceId.ToString();
                     lblResourceName.Text = result.resourceInfo.ResourceName;
                     lblResourceDescription.Text = result.resourceInfo.ResourceDescription;
                     ResourceType.Text = result.resourceInfo.ResourceType;
@@ -45,6 +46,12 @@ namespace Blackhouse.Resources
                     lblWebsiteLinks.Text = "(" + result.urlInfo.Count + ") Website Links are associated with this resource.";
                     rptWebsites.DataSource = result.urlInfo;
                     rptWebsites.DataBind();
+
+                    // TODO: Add a check for approval, if it is approved no need to approve again.
+                    if (ModuleContext.PortalSettings.UserInfo.IsInRole("Administrator") || ModuleContext.PortalSettings.UserInfo.IsSuperUser)
+                    {
+                        divApproval.Visible = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -94,6 +101,33 @@ namespace Blackhouse.Resources
             {
                 //bleh..
                 ((LinkButton)e.CommandSource).Text = ex.Message;
+            }
+        }
+        protected void cmdApprove_Click(object sender, EventArgs e)
+        {
+            WebClient client = new WebClient();
+            string url = dashboardUrlBase + "resourceapprove/" + ModuleContext.PortalSettings.UserInfo.UserID.ToString();
+            ResourceList currentItem = new ResourceList();
+            currentItem.ResourceId = int.Parse(hidResourceId.Value);
+
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcefile/1") as HttpWebRequest;
+            request.ContentType = "text/json";
+            request.Method = "PUT";
+            try
+            {
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(currentItem);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.ToString());
             }
         }
 }

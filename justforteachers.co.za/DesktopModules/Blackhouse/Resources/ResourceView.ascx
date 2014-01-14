@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceView.ascx.cs" Inherits="Blackhouse.Resources.ResourceView" %>
 
+<asp:HiddenField runat="server" ID="hidResourceId" />
 <h3><asp:Label runat="server" ID="lblResourceName" /></h3>
 <p><asp:Label runat="server" ID="lblResourceDescription" /></p>
 <span><b>Type:</b> <asp:Label runat="server" ID="ResourceType" /></span><br />
@@ -23,6 +24,11 @@
         <span><b>Go See: </b><asp:HyperLink runat="server" ID="lblFileName" Text='<%#Eval("resourceURL") %>' NavigateUrl='<%#Eval("resourceURL") %>' /></span><br />
     </ItemTemplate>
 </asp:Repeater>
+
+<div id="divApproval" runat="server" style="visibility:hidden;">
+    <div><asp:CheckBox runat="server" ID="chkApprove" Text="Approved" Checked="true" /></div>
+    <div><asp:LinkButton runat="server" ID="cmdApprove" Text="Confirm Approval" OnClick="cmdApprove_Click" /></div>
+</div>
 
 <%--<script src="/DesktopModules/Blackhouse/js/admin.js"></script>
 
