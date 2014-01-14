@@ -164,4 +164,10 @@ namespace JustForTeachersApi.Models
         public string ContentDispositionFileName { get; set; }
         public byte[] FileData { get; set; }
     }
+
+    public class TagsInfo
+    {
+        public int ResourceId { get; set; }
+        public List<string> tags { get; set; }
+    }
 }

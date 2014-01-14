@@ -40,47 +40,37 @@ namespace JustForTeachersApi
             return retId;
         }
 
-        public static List<ResourceFile> UploadResourceFile(List<FileData> files, int resourceId)
+        public static ResourceFile UploadResourceFile(FileData files, int resourceId)
         {
-            List<ResourceFile> resFileRet = new List<ResourceFile>();
+            ResourceFile resFileRet = new ResourceFile();
             //we get the information
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
-                foreach (FileData item in files)
-                {
+                bhdFile f = new bhdFile();
+                f.size = files.fileSize;
+                f.name = files.fileName;
+                f.isActive = true;
+                f.fileTypeId = 1;
+                dc.bhdFiles.InsertOnSubmit(f);
+                dc.SubmitChanges();
 
+                bhdFileData fd = new bhdFileData();
+                fd.fileId = f.id;
+                fd.data = files.fileData;
+                dc.bhdFileDatas.InsertOnSubmit(fd);
+                dc.SubmitChanges();
 
-                    bhdFile f = new bhdFile();
-                    f.size = item.fileSize;
-                    f.name = item.fileName;
-                    f.isActive = true;
-                    f.fileTypeId = 1;
-                    dc.bhdFiles.InsertOnSubmit(f);
-                    dc.SubmitChanges();
+                bhdResourceFile rf = new bhdResourceFile();
+                rf.resourceId = resourceId;
+                rf.fileId = f.id;
+                dc.bhdResourceFiles.InsertOnSubmit(rf);
+                dc.SubmitChanges();
 
-                    bhdFileData fd = new bhdFileData();
-                    fd.fileId = f.id;
-                    fd.data = item.fileData;
-                    dc.bhdFileDatas.InsertOnSubmit(fd);
-                    dc.SubmitChanges();
-
-                    bhdResourceFile rf = new bhdResourceFile();
-                    rf.resourceId = resourceId;
-                    rf.fileId = f.id;
-                    dc.bhdResourceFiles.InsertOnSubmit(rf);
-                    dc.SubmitChanges();
-
-                }
-                var r = (from d in dc.bhdResourceFiles
-                         where d.resourceId == resourceId
-                         select d);
-                foreach (var resfile in r)
-                {
-                    ResourceFile tmpFileRes = new ResourceFile();
-                    tmpFileRes.fileid = resfile.fileId;
-                    tmpFileRes.filename = resfile.bhdFile.name;
-                    resFileRet.Add(tmpFileRes);
-                }
+                ResourceFile tmpFileRes = new ResourceFile();
+                tmpFileRes.fileid = rf.fileId;
+                tmpFileRes.filename = f.name;
+                resFileRet = tmpFileRes;
+                
             }
             return resFileRet;
         }

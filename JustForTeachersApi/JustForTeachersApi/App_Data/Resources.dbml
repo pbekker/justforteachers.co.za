@@ -62,6 +62,13 @@
       <Association Name="bhdFileType_bhdFile" Member="bhdFiles" ThisKey="id" OtherKey="fileTypeId" Type="bhdFile" />
     </Type>
   </Table>
+  <Table Name="dbo.bhdFormat" Member="bhdFormats">
+    <Type Name="bhdFormat">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.bhdKeyword" Member="bhdKeywords">
     <Type Name="bhdKeyword">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -75,6 +82,37 @@
       <Column Name="linkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="url" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="bhdLink_bhdResourceLink" Member="bhdResourceLinks" ThisKey="linkId" OtherKey="linkId" Type="bhdResourceLink" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdMenu" Member="bhdMenus">
+    <Type Name="bhdMenu">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdMenu_bhdMenuItem" Member="bhdMenuItems" ThisKey="id" OtherKey="menuId" Type="bhdMenuItem" />
+      <Association Name="bhdMenu_bhdMenuPage" Member="bhdMenuPages" ThisKey="id" OtherKey="menuId" Type="bhdMenuPage" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdMenuItem" Member="bhdMenuItems">
+    <Type Name="bhdMenuItem">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="menuId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="text" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="hoverText" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="tabId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="moduleId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="url" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdMenu_bhdMenuItem" Member="bhdMenu" ThisKey="menuId" OtherKey="id" Type="bhdMenu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdMenuPage" Member="bhdMenuPages">
+    <Type Name="bhdMenuPage">
+      <Column Name="menuId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tabId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="moduleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="bhdMenu_bhdMenuPage" Member="bhdMenu" ThisKey="menuId" OtherKey="id" Type="bhdMenu" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdPublisher" Member="bhdPublishers">
@@ -123,8 +161,8 @@
   </Table>
   <Table Name="dbo.bhdResourceAuthor" Member="bhdResourceAuthors">
     <Type Name="bhdResourceAuthor">
-      <Column Name="authorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="fileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="authorId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="fileId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="bhdAuthor_bhdResourceAuthor" Member="bhdAuthor" ThisKey="authorId" OtherKey="id" Type="bhdAuthor" IsForeignKey="true" />
       <Association Name="bhdFile_bhdResourceAuthor" Member="bhdFile" ThisKey="fileId" OtherKey="id" Type="bhdFile" IsForeignKey="true" />
     </Type>
@@ -141,8 +179,8 @@
   </Table>
   <Table Name="dbo.bhdResourceBundleFile" Member="bhdResourceBundleFiles">
     <Type Name="bhdResourceBundleFile">
-      <Column Name="bundleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="resourceFileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bundleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="resourceFileId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="isFavourite" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="bhdFile_bhdResourceBundleFile" Member="bhdFile" ThisKey="resourceFileId" OtherKey="id" Type="bhdFile" IsForeignKey="true" />
       <Association Name="bhdResourceBundle_bhdResourceBundleFile" Member="bhdResourceBundle" ThisKey="bundleId" OtherKey="bundleId" Type="bhdResourceBundle" IsForeignKey="true" />
@@ -154,6 +192,12 @@
       <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="bhdFile_bhdResourceFile" Member="bhdFile" ThisKey="fileId" OtherKey="id" Type="bhdFile" IsForeignKey="true" />
       <Association Name="bhdResource_bhdResourceFile" Member="bhdResource" ThisKey="resourceId" OtherKey="id" Type="bhdResource" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdResourceFormat" Member="bhdResourceFormats">
+    <Type Name="bhdResourceFormat">
+      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="formatId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.bhdResourceKeyword" Member="bhdResourceKeywords">
@@ -196,37 +240,6 @@
       <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="bhdResourceTopic_bhdResource" Member="bhdResources" ThisKey="id" OtherKey="topicId" Type="bhdResource" />
-    </Type>
-  </Table>
-  <Table Name="dbo.bhdMenu" Member="bhdMenus">
-    <Type Name="bhdMenu">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="bhdMenu_bhdMenuPage" Member="bhdMenuPages" ThisKey="id" OtherKey="menuId" Type="bhdMenuPage" />
-      <Association Name="bhdMenu_bhdMenuItem" Member="bhdMenuItems" ThisKey="id" OtherKey="menuId" Type="bhdMenuItem" />
-    </Type>
-  </Table>
-  <Table Name="dbo.bhdMenuPage" Member="bhdMenuPages">
-    <Type Name="bhdMenuPage">
-      <Column Name="menuId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="tabId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="moduleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="bhdMenu_bhdMenuPage" Member="bhdMenu" ThisKey="menuId" OtherKey="id" Type="bhdMenu" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.bhdMenuItem" Member="bhdMenuItems">
-    <Type Name="bhdMenuItem">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="menuId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="text" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="hoverText" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="tabId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="moduleId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="url" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="bhdMenu_bhdMenuItem" Member="bhdMenu" ThisKey="menuId" OtherKey="id" Type="bhdMenu" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.sps_getResourceBundleByUserId" Method="sps_getResourceBundleByUserId">

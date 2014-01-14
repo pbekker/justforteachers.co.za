@@ -19,6 +19,7 @@ namespace Blackhouse.Resources
         //this must not change
         protected string dashboardUrlBase = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"];
         public List<ResourceFile> fileinfo;
+        public List<FileData> fileData;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -81,63 +82,31 @@ namespace Blackhouse.Resources
 
         protected void UploadFiles_Click(object sender, EventArgs e)
         {
-            //ok so now we need to save the file, create a byte string out of it and send that to 
-            HttpFileCollection uploadedFiles = Request.Files;
-            Span1.Text = string.Empty;
-            List<FileData> tmpFileDataList = new List<FileData>();
-
-            for (int i = 0; i < uploadedFiles.Count; i++)
-            {
-                HttpPostedFile userPostedFile = uploadedFiles[i];
-                try
-                {
-                    if (userPostedFile.ContentLength > 0)
-                    {
-                        FileData tmpFile = new FileData();
-                        tmpFile.fileName = userPostedFile.FileName;
-                        tmpFile.fileSize = userPostedFile.ContentLength;
-                        tmpFile.fileType = userPostedFile.ContentType;
-                        tmpFile.fileData = ReadFile(userPostedFile);
-                        tmpFileDataList.Add(tmpFile);
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    Span1.Text += "Error: <br>" + Ex.Message;
-                }
-
-            }
-
-            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/" + hidResourceId.Value) as HttpWebRequest;
-            request.ContentType = "text/json";
-            request.Method = "POST";
             try
             {
-                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                HttpFileCollection uploadedFiles = Request.Files;
+                fileData = new List<FileData>();
+                List<HttpPostedFile> tmpFileList = new List<HttpPostedFile>();
+                for (int i = 0; i < uploadedFiles.Count; i++)
                 {
-                    string json = JsonConvert.SerializeObject(tmpFileDataList);
-
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
+                    HttpPostedFile userPostedFile = uploadedFiles[i];
+                    FileData tmpFile = new FileData();
+                    tmpFile.fileName = userPostedFile.FileName;
+                    tmpFile.fileSize = userPostedFile.ContentLength;
+                    tmpFile.fileType = userPostedFile.ContentType;
+                    tmpFile.fileData = ReadFile(userPostedFile);
+                    fileData.Add(tmpFile);
+                    tmpFileList.Add(userPostedFile);
                 }
-                var httpResponse = (HttpWebResponse)request.GetResponse();
-                //when we get the response we need to get the object returned.
-                //then show the author and publisher information upload.
-                Stream resp = httpResponse.GetResponseStream();
-                StreamReader reader = new StreamReader(resp);
-                string text = reader.ReadToEnd();
-                List<ResourceFile> result = JsonConvert.DeserializeObject<List<ResourceFile>>(text);
-                System.Diagnostics.Debug.WriteLine(result);
-                rptFileInfo.DataSource = result;
+                hidFileData.Value = JsonConvert.SerializeObject(fileData);
+                rptFileInfo.DataSource = fileData;
                 rptFileInfo.DataBind();
-                updateAuthPub();
             }
             catch (Exception ex)
             {
-                lnkSave.Text = ex.ToString();
+                Span1.Text += "Error: <br>" + ex.Message;
             }
-
+            updateAuthPub();
             divFileUpload.Visible = false;
             divFileinfo.Visible = true;
 
@@ -223,8 +192,109 @@ namespace Blackhouse.Resources
 
         protected void UploadWebsite_Click(object sender, EventArgs e)
         {
-            string type = "website";
-            Span2.Text = "";
+            int ResourceId = 0;
+            //ok, now we need to get all the information for the save
+            //reource basic infortmation
+            UploadData resourceData = new UploadData();
+            resourceData.PortalId = ModuleContext.PortalId;
+            resourceData.ResourceDescription = txtResourceDescription.Text;
+            resourceData.ResourceLanguageId = int.Parse(ddlResourceLanguage.SelectedValue);
+            resourceData.ResourceName = txtResourceName.Text;
+            resourceData.ResourceTopicId = int.Parse(hidTopicId.Value);
+            resourceData.ResourceTypeId = 2;
+
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/" ) as HttpWebRequest;
+            request.Method = "POST";
+            request.ContentType = "text/json";
+            try
+            {
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(resourceData);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.ToString());
+            }
+
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            {
+                if (response.StatusCode != HttpStatusCode.OK)
+                    throw new Exception(String.Format("Server error (HTTP {0}: {1}).", response.StatusCode, response.StatusDescription));
+                Stream resp = response.GetResponseStream();
+                StreamReader reader = new StreamReader(resp);
+                string text = reader.ReadToEnd();
+                ResourceId = int.Parse(text);
+            }
+            //end of basic information
+
+            //now it is tags
+            List<string> tagsSend = new List<string>();
+            string tags = txtResourceTags.Text;
+            if (tags.Contains(","))
+            {
+                //these tags must be split
+                string[] tagsList = tags.Split(",");
+                foreach (var item in tagsList)
+                {
+                    string tmp = item;
+                    if (tmp.StartsWith(" "))
+                    {
+                        tmp = tmp.Remove(0, 1);
+                    }
+                    if (item.EndsWith(" "))
+                    {
+                        tmp = tmp.Remove(tmp.Length - 1, 1);
+                    }
+                    tagsSend.Add(tmp);
+                }
+            }
+            else
+            {
+                if (tags.StartsWith(" "))
+                {
+                    tags = tags.Substring(0, 1);
+                }
+                if (tags.EndsWith(" "))
+                {
+                    tags = tags.Substring(tags.Length - 2, 1);
+                }
+                tagsSend.Add(tags);
+            }
+            TagsInfo tmpTags = new TagsInfo();
+            tmpTags.ResourceId = ResourceId;
+            tmpTags.tags = new List<string>();
+            tmpTags.tags = tagsSend;
+
+            HttpWebRequest tagrequest = WebRequest.Create(dashboardUrlBase + "resourcelist/" + ResourceId) as HttpWebRequest;
+            tagrequest.Method = "POST";
+            tagrequest.ContentType = "text/json";
+            try
+            {
+                using (var streamWriter = new StreamWriter(tagrequest.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(tmpTags);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)tagrequest.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                lnkSaveFileInfo.Text = ex.ToString();
+            }
+            //end of tags
+
+            //now it has URL
             string url = "";
             if (txtWebUrl.Text != "" && txtWebUrl.Text != " ")
             {
@@ -232,32 +302,35 @@ namespace Blackhouse.Resources
                     url = "http://" + txtWebUrl.Text.ToLower();
                 else
                     url = txtWebUrl.Text.ToLower();
-
-                //now we need to upload the information for this resource
-                HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/" + hidResourceId.Value + "/" + type + "/") as HttpWebRequest;
-                request.Method = "POST";
-                request.ContentType = "text/json";
-                try
-                {
-                    using (var streamWriter = new StreamWriter(request.GetRequestStream()))
-                    {
-                        string json = JsonConvert.SerializeObject(url);
-
-                        streamWriter.Write(json);
-                        streamWriter.Flush();
-                        streamWriter.Close();
-                    }
-                    var httpResponse = (HttpWebResponse)request.GetResponse();
-
-                }
-                catch (Exception ex)
-                {
-                    Span2.Text = ex.ToString();
-                }
             }
             else
+            {
                 Span2.Text = "No information has been added, please add information and try again.";
-            Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + hidResourceId.Value);
+                return;
+            }
+            HttpWebRequest urlRequest = WebRequest.Create(dashboardUrlBase + "resourceupload/" + ResourceId + "/website") as HttpWebRequest;
+            urlRequest.ContentType = "text/json";
+            urlRequest.Method = "POST";
+            try
+            {
+                using (var streamWriter = new StreamWriter(urlRequest.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(url);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)urlRequest.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                lnkSaveFileInfo.Text = ex.ToString();
+                return;
+            }
+            //end of url
+
+            Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + ResourceId);
         }
 
         protected void UploadLessonPlan_Click(object sender, EventArgs e)
@@ -285,6 +358,8 @@ namespace Blackhouse.Resources
             HttpFileCollection uploadedFiles = Request.Files;
             Span3.Text = string.Empty;
             List<FileData> tmpFileDataList = new List<FileData>();
+            rptFileInfo.DataSource = uploadedFiles;
+            rptFileInfo.DataBind();
 
             for (int i = 0; i < uploadedFiles.Count; i++)
             {
@@ -313,39 +388,6 @@ namespace Blackhouse.Resources
 
             tmpDataPack.fileData = tmpFileDataList;
 
-
-
-            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/" + hidResourceId.Value + "/" + type + "/") as HttpWebRequest;
-            request.ContentType = "text/json";
-            request.Method = "POST";
-            try
-            {
-                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
-                {
-                    string json = JsonConvert.SerializeObject(tmpDataPack);
-
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
-                }
-                var httpResponse = (HttpWebResponse)request.GetResponse();
-                //when we get the response we need to get the object returned.
-                //then show the author and publisher information upload.
-                Stream resp = httpResponse.GetResponseStream();
-                StreamReader reader = new StreamReader(resp);
-                string text = reader.ReadToEnd();
-                List<ResourceFile> result = JsonConvert.DeserializeObject<List<ResourceFile>>(text);
-                System.Diagnostics.Debug.WriteLine(result);
-                rptFileInfo.DataSource = result;
-                rptFileInfo.DataBind();
-                updateAuthPub();
-                divLessonplan.Visible = false;
-                divFileinfo.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                lnkSave.Text = ex.ToString();
-            }
 
         }
         protected void rptFileInfo_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -478,42 +520,195 @@ namespace Blackhouse.Resources
         }
         protected void lnkSaveFileInfo_Click(object sender, EventArgs e)
         {
-            //now we need to post this and then redirect the user to the view page
-            List<FileInfoData> tmpFileData = new List<FileInfoData>();
-            foreach (RepeaterItem item in rptFileInfo.Items)
-            {
-                DropDownList author = (DropDownList)item.FindControl("ddlAuthor");
-                DropDownList publisher = (DropDownList)item.FindControl("ddlPublisher");
-                DropDownList year = (DropDownList)item.FindControl("ddlYear");
-                HiddenField fileId = (HiddenField)item.FindControl("hidfileid");
-                FileInfoData tmpFData = new FileInfoData();
-                tmpFData.authorid = int.Parse(author.SelectedValue);
-                tmpFData.publisherid = int.Parse(publisher.SelectedValue);
-                tmpFData.publishYear = int.Parse(year.SelectedValue);
-                tmpFData.fileid = int.Parse(fileId.Value);
-                tmpFileData.Add(tmpFData);
-            }
-            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcefile") as HttpWebRequest;
-            request.ContentType = "text/json";
-            request.Method = "POST";
+            int ResourceId = 0;
             try
             {
-                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                //ok, now we need to get all the information for the save
+                //reource basic infortmation
+                UploadData resourceData = new UploadData();
+                resourceData.PortalId = ModuleContext.PortalId;
+                resourceData.ResourceDescription = txtResourceDescription.Text;
+                resourceData.ResourceLanguageId = int.Parse(ddlResourceLanguage.SelectedValue);
+                resourceData.ResourceName = txtResourceName.Text;
+                resourceData.ResourceTopicId = int.Parse(hidTopicId.Value);
+                resourceData.ResourceTypeId = 1;
+
+                HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/") as HttpWebRequest;
+                request.Method = "POST";
+                request.ContentType = "text/json";
+                try
                 {
-                    string json = JsonConvert.SerializeObject(tmpFileData);
+                    using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                    {
+                        string json = JsonConvert.SerializeObject(resourceData);
 
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                    }
+                    var httpResponse = (HttpWebResponse)request.GetResponse();
+
                 }
-                var httpResponse = (HttpWebResponse)request.GetResponse();
+                catch (Exception ex)
+                {
+                    throw new ApplicationException(ex.ToString());
+                }
 
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                {
+                    if (response.StatusCode != HttpStatusCode.OK)
+                        throw new Exception(String.Format("Server error (HTTP {0}: {1}).", response.StatusCode, response.StatusDescription));
+                    Stream resp = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(resp);
+                    string text = reader.ReadToEnd();
+                    ResourceId = int.Parse(text);
+                }
+                //end of basic information
+
+                //now it is tags
+                List<string> tagsSend = new List<string>();
+                string tags = txtResourceTags.Text;
+                if (tags.Contains(","))
+                {
+                    //these tags must be split
+                    string[] tagsList = tags.Split(",");
+                    foreach (var item in tagsList)
+                    {
+                        string tmp = item;
+                        if (tmp.StartsWith(" "))
+                        {
+                            tmp = tmp.Substring(0, 1);
+                        }
+                        if (item.EndsWith(" "))
+                        {
+                            tmp = tmp.Substring(tmp.Length - 2, 1);
+                        }
+                        tagsSend.Add(tmp);
+                    }
+                }
+                else
+                {
+                    if (tags.StartsWith(" "))
+                    {
+                        tags = tags.Substring(0, 1);
+                    }
+                    if (tags.EndsWith(" "))
+                    {
+                        tags = tags.Substring(tags.Length - 2, 1);
+                    }
+                    tagsSend.Add(tags);
+                }
+                TagsInfo tmpTags = new TagsInfo();
+                tmpTags.ResourceId = ResourceId;
+                tmpTags.tags = new List<string>();
+                tmpTags.tags = tagsSend;
+
+                HttpWebRequest tagrequest = WebRequest.Create(dashboardUrlBase + "resourcelist/" + ResourceId) as HttpWebRequest;
+                tagrequest.Method = "POST";
+                tagrequest.ContentType = "text/json";
+                try
+                {
+                    using (var streamWriter = new StreamWriter(tagrequest.GetRequestStream()))
+                    {
+                        string json = JsonConvert.SerializeObject(tmpTags);
+
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                    }
+                    var httpResponse = (HttpWebResponse)tagrequest.GetResponse();
+                }
+                catch (Exception ex)
+                {
+                    lnkSaveFileInfo.Text = ex.ToString();
+                }
+                //end of tags
+
+                //now its the files
+                List<FileInfoData> tmpFileData = new List<FileInfoData>();
+                List<FileData> newFileData = new List<FileData>();
+                int filecounter = 0;
+                try
+                {
+                     newFileData = JsonConvert.DeserializeObject<List<FileData>>(hidFileData.Value);
+                }
+                catch (Exception ex)
+                {
+                    lnkSaveFileInfo.Text = ex.Message;
+                }
+                
+                foreach (RepeaterItem item in rptFileInfo.Items)
+                {
+                    int fileid = 0;
+                    FileData tmpFile = newFileData[filecounter];
+                    HttpWebRequest filerequest = WebRequest.Create(dashboardUrlBase + "resourceupload/" + ResourceId) as HttpWebRequest;
+                    filerequest.ContentType = "text/json";
+                    filerequest.Method = "POST";
+                    try
+                    {
+                        using (var streamWriter = new StreamWriter(filerequest.GetRequestStream()))
+                        {
+                            string json = JsonConvert.SerializeObject(tmpFile);
+
+                            streamWriter.Write(json);
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+                        var httpFileResponse = (HttpWebResponse)filerequest.GetResponse();
+                        //when we get the response we need to get the object returned.
+                        //then show the author and publisher information upload.
+                        Stream resp = httpFileResponse.GetResponseStream();
+                        StreamReader reader = new StreamReader(resp);
+                        string text = reader.ReadToEnd();
+                        ResourceFile resourcefileReturn = JsonConvert.DeserializeObject<ResourceFile>(text);
+                        fileid = resourcefileReturn.fileid;
+                    }
+                    catch (Exception ex)
+                    {
+                        lnkSaveFileInfo.Text = ex.ToString();
+                        return;
+                    }
+
+                    DropDownList author = (DropDownList)item.FindControl("ddlAuthor");
+                    DropDownList publisher = (DropDownList)item.FindControl("ddlPublisher");
+                    DropDownList year = (DropDownList)item.FindControl("ddlYear");
+
+                    FileInfoData tmpFData = new FileInfoData();
+                    tmpFData.authorid = int.Parse(author.SelectedValue);
+                    tmpFData.publisherid = int.Parse(publisher.SelectedValue);
+                    tmpFData.publishYear = int.Parse(year.SelectedValue);
+                    tmpFData.fileid = fileid;
+                    tmpFileData.Add(tmpFData);
+
+                    HttpWebRequest fileInfoRequest = WebRequest.Create(dashboardUrlBase + "resourcefile") as HttpWebRequest;
+                    fileInfoRequest.ContentType = "text/json";
+                    fileInfoRequest.Method = "POST";
+                    try
+                    {
+                        using (var streamWriter = new StreamWriter(fileInfoRequest.GetRequestStream()))
+                        {
+                            string json = JsonConvert.SerializeObject(tmpFData);
+
+                            streamWriter.Write(json);
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+                        var httpResponse = (HttpWebResponse)fileInfoRequest.GetResponse();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        lnkSaveFileInfo.Text = ex.ToString();
+                        return;
+                    }
+                }
             }
             catch (Exception ex)
             {
-                lnkPublisherAdd.Text = ex.ToString();
+                throw new ApplicationException(ex.InnerException.ToString());
             }
-            Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + hidResourceId.Value);
+            //end of files
+            Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + ResourceId);
         }
         protected void lnkFile_Click(object sender, EventArgs e)
         {
@@ -534,6 +729,11 @@ namespace Blackhouse.Resources
         }
         protected void lnkTopic_Click(object sender, EventArgs e)
         {
+            if (lnkShowTreeAgain.Text == "change?")
+            {
+                lblError.Visible = true;
+                return;
+            }
             switch (hidChoice.Value.ToLower())
             {
                 case "link":
@@ -555,21 +755,32 @@ namespace Blackhouse.Resources
         }
         protected void tvTopics_SelectedNodeChanged(object sender, EventArgs e)
         {
-            if (tvTopics.SelectedNode.Parent != null)
+            if (tvTopics.SelectedNode.Parent == null)
             {
-                spanSelectedTopic.InnerText = tvTopics.SelectedNode.Parent.Text.ToString() + " > " + tvTopics.SelectedNode.Text.ToString();
+                lnkShowTreeAgain.Text = tvTopics.SelectedNode.Text.ToString();
             }
             else
             {
-                spanSelectedTopic.InnerText = tvTopics.SelectedNode.Text.ToString();
+                string text = "";
+                TreeNode tmpNode;
+                tmpNode = tvTopics.SelectedNode;
+                while (tmpNode != null)
+                {
+                    text = tmpNode.Text + text;
+                    tmpNode = tmpNode.Parent;
+                    if (tmpNode != null)
+                        text = " > " + text;
+                }
+                lnkShowTreeAgain.Text = text;
             }
+            hidTopicId.Value = tvTopics.SelectedNode.Value;
             tvTopics.Visible = false;
             spanSelectedTopicdiv.Visible = true;
         }
         protected void lnkShowTreeAgain_Click(object sender, EventArgs e)
         {
             tvTopics.Visible = true;
-            spanSelectedTopic.InnerText = "";
+            lnkShowTreeAgain.Text = "";
             spanSelectedTopicdiv.Visible = false;
         }
 }
@@ -635,5 +846,11 @@ namespace Blackhouse.Resources
         public int authorid { get; set; }
         public int publisherid { get; set; }
         public int publishYear { get; set; }
+    }
+
+    public class TagsInfo
+    {
+        public int ResourceId { get; set; }
+        public List<string> tags { get; set; }
     }
 }
