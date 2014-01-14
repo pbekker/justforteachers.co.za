@@ -32,27 +32,27 @@
 						<TABLE id="tblSearchPanel" runat="server" border="0" width="100%">
 							<TR id="trSearchCriteria" runat="server" visible="True">
 							    <TD id="tdSearchCriteria" runat="server" vAlign="top" width="90%"  nowrap='<%# NOT DotNetNuke.jb_dispatch.dsp_ControlWrap %>'>
-									<asp:dropdownlist id="ddlCategoryCompleteList" runat="server" EnableViewState="True"></asp:dropdownlist>									
-									<asp:dropdownlist id="ddlLocationSearch" runat="server" EnableViewState="True"></asp:dropdownlist>									
-									<asp:textbox id="txtLocation" Runat="server" Width="164px" EnableViewState="True"></asp:textbox>							
-							        <asp:DropDownList ID="ddlMile" runat="server" AutoPostBack="False" EnableViewState="true"></asp:DropDownList>
-                                    <asp:HyperLink id="hpl_EditMile" runat="server" Visible="false" NavigateUrl='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "so", "&picklistgroup=RadiusOptions") %>'>Edit&nbsp;Radius</asp:HyperLink>	
+									<asp:dropdownlist id="ddlCategoryCompleteList" runat="server" EnableViewState="True" cssclass="Normal"></asp:dropdownlist>									
+									<asp:dropdownlist id="ddlLocationSearch" runat="server" cssclass="Normal" EnableViewState="True"></asp:dropdownlist>									
+									<asp:textbox id="txtLocation" Runat="server" cssclass="Normal" Width="164px" EnableViewState="True"></asp:textbox>							
+							        <asp:DropDownList ID="ddlMile" runat="server" cssclass="Normal" AutoPostBack="False" EnableViewState="true"></asp:DropDownList>
+                                    <asp:HyperLink id="hpl_EditMile" runat="server" Visible="false" CssClass="Normal" NavigateUrl='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "so", "&picklistgroup=RadiusOptions") %>'>Edit&nbsp;Radius</asp:HyperLink>	
 							        <cc1:AutoCompleteExtender  ID="AutoCompleteExtender_txtLocation" runat="server" Enabled="false" 
 							        CompletionListCssClass="JediCss_AutoComplete_CompletionListElement" 
                                     CompletionListItemCssClass="JediCss_AutoComplete_ListItem" 
                                     CompletionListHighlightedItemCssClass="JediCss_AutoComplete_HighlightedListItem"
 							        ContextKey="CityRegion" ServiceMethod="jb_GetAutoCompletionList" ServicePath="jb_WebService.asmx" TargetControlID="txtLocation" 
 							        MinimumPrefixLength="1" CompletionInterval="0" EnableCaching="true"></cc1:AutoCompleteExtender> 
-							        <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender_txtLocation" runat="server" TargetControlID="txtLocation" WatermarkText="Location" />
+							        <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender_txtLocation" runat="server" TargetControlID="txtLocation" WatermarkText="Location" WatermarkCssClass="Normal" />
         							
-									<asp:textbox id="txtSearch" Runat="server" Width="164px" EnableViewState="True"></asp:textbox>
+									<asp:textbox id="txtSearch" Runat="server" Width="164px" CssClass="Normal" EnableViewState="True"></asp:textbox>
 								    <cc1:AutoCompleteExtender  ID="AutoCompleteExtender_txtSearch" runat="server" Enabled="false" 
 					                CompletionListCssClass="JediCss_AutoComplete_CompletionListElement" 
                                     CompletionListItemCssClass="JediCss_AutoComplete_ListItem" 
                                     CompletionListHighlightedItemCssClass="JediCss_AutoComplete_HighlightedListItem"
 					                ContextKey="Title" ServiceMethod="jb_GetAutoCompletionList" ServicePath="jb_WebService.asmx" TargetControlID="txtSearch" 
 					                MinimumPrefixLength="1" CompletionInterval="0" EnableCaching="true"></cc1:AutoCompleteExtender>
-								    <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender_txtSearch" runat="server" TargetControlID="txtSearch" WatermarkText="Keywords" />
+								    <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender_txtSearch" runat="server" TargetControlID="txtSearch" WatermarkText="Keywords" WatermarkCssClass="Normal" />
 								</TD>
 								<TD vAlign="top" width="10%" align="left">
 									<asp:Button id="btnSearch" runat="server" CssClass="NormalBold" Text="Search" Width="65"></asp:Button>
@@ -76,15 +76,15 @@
 										</TABLE>
 									</asp:Panel></TD>
 								<TD vAlign="top" width="10%" align="left">
-									<asp:HyperLink ID="hplQL_Search" NavigateUrl='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "search", "&parentid=" & IIF(DotNetNuke.jb_Uconversion.ConvertString(Request.Params("parentID")) = "", 0, Request.Params("parentID"))) %>' Enabled="True" runat="server" Visible="False">
-										More Search 
+									<asp:HyperLink ID="hplQL_Search" CssClass="Normal" NavigateUrl='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "search", "&parentid=" & IIF(DotNetNuke.jb_Uconversion.ConvertString(Request.Params("parentID")) = "", 0, Request.Params("parentID"))) %>' Enabled="True" runat="server" Visible="False">
+										More&nbsp;Options
 									</asp:HyperLink>
-									<asp:LinkButton id="lnkBtnSearchOption" runat="server" Visible="True" CausesValidation="False">More&nbsp;Options</asp:LinkButton></TD>
+									<asp:LinkButton id="lnkBtnSearchOption" runat="server" Visible="True" CssClass="Normal" CausesValidation="False">More&nbsp;Options</asp:LinkButton></TD>
 							</TR>
 							<TR id="trSearchResult" runat="server" visible="false">
 								<TD height="0%" vAlign="middle" width="90%" align="center">
 									<asp:Label id="lblSearchResultCount" runat="server" CssClass="Normal"></asp:Label></TD>
-								<TD height="0%" vAlign="middle" width="15%" align="left">
+								<TD height="0%" vAlign="middle" width="10%" align="left">
 								    <cc1:ModalPopupExtender ID="mpe_Popup_SavedSearch" runat="server"
                                         TargetControlID="lnkBtnSaveSearch"
                                         PopupControlID="pnl_Popup_SavedSearch"
@@ -98,14 +98,15 @@
 							</TR>
 						</TABLE>
 					</asp:panel>
-					<asp:panel id="Panel1" runat="server" Width="100%" Visible="true" HorizontalAlign="Center" CssClass="JediCss_BoxPanel">
-						<asp:table id="table1" Runat="server" Width="100%" HorizontalAlign="Center" CellPadding="4"
+					<asp:panel id="Panel1" runat="server" BorderWidth="1" BorderStyle="Outset" Width="100%" Visible="true"
+						HorizontalAlign="Center" CssClass="JediCss_ListingsPanel">
+						<asp:table id="table1" Runat="server" Width="100%" HorizontalAlign="Center" CellPadding="1"
 							CellSpacing="0">
 							<asp:TableRow Visible="True" HorizontalAlign="Left">
 								<asp:TableCell ID="lblBreadcrumbs" Runat="server"></asp:TableCell>
 							</asp:TableRow>
 						</asp:table>
-						<asp:DataList id="DataList1" runat="server" Width="100%" ShowHeader="False" ShowFooter="False" RepeatLayout="Table" RepeatDirection="Horizontal" RepeatColumns="<%# GetDataListRepeatColumns() %>" ItemStyle-Wrap="false" ItemStyle-VerticalAlign="Top">
+						<asp:DataList id=DataList1 runat="server" Width="100%" ShowHeader="False" ShowFooter="False" RepeatLayout="Table" RepeatDirection="Horizontal" RepeatColumns="<%# GetDataListRepeatColumns() %>" ItemStyle-Wrap="false" ItemStyle-VerticalAlign="Top">
 							<HeaderTemplate>
 								<table width="100%">
 									<tr>
@@ -187,7 +188,7 @@
 								</table>
 							</FooterTemplate>
 						</asp:DataList>
-						<TABLE width="100%">
+						<TABLE width="100%" border="0">
 							<TR>
 								<TD>
 									<asp:panel id="pnlSort" runat="server" BorderWidth="0" Visible="True" HorizontalAlign="Center" BorderColor="black" CssClass="NormalBold">
@@ -211,20 +212,37 @@
 								</TD>
 							</TR>
 						</TABLE>
-						<asp:datagrid id="myDataGrid" runat="server" width="100%" BorderWidth="0" BorderStyle="None" BorderColor="Transparent" EnableViewState="True" ShowHeader="false"
+						<asp:datagrid id="myDataGrid" runat="server" width="100%" BorderWidth="0" BorderStyle="None" BorderColor="Transparent" EnableViewState="True" ShowHeader="False"
 							ItemStyle-VerticalAlign="Top" Allowsorting="False" AllowPaging="True" PageSize="5" OnPageIndexChanged="myDataGrid_Page"
 							PagerStyle-PrevPageText="Prev" PagerStyle-NextPageText="Next" PagerStyle-HorizontalAlign="Right"
 							PagerStyle-mode="NumericPages" HeaderStyle-CssClass="JediCss_TableHeader" HeaderStyle-HorizontalAlign="Center"
-							AutoGenerateColumns="False" PagerStyle-BorderStyle="Solid" PagerStyle-BorderColor="Transparent">
+							AutoGenerateColumns="False" Cssclass="Normal" CellPadding=0 CellSpacing=0 >
 							<Columns>
 								<asp:TemplateColumn ItemStyle-VerticalAlign="Top" ItemStyle-BorderWidth="0">
 									<ItemTemplate>
 										<div>
-											<table cellpadding="5" class="JediCss_ItemTop" cellspacing="0" width="100%">
+											<table cellpadding="5" class="JediCss_ItemTop" cellspacing="0" width="100%" style="text-align:left">
 												<tr>
-													<td width="100%" height="18" align="left"><a href='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "info", "&ItemID=" & DataBinder.Eval(Container.DataItem, "ItemID"))%>'>
+													<td width="30%">
+														<a href='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "info", "&ItemID=" & DataBinder.Eval(Container.DataItem, "ItemID"))%>'>
 															<%# Container.DataItem("JB_JobTitle") %>
-														</a>
+														</a><br />
+                                                        <%# Container.DataItem("JB_CompanyName") %><br />
+														<%# Container.DataItem("it_region") %>
+
+													</td>
+													<td width="50%" valign="top" class="Normal" id="tdMainThumbDG" runat="server" Visible='<%# DotNetNuke.jb_Uconversion.ConvertInteger(Settings("EnableCompanyLogo")) >= 1 %>'>
+														<!--<asp:Label ID="lblImage" Runat="server" Visible="False" CssClass="JediCss_CompanyName"></asp:Label>-->
+														<A id="photolink" name="photolink" runat="server"><IMG id="photoimage" border="0" name="photoimage" runat="server" /></A>
+													</td>
+													<td width="20%" align="right" valign="top">
+													    <b>Listing #:</b> <%# Container.DataItem("ItemID") %>
+													
+													    <asp:HyperLink ID="hplRenewal" NavigateUrl='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "rnw", "&ItemID=" & DataBinder.Eval(Container.DataItem, "ItemID"))%>' Enabled="True" runat="server">
+											            [Renew]
+											            </asp:HyperLink>
+													    &nbsp;													
+														    <asp:HyperLink ImageUrl="~/DesktopModules/PA_JobBoard/images/ico-edit1.gif" Visible="false" NavigateUrl='<%# GetEditLink(DataBinder.Eval(Container.DataItem,"ItemID"), DataBinder.Eval(Container.DataItem,"CreatedByUser")) %>' runat="server" ID="Hyperlink4" />
 													</td>
 												</tr>
 											</table>
@@ -232,21 +250,36 @@
 										<table border="0" cellpadding="5" cellspacing="0" class="JediCss_ItemBottom" width="100%">
 											<tr>
 												<td align="left" Class="JediCss_RightDottedLine">
-													<div>
-														<%#System.Text.RegularExpressions.Regex.Replace(IIf(Len(Container.DataItem("Message").ToString) < 100, Container.DataItem("Message").ToString, Left(Container.DataItem("Message").ToString, 100) & "..."), "<(.|\n)*?>", "")%>
-														<img src='<%= Page.ResolveUrl("DesktopModules/PA_JobBoard/images/pt.gif")%>' border="0">
-													</div>
 													<table border="0" class="JediCss_ItemBottom" cellpadding="1" cellspacing="5" width="100%">
 														<tr>
-															<td valign="top" class="Normal" align="center" id="tdMainThumbDG" runat="server" Visible='<%# DotNetNuke.jb_Uconversion.ConvertInteger(Settings("EnableCompanyLogo")) >= 1 %>'>
-																<asp:Label ID="lblImage" Runat="server" Visible="False" CssClass="JediCss_CompanyName">
-																	<%# Container.DataItem("JB_CompanyName") %>
-																</asp:Label>
-																<A id="photolink" name="photolink" runat="server"><IMG id="photoimage" border="0" name="photoimage" runat="server" /></A>
-															</td>
 															<td valign="top" align="left">
 															<TABLE BORDER="0" class="Normal" CELLSPACING="0" CELLPADDING="1" width="100%">
-																<tr id="trEmpType" runat="server" Visible='<%# DotNetNuke.jb_Uconversion.ConvertInteger(Settings("EnableEmpType")) >= 1 %>'>
+                                                                <tr>
+                                                                    <td align="left">
+                                                                        <%#System.Text.RegularExpressions.Regex.Replace(IIf(Len(Container.DataItem("Message").ToString) < 100, Container.DataItem("Message").ToString, Left(Container.DataItem("Message").ToString, 100) & "..."), "<(.|\n)*?>", "")%>
+                                                                    </td>
+                                                                </tr>
+																<TR>
+																	<TD align="left"><b>Posted:</b>
+																	<%# DataBinder.Eval(Container.DataItem,"CreatedDate", "{0:d}") %></TD>
+																</TR>
+																<TR id="trShowDaysToExpire" runat="server" Visible='<%# IIF( CType(Settings("ShowDaysToExpire"), String) = "1", True, False) %>' >
+																	<TD align="left"><b>Closes:</b>
+																	<%# IIF(IsDBNull(Container.DataItem("ExpireDate")),"Never expire", Container.DataItem("ExpireDate") & " ") %></TD>
+																</TR>
+																<tr runat="server" Visible='<%# IIf(IsDBNull(Container.DataItem("Info1")) or String.IsNullOrEmpty(Container.DataItem("Info1")) , True, False)  %>'>
+																	<td align="left">
+																	    <a href='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "info", "&ItemID=" & DataBinder.Eval(Container.DataItem, "ItemID"))%>'>More Info</a>
+																	</td>
+																</tr>
+																<tr runat="server" Visible='<%# IIf(IsDBNull(Container.DataItem("Info1")) or String.IsNullOrEmpty(Container.DataItem("Info1")) , False, True)  %>'>
+																	<td align="left">
+																	    <a target='_blank' href='<%# Container.DataItem("Info1") %>'>External Add</a>
+																	</td>
+																</tr>
+
+
+																<!--<tr id="trEmpType" runat="server" Visible='<%# DotNetNuke.jb_Uconversion.ConvertInteger(Settings("EnableEmpType")) >= 1 %>'>
 																	<td><b>Job Type:</b>
 																		<%# Container.DataItem("JB_EmpType") %>																	
 																	</td>
@@ -265,7 +298,11 @@
 																	<td><b>Job Code:</b>
 																		<%# Container.DataItem("JB_JobCode") %>																	
 																	</td>
-																</tr>																
+																</tr>-->																
+															    <TR id="trMiles" runat="server" visible="false">
+																    <TD align="left" class="JediCss_Miles"><b>Miles:</b></TD>
+																    <TD align="left"><asp:Label ID="lblMiles" Runat="server" CssClass="JediCss_Miles" Text="1.00 or less"></asp:Label></TD>
+															    </TR>
 															</TABLE>
 															</td>										
 														</tr>
@@ -276,69 +313,11 @@
 										
 									</ItemTemplate>
 								</asp:TemplateColumn>
-								<asp:TemplateColumn ItemStyle-VerticalAlign="Top" ItemStyle-BorderWidth="0" ItemStyle-Width="25%">
-									<ItemTemplate>
-										<table cellpadding="0" class="JediCss_ItemTop" cellspacing="0" width="100%">
-											<tr>
-											    <td width="45%" align="right">&nbsp;
-													<%#DotNetNuke.jb_Utility.ShowFeaturedImage(Container.DataItem("Featured"), Me.TabId)%>
-												</td>	
-												
-												<td width="45%" align="right">&nbsp;
-													<%# DotNetNuke.jb_Utility.ShowNewImage(DataBinder.Eval(Container.DataItem,"CreatedDate"), CType(Settings("DaysToShowNew"), Integer)) %>
-												</td>
-												<td width="5%" align="right">&nbsp;
-													<%# DotNetNuke.jb_Utility.ShowStopImage(Container.DataItem("DaysToExpire"), Container.DataItem("Authed")) %>
-												</td>
-												<td width="5%" align="right">&nbsp;													
-													<asp:HyperLink ImageUrl="~/DesktopModules/PA_JobBoard/images/ico-edit1.gif" Visible="True" NavigateUrl='<%# GetEditLink(DataBinder.Eval(Container.DataItem,"ItemID"), DataBinder.Eval(Container.DataItem,"CreatedByUser")) %>' runat="server" ID="Hyperlink4" />
-												</td>
-											</tr>
-										</table>
-										<TABLE BORDER="0" class="Normal" CELLSPACING="1" CELLPADDING="1">
-											<TR id="trMiles" runat="server" visible="false">
-											    <TD align="left" class="JediCss_Miles"><b>Miles:</b></TD>
-											    <TD align="left"><asp:Label ID="lblMiles" Runat="server" CssClass="JediCss_Miles" Text="1.00 or less"></asp:Label></TD>
-										    </TR>
-										    <TR>
-												<TD align="left"><b>Listing #:</b></TD>
-												<TD align="left">
-											        <%# Container.DataItem("ItemID") %>										
-											        <asp:HyperLink ID="hplRenewal" NavigateUrl='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "rnw", "&ItemID=" & DataBinder.Eval(Container.DataItem, "ItemID"))%>' Enabled="True" runat="server">
-											        [Renew]
-											        </asp:HyperLink>
-											    </TD>
-											</TR>
-											<TR>
-												<TD align="left"><b>Posted:</b></TD>
-												<TD align="left"><%# DataBinder.Eval(Container.DataItem,"CreatedDate", "{0:d}") %></TD>
-											</TR>
-											<TR id="trShowViewCount" runat="server" Visible='<%# IIF( CType(Settings("ShowViewCount"), String) = "1", True, False) %>' >
-												<TD align="left"><b>View:</b></TD>
-												<TD align="left"><%# Container.DataItem("ViewCount") %></TD>
-											</TR>
-											<TR id="trShowDaysToExpire" runat="server" Visible='<%# IIF( CType(Settings("ShowDaysToExpire"), String) = "1", True, False) %>' >
-												<TD align="left"><b>Expires in:</b></TD>
-												<TD align="left"><%# IIF(IsDBNull(Container.DataItem("DaysToExpire")),"Never expire", Container.DataItem("DaysToExpire") & " days") %></TD>
-											</TR>
-											<TR id="trApplicants" runat="server" Visible='<%# DotNetNuke.Security.PortalSecurity.HasEditPermissions(ModuleConfiguration.ModulePermissions) %>' >
-												<TD align="left"><b>Applicants:</b></TD>
-												<TD align="left"><%# Container.DataItem("JobAppCnt") %></TD>
-												
-											</TR>
-											<TR id="trReviewShowAvgInDG" runat="server" Visible='<%# DotNetNuke.jb_Dispatch.dsp_ReviewShowAvgInDG %>' >
-												<TD align="left"><b>Avg. Review:</b></TD>
-												<TD align="left"><%#IIf(DotNetNuke.jb_Dispatch.dsp_ReviewShowAvgInDG = True, DotNetNuke.jb_ItemReview.GetAverageReview(Container.DataItem("ItemID"), Container.DataItem("JB_JobTitle"), Me.TabId, DotNetNuke.Services.Localization.Localization.GetString("Review_BeTheFirst.Text", Me.LocalResourceFile)), "")%></TD>
-											</TR>
-											
-										</TABLE>
-									</ItemTemplate>
-								</asp:TemplateColumn>
 							</Columns>
 						</asp:datagrid>
-					</asp:panel><br />
+					</asp:panel><BR>
 					<asp:panel id="pnlNewListings" runat="server" Visible="False" HorizontalAlign="Center">
-						<asp:table id="Table3" Runat="server" Width="100%" HorizontalAlign="Center"
+						<asp:table id="Table3" Runat="server" Width="100%" HorizontalAlign="Center" CssClass="JediCss_TopStrip"
 							CellPadding="1" CellSpacing="0">
 							<asp:TableRow Visible="True" valign="top"  HorizontalAlign="Left">
 								<asp:TableCell CssClass="NormalBold" ID="Tablecell2" Runat="server"><img src='<%= IIf(Request.ApplicationPath = "/", "", Request.ApplicationPath) & "/DesktopModules/PA_JobBoard/images/ico-pin.gif" %>' border="0">&nbsp;New Listings in last <%= CType(Settings("DaysWhatsNew"), String)%> days.</asp:TableCell>
@@ -347,7 +326,7 @@
 						<asp:datagrid id="Datagrid1" runat="server" width="100%" EnableViewState="True" Allowsorting="False"
 							AllowPaging="False" PagerStyle-PrevPageText="Prev" PagerStyle-NextPageText="Next" PagerStyle-HorizontalAlign="Right"
 							PagerStyle-mode="NumericPages" HeaderStyle-CssClass="JediCss_TableHeader" HeaderStyle-HorizontalAlign="Center"
-							AutoGenerateColumns="False" CssClass="JediCss_DatagridTable" AlternatingItemStyle-CssClass="JediCss_dgHeaderAltItem">
+							AutoGenerateColumns="False" Cssclass="Normal" AlternatingItemStyle-CssClass="JediCss_dgHeaderAltItem">
 							<Columns>
 								<asp:BoundColumn HeaderText="Posted" DataField="CreatedDate" DataFormatString="{0:d}" HeaderStyle-Wrap="False" 
 									Visible="True"  ItemStyle-CssClass="Normal" HeaderStyle-Cssclass="NormalBold" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" />
@@ -562,14 +541,14 @@
 											</td>
 										</tr>
 										<tr id="trLST_VIEWCOUNT_TOP" runat="server" Visible="<%# EditPermission %>">
-											<td class="Normal">
+											<td clsss="Normal">
 												<asp:HyperLink ID="hplLST_VIEWCOUNT_TOP" Visible="True" NavigateUrl='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "main", "&filterkey=LST_VIEWCOUNT_TOP") %>' runat="server">
 											Most Viewed Listings
 										</asp:HyperLink>
 											</td>
 										</tr>
 										<tr id="trLST_VIEWCOUNT_BOTTOM" runat="server" Visible="<%# EditPermission %>">
-											<td class="Normal">
+											<td clsss="Normal">
 												<asp:HyperLink ID="hplLST_VIEWCOUNT_BOTTOM" Visible="True" NavigateUrl='<%# DotNetNuke.jb_Utility.BuildDesktopLink(Me.TabId, "main", "&filterkey=LST_VIEWCOUNT_BOTTOM") %>' runat="server">
 											Least Viewed Listings
 										</asp:HyperLink>
@@ -581,8 +560,10 @@
 						</Columns>
 					</asp:datagrid> <!-- COL3: Section B: Featured Jobs -->  
 					<asp:label id=lblSeparator_EnableFeaturedListings runat="server" CssClass="Normal"></asp:label>
-					<asp:panel id="pnlFeaturedListings" runat="server" HorizontalAlign="Center" Visible="False" Width="100%">
-					    <asp:table id="tblLIST_FEATURED" Runat="server" HorizontalAlign="Center" Width="100%">
+					<asp:panel id="pnlFeaturedListings" runat="server" BorderWidth="1" BorderStyle="Outset" Width="100%"
+						Visible="False" HorizontalAlign="Center" CssClass="JediCss_ListingsPanel">
+						<asp:table id="tblLIST_FEATURED" Runat="server" Width="100%" HorizontalAlign="Center" CssClass="JediCss_TopStrip"
+							CellPadding="1" CellSpacing="0">
 							<asp:TableRow Visible="True" valign="top">
 								<asp:TableCell CssClass="NormalBold" Wrap="False" ID="Tablecell4" Runat="server"  HorizontalAlign="Left">
 									<img src='<%= IIf(Request.ApplicationPath = "/", "", Request.ApplicationPath) & "/DesktopModules/PA_JobBoard/images/ico-pin.gif" %>' border="0">
@@ -592,7 +573,9 @@
 								</asp:TableCell>
 							</asp:TableRow>
 						</asp:table>
-						<asp:datagrid id="dgFeaturedListings" runat="server" Visible="True" width="100%" EnableViewState="True" ShowHeader="False" CssClass="JediCss_FeaturedListings" AutoGenerateColumns="False" HeaderStyle-HorizontalAlign="Center" Allowsorting="False">
+						<asp:datagrid id="dgFeaturedListings" runat="server" Visible="True" BorderWidth="0" BorderStyle="None" BorderColor="Transparent" width="100%"
+							EnableViewState="True" CellPadding="4" ShowHeader="False" Allowsorting="False" HeaderStyle-CssClass="JediCss_TableHeader"
+							HeaderStyle-HorizontalAlign="Center" AutoGenerateColumns="False" Cssclass="Normal">
 							<Columns>
 								<asp:TemplateColumn ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top" ItemStyle-Width="5%">
 									<ItemTemplate>
