@@ -37,6 +37,7 @@ namespace JustForTeachersApi.Controllers
                     tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
                     tmpPayload.ResourceId = item.id;
                     tmpPayload.ResourceType = item.type;
+                    payload.count = (int)item.total;
                     payload.resourceList.Add(tmpPayload);
                 }
             }
@@ -63,6 +64,7 @@ namespace JustForTeachersApi.Controllers
                     tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
                     tmpPayload.ResourceId = item.id;
                     tmpPayload.ResourceType = item.type;
+                    payload.count = (int)item.total;
                     payload.resourceList.Add(tmpPayload);
                 }
             }
@@ -89,6 +91,7 @@ namespace JustForTeachersApi.Controllers
                     tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
                     tmpPayload.ResourceId = item.id;
                     tmpPayload.ResourceType = item.type;
+                    payload.count = (int)item.total;
                     payload.resourceList.Add(tmpPayload);
                 }
             }
@@ -145,7 +148,7 @@ namespace JustForTeachersApi.Controllers
                         {
                             bhdResourceKeyword tmpResourceKeyword = new bhdResourceKeyword();
                             tmpResourceKeyword.KeywordId = r.id;
-                            tmpResourceKeyword.Resourceid = id;
+                            tmpResourceKeyword.Resourceid = temp.ResourceId;
                             dc.bhdResourceKeywords.InsertOnSubmit(tmpResourceKeyword);
                             dc.SubmitChanges();
                         }
@@ -159,7 +162,7 @@ namespace JustForTeachersApi.Controllers
 
                             bhdResourceKeyword tmpResourceKeyword = new bhdResourceKeyword();
                             tmpResourceKeyword.KeywordId = tmpkeyword.id;
-                            tmpResourceKeyword.Resourceid = id;
+                            tmpResourceKeyword.Resourceid = temp.ResourceId;
                             dc.bhdResourceKeywords.InsertOnSubmit(tmpResourceKeyword);
                             dc.SubmitChanges();
                         }
