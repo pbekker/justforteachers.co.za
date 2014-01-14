@@ -64,7 +64,7 @@ namespace JustForTeachersApi.Controllers
                          join top in dc.bhdResourceTopics on d.topicId equals top.id
                          join typ in dc.bhdResourceTypes on d.typeId equals typ.id
                          where !d.isActive && !d.approvalDate.HasValue && !d.approvalUser.HasValue
-                         select new { d.name, d.description, d.uploadDate, d.id, language = l.name, topic = top.name, type = typ.name }).Skip(skip).Take(20);
+                         select new { d.name, d.description, d.uploadDate, d.id, language = l.name, topic = top.name, type = typ.name, d.isActive }).Skip(skip).Take(20);
                 foreach (var item in r)
                 {
                     ResourceList tmpPayload = new ResourceList();
@@ -75,6 +75,7 @@ namespace JustForTeachersApi.Controllers
                     tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
                     tmpPayload.ResourceId = item.id;
                     tmpPayload.ResourceType = item.type;
+                    tmpPayload.isActive = item.isActive;
                     payload.resourceList.Add(tmpPayload);
                 }
             }
@@ -100,8 +101,42 @@ namespace JustForTeachersApi.Controllers
         // PUT api/resourceapprove/5
         [HttpPut]
         [AllowAnonymous]
-        public void Put(int id, [FromBody]string value)
+        public async Task<HttpResponseMessage> Put(int userid)
         {
+            var result = Request.Content.ReadAsFormDataAsync();
+            Stream streamIn = await Request.Content.ReadAsStreamAsync();
+            StreamReader streamReader = new StreamReader(streamIn);
+            string jsonstring = streamReader.ReadToEnd();
+            ResourceList currentResource;
+            try
+            {
+                currentResource = JsonConvert.DeserializeObject<ResourceList>(jsonstring);
+            }
+            catch (Exception ex)
+            {
+                
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
+            try
+            {
+                using (ResourcesDataContext db = new ResourcesDataContext())
+                {
+                    bhdResource approvalResource = db.bhdResources.Single((x) => x.id == currentResource.ResourceId);
+                    approvalResource.isActive = currentResource.isActive;
+                    approvalResource.approvalDate = DateTime.Now;
+                    approvalResource.approvalUser = userid;
+                    db.SubmitChanges();
+                }
+                if (currentResource.isActive)
+                    return Request.CreateResponse(HttpStatusCode.OK, "Resource approved!");
+                else
+                    return Request.CreateResponse(HttpStatusCode.OK, "Resource declined.");
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
 
         // DELETE api/resourceapprove/5

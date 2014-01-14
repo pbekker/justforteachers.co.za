@@ -254,11 +254,11 @@
 														<tr>
 															<td valign="top" align="left">
 															<TABLE BORDER="0" class="Normal" CELLSPACING="0" CELLPADDING="1" width="100%">
-                                                                <tr>
+                                                                <%--<tr>
                                                                     <td align="left">
                                                                         <%#System.Text.RegularExpressions.Regex.Replace(IIf(Len(Container.DataItem("Message").ToString) < 100, Container.DataItem("Message").ToString, Left(Container.DataItem("Message").ToString, 100) & "..."), "<(.|\n)*?>", "")%>
                                                                     </td>
-                                                                </tr>
+                                                                </tr>--%>
 																<TR>
 																	<TD align="left"><b>Posted:</b>
 																	<%# DataBinder.Eval(Container.DataItem,"CreatedDate", "{0:d}") %></TD>
@@ -279,7 +279,8 @@
 																</tr>
 
 
-																<!--<tr id="trEmpType" runat="server" Visible='<%# DotNetNuke.jb_Uconversion.ConvertInteger(Settings("EnableEmpType")) >= 1 %>'>
+																<!--
+                                                                <tr id="trEmpType" runat="server" Visible='<%# DotNetNuke.jb_Uconversion.ConvertInteger(Settings("EnableEmpType")) >= 1 %>'>
 																	<td><b>Job Type:</b>
 																		<%# Container.DataItem("JB_EmpType") %>																	
 																	</td>
