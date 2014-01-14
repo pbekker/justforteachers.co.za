@@ -15,6 +15,7 @@ namespace JustForTeachersApi.Models
         public int menuId { get; set; }
         public string text { get; set; }
         public string hoverText { get; set; }
+        public bool isAdmin { get; set; }
         public bool isActive { get; set; }
         public int tabId { get; set; }
         public int moduleId { get; set; }

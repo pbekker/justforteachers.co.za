@@ -60,9 +60,13 @@ CREATE TABLE dbo.bhdMenuItem
 	tabId int NULL,
 	moduleId int NULL,
 	url varchar(MAX) NULL,
+	isAdmin bit NOT NULL,
 	isActive bit NOT NULL
 	)  ON [PRIMARY]
 	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.bhdMenuItem ADD CONSTRAINT
+	DF_bhdMenuItem_isAdmin DEFAULT (0) FOR isAdmin
 GO
 ALTER TABLE dbo.bhdMenuItem ADD CONSTRAINT
 	DF_bhdMenuItem_isActive DEFAULT (1) FOR isActive

@@ -47,6 +47,7 @@ namespace JustForTeachersApi.Controllers
                             item.moduleId = _moduleid;
                             item.url = currentMenuItem.url;
                             item.isActive = currentMenuItem.isActive;
+                            item.isAdmin = currentMenuItem.isAdmin;
                             menuItemList.Add(item);
                         }
 
