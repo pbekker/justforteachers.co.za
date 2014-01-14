@@ -15,25 +15,15 @@ using Newtonsoft.Json;
 
 namespace JustForTeachersApi.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class ResourcesController : ApiController
+    public class ResourceEditController : ApiController
     {
-        // GET api/resources
         [HttpGet]
         [AllowAnonymous]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/resources/5
-        [HttpGet]
-        [AllowAnonymous]
-        public ResourceViewPayload Get(int id)
+        public ResourceEditPayload Get(int id)
         {
             //this is to get a resource
-            ResourceViewPayload tmpResource = new ResourceViewPayload();
-            ResourceList tmpList = new ResourceList();
+            ResourceEditPayload tmpResource = new ResourceEditPayload();
+            ResourceEditList tmpList = new ResourceEditList();
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
                 var r = (from d in dc.bhdResources
@@ -41,7 +31,7 @@ namespace JustForTeachersApi.Controllers
                          join top in dc.bhdResourceTopics on d.topicId equals top.id
                          join typ in dc.bhdResourceTypes on d.typeId equals typ.id
                          where d.id == id
-                         select new { ResourceName = d.name, ResourceDescription = d.description, ResourceUpload = d.uploadDate, ResourceId = d.id, ResourceLanguage = l.name, ResourceTopic = top.name, ResourceType = typ.name }).FirstOrDefault();
+                         select new { ResourceName = d.name, ResourceDescription = d.description, ResourceUpload = d.uploadDate, ResourceId = d.id, ResourceLanguageId = l.id, ResourceLanguage = l.name, ResourceTopicId = top.id, ResourceTopic = top.name, ResourceTypeId = typ.id, ResourceType = typ.name }).FirstOrDefault();
                 if (r != null)
                 {
                     tmpList.ResourceName = r.ResourceName;
@@ -51,17 +41,26 @@ namespace JustForTeachersApi.Controllers
                     tmpList.ResourceLanguage = r.ResourceLanguage;
                     tmpList.ResourceTopic = r.ResourceTopic;
                     tmpList.ResourceType = r.ResourceType;
+                    tmpList.ResourceLanguageId = r.ResourceLanguageId;
+                    tmpList.ResourceTopicId = r.ResourceTopicId;
+                    tmpList.ResourceTypeId = r.ResourceTypeId;
                 }
                 tmpResource.resourceInfo = tmpList;
-                List<FileViewInfo> files = (from f in dc.bhdResourceFiles
-                         where f.resourceId == r.ResourceId
-                                            select new FileViewInfo() { FileName = f.bhdFile.name, FileSize = f.bhdFile.size, FileContentType = f.bhdFile.bhdFileType.contentType, FileId = f.bhdFile.id }).ToList();
-                tmpResource.fileInfo = files;
 
-                List<LinkViewInfo> urls = (from u in dc.bhdResourceLinks
-                            where u.resourceId == r.ResourceId
-                            select new LinkViewInfo() { resourceURL = u.bhdLink.url }).ToList();
-                tmpResource.urlInfo = urls;
+                if (r.ResourceTypeId == 1)
+                {
+                    List<FileViewInfo> files = (from f in dc.bhdResourceFiles
+                                                where f.resourceId == r.ResourceId
+                                                select new FileViewInfo() { FileName = f.bhdFile.name, FileSize = f.bhdFile.size, FileContentType = f.bhdFile.bhdFileType.contentType, FileId = f.bhdFile.id }).ToList();
+                    tmpResource.fileInfo = files;
+                }
+                if (r.ResourceTypeId == 2)
+                {
+                    List<LinkViewInfo> urls = (from u in dc.bhdResourceLinks
+                                               where u.resourceId == r.ResourceId
+                                               select new LinkViewInfo() { resourceURL = u.bhdLink.url }).ToList();
+                    tmpResource.urlInfo = urls;
+                }
                 string tagRet = "";
                 var tags = (from t in dc.bhdResourceKeywords
                             join k in dc.bhdKeywords on t.KeywordId equals k.id
@@ -79,25 +78,5 @@ namespace JustForTeachersApi.Controllers
             return tmpResource;
         }
 
-        // POST api/resources
-        [HttpPost]
-        [AllowAnonymous]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/resources/5
-        [HttpPut]
-        [AllowAnonymous]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/resources/5
-        [HttpDelete]
-        [AllowAnonymous]
-        public void Delete(int id)
-        {
-        }
     }
 }

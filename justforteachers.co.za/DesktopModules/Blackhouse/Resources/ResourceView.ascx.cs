@@ -114,6 +114,8 @@ namespace Blackhouse.Resources
         public string ResourceType { get; set; }
         public string ResourceLanguage { get; set; }
         public string ResourceUploadDate { get; set; }
+        public string ResourceTags { get; set; }
+        public bool isActive { get; set; }
     }
 
     public class FileViewInfo
