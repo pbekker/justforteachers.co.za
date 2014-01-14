@@ -18,29 +18,21 @@
                         <td>
                             <table width="100%">
                                 <tr>
-						            <TD vAlign="top" width="30%">
+						            <TD vAlign="top" width="150">
                                         <A id="photolink" name="photolink" target="_blank" runat="server"><IMG id="photoimage" border="0" name="photoimage" runat="server"/></A>
 							            <asp:label id="lblImage" cssclass="Normal" Runat="server"></asp:label>
 
 						            </TD> 
-						            <TD vAlign="top">
+						            <TD vAlign="top" align="centre">
 							            <asp:label id="lblMoreInfoTitle" runat="server"></asp:label><br />
-							            <asp:label id="lblCompanyName" runat="server"></asp:label>
+							            <asp:label id="lblCompanyName" runat="server"></asp:label><br />
+                                        <asp:label id="lblAddress" runat="server"></asp:label>
 						            </TD>
-                                </tr>
-                            </table>
-                        </td>
-					</TR>
-                    <tr>
-                        <td>
-                            <table width="100%">
-                                <tr>
-                                    <td width="30%"><asp:label id="lblAddress" runat="server"></asp:label></td>
-                                    <td>
+                                    <td width="300">
                                         <asp:panel id="pnlShowEmbeddedMap" runat="server" BorderWidth="0" HorizontalAlign="Left" Visible="true" Width="100%" BorderStyle="Outset">
                                             <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
-                                                width='<%= DotNetNuke.jb_Uconversion.ConvertSetting(Settings("Setting_EmbeddedMapWidth"), "425") %>' 
-                                                height='<%= DotNetNuke.jb_Uconversion.ConvertSetting(Settings("Setting_EmbeddedMapHeight"), "350") %>'
+                                                width='250' 
+                                                height='185'
                                                 src="<%= EmbeddedGoogleMapURL%>&amp;output=embed">
                                             </iframe>	
                                             <br />
@@ -50,7 +42,16 @@
                                 </tr>
                             </table>
                         </td>
-                    </tr>
+					</TR>
+                    <%--<tr>
+                        <td>
+                            <table width="100%">
+                                <tr>
+                                    <td width="30%"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>--%>
                     <tr>
                         <td><asp:label id="lblMessage" runat="server"></asp:label></td>
                     </tr>
@@ -417,128 +418,6 @@
 				</TABLE>
                 </div>
 			</asp:panel>
-			<!-- JOP APPLICANT -->
-			<asp:panel id="pnlJobApplicant" Runat="server" BorderWidth="0" BorderStyle="Outset" Width="100%"
-				CssClass="Normal" visible="true" >
-				<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
-					<TR>
-						<TD class="JediCss_MoreInfoTitle" vAlign="top" align="left">
-							<asp:Label id="lbxJobApplicant" Runat="server" text="Submitted Application(s)">Submitted Application(s)</asp:Label></TD>
-					</TR>
-				</TABLE>
-				<BR>
-				<asp:datagrid id="dgJobApplicant" runat="server" Cssclass="Normal" ItemStyle-CssClass="Normal" CellPadding="3"
-					AutoGenerateColumns="False" PagerStyle-HorizontalAlign="Right" Allowsorting="True" PagerStyle-PrevPageText="Prev"
-					PagerStyle-NextPageText="Next" PagerStyle-mode="NumericPages" AllowPaging="False" HeaderStyle-CssClass="JediCss_TableHeader"
-					DataKeyField="ApplicationID" HeaderStyle-HorizontalAlign="Center" ShowFooter="False" EnableViewState="True"
-					OnUpdateCommand="dgJobApplicant_Update" OnCancelCommand="dgJobApplicant_Cancel" OnEditCommand="dgJobApplicant_Edit">
-					<Columns>
-						<asp:BoundColumn DataField="ApplicationID" ItemStyle-HorizontalAlign="Center" HeaderText="ID" Visible="True"
-							ReadOnly="True" />
-						<asp:BoundColumn HeaderText="Submitted" DataField="CreatedDate" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center"
-							Visible="True" />
-						<asp:TemplateColumn HeaderText="Name" FooterStyle-Wrap="False" Visible="True">
-							<ItemTemplate>
-								<asp:Label ID="lblJobApplicant_ApplicantName" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "ApplicantName") %>' Runat="server"/>
-							</ItemTemplate>
-							<EditItemTemplate>
-								<asp:TextBox ID="txtJobApplicant_ApplicantName" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "ApplicantName") %>' Runat="server" />
-							</EditItemTemplate>
-							<FooterTemplate>
-								<asp:TextBox id="txtJobApplicant_ApplicantName_Add" CssClass="Normal" Runat="server" EnableViewState="True"></asp:TextBox>*
-							</FooterTemplate>
-						</asp:TemplateColumn>
-						<asp:TemplateColumn HeaderText="Email" FooterStyle-Wrap="False" Visible="True">
-							<ItemTemplate>
-								<asp:Label ID="lblJobApplicant_ApplicantEmail" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "ApplicantEmail") %>' Runat="server"/>
-							</ItemTemplate>
-							<EditItemTemplate>
-								<asp:TextBox ID="txtJobApplicant_ApplicantEmail" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "ApplicantEmail") %>' Runat="server" />
-							</EditItemTemplate>
-							<FooterTemplate>
-								<asp:TextBox id="txtJobApplicant_ApplicantEmail_Add" CssClass="Normal" Runat="server" EnableViewState="True"></asp:TextBox>*
-							</FooterTemplate>
-						</asp:TemplateColumn>
-						<asp:TemplateColumn HeaderText="Salary" FooterStyle-Wrap="False">
-							<ItemTemplate>
-								<asp:Label ID="lblJobApplicant_SalaryReq" text='<%# DataBinder.Eval(Container.DataItem, "SalaryReq") %>' Runat="server"/>
-							</ItemTemplate>
-							<EditItemTemplate>
-								<asp:TextBox ID="txtJobApplicant_SalaryReq" Width="35" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "SalaryReq") %>' Runat="server" />
-							</EditItemTemplate>
-							<FooterTemplate>
-								<asp:TextBox id="txtJobApplicant_SalaryReq_Add" Width="35" CssClass="Normal" text="0" Runat="server"
-									EnableViewState="True"></asp:TextBox>
-							</FooterTemplate>
-						</asp:TemplateColumn>
-						<asp:TemplateColumn HeaderText="Note" Visible="True">
-							<ItemTemplate>
-								<asp:Label ID="lblJobApplicant_Message" text='<%# DataBinder.Eval(Container.DataItem, "Message") %>' Runat="server"/>
-							</ItemTemplate>
-						</asp:TemplateColumn>		
-						<asp:TemplateColumn HeaderText="Cover<br/> Letter" Visible="True">
-							<ItemTemplate>
-							    <asp:LinkButton ID="lnkBtnDownloadCoverLetter" runat="server" CssClass="Normal" CommandName="DownloadCoverLetter" CausesValidation="false" Visible='<%# DataBinder.Eval(Container.DataItem, "ImageContentSize") > 0 %>'>Open</asp:LinkButton>							
-							</ItemTemplate>
-						</asp:TemplateColumn>											
-						<asp:TemplateColumn HeaderText="Attached<br/>Resume"  Visible="True">
-							<ItemTemplate>
-							    <asp:LinkButton ID="lnkBtnDownloadResume" runat="server" CssClass="Normal" CommandName="DownloadResume" CausesValidation="false" Visible='<%# DataBinder.Eval(Container.DataItem, "ImageContentSize1") > 0 %>'>Open</asp:LinkButton>							
-							</ItemTemplate>
-						</asp:TemplateColumn>
-							<asp:TemplateColumn HeaderText="Online<br/>Resume" Visible="True" HeaderStyle-Wrap="False">
-							<ItemTemplate>
-								<asp:HyperLink id="hpylOnline_Resume" Text="View" Target="_blank" runat="server" />										
-							</ItemTemplate>
-						</asp:TemplateColumn>		
-						<asp:TemplateColumn>
-							<ItemTemplate>
-								<asp:ImageButton CssClass="Normal" ImageUrl="~/DesktopModules/PA_JobBoard/images/delete_red.gif"
-									CommandName="delete" CausesValidation="False" AlternateText="Delete" runat="server" ID="imgBtnDelete_JobApplicant" />
-							</ItemTemplate>
-							<FooterTemplate>
-								<asp:ImageButton CssClass="Normal" ImageUrl="~/DesktopModules/PA_JobBoard/images/add.gif" CommandName="add"
-									CausesValidation="False" AlternateText="Add" runat="server" ID="imgBtnAdd_JobApplicant" />
-							</FooterTemplate>
-						</asp:TemplateColumn>
-						<asp:EditCommandColumn ButtonType="LinkButton" EditText="Edit" CancelText="Cancel" UpdateText="Update"
-							Visible="False" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="25" ItemStyle-Wrap="False" FooterStyle-Wrap="False" />
-					</Columns>
-				</asp:datagrid>
-				<asp:Label id="lblMessage_JobApplicant" runat="server" CssClass="NormalRed"></asp:Label>
-			</asp:panel>
-			
-			<!-- COL1: pnlItemCategory -->
-			<asp:panel id="pnlItemCategory" runat="server" BorderWidth="0" BorderStyle="Outset" Visible="True"
-				Width="100%"><BR> <!-- We will use DataList here to show additional images horizontally -->
-				<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
-					<TR>
-						<TD class="JediCss_MoreInfoTitle" align="left">Also listed under:
-						</TD>
-					</TR>
-					<TR>
-						<TD align="left">
-							<asp:datagrid id="dgItemCategory" Width="100%" Visible="True" runat="server" Cssclass="Normal"
-								ItemStyle-HorizontalAlign="Left" ItemStyle-CssClass="Normal" AutoGenerateColumns="False" PagerStyle-HorizontalAlign="Right"
-								Allowsorting="True" PagerStyle-PrevPageText="Prev" PagerStyle-NextPageText="Next" PagerStyle-mode="NumericPages"
-								AllowPaging="False" HeaderStyle-CssClass="JediCss_TableHeader" ShowHeader="False" DataKeyField="CategoryID"
-								ShowFooter="False">
-								<Columns>
-									<asp:BoundColumn DataField="CategoryID" ItemStyle-HorizontalAlign="Center" HeaderText="CategoryID"
-										Visible="False" ReadOnly="True" />
-									<asp:TemplateColumn HeaderText="Also list under" FooterStyle-Wrap="False">
-										<ItemTemplate>
-											<asp:HyperLink CssClass="Normal" NavigateUrl='<%# DotNetNuke.jb_Utility.GetApplicationPath() & "?tabid=" & Me.TabId  & "&action=cat&parentid=" & DataBinder.Eval(Container.DataItem,"CategoryID") %>' id="hplCategoryName" runat="server">
-												<%# DataBinder.Eval(Container.DataItem, "CategoryPath") & " (" & DataBinder.Eval(Container.DataItem, "CategoryID") & ")"  %>
-											</asp:HyperLink>
-										</ItemTemplate>
-									</asp:TemplateColumn>
-								</Columns>
-							</asp:datagrid></TD>
-					</TR>
-				</TABLE>
-			</asp:panel>
-			<!-- PAGE OPTIONS -->
 			<asp:label id="lblSeparator_pnlPageOptions" runat="server" CssClass="Normal">
 				<br>
 			</asp:label>
@@ -547,7 +426,7 @@
 				<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
 					<TR>
 						<TD class="JediCss_MoreInfoTitle" vAlign="top" align="left">
-							<asp:Label id="lbxPageOptions" Runat="server" text="Page Options">Page Options</asp:Label></TD>
+							<asp:Label id="lbxPageOptions" Runat="server" text=""></asp:Label></TD>
 					</TR>
 				</TABLE>
 				<asp:panel id="pnlPageOptionsNav" Width="100%" HorizontalAlign="Left" Visible="true" BorderStyle="Outset"
@@ -556,20 +435,20 @@
 						CellSpacing="0">
 						<asp:TableRow Visible="False">
 							<asp:TableCell cssclass="JediCss_MoreInfoTitle" ColumnSpan="3">
-							Page Options
+							
 						</asp:TableCell>
 						</asp:TableRow>
 						<asp:TableRow>
 							<asp:TableCell>
 								<%--<asp:LinkButton Runat="server" ID="lnkApplyJob_classifieds" Enabled="True" CausesValidation="False">Apply Now</asp:LinkButton>--%>
 							</asp:TableCell>
-							<asp:TableCell>
+							<asp:TableCell Visible="false">
 								<asp:LinkButton Runat="server" ID="lnkEmail_classifieds" Enabled="True" CausesValidation="False">Email this page</asp:LinkButton>
 							</asp:TableCell>
-							<asp:TableCell>
+							<asp:TableCell Visible="false">
 								<asp:HyperLink Runat="server" ID="lnkPrinter_classifieds">Print this page</asp:HyperLink>
 							</asp:TableCell>
-							<asp:TableCell Visible="True">
+							<asp:TableCell Visible="false">
 								<asp:LinkButton Runat="server" ID="lnkFavorites_classifieds" CausesValidation="False">Add to My List</asp:LinkButton>
 							</asp:TableCell>
 							<asp:TableCell Visible="False">
@@ -743,6 +622,129 @@
 				<asp:label id="lblMessage_PageOptions" runat="server" CssClass="NormalRed"></asp:label>
 			</asp:panel><br>
             <%--</div>--%>
+
+			<!-- JOP APPLICANT -->
+			<asp:panel id="pnlJobApplicant" Runat="server" BorderWidth="0" BorderStyle="Outset" Width="100%"
+				CssClass="Normal" visible="true" >
+				<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
+					<TR>
+						<TD class="JediCss_MoreInfoTitle" vAlign="top" align="left">
+							<asp:Label id="lbxJobApplicant" Runat="server" text="Submitted Application(s)">Submitted Application(s)</asp:Label></TD>
+					</TR>
+				</TABLE>
+				<BR>
+				<asp:datagrid id="dgJobApplicant" runat="server" Cssclass="Normal" ItemStyle-CssClass="Normal" CellPadding="3"
+					AutoGenerateColumns="False" PagerStyle-HorizontalAlign="Right" Allowsorting="True" PagerStyle-PrevPageText="Prev"
+					PagerStyle-NextPageText="Next" PagerStyle-mode="NumericPages" AllowPaging="False" HeaderStyle-CssClass="JediCss_TableHeader"
+					DataKeyField="ApplicationID" HeaderStyle-HorizontalAlign="Center" ShowFooter="False" EnableViewState="True"
+					OnUpdateCommand="dgJobApplicant_Update" OnCancelCommand="dgJobApplicant_Cancel" OnEditCommand="dgJobApplicant_Edit">
+					<Columns>
+						<asp:BoundColumn DataField="ApplicationID" ItemStyle-HorizontalAlign="Center" HeaderText="ID" Visible="True"
+							ReadOnly="True" />
+						<asp:BoundColumn HeaderText="Submitted" DataField="CreatedDate" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center"
+							Visible="True" />
+						<asp:TemplateColumn HeaderText="Name" FooterStyle-Wrap="False" Visible="True">
+							<ItemTemplate>
+								<asp:Label ID="lblJobApplicant_ApplicantName" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "ApplicantName") %>' Runat="server"/>
+							</ItemTemplate>
+							<EditItemTemplate>
+								<asp:TextBox ID="txtJobApplicant_ApplicantName" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "ApplicantName") %>' Runat="server" />
+							</EditItemTemplate>
+							<FooterTemplate>
+								<asp:TextBox id="txtJobApplicant_ApplicantName_Add" CssClass="Normal" Runat="server" EnableViewState="True"></asp:TextBox>*
+							</FooterTemplate>
+						</asp:TemplateColumn>
+						<asp:TemplateColumn HeaderText="Email" FooterStyle-Wrap="False" Visible="True">
+							<ItemTemplate>
+								<asp:Label ID="lblJobApplicant_ApplicantEmail" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "ApplicantEmail") %>' Runat="server"/>
+							</ItemTemplate>
+							<EditItemTemplate>
+								<asp:TextBox ID="txtJobApplicant_ApplicantEmail" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "ApplicantEmail") %>' Runat="server" />
+							</EditItemTemplate>
+							<FooterTemplate>
+								<asp:TextBox id="txtJobApplicant_ApplicantEmail_Add" CssClass="Normal" Runat="server" EnableViewState="True"></asp:TextBox>*
+							</FooterTemplate>
+						</asp:TemplateColumn>
+						<asp:TemplateColumn HeaderText="Salary" FooterStyle-Wrap="False">
+							<ItemTemplate>
+								<asp:Label ID="lblJobApplicant_SalaryReq" text='<%# DataBinder.Eval(Container.DataItem, "SalaryReq") %>' Runat="server"/>
+							</ItemTemplate>
+							<EditItemTemplate>
+								<asp:TextBox ID="txtJobApplicant_SalaryReq" Width="35" CssClass="Normal" text='<%# DataBinder.Eval(Container.DataItem, "SalaryReq") %>' Runat="server" />
+							</EditItemTemplate>
+							<FooterTemplate>
+								<asp:TextBox id="txtJobApplicant_SalaryReq_Add" Width="35" CssClass="Normal" text="0" Runat="server"
+									EnableViewState="True"></asp:TextBox>
+							</FooterTemplate>
+						</asp:TemplateColumn>
+						<asp:TemplateColumn HeaderText="Note" Visible="True">
+							<ItemTemplate>
+								<asp:Label ID="lblJobApplicant_Message" text='<%# DataBinder.Eval(Container.DataItem, "Message") %>' Runat="server"/>
+							</ItemTemplate>
+						</asp:TemplateColumn>		
+						<asp:TemplateColumn HeaderText="Cover<br/> Letter" Visible="True">
+							<ItemTemplate>
+							    <asp:LinkButton ID="lnkBtnDownloadCoverLetter" runat="server" CssClass="Normal" CommandName="DownloadCoverLetter" CausesValidation="false" Visible='<%# DataBinder.Eval(Container.DataItem, "ImageContentSize") > 0 %>'>Open</asp:LinkButton>							
+							</ItemTemplate>
+						</asp:TemplateColumn>											
+						<asp:TemplateColumn HeaderText="Attached<br/>Resume"  Visible="True">
+							<ItemTemplate>
+							    <asp:LinkButton ID="lnkBtnDownloadResume" runat="server" CssClass="Normal" CommandName="DownloadResume" CausesValidation="false" Visible='<%# DataBinder.Eval(Container.DataItem, "ImageContentSize1") > 0 %>'>Open</asp:LinkButton>							
+							</ItemTemplate>
+						</asp:TemplateColumn>
+							<asp:TemplateColumn HeaderText="Online<br/>Resume" Visible="True" HeaderStyle-Wrap="False">
+							<ItemTemplate>
+								<asp:HyperLink id="hpylOnline_Resume" Text="View" Target="_blank" runat="server" />										
+							</ItemTemplate>
+						</asp:TemplateColumn>		
+						<asp:TemplateColumn>
+							<ItemTemplate>
+								<asp:ImageButton CssClass="Normal" ImageUrl="~/DesktopModules/PA_JobBoard/images/delete_red.gif"
+									CommandName="delete" CausesValidation="False" AlternateText="Delete" runat="server" ID="imgBtnDelete_JobApplicant" />
+							</ItemTemplate>
+							<FooterTemplate>
+								<asp:ImageButton CssClass="Normal" ImageUrl="~/DesktopModules/PA_JobBoard/images/add.gif" CommandName="add"
+									CausesValidation="False" AlternateText="Add" runat="server" ID="imgBtnAdd_JobApplicant" />
+							</FooterTemplate>
+						</asp:TemplateColumn>
+						<asp:EditCommandColumn ButtonType="LinkButton" EditText="Edit" CancelText="Cancel" UpdateText="Update"
+							Visible="False" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="25" ItemStyle-Wrap="False" FooterStyle-Wrap="False" />
+					</Columns>
+				</asp:datagrid>
+				<asp:Label id="lblMessage_JobApplicant" runat="server" CssClass="NormalRed"></asp:Label>
+			</asp:panel>
+			
+			<!-- COL1: pnlItemCategory -->
+			<asp:panel id="pnlItemCategory" runat="server" BorderWidth="0" BorderStyle="Outset" Visible="True"
+				Width="100%"><BR> <!-- We will use DataList here to show additional images horizontally -->
+				<TABLE border="0" cellSpacing="0" cellPadding="3" width="100%">
+					<TR>
+						<TD class="JediCss_MoreInfoTitle" align="left">Also listed under:
+						</TD>
+					</TR>
+					<TR>
+						<TD align="left">
+							<asp:datagrid id="dgItemCategory" Width="100%" Visible="True" runat="server" Cssclass="Normal"
+								ItemStyle-HorizontalAlign="Left" ItemStyle-CssClass="Normal" AutoGenerateColumns="False" PagerStyle-HorizontalAlign="Right"
+								Allowsorting="True" PagerStyle-PrevPageText="Prev" PagerStyle-NextPageText="Next" PagerStyle-mode="NumericPages"
+								AllowPaging="False" HeaderStyle-CssClass="JediCss_TableHeader" ShowHeader="False" DataKeyField="CategoryID"
+								ShowFooter="False">
+								<Columns>
+									<asp:BoundColumn DataField="CategoryID" ItemStyle-HorizontalAlign="Center" HeaderText="CategoryID"
+										Visible="False" ReadOnly="True" />
+									<asp:TemplateColumn HeaderText="Also list under" FooterStyle-Wrap="False">
+										<ItemTemplate>
+											<asp:HyperLink CssClass="Normal" NavigateUrl='<%# DotNetNuke.jb_Utility.GetApplicationPath() & "?tabid=" & Me.TabId  & "&action=cat&parentid=" & DataBinder.Eval(Container.DataItem,"CategoryID") %>' id="hplCategoryName" runat="server">
+												<%# DataBinder.Eval(Container.DataItem, "CategoryPath") & " (" & DataBinder.Eval(Container.DataItem, "CategoryID") & ")"  %>
+											</asp:HyperLink>
+										</ItemTemplate>
+									</asp:TemplateColumn>
+								</Columns>
+							</asp:datagrid></TD>
+					</TR>
+				</TABLE>
+			</asp:panel>
+			<!-- PAGE OPTIONS -->
 			
 			<!-- COL1: pnlDetailedReview -->
             <asp:panel id="pnlDetailedReview" Runat="server" HorizontalAlign="Center" Visible="False" Width="100%">
