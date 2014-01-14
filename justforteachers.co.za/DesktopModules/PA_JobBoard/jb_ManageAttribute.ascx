@@ -1,5 +1,6 @@
 <%@ Import NameSpace="DotNetNuke" %>
 <%@ Register TagPrefix="nei" TagName="TopNav" Src="~/DesktopModules/PA_JobBoard/jb_NavItemEdit.ascx" %>
+<%@ Register TagPrefix="rcs" TagName="AdditionalInfo" Src="~/DesktopModules/PA_JobBoard/rcs_AdditionalInfo.ascx" %>
 <%@ Control language="vb" Inherits="DotNetNuke.jb_ManageAttribute" CodeBehind="jb_ManageAttribute.ascx.vb" AutoEventWireup="false" Explicit="True" %>
 <nei:topnav id="TopNav" runat="server"></nei:topnav>
 <asp:panel id="pnlItemAttribute" Visible="True" runat="server" HorizontalAlign="Center" Width="100%"
@@ -57,5 +58,11 @@
 				<BR>
 			</TD>
 		</TR>
+        <tr>
+            <td class="Normal" align="left">
+                <b>Additional Info: </b>
+                <rcs:AdditionalInfo ID="additionalInfo1" runat="server" />
+            </td>
+        </tr>
 	</TABLE>
 </asp:panel>
