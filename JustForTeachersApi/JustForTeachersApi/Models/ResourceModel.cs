@@ -90,6 +90,7 @@ namespace JustForTeachersApi.Models
         public string ResourceType { get; set; }
         public string ResourceLanguage { get; set; }
         public string ResourceUploadDate { get; set; }
+        public bool isActive { get; set; }
     }
 
     public class ResourceFeaturedPayload
