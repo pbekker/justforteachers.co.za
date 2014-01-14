@@ -91,7 +91,11 @@ namespace JustForTeachersApi.Models
         public string ResourceType { get; set; }
         public string ResourceLanguage { get; set; }
         public string ResourceUploadDate { get; set; }
+<<<<<<< HEAD
+        public string ResourceTags { get; set; }
+=======
         public int PreviewFileId { get; set; }
+>>>>>>> 999baeccd6951069ba552a938d5324d338e93c7f
         public bool isActive { get; set; }
     }
 
@@ -173,4 +177,28 @@ namespace JustForTeachersApi.Models
         public int ResourceId { get; set; }
         public List<string> tags { get; set; }
     }
+
+    public class ResourceEditPayload
+    {
+        public ResourceEditList resourceInfo { get; set; }
+        public List<FileViewInfo> fileInfo { get; set; }
+        public List<LinkViewInfo> urlInfo { get; set; }
+    }
+
+    public class ResourceEditList
+    {
+        public int ResourceId { get; set; }
+        public string ResourceName { get; set; }
+        public string ResourceDescription { get; set; }
+        public string ResourceTopic { get; set; }
+        public int ResourceTopicId { get; set; }
+        public string ResourceType { get; set; }
+        public int ResourceTypeId { get; set; }
+        public string ResourceLanguage { get; set; }
+        public int ResourceLanguageId { get; set; }
+        public string ResourceUploadDate { get; set; }
+        public string ResourceTags { get; set; }
+        public bool isActive { get; set; }
+    }
+
 }

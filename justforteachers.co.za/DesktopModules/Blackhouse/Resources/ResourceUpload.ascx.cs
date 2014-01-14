@@ -42,9 +42,9 @@ namespace Blackhouse.Resources
                 //FillDropDown(ddlResourceType, types);
                 //FillDropDown(ddlResourceTopic, topics);
                 FillDropDown(ddlResourceLanguage, languages);
+
                 divFileUpload.Visible = false;
                 divWebsiteUpload.Visible = false;
-                divLessonplan.Visible = false;
                 divAuthorAdd.Visible = false;
                 divPublisherAdd.Visible = false;
                 divFileinfo.Visible = false;
@@ -121,70 +121,6 @@ namespace Blackhouse.Resources
 
         protected void lnkSave_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    //int topicValue = int.Parse(ddlResourceTopic.SelectedValue);
-            //    //int typeValue = int.Parse(ddlResourceType.SelectedValue);
-            //    int langValue = int.Parse(ddlResourceLanguage.SelectedValue);
-            //    //create the upload information
-            //    UploadData resourceData = new UploadData();
-            //    resourceData.ResourceName = txtResourceName.Text;
-            //    resourceData.ResourceDescription = txtResourceDescription.Text;
-            //    //resourceData.ResourceTopicId = topicValue;
-            //    //resourceData.ResourceTypeId = typeValue;
-            //    resourceData.ResourceLanguageId = langValue;
-            //    resourceData.PortalId = ModuleContext.PortalId;
-
-            //    //we have the information so now we send it through to the API and expect the resourceid back
-            //    HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/") as HttpWebRequest;
-            //    request.Method = "POST";
-            //    request.ContentType = "text/json";
-            //    try
-            //    {
-            //        using (var streamWriter = new StreamWriter(request.GetRequestStream()))
-            //        {
-            //            string json = JsonConvert.SerializeObject(resourceData);
-
-            //            streamWriter.Write(json);
-            //            streamWriter.Flush();
-            //            streamWriter.Close();
-            //        }
-            //        var httpResponse = (HttpWebResponse)request.GetResponse();
-
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        lnkSave.Text = ex.ToString();
-            //    }
-
-            //    using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            //    {
-            //        //if (response.StatusCode != HttpStatusCode.OK)
-            //        //    throw new Exception(String.Format("Server error (HTTP {0}: {1}).", response.StatusCode, response.StatusDescription));
-            //        //Stream resp = response.GetResponseStream();
-            //        //StreamReader reader = new StreamReader(resp);
-            //        //string text = reader.ReadToEnd();
-            //        //hidResourceId.Value = text;
-
-            //        //switch (ddlResourceType.SelectedItem.Text.ToLower())
-            //        //{
-            //        //    case "website":
-            //        //        divWebsiteUpload.Visible = true;
-            //        //        break;
-            //        //    case "lesson plan":
-            //        //        divLessonplan.Visible = true;
-            //        //        break;
-            //        //    default:
-            //        //        divFileUpload.Visible = true;
-            //        //        break;
-            //        //}
-            //        divUploadform.Visible = false;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    lnkSave.Text = ex.ToString();
-            //}
             divUploadform.Visible = false;
             divTopics.Visible = true;
 
@@ -260,11 +196,11 @@ namespace Blackhouse.Resources
             {
                 if (tags.StartsWith(" "))
                 {
-                    tags = tags.Substring(0, 1);
+                    tags = tags.Remove(0, 1);
                 }
                 if (tags.EndsWith(" "))
                 {
-                    tags = tags.Substring(tags.Length - 2, 1);
+                    tags = tags.Remove(tags.Length - 2, 1);
                 }
                 tagsSend.Add(tags);
             }
@@ -333,63 +269,6 @@ namespace Blackhouse.Resources
             Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + ResourceId);
         }
 
-        protected void UploadLessonPlan_Click(object sender, EventArgs e)
-        {
-            LessonPlan tmpDataPack = new LessonPlan();
-            string type = "lesson plan";
-            Span3.Text = "";
-            string url = "";
-            if (txtLessonWebUrl.Text != "" && txtWebUrl.Text != " ")
-            {
-                if (!txtLessonWebUrl.Text.ToLower().StartsWith("http://") && !txtLessonWebUrl.Text.ToLower().StartsWith("https://"))
-                    url = "http://" + txtLessonWebUrl.Text.ToLower();
-                else
-                    url = txtLessonWebUrl.Text.ToLower();
-            }
-            else
-            {
-                Span3.Text = "No information has been added, please add information and try again.";
-                return;
-
-            }
-            tmpDataPack.linkUrl = url;
-
-            //ok so now we need to save the file, create a byte string out of it and send that to 
-            HttpFileCollection uploadedFiles = Request.Files;
-            Span3.Text = string.Empty;
-            List<FileData> tmpFileDataList = new List<FileData>();
-            rptFileInfo.DataSource = uploadedFiles;
-            rptFileInfo.DataBind();
-
-            for (int i = 0; i < uploadedFiles.Count; i++)
-            {
-                HttpPostedFile userPostedFile = uploadedFiles[i];
-                try
-                {
-                    if (userPostedFile.ContentLength > 0)
-                    {
-                        FileData tmpFile = new FileData();
-                        tmpFile.fileName = userPostedFile.FileName;
-                        tmpFile.fileSize = userPostedFile.ContentLength;
-                        tmpFile.fileType = userPostedFile.ContentType;
-                        tmpFile.fileData = ReadFile(userPostedFile);
-                        Span1.Text += "<u>File #" + (i + 1) + "</u><br>";
-                        Span1.Text += "File Content Type: " + userPostedFile.ContentType + "<br>";
-                        Span1.Text += "File Size: " + userPostedFile.ContentLength + "kb<br>";
-                        Span1.Text += "File Name: " + userPostedFile.FileName + "<br>";
-                        tmpFileDataList.Add(tmpFile);
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    Span3.Text += "Error: <br>" + Ex.Message;
-                }
-            }
-
-            tmpDataPack.fileData = tmpFileDataList;
-
-
-        }
         protected void rptFileInfo_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             //now we need to check what sent the command and then we must react accordingly
@@ -577,11 +456,11 @@ namespace Blackhouse.Resources
                         string tmp = item;
                         if (tmp.StartsWith(" "))
                         {
-                            tmp = tmp.Substring(0, 1);
+                            tmp = tmp.Remove(0, 1);
                         }
                         if (item.EndsWith(" "))
                         {
-                            tmp = tmp.Substring(tmp.Length - 2, 1);
+                            tmp = tmp.Remove(tmp.Length - 2, 1);
                         }
                         tagsSend.Add(tmp);
                     }
@@ -590,11 +469,11 @@ namespace Blackhouse.Resources
                 {
                     if (tags.StartsWith(" "))
                     {
-                        tags = tags.Substring(0, 1);
+                        tags = tags.Remove(0, 1);
                     }
                     if (tags.EndsWith(" "))
                     {
-                        tags = tags.Substring(tags.Length - 2, 1);
+                        tags = tags.Remove(tags.Length - 2, 1);
                     }
                     tagsSend.Add(tags);
                 }
@@ -784,8 +663,7 @@ namespace Blackhouse.Resources
             spanSelectedTopicdiv.Visible = false;
         }
 }
-    
-    
+
     public class GenDropList
     {
         public int ListId { get; set; }

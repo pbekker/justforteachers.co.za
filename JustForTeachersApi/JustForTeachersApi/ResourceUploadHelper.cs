@@ -46,11 +46,34 @@ namespace JustForTeachersApi
             //we get the information
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
+                //check if we have the file type
+                int typeid = 0;
+                var type = (from d in dc.bhdFileTypes
+                            where d.contentType == files.fileType
+                            && d.isActive
+                            select d).FirstOrDefault();
+                if (type == null)
+                {
+                    bhdFileType ft = new bhdFileType();
+                    ft.contentType = files.fileType;
+                    string extension = files.fileName;
+                    int pos = extension.LastIndexOf('.');
+                    ft.extension = extension.Substring(pos + 1, extension.Length - (pos + 1));
+                    ft.isActive = true;
+                    dc.bhdFileTypes.InsertOnSubmit(ft);
+                    dc.SubmitChanges();
+                    typeid = ft.id;
+                }
+                else
+                {
+                    typeid = type.id;
+                }
+
                 bhdFile f = new bhdFile();
                 f.size = files.fileSize;
                 f.name = files.fileName;
                 f.isActive = true;
-                f.fileTypeId = 1;
+                f.fileTypeId = typeid;
                 dc.bhdFiles.InsertOnSubmit(f);
                 dc.SubmitChanges();
 
@@ -59,6 +82,7 @@ namespace JustForTeachersApi
                 fd.data = files.fileData;
                 dc.bhdFileDatas.InsertOnSubmit(fd);
                 dc.SubmitChanges();
+
 
                 bhdResourceFile rf = new bhdResourceFile();
                 rf.resourceId = resourceId;

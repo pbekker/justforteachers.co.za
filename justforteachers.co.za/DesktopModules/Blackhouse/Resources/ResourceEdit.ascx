@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceUpload.ascx.cs" Inherits="Blackhouse.Resources.ResourceUpload" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceEdit.ascx.cs" Inherits="Blackhouse.Resources.ResourceEdit" %>
 
     <style>
         /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
@@ -891,15 +891,13 @@
             font-size: 13px;
         }
     </style>
-    
-<div class="box" runat="server" id="divChoose">
-    <asp:LinkButton runat="server" ID="lnkFile" CssClass="btn header-btn" OnClick="lnkFile_Click">[FILE RESOURCE]</asp:LinkButton>
-    <asp:LinkButton runat="server" ID="lnkURL" CssClass="btn header-btn" OnClick="lnkURL_Click">[LINKED RESOURCE]</asp:LinkButton>
-</div>
-<br />
+
+
+<span runat="server" id="span1" />
+
     <div class="box2" id="divUploadform" runat="server">
         <div class="form-group">
-            <asp:Label runat="server" CssClass="label" Text="Resource Name *" /><br />
+            <asp:Label ID="Label1" runat="server" CssClass="label" Text="Resource Name *" /><br />
             <asp:TextBox runat="server" CssClass="text" ID="txtResourceName" /><br />
             <asp:requiredfieldvalidator id="rfvResourceName"
               controltovalidate="txtResourceName"
@@ -911,7 +909,7 @@
             <br />
         </div>
         <div class="form-group">
-            <asp:Label runat="server" CssClass="label" Text="Resource Description *" /><br />
+            <asp:Label ID="Label2" runat="server" CssClass="label" Text="Resource Description *" /><br />
             <asp:TextBox runat="server" CssClass="text textarea"  ID="txtResourceDescription" TextMode="MultiLine" Rows="5" /><br />
             <asp:requiredfieldvalidator id="rfvResourceDescription"
               controltovalidate="txtResourceDescription"
@@ -922,16 +920,8 @@
              </asp:requiredfieldvalidator>
             <br />
         </div>
-<%--        <div class="form-group">
-            <asp:Label runat="server" CssClass="label" Text="Resource Type *" /><br />
-            <asp:DropDownList runat="server" CssClass="text" id="ddlResourceType" /><br /><br />
-        </div>
         <div class="form-group">
-            <asp:Label runat="server" CssClass="label" Text="Resource Topic *" /><br />
-            <asp:DropDownList runat="server" CssClass="text" id="ddlResourceTopic" /><br /><br />
-        </div>--%>
-        <div class="form-group">
-            <asp:Label runat="server" CssClass="label" Text="Resource Language" /><br />
+            <asp:Label ID="Label3" runat="server" CssClass="label" Text="Resource Language" /><br />
             <asp:DropDownList runat="server" CssClass="text" id="ddlResourceLanguage" /><br />
             <asp:RequiredFieldValidator ID="rfvResourceLanguage" runat="server" ControlToValidate="ddlResourceLanguage" ErrorMessage="Please select a Languge for the resource." ValidationGroup="ResourceBasicInfo"  InitialValue="0" CssClass="errormesssage" />
             <br />
@@ -948,90 +938,11 @@
              </asp:requiredfieldvalidator>
             <br />
         </div>
-        <div class="box">
-            <asp:LinkButton runat="server" ID="lnkBack" Text="...Back" CssClass="btn header-btn" OnClick="lnkBack_Click" />
-            <asp:LinkButton runat="server" ID="lnkSave" Text="Next..." causesvalidation="true" validationgroup="ResourceBasicInfo" CssClass="btn header-btn" OnClick="lnkSave_Click" />
-        </div>
-    </div>
-    <asp:HiddenField runat="server" ID="hidResourceId" />
-    <asp:HiddenField runat="server" ID="hidChoice" />
-
-    <div class="box2" runat="server" id="divTopics">
-        <span runat="server" id="spantree"></span>
-        <asp:Label runat="server" CssClass="label" Text="Resource Topic" /><br />
-        <asp:Label runat="server" ID="lblError" Text="Please select a topic to continue." CssClass="errormesssage label" Visible="false" />
-        <asp:TreeView runat="server" ID="tvTopics" OnSelectedNodeChanged="tvTopics_SelectedNodeChanged" />
-        <div class="box1" runat="server" id="spanSelectedTopicdiv">
-            <h4>Your selection was:</h4>
-            <span runat="server" id="spanSelectedTopic"></span><asp:HiddenField ID="hidTopicId" runat="server" />
-            <asp:LinkButton runat="server" ID="lnkShowTreeAgain" Text="change?" CssClass="btn header-btn" OnClick="lnkShowTreeAgain_Click"/>
-        </div>
-        <div class="box">
-            <asp:LinkButton runat="server" ID="lnkBackToForm" Text="...Back" CssClass="btn header-btn" OnClick="lnkBackToForm_Click" />
-            <asp:LinkButton runat="server" ID="lnkTopic" Text="Next..." CssClass="btn header-btn" OnClick="lnkTopic_Click" />
+        <div class="form-group" runat="server" id="divTopics">
+            <asp:Label ID="Label4" runat="server" CssClass="label" Text="Resource Topic *" /><br />
+            <asp:Label runat="server" ID="lblError" Text="Please select a topic to continue." CssClass="errormesssage label" Visible="false" />
+            <asp:TreeView runat="server" ID="tvTopics" OnSelectedNodeChanged="tvTopics_SelectedNodeChanged" />
+            <asp:LinkButton runat="server" ID="lnkShowTreeAgain" Text="change?" CssClass="btn header-btn" OnClick="lnkShowTreeAgain_Click" /><asp:HiddenField ID="hidTopicId" runat="server" />
         </div>
     </div>
 
-    <div runat="server" id="divFileUpload">
-        <input type="file" id="myfile" multiple="multiple" name="myfile" runat="server" size="100" />
-        <br /><br /><br />
-        <div class="box">
-            <asp:LinkButton runat="server" ID="lnkBackToTopics" Text="...Back" CssClass="btn header-btn" OnClick="lnkBackToForm_Click" />
-            <asp:LinkButton ID="UploadFiles" runat="server" Text="Next..." CssClass="btn header-btn" OnClick="UploadFiles_Click" />
-        </div>
-        <br />
-    </div>
-        <asp:Label ID="Span1" runat="server"></asp:Label>
-
-    <%-- TODO: Add file information collection here --%>
-    <div runat="server" id="divAuthorAdd">
-        <asp:Label runat="server" Text="Author Name" ID="lblAName" /><br />
-        <asp:TextBox runat="server" ID="txtAuthorName" /><br />
-        <asp:Label runat="server" Text="Author Surname" ID="lblASurname" /><br />
-        <asp:TextBox runat="server" ID="txtAuthorSurname" /><br />
-        <asp:LinkButton runat="server" ID="btnAuthorAdd" Text="Add Author" OnClick="btnAuthorAdd_Click" />
-    </div>
-
-    <div runat="server" id="divPublisherAdd">
-        <asp:Label runat="server" Text="Publisher Name" ID="lblPName" /><br />
-        <asp:TextBox runat="server" ID="txtPublisherName" /><br />
-        <asp:Label runat="server" Text="Publisher Surname" ID="lblPSurname" /><br />
-        <asp:TextBox runat="server" ID="txtPublisherSurname" /><br />
-        <asp:LinkButton runat="server" ID="lnkPublisherAdd" Text="Add Publisher" OnClick="lnkPublisherAdd_Click" />
-    </div>
-    <asp:HiddenField ID="hidFileData" runat="server" />
-    <div id="divFileinfo" runat="server">
-        <asp:Repeater runat="server" ID="rptFileInfo" OnItemCommand="rptFileInfo_ItemCommand">
-            <ItemTemplate>
-                <fieldset>
-                    <asp:Label runat="server" ID="lblFileName" Text='<%#Eval("fileName") %>' /><br />
-                    <asp:Label runat="server" ID="lblAuthor" Text="Author" CssClass="label" /><asp:LinkButton runat="server" Text="+" ID="btnAddAuthor" CssClass="btn header-btn" CommandName="author" /><br />
-                    <asp:DropDownList runat="server" ID="ddlAuthor" CssClass="text" /><br />
-                    <asp:Label runat="server" ID="lblPublisher" Text="Publisher" CssClass="label" /><asp:LinkButton runat="server" Text="+" ID="btnAddPublisher" CssClass="btn header-btn" CommandName="publisher" /><br />
-                    <asp:DropDownList runat="server" ID="ddlPublisher" CssClass="text" /><br />
-                    <asp:Label runat="server" ID="lblYear" Text="Year" CssClass="label" /><br />
-                    <asp:DropDownList runat="server" ID="ddlYear" CssClass="text" /><br />
-                    <br />
-                </fieldset>
-            </ItemTemplate>
-        </asp:Repeater>
-        <div class="box">
-            <asp:LinkButton ID="lnkSaveFileInfo" runat="server" Text="Save..." CssClass="btn header-btn" OnClick="lnkSaveFileInfo_Click" />
-        </div>
-    </div>
-
-
-    <%-- TODO: Add website type upload --%>
-
-    <div runat="server" id="divWebsiteUpload">
-        <asp:Label runat="server" Text="Resource Web URL:" /><br />
-        <asp:TextBox runat="server" ID="txtWebUrl" CssClass="text" />
-        <br />
-        <div class="box">
-            <asp:LinkButton ID="lnkUploadWebsite" runat="server" Text="Save..." CssClass="btn header-btn" OnClick="UploadWebsite_Click" />
-        </div>
-        <br />
-        <asp:Label ID="Span2" runat="server"></asp:Label>
-    </div>
-
-   <%-- TODO: Add license stuff --%>
