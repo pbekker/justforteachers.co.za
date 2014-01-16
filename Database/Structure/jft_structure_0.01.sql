@@ -27,7 +27,9 @@ ALTER TABLE dbo.bhdResourceKeyword DROP CONSTRAINT FK_bhdResourceKeyword_bhdKeyw
 ALTER TABLE dbo.bhdResourceKeyword DROP CONSTRAINT FK_bhdResourceKeyword_bhdResource 
 ALTER TABLE dbo.bhdResourceBundleFile DROP CONSTRAINT FK_bhdResourceBundleFile_bhdResourceBundle
 ALTER TABLE dbo.bhdResourceBundleFile DROP CONSTRAINT FK_bhdResourceBundleFile_bhdFile
-ALTER TABLE dbo.bhdFileData DROP CONSTRAINT	FK_bhdFileData_bhdFile 
+ALTER TABLE dbo.bhdFileData DROP CONSTRAINT	FK_bhdFileData_bhdFile
+ALTER TABLE dbo.bhdResourceFormat DROP CONSTRAINT FK_bhdResourceFormat_bhdFormat
+ALTER TABLE dbo.bhdResourceFormat DROP CONSTRAINT FK_bhdResourceFormat_bhdResource
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'FeaturedResources')
 DROP TABLE FeaturedResources
@@ -1084,3 +1086,25 @@ id
 	
 GO
 
+ALTER TABLE dbo.bhdResourceFormat ADD CONSTRAINT
+	FK_bhdResourceFormat_bhdFormat FOREIGN KEY
+	(
+	formatId
+	) REFERENCES dbo.bhdFormat
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceFormat ADD CONSTRAINT
+	FK_bhdResourceFormat_bhdResource FOREIGN KEY
+	(
+	resourceId
+	) REFERENCES dbo.bhdResource
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
