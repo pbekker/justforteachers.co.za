@@ -234,7 +234,7 @@ GO
 CREATE TABLE dbo.bhdFileType
 	(
 	id int NOT NULL IDENTITY (1, 1),
-	name varchar(255) NOT NULL,
+	name varchar(255) NULL,
 	extension VARCHAR(5) NOT NULL,
 	contentType VARCHAR(255),
 	icon Image NULL,
