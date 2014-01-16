@@ -33,6 +33,10 @@ ALTER TABLE dbo.bhdResourceFormat DROP CONSTRAINT FK_bhdResourceFormat_bhdResour
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'FeaturedResources')
 DROP TABLE FeaturedResources
+
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceAuthor')
+DROP TABLE  bhdResourceAuthor
+GO
 GO
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'ResourceRating')
 DROP TABLE  ResourceRating
@@ -330,6 +334,7 @@ CREATE TABLE dbo.bhdPublishInformation
 	(
 	id int NOT NULL IDENTITY (1, 1),
 	resourceId int NOT NULL,
+	fileId int NOT NULL,
 	publisherId int NOT NULL,
 	authorId int NOT NULL,
 	publishYear int NOT NULL,
@@ -347,23 +352,6 @@ ALTER TABLE dbo.bhdPublishInformation ADD CONSTRAINT
 
 GO
 ALTER TABLE dbo.bhdPublishInformation SET (LOCK_ESCALATION = TABLE)
-GO
-COMMIT
-
-IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceAuthor')
-DROP TABLE  bhdResourceAuthor
-GO
-
-BEGIN TRANSACTION
-GO
-CREATE TABLE dbo.bhdResourceAuthor
-	(
-	authorId int NOT NULL,
-	fileId int NOT NULL
-	CONSTRAINT pk_ResourceAuthor PRIMARY KEY (fileId, authorId)
-	)  ON [PRIMARY]
-GO
-ALTER TABLE dbo.bhdResourceAuthor SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
