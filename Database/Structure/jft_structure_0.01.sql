@@ -3,6 +3,32 @@ GO
 
 /** drop existing tables that we made **/
 
+IF EXISTS (SELECT * FROM sys.foreign_keys t WHERE t.name = 'FK_bhdResourceComment_bhdResource' AND parent_object_id = OBJECT_ID(N'bhdResourceComment')
+)
+ALTER TABLE bhdResourceComment
+DROP CONSTRAINT FK_bhdResourceComment_bhdResource
+GO
+
+ALTER TABLE dbo.bhdResource DROP CONSTRAINT FK_bhdResource_bhdResourceLanguage 
+ALTER TABLE dbo.bhdResource DROP CONSTRAINT FK_bhdResource_bhdResourceType
+ALTER TABLE dbo.bhdResource DROP CONSTRAINT	FK_bhdResource_bhdResourceTopics
+ALTER TABLE dbo.bhdResourceRating DROP CONSTRAINT FK_bhdResourceRating_bhdResource 
+ALTER TABLE dbo.bhdFile DROP CONSTRAINT	FK_bhdFile_bhdFileType
+ALTER TABLE dbo.bhdResourceFile DROP CONSTRAINT FK_bhdResourceFile_bhdResource
+ALTER TABLE dbo.bhdResourceFile DROP CONSTRAINT	FK_bhdResourceFile_bhdFile 
+ALTER TABLE dbo.bhdFeaturedResources DROP CONSTRAINT FK_bhdFeaturedResources_bhdResource
+ALTER TABLE dbo.bhdPublishInformation DROP CONSTRAINT FK_bhdPublishInformation_bhdPublisher
+ALTER TABLE dbo.bhdPublishInformation DROP CONSTRAINT FK_bhdPublishInformation_bhdAuthor
+ALTER TABLE dbo.bhdResourceAuthor DROP CONSTRAINT FK_bhdResourceAuthor_bhdFile 
+ALTER TABLE dbo.bhdResourceAuthor DROP CONSTRAINT FK_bhdResourceAuthor_bhdAuthor
+ALTER TABLE dbo.bhdResourceLink DROP CONSTRAINT	FK_bhdResourceLink_bhdLink 
+ALTER TABLE dbo.bhdResourceLink DROP CONSTRAINT FK_bhdResourceLink_bhdResource 
+ALTER TABLE dbo.bhdResourceKeyword DROP CONSTRAINT FK_bhdResourceKeyword_bhdKeyword 
+ALTER TABLE dbo.bhdResourceKeyword DROP CONSTRAINT FK_bhdResourceKeyword_bhdResource 
+ALTER TABLE dbo.bhdResourceBundleFile DROP CONSTRAINT FK_bhdResourceBundleFile_bhdResourceBundle
+ALTER TABLE dbo.bhdResourceBundleFile DROP CONSTRAINT FK_bhdResourceBundleFile_bhdFile
+ALTER TABLE dbo.bhdFileData DROP CONSTRAINT	FK_bhdFileData_bhdFile 
+
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'FeaturedResources')
 DROP TABLE FeaturedResources
 GO
@@ -301,6 +327,7 @@ GO
 CREATE TABLE dbo.bhdPublishInformation
 	(
 	id int NOT NULL IDENTITY (1, 1),
+	resourceId int NOT NULL,
 	publisherId int NOT NULL,
 	authorId int NOT NULL,
 	publishYear int NOT NULL,
@@ -550,6 +577,23 @@ ALTER TABLE dbo.bhdFormat SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
 
+IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceComment')
+DROP TABLE bhdResourceComment
+GO
+
+CREATE TABLE dbo.bhdResourceComment
+	(
+	id int not null identity(1,1),
+	resourceId int not null,
+	userId int not null,
+	commentId int null,
+	comment varchar(max),
+	commentDate datetime,
+	isActive bit
+	CONSTRAINT pk_ResourceComment PRIMARY KEY (id)
+	)  ON [PRIMARY]
+GO
+
 
 /*************************** LOOK UP TABLES ************************************/
 IF NOT EXISTS(SELECT * FROM bhdResourceLanguage)
@@ -718,3 +762,325 @@ VALUES ('Electricity and magnetism', '', @topicId, 1),
 	   ('Mechanics', '', @topicId, 1),
 	   ('Waves, sound and light', '', @topicId, 1)
 END
+
+BEGIN TRANSACTION
+ALTER TABLE dbo.bhdResource ADD CONSTRAINT
+	FK_bhdResource_bhdResourceLanguage FOREIGN KEY
+	(
+	languageId
+	) REFERENCES dbo.bhdResourceLanguage
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResource ADD CONSTRAINT
+	FK_bhdResource_bhdResourceType FOREIGN KEY
+	(
+	typeId
+	) REFERENCES dbo.bhdResourceType
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResource ADD CONSTRAINT
+	FK_bhdResource_bhdResourceTopics FOREIGN KEY
+	(
+	topicId
+	) REFERENCES dbo.bhdResourceTopics
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResource SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceRating ADD CONSTRAINT
+	FK_bhdResourceRating_bhdResource FOREIGN KEY
+	(
+	resourceId
+	) REFERENCES dbo.bhdResource
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceRating SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdPublisher SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdFileType SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdFile ADD CONSTRAINT
+	FK_bhdFile_bhdFileType FOREIGN KEY
+	(
+	fileTypeId
+	) REFERENCES dbo.bhdFileType
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdFile SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceFile ADD CONSTRAINT
+	FK_bhdResourceFile_bhdResource FOREIGN KEY
+	(
+	resourceId
+	) REFERENCES dbo.bhdResource
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceFile ADD CONSTRAINT
+	FK_bhdResourceFile_bhdFile FOREIGN KEY
+	(
+	fileId
+	) REFERENCES dbo.bhdFile
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceFile SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdFeaturedResources ADD CONSTRAINT
+	FK_bhdFeaturedResources_bhdResource FOREIGN KEY
+	(
+	resourceId
+	) REFERENCES dbo.bhdResource
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdFeaturedResources SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdAuthor SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdPublishInformation ADD CONSTRAINT
+	FK_bhdPublishInformation_bhdPublisher FOREIGN KEY
+	(
+	publisherId
+	) REFERENCES dbo.bhdPublisher
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdPublishInformation ADD CONSTRAINT
+	FK_bhdPublishInformation_bhdAuthor FOREIGN KEY
+	(
+	authorId
+	) REFERENCES dbo.bhdAuthor
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdPublishInformation SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceAuthor ADD CONSTRAINT
+	FK_bhdResourceAuthor_bhdFile FOREIGN KEY
+	(
+	fileId
+	) REFERENCES dbo.bhdFile
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceAuthor ADD CONSTRAINT
+	FK_bhdResourceAuthor_bhdAuthor FOREIGN KEY
+	(
+	authorId
+	) REFERENCES dbo.bhdAuthor
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceAuthor SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceBundle SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResource SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdLink SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceLink ADD CONSTRAINT
+	FK_bhdResourceLink_bhdLink FOREIGN KEY
+	(
+	linkId
+	) REFERENCES dbo.bhdLink
+	(
+	linkId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceLink ADD CONSTRAINT
+	FK_bhdResourceLink_bhdResource FOREIGN KEY
+	(
+	resourceId
+	) REFERENCES dbo.bhdResource
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceLink SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdKeyword SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceKeyword ADD CONSTRAINT
+	FK_bhdResourceKeyword_bhdKeyword FOREIGN KEY
+	(
+	KeywordId
+	) REFERENCES dbo.bhdKeyword
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceKeyword ADD CONSTRAINT
+	FK_bhdResourceKeyword_bhdResource FOREIGN KEY
+	(
+	Resourceid
+	) REFERENCES dbo.bhdResource
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceKeyword SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdFile SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdResourceBundleFile ADD CONSTRAINT
+	FK_bhdResourceBundleFile_bhdResourceBundle FOREIGN KEY
+	(
+	bundleId
+	) REFERENCES dbo.bhdResourceBundle
+	(
+	bundleId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceBundleFile ADD CONSTRAINT
+	FK_bhdResourceBundleFile_bhdFile FOREIGN KEY
+	(
+	resourceFileId
+	) REFERENCES dbo.bhdFile
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdResourceBundleFile SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.bhdFile SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.bhdFileData ADD CONSTRAINT
+	FK_bhdFileData_bhdFile FOREIGN KEY
+	(
+	fileId
+	) REFERENCES dbo.bhdFile
+	(
+	id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.bhdFileData SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+ALTER TABLE dbo.bhdResourceComment ADD CONSTRAINT
+FK_bhdResourceComment_bhdResource FOREIGN KEY
+(
+resourceId
+) REFERENCES dbo.bhdResource
+(
+id
+) ON UPDATE  NO ACTION 
+	ON DELETE  NO ACTION 
+	
+GO
+
