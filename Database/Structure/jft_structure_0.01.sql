@@ -8,7 +8,13 @@ IF EXISTS (SELECT * FROM sys.foreign_keys t WHERE t.name = 'FK_bhdResourceCommen
 ALTER TABLE bhdResourceComment
 DROP CONSTRAINT FK_bhdResourceComment_bhdResource
 GO
-
+IF EXISTS (SELECT * FROM sys.foreign_keys t WHERE t.name = 'FK_bhdResourceAuthor_bhdFile' AND parent_object_id = OBJECT_ID(N'bhdResourceAuthor')
+)
+BEGIN
+ALTER TABLE dbo.bhdResourceAuthor DROP CONSTRAINT FK_bhdResourceAuthor_bhdFile
+ALTER TABLE dbo.bhdResourceAuthor DROP CONSTRAINT FK_bhdResourceAuthor_bhdAuthor
+END
+GO
 ALTER TABLE dbo.bhdResource DROP CONSTRAINT FK_bhdResource_bhdResourceLanguage 
 ALTER TABLE dbo.bhdResource DROP CONSTRAINT FK_bhdResource_bhdResourceType
 ALTER TABLE dbo.bhdResource DROP CONSTRAINT	FK_bhdResource_bhdResourceTopics
@@ -19,8 +25,6 @@ ALTER TABLE dbo.bhdResourceFile DROP CONSTRAINT	FK_bhdResourceFile_bhdFile
 ALTER TABLE dbo.bhdFeaturedResources DROP CONSTRAINT FK_bhdFeaturedResources_bhdResource
 ALTER TABLE dbo.bhdPublishInformation DROP CONSTRAINT FK_bhdPublishInformation_bhdPublisher
 ALTER TABLE dbo.bhdPublishInformation DROP CONSTRAINT FK_bhdPublishInformation_bhdAuthor
-ALTER TABLE dbo.bhdResourceAuthor DROP CONSTRAINT FK_bhdResourceAuthor_bhdFile 
-ALTER TABLE dbo.bhdResourceAuthor DROP CONSTRAINT FK_bhdResourceAuthor_bhdAuthor
 ALTER TABLE dbo.bhdResourceLink DROP CONSTRAINT	FK_bhdResourceLink_bhdLink 
 ALTER TABLE dbo.bhdResourceLink DROP CONSTRAINT FK_bhdResourceLink_bhdResource 
 ALTER TABLE dbo.bhdResourceKeyword DROP CONSTRAINT FK_bhdResourceKeyword_bhdKeyword 
@@ -907,34 +911,6 @@ GO
 ALTER TABLE dbo.bhdPublishInformation SET (LOCK_ESCALATION = TABLE)
 GO
 COMMIT
-BEGIN TRANSACTION
-GO
-ALTER TABLE dbo.bhdResourceAuthor ADD CONSTRAINT
-	FK_bhdResourceAuthor_bhdFile FOREIGN KEY
-	(
-	fileId
-	) REFERENCES dbo.bhdFile
-	(
-	id
-	) ON UPDATE  NO ACTION 
-	 ON DELETE  NO ACTION 
-	
-GO
-ALTER TABLE dbo.bhdResourceAuthor ADD CONSTRAINT
-	FK_bhdResourceAuthor_bhdAuthor FOREIGN KEY
-	(
-	authorId
-	) REFERENCES dbo.bhdAuthor
-	(
-	id
-	) ON UPDATE  NO ACTION 
-	 ON DELETE  NO ACTION 
-	
-GO
-ALTER TABLE dbo.bhdResourceAuthor SET (LOCK_ESCALATION = TABLE)
-GO
-COMMIT
-
 BEGIN TRANSACTION
 GO
 ALTER TABLE dbo.bhdResourceBundle SET (LOCK_ESCALATION = TABLE)
