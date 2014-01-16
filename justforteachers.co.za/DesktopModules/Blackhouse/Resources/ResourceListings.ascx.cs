@@ -63,7 +63,7 @@ namespace Blackhouse.Resources
         {
             Response.Redirect(Request.Url.ToString() + "&mid=" + ModuleContext.ModuleId.ToString() + "&ctl=resourceView&resourceid=" + ((LinkButton)e.CommandSource).CommandArgument);
         }
-<<<<<<< HEAD
+
 
         public string RenderPaginationControl(int page, int pageSize, int totalItems)
         {
@@ -80,7 +80,8 @@ namespace Blackhouse.Resources
             }
 
             return pagerSb.ToString();
-=======
+        }
+
         protected void rptListings_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem ||
@@ -90,7 +91,7 @@ namespace Blackhouse.Resources
                 Image previewFile = (Image)e.Item.FindControl("imgPreviewImage");
                 previewFile.ImageUrl = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("/resourcefile/{0}", item.PreviewFileId);
             }
->>>>>>> 999baeccd6951069ba552a938d5324d338e93c7f
+
         }
     }
 
@@ -103,11 +104,8 @@ namespace Blackhouse.Resources
         public string ResourceType { get; set; }
         public string ResourceLanguage { get; set; }
         public string ResourceUploadDate { get; set; }
-<<<<<<< HEAD
         public bool isActive { get; set; }
-=======
         public int PreviewFileId { get; set; }
->>>>>>> 999baeccd6951069ba552a938d5324d338e93c7f
     }
 
     public class ResourceListPayload

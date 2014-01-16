@@ -393,6 +393,7 @@ namespace Blackhouse.Resources
                 target.DataBind();
             }
         }
+
         protected void rptFileInfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             updateAuthPub();
@@ -541,6 +542,7 @@ namespace Blackhouse.Resources
                         string text = reader.ReadToEnd();
                         ResourceFile resourcefileReturn = JsonConvert.DeserializeObject<ResourceFile>(text);
                         fileid = resourcefileReturn.fileid;
+                        filecounter++;
                     }
                     catch (Exception ex)
                     {
@@ -553,6 +555,7 @@ namespace Blackhouse.Resources
                     DropDownList year = (DropDownList)item.FindControl("ddlYear");
 
                     FileInfoData tmpFData = new FileInfoData();
+                    tmpFData.resourceid = ResourceId;
                     tmpFData.authorid = int.Parse(author.SelectedValue);
                     tmpFData.publisherid = int.Parse(publisher.SelectedValue);
                     tmpFData.publishYear = int.Parse(year.SelectedValue);
@@ -720,6 +723,7 @@ namespace Blackhouse.Resources
 
     public class FileInfoData
     {
+        public int resourceid { get; set; }
         public int fileid { get; set; }
         public int authorid { get; set; }
         public int publisherid { get; set; }

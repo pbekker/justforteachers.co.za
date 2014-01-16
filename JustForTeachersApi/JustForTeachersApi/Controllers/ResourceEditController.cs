@@ -50,8 +50,10 @@ namespace JustForTeachersApi.Controllers
                 if (r.ResourceTypeId == 1)
                 {
                     List<FileViewInfo> files = (from f in dc.bhdResourceFiles
+                                                join a in dc.bhdPublishInformations on r.ResourceId equals a.resourceId 
                                                 where f.resourceId == r.ResourceId
-                                                select new FileViewInfo() { FileName = f.bhdFile.name, FileSize = f.bhdFile.size, FileContentType = f.bhdFile.bhdFileType.contentType, FileId = f.bhdFile.id }).ToList();
+                                                && f.fileId == a.fileId
+                                                select new FileViewInfo() { FileName = f.bhdFile.name, FileSize = f.bhdFile.size, FileContentType = f.bhdFile.bhdFileType.contentType, FileId = f.bhdFile.id, authorId = a.authorId, publisherId = a.publisherId, year = a.publishYear }).ToList();
                     tmpResource.fileInfo = files;
                 }
                 if (r.ResourceTypeId == 2)
@@ -74,9 +76,88 @@ namespace JustForTeachersApi.Controllers
                 if (tagRet.Length > 0)
                     tagRet = tagRet.Remove(tagRet.Length - 1, 1);
                 tmpResource.resourceInfo.ResourceTags = tagRet;
+
+
             }
             return tmpResource;
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> Post(int id)
+        {
+            try
+            {
+                var result = Request.Content.ReadAsFormDataAsync();
+                Stream streamIn = await Request.Content.ReadAsStreamAsync();
+                StreamReader streamReader = new StreamReader(streamIn);
+                string jsonstring = streamReader.ReadToEnd();
+                // serialize that shit
+                ResourceEditSend uploadModel;
+                try
+                {
+                    uploadModel = JsonConvert.DeserializeObject<ResourceEditSend>(jsonstring);
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+                }
+
+                //update the information
+                using (ResourcesDataContext dc = new ResourcesDataContext())
+                {
+                    bhdResource tmpResource = dc.bhdResources.Single((x) => x.id == id);
+                    tmpResource.name = uploadModel.resourceInfo.ResourceName;
+                    tmpResource.description = uploadModel.resourceInfo.ResourceDescription;
+                    tmpResource.topicId = uploadModel.resourceInfo.ResourceTopicId;
+                    tmpResource.languageId = uploadModel.resourceInfo.ResourceLanguageId;
+                    dc.SubmitChanges();
+
+                    if (uploadModel.URL != "")
+                    {
+                    }
+
+                   dc.bhdResourceKeywords.DeleteAllOnSubmit<bhdResourceKeyword>(dc.bhdResourceKeywords.Where((r)=>r.Resourceid == id));
+                   
+
+                    foreach (var item in uploadModel.tagsInfo.tags)
+                    {
+                        var r = (from d in dc.bhdKeywords
+                                 where d.isActive && d.value == item
+                                 select d).FirstOrDefault();
+                        if (r != null)
+                        {
+                            bhdResourceKeyword tmpResourceKeyword = new bhdResourceKeyword();
+                            tmpResourceKeyword.KeywordId = r.id;
+                            tmpResourceKeyword.Resourceid = tmpResource.id;
+                            dc.bhdResourceKeywords.InsertOnSubmit(tmpResourceKeyword);
+                            dc.SubmitChanges();
+                        }
+                        else
+                        {
+                            bhdKeyword tmpkeyword = new bhdKeyword();
+                            tmpkeyword.value = item;
+                            tmpkeyword.isActive = true;
+                            dc.bhdKeywords.InsertOnSubmit(tmpkeyword);
+                            dc.SubmitChanges();
+
+                            bhdResourceKeyword tmpResourceKeyword = new bhdResourceKeyword();
+                            tmpResourceKeyword.KeywordId = tmpkeyword.id;
+                            tmpResourceKeyword.Resourceid = tmpResource.id;
+                            dc.bhdResourceKeywords.InsertOnSubmit(tmpResourceKeyword);
+                            dc.SubmitChanges();
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. " + ex.Message + ". 400-3");
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, "Success");
+        }
     }
 }
