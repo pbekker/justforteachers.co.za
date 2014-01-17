@@ -11,7 +11,6 @@ using System.Net.Http;
 using System.IO;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Common;
-using System.Text;
 
 namespace Blackhouse.Resources
 {
@@ -20,18 +19,8 @@ namespace Blackhouse.Resources
         protected string dashboardUrlBase = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"];
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpWebRequest request;
-            int page = 0;
-            if (Request.QueryString["page"] != null)
-            {
-                page = int.Parse(Request.QueryString["page"]) - 1;
-                request = WebRequest.Create(dashboardUrlBase + "resourcelist/" + page) as HttpWebRequest;
-            }
-            else
-            {
-                //get the information from the api
-                request = WebRequest.Create(dashboardUrlBase + "resourcelist/") as HttpWebRequest;
-            }
+            //get the information from the api
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcelist/") as HttpWebRequest;
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
             {
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -47,9 +36,8 @@ namespace Blackhouse.Resources
 
                 rptListings.DataSource = temp.resourceList;
                 rptListings.DataBind();
-                PaginationLabel.Text = RenderPaginationControl(page + 1, 20, temp.count);
-            }
 
+            }
             if (!PortalSettings.Current.UserInfo.IsInRole("Administrator"))
             {
                 lnkAdd.Visible = false;
@@ -63,6 +51,9 @@ namespace Blackhouse.Resources
         {
             Response.Redirect(Request.Url.ToString() + "&mid=" + ModuleContext.ModuleId.ToString() + "&ctl=resourceView&resourceid=" + ((LinkButton)e.CommandSource).CommandArgument);
         }
+<<<<<<< HEAD
+}
+=======
 
 
         public string RenderPaginationControl(int page, int pageSize, int totalItems)
@@ -94,6 +85,7 @@ namespace Blackhouse.Resources
 
         }
     }
+>>>>>>> e2c4fd020015d7683609fb305864dd63efcd094f
 
     public class ResourceList
     {
@@ -104,13 +96,15 @@ namespace Blackhouse.Resources
         public string ResourceType { get; set; }
         public string ResourceLanguage { get; set; }
         public string ResourceUploadDate { get; set; }
+<<<<<<< HEAD
+=======
         public bool isActive { get; set; }
         public int PreviewFileId { get; set; }
+>>>>>>> e2c4fd020015d7683609fb305864dd63efcd094f
     }
 
     public class ResourceListPayload
     {
-        public int count { get; set; }
         public List<ResourceList> resourceList { get; set; }
     }
 }

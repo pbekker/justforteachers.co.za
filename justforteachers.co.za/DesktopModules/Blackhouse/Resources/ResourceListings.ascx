@@ -31,25 +31,13 @@ div.box p {
 div:hover .box:not(:hover) {
     opacity: 0.4;
 }
-        .box1 {
-          padding: 10px 20px;
-          display: inline-block;
-          border: 1px solid #E5E5E5;
-          text-decoration: none;
-          border-radius: 4px;
-          background: #ECECEC;
-          -webkit-transition: all 0.15s ease-out;
-          -moz-transition: all 0.15s ease-out;
-          transition: all 0.15s ease-out;
-          width: 100%;
-        }
+
 </style>
 
-<asp:Repeater runat="server" ID="rptListings" OnItemCommand="rptListings_ItemCommand" OnItemDataBound="rptListings_ItemDataBound">
+<asp:Repeater runat="server" ID="rptListings" OnItemCommand="rptListings_ItemCommand">
     <ItemTemplate>
         <div class="box">
             <h3><asp:LinkButton runat="server" ID="lblResourceName" Text='<%#Eval("ResourceName") %>' CommandArgument='<%#Eval("ResourceId") %>' /></h3>
-            <asp:Image runat="server" ID="imgPreviewImage" />
             <p><asp:Label runat="server" ID="lblResourceDescription" Text='<%#Eval("ResourceDescription") %>' /></p>
             <span><b>Type:</b> <asp:Label runat="server" ID="ResourceType" Text='<%#Eval("ResourceType") %>' /></span><br />
             <span><b>Topic:</b> <asp:Label runat="server" ID="ResourceTopic" Text='<%#Eval("ResourceTopic") %>' /></span><br />
@@ -58,16 +46,6 @@ div:hover .box:not(:hover) {
         </div>
     </ItemTemplate>
 </asp:Repeater>
-<div style="clear:both; width: 100%;">
-    <br />
-</div>
-
-<!-- put pager here -->
-<div class="box1" style="clear:both; width: 100%; text-align:center;">
-<asp:Label runat="server" ID="PaginationLabel"/>
-</div>
-<!-- end pager -->
-
 <div style="clear:both;">
     <asp:LinkButton runat="server" ID="lnkAdd" Text ="Add a resource" OnClick="lnkAdd_Click" />
 </div>
