@@ -36,6 +36,8 @@ namespace Blackhouse.Resources
                     ResourceLanguage.Text = result.resourceInfo.ResourceLanguage;
                     ResourceUploadDate.Text = result.resourceInfo.ResourceUploadDate;
 
+                    imgPreviewImage.ImageUrl = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("/resourcefile/{0}", result.resourceInfo.PreviewFileId);
+
                     //now we need to fill in the resource file information
                     //best do the repeater now...
                     rptFiles.DataSource = result.fileInfo;
@@ -149,6 +151,8 @@ namespace Blackhouse.Resources
         public string ResourceLanguage { get; set; }
         public string ResourceUploadDate { get; set; }
         public string ResourceTags { get; set; }
+        public int PreviewFileId { get; set; }
+        public string PreviewFileString { get; set; }
         public bool isActive { get; set; }
     }
 

@@ -37,6 +37,7 @@ namespace JustForTeachersApi.Controllers
                     tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
                     tmpPayload.ResourceId = item.id;
                     tmpPayload.ResourceType = item.type;
+                    tmpPayload.PreviewFileId = item.id;
                     payload.count = (int)item.total;
                     payload.resourceList.Add(tmpPayload);
                 }
