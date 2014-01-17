@@ -96,6 +96,7 @@ namespace JustForTeachersApi.Models
         public string ResourceUploadDate { get; set; }
         public string ResourceTags { get; set; }
         public int PreviewFileId { get; set; }
+        public string PreviewFileString { get; set; }
         public bool isActive { get; set; }
     }
 

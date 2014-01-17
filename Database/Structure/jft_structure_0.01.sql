@@ -35,6 +35,8 @@ ALTER TABLE dbo.bhdFileData DROP CONSTRAINT	FK_bhdFileData_bhdFile
 ALTER TABLE dbo.bhdResourceFormat DROP CONSTRAINT FK_bhdResourceFormat_bhdFormat
 ALTER TABLE dbo.bhdResourceFormat DROP CONSTRAINT FK_bhdResourceFormat_bhdResource
 
+DELETE FROM bhdResource
+
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'FeaturedResources')
 DROP TABLE FeaturedResources
 
