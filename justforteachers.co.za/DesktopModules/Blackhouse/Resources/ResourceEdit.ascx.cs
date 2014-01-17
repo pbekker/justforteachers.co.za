@@ -39,6 +39,9 @@ namespace Blackhouse.Resources
                         span1.InnerText = ex.Message;
                     }
                     PopulateInformation(Request.QueryString["resourceid"]);
+                    divWebsiteUpload.Visible = false;
+                    divAuthorAdd.Visible = false;
+                    divPublisherAdd.Visible = false;
                 }
                 else
                 {
@@ -73,6 +76,142 @@ namespace Blackhouse.Resources
             }
         }
 
+        protected void rptFileInfo_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            //now we need to check what sent the command and then we must react accordingly
+            switch (((LinkButton)e.CommandSource).CommandName.ToLower())
+            {
+                case "author":
+                    divAuthorAdd.Visible = true;
+                    divFileinfo.Visible = false;
+                    break;
+                case "publisher":
+                    divPublisherAdd.Visible = true;
+                    divFileinfo.Visible = false;
+                    break;
+                case "addauthor":
+
+                    break;
+                case "addpublisher":
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected void lnkPublisherAdd_Click(object sender, EventArgs e)
+        {
+            //we can now add the publisher information
+            PublisherData tmpPData = new PublisherData();
+            tmpPData.PublisherName = txtPublisherName.Text;
+            tmpPData.PublisherSurname = txtPublisherSurname.Text;
+            //now post the data
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcepublisher") as HttpWebRequest;
+            request.ContentType = "text/json";
+            request.Method = "POST";
+            try
+            {
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(tmpPData);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+
+            }
+            catch (Exception ex)
+            {
+                lnkPublisherAdd.Text = ex.ToString();
+            }
+            //must update the file info
+            divPublisherAdd.Visible = false;
+            divFileinfo.Visible = true;
+            updateAuthPub();
+        }
+        protected void btnAuthorAdd_Click(object sender, EventArgs e)
+        {
+            //we can now add the author information
+            AuthorData tmpAData = new AuthorData();
+            tmpAData.AuthorName = txtAuthorName.Text;
+            tmpAData.AuthorSurname = txtAuthorSurname.Text;
+            ////now post the data
+            HttpWebRequest prequest = WebRequest.Create(dashboardUrlBase + "resourceauthor") as HttpWebRequest;
+            prequest.ContentType = "text/json";
+            prequest.Method = "POST";
+            try
+            {
+                using (var streamWriter = new StreamWriter(prequest.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(tmpAData);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)prequest.GetResponse();
+
+            }
+            catch (Exception ex)
+            {
+                btnAuthorAdd.Text = ex.ToString();
+            }
+            //must update the fileInfo
+            divAuthorAdd.Visible = false;
+            divFileinfo.Visible = true;
+            updateAuthPub();
+        }
+
+        protected void updateAuthPub()
+        {
+            foreach (RepeaterItem item in rptFileInfo.Items)
+            {
+                WebClient aclient = new WebClient();
+                string aurl = dashboardUrlBase + "resourceauthor";
+                List<GenDropList> authors = JsonConvert.DeserializeObject<List<GenDropList>>(aclient.DownloadString(aurl));
+                FillDropDown((DropDownList)item.FindControl("ddlAuthor"), authors);
+
+                WebClient pclient = new WebClient();
+                string purl = dashboardUrlBase + "resourcepublisher";
+                List<GenDropList> publishers = JsonConvert.DeserializeObject<List<GenDropList>>(pclient.DownloadString(purl));
+                FillDropDown((DropDownList)item.FindControl("ddlPublisher"), publishers);
+
+                int endYear = DateTime.Now.Year;
+                int startYear = 1950;
+                List<GenDropList> yearsPub = new List<GenDropList>();
+                for (int i = startYear; i < endYear + 1; i++)
+                {
+                    GenDropList tmp = new GenDropList();
+                    tmp.ListId = i;
+                    tmp.ListValue = i.ToString();
+                    yearsPub.Add(tmp);
+                }
+                DropDownList target = (DropDownList)item.FindControl("ddlYear");
+                target.Items.Clear();
+                target.AppendDataBoundItems = true;
+                target.Items.Add(new ListItem("Please select an item...", "0"));
+                target.DataSource = yearsPub;
+                target.DataTextField = "ListValue";
+                target.DataValueField = "ListId";
+                target.DataBind();
+            }
+        }
+
+        public void updateAuthPubSelection(List<FileViewInfo> data)
+        {
+            int filecount = 0;
+            foreach (RepeaterItem item in rptFileInfo.Items)
+            {
+                ((DropDownList)item.FindControl("ddlAuthor")).SelectedValue = data[filecount].authorId.ToString();
+                ((DropDownList)item.FindControl("ddlPublisher")).SelectedValue = data[filecount].publisherId.ToString();
+                ((DropDownList)item.FindControl("ddlYear")).SelectedValue = data[filecount].year.ToString();
+                filecount++;
+            }
+        }
+
         public void PopulateInformation(string id)
         {
             //we must get the information for the edit..
@@ -86,20 +225,37 @@ namespace Blackhouse.Resources
             txtResourceTags.Text = resourceresult.resourceInfo.ResourceTags;
             hidTopicId.Value = resourceresult.resourceInfo.ResourceTopicId.ToString();
             lnkShowTreeAgain.Text = resourceresult.resourceInfo.ResourceTopic;
+            hidChoice.Value = resourceresult.resourceInfo.ResourceTypeId.ToString();
             TreeNode item = tvTopics.FindNode(resourceresult.resourceInfo.ResourceTopicId.ToString());
             if (item != null)
             {
                 item.Selected = true;
             }
             tvTopics.Visible = false;
-
             switch (resourceresult.resourceInfo.ResourceTypeId)
             {
                 case 1:
                     //files
+                    try
+                    {
+                        rptFileInfo.DataSource = resourceresult.fileInfo;
+                        rptFileInfo.DataBind();
+                    }
+                    catch (Exception ex)
+                    {
+                        span1.InnerText = ex.Message;
+                        return;
+                    }
+                    divFileinfo.Visible = true;
+                    updateAuthPub();
+                    updateAuthPubSelection(resourceresult.fileInfo);
                     break;
                 case 2:
                     //urls
+                    divWebsiteUpload.Visible = true;
+                    divFileinfo.Visible = false;
+                    txtWebUrl.Text = resourceresult.urlInfo[0].resourceURL;
+                    break;
                 default:
                     break;
             }
@@ -136,7 +292,109 @@ namespace Blackhouse.Resources
             tvTopics.Visible = false;
             lnkShowTreeAgain.Visible = true;
         }
+        protected void lnkUpdateInfo_Click(object sender, EventArgs e)
+        {            
+            string URL = "";
+            List<FileViewInfo> tmpFileInfo = new List<FileViewInfo>();
+            //right, lets update the data
+            ResourceEditList tmpEditData = new ResourceEditList();
+            tmpEditData.ResourceId = int.Parse(Request.QueryString["resourceid"].ToString());
+            tmpEditData.ResourceName = txtResourceName.Text;
+            tmpEditData.ResourceDescription = txtResourceDescription.Text;
+            tmpEditData.ResourceLanguageId = int.Parse(ddlResourceLanguage.SelectedValue.ToString());
+            tmpEditData.ResourceTopicId = int.Parse(hidTopicId.Value.ToString());
+
+            List<string> tagsSend = new List<string>();
+            string tags = txtResourceTags.Text;
+            if (tags.Contains(","))
+            {
+                //these tags must be split
+                string[] tagsList = tags.Split(",");
+                foreach (var item in tagsList)
+                {
+                    string tmp = item;
+                    if (tmp.StartsWith(" "))
+                    {
+                        tmp = tmp.Remove(0, 1);
+                    }
+                    if (item.EndsWith(" "))
+                    {
+                        tmp = tmp.Remove(tmp.Length - 2, 1);
+                    }
+                    tagsSend.Add(tmp);
+                }
+            }
+            else
+            {
+                if (tags.StartsWith(" "))
+                {
+                    tags = tags.Remove(0, 1);
+                }
+                if (tags.EndsWith(" "))
+                {
+                    tags = tags.Remove(tags.Length - 2, 1);
+                }
+                tagsSend.Add(tags);
+            }
+            TagsInfo tmpTags = new TagsInfo();
+            tmpTags.ResourceId = tmpEditData.ResourceId;
+            tmpTags.tags = new List<string>();
+            tmpTags.tags = tagsSend;
+
+            //according to type
+            switch (hidChoice.Value)
+            {
+                case "1":
+                    //files
+                    
+                    //get the files from the repeater
+                    break;
+                case "2":
+                    //urls
+                    URL = txtWebUrl.Text;
+                    break;
+                default:
+                    break;
+            }
+
+            ResourceEditSend tmpSend = new ResourceEditSend();
+            tmpSend.fileInfo = tmpFileInfo;
+            tmpSend.resourceInfo = tmpEditData;
+            tmpSend.tagsInfo = tmpTags;
+            tmpSend.URL = URL;
+
+            //now send the information to the API
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceedit/" + Request.QueryString["resourceid"]) as HttpWebRequest;
+            request.ContentType = "text/json";
+            request.Method = "POST";
+            try
+            {
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(tmpSend);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                span1.InnerText = ex.ToString();
+                return;
+            }
+
+        }
 }
+
+    public class ResourceEditSend
+    {
+        public ResourceEditList resourceInfo { get; set; }
+        public TagsInfo tagsInfo { get; set; }
+        public string URL { get; set; }
+        public List<FileViewInfo> fileInfo { get; set; }
+    }
 
     public class ResourceEditList
     {
@@ -167,6 +425,9 @@ namespace Blackhouse.Resources
         public int FileSize { get; set; }
         public string FileContentType { get; set; }
         public int FileId { get; set; }
+        public int authorId { get; set; }
+        public int publisherId { get; set; }
+        public int year { get; set; }
     }
 
     public class LinkViewInfo
@@ -185,6 +446,24 @@ namespace Blackhouse.Resources
         public List<GenDropList> types { get; set; }
         public List<GenDropList> languages { get; set; }
         public DataTable topics { get; set; }
+    }
+
+    public class AuthorData
+    {
+        public string AuthorName { get; set; }
+        public string AuthorSurname { get; set; }
+    }
+
+    public class PublisherData
+    {
+        public string PublisherName { get; set; }
+        public string PublisherSurname { get; set; }
+    }
+
+    public class TagsInfo
+    {
+        public int ResourceId { get; set; }
+        public List<string> tags { get; set; }
     }
 
 }

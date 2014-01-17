@@ -54,19 +54,12 @@ namespace JustForTeachersApi.Controllers
             {
                 using (ResourcesDataContext dc = new ResourcesDataContext())
                 {
-                    if (uploadModel.authorid != 0)
-                    {
-                        bhdResourceAuthor authData = new bhdResourceAuthor();
-                        authData.authorId = uploadModel.authorid;
-                        authData.fileId = uploadModel.fileid;
-                        dc.bhdResourceAuthors.InsertOnSubmit(authData);
-                        dc.SubmitChanges();
-                    }
-
-                    if (uploadModel.publisherid != 0)
+                    if (uploadModel.publisherid != 0 && uploadModel.authorid != 0)
                     {
                         bhdPublishInformation pubData = new bhdPublishInformation();
+                        pubData.resourceId = uploadModel.resourceid;
                         pubData.authorId = uploadModel.authorid;
+                        pubData.fileId = uploadModel.fileid;
                         pubData.isActive = true;
                         pubData.publisherId = uploadModel.publisherid;
                         pubData.publishYear = uploadModel.publishYear;

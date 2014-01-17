@@ -895,6 +895,7 @@
 
 <span runat="server" id="span1" />
 
+
     <div class="box2" id="divUploadform" runat="server">
         <div class="form-group">
             <asp:Label ID="Label1" runat="server" CssClass="label" Text="Resource Name *" /><br />
@@ -908,6 +909,8 @@
              </asp:requiredfieldvalidator>
             <br />
         </div>
+        <asp:HiddenField runat="server" ID="hidChoice" />
+        
         <div class="form-group">
             <asp:Label ID="Label2" runat="server" CssClass="label" Text="Resource Description *" /><br />
             <asp:TextBox runat="server" CssClass="text textarea"  ID="txtResourceDescription" TextMode="MultiLine" Rows="5" /><br />
@@ -944,5 +947,50 @@
             <asp:TreeView runat="server" ID="tvTopics" OnSelectedNodeChanged="tvTopics_SelectedNodeChanged" />
             <asp:LinkButton runat="server" ID="lnkShowTreeAgain" Text="change?" CssClass="btn header-btn" OnClick="lnkShowTreeAgain_Click" /><asp:HiddenField ID="hidTopicId" runat="server" />
         </div>
+
+        <div id="divFileinfo" runat="server">
+            <asp:Repeater runat="server" ID="rptFileInfo" OnItemCommand="rptFileInfo_ItemCommand">
+                <ItemTemplate>
+                    <fieldset>
+                        <asp:Label runat="server" ID="lblFileName" Text='<%#Eval("FileName") %>' /><br />
+                        <asp:Label runat="server" ID="lblAuthor" Text="Author" CssClass="label" /><asp:LinkButton runat="server" Text="+" ID="btnAddAuthor" CssClass="btn header-btn" CommandName="author" /><br />
+                        <asp:DropDownList runat="server" ID="ddlAuthor" CssClass="text" /><br />
+                        <asp:Label runat="server" ID="lblPublisher" Text="Publisher" CssClass="label" /><asp:LinkButton runat="server" Text="+" ID="btnAddPublisher" CssClass="btn header-btn" CommandName="publisher" /><br />
+                        <asp:DropDownList runat="server" ID="ddlPublisher" CssClass="text" /><br />
+                        <asp:Label runat="server" ID="lblYear" Text="Year" CssClass="label" /><br />
+                        <asp:DropDownList runat="server" ID="ddlYear" CssClass="text" /><br />
+                        <br />
+                    </fieldset>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+
+
+        <div runat="server" id="divWebsiteUpload">
+            <asp:Label ID="Label5" runat="server" Text="Resource Web URL:" /><br />
+            <asp:TextBox runat="server" ID="txtWebUrl" CssClass="text" />
+            <asp:Label ID="Span2" runat="server"></asp:Label>
+        </div>
+
+        <div runat="server" id="divAuthorAdd">
+            <asp:Label runat="server" Text="Author Name" ID="lblAName" /><br />
+            <asp:TextBox runat="server" ID="txtAuthorName" /><br />
+            <asp:Label runat="server" Text="Author Surname" ID="lblASurname" /><br />
+            <asp:TextBox runat="server" ID="txtAuthorSurname" /><br />
+            <asp:LinkButton runat="server" ID="btnAuthorAdd" Text="Add Author" OnClick="btnAuthorAdd_Click" />
+        </div>
+
+        <div runat="server" id="divPublisherAdd">
+            <asp:Label runat="server" Text="Publisher Name" ID="lblPName" /><br />
+            <asp:TextBox runat="server" ID="txtPublisherName" /><br />
+            <asp:Label runat="server" Text="Publisher Surname" ID="lblPSurname" /><br />
+            <asp:TextBox runat="server" ID="txtPublisherSurname" /><br />
+            <asp:LinkButton runat="server" ID="lnkPublisherAdd" Text="Add Publisher" OnClick="lnkPublisherAdd_Click" />
+        </div>
+
+        <div class="box">
+            <asp:LinkButton ID="lnkUpdateInfo" runat="server" Text="Save..." CssClass="btn header-btn" OnClick="lnkUpdateInfo_Click" />
+        </div>
+
     </div>
 

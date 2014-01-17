@@ -75,6 +75,9 @@ namespace JustForTeachersApi.Models
         public int  FileSize { get; set; }
         public string FileContentType { get; set; }
         public int FileId { get; set; }
+        public int authorId { get; set; }
+        public int publisherId { get; set; }
+        public int year { get; set; }
     }
 
     public class LinkViewInfo
@@ -93,7 +96,10 @@ namespace JustForTeachersApi.Models
         public string ResourceUploadDate { get; set; }
         public string ResourceTags { get; set; }
         public int PreviewFileId { get; set; }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2c4fd020015d7683609fb305864dd63efcd094f
         public bool isActive { get; set; }
     }
 
@@ -155,6 +161,7 @@ namespace JustForTeachersApi.Models
 
     public class FileInfoData
     {
+        public int resourceid { get; set; }
         public int fileid { get; set; }
         public int authorid { get; set; }
         public int publisherid { get; set; }
@@ -199,4 +206,11 @@ namespace JustForTeachersApi.Models
         public bool isActive { get; set; }
     }
 
+    public class ResourceEditSend
+    {
+        public ResourceEditList resourceInfo { get; set; }
+        public TagsInfo tagsInfo { get; set; }
+        public string URL { get; set; }
+        public List<FileViewInfo> fileInfo { get; set; }
+    }
 }

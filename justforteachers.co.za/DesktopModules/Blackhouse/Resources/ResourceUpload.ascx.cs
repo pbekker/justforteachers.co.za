@@ -445,6 +445,7 @@ namespace Blackhouse.Resources
                 target.DataBind();
             }
         }
+
         protected void rptFileInfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             updateAuthPub();
@@ -479,7 +480,70 @@ namespace Blackhouse.Resources
                     streamWriter.Flush();
                     streamWriter.Close();
                 }
+<<<<<<< HEAD
                 var httpResponse = (HttpWebResponse)request.GetResponse();
+=======
+                
+                foreach (RepeaterItem item in rptFileInfo.Items)
+                {
+                    int fileid = 0;
+                    FileData tmpFile = newFileData[filecounter];
+                    HttpWebRequest filerequest = WebRequest.Create(dashboardUrlBase + "resourceupload/" + ResourceId) as HttpWebRequest;
+                    filerequest.ContentType = "text/json";
+                    filerequest.Method = "POST";
+                    try
+                    {
+                        using (var streamWriter = new StreamWriter(filerequest.GetRequestStream()))
+                        {
+                            string json = JsonConvert.SerializeObject(tmpFile);
+
+                            streamWriter.Write(json);
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+                        var httpFileResponse = (HttpWebResponse)filerequest.GetResponse();
+                        //when we get the response we need to get the object returned.
+                        //then show the author and publisher information upload.
+                        Stream resp = httpFileResponse.GetResponseStream();
+                        StreamReader reader = new StreamReader(resp);
+                        string text = reader.ReadToEnd();
+                        ResourceFile resourcefileReturn = JsonConvert.DeserializeObject<ResourceFile>(text);
+                        fileid = resourcefileReturn.fileid;
+                        filecounter++;
+                    }
+                    catch (Exception ex)
+                    {
+                        lnkSaveFileInfo.Text = ex.ToString();
+                        return;
+                    }
+
+                    DropDownList author = (DropDownList)item.FindControl("ddlAuthor");
+                    DropDownList publisher = (DropDownList)item.FindControl("ddlPublisher");
+                    DropDownList year = (DropDownList)item.FindControl("ddlYear");
+
+                    FileInfoData tmpFData = new FileInfoData();
+                    tmpFData.resourceid = ResourceId;
+                    tmpFData.authorid = int.Parse(author.SelectedValue);
+                    tmpFData.publisherid = int.Parse(publisher.SelectedValue);
+                    tmpFData.publishYear = int.Parse(year.SelectedValue);
+                    tmpFData.fileid = fileid;
+                    tmpFileData.Add(tmpFData);
+
+                    HttpWebRequest fileInfoRequest = WebRequest.Create(dashboardUrlBase + "resourcefile") as HttpWebRequest;
+                    fileInfoRequest.ContentType = "text/json";
+                    fileInfoRequest.Method = "POST";
+                    try
+                    {
+                        using (var streamWriter = new StreamWriter(fileInfoRequest.GetRequestStream()))
+                        {
+                            string json = JsonConvert.SerializeObject(tmpFData);
+
+                            streamWriter.Write(json);
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+                        var httpResponse = (HttpWebResponse)fileInfoRequest.GetResponse();
+>>>>>>> e2c4fd020015d7683609fb305864dd63efcd094f
 
             }
             catch (Exception ex)
@@ -547,6 +611,7 @@ namespace Blackhouse.Resources
 
     public class FileInfoData
     {
+        public int resourceid { get; set; }
         public int fileid { get; set; }
         public int authorid { get; set; }
         public int publisherid { get; set; }
