@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.375, 22.375" name="Resources">
-=======
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.75, 26.125" name="Resources">
->>>>>>> e2c4fd020015d7683609fb305864dd63efcd094f
   <DataContextMoniker Name="/ResourcesDataContext" />
   <nestedChildShapes>
     <classShape Id="d29b5117-1a75-4692-be4c-14cbf01f67ad" absoluteBounds="0.75, 1.25, 2, 1.5785953776041666">

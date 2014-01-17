@@ -90,24 +90,7 @@
       <Column Name="description" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="bhdMenu_bhdMenuPage" Member="bhdMenuPages" ThisKey="id" OtherKey="menuId" Type="bhdMenuPage" />
-<<<<<<< HEAD
       <Association Name="bhdMenu_bhdMenuItem" Member="bhdMenuItems" ThisKey="id" OtherKey="menuId" Type="bhdMenuItem" />
-=======
-    </Type>
-  </Table>
-  <Table Name="dbo.bhdMenuItem" Member="bhdMenuItems">
-    <Type Name="bhdMenuItem">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="menuId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="text" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="hoverText" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="tabId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="moduleId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="url" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="isAdmin" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="bhdMenu_bhdMenuItem" Member="bhdMenu" ThisKey="menuId" OtherKey="id" Type="bhdMenu" IsForeignKey="true" />
->>>>>>> e2c4fd020015d7683609fb305864dd63efcd094f
     </Type>
   </Table>
   <Table Name="dbo.bhdMenuPage" Member="bhdMenuPages">

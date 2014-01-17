@@ -7,15 +7,18 @@ using System.Web.UI.WebControls;
 using DotNetNuke.UI.Modules;
 using System.Net;
 using Newtonsoft.Json;
+using System.Net.Http;
+using System.IO;
+using DotNetNuke.Entities.Portals;
 using DotNetNuke.Common;
 
 namespace Blackhouse.Resources
 {
     public partial class ResourceView : ModuleUserControlBase
     {
+        protected string dashboardUrlBase = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"];
         protected void Page_Load(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             if (!IsPostBack)
             {
                 try
@@ -117,12 +120,13 @@ namespace Blackhouse.Resources
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
                     string json = JsonConvert.SerializeObject(currentItem);
-=======
->>>>>>> cb198e2806748ea0a538ce6932082ed34dc8316a
 
+                }
+            } catch (Exception)
+            {
+            }
         }
-<<<<<<< HEAD
-}
+    }
 
     public class ResourceViewPayload
     {
@@ -166,7 +170,5 @@ namespace Blackhouse.Resources
         public string ContentDisposition { get; set; }
         public string ContentDispositionFileName { get; set; }
         public byte[] FileData { get; set; }
-=======
->>>>>>> cb198e2806748ea0a538ce6932082ed34dc8316a
     }
 }
