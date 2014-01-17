@@ -11,7 +11,6 @@ using System.Net.Http;
 using System.IO;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Common;
-using System.Text;
 
 namespace Blackhouse.Resources
 {
@@ -20,18 +19,8 @@ namespace Blackhouse.Resources
         protected string dashboardUrlBase = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"];
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpWebRequest request;
-            int page = 0;
-            if (Request.QueryString["page"] != null)
-            {
-                page = int.Parse(Request.QueryString["page"]) - 1;
-                request = WebRequest.Create(dashboardUrlBase + "resourcelist/" + page) as HttpWebRequest;
-            }
-            else
-            {
-                //get the information from the api
-                request = WebRequest.Create(dashboardUrlBase + "resourcelist/") as HttpWebRequest;
-            }
+            //get the information from the api
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcelist/") as HttpWebRequest;
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
             {
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -47,9 +36,8 @@ namespace Blackhouse.Resources
 
                 rptListings.DataSource = temp.resourceList;
                 rptListings.DataBind();
-                PaginationLabel.Text = RenderPaginationControl(page + 1, 20, temp.count);
-            }
 
+            }
             if (!PortalSettings.Current.UserInfo.IsInRole("Administrator"))
             {
                 lnkAdd.Visible = false;
@@ -63,36 +51,7 @@ namespace Blackhouse.Resources
         {
             Response.Redirect(Request.Url.ToString() + "&mid=" + ModuleContext.ModuleId.ToString() + "&ctl=resourceView&resourceid=" + ((LinkButton)e.CommandSource).CommandArgument);
         }
-<<<<<<< HEAD
-
-        public string RenderPaginationControl(int page, int pageSize, int totalItems)
-        {
-            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-
-            // Create pager.
-            StringBuilder pagerSb = new StringBuilder();
-            for (int i = 1; i <= totalPages; ++i)
-            {
-                // If it is NOT a link to current page.
-                if (i != page) { pagerSb.Append(string.Format("<a href='" + Globals.NavigateURL(ModuleContext.TabId) + "?page={0}' Class='btn btn-header'>{0}</a>", i)); }
-                // If it is the link to current page.
-                else { pagerSb.Append(string.Format("<a href='" + Globals.NavigateURL(ModuleContext.TabId) + "?page={0}' Class='btn btn-header' style='background: #3498db; color: #fff;'>{0}</a>", i)); }
-            }
-
-            return pagerSb.ToString();
-=======
-        protected void rptListings_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.AlternatingItem ||
-                e.Item.ItemType == ListItemType.Item)
-            {
-                ResourceList item = (ResourceList)e.Item.DataItem;
-                Image previewFile = (Image)e.Item.FindControl("imgPreviewImage");
-                previewFile.ImageUrl = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("/resourcefile/{0}", item.PreviewFileId);
-            }
->>>>>>> 999baeccd6951069ba552a938d5324d338e93c7f
-        }
-    }
+}
 
     public class ResourceList
     {
@@ -103,16 +62,10 @@ namespace Blackhouse.Resources
         public string ResourceType { get; set; }
         public string ResourceLanguage { get; set; }
         public string ResourceUploadDate { get; set; }
-<<<<<<< HEAD
-        public bool isActive { get; set; }
-=======
-        public int PreviewFileId { get; set; }
->>>>>>> 999baeccd6951069ba552a938d5324d338e93c7f
     }
 
     public class ResourceListPayload
     {
-        public int count { get; set; }
         public List<ResourceList> resourceList { get; set; }
     }
 }

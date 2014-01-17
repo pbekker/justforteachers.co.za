@@ -76,7 +76,7 @@ IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFeaturedResources')
 DROP TABLE bhdFeaturedResources
 GO
 
-BEGIN TRANSACTION
+
 CREATE TABLE dbo.bhdFeaturedResources
 	(
 	resourceId int NOT NULL,
@@ -94,13 +94,13 @@ ALTER TABLE dbo.bhdFeaturedResources ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdFeaturedResources SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceRating')
 DROP TABLE  bhdResourceRating
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdResourceRating
 	(
@@ -112,13 +112,13 @@ CREATE TABLE dbo.bhdResourceRating
 GO
 ALTER TABLE dbo.bhdResourceRating SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceTopics')
 DROP TABLE  bhdResourceTopics
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdResourceTopics
 	(
@@ -142,13 +142,13 @@ ALTER TABLE dbo.bhdResourceTopics ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResourceTopics SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceLanguage')
 DROP TABLE  bhdResourceLanguage
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdResourceLanguage
 	(
@@ -169,13 +169,13 @@ ALTER TABLE dbo.bhdResourceLanguage ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResourceLanguage SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceType')
 DROP TABLE bhdResourceType
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdResourceType
 	(
@@ -196,13 +196,13 @@ ALTER TABLE dbo.bhdResourceType ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResourceType SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResource')
 DROP TABLE  bhdResource
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdResource
 	(
@@ -233,13 +233,13 @@ ALTER TABLE dbo.bhdResource ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResource SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFileType')
 DROP TABLE bhdFileType
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdFileType
 	(
@@ -263,13 +263,13 @@ ALTER TABLE dbo.bhdFileType ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdFileType SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFileData')
 DROP TABLE bhdFileData
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdFileData
 	(
@@ -280,13 +280,13 @@ CREATE TABLE dbo.bhdFileData
 GO
 ALTER TABLE dbo.bhdFileData SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFile')
 DROP TABLE  bhdFile
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdFile
 	(
@@ -309,13 +309,13 @@ ALTER TABLE dbo.bhdFile ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdFile SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceFile')
 DROP TABLE  bhdResourceFile
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdResourceFile
 	(
@@ -326,13 +326,13 @@ CREATE TABLE dbo.bhdResourceFile
 GO
 ALTER TABLE dbo.bhdResourceFile SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdPublishInformation')
 DROP TABLE  bhdPublishInformation
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdPublishInformation
 	(
@@ -357,13 +357,13 @@ ALTER TABLE dbo.bhdPublishInformation ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdPublishInformation SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdAuthor')
 DROP TABLE  bhdAuthor
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdAuthor
 	(
@@ -381,14 +381,14 @@ ALTER TABLE dbo.bhdAuthor ADD CONSTRAINT
 	(
 	id
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-COMMIT
+
 GO
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdPublisher')
 DROP TABLE  bhdPublisher
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdPublisher
 	(
@@ -406,14 +406,14 @@ ALTER TABLE dbo.bhdPublisher ADD CONSTRAINT
 	(
 	id
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-COMMIT
+
 GO
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceKeyword')
 DROP TABLE bhdResourceKeyword
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdResourceKeyword
 	(
@@ -424,13 +424,13 @@ CREATE TABLE dbo.bhdResourceKeyword
 GO
 ALTER TABLE dbo.bhdResourceKeyword SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdKeyword')
 DROP TABLE bhdKeyword
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdKeyword
 	(
@@ -448,13 +448,13 @@ ALTER TABLE dbo.bhdKeyword ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdKeyword SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdLink')
 DROP TABLE bhdLink
 GO
 
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdLink
 	(
@@ -476,8 +476,8 @@ GO
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceLink')
 DROP TABLE bhdResourceLink
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 CREATE TABLE dbo.bhdResourceLink
 	(
@@ -489,12 +489,12 @@ CREATE TABLE dbo.bhdResourceLink
 GO
 ALTER TABLE dbo.bhdResourceLink SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceBundle')
 DROP TABLE bhdResourceBundle
 GO
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdResourceBundle
 	(
@@ -514,12 +514,12 @@ ALTER TABLE dbo.bhdResourceBundle ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResourceLink SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceBundleFile')
 DROP TABLE bhdResourceBundleFile
 GO
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdResourceBundleFile
 	(
@@ -532,12 +532,12 @@ GO
 
 ALTER TABLE dbo.bhdResourceBundleFile SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceFormat')
 DROP TABLE bhdResourceFormat
 GO
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdResourceFormat
 	(
@@ -548,13 +548,13 @@ CREATE TABLE dbo.bhdResourceFormat
 GO
 ALTER TABLE dbo.bhdResourceFormat SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdFormat')
 DROP TABLE bhdFormat
 GO
-BEGIN TRANSACTION
+
 GO
 CREATE TABLE dbo.bhdFormat
 	(
@@ -569,7 +569,7 @@ ALTER TABLE dbo.bhdFormat ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdFormat SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 IF EXISTS (SELECT * FROM sys.tables t WHERE t.name = 'bhdResourceComment')
 DROP TABLE bhdResourceComment
@@ -757,7 +757,7 @@ VALUES ('Electricity and magnetism', '', @topicId, 1),
 	   ('Waves, sound and light', '', @topicId, 1)
 END
 
-BEGIN TRANSACTION
+
 ALTER TABLE dbo.bhdResource ADD CONSTRAINT
 	FK_bhdResource_bhdResourceLanguage FOREIGN KEY
 	(
@@ -793,8 +793,8 @@ ALTER TABLE dbo.bhdResource ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResource SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdResourceRating ADD CONSTRAINT
 	FK_bhdResourceRating_bhdResource FOREIGN KEY
@@ -809,18 +809,18 @@ ALTER TABLE dbo.bhdResourceRating ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResourceRating SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdPublisher SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdFileType SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdFile ADD CONSTRAINT
 	FK_bhdFile_bhdFileType FOREIGN KEY
@@ -835,8 +835,8 @@ ALTER TABLE dbo.bhdFile ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdFile SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdResourceFile ADD CONSTRAINT
 	FK_bhdResourceFile_bhdResource FOREIGN KEY
@@ -862,8 +862,8 @@ ALTER TABLE dbo.bhdResourceFile ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResourceFile SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdFeaturedResources ADD CONSTRAINT
 	FK_bhdFeaturedResources_bhdResource FOREIGN KEY
@@ -878,13 +878,13 @@ ALTER TABLE dbo.bhdFeaturedResources ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdFeaturedResources SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdAuthor SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdPublishInformation ADD CONSTRAINT
 	FK_bhdPublishInformation_bhdPublisher FOREIGN KEY
@@ -910,23 +910,23 @@ ALTER TABLE dbo.bhdPublishInformation ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdPublishInformation SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdResourceBundle SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdResource SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdLink SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdResourceLink ADD CONSTRAINT
 	FK_bhdResourceLink_bhdLink FOREIGN KEY
@@ -952,13 +952,13 @@ ALTER TABLE dbo.bhdResourceLink ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResourceLink SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdKeyword SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdResourceKeyword ADD CONSTRAINT
 	FK_bhdResourceKeyword_bhdKeyword FOREIGN KEY
@@ -984,13 +984,13 @@ ALTER TABLE dbo.bhdResourceKeyword ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResourceKeyword SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdFile SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdResourceBundleFile ADD CONSTRAINT
 	FK_bhdResourceBundleFile_bhdResourceBundle FOREIGN KEY
@@ -1016,12 +1016,12 @@ ALTER TABLE dbo.bhdResourceBundleFile ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdResourceBundleFile SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 ALTER TABLE dbo.bhdFile SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
-BEGIN TRANSACTION
+
+
 GO
 ALTER TABLE dbo.bhdFileData ADD CONSTRAINT
 	FK_bhdFileData_bhdFile FOREIGN KEY
@@ -1036,7 +1036,7 @@ ALTER TABLE dbo.bhdFileData ADD CONSTRAINT
 GO
 ALTER TABLE dbo.bhdFileData SET (LOCK_ESCALATION = TABLE)
 GO
-COMMIT
+
 
 ALTER TABLE dbo.bhdResourceComment ADD CONSTRAINT
 FK_bhdResourceComment_bhdResource FOREIGN KEY

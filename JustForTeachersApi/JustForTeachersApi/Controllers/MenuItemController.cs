@@ -32,7 +32,7 @@ namespace JustForTeachersApi.Controllers
                     if (menuList.Any())
                     {
                         List<menuItem> menuItemList = new List<menuItem>();
-                        foreach (var currentMenuItem in menuList)
+                        foreach (bhdMenuItem currentMenuItem in menuList)
                         {
                             int _tabid = 0;
                             int _moduleid = 0;
