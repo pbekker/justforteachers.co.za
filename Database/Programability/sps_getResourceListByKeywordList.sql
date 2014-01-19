@@ -74,21 +74,25 @@ BEGIN
 		r.rating,
 		r.[description],
 		r.uploadDate,
-		r.uploadUser
+		r.uploadUser,
+		(SELECT COUNT(*) FROM resources) total
 	FROM resources r (NOLOCK)
 	WHERE
 		r.rowNumber >= @startRow AND r.rowNumber <= @endRow 
 	ORDER BY
 		CASE WHEN @orderby = 'name' AND @orderDirection = 'ASC' THEN r.name END,
-		CASE WHEN @orderby = 'name' AND @orderDirection != 'ASC' THEN r.name END DESC,
+		CASE WHEN @orderby = 'name' AND @orderDirection != 'DESC' THEN r.name END DESC,
 		CASE WHEN @orderby = 'rating' AND @orderDirection = 'ASC' THEN r.rating END, 
-		CASE WHEN @orderby = 'rating' AND @orderDirection != 'ASC' THEN r.rating END DESC,
+		CASE WHEN @orderby = 'rating' AND @orderDirection != 'DESC' THEN r.rating END DESC,
 		CASE WHEN @orderby = 'uploadDate' AND @orderDirection = 'ASC' THEN r.uploadDate END,
-		CASE WHEN @orderby = 'uploadDate' AND @orderDirection != 'ASC' THEN r.uploadDate END DESC
+		CASE WHEN @orderby = 'uploadDate' AND @orderDirection != 'DESC' THEN r.uploadDate END DESC
 END
 GO
 
-DECLARE @keywords VARCHAR(MAX) = 'this, resource, is, in, the, world, somewhere, it, doesnt, matter, how, many, are, here'
-EXEC  sps_getResourceListByKeywordList @keywords, 1, 1, 20, 'qwe', 'qwe'
+DECLARE @keywords VARCHAR(MAX) = 'dog,sleeping,'
+EXEC  sps_getResourceListByKeywordList @keywords, 0, 1, 20, 'name', 'DESC'
 
 
+SELECT * FROM bhdResource r
+	JOIN bhdResourceKeyword rkw on rkw.Resourceid = r.id
+JOIN bhdKeyword kw ON kw.id = rkw.KeywordId
