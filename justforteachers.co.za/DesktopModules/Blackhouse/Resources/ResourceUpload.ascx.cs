@@ -735,4 +735,8 @@ namespace Blackhouse.Resources
         public int ResourceId { get; set; }
         public List<string> tags { get; set; }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0858824d6c3b12a63065a4f24a8d28dcdc862ddf
 }

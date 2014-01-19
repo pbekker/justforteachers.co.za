@@ -275,10 +275,12 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\Resources.dbml.layout">
-      <DependentUpon>Resources.dbml</DependentUpon>
-    </None>
     <None Include="Properties\PublishProfiles\publish.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Resources.dbml.layout">
+      <DependentUpon>Resources.dbml</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

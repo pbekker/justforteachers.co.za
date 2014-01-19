@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.375, 22.375" name="Resources">
   <DataContextMoniker Name="/ResourcesDataContext" />
@@ -321,3 +322,5 @@
     </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
+=======
+>>>>>>> 0858824d6c3b12a63065a4f24a8d28dcdc862ddf
