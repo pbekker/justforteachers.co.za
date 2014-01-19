@@ -667,9 +667,17 @@ namespace Blackhouse.Resources
         }
     }
 
-
-
-
+    public class GenDropList
+    {
+        public int ListId { get; set; }
+        public string ListValue { get; set; }
+    }
+    public class ResourcePayload
+    {
+        public List<GenDropList> types { get; set; }
+        public List<GenDropList> languages { get; set; }
+        public DataTable topics { get; set; }
+    }
 
     public class UploadData
     {
@@ -701,7 +709,17 @@ namespace Blackhouse.Resources
         public string filename { get; set; }
     }
 
+    public class AuthorData
+    {
+        public string AuthorName { get; set; }
+        public string AuthorSurname { get; set; }
+    }
 
+    public class PublisherData
+    {
+        public string PublisherName { get; set; }
+        public string PublisherSurname { get; set; }
+    }
 
     public class FileInfoData
     {
@@ -712,5 +730,9 @@ namespace Blackhouse.Resources
         public int publishYear { get; set; }
     }
 
-
+    public class TagsInfo
+    {
+        public int ResourceId { get; set; }
+        public List<string> tags { get; set; }
+    }
 }
