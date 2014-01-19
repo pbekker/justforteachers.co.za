@@ -78,7 +78,11 @@ namespace Blackhouse.Menu
                 menuLink.Text = currentItem.text;
                 menuLink.ToolTip = currentItem.hoverText;
                 
-                if (!String.IsNullOrEmpty(currentItem.url))
+                if (!String.IsNullOrEmpty(currentItem.url) && currentItem.tabId != 0 && currentItem.moduleId != 0)
+                {
+                    menuLink.NavigateUrl = Globals.NavigateURL(currentItem.tabId, currentItem.url, "mid=" + currentItem.moduleId);
+                }
+                else if (!string.IsNullOrEmpty(currentItem.url))
                 {
                     menuLink.NavigateUrl = currentItem.url;
                 }
