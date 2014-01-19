@@ -27,8 +27,11 @@ namespace JustForTeachersApi.Controllers
             {
                 if (id == 0)
                     id = 1;
-                bhdFile fileInfo = db.bhdFiles.Single((x) => x.id == id);
-                return new FileContentResult(fileInfo.bhdFileData.data.ToArray(), fileInfo.bhdFileType.contentType);
+                var fileInfo = db.bhdFiles.Where((x) => x.id == id).FirstOrDefault();
+                if (fileInfo != null)
+                    return new FileContentResult(fileInfo.bhdFileData.data.ToArray(), fileInfo.bhdFileType.contentType);
+                else
+                    return null;
              }
         }
 
