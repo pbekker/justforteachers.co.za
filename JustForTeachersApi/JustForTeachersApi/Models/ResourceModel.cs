@@ -40,6 +40,7 @@ namespace JustForTeachersApi.Models
         public int ResourceTypeId { get; set; }
         public int ResourceLanguageId { get; set; }
         public int ResourceTopicId { get; set; }
+        public int ResourceFormatId { get; set; }
         public int PortalId { get; set; }
     }
 
@@ -53,6 +54,7 @@ namespace JustForTeachersApi.Models
     {
         public List<GenDropList> types { get; set; }
         public List<GenDropList> languages { get; set; }
+        public List<GenDropList> formats { get; set; }
         public DataTable topics { get; set; }
     }
 
@@ -95,6 +97,7 @@ namespace JustForTeachersApi.Models
         public string ResourceLanguage { get; set; }
         public string ResourceUploadDate { get; set; }
         public string ResourceTags { get; set; }
+        public string ResourceFormat { get; set; }
         public int PreviewFileId { get; set; }
         public string PreviewFileString { get; set; }
         public bool isActive { get; set; }

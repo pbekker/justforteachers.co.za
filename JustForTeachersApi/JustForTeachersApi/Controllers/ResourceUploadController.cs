@@ -32,10 +32,12 @@ namespace JustForTeachersApi.Controllers
                                        where d.isActive
                                        select new GenDropList() { ListId = d.id, ListValue = d.name }).ToList();
                 payload.types = r;
-                //r = (from d in dc.bhdResourceTopics
-                //     where d.isActive
-                //     select new GenDropList() { ListId = d.id, ListValue = d.name }).ToList();
-                //payload.topics = r;
+                
+                r = (from d in dc.bhdFormats
+                     where (bool)d.isActive
+                     select new GenDropList() { ListId = d.id, ListValue = d.name }).ToList();
+                payload.formats = r;
+
                 r = (from d in dc.bhdResourceLanguages
                      where d.isActive
                      select new GenDropList() { ListId = d.id, ListValue = d.name }).ToList();

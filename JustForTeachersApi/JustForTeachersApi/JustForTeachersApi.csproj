@@ -182,6 +182,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\Resources.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.dbml</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -208,11 +213,6 @@
     <Compile Include="Models\menuModel.cs" />
     <Compile Include="Models\ResourceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="App_Data\Resources.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.dbml</DependentUpon>
-    </Compile>
     <Compile Include="ResourceUploadHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -278,9 +278,9 @@
     <None Include="Properties\PublishProfiles\publish.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Resources.dbml.layout">
+    <None Include="App_Data\Resources.dbml.layout">
       <DependentUpon>Resources.dbml</DependentUpon>
-    </Content>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -30,6 +30,12 @@ namespace JustForTeachersApi
                 dc.SubmitChanges();
                 retId = r.id;
 
+                bhdResourceFormat rf = new bhdResourceFormat();
+                rf.formatId = data.ResourceFormatId;
+                rf.resourceId = r.id;
+                dc.bhdResourceFormats.InsertOnSubmit(rf);
+                dc.SubmitChanges();
+
                 bhdResourceRating rr = new bhdResourceRating();
                 rr.resourceId = r.id;
                 rr.rating = 1;

@@ -931,6 +931,12 @@
             <asp:DropDownList runat="server" CssClass="text" id="ddlResourceTopic" /><br /><br />
         </div>--%>
         <div class="form-group">
+            <asp:Label ID="Label6" runat="server" CssClass="label" Text="Resource Type" /><br />
+            <asp:DropDownList runat="server" CssClass="text" id="ddlResourceFormat" /><br />
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlResourceLanguage" ErrorMessage="Please select a Languge for the resource." ValidationGroup="ResourceBasicInfo"  InitialValue="0" CssClass="errormesssage" />
+            <br />
+        </div>
+        <div class="form-group">
             <asp:Label ID="Label3" runat="server" CssClass="label" Text="Resource Language" /><br />
             <asp:DropDownList runat="server" CssClass="text" id="ddlResourceLanguage" /><br />
             <asp:RequiredFieldValidator ID="rfvResourceLanguage" runat="server" ControlToValidate="ddlResourceLanguage" ErrorMessage="Please select a Languge for the resource." ValidationGroup="ResourceBasicInfo"  InitialValue="0" CssClass="errormesssage" />

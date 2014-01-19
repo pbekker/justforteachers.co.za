@@ -75,13 +75,41 @@ namespace JustForTeachersApi.Controllers
         // GET api/ResourceList/5/orderby
         [HttpGet]
         [AllowAnonymous]
-        public ResourceListPayload Get(int id, string orderby)
+        public ResourceListPayload Get(int id, string search)
         {
             ResourceListPayload payload = new ResourceListPayload();
             payload.resourceList = new List<ResourceList>();
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
-                var r = dc.sps_getResourceList(false, id + 1, 20, orderby, "ASC"); //name, rating or topic
+                //var r = dc.sps_getResourceList(false, id + 1, 20, search); //name, rating or topic
+                var r = dc.sps_getResourceListByKeywordList(search, false, id + 1, 20, null, null);
+                foreach (var item in r)
+                {
+                    ResourceList tmpPayload = new ResourceList();
+                    tmpPayload.ResourceName = item.name;
+                    tmpPayload.ResourceDescription = item.description;
+                    tmpPayload.ResourceLanguage = item.language;
+                    tmpPayload.ResourceTopic = item.topic;
+                    tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
+                    tmpPayload.ResourceId = item.id;
+                    tmpPayload.ResourceType = item.type;
+                    payload.count = (int)item.total;
+                    payload.resourceList.Add(tmpPayload);
+                }
+            }
+            return payload;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ResourceListPayload Get(int id, string search, string orderby, string order)
+        {
+            ResourceListPayload payload = new ResourceListPayload();
+            payload.resourceList = new List<ResourceList>();
+            using (ResourcesDataContext dc = new ResourcesDataContext())
+            {
+                //var r = dc.sps_getResourceList(false, id + 1, 20, search); //name, rating or topic
+                var r = dc.sps_getResourceListByKeywordList(search, false, id + 1, 20, orderby, order);
                 foreach (var item in r)
                 {
                     ResourceList tmpPayload = new ResourceList();
@@ -119,6 +147,7 @@ namespace JustForTeachersApi.Controllers
                     tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
                     tmpPayload.ResourceId = item.id;
                     tmpPayload.ResourceType = item.type;
+                    payload.count = (int)item.total;
                     payload.resourceList.Add(tmpPayload);
                 }
             }

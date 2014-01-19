@@ -40,8 +40,9 @@ namespace JustForTeachersApi.Controllers
                          join l in dc.bhdResourceLanguages on d.languageId equals l.id
                          join top in dc.bhdResourceTopics on d.topicId equals top.id
                          join typ in dc.bhdResourceTypes on d.typeId equals typ.id
+                         join rf in dc.bhdResourceFormats on d.id equals rf.resourceId
                          where d.id == id
-                         select new { ResourceName = d.name, ResourceDescription = d.description, ResourceUpload = d.uploadDate, ResourceId = d.id, ResourceLanguage = l.name, ResourceTopic = top.name, ResourceType = typ.name }).FirstOrDefault();
+                         select new { ResourceName = d.name, ResourceDescription = d.description, ResourceUpload = d.uploadDate, ResourceId = d.id, ResourceLanguage = l.name, ResourceTopic = top.name, ResourceType = typ.name, ResourceFormat = rf.bhdFormat.name}).FirstOrDefault();
                 if (r != null)
                 {
                     tmpList.ResourceName = r.ResourceName;
@@ -51,15 +52,16 @@ namespace JustForTeachersApi.Controllers
                     tmpList.ResourceLanguage = r.ResourceLanguage;
                     tmpList.ResourceTopic = r.ResourceTopic;
                     tmpList.ResourceType = r.ResourceType;
+                    tmpList.ResourceFormat = r.ResourceFormat;
                 }
                 tmpResource.resourceInfo = tmpList;
                 List<FileViewInfo> files = (from f in dc.bhdResourceFiles
-                         where f.resourceId == r.ResourceId
+                                            where f.resourceId == r.ResourceId
                                             select new FileViewInfo() { FileName = f.bhdFile.name, FileSize = f.bhdFile.size, FileContentType = f.bhdFile.bhdFileType.contentType, FileId = f.bhdFile.id }).ToList();
                 tmpResource.fileInfo = files;
 
                 List<LinkViewInfo> urls = (from u in dc.bhdResourceLinks
-                            where u.resourceId == r.ResourceId
+                                           where u.resourceId == r.ResourceId
                             select new LinkViewInfo() { resourceURL = u.bhdLink.url }).ToList();
                 tmpResource.urlInfo = urls;
                 string tagRet = "";

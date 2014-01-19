@@ -31,6 +31,7 @@ namespace Blackhouse.Resources
                 ResourcePayload result = JsonConvert.DeserializeObject<ResourcePayload>(client.DownloadString(url));
                 List<GenDropList> types = result.types;
                 List<GenDropList> languages = result.languages;
+                List<GenDropList> formats = result.formats;
                 try
                 {
                     AddNodes(tvTopics.Nodes, 0, result.topics);
@@ -42,7 +43,7 @@ namespace Blackhouse.Resources
                 //FillDropDown(ddlResourceType, types);
                 //FillDropDown(ddlResourceTopic, topics);
                 FillDropDown(ddlResourceLanguage, languages);
-
+                FillDropDown(ddlResourceFormat, formats);
                 divFileUpload.Visible = false;
                 divWebsiteUpload.Visible = false;
                 divAuthorAdd.Visible = false;
@@ -138,6 +139,7 @@ namespace Blackhouse.Resources
             resourceData.ResourceName = txtResourceName.Text;
             resourceData.ResourceTopicId = int.Parse(hidTopicId.Value);
             resourceData.ResourceTypeId = 2;
+            resourceData.ResourceFormatId = int.Parse(ddlResourceFormat.SelectedValue);
 
             HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/") as HttpWebRequest;
             request.Method = "POST";
@@ -412,6 +414,7 @@ namespace Blackhouse.Resources
                 resourceData.ResourceName = txtResourceName.Text;
                 resourceData.ResourceTopicId = int.Parse(hidTopicId.Value);
                 resourceData.ResourceTypeId = 1;
+                resourceData.ResourceFormatId = int.Parse(ddlResourceFormat.SelectedValue);
 
                 HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceupload/") as HttpWebRequest;
                 request.Method = "POST";
@@ -672,10 +675,12 @@ namespace Blackhouse.Resources
         public int ListId { get; set; }
         public string ListValue { get; set; }
     }
+
     public class ResourcePayload
     {
         public List<GenDropList> types { get; set; }
         public List<GenDropList> languages { get; set; }
+        public List<GenDropList> formats { get; set; }
         public DataTable topics { get; set; }
     }
 
@@ -686,6 +691,7 @@ namespace Blackhouse.Resources
         public int ResourceTypeId { get; set; }
         public int ResourceLanguageId { get; set; }
         public int ResourceTopicId { get; set; }
+        public int ResourceFormatId { get; set; }
         public int PortalId { get; set; }
     }
 
@@ -735,8 +741,4 @@ namespace Blackhouse.Resources
         public int ResourceId { get; set; }
         public List<string> tags { get; set; }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 0858824d6c3b12a63065a4f24a8d28dcdc862ddf
 }
