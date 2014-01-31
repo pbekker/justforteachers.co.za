@@ -58,11 +58,11 @@ BEGIN
 		r.rowNumber >= @startRow AND r.rowNumber <= @endRow 
 	ORDER BY
 		CASE WHEN @orderby = 'name' AND @orderDirection = 'ASC' THEN r.name END,
-		CASE WHEN @orderby = 'name' AND @orderDirection != 'ASC' THEN r.name END DESC,
+		CASE WHEN @orderby = 'name' AND @orderDirection != 'DESC' THEN r.name END DESC,
 		CASE WHEN @orderby = 'rating' AND @orderDirection = 'ASC' THEN r.rating END, 
-		CASE WHEN @orderby = 'rating' AND @orderDirection != 'ASC' THEN r.rating END DESC,
+		CASE WHEN @orderby = 'rating' AND @orderDirection != 'DESC' THEN r.rating END DESC,
 		CASE WHEN @orderby = 'uploadDate' AND @orderDirection = 'ASC' THEN r.uploadDate END,
-		CASE WHEN @orderby = 'uploadDate' AND @orderDirection != 'ASC' THEN r.uploadDate END DESC
+		CASE WHEN @orderby = 'uploadDate' AND @orderDirection != 'DESC' THEN r.uploadDate END DESC
 
 	
 END

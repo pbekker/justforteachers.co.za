@@ -759,6 +759,21 @@ VALUES ('Electricity and magnetism', '', @topicId, 1),
 	   ('Waves, sound and light', '', @topicId, 1)
 END
 
+IF NOT EXISTS (SELECT * FROM bhdFormat)
+BEGIN
+	INSERT INTO bhdFormat (id, name, isActive)
+	VALUES (1, 'Activity', 1), 
+		(2, 'Assembly', 1), 
+		(3, 'Lesson Plan', 1), 
+		(4, 'Long-term plan', 1), 
+		(5, 'Poster',1 ), 
+		(6, 'Revision', 1), 
+		(7, 'School admin', 1), 
+		(8, 'Test / Examination', 1), 
+		(9, 'Timetable', 1), 
+		(10, 'Worksheet', 1)
+END
+
 
 ALTER TABLE dbo.bhdResource ADD CONSTRAINT
 	FK_bhdResource_bhdResourceLanguage FOREIGN KEY
