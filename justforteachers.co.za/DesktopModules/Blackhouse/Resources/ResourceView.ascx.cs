@@ -30,24 +30,45 @@ namespace Blackhouse.Resources
 
                     hidResourceId.Value = result.resourceInfo.ResourceId.ToString();
                     lblResourceName.Text = result.resourceInfo.ResourceName;
-                    lblResourceDescription.Text = result.resourceInfo.ResourceDescription;
+                    lblResourceDescription.Text = result.resourceInfo.ResourceDescription.Replace(Environment.NewLine, "<BR/>"); ;
                     ResourceType.Text = result.resourceInfo.ResourceType;
                     ResourceTopic.Text = result.resourceInfo.ResourceTopic;
                     ResourceLanguage.Text = result.resourceInfo.ResourceLanguage;
                     ResourceUploadDate.Text = result.resourceInfo.ResourceUploadDate;
+                    ResourceFormat.Text = result.resourceInfo.ResourceFormat;
 
-                    imgPreviewImage.ImageUrl = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("/resourcefile/{0}", result.resourceInfo.PreviewFileId);
+                    if (result.resourceInfo.PreviewFileId > 0)
+                        imgPreviewImage.ImageUrl = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("/resourcefile/{0}", result.resourceInfo.PreviewFileId);
+                    else
+                        imgPreviewImage.ImageUrl = "/desktopmodules/blackhouse/resources/noimage.png";
 
                     //now we need to fill in the resource file information
                     //best do the repeater now...
                     rptFiles.DataSource = result.fileInfo;
                     rptFiles.DataBind();
-                    lblFiles.Text = "(" + result.fileInfo.Count + ") Files are associated with this resource.";
+                    if (result.fileInfo.Count > 0)
+                    {
+                        lblFiles.Text = "No. of associated files: " + result.fileInfo.Count;
+                    }
+                    else
+                    {
+                        lblFiles.Visible = false;
+                        rptFiles.Visible = false;
+                        lnkDownload.Visible = false;
+                    }
 
                     //now we need to fill in the resource url information
-                    lblWebsiteLinks.Text = "(" + result.urlInfo.Count + ") Website Links are associated with this resource.";
-                    rptWebsites.DataSource = result.urlInfo;
-                    rptWebsites.DataBind();
+                    if (result.urlInfo.Count > 0)
+                    {
+                        lblWebsiteLinks.Text = "No. if associated links: " + result.urlInfo.Count;
+                        rptWebsites.DataSource = result.urlInfo;
+                        rptWebsites.DataBind();
+                    }
+                    else
+                    {
+                        lblWebsiteLinks.Visible = false;
+                        rptWebsites.Visible = false;
+                    }
 
                     // TODO: Add a check for approval, if it is approved no need to approve again.
                     if (ModuleContext.PortalSettings.UserInfo.IsInRole("Administrator") || ModuleContext.PortalSettings.UserInfo.IsSuperUser)
@@ -145,6 +166,7 @@ namespace Blackhouse.Resources
         public string ResourceLanguage { get; set; }
         public string ResourceUploadDate { get; set; }
         public string ResourceTags { get; set; }
+        public string ResourceFormat { get; set; }
         public int PreviewFileId { get; set; }
         public string PreviewFileString { get; set; }
         public bool isActive { get; set; }

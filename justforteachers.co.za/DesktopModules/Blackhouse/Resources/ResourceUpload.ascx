@@ -893,8 +893,8 @@
     </style>
     
 <div class="box" runat="server" id="divChoose">
-    <asp:LinkButton runat="server" ID="lnkFile" CssClass="btn header-btn" OnClick="lnkFile_Click">[FILE RESOURCE]</asp:LinkButton>
-    <asp:LinkButton runat="server" ID="lnkURL" CssClass="btn header-btn" OnClick="lnkURL_Click">[LINKED RESOURCE]</asp:LinkButton>
+    <asp:LinkButton runat="server" ID="lnkFile" CssClass="btn header-btn" OnClick="lnkFile_Click">FILE RESOURCE</asp:LinkButton>
+    <asp:LinkButton runat="server" ID="lnkURL" CssClass="btn header-btn" OnClick="lnkURL_Click">LINKED RESOURCE</asp:LinkButton>
 </div>
 <br />
     <div class="box2" id="divUploadform" runat="server">
@@ -964,7 +964,7 @@
 
     <div class="box2" runat="server" id="divTopics">
         <span runat="server" id="spantree"></span>
-        <asp:Label ID="Label4" runat="server" CssClass="label" Text="Resource Topic" /><br />
+        <asp:Label ID="Label4" runat="server" CssClass="label" Text="Resource Topic & Subject" /><br />
         <asp:Label runat="server" ID="lblError" Text="Please select a topic to continue." CssClass="errormesssage label" Visible="false" />
         <asp:TreeView runat="server" ID="tvTopics" OnSelectedNodeChanged="tvTopics_SelectedNodeChanged" />
         <div class="box1" runat="server" id="spanSelectedTopicdiv">
@@ -980,6 +980,7 @@
 
     <div runat="server" id="divFileUpload">
         <input type="file" id="myfile" multiple="multiple" name="myfile" runat="server" size="100" />
+        <p class="text">Note:  A single file or multiple files can be uploaded.  Please only upload multiple files under 1 Resource if they are all closely associated and form part of the same Resource.  It is preferable to please upload files individually.</p>
         <br /><br /><br />
         <div class="box">
             <asp:LinkButton runat="server" ID="lnkBackToTopics" Text="...Back" CssClass="btn header-btn" OnClick="lnkBackToForm_Click" />
@@ -1011,11 +1012,11 @@
             <ItemTemplate>
                 <fieldset>
                     <asp:Label runat="server" ID="lblFileName" Text='<%#Eval("fileName") %>' /><br />
-                    <asp:Label runat="server" ID="lblAuthor" Text="Author" CssClass="label" /><asp:LinkButton runat="server" Text="+" ID="btnAddAuthor" CssClass="btn header-btn" CommandName="author" /><br />
+                    <asp:Label runat="server" ID="lblAuthor" Text="Author (Optional, if known)" CssClass="label" /><asp:LinkButton runat="server" Text="+" ID="btnAddAuthor" CssClass="btn header-btn" CommandName="author" /><br />
                     <asp:DropDownList runat="server" ID="ddlAuthor" CssClass="text" /><br />
-                    <asp:Label runat="server" ID="lblPublisher" Text="Publisher" CssClass="label" /><asp:LinkButton runat="server" Text="+" ID="btnAddPublisher" CssClass="btn header-btn" CommandName="publisher" /><br />
+                    <asp:Label runat="server" ID="lblPublisher" Text="Publisher (Optional, if known)" CssClass="label" /><asp:LinkButton runat="server" Text="+" ID="btnAddPublisher" CssClass="btn header-btn" CommandName="publisher" /><br />
                     <asp:DropDownList runat="server" ID="ddlPublisher" CssClass="text" /><br />
-                    <asp:Label runat="server" ID="lblYear" Text="Year" CssClass="label" /><br />
+                    <asp:Label runat="server" ID="lblYear" Text="Year (Optional, if known)" CssClass="label" /><br />
                     <asp:DropDownList runat="server" ID="ddlYear" CssClass="text" /><br />
                     <br />
                 </fieldset>

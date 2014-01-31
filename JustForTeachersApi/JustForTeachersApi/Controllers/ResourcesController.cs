@@ -59,6 +59,13 @@ namespace JustForTeachersApi.Controllers
                                             where f.resourceId == r.ResourceId
                                             select new FileViewInfo() { FileName = f.bhdFile.name, FileSize = f.bhdFile.size, FileContentType = f.bhdFile.bhdFileType.contentType, FileId = f.bhdFile.id }).ToList();
                 tmpResource.fileInfo = files;
+                foreach (var item in files)
+                {
+                    if (item.FileSize != null && item.FileSize != 0)
+                    {
+                        item.FileSize = item.FileSize / 1000;
+                    }
+                }
 
                 List<LinkViewInfo> urls = (from u in dc.bhdResourceLinks
                                            where u.resourceId == r.ResourceId
