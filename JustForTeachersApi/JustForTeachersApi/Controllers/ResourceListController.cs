@@ -26,7 +26,7 @@ namespace JustForTeachersApi.Controllers
             payload.resourceList = new List<ResourceList>();
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
-                var r = dc.sps_getResourceList(false, 1, 20, null, null);
+                var r = dc.sps_getResourceList(true, 1, 20, null, null);
                 foreach (var item in r)
                 {
                     ResourceList tmpPayload = new ResourceList();
@@ -54,7 +54,7 @@ namespace JustForTeachersApi.Controllers
             payload.resourceList = new List<ResourceList>();
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
-                var r = dc.sps_getResourceList(false, id + 1, 20, null, null); 
+                var r = dc.sps_getResourceList(true, id + 1, 20, null, null); 
                 foreach (var item in r)
                 {
                     ResourceList tmpPayload = new ResourceList();
