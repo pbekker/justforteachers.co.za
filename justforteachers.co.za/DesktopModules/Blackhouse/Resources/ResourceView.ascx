@@ -923,7 +923,9 @@ div.box h3 {
         </ItemTemplate>
     </asp:Repeater>
 
-    <div id="divApproval" runat="server" style="visibility:hidden;">
+<asp:Label runat="server" ID="temp" Text="kill me." />
+
+    <div id="divApproval" runat="server">
         <div><asp:CheckBox runat="server" ID="chkApprove" Text="Approved" Checked="true" /></div>
         <div><asp:LinkButton runat="server" ID="cmdApprove" Text="Confirm Approval" OnClick="cmdApprove_Click" CssClass="resource-btn resource-basic-btn" /></div>
     </div>

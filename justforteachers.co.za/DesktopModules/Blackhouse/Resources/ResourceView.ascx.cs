@@ -72,9 +72,9 @@ namespace Blackhouse.Resources
 
                     // TODO: Add a check for approval, if it is approved no need to approve again.
                     if (ModuleContext.PortalSettings.UserInfo.IsInRole("Administrator") || ModuleContext.PortalSettings.UserInfo.IsSuperUser)
-                    {
-                        divApproval.Visible = true;
-                    }
+                        divApproval.Visible = Visible;
+                    else 
+                        divApproval.Visible = false;
                 }
                 catch (Exception ex)
                 {
@@ -129,11 +129,14 @@ namespace Blackhouse.Resources
         protected void cmdApprove_Click(object sender, EventArgs e)
         {
             WebClient client = new WebClient();
-            string url = dashboardUrlBase + "resourceapprove/" + ModuleContext.PortalSettings.UserInfo.UserID.ToString();
-            ResourceList currentItem = new ResourceList();
-            currentItem.ResourceId = int.Parse(hidResourceId.Value);
 
-            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcefile/1") as HttpWebRequest;
+            string url = dashboardUrlBase + "resourceapprove/" + hidResourceId.Value; 
+            temp.Text = url;
+            ResourceList  currentItem = JsonConvert.DeserializeObject<ResourceList>(client.DownloadString(url));
+            currentItem.isActive = chkApprove.Checked;
+            client.Dispose();
+
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceapprove/"+ ModuleContext.PortalSettings.UserInfo.UserID.ToString()) as HttpWebRequest;
             request.ContentType = "text/json";
             request.Method = "PUT";
             try
@@ -141,10 +144,15 @@ namespace Blackhouse.Resources
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
                     string json = JsonConvert.SerializeObject(currentItem);
-
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
                 }
-            } catch (Exception)
+
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+            } catch (Exception ex)
             {
+                throw new ApplicationException(url + " -- " + currentItem.ResourceId.ToString() + "\r\n" + ex.ToString());
             }
         }
     }

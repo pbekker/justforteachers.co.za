@@ -31,40 +31,7 @@ namespace JustForTeachersApi.Controllers
                          join top in dc.bhdResourceTopics on d.topicId equals top.id
                          join typ in dc.bhdResourceTypes on d.typeId equals typ.id
                          where !d.isActive && !d.approvalDate.HasValue && !d.approvalUser.HasValue
-                         select new { d.name, d.description, d.uploadDate, d.id, language = l.name , topic = top.name, type = typ.name }).Take(20);
-                foreach (var item in r)
-                {
-                    ResourceList tmpPayload = new ResourceList();
-                    tmpPayload.ResourceName = item.name;
-                    tmpPayload.ResourceDescription = item.description;
-                    tmpPayload.ResourceLanguage = item.language;
-                    tmpPayload.ResourceTopic = item.topic;
-                    tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
-                    tmpPayload.ResourceId = item.id;
-                    tmpPayload.ResourceType = item.type;
-                    payload.resourceList.Add(tmpPayload);
-                }
-            }
-            return payload;
-        }
-
-        // GET api/resourceapprove/5
-        [HttpGet]
-        [AllowAnonymous]
-        public ResourceApprovePayload Get(int id)
-        {
-            //id is page num
-            int skip = id * 20;
-            ResourceApprovePayload payload = new ResourceApprovePayload();
-            payload.resourceList = new List<ResourceList>();
-            using (ResourcesDataContext dc = new ResourcesDataContext())
-            {
-                var r = (from d in dc.bhdResources
-                         join l in dc.bhdResourceLanguages on d.languageId equals l.id
-                         join top in dc.bhdResourceTopics on d.topicId equals top.id
-                         join typ in dc.bhdResourceTypes on d.typeId equals typ.id
-                         where !d.isActive && !d.approvalDate.HasValue && !d.approvalUser.HasValue
-                         select new { d.name, d.description, d.uploadDate, d.id, language = l.name, topic = top.name, type = typ.name, d.isActive }).Skip(skip).Take(20);
+                         select new { d.name, d.description, d.uploadDate, d.id, language = l.name , topic = top.name, type = typ.name, d.isActive }).Take(20);
                 foreach (var item in r)
                 {
                     ResourceList tmpPayload = new ResourceList();
@@ -80,6 +47,34 @@ namespace JustForTeachersApi.Controllers
                 }
             }
             return payload;
+        }
+
+        // GET api/resourceapprove/5
+        [HttpGet]
+        [AllowAnonymous]
+        public ResourceList Get(int id)
+        {
+            using (ResourcesDataContext dc = new ResourcesDataContext())
+            {
+                var r = (from d in dc.bhdResources
+                         join l in dc.bhdResourceLanguages on d.languageId equals l.id
+                         join top in dc.bhdResourceTopics on d.topicId equals top.id
+                         join typ in dc.bhdResourceTypes on d.typeId equals typ.id
+                         where !d.isActive && !d.approvalDate.HasValue && !d.approvalUser.HasValue
+                         select new { d.name, d.description, d.uploadDate, d.id, language = l.name, topic = top.name, type = typ.name, d.isActive }).FirstOrDefault();
+
+                ResourceList resource = new ResourceList();
+                resource.ResourceName = r.name;
+                resource.ResourceDescription = r.description;
+                resource.ResourceLanguage = r.language;
+                resource.ResourceTopic = r.topic;
+                resource.ResourceUploadDate = r.uploadDate.ToShortDateString();
+                resource.ResourceId = r.id;
+                resource.ResourceType = r.type;
+                resource.isActive = r.isActive;
+
+                return resource;
+            }
         }
 
         // GET api/resourceapprove/5/orderby
@@ -101,7 +96,7 @@ namespace JustForTeachersApi.Controllers
         // PUT api/resourceapprove/5
         [HttpPut]
         [AllowAnonymous]
-        public async Task<HttpResponseMessage> Put(int userid)
+        public async Task<HttpResponseMessage> Put(int id)
         {
             var result = Request.Content.ReadAsFormDataAsync();
             Stream streamIn = await Request.Content.ReadAsStreamAsync();
@@ -124,7 +119,7 @@ namespace JustForTeachersApi.Controllers
                     bhdResource approvalResource = db.bhdResources.Single((x) => x.id == currentResource.ResourceId);
                     approvalResource.isActive = currentResource.isActive;
                     approvalResource.approvalDate = DateTime.Now;
-                    approvalResource.approvalUser = userid;
+                    approvalResource.approvalUser = id;
                     db.SubmitChanges();
                 }
                 if (currentResource.isActive)
