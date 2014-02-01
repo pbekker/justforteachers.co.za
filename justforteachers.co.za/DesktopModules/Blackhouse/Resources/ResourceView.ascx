@@ -903,7 +903,7 @@ div.box h3 {
     <span><b><asp:Label runat="server" Text="Format:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceFormat"  CssClass="resources-label" /></span><br />
     <b><asp:Label runat="server" Text="Uploaded:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceUploadDate" CssClass="resources-label" />
     <p><asp:Label runat="server" ID="lblFiles" CssClass="resources-label"/></p>
-    <p><asp:LinkButton runat="server" ID="lnkDownload" Text=".zip (all the files)" CssClass="text"/></p>
+    <p><asp:LinkButton runat="server" ID="lnkDownload" Text=".zip (all the files)" CssClass="text" OnClick="lnkDownload_Click"/></p>
 
     <asp:Repeater runat="server" ID="rptFiles" OnItemCommand="rptFiles_ItemCommand">
         <ItemTemplate>

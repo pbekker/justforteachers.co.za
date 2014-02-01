@@ -147,7 +147,11 @@ namespace Blackhouse.Resources
             {
             }
         }
-    }
+        protected void lnkDownload_Click(object sender, EventArgs e)
+        {
+            //get all the file id's in the list and send a request to download it.
+        }
+}
 
     public class ResourceViewPayload
     {
