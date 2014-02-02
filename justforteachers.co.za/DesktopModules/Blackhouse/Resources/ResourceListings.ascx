@@ -37,6 +37,12 @@
     margin: 7px 0 0 7px;
 }*/
 </style>
+<p>
+    <div class="resource-search">
+        search: &nbsp;<asp:TextBox runat="server" ID="txtSearch" CssClass="resource-text" PlaceHolder="e.g. english, afrikaans" />&nbsp; <asp:LinkButton runat="server" ID="lnkSearch" CommandArgument="resourcesearch" Text="Search" OnClick="lnkSearch_Click" /> <br /><br />
+        topics: <asp:DropDownList runat="server" ID="ddlTopicSearch" AutoPostBack="true"  CssClass="text"  Width="80%" OnSelectedIndexChanged="ddlTopicSearch_SelectedIndexChanged"/>
+    </div>
+</p>
 
 <asp:Repeater runat="server" ID="rptListings" OnItemCommand="rptListings_ItemCommand" OnItemDataBound="rptListings_ItemDataBound">
     <HeaderTemplate>
@@ -45,11 +51,6 @@
                 <asp:LinkButton runat="server" ID="lnkName" CommandArgument="resourcename" Text="Name" /> |
                 <asp:LinkButton runat="server" ID="lnkRating" CommandArgument="resourcerating" Text="Rating" /> |
                 <asp:LinkButton runat="server" ID="lnkUploadDate" CommandArgument="resourceuploaddate" Text="Upload Date" /> 
-            </p>
-            <p>
-                <div class="resource-search">
-                    search: &nbsp;<asp:TextBox runat="server" ID="txtSearch" CssClass="resource-text" PlaceHolder="e.g. english, afrikaans" />&nbsp; <asp:LinkButton runat="server" ID="lnkSearch" CommandArgument="resourcesearch" Text="Search" />
-                </div>
             </p>
         </div>
         <div id="main" role="main">
