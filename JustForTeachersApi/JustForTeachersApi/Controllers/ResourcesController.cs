@@ -42,7 +42,7 @@ namespace JustForTeachersApi.Controllers
                          join typ in dc.bhdResourceTypes on d.typeId equals typ.id
                          join rf in dc.bhdResourceFormats on d.id equals rf.resourceId
                          where d.id == id
-                         select new { ResourceName = d.name, ResourceDescription = d.description, ResourceUpload = d.uploadDate, ResourceId = d.id, ResourceLanguage = l.name, ResourceTopic = top.name, ResourceType = typ.name, ResourceFormat = rf.bhdFormat.name, ResourceTopicId = top.id}).FirstOrDefault();
+                         select new { ResourceName = d.name, ResourceDescription = d.description, ResourceUpload = d.uploadDate, ResourceId = d.id, ResourceLanguage = l.name, ResourceTopic = top.name, ResourceType = typ.name, ResourceFormat = rf.bhdFormat.name, ResourceTopicId = top.id, PreviewFileId = d.previewFileId}).FirstOrDefault();
                 if (r != null)
                 {
                     tmpList.ResourceName = r.ResourceName;
@@ -52,7 +52,11 @@ namespace JustForTeachersApi.Controllers
                     tmpList.ResourceLanguage = r.ResourceLanguage;
                     tmpList.ResourceType = r.ResourceType;
                     tmpList.ResourceFormat = r.ResourceFormat;
+                    
                 }
+                if (r.PreviewFileId != null)
+                    tmpList.PreviewFileId = (int)r.PreviewFileId;
+                
                 tmpResource.resourceInfo = tmpList;
                 //fix for the topic
                 var rtopic = dc.sps_getResourceTopicListById(r.ResourceTopicId, true);
@@ -70,7 +74,7 @@ namespace JustForTeachersApi.Controllers
 
                 List<FileViewInfo> files = (from f in dc.bhdResourceFiles
                                             where f.resourceId == r.ResourceId
-                                            select new FileViewInfo() { FileName = f.bhdFile.name, FileSize = f.bhdFile.size, FileContentType = f.bhdFile.bhdFileType.contentType, FileId = f.bhdFile.id }).ToList();
+                                            select new FileViewInfo() { FileName = f.bhdFile.name, FileSize = f.bhdFile.size, FileContentType = f.bhdFile.bhdFileType.extension, FileId = f.bhdFile.id }).ToList();
                 foreach (var item in files)
                 {
                     if (item.FileSize != null && item.FileSize != 0)

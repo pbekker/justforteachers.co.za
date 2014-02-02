@@ -150,11 +150,11 @@ namespace JustForTeachersApi.Controllers
 
                         //check if we have the file type
                         int typeid = 0;
-                        var type = (from d in dc.bhdFileTypes
+                        var tmptype = (from d in dc.bhdFileTypes
                                     where d.contentType == temp.fileType
                                     && d.isActive
                                     select d).FirstOrDefault();
-                        if (type == null)
+                        if (tmptype == null)
                         {
                             bhdFileType ft = new bhdFileType();
                             ft.contentType = temp.fileType;
@@ -168,7 +168,7 @@ namespace JustForTeachersApi.Controllers
                         }
                         else
                         {
-                            typeid = type.id;
+                            typeid = tmptype.id;
                         }
                         bhdFile f = new bhdFile();
                         f.size = temp.fileSize;
@@ -184,12 +184,13 @@ namespace JustForTeachersApi.Controllers
                         dc.bhdFileDatas.InsertOnSubmit(fd);
                         dc.SubmitChanges();
 
-                        ResourceFile tmpFileRes = new ResourceFile();
-                        tmpFileRes.fileid = f.id;
-                        tmpFileRes.filename = f.name;
-                        resFileRet = tmpFileRes;
+                        bhdResource res = (from d in dc.bhdResources
+                                           where d.id == id
+                                           select d).FirstOrDefault();
+                        res.previewFileId = f.id;
+                        dc.SubmitChanges();
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, resFileRet);
+                    return Request.CreateResponse(HttpStatusCode.OK, "success");
                 }
                 catch (Exception)
                 {

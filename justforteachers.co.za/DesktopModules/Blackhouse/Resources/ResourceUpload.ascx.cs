@@ -54,6 +54,7 @@ namespace Blackhouse.Resources
                 divUploadform.Visible = false;
                 divTopics.Visible = false;
                 spanSelectedTopicdiv.Visible = false;
+                divUploadPreviewImage.Visible = false;
             }
         }
 
@@ -594,8 +595,9 @@ namespace Blackhouse.Resources
             {
                 throw new ApplicationException(ex.InnerException.ToString());
             }
-            //end of files
-            Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + ResourceId);
+            hidResourceId.Value = ResourceId.ToString();
+            divFileinfo.Visible = false;
+            divUploadPreviewImage.Visible = true;
         }
         protected void lnkFile_Click(object sender, EventArgs e)
         {
@@ -688,7 +690,7 @@ namespace Blackhouse.Resources
                 return;
             }
             int fileid = 0;
-            HttpWebRequest filerequest = WebRequest.Create(dashboardUrlBase + "resourceupload/" + hidResourceId.Value) as HttpWebRequest;
+            HttpWebRequest filerequest = WebRequest.Create(dashboardUrlBase + "resourceupload/" + hidResourceId.Value + "/preview") as HttpWebRequest;
             filerequest.ContentType = "text/json";
             filerequest.Method = "POST";
             try
@@ -712,11 +714,16 @@ namespace Blackhouse.Resources
             }
             catch (Exception ex)
             {
-                lnkSaveFileInfo.Text = ex.ToString();
+                lnkSaveFileInfo.Text = dashboardUrlBase + "resourceupload/" + hidResourceId.Value + "/preview" + "/r/n" + ex.Message.ToString();
                 return;
             }
+            Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + hidResourceId.Value);
         }
 
+        protected void lnkSeeResource_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + hidResourceId.Value);
+        }
 }
 
     public class GenDropList

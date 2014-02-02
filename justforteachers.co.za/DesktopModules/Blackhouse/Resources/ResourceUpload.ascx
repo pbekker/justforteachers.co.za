@@ -1046,7 +1046,9 @@
        <asp:Label ID="Label7" runat="server" Text="Upload a Preview Image:" /><br />
        <asp:FileUpload runat="server" ID="fuPreviewImage" size="100" /><br />
        <asp:Label runat="server" ID="lblmsg" />
+       <p>Your resource has been uploaded sucessfully, please select a preview image to load with this resource, or click continue to see your resource.</p>
        <div class="box">
            <asp:LinkButton ID="lnkSaveImage" runat="server" Text="Save Preview Image" CssClass="btn header-btn" OnClick="lnkSaveImage_Click" />
+           <asp:LinkButton ID="lnkSeeResource" runat="server" Text="Continue" CssClass="btn header-btn" OnClick="lnkSeeResource_Click" />
        </div>
    </div>

@@ -896,7 +896,7 @@ div.box h3 {
 
     <asp:HiddenField runat="server" ID="hidResourceId" />
     <h3><asp:Label runat="server" ID="lblResourceName" Style="width:90%" CssClass="resources-label" /><span runat="server" id="spanRating" style="float:right" class="resources-label">[Rating Info]</span></h3>
-    <p style="display:block; min-height: 200px;"><table><tr><td><asp:Image runat="server" ID="imgPreviewImage" style="float:left;" /></td><td><asp:Label runat="server" ID="lblResourceDescription" CssClass="resource-label" /></td></tr></table></p>
+    <p style="display:block; min-height: 200px;"><table><tr><td><img runat="server" ID="imgPreviewImage" style="float:left;" width="204" height="350" /></td><td><asp:Label runat="server" ID="lblResourceDescription" CssClass="resource-label" /></td></tr></table></p>
     <span><b><asp:Label runat="server" Text="Resource Format: " CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceType" CssClass="resources-label" /></span><br />
     <span runat="server" id="spanPhase"><b><asp:Label ID="lblPhase" runat="server" Text="Phase:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourcePhase"  CssClass="resources-label" /></span><br />
     <span runat="server" id="spanSubject"><b><asp:Label ID="lblSubject" runat="server" Text="Subject:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceSubject"  CssClass="resources-label" /><br /></span>

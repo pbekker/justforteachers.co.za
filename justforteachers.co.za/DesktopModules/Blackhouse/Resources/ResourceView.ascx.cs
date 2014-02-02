@@ -11,6 +11,8 @@ using System.Net.Http;
 using System.IO;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Common;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace Blackhouse.Resources
 {
@@ -76,9 +78,12 @@ namespace Blackhouse.Resources
                     }
 
                     if (result.resourceInfo.PreviewFileId > 0)
-                        imgPreviewImage.ImageUrl = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("/resourcefile/{0}", result.resourceInfo.PreviewFileId);
+                    {
+                        //need to fetch the image information
+                        makeImageVisible(result.resourceInfo.PreviewFileId.ToString());
+                    }
                     else
-                        imgPreviewImage.ImageUrl = "/desktopmodules/blackhouse/resources/noimage.png";
+                        imgPreviewImage.Src = "/desktopmodules/blackhouse/resources/noimage.png";
 
                     //now we need to fill in the resource file information
                     //best do the repeater now...
@@ -253,6 +258,22 @@ namespace Blackhouse.Resources
                 }
             }
         }
+
+        protected void makeImageVisible(string fileId)
+        {
+            string url = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("resourcefile/{0}", fileId);
+            WebClient client = new WebClient();
+            FileResult result = JsonConvert.DeserializeObject<FileResult>(client.DownloadString(url));
+           
+            TypeConverter tc = TypeDescriptor.GetConverter(typeof(Bitmap));
+            Bitmap MyBitmap = (Bitmap)tc.ConvertFrom(result.fileContents);
+
+
+            string imgString = Convert.ToBase64String(result.fileContents);
+            //Set the source with data:image/bmp
+            imgPreviewImage.Src = String.Format("data:image/Bmp;base64,{0}\"", imgString);
+
+        }
 }
 
     public class ResourceViewPayload
@@ -298,5 +319,11 @@ namespace Blackhouse.Resources
         public string ContentDisposition { get; set; }
         public string ContentDispositionFileName { get; set; }
         public byte[] FileData { get; set; }
+    }
+
+    public class FileResult
+    {
+        public byte[] fileContents { get; set; }
+        public string contentType { get; set; }
     }
 }
