@@ -29,6 +29,7 @@ namespace Blackhouse.Resources
                 foreach (ResourceTopic parentTopics in result.Where((x) => x.parentId == null))
                 {
                     TreeNode parentNode = new TreeNode(parentTopics.name, parentTopics.topicId.ToString());
+                    parentNode.Expanded = false;
                     AddChildNodes(parentNode, result, int.Parse(parentTopics.topicId.ToString()));
                     tvTopics.Nodes.Add(parentNode);
                 }
@@ -70,8 +71,7 @@ namespace Blackhouse.Resources
             txtName.Text = result.name;
             txtDesc.Text = result.description;
             chkActive.Checked = result.active;
-            int parentId = 0;
-            int.TryParse(result.parentId.ToString(), out parentId);
+            int parentId = result.phaseId;
             int subjectId = 0;
             int.TryParse(result.subjectId.ToString(), out subjectId);
 
@@ -144,6 +144,7 @@ namespace Blackhouse.Resources
             public int? topicId { get; set; }
             public int? parentId { get; set; }
             public int? subjectId { get; set; }
+            public int phaseId {get; set; }
             public string parentname { get; set; }
             public string name { get; set; }
             public string description { get; set; }

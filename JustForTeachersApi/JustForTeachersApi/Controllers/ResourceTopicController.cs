@@ -22,6 +22,7 @@ namespace JustForTeachersApi.Controllers
             public int? topicId { get; set; }
             public int? parentId { get; set; }
             public int? subjectId { get; set; }
+            public int phaseId { get; set; }
             public string parentname { get; set; }
             public string name { get; set; }
             public string description { get; set; }
@@ -64,36 +65,55 @@ namespace JustForTeachersApi.Controllers
                 currentTopic.name = dbTopic.name;
                 currentTopic.description = dbTopic.description;
                 currentTopic.active = dbTopic.isActive;
-
-                bhdResourceTopic parent = new bhdResourceTopic();
-                if (dbTopic.parentId != null)
+                if (currentTopic.parentId != null)
                 {
-                    parent = db.bhdResourceTopics.Single((x) => x.id == dbTopic.parentId);
-                    currentTopic.parentname = parent.name;
+                    FindParent(currentTopic);
                     currentTopic.isParent = false;
                 }
                 else
                 {
                     currentTopic.isParent = true;
-                    currentTopic.isSubject = false;
-                    currentTopic.subjectId = null;
-                }
-                if (!currentTopic.isParent)
-                {
-                    List<bhdResourceTopic> subjects = db.bhdResourceTopics.Where((x)=>x.parentId == parent.id).ToList();
-                    if (subjects.Any((x)=>x.id == currentTopic.topicId))
-                    {
-                        currentTopic.isSubject = true;
-                    }
-                    else
-                    {
-                        currentTopic.isSubject = false;
-                        currentTopic.subjectId = currentTopic.parentId;
-                        
-                    }
+                    currentTopic.phaseId = currentTopic.topicId.Value;
                 }
 
                 return currentTopic;
+            }
+        }
+
+        private void FindParent(ResourceTopic currentTopic)
+        {
+            bool isParent = !currentTopic.parentId.HasValue;
+            if (isParent)
+            {
+                currentTopic.isSubject = false;
+                currentTopic.subjectId = null;
+            }
+            using (ResourcesDataContext db = new ResourcesDataContext())
+            {
+                bhdResourceTopic parent = db.bhdResourceTopics.Single((x) => x.id == currentTopic.parentId);
+                isParent = !parent.parentId.HasValue;
+                if (isParent)
+                {
+                    currentTopic.isParent = false;
+                    currentTopic.isSubject = true;
+                    currentTopic.parentId = parent.id;
+                    currentTopic.parentname = parent.name;
+                }
+                else
+                    currentTopic.isSubject = false;
+
+                while (!isParent)
+                {
+                    
+                    isParent = !parent.parentId.HasValue;
+                    if (!isParent)
+                    {
+                        currentTopic.subjectId = parent.id;
+                        parent = db.bhdResourceTopics.Single((x) => x.id == parent.parentId);
+                    }
+                    
+                }
+                currentTopic.phaseId = parent.id;
             }
         }
 
@@ -152,7 +172,7 @@ namespace JustForTeachersApi.Controllers
             }
             catch (Exception ex)
             {
-                Request.CreateResponse(HttpStatusCode.InternalServerError, ex); 
+                Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
             }
 
             return response;
