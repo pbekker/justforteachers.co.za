@@ -150,11 +150,11 @@ namespace JustForTeachersApi.Controllers
 
                         //check if we have the file type
                         int typeid = 0;
-                        var type = (from d in dc.bhdFileTypes
+                        var temptype = (from d in dc.bhdFileTypes
                                     where d.contentType == temp.fileType
                                     && d.isActive
                                     select d).FirstOrDefault();
-                        if (type == null)
+                        if (temptype == null)
                         {
                             bhdFileType ft = new bhdFileType();
                             ft.contentType = temp.fileType;
@@ -168,7 +168,7 @@ namespace JustForTeachersApi.Controllers
                         }
                         else
                         {
-                            typeid = type.id;
+                            typeid = temptype.id;
                         }
                         bhdFile f = new bhdFile();
                         f.size = temp.fileSize;

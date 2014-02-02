@@ -21,14 +21,13 @@ namespace JustForTeachersApi.Controllers
         {
             public int? topicId { get; set; }
             public int? parentId { get; set; }
-<<<<<<< HEAD
             public int? subjectId { get; set; }
             public int phaseId { get; set; }
-=======
->>>>>>> 14cf5e315a2a1e61411386202b5ad33f34134bf8
             public string parentname { get; set; }
             public string name { get; set; }
             public string description { get; set; }
+            public bool isParent { get; set; }
+            public bool isSubject { get; set; }
             public bool active { get; set; }
         }
 
@@ -64,10 +63,10 @@ namespace JustForTeachersApi.Controllers
                 currentTopic.topicId = dbTopic.id;
                 currentTopic.parentId = dbTopic.parentId;
                 currentTopic.name = dbTopic.name;
+                currentTopic.description = dbTopic.description;
                 currentTopic.active = dbTopic.isActive;
                 if (currentTopic.parentId != null)
                 {
-<<<<<<< HEAD
                     FindParent(currentTopic);
                     currentTopic.isParent = false;
                 }
@@ -97,7 +96,7 @@ namespace JustForTeachersApi.Controllers
                 {
                     currentTopic.isParent = false;
                     currentTopic.isSubject = true;
-                    currentTopic.parentId = parent.id;
+                    currentTopic.phaseId = parent.id;
                     currentTopic.parentname = parent.name;
                 }
                 else
@@ -113,10 +112,6 @@ namespace JustForTeachersApi.Controllers
                         parent = db.bhdResourceTopics.Single((x) => x.id == parent.parentId);
                     }
                     
-=======
-                    parent = db.bhdResourceTopics.Single((x) => x.id == dbTopic.parentId);
-                    currentTopic.parentname = parent.name;
->>>>>>> 14cf5e315a2a1e61411386202b5ad33f34134bf8
                 }
                 currentTopic.phaseId = parent.id;
             }
@@ -152,7 +147,7 @@ namespace JustForTeachersApi.Controllers
             {
                 using (ResourcesDataContext db = new ResourcesDataContext())
                 {
-                    if (currentTopic.topicId != 0)
+                    if (currentTopic.topicId == 0)
                     {
                         bhdResourceTopic newTopic = new bhdResourceTopic();
                         newTopic.name = currentTopic.name;
