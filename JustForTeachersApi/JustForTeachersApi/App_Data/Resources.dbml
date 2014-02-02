@@ -187,7 +187,7 @@
     </Type>
   </Table>
   <Table Name="dbo.bhdResourceTopics" Member="bhdResourceTopics">
-    <Type Name="bhdResourceTopic">
+    <Type Name="bhdResourceTopic" Id="ID1">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="parentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
@@ -369,5 +369,10 @@
       <Column Name="uploadUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.sps_getResourceTopicListById" Method="sps_getResourceTopicListById">
+    <Parameter Name="topicId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="active" Type="System.Boolean" DbType="Bit" />
+    <ElementType IdRef="ID1" />
   </Function>
 </Database>

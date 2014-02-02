@@ -198,7 +198,6 @@
     <Compile Include="Controllers\ResourceBundleController.cs" />
     <Compile Include="Controllers\ResourceEditController.cs" />
     <Compile Include="Controllers\ResourceFileController.cs" />
-    <Compile Include="Controllers\ResourceFormatController.cs" />
     <Compile Include="Controllers\ResourceListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResourceApproveController.cs" />

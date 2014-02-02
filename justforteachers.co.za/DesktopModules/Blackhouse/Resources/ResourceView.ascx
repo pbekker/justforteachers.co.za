@@ -895,10 +895,12 @@ div.box h3 {
 
 
     <asp:HiddenField runat="server" ID="hidResourceId" />
-    <h3><asp:Label runat="server" ID="lblResourceName" Style="width:90%" CssClass="resources-label" Font-Size="16px" /><span runat="server" id="spanRating" style="float:right" class="resources-label">[Rating Info]</span></h3>
-    <p style="display:block; min-height: 200px;"><asp:Image runat="server" ID="imgPreviewImage" style="float:left;" /><asp:Label runat="server" ID="lblResourceDescription" CssClass="resource-label" /></p>
+    <h3><asp:Label runat="server" ID="lblResourceName" Style="width:90%" CssClass="resources-label" /><span runat="server" id="spanRating" style="float:right" class="resources-label">[Rating Info]</span></h3>
+    <p style="display:block; min-height: 200px;"><table><tr><td><asp:Image runat="server" ID="imgPreviewImage" style="float:left;" /></td><td><asp:Label runat="server" ID="lblResourceDescription" CssClass="resource-label" /></td></tr></table></p>
     <span><b><asp:Label runat="server" Text="Resource Format: " CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceType" CssClass="resources-label" /></span><br />
-    <span><b><asp:Label runat="server" Text="Phase:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceTopic"  CssClass="resources-label" /></span><br />
+    <span runat="server" id="spanPhase"><b><asp:Label ID="lblPhase" runat="server" Text="Phase:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourcePhase"  CssClass="resources-label" /></span><br />
+    <span runat="server" id="spanSubject"><b><asp:Label ID="lblSubject" runat="server" Text="Subject:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceSubject"  CssClass="resources-label" /><br /></span>
+    <span runat="server" id="spanTopic"><b><asp:Label ID="lblTopic" runat="server" Text="Topic:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceTopic"  CssClass="resources-label" /><br /></span>
     <span><b><asp:Label runat="server" Text="Language:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceLanguage" CssClass="resources-label" /></span><br />
     <span><b><asp:Label runat="server" Text="Format:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceFormat"  CssClass="resources-label" /></span><br />
     <b><asp:Label runat="server" Text="Uploaded:" CssClass="resources-label" /></b> <asp:Label runat="server" ID="ResourceUploadDate" CssClass="resources-label" />
@@ -923,7 +925,7 @@ div.box h3 {
         </ItemTemplate>
     </asp:Repeater>
 
-<asp:Label runat="server" ID="temp" Text="kill me." />
+    <asp:Label runat="server" ID="temp" Text="" />
 
     <div id="divApproval" runat="server">
         <div><asp:CheckBox runat="server" ID="chkApprove" Text="Approved" Checked="true" /></div>

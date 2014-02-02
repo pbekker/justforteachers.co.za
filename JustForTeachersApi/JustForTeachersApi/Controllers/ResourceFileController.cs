@@ -114,24 +114,26 @@ namespace JustForTeachersApi.Controllers
                     }
                     else
                     {
-
+                        FileDownloadData tmpZipFileData = new FileDownloadData();
                         HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
                         string archiveName = String.Format("justforteachers-{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"));
-                        response.Content.Headers.ContentDisposition.FileName = archiveName;
-                        response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
                         MemoryStream fs = new MemoryStream();
                         using (ZipFile zf = new ZipFile())
                         {
+                            int filenum = 1;
                             foreach (int fileId in id)
                             {
                                 bhdFileData fileData = db.bhdFileDatas.Single((x) => x.fileId == id.First());
-                                zf.AddEntry(fileData.bhdFile.name + fileData.bhdFile.bhdFileType.extension, fileData.data.ToArray());
+                                zf.AddEntry(filenum.ToString() + " - " + fileData.bhdFile.name, fileData.data.ToArray());
+                                filenum++;
                             }
                             zf.Save(fs);
                         }
                         BinaryReader br = new BinaryReader(fs);
-                        response.Content = new ByteArrayContent(br.ReadBytes(int.Parse(fs.Length.ToString())));
-                        return response;
+                        tmpZipFileData.ContentDisposition = "attachement";
+                        tmpZipFileData.ContentDispositionFileName = archiveName;
+                        tmpZipFileData.FileData = fs.ToArray();
+                        return Request.CreateResponse(HttpStatusCode.OK, tmpZipFileData);
                     }
                 }
             }
