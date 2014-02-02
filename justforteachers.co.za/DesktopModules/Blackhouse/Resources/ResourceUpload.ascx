@@ -980,7 +980,7 @@
 
     <div runat="server" id="divFileUpload">
         <input type="file" id="myfile" multiple="multiple" name="myfile" runat="server" size="100" />
-        <p class="text">Note:  A single file or multiple files can be uploaded.  Please only upload multiple files under 1 Resource if they are all closely associated and form part of the same Resource.  It is preferable to please upload files individually.</p>
+        <br /><br /><br /><p class="textarea"><b>Note:</b>  A single file or multiple files can be uploaded.  Please only upload multiple files under 1 Resource if they are all closely associated and form part of the same Resource.  It is preferable to please upload files individually.</p>
         <br /><br /><br />
         <div class="box">
             <asp:LinkButton runat="server" ID="lnkBackToTopics" Text="...Back" CssClass="btn header-btn" OnClick="lnkBackToForm_Click" />
@@ -1022,6 +1022,7 @@
                 </fieldset>
             </ItemTemplate>
         </asp:Repeater>
+        <p>By continuing, I agree to upload this resource/s under the Creative Commons licence (Attribution-Share Alike 2.5), for downloading and use by others.  I confirm that I am entitled to upload such resource/s, that I am not breaching the intellectual property rights of any third parties and that the content is not offensive or defamatory. Finally I am aware of and agree to the website terms of use and privacy policy.</p>
         <div class="box">
             <asp:LinkButton ID="lnkSaveFileInfo" runat="server" Text="Save..." CssClass="btn header-btn" OnClick="lnkSaveFileInfo_Click" />
         </div>
@@ -1041,4 +1042,11 @@
         <asp:Label ID="Span2" runat="server"></asp:Label>
     </div>
 
-   <%-- TODO: Add license stuff --%>
+   <div runat="server" id="divUploadPreviewImage">
+       <asp:Label ID="Label7" runat="server" Text="Upload a Preview Image:" /><br />
+       <asp:FileUpload runat="server" ID="fuPreviewImage" size="100" /><br />
+       <asp:Label runat="server" ID="lblmsg" />
+       <div class="box">
+           <asp:LinkButton ID="lnkSaveImage" runat="server" Text="Save Preview Image" CssClass="btn header-btn" OnClick="lnkSaveImage_Click" />
+       </div>
+   </div>

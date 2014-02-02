@@ -134,37 +134,102 @@ namespace JustForTeachersApi.Controllers
         [AllowAnonymous]
         public async Task<HttpResponseMessage> Post(int id, string type)
         {
-            try
+            if (type != "website")
             {
-                //this is for a website
-                string websiteUrl = "";
-                var result = Request.Content.ReadAsFormDataAsync();
-                Stream streamIn = await Request.Content.ReadAsStreamAsync();
-                StreamReader streamReader = new StreamReader(streamIn);
-                string jsonstring = streamReader.ReadToEnd();
-
-                var temp = JsonConvert.DeserializeObject<string>(jsonstring);
-                websiteUrl = temp;
-                using (ResourcesDataContext dc = new ResourcesDataContext())
+                try
                 {
-                    bhdLink l = new bhdLink();
-                    l.url = websiteUrl;
-                    dc.bhdLinks.InsertOnSubmit(l);
-                    dc.SubmitChanges();
+                    var result = Request.Content.ReadAsFormDataAsync();
+                    Stream streamIn = await Request.Content.ReadAsStreamAsync();
+                    StreamReader streamReader = new StreamReader(streamIn);
+                    string jsonstring = streamReader.ReadToEnd();
+                    ResourceFile resFileRet;
 
-                    bhdResourceLink rl = new bhdResourceLink();
-                    rl.linkId = l.linkId;
-                    rl.resourceId = id;
-                    dc.bhdResourceLinks.InsertOnSubmit(rl);
-                    dc.SubmitChanges();
+                    var temp = JsonConvert.DeserializeObject<FileData>(jsonstring);
+                    using (ResourcesDataContext dc = new ResourcesDataContext())
+                    {
+
+                        //check if we have the file type
+                        int typeid = 0;
+                        var type = (from d in dc.bhdFileTypes
+                                    where d.contentType == temp.fileType
+                                    && d.isActive
+                                    select d).FirstOrDefault();
+                        if (type == null)
+                        {
+                            bhdFileType ft = new bhdFileType();
+                            ft.contentType = temp.fileType;
+                            string extension = temp.fileName;
+                            int pos = extension.LastIndexOf('.');
+                            ft.extension = extension.Substring(pos + 1, extension.Length - (pos + 1));
+                            ft.isActive = true;
+                            dc.bhdFileTypes.InsertOnSubmit(ft);
+                            dc.SubmitChanges();
+                            typeid = ft.id;
+                        }
+                        else
+                        {
+                            typeid = type.id;
+                        }
+                        bhdFile f = new bhdFile();
+                        f.size = temp.fileSize;
+                        f.name = temp.fileName;
+                        f.isActive = true;
+                        f.fileTypeId = typeid;
+                        dc.bhdFiles.InsertOnSubmit(f);
+                        dc.SubmitChanges();
+
+                        bhdFileData fd = new bhdFileData();
+                        fd.fileId = f.id;
+                        fd.data = temp.fileData;
+                        dc.bhdFileDatas.InsertOnSubmit(fd);
+                        dc.SubmitChanges();
+
+                        ResourceFile tmpFileRes = new ResourceFile();
+                        tmpFileRes.fileid = f.id;
+                        tmpFileRes.filename = f.name;
+                        resFileRet = tmpFileRes;
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK, resFileRet);
                 }
-
-                return Request.CreateResponse(HttpStatusCode.OK, "Success");
+                catch (Exception)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. 400-1");
+                }
             }
-            catch (Exception)
+            else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. 400-9");
-                throw;
+                try
+                {
+                    //this is for a website
+                    string websiteUrl = "";
+                    var result = Request.Content.ReadAsFormDataAsync();
+                    Stream streamIn = await Request.Content.ReadAsStreamAsync();
+                    StreamReader streamReader = new StreamReader(streamIn);
+                    string jsonstring = streamReader.ReadToEnd();
+
+                    var temp = JsonConvert.DeserializeObject<string>(jsonstring);
+                    websiteUrl = temp;
+                    using (ResourcesDataContext dc = new ResourcesDataContext())
+                    {
+                        bhdLink l = new bhdLink();
+                        l.url = websiteUrl;
+                        dc.bhdLinks.InsertOnSubmit(l);
+                        dc.SubmitChanges();
+
+                        bhdResourceLink rl = new bhdResourceLink();
+                        rl.linkId = l.linkId;
+                        rl.resourceId = id;
+                        dc.bhdResourceLinks.InsertOnSubmit(rl);
+                        dc.SubmitChanges();
+                    }
+
+                    return Request.CreateResponse(HttpStatusCode.OK, "Success");
+                }
+                catch (Exception)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Broke. 400-9");
+                    throw;
+                }
             }
         }
         

@@ -11,6 +11,8 @@ using System.IO;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Common;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Blackhouse.Resources
 {
@@ -668,7 +670,54 @@ namespace Blackhouse.Resources
             lnkShowTreeAgain.Text = "";
             spanSelectedTopicdiv.Visible = false;
         }
-    }
+        protected void lnkSaveImage_Click(object sender, EventArgs e)
+        {
+            FileData tmpFile;
+            try
+            {
+                HttpPostedFile userPostedFile = fuPreviewImage.PostedFile;
+                tmpFile = new FileData();
+                tmpFile.fileName = userPostedFile.FileName;
+                tmpFile.fileSize = userPostedFile.ContentLength;
+                tmpFile.fileType = userPostedFile.ContentType;
+                tmpFile.fileData = ReadFile(userPostedFile);
+            }
+            catch (Exception ex)
+            {
+                lnkSaveFileInfo.Text = ex.ToString();
+                return;
+            }
+            int fileid = 0;
+            HttpWebRequest filerequest = WebRequest.Create(dashboardUrlBase + "resourceupload/" + hidResourceId.Value) as HttpWebRequest;
+            filerequest.ContentType = "text/json";
+            filerequest.Method = "POST";
+            try
+            {
+                using (var streamWriter = new StreamWriter(filerequest.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(tmpFile);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                var httpFileResponse = (HttpWebResponse)filerequest.GetResponse();
+                //when we get the response we need to get the object returned.
+                //then show the author and publisher information upload.
+                Stream resp = httpFileResponse.GetResponseStream();
+                StreamReader reader = new StreamReader(resp);
+                string text = reader.ReadToEnd();
+                ResourceFile resourcefileReturn = JsonConvert.DeserializeObject<ResourceFile>(text);
+                fileid = resourcefileReturn.fileid;
+            }
+            catch (Exception ex)
+            {
+                lnkSaveFileInfo.Text = ex.ToString();
+                return;
+            }
+        }
+
+}
 
     public class GenDropList
     {

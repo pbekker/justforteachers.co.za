@@ -392,6 +392,13 @@ namespace ResourceData
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), keywords, active, pageNumber, pageSize, orderby, orderDirection);
 			return ((ISingleResult<sps_getResourceListByKeywordListResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sps_getResourceTopicListById")]
+		public ISingleResult<bhdResourceTopic> sps_getResourceTopicListById([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> topicId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> active)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), topicId, active);
+			return ((ISingleResult<bhdResourceTopic>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.bhdAuthor")]

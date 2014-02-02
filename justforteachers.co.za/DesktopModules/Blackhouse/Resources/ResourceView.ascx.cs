@@ -37,6 +37,44 @@ namespace Blackhouse.Resources
                     ResourceUploadDate.Text = result.resourceInfo.ResourceUploadDate;
                     ResourceFormat.Text = result.resourceInfo.ResourceFormat;
 
+                    //do some shit for the topics..
+                    if (result.resourceInfo.ResourceTopic != null && result.resourceInfo.ResourceTopic != "")
+                    {
+                        if (result.resourceInfo.ResourceTopic.Contains('>'))
+                        {
+                            //now we are in action
+                            string[] tempTopics = result.resourceInfo.ResourceTopic.Split(" > ");
+                            if (tempTopics.Length > 2)
+                            {
+                                ResourcePhase.Text = tempTopics[0];
+                                ResourceSubject.Text = tempTopics[1];
+                                ResourceTopic.Text = tempTopics[2];
+                            }
+                            else
+                            {
+                                if (tempTopics.Length < 2)
+                                {
+                                    ResourcePhase.Text = result.resourceInfo.ResourceTopic;
+                                    spanSubject.Visible = false;
+                                    spanTopic.Visible = false;
+                                }
+                                else
+                                {
+                                    ResourcePhase.Text = tempTopics[0];
+                                    ResourceSubject.Text = tempTopics[1];
+                                    spanTopic.Visible = false;
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ResourcePhase.Text = result.resourceInfo.ResourceTopic;
+                            spanSubject.Visible = false;
+                            spanTopic.Visible = false;
+                        }
+                    }
+
                     if (result.resourceInfo.PreviewFileId > 0)
                         imgPreviewImage.ImageUrl = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("/resourcefile/{0}", result.resourceInfo.PreviewFileId);
                     else
@@ -49,6 +87,20 @@ namespace Blackhouse.Resources
                     if (result.fileInfo.Count > 0)
                     {
                         lblFiles.Text = "No. of associated files: " + result.fileInfo.Count;
+                        string fileIds = string.Empty;
+                        foreach (var item in result.fileInfo)
+                        {
+                            if (fileIds == string.Empty)
+                            {
+                                fileIds = item.FileId.ToString();
+                            }
+                            else
+                            {
+                                fileIds = fileIds + "," + item.FileId.ToString();
+                            }
+                        }
+                        lnkDownload.CommandArgument = fileIds;
+
                     }
                     else
                     {
@@ -158,6 +210,48 @@ namespace Blackhouse.Resources
         protected void lnkDownload_Click(object sender, EventArgs e)
         {
             //get all the file id's in the list and send a request to download it.
+            LinkButton tmpbtn = (LinkButton)sender;
+            if (tmpbtn.CommandArgument != "")
+            {
+                string[] ids = tmpbtn.CommandArgument.Split(',');
+                HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcefile/1") as HttpWebRequest;
+                request.ContentType = "text/json";
+                request.Method = "PUT";
+                try
+                {
+                    using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                    {
+                        string json = JsonConvert.SerializeObject(ids.ToList());
+
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                    }
+                    var httpResponse = (HttpWebResponse)request.GetResponse();
+                    //when we get the response we need to get the object returned.
+                    //then show the author and publisher information upload.
+                    Stream resp = httpResponse.GetResponseStream();
+                    StreamReader reader = new StreamReader(resp);
+                    string text = reader.ReadToEnd();
+                    FileDownloadData file = JsonConvert.DeserializeObject<FileDownloadData>(text);
+                    Response.Clear();
+
+                    Response.AddHeader("Content-Type", "application/zip");
+                    Response.AddHeader("Content-Length", file.FileData.Length.ToString());
+
+                    Response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}; size={1}", file.ContentDispositionFileName, file.FileData.Length));
+
+                    Response.BinaryWrite(file.FileData.ToArray());
+                    Response.Flush();
+
+                    Response.End();
+                }
+                catch (Exception ex)
+                {
+                    //bleh..
+                    lblPhase.Text = ex.ToString();
+                }
+            }
         }
 }
 
