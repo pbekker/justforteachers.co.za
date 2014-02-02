@@ -212,6 +212,7 @@ CREATE TABLE dbo.bhdResource
 	portalId int NOT NULL,
 	name varchar(255) NOT NULL,
 	description varchar(MAX) NOT NULL,
+	previewFileId int NULL,
 	typeId int NOT NULL,
 	languageId int NOT NULL,
 	topicId int NOT NULL,
@@ -560,7 +561,7 @@ GO
 GO
 CREATE TABLE dbo.bhdFormat
 	(
-	id int NOT NULL,
+	id int NOT NULL IDENTITY(1,1),
 	name varchar(255) NOT NULL,
 	isActive bit NULL
 	CONSTRAINT pk_Format PRIMARY KEY (id)
@@ -761,17 +762,17 @@ END
 
 IF NOT EXISTS (SELECT * FROM bhdFormat)
 BEGIN
-	INSERT INTO bhdFormat (id, name, isActive)
-	VALUES (1, 'Activity', 1), 
-		(2, 'Assembly', 1), 
-		(3, 'Lesson Plan', 1), 
-		(4, 'Long-term plan', 1), 
-		(5, 'Poster',1 ), 
-		(6, 'Revision', 1), 
-		(7, 'School admin', 1), 
-		(8, 'Test / Examination', 1), 
-		(9, 'Timetable', 1), 
-		(10, 'Worksheet', 1)
+	INSERT INTO bhdFormat (name, isActive)
+	VALUES ('Activity', 1), 
+		('Assembly', 1), 
+		('Lesson Plan', 1), 
+		('Long-term plan', 1), 
+		('Poster',1 ), 
+		('Revision', 1), 
+		('School admin', 1), 
+		('Test / Examination', 1), 
+		('Timetable', 1), 
+		('Worksheet', 1)
 END
 
 

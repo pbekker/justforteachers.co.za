@@ -60,14 +60,6 @@
       <Association Name="bhdFileType_bhdFile" Member="bhdFiles" ThisKey="id" OtherKey="fileTypeId" Type="bhdFile" />
     </Type>
   </Table>
-  <Table Name="dbo.bhdFormat" Member="bhdFormats">
-    <Type Name="bhdFormat">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="bhdFormat_bhdResourceFormat" Member="bhdResourceFormats" ThisKey="id" OtherKey="formatId" Type="bhdResourceFormat" />
-    </Type>
-  </Table>
   <Table Name="dbo.bhdKeyword" Member="bhdKeywords">
     <Type Name="bhdKeyword">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -123,32 +115,6 @@
       <Association Name="bhdPublisher_bhdPublishInformation" Member="bhdPublisher" ThisKey="publisherId" OtherKey="id" Type="bhdPublisher" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.bhdResource" Member="bhdResources">
-    <Type Name="bhdResource">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="portalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="typeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="languageId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="topicId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="uploadDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="uploadUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="approvalDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="approvalUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="bhdResource_bhdFeaturedResource" Member="bhdFeaturedResource" ThisKey="id" OtherKey="resourceId" Type="bhdFeaturedResource" Cardinality="One" />
-      <Association Name="bhdResource_bhdResourceComment" Member="bhdResourceComments" ThisKey="id" OtherKey="resourceId" Type="bhdResourceComment" />
-      <Association Name="bhdResource_bhdResourceFile" Member="bhdResourceFiles" ThisKey="id" OtherKey="resourceId" Type="bhdResourceFile" />
-      <Association Name="bhdResource_bhdResourceFormat" Member="bhdResourceFormats" ThisKey="id" OtherKey="resourceId" Type="bhdResourceFormat" />
-      <Association Name="bhdResource_bhdResourceKeyword" Member="bhdResourceKeywords" ThisKey="id" OtherKey="Resourceid" Type="bhdResourceKeyword" />
-      <Association Name="bhdResource_bhdResourceLink" Member="bhdResourceLinks" ThisKey="id" OtherKey="resourceId" Type="bhdResourceLink" />
-      <Association Name="bhdResource_bhdResourceRating" Member="bhdResourceRatings" ThisKey="id" OtherKey="resourceId" Type="bhdResourceRating" />
-      <Association Name="bhdResourceType_bhdResource" Member="bhdResourceType" ThisKey="typeId" OtherKey="id" Type="bhdResourceType" IsForeignKey="true" />
-      <Association Name="bhdResourceLanguage_bhdResource" Member="bhdResourceLanguage" ThisKey="languageId" OtherKey="id" Type="bhdResourceLanguage" IsForeignKey="true" />
-      <Association Name="bhdResourceTopic_bhdResource" Member="bhdResourceTopic" ThisKey="topicId" OtherKey="id" Type="bhdResourceTopic" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.bhdResourceBundle" Member="bhdResourceBundles">
     <Type Name="bhdResourceBundle">
       <Column Name="bundleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -186,14 +152,6 @@
       <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="bhdFile_bhdResourceFile" Member="bhdFile" ThisKey="fileId" OtherKey="id" Type="bhdFile" IsForeignKey="true" />
       <Association Name="bhdResource_bhdResourceFile" Member="bhdResource" ThisKey="resourceId" OtherKey="id" Type="bhdResource" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.bhdResourceFormat" Member="bhdResourceFormats">
-    <Type Name="bhdResourceFormat">
-      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="formatId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="bhdFormat_bhdResourceFormat" Member="bhdFormat" ThisKey="formatId" OtherKey="id" Type="bhdFormat" IsForeignKey="true" />
-      <Association Name="bhdResource_bhdResourceFormat" Member="bhdResource" ThisKey="resourceId" OtherKey="id" Type="bhdResource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.bhdResourceKeyword" Member="bhdResourceKeywords">
@@ -250,6 +208,49 @@
       <Column Name="isAdmin" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="bhdMenu_bhdMenuItem" Member="bhdMenu" ThisKey="menuId" OtherKey="id" Type="bhdMenu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdResourceFormat" Member="bhdResourceFormats">
+    <Type Name="bhdResourceFormat">
+      <Column Name="resourceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="formatId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="bhdFormat_bhdResourceFormat" Member="bhdFormat" ThisKey="formatId" OtherKey="id" Type="bhdFormat" IsForeignKey="true" />
+      <Association Name="bhdResource_bhdResourceFormat" Member="bhdResource" ThisKey="resourceId" OtherKey="id" Type="bhdResource" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdFormat" Member="bhdFormats">
+    <Type Name="bhdFormat">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="bhdFormat_bhdResourceFormat" Member="bhdResourceFormats" ThisKey="id" OtherKey="formatId" Type="bhdResourceFormat" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bhdResource" Member="bhdResources">
+    <Type Name="bhdResource">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="portalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="previewFileId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="typeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="languageId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="topicId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="uploadDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="uploadUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="approvalDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approvalUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="bhdResource_bhdFeaturedResource" Member="bhdFeaturedResource" ThisKey="id" OtherKey="resourceId" Type="bhdFeaturedResource" Cardinality="One" />
+      <Association Name="bhdResource_bhdResourceComment" Member="bhdResourceComments" ThisKey="id" OtherKey="resourceId" Type="bhdResourceComment" />
+      <Association Name="bhdResource_bhdResourceFile" Member="bhdResourceFiles" ThisKey="id" OtherKey="resourceId" Type="bhdResourceFile" />
+      <Association Name="bhdResource_bhdResourceKeyword" Member="bhdResourceKeywords" ThisKey="id" OtherKey="Resourceid" Type="bhdResourceKeyword" />
+      <Association Name="bhdResource_bhdResourceLink" Member="bhdResourceLinks" ThisKey="id" OtherKey="resourceId" Type="bhdResourceLink" />
+      <Association Name="bhdResource_bhdResourceRating" Member="bhdResourceRatings" ThisKey="id" OtherKey="resourceId" Type="bhdResourceRating" />
+      <Association Name="bhdResource_bhdResourceFormat" Member="bhdResourceFormats" ThisKey="id" OtherKey="resourceId" Type="bhdResourceFormat" />
+      <Association Name="bhdResourceLanguage_bhdResource" Member="bhdResourceLanguage" ThisKey="languageId" OtherKey="id" Type="bhdResourceLanguage" IsForeignKey="true" />
+      <Association Name="bhdResourceTopic_bhdResource" Member="bhdResourceTopic" ThisKey="topicId" OtherKey="id" Type="bhdResourceTopic" IsForeignKey="true" />
+      <Association Name="bhdResourceType_bhdResource" Member="bhdResourceType" ThisKey="typeId" OtherKey="id" Type="bhdResourceType" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.sps_getFeaturedResources" Method="sps_getFeaturedResources">
