@@ -351,20 +351,6 @@ namespace ResourceData
 			return ((ISingleResult<sps_getResourceBundleByUserIdResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sps_getResourceList")]
-		public ISingleResult<sps_getResourceListResult> sps_getResourceList([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> active, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageSize, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string orderby, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Char(4)")] string orderDirection)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), active, pageNumber, pageSize, orderby, orderDirection);
-			return ((ISingleResult<sps_getResourceListResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sps_getResourceListByTopic")]
-		public ISingleResult<sps_getResourceListByTopicResult> sps_getResourceListByTopic([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> topicId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> active, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageSize, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string orderby, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Char(4)")] string orderDirection)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), topicId, active, pageNumber, pageSize, orderby, orderDirection);
-			return ((ISingleResult<sps_getResourceListByTopicResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sps_getResourceRating")]
 		public ISingleResult<sps_getResourceRatingResult> sps_getResourceRating([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> resourceId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> userId)
 		{
@@ -386,6 +372,20 @@ namespace ResourceData
 			return ((ISingleResult<sps_getResourceTopicListResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sps_getResourceTopicListById")]
+		public ISingleResult<bhdResourceTopic> sps_getResourceTopicListById([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> topicId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> active)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), topicId, active);
+			return ((ISingleResult<bhdResourceTopic>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sps_getResourceList")]
+		public ISingleResult<sps_getResourceListResult> sps_getResourceList([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> active, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageSize, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string orderby, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Char(4)")] string orderDirection)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), active, pageNumber, pageSize, orderby, orderDirection);
+			return ((ISingleResult<sps_getResourceListResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sps_getResourceListByKeywordList")]
 		public ISingleResult<sps_getResourceListByKeywordListResult> sps_getResourceListByKeywordList([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(MAX)")] string keywords, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> active, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageSize, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string orderby, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Char(4)")] string orderDirection)
 		{
@@ -393,11 +393,11 @@ namespace ResourceData
 			return ((ISingleResult<sps_getResourceListByKeywordListResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sps_getResourceTopicListById")]
-		public ISingleResult<bhdResourceTopic> sps_getResourceTopicListById([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> topicId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> active)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sps_getResourceListByTopic")]
+		public ISingleResult<sps_getResourceListByTopicResult> sps_getResourceListByTopic([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> topicId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> active, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pageSize, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string orderby, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Char(4)")] string orderDirection)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), topicId, active);
-			return ((ISingleResult<bhdResourceTopic>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), topicId, active, pageNumber, pageSize, orderby, orderDirection);
+			return ((ISingleResult<sps_getResourceListByTopicResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -5797,364 +5797,6 @@ namespace ResourceData
 		}
 	}
 	
-	public partial class sps_getResourceListResult
-	{
-		
-		private int _id;
-		
-		private string _name;
-		
-		private string _language;
-		
-		private string _topic;
-		
-		private string _type;
-		
-		private System.Nullable<int> _rating;
-		
-		private string _description;
-		
-		private System.DateTime _uploadDate;
-		
-		private int _uploadUser;
-		
-		private System.Nullable<int> _total;
-		
-		public sps_getResourceListResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this._id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this._name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_language", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string language
-		{
-			get
-			{
-				return this._language;
-			}
-			set
-			{
-				if ((this._language != value))
-				{
-					this._language = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string topic
-		{
-			get
-			{
-				return this._topic;
-			}
-			set
-			{
-				if ((this._topic != value))
-				{
-					this._topic = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string type
-		{
-			get
-			{
-				return this._type;
-			}
-			set
-			{
-				if ((this._type != value))
-				{
-					this._type = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rating", DbType="Int")]
-		public System.Nullable<int> rating
-		{
-			get
-			{
-				return this._rating;
-			}
-			set
-			{
-				if ((this._rating != value))
-				{
-					this._rating = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string description
-		{
-			get
-			{
-				return this._description;
-			}
-			set
-			{
-				if ((this._description != value))
-				{
-					this._description = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uploadDate", DbType="DateTime NOT NULL")]
-		public System.DateTime uploadDate
-		{
-			get
-			{
-				return this._uploadDate;
-			}
-			set
-			{
-				if ((this._uploadDate != value))
-				{
-					this._uploadDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uploadUser", DbType="Int NOT NULL")]
-		public int uploadUser
-		{
-			get
-			{
-				return this._uploadUser;
-			}
-			set
-			{
-				if ((this._uploadUser != value))
-				{
-					this._uploadUser = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
-		public System.Nullable<int> total
-		{
-			get
-			{
-				return this._total;
-			}
-			set
-			{
-				if ((this._total != value))
-				{
-					this._total = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sps_getResourceListByTopicResult
-	{
-		
-		private int _id;
-		
-		private string _name;
-		
-		private string _language;
-		
-		private string _topic;
-		
-		private string _type;
-		
-		private System.Nullable<int> _rating;
-		
-		private string _description;
-		
-		private System.DateTime _uploadDate;
-		
-		private int _uploadUser;
-		
-		public sps_getResourceListByTopicResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this._id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this._name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_language", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string language
-		{
-			get
-			{
-				return this._language;
-			}
-			set
-			{
-				if ((this._language != value))
-				{
-					this._language = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string topic
-		{
-			get
-			{
-				return this._topic;
-			}
-			set
-			{
-				if ((this._topic != value))
-				{
-					this._topic = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string type
-		{
-			get
-			{
-				return this._type;
-			}
-			set
-			{
-				if ((this._type != value))
-				{
-					this._type = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rating", DbType="Int")]
-		public System.Nullable<int> rating
-		{
-			get
-			{
-				return this._rating;
-			}
-			set
-			{
-				if ((this._rating != value))
-				{
-					this._rating = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string description
-		{
-			get
-			{
-				return this._description;
-			}
-			set
-			{
-				if ((this._description != value))
-				{
-					this._description = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uploadDate", DbType="DateTime NOT NULL")]
-		public System.DateTime uploadDate
-		{
-			get
-			{
-				return this._uploadDate;
-			}
-			set
-			{
-				if ((this._uploadDate != value))
-				{
-					this._uploadDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uploadUser", DbType="Int NOT NULL")]
-		public int uploadUser
-		{
-			get
-			{
-				return this._uploadUser;
-			}
-			set
-			{
-				if ((this._uploadUser != value))
-				{
-					this._uploadUser = value;
-				}
-			}
-		}
-	}
-	
 	public partial class sps_getResourceRatingResult
 	{
 		
@@ -6467,12 +6109,220 @@ namespace ResourceData
 		}
 	}
 	
+	public partial class sps_getResourceListResult
+	{
+		
+		private int _id;
+		
+		private string _name;
+		
+		private System.Nullable<int> _previewFileId;
+		
+		private string _language;
+		
+		private string _topic;
+		
+		private string _type;
+		
+		private System.Nullable<int> _rating;
+		
+		private string _description;
+		
+		private System.DateTime _uploadDate;
+		
+		private int _uploadUser;
+		
+		private System.Nullable<int> _total;
+		
+		public sps_getResourceListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_previewFileId", DbType="Int")]
+		public System.Nullable<int> previewFileId
+		{
+			get
+			{
+				return this._previewFileId;
+			}
+			set
+			{
+				if ((this._previewFileId != value))
+				{
+					this._previewFileId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_language", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string language
+		{
+			get
+			{
+				return this._language;
+			}
+			set
+			{
+				if ((this._language != value))
+				{
+					this._language = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string topic
+		{
+			get
+			{
+				return this._topic;
+			}
+			set
+			{
+				if ((this._topic != value))
+				{
+					this._topic = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string type
+		{
+			get
+			{
+				return this._type;
+			}
+			set
+			{
+				if ((this._type != value))
+				{
+					this._type = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rating", DbType="Int")]
+		public System.Nullable<int> rating
+		{
+			get
+			{
+				return this._rating;
+			}
+			set
+			{
+				if ((this._rating != value))
+				{
+					this._rating = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this._description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uploadDate", DbType="DateTime NOT NULL")]
+		public System.DateTime uploadDate
+		{
+			get
+			{
+				return this._uploadDate;
+			}
+			set
+			{
+				if ((this._uploadDate != value))
+				{
+					this._uploadDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uploadUser", DbType="Int NOT NULL")]
+		public int uploadUser
+		{
+			get
+			{
+				return this._uploadUser;
+			}
+			set
+			{
+				if ((this._uploadUser != value))
+				{
+					this._uploadUser = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+	}
+	
 	public partial class sps_getResourceListByKeywordListResult
 	{
 		
 		private int _id;
 		
 		private string _name;
+		
+		private System.Nullable<int> _previewFileId;
 		
 		private string _language;
 		
@@ -6522,6 +6372,228 @@ namespace ResourceData
 				if ((this._name != value))
 				{
 					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_previewFileId", DbType="Int")]
+		public System.Nullable<int> previewFileId
+		{
+			get
+			{
+				return this._previewFileId;
+			}
+			set
+			{
+				if ((this._previewFileId != value))
+				{
+					this._previewFileId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_language", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string language
+		{
+			get
+			{
+				return this._language;
+			}
+			set
+			{
+				if ((this._language != value))
+				{
+					this._language = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string topic
+		{
+			get
+			{
+				return this._topic;
+			}
+			set
+			{
+				if ((this._topic != value))
+				{
+					this._topic = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string type
+		{
+			get
+			{
+				return this._type;
+			}
+			set
+			{
+				if ((this._type != value))
+				{
+					this._type = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rating", DbType="Int")]
+		public System.Nullable<int> rating
+		{
+			get
+			{
+				return this._rating;
+			}
+			set
+			{
+				if ((this._rating != value))
+				{
+					this._rating = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this._description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uploadDate", DbType="DateTime NOT NULL")]
+		public System.DateTime uploadDate
+		{
+			get
+			{
+				return this._uploadDate;
+			}
+			set
+			{
+				if ((this._uploadDate != value))
+				{
+					this._uploadDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uploadUser", DbType="Int NOT NULL")]
+		public int uploadUser
+		{
+			get
+			{
+				return this._uploadUser;
+			}
+			set
+			{
+				if ((this._uploadUser != value))
+				{
+					this._uploadUser = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sps_getResourceListByTopicResult
+	{
+		
+		private int _id;
+		
+		private string _name;
+		
+		private System.Nullable<int> _previewFileId;
+		
+		private string _language;
+		
+		private string _topic;
+		
+		private string _type;
+		
+		private System.Nullable<int> _rating;
+		
+		private string _description;
+		
+		private System.DateTime _uploadDate;
+		
+		private int _uploadUser;
+		
+		private System.Nullable<int> _total;
+		
+		public sps_getResourceListByTopicResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_previewFileId", DbType="Int")]
+		public System.Nullable<int> previewFileId
+		{
+			get
+			{
+				return this._previewFileId;
+			}
+			set
+			{
+				if ((this._previewFileId != value))
+				{
+					this._previewFileId = value;
 				}
 			}
 		}

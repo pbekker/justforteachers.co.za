@@ -280,44 +280,6 @@
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sps_getResourceList" Method="sps_getResourceList">
-    <Parameter Name="active" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="pageNumber" Type="System.Int32" DbType="Int" />
-    <Parameter Name="pageSize" Type="System.Int32" DbType="Int" />
-    <Parameter Name="orderby" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="orderDirection" Type="System.String" DbType="Char(4)" />
-    <ElementType Name="sps_getResourceListResult">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="language" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="topic" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="type" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="uploadDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="uploadUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sps_getResourceListByTopic" Method="sps_getResourceListByTopic">
-    <Parameter Name="topicId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="active" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="pageNumber" Type="System.Int32" DbType="Int" />
-    <Parameter Name="pageSize" Type="System.Int32" DbType="Int" />
-    <Parameter Name="orderby" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="orderDirection" Type="System.String" DbType="Char(4)" />
-    <ElementType Name="sps_getResourceListByTopicResult">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="language" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="topic" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="type" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="uploadDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="uploadUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.sps_getResourceRating" Method="sps_getResourceRating">
     <Parameter Name="resourceId" Type="System.Int32" DbType="Int" />
     <Parameter Name="userId" Type="System.Int32" DbType="Int" />
@@ -350,16 +312,21 @@
       <Column Name="parentDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sps_getResourceListByKeywordList" Method="sps_getResourceListByKeywordList">
-    <Parameter Name="keywords" Type="System.String" DbType="VarChar(MAX)" />
+  <Function Name="dbo.sps_getResourceTopicListById" Method="sps_getResourceTopicListById">
+    <Parameter Name="topicId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="active" Type="System.Boolean" DbType="Bit" />
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="dbo.sps_getResourceList" Method="sps_getResourceList">
     <Parameter Name="active" Type="System.Boolean" DbType="Bit" />
     <Parameter Name="pageNumber" Type="System.Int32" DbType="Int" />
     <Parameter Name="pageSize" Type="System.Int32" DbType="Int" />
     <Parameter Name="orderby" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="orderDirection" Type="System.String" DbType="Char(4)" />
-    <ElementType Name="sps_getResourceListByKeywordListResult">
+    <ElementType Name="sps_getResourceListResult">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="previewFileId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="language" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="topic" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="type" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
@@ -370,9 +337,46 @@
       <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sps_getResourceTopicListById" Method="sps_getResourceTopicListById">
+  <Function Name="dbo.sps_getResourceListByKeywordList" Method="sps_getResourceListByKeywordList">
+    <Parameter Name="keywords" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="active" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="pageNumber" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pageSize" Type="System.Int32" DbType="Int" />
+    <Parameter Name="orderby" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="orderDirection" Type="System.String" DbType="Char(4)" />
+    <ElementType Name="sps_getResourceListByKeywordListResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="previewFileId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="language" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="topic" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="uploadDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="uploadUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sps_getResourceListByTopic" Method="sps_getResourceListByTopic">
     <Parameter Name="topicId" Type="System.Int32" DbType="Int" />
     <Parameter Name="active" Type="System.Boolean" DbType="Bit" />
-    <ElementType IdRef="ID1" />
+    <Parameter Name="pageNumber" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pageSize" Type="System.Int32" DbType="Int" />
+    <Parameter Name="orderby" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="orderDirection" Type="System.String" DbType="Char(4)" />
+    <ElementType Name="sps_getResourceListByTopicResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="previewFileId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="language" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="topic" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="uploadDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="uploadUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>

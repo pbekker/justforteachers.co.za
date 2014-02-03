@@ -903,13 +903,21 @@
 
 <asp:HiddenField runat="server" ID="hidResourceId" />
 <h3>
-    <asp:Label runat="server" ID="lblResourceName" Style="width: 90%" CssClass="resources-label" /><span runat="server" id="spanRating" style="float: right" class="resources-label">[Rating Info]</span></h3>
+    <asp:Label runat="server" ID="lblResourceName" Style="width: 90%" CssClass="resources-label" />
+    <span runat="server" id="spanRating" style="float: right" class="resources-label">
+		<ul class="rating inactive">
+			<li class="selected" data-icon="&#xe007;"></li>
+			<li data-icon="&#xe007;"></li>
+		</ul>
+    </span>
+
+</h3>
 <p style="display: block; min-height: 200px;">
     <table>
         <tr>
             <td>
                 <img runat="server" id="imgPreviewImage" style="float: left;" width="204" height="350" /></td>
-            <td>
+            <td style="vertical-align:top;">
                 <asp:Label runat="server" ID="lblResourceDescription" CssClass="resource-label" /></td>
         </tr>
     </table>

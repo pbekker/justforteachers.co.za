@@ -74,8 +74,12 @@ namespace JustForTeachersApi.Controllers
                     tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
                     tmpPayload.ResourceId = item.id;
                     tmpPayload.ResourceType = item.type;
-                    //payload.count = (int)item.total;
+                    payload.count = (int)item.total;
                     payload.resourceList.Add(tmpPayload);
+                    if (item.previewFileId.HasValue)
+                    {
+                        tmpPayload.PreviewFileId = (int)item.previewFileId;
+                    }
                 }
             }
             return payload;
@@ -102,8 +106,12 @@ namespace JustForTeachersApi.Controllers
                     tmpPayload.ResourceUploadDate = item.uploadDate.ToShortDateString();
                     tmpPayload.ResourceId = item.id;
                     tmpPayload.ResourceType = item.type;
-                    //payload.count = (int)item.total;
+                    payload.count = (int)item.total;
                     payload.resourceList.Add(tmpPayload);
+                    if (item.previewFileId.HasValue)
+                    {
+                        tmpPayload.PreviewFileId = (int)item.previewFileId;
+                    }
                 }
             }
             return payload;

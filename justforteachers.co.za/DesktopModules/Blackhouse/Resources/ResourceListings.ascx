@@ -44,7 +44,7 @@
     </div>
 </p>
 
-<asp:Repeater runat="server" ID="rptListings" OnItemCommand="rptListings_ItemCommand" OnItemDataBound="rptListings_ItemDataBound">
+<asp:Repeater runat="server" ID="rptListings" OnItemCommand="rptListings_ItemCommand">
     <HeaderTemplate>
         <div class="box2">
             <p>sort: &nbsp; 
@@ -60,7 +60,7 @@
         <li>
             <span style="max-width: 236px;">
             <h3><asp:LinkButton runat="server" ID="lblResourceName" Text='<%#Eval("ResourceName") %>' CommandArgument='<%#Eval("ResourceId") %>' /></h3>
-            <p><asp:Image runat="server" ID="imgPreviewImage" /></p>
+            <p><img runat="server" ID="imgPreviewImage" src='<%#GetImage(Eval("PreviewFileId").ToString()) %>' style="max-height: 83px;"></p>
             <span><b>Type:</b> <asp:Label runat="server" ID="ResourceType" Text='<%#Eval("ResourceType") %>' /></span><br />
             <span><b>Topic:</b> <asp:Label runat="server" ID="ResourceTopic" Text='<%#Eval("ResourceTopic") %>' /></span><br />
             <span><b>Language:</b> <asp:Label runat="server" ID="ResourceLanguage" Text='<%#Eval("ResourceLanguage") %>' /></span><br />
