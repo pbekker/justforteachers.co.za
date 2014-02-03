@@ -24,6 +24,7 @@ BEGIN
 	(SELECT 
 		r.id,
 		r.name,
+		r.previewFileId,
 		l.name [language],
 		t.name [topic],
 		rt.name [type],
@@ -45,6 +46,7 @@ BEGIN
 	SELECT 
 		r.id,
 		r.name,
+		r.previewFileId,
 		r.[language],
 		r.topic,
 		r.[type],
