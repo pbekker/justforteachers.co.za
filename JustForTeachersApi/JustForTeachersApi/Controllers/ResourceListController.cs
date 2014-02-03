@@ -43,7 +43,10 @@ namespace JustForTeachersApi.Controllers
                     {
                         tmpPayload.PreviewFileId = (int)item.previewFileId;
                     }
-                    
+                    else
+                    {
+                        tmpPayload.PreviewFileId = 0;
+                    }                   
                 }
             }
             return payload;
@@ -74,6 +77,10 @@ namespace JustForTeachersApi.Controllers
                     if (item.previewFileId.HasValue)
                     {
                         tmpPayload.PreviewFileId = (int)item.previewFileId;
+                    }
+                    else
+                    {
+                        tmpPayload.PreviewFileId = 0;
                     }
                 }
             }
@@ -107,6 +114,10 @@ namespace JustForTeachersApi.Controllers
                     {
                         tmpPayload.PreviewFileId = (int)item.previewFileId;
                     }
+                    else
+                    {
+                        tmpPayload.PreviewFileId = 0;
+                    }
                 }
             }
             return payload;
@@ -137,6 +148,10 @@ namespace JustForTeachersApi.Controllers
                     if (item.previewFileId.HasValue)
                     {
                         tmpPayload.PreviewFileId = (int)item.previewFileId;
+                    }
+                    else
+                    {
+                        tmpPayload.PreviewFileId = 0;
                     }
                 }
             }
