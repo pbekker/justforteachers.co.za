@@ -203,7 +203,6 @@ namespace Blackhouse.Resources
             string url = dashboardUrlBase + "resourceapprove/" + hidResourceId.Value;
             ResourceList currentItem = JsonConvert.DeserializeObject<ResourceList>(client.DownloadString(url));
             currentItem.isActive = chkApprove.Checked;
-            client.Dispose();
 
             HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceapprove/" + ModuleContext.PortalSettings.UserInfo.UserID.ToString()) as HttpWebRequest;
             request.ContentType = "text/json";
