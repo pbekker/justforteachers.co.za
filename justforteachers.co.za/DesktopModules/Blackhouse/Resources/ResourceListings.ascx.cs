@@ -13,6 +13,8 @@ using DotNetNuke.Entities.Portals;
 using DotNetNuke.Common;
 using System.Text;
 using DotNetNuke.Entities.Tabs;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace Blackhouse.Resources
 {
@@ -315,17 +317,35 @@ namespace Blackhouse.Resources
             return pagerSb.ToString();
         }
 
-        protected void rptListings_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        public string GetImage(string fileId)
         {
-            if (e.Item.ItemType == ListItemType.AlternatingItem ||
-                e.Item.ItemType == ListItemType.Item)
+            if (fileId != "" && fileId != "0")
             {
-                ResourceList item = (ResourceList)e.Item.DataItem;
-                Image previewFile = (Image)e.Item.FindControl("imgPreviewImage");
-                previewFile.ImageUrl = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("/resourcefile/{0}", item.PreviewFileId);
+                string url = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("resourcefile/{0}", fileId);
+                WebClient client = new WebClient();
+                FileResult result = JsonConvert.DeserializeObject<FileResult>(client.DownloadString(url));
+                if (result != null)
+                {
+                    TypeConverter tc = TypeDescriptor.GetConverter(typeof(Bitmap));
+                    Bitmap MyBitmap = (Bitmap)tc.ConvertFrom(result.fileContents);
+
+
+                    string imgString = Convert.ToBase64String(result.fileContents);
+                    //Set the source with data:image/bmp
+                    return String.Format("data:image/Bmp;base64,{0}\"", imgString);
+                }
+                else
+                {
+                    return "/desktopmodules/blackhouse/resources/noimage.png";
+                }
+            }
+            else
+            {
+                return "/desktopmodules/blackhouse/resources/noimage.png";
             }
 
         }
+
         protected void lnkSearch_Click(object sender, EventArgs e)
         {
             if (!txtSearch.Text.IsNullOrWhiteSpace() && txtSearch.Text != "")
