@@ -270,8 +270,9 @@ namespace Blackhouse.Resources
                 return;
             }
             //end of url
-
-            Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + ResourceId);
+            divUploadPreviewImage.Visible = true;
+            divWebsiteUpload.Visible = false;
+            hidResourceId.Value = ResourceId.ToString();
         }
 
         protected void rptFileInfo_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -709,12 +710,11 @@ namespace Blackhouse.Resources
                 Stream resp = httpFileResponse.GetResponseStream();
                 StreamReader reader = new StreamReader(resp);
                 string text = reader.ReadToEnd();
-                ResourceFile resourcefileReturn = JsonConvert.DeserializeObject<ResourceFile>(text);
-                fileid = resourcefileReturn.fileid;
+                var resourcefileReturn = JsonConvert.DeserializeObject<string>(text);
             }
             catch (Exception ex)
             {
-                lnkSaveFileInfo.Text = dashboardUrlBase + "resourceupload/" + hidResourceId.Value + "/preview" + "/r/n" + ex.Message.ToString();
+                lnkSaveImage.Text = dashboardUrlBase + "resourceupload/" + hidResourceId.Value + "/preview" + "/r/n" + ex.Message.ToString();
                 return;
             }
             Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + hidResourceId.Value);
