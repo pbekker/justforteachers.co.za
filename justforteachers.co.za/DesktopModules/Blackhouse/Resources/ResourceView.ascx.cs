@@ -113,7 +113,7 @@ namespace Blackhouse.Resources
                         rptFiles.Visible = false;
                         lnkDownload.Visible = false;
                     }
-                    
+
                     //now we need to fill in the resource url information
                     if (result.urlInfo.Count > 0)
                     {
@@ -130,7 +130,7 @@ namespace Blackhouse.Resources
                     // TODO: Add a check for approval, if it is approved no need to approve again.
                     if (ModuleContext.PortalSettings.UserInfo.IsInRole("Administrator") || ModuleContext.PortalSettings.UserInfo.IsSuperUser)
                         divApproval.Visible = Visible;
-                    else 
+                    else
                         divApproval.Visible = false;
 
                     //if (result.comments.Count > 0)
@@ -182,7 +182,7 @@ namespace Blackhouse.Resources
 
                 Response.AddHeader("Content-Type", "image/jpeg");
                 Response.AddHeader("Content-Length", file.FileData.Length.ToString());
-                
+
                 Response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}; size={1}", file.ContentDispositionFileName, file.FileData.Length));
 
                 Response.BinaryWrite(file.FileData.ToArray());
@@ -200,12 +200,12 @@ namespace Blackhouse.Resources
         {
             WebClient client = new WebClient();
 
-            string url = dashboardUrlBase + "resourceapprove/" + hidResourceId.Value; 
-            ResourceList  currentItem = JsonConvert.DeserializeObject<ResourceList>(client.DownloadString(url));
+            string url = dashboardUrlBase + "resourceapprove/" + hidResourceId.Value;
+            ResourceList currentItem = JsonConvert.DeserializeObject<ResourceList>(client.DownloadString(url));
             currentItem.isActive = chkApprove.Checked;
             client.Dispose();
 
-            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceapprove/"+ ModuleContext.PortalSettings.UserInfo.UserID.ToString()) as HttpWebRequest;
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourceapprove/" + ModuleContext.PortalSettings.UserInfo.UserID.ToString()) as HttpWebRequest;
             request.ContentType = "text/json";
             request.Method = "PUT";
             try
@@ -219,7 +219,8 @@ namespace Blackhouse.Resources
                 }
 
                 var httpResponse = (HttpWebResponse)request.GetResponse();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new ApplicationException(url + " -- " + currentItem.ResourceId.ToString() + "\r\n" + ex.ToString());
             }
@@ -276,7 +277,7 @@ namespace Blackhouse.Resources
             string url = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"] + string.Format("resourcefile/{0}", fileId);
             WebClient client = new WebClient();
             FileResult result = JsonConvert.DeserializeObject<FileResult>(client.DownloadString(url));
-           
+
             TypeConverter tc = TypeDescriptor.GetConverter(typeof(Bitmap));
             Bitmap MyBitmap = (Bitmap)tc.ConvertFrom(result.fileContents);
 
@@ -285,7 +286,7 @@ namespace Blackhouse.Resources
             //Set the source with data:image/bmp
             imgPreviewImage.Src = String.Format("data:image/Bmp;base64,{0}\"", imgString);
         }
-        
+
         //protected void cmdSaveComment_Click(object sender, EventArgs e)
         //{
         //    Comment saveComment = new Comment();
@@ -393,68 +394,5 @@ namespace Blackhouse.Resources
         //            break;
         //    }
         //}
-}
-
-    public class ResourceViewPayload
-    {
-        public ResourceList resourceInfo { get; set; }
-        public List<FileViewInfo> fileInfo { get; set; }
-        public List<LinkViewInfo> urlInfo { get; set; }
-        public List<Comment> comments { get; set; }
-    }
-
-    public class ResourceList
-    {
-        public int ResourceId { get; set; }
-        public string ResourceName { get; set; }
-        public string ResourceDescription { get; set; }
-        public string ResourceTopic { get; set; }
-        public string ResourceType { get; set; }
-        public string ResourceLanguage { get; set; }
-        public string ResourceUploadDate { get; set; }
-        public string ResourceTags { get; set; }
-        public string ResourceFormat { get; set; }
-        public int PreviewFileId { get; set; }
-        public string PreviewFileString { get; set; }
-        public bool isActive { get; set; }
-    }
-
-    public class Comment
-    {
-        public int commentId { get; set; }
-        public int userId { get; set; }
-        public int resourceId { get; set; }
-        public DateTime commentDate { get; set; }
-        public bool active { get; set; }
-        public string comment { get; set; }
-
-    }
-
-    public class FileViewInfo
-    {
-        public string FileName { get; set; }
-        public int FileSize { get; set; }
-        public string FileContentType { get; set; }
-        public int FileId { get; set; }
-    }
-
-    public class LinkViewInfo
-    {
-        public string resourceURL { get; set; }
-    }
-
-    public class FileDownloadData
-    {
-        public string ContentType { get; set; }
-        public string ContentLength { get; set; }
-        public string ContentDisposition { get; set; }
-        public string ContentDispositionFileName { get; set; }
-        public byte[] FileData { get; set; }
-    }
-
-    public class FileResult
-    {
-        public byte[] fileContents { get; set; }
-        public string contentType { get; set; }
     }
 }

@@ -35,11 +35,11 @@ namespace Blackhouse.Resources
                     if (Request.QueryString["q"] != null)
                     {
                         string query = Request.QueryString["q"];
-                        query = query.Replace(", ",",").Replace(' ', ',');
+                        query = query.Replace(", ", ",").Replace(' ', ',');
                         query = Request.QueryString["q"].Replace(", ", ",") + "," + query; // like a baus.
                         request = WebRequest.Create(dashboardUrlBase + "resourcelist/0/search/" + query) as HttpWebRequest;
                     }
-                    else if(Request.QueryString["t"] != null)
+                    else if (Request.QueryString["t"] != null)
                     {
                         int topicid = 0;
                         string topic = Request.QueryString["t"];
@@ -95,7 +95,7 @@ namespace Blackhouse.Resources
                         throw new ApplicationException(ex.ToString());
                     }
                 }
-                
+
             }
             if (!PortalSettings.Current.UserInfo.IsInRole("Administrator"))
             {
@@ -140,7 +140,7 @@ namespace Blackhouse.Resources
             switch (((LinkButton)e.CommandSource).CommandArgument.ToLower())
             {
                 case "resourcename":
-                    if (searchquery == "" &&  topic == "")
+                    if (searchquery == "" && topic == "")
                     {
                         if (((LinkButton)e.CommandSource).CssClass.Contains("active"))
                         {
@@ -294,7 +294,7 @@ namespace Blackhouse.Resources
                 PaginationLabel.Text = RenderPaginationControl(page + 1, 20, temp.count);
             }
 
-            
+
         }
 
 
@@ -339,25 +339,6 @@ namespace Blackhouse.Resources
                 Response.Redirect(TabController.CurrentPage.FullUrl + "?t=" + ddlTopicSearch.SelectedValue);
             }
         }
-}
-
-    public class ResourceList
-    {
-        public int ResourceId { get; set; }
-        public string ResourceName { get; set; }
-        public string ResourceDescription { get; set; }
-        public string ResourceTopic { get; set; }
-        public string ResourceType { get; set; }
-        public string ResourceLanguage { get; set; }
-        public string ResourceUploadDate { get; set; }
-        public bool isActive { get; set; }
-        public int PreviewFileId { get; set; }
-    }
-
-    public class ResourceListPayload
-    {
-        public int count { get; set; }
-        public List<ResourceList> resourceList { get; set; }
     }
 
 
