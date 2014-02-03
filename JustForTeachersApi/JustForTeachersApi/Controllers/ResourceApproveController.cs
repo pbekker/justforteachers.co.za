@@ -60,7 +60,7 @@ namespace JustForTeachersApi.Controllers
                          join l in dc.bhdResourceLanguages on d.languageId equals l.id
                          join top in dc.bhdResourceTopics on d.topicId equals top.id
                          join typ in dc.bhdResourceTypes on d.typeId equals typ.id
-                         where !d.isActive && !d.approvalDate.HasValue && !d.approvalUser.HasValue
+                         where !d.isActive && !d.approvalDate.HasValue && !d.approvalUser.HasValue && d.id == id
                          select new { d.name, d.description, d.uploadDate, d.id, language = l.name, topic = top.name, type = typ.name, d.isActive }).FirstOrDefault();
 
                 ResourceList resource = new ResourceList();
