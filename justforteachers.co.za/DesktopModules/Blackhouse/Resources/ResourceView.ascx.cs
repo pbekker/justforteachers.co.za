@@ -113,6 +113,18 @@ namespace Blackhouse.Resources
                         rptFiles.Visible = false;
                         lnkDownload.Visible = false;
                     }
+                    if (result.comments.Count > 0)
+                    {
+                        rptComments.DataSource = result.comments;
+                        rptComments.DataBind();
+                        divEmptyMessage.Visible = false;
+                    }
+                    else
+                    {
+                        divRepeater.Visible = false;
+                        if (ModuleContext.PortalSettings.UserInfo.UserID > 0 && !ModuleContext.PortalSettings.UserInfo.IsSuperUser)
+                            divAddFirstComment.Visible = false;
+                    }
 
                     //now we need to fill in the resource url information
                     if (result.urlInfo.Count > 0)
@@ -188,7 +200,6 @@ namespace Blackhouse.Resources
             WebClient client = new WebClient();
 
             string url = dashboardUrlBase + "resourceapprove/" + hidResourceId.Value; 
-            temp.Text = url;
             ResourceList  currentItem = JsonConvert.DeserializeObject<ResourceList>(client.DownloadString(url));
             currentItem.isActive = chkApprove.Checked;
             client.Dispose();
@@ -272,7 +283,108 @@ namespace Blackhouse.Resources
             string imgString = Convert.ToBase64String(result.fileContents);
             //Set the source with data:image/bmp
             imgPreviewImage.Src = String.Format("data:image/Bmp;base64,{0}\"", imgString);
+        }
+        
+        protected void cmdSaveComment_Click(object sender, EventArgs e)
+        {
+            Comment saveComment = new Comment();
+            saveComment.commentId = String.IsNullOrEmpty(hidCommentId.Value)? 0 : int.Parse(hidCommentId.Value);
+            saveComment.resourceId = int.Parse(Request.QueryString["resourceid"]);
+            saveComment.userId = PortalSettings.Current.UserId;
+            saveComment.commentDate = DateTime.Now;
+            saveComment.active = true;
+            saveComment.comment = txtComment.Text;
 
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcecomment/") as HttpWebRequest;
+            request.ContentType = "text/json";
+            request.Method = "PUT";
+            try
+            {
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(saveComment);
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.ToString());
+            }
+
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+        protected void rptComments_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            switch (e.CommandArgument.ToString().ToLower())
+            {
+                case "addcomment":
+                    resetCommentControls();
+                    AddComment.Visible = true;
+                    break;
+                case "removecomment":
+                    //lblResourceName.Text = e.CommandArgument.ToString();
+                    //return;
+                    HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcecomment/" + e.CommandArgument.ToString()) as HttpWebRequest;
+                    request.ContentType = "text/json";
+                    request.Method = "DELETE";
+                    var response = (HttpWebResponse)request.GetResponse();
+                    Response.Redirect(Request.Url.AbsoluteUri);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        protected void cmdAddNewComment_Click(object sender, EventArgs e)
+        {
+            resetCommentControls();
+            AddComment.Visible = true;
+        }
+        protected void cmdCancelComment_Click(object sender, EventArgs e)
+        {
+            resetCommentControls();
+        }
+
+        private void resetCommentControls()
+        {
+            AddComment.Visible = false;
+            hidCommentId.Value = "";
+            txtComment.Text = "";
+        }
+
+        protected void rptComments_ItemCreated(object sender, RepeaterItemEventArgs e)
+        {
+            if ((e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) && e.Item.DataItem != null)
+            {
+                Comment currentComment = (Comment)e.Item.DataItem;
+                HiddenField hidUserId = (HiddenField)e.Item.FindControl("hidUserId");
+                Label lblUserName = (Label)e.Item.FindControl("lblUserName");
+                Label lblCommentDate = (Label)e.Item.FindControl("lblCommentDate");
+                Label lblComment = (Label)e.Item.FindControl("lblComment");
+                LinkButton cmdRemove = (LinkButton)e.Item.FindControl("cmdRemove");
+                LinkButton cmdAddComment = (LinkButton)e.Item.FindControl("cmdAddComment");
+
+                hidUserId.Value = currentComment.userId.ToString();
+                lblUserName.Text = DotNetNuke.Entities.Users.UserController.GetUserById(ModuleContext.PortalId, currentComment.userId).DisplayName;
+                lblCommentDate.Text = currentComment.commentDate.ToShortDateString();
+                lblComment.Text = currentComment.comment;
+                cmdAddComment.CommandName = "addComment";
+                cmdAddComment.CommandArgument = currentComment.commentId.ToString();
+                if (ModuleContext.PortalSettings.UserInfo.IsInRole("Administrator") || ModuleContext.PortalSettings.UserInfo.IsSuperUser)
+                {
+                    cmdRemove.CommandName = "removeComment";
+                    cmdRemove.CommandArgument = currentComment.commentId.ToString();
+                }
+                else
+                {
+                    cmdRemove.Visible = false;
+                }
+
+            }
         }
 }
 
@@ -281,6 +393,7 @@ namespace Blackhouse.Resources
         public ResourceList resourceInfo { get; set; }
         public List<FileViewInfo> fileInfo { get; set; }
         public List<LinkViewInfo> urlInfo { get; set; }
+        public List<Comment> comments { get; set; }
     }
 
     public class ResourceList
@@ -297,6 +410,17 @@ namespace Blackhouse.Resources
         public int PreviewFileId { get; set; }
         public string PreviewFileString { get; set; }
         public bool isActive { get; set; }
+    }
+
+    public class Comment
+    {
+        public int commentId { get; set; }
+        public int userId { get; set; }
+        public int resourceId { get; set; }
+        public DateTime commentDate { get; set; }
+        public bool active { get; set; }
+        public string comment { get; set; }
+
     }
 
     public class FileViewInfo

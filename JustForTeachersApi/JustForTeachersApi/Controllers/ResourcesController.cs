@@ -57,6 +57,9 @@ namespace JustForTeachersApi.Controllers
                 if (r.PreviewFileId != null)
                     tmpList.PreviewFileId = (int)r.PreviewFileId;
                 
+                // resource comments
+                List<Comment> resourceComments = dc.bhdResourceComments.Where((x) => x.resourceId == id && x.isActive.Value).Select(x => new Comment { userId = x.userId, resourceId = x.resourceId, commentDate = x.commentDate.Value, comment = x.comment, commentId = x.id, active = x.isActive.Value }).ToList();
+                tmpResource.comments = resourceComments;
                 tmpResource.resourceInfo = tmpList;
                 //fix for the topic
                 var rtopic = dc.sps_getResourceTopicListById(r.ResourceTopicId, true);

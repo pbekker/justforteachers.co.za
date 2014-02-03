@@ -196,6 +196,7 @@
     <Compile Include="Controllers\MenuItemController.cs" />
     <Compile Include="Controllers\ResourceAuthorController.cs" />
     <Compile Include="Controllers\ResourceBundleController.cs" />
+    <Compile Include="Controllers\ResourceCommentController.cs" />
     <Compile Include="Controllers\ResourceEditController.cs" />
     <Compile Include="Controllers\ResourceFileController.cs" />
     <Compile Include="Controllers\ResourceListController.cs" />

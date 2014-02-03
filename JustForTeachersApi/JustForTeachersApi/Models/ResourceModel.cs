@@ -69,8 +69,20 @@ namespace JustForTeachersApi.Models
         public ResourceList resourceInfo { get; set; }
         public List<FileViewInfo> fileInfo { get; set; }
         public List<LinkViewInfo> urlInfo { get; set; }
+        public List<Comment> comments { get; set; }
     }
-    
+
+    public class Comment
+    {
+        public int commentId { get; set; }
+        public int resourceId { get; set; }
+        public int userId { get; set; }
+        public DateTime commentDate { get; set; }
+        public bool active { get; set; }
+        public string comment { get; set; }
+
+    }
+
     public class FileViewInfo
     {
         public string FileName { get; set; } 
