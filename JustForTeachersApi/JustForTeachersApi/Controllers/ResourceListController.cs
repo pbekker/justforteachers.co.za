@@ -82,7 +82,7 @@ namespace JustForTeachersApi.Controllers
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
                 //var r = dc.sps_getResourceList(false, id + 1, 20, search); //name, rating or topic
-                var r = dc.sps_getResourceListByKeywordList(search, false, id + 1, 20, null, null);
+                var r = dc.sps_getResourceListByKeywordList(search, true, id + 1, 20, null, null);
                 foreach (var item in r)
                 {
                     ResourceList tmpPayload = new ResourceList();
@@ -109,7 +109,7 @@ namespace JustForTeachersApi.Controllers
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
                 //var r = dc.sps_getResourceList(false, id + 1, 20, search); //name, rating or topic
-                var r = dc.sps_getResourceListByKeywordList(search, false, id + 1, 20, orderby, order);
+                var r = dc.sps_getResourceListByKeywordList(search, true, id + 1, 20, orderby, order);
                 foreach (var item in r)
                 {
                     ResourceList tmpPayload = new ResourceList();
@@ -136,7 +136,7 @@ namespace JustForTeachersApi.Controllers
             payload.resourceList = new List<ResourceList>();
             using (ResourcesDataContext dc = new ResourcesDataContext())
             {
-                var r = dc.sps_getResourceList(false, id + 1, 20, orderby, order); //name, rating or topic
+                var r = dc.sps_getResourceList(true, id + 1, 20, orderby, order); //name, rating or topic
                 foreach (var item in r)
                 {
                     ResourceList tmpPayload = new ResourceList();

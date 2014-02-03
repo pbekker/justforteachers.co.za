@@ -49,6 +49,12 @@ namespace JustForTeachersApi
                 );
 
             config.Routes.MapHttpRoute(
+                name: "TopicSearchApi",
+                routeTemplate: "api/{controller}/{id}/topic/{topic}/{orderby}/{order}",
+                defaults: new { id = RouteParameter.Optional, topic = RouteParameter.Optional, orderby = RouteParameter.Optional, order = RouteParameter.Optional }
+                );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}/{orderby}/{order}",
                 defaults: new { id = RouteParameter.Optional, orderby = RouteParameter.Optional, order = RouteParameter.Optional }

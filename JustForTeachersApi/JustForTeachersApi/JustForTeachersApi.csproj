@@ -206,6 +206,7 @@
     <Compile Include="Controllers\ResourcePublisherController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Controllers\ResourceTopicController.cs" />
+    <Compile Include="Controllers\ResourceTopicSearchController.cs" />
     <Compile Include="Controllers\ResourceUploadController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
