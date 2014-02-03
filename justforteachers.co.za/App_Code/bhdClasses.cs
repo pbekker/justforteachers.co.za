@@ -11,6 +11,9 @@ namespace Blackhouse.Resources
         public ResourceList resourceInfo { get; set; }
         public List<FileViewInfo> fileInfo { get; set; }
         public List<LinkViewInfo> urlInfo { get; set; }
+        public List<GenDropList> types { get; set; }
+        public List<GenDropList> languages { get; set; }
+        public List<GenDropList> formats { get; set; }
         public List<Comment> comments { get; set; }
     }
 
