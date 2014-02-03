@@ -977,52 +977,67 @@
     </div>
 </div>
 
-<div style="visibility:hidden">
+<div> <%--
     <h3>Resource Comments</h3>
-    <asp:UpdatePanel runat="server" ID="upComments">
-        <ContentTemplate>
-            <div id="divRepeater" runat="server">
-                <asp:Repeater runat="server" ID="rptComments" OnItemCreated="rptComments_ItemCreated" OnItemCommand="rptComments_ItemCommand">
-                    <ItemTemplate>
-                        <asp:HiddenField runat="server" ID="hidUserId" Value="" />
-                        <asp:LinkButton runat="server" ID="temp" Text="killyourself" CommandName="Wanker" CommandArgument="YOU" />
-                        <div>
-                            <asp:Label runat="server" ID="lblUserName" Text="UserName" />
-                        </div>
-                        <div>
-                            <asp:Label runat="server" ID="lblCommentDate" Text="Comment Date" />
-                        </div>
-                        <div>
-                            <asp:Label runat="server" ID="lblComment" Text="Comment" />
-                        </div>
-                        <div>
-                            <asp:LinkButton runat="server" ID="cmdRemove" Text="Remove Comment" />
-                            &nbsp;
-                            <asp:LinkButton runat="server" ID="cmdAddComment" Text="Add Comment" />
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </div>
-            <div id="divEmptyMessage" runat="server">
-                <div>There are currently no Comments.</div>
-                <div id="divAddFirstComment" runat="server">
-                    You can
-                    <asp:LinkButton runat="server" ID="cmdAddNewComment" Text="Add a Comment" OnClick="cmdAddNewComment_Click" />
-                    now!
-                </div>
-            </div>
-            <div id="AddComment" runat="server" visible="false">
-                <asp:HiddenField runat="server" ID="hidCommentId" Value="" />
+        <asp:DataList runat="server" ID="dlComments" OnItemCommand="dlComments_ItemCommand" OnItemCreated="dlComments_ItemCreated" >
+            <ItemTemplate>
+                <asp:HiddenField runat="server" ID="hidUserId" Value="" />
                 <div>
-                    <asp:Label runat="server" ID="lblComment" Text="Comment:" />
-                    <asp:TextBox runat="server" Rows="5" Columns="100" ID="txtComment" />
+                    <asp:Label runat="server" ID="lblUserName" Text="UserName" />
                 </div>
                 <div>
-                    <asp:LinkButton runat="server" ID="cmdCancelComment" Text="Cancel" OnClick="cmdCancelComment_Click" />
+                    <asp:Label runat="server" ID="lblCommentDate" Text="Comment Date" />
+                </div>
+                <div>
+                    <asp:Label runat="server" ID="lblComment" Text="Comment" />
+                </div>
+                <div>
+                    <asp:Button runat="server" ID="cmdRemove" Text="Remove Comment" />
                     &nbsp;
-                    <asp:LinkButton runat="server" ID="cmdSaveComment" Text="Save" OnClick="cmdSaveComment_Click" />
+                    <asp:Button runat="server" ID="cmdAddComment" Text="Add Comment" CausesValidation="False" />
                 </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+            </ItemTemplate>
+        </asp:DataList>
+   <div id="divRepeater" runat="server">
+        <asp:Repeater runat="server" ID="rptComments" OnItemCreated="rptComments_ItemCreated" OnItemCommand="rptComments_ItemCommand">
+            <ItemTemplate>
+                <asp:HiddenField runat="server" ID="hidUserId" Value="" />
+                <asp:LinkButton runat="server" ID="temp" Text="killyourself" CommandName="Wanker" CommandArgument="YOU" />
+                <div>
+                    <asp:Label runat="server" ID="lblUserName" Text="UserName" />
+                </div>
+                <div>
+                    <asp:Label runat="server" ID="lblCommentDate" Text="Comment Date" />
+                </div>
+                <div>
+                    <asp:Label runat="server" ID="lblComment" Text="Comment" />
+                </div>
+                <div>
+                    <asp:LinkButton runat="server" ID="cmdRemove" Text="Remove Comment" />
+                    &nbsp;
+                            <asp:LinkButton runat="server" ID="cmdAddComment" Text="Add Comment" />
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
+    <div id="divEmptyMessage" runat="server">
+        <div>There are currently no Comments.</div>
+        <div id="divAddFirstComment" runat="server">
+            You can
+                    <asp:LinkButton runat="server" ID="cmdAddNewComment" Text="Add a Comment" OnClick="cmdAddNewComment_Click" />
+            now!
+        </div>
+    </div>
+    <div id="AddComment" runat="server" visible="false">
+        <asp:HiddenField runat="server" ID="hidCommentId" Value="" />
+        <div>
+            <asp:Label runat="server" ID="lblComment" Text="Comment:" />
+            <asp:TextBox runat="server" Rows="5" Columns="100" ID="txtComment" />
+        </div>
+        <div>
+            <asp:LinkButton runat="server" ID="cmdCancelComment" Text="Cancel" OnClick="cmdCancelComment_Click" />
+            &nbsp;
+                    <asp:LinkButton runat="server" ID="cmdSaveComment" Text="Save" OnClick="cmdSaveComment_Click" />
+        </div>
+    </div>--%>
 </div>
