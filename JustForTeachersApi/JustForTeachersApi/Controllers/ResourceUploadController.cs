@@ -43,6 +43,7 @@ namespace JustForTeachersApi.Controllers
                      select new GenDropList() { ListId = d.id, ListValue = d.name }).ToList();
                 payload.languages = r;
                 DataTable tmpDT = new DataTable();
+                tmpDT.TableName = "Topics";
                 DataColumn workCol = tmpDT.Columns.Add("id", typeof(Int32));
                 workCol.AllowDBNull = false;
                 workCol.Unique = true;

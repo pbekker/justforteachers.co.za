@@ -11,10 +11,15 @@ namespace Blackhouse.Resources
         public ResourceList resourceInfo { get; set; }
         public List<FileViewInfo> fileInfo { get; set; }
         public List<LinkViewInfo> urlInfo { get; set; }
+        public List<Comment> comments { get; set; }
+    }
+
+    public class ResourcePayload
+    {
         public List<GenDropList> types { get; set; }
         public List<GenDropList> languages { get; set; }
         public List<GenDropList> formats { get; set; }
-        public List<Comment> comments { get; set; }
+        public DataTable topics { get; set; }
     }
 
     public class ResourceList
@@ -82,14 +87,6 @@ namespace Blackhouse.Resources
     {
         public int ListId { get; set; }
         public string ListValue { get; set; }
-    }
-
-    public class ResourcePayload
-    {
-        public List<GenDropList> types { get; set; }
-        public List<GenDropList> languages { get; set; }
-        public List<GenDropList> formats { get; set; }
-        public DataTable topics { get; set; }
     }
 
     public class UploadData

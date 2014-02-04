@@ -725,4 +725,11 @@ namespace Blackhouse.Resources
             Response.Redirect(Globals.NavigateURL(PortalSettings.Current.ActiveTab.TabID, "resourceView", "mid=" + ModuleContext.ModuleId.ToString()) + "?resourceid=" + hidResourceId.Value);
         }
     }
+    public class ResourcePayload
+    {
+        public List<GenDropList> types { get; set; }
+        public List<GenDropList> languages { get; set; }
+        public List<GenDropList> formats { get; set; }
+        public DataTable topics { get; set; }
+    }
 }
