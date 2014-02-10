@@ -147,4 +147,12 @@ namespace Blackhouse.Resources
         public List<string> tags { get; set; }
     }
 
+    public class TopicInfo
+    {
+        public int topicId { get; set; }
+        public int? parentId { get; set; }
+        public string name { get; set; }
+
+    }
+
 }

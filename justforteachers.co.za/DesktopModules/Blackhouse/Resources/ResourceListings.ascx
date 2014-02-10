@@ -40,7 +40,10 @@
 <p>
     <div class="resource-search">
         search: &nbsp;<asp:TextBox runat="server" ID="txtSearch" CssClass="resource-text" PlaceHolder="e.g. english, afrikaans" />&nbsp; <asp:LinkButton runat="server" ID="lnkSearch" CommandArgument="resourcesearch" Text="Search" OnClick="lnkSearch_Click" /> <br /><br />
-        topics: <asp:DropDownList runat="server" ID="ddlTopicSearch" AutoPostBack="true"  CssClass="text"  Width="80%" OnSelectedIndexChanged="ddlTopicSearch_SelectedIndexChanged"/>
+        Filters: 
+            Phase:<asp:DropDownList runat="server" ID="ddlPhaseFilter" AutoPostBack="true"  CssClass="text"  Width="25%" OnSelectedIndexChanged="ddlTopicSearch_SelectedIndexChanged"/>
+            Subject: <asp:DropDownList runat="server" ID="ddlSubjectFilter" AutoPostBack="true" CssClass="text" Width="25%" OnSelectedIndexChanged="ddlSubjectFilter_SelectedIndexChanged" />
+            Topic: <asp:DropDownList runat="server" ID="ddlTopicFilter" AutoPostBack="true" cssclass="text" Width="25%" OnSelectedIndexChanged="ddlTopicFilter_SelectedIndexChanged" />
     </div>
 </p>
 

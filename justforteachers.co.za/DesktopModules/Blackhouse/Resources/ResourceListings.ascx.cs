@@ -21,6 +21,7 @@ namespace Blackhouse.Resources
     public partial class ResourceListings : ModuleUserControlBase
     {
         protected string dashboardUrlBase = "http://" + System.Configuration.ConfigurationManager.AppSettings["apiURL"];
+        protected static List<TopicInfo> Topics;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -41,10 +42,14 @@ namespace Blackhouse.Resources
                         query = Request.QueryString["q"].Replace(", ", ",") + "," + query; // like a baus.
                         request = WebRequest.Create(dashboardUrlBase + "resourcelist/0/search/" + query) as HttpWebRequest;
                     }
-                    else if (Request.QueryString["t"] != null)
+                    else if (Request.QueryString["p"] != null)
                     {
                         int topicid = 0;
-                        string topic = Request.QueryString["t"];
+                        string topic = Request.QueryString["p"];
+                        if (Request.QueryString["s"] != null)
+                            topic = Request.QueryString["s"];
+                        if (Request.QueryString["t"] != null)
+                            topic = Request.QueryString["t"];
                         if (int.TryParse(topic, out topicid))
                         {
                             request = WebRequest.Create(dashboardUrlBase + "resourcetopicsearch/0/topic/" + topic) as HttpWebRequest;
@@ -87,10 +92,27 @@ namespace Blackhouse.Resources
                     Stream resp = Topicsresponse.GetResponseStream();
                     StreamReader reader = new StreamReader(resp);
                     string text = reader.ReadToEnd();
-                    List<GenDropList> temp = JsonConvert.DeserializeObject<List<GenDropList>>(text);
+                    Topics = JsonConvert.DeserializeObject<List<TopicInfo>>(text);
                     try
                     {
-                        FillDropDown(ddlTopicSearch, temp);
+                        FillPhaseDropDown(ddlPhaseFilter, Topics.Where((x)=>x.parentId == null).ToList());
+                        if (Request.QueryString["p"] != null)
+                        {
+                            ddlPhaseFilter.SelectedValue = Request.QueryString["p"];
+                            FillSubjectDropDown(ddlSubjectFilter, Topics, Request.QueryString["p"]);
+                        }
+                        if (Request.QueryString["s"] != null)
+                        {
+                            ddlSubjectFilter.SelectedValue = Request.QueryString["s"];
+                            FillTopicDropDown(ddlTopicFilter, Topics, Request.QueryString["s"]);
+                        }
+                        else ddlSubjectFilter.Items.Add("Please select a Phase...");
+                        if (Request.QueryString["t"] != null)
+                        {
+                            ddlTopicFilter.SelectedValue = Request.QueryString["t"];
+                        }
+                        else ddlTopicFilter.Items.Add("Please select a Subject...");
+
                     }
                     catch (Exception ex)
                     {
@@ -105,14 +127,40 @@ namespace Blackhouse.Resources
             }
         }
 
-        public static void FillDropDown(DropDownList target, List<GenDropList> data)
+        public static void FillPhaseDropDown(DropDownList target, List<TopicInfo> data)
         {
             target.Items.Clear();
             target.AppendDataBoundItems = true;
-            target.Items.Add(new ListItem("Please select an item...", "0"));
+            target.Items.Add(new ListItem("Please select a Phase...", "0"));
             target.DataSource = data;
-            target.DataTextField = "ListValue";
-            target.DataValueField = "ListId";
+            target.DataTextField = "name";
+            target.DataValueField = "topicId";
+            target.DataBind();
+        }
+
+        public static void FillSubjectDropDown(DropDownList target, List<TopicInfo> data, string selectedPhase)
+        {
+            int attemptedParse = 0;
+            int.TryParse(selectedPhase, out attemptedParse);
+            target.Items.Clear();
+            target.AppendDataBoundItems = true;
+            target.Items.Add(new ListItem("Please select a Subject...", "0"));
+            target.DataSource = data.Where((x)=>x.parentId == attemptedParse);
+            target.DataTextField = "name";
+            target.DataValueField = "topicId";
+            target.DataBind();
+        }
+
+        public static void FillTopicDropDown(DropDownList target, List<TopicInfo> data, string selectedSubject)
+        {
+            int attemptedParse = 0;
+            int.TryParse(selectedSubject, out attemptedParse);
+            target.Items.Clear();
+            target.AppendDataBoundItems = true;
+            target.Items.Add(new ListItem("Please select a Topic...", "0"));
+            target.DataSource = data.Where((x) => x.parentId == attemptedParse);
+            target.DataTextField = "name";
+            target.DataValueField = "topicId";
             target.DataBind();
         }
 
@@ -353,13 +401,36 @@ namespace Blackhouse.Resources
         }
         protected void ddlTopicSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlTopicSearch.SelectedValue != "0")
+            if (ddlPhaseFilter.SelectedValue != "0")
             {
                 //now we need to search....
-                Response.Redirect(TabController.CurrentPage.FullUrl + "?t=" + ddlTopicSearch.SelectedValue);
+                Response.Redirect(TabController.CurrentPage.FullUrl + "?p=" + ddlPhaseFilter.SelectedValue);
             }
         }
-    }
+        protected void ddlSubjectFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlSubjectFilter.SelectedValue != "0")
+            {
+                //now we need to search....
+                if (Request.QueryString["p"] != null)
+                {
+                    Response.Redirect(TabController.CurrentPage.FullUrl + "?s=" + ddlSubjectFilter.SelectedValue + "&p=" + Request.QueryString["p"]);
+                }
+            }
+
+        }
+        protected void ddlTopicFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlTopicFilter.SelectedValue != "0")
+            {
+                if (Request.QueryString["p"] != null && Request.QueryString["s"] != null)
+                {
+                    //now we need to search....
+                    Response.Redirect(TabController.CurrentPage.FullUrl + "?t=" + ddlTopicFilter.SelectedValue + "&s=" + Request.QueryString["s"] + "&p=" + Request.QueryString["p"]);
+                }
+            }
+        }
+}
 
 
 }
