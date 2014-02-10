@@ -393,5 +393,16 @@ namespace Blackhouse.Resources
         //            break;
         //    }
         //}
+        protected void cmdDelete_Click(object sender, EventArgs e)
+        {
+            WebClient client = new WebClient();
+
+            string url = dashboardUrlBase + "resources/" + hidResourceId.Value;
+
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            request.ContentType = "text/json";
+            request.Method = "DELETE";
+            var httpResponse = (HttpWebResponse)request.GetResponse();
+        }
     }
 }
