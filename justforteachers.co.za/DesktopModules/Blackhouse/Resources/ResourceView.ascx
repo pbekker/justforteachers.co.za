@@ -979,7 +979,7 @@
 <div id="divAdmin">
     <div id="divDeleteResource">
         <div>
-            <asp:LinkButton runat="server" ID="cmdDelete" Text="Delete Resource" CssClass="resource-btn resource-basic-btn"  />
+            <asp:LinkButton runat="server" ID="cmdDelete" Text="Delete Resource" CssClass="resource-btn resource-basic-btn" OnClick="cmdDelete_Click"  />
         </div>
     </div>
     <div id="divApproval" runat="server">
