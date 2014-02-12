@@ -12,6 +12,8 @@ namespace Blackhouse.Resources
         public List<FileViewInfo> fileInfo { get; set; }
         public List<LinkViewInfo> urlInfo { get; set; }
         public List<Comment> comments { get; set; }
+        public int averageRating { get; set; }
+        public int ratingCount { get; set; }
     }
 
     public class ResourcePayload
@@ -19,13 +21,8 @@ namespace Blackhouse.Resources
         public List<GenDropList> types { get; set; }
         public List<GenDropList> languages { get; set; }
         public List<GenDropList> formats { get; set; }
-<<<<<<< HEAD
         public List<Comment> comments { get; set; }
-        public int averageRating { get; set; }
-        public int ratingCount { get; set; }
-=======
         public DataTable topics { get; set; }
->>>>>>> 1e3d034d9f5605df8b4d235796e704e081f5704b
     }
 
     public class ResourceList
