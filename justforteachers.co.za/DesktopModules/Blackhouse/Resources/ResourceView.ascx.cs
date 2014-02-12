@@ -310,7 +310,6 @@ namespace Blackhouse.Resources
             imgPreviewImage.Src = String.Format("data:image/Bmp;base64,{0}\"", imgString);
         }
 
-<<<<<<< HEAD
         protected void cmdSaveComment_Click(object sender, EventArgs e)
         {
             Comment saveComment = new Comment();
@@ -469,8 +468,7 @@ namespace Blackhouse.Resources
             Response.Redirect(Request.RawUrl);
 
         }
-}
-=======
+
         //protected void cmdSaveComment_Click(object sender, EventArgs e)
         //{
         //    Comment saveComment = new Comment();
@@ -590,5 +588,4 @@ namespace Blackhouse.Resources
             var httpResponse = (HttpWebResponse)request.GetResponse();
         }
     }
->>>>>>> 1e3d034d9f5605df8b4d235796e704e081f5704b
 }

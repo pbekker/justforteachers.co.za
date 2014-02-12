@@ -999,26 +999,14 @@
             <asp:HyperLink runat="server" ID="lblFileName" Text='<%#Eval("resourceURL") %>' NavigateUrl='<%#Eval("resourceURL") %>' /></span><br />
     </ItemTemplate>
 </asp:Repeater>
-<<<<<<< HEAD
 <br />
 <div style="clear:both;" />
 <div id="divApproval" runat="server">
-    <div>
-        <asp:CheckBox runat="server" ID="chkApprove" Text="Approved" Checked="true" />
-=======
-<div id="divAdmin">
-    <div id="divDeleteResource">
-        <div>
-            <asp:LinkButton runat="server" ID="cmdDelete" Text="Delete Resource" CssClass="resource-btn resource-basic-btn" OnClick="cmdDelete_Click"  />
-        </div>
->>>>>>> 1e3d034d9f5605df8b4d235796e704e081f5704b
-    </div>
-    <div id="divApproval" runat="server">
-        <div>
-            <asp:CheckBox runat="server" ID="chkApprove" Text="Approved" Checked="true" />
-        </div>
+<div id="divAdmin" style="margin: 5px; border: 1px solid #fff; padding: 5px;">
+        <asp:CheckBox runat="server" ID="chkApprove" Text="Approved" Checked="true" /><br />
         <div>
             <asp:LinkButton runat="server" ID="cmdApprove" Text="Confirm Approval" OnClick="cmdApprove_Click" CssClass="resource-btn resource-basic-btn" />
+            <asp:LinkButton runat="server" ID="cmdDelete" Text="Delete Resource" CssClass="resource-btn resource-basic-btn" OnClick="cmdDelete_Click"  />
         </div>
     </div>
 </div>
