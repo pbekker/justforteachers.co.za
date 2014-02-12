@@ -15,6 +15,8 @@ namespace Blackhouse.Resources
         public List<GenDropList> languages { get; set; }
         public List<GenDropList> formats { get; set; }
         public List<Comment> comments { get; set; }
+        public int averageRating { get; set; }
+        public int ratingCount { get; set; }
     }
 
     public class ResourceList

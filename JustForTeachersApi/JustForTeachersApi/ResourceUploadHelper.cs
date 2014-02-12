@@ -36,12 +36,12 @@ namespace JustForTeachersApi
                 dc.bhdResourceFormats.InsertOnSubmit(rf);
                 dc.SubmitChanges();
 
-                bhdResourceRating rr = new bhdResourceRating();
-                rr.resourceId = r.id;
-                rr.rating = 1;
-                rr.userId = 1; // TODO: Update when the user is passed through.
-                dc.bhdResourceRatings.InsertOnSubmit(rr);
-                dc.SubmitChanges();
+                //bhdResourceRating rr = new bhdResourceRating();
+                //rr.resourceId = r.id;
+                //rr.rating = 1;
+                //rr.userId = 1; // TODO: Update when the user is passed through.
+                //dc.bhdResourceRatings.InsertOnSubmit(rr);
+                //dc.SubmitChanges();
             }
             return retId;
         }

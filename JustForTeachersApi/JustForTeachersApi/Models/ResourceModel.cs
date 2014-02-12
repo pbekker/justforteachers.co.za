@@ -70,6 +70,8 @@ namespace JustForTeachersApi.Models
         public List<FileViewInfo> fileInfo { get; set; }
         public List<LinkViewInfo> urlInfo { get; set; }
         public List<Comment> comments { get; set; }
+        public int averageRating { get; set; }
+        public int ratingCount { get; set; }
     }
 
     public class Comment

@@ -39,6 +39,29 @@ namespace Blackhouse.Resources
                     ResourceUploadDate.Text = result.resourceInfo.ResourceUploadDate;
                     ResourceFormat.Text = result.resourceInfo.ResourceFormat;
 
+                    //do some shit for the rating..
+                    if (PortalSettings.Current.UserId > 0)
+                    {
+                        spanRate.Visible = true;
+                    }
+                    if (result.averageRating > 0 && result.ratingCount > 0)
+                    {
+                        //spanRating.InnerText = "This resource has a rating score of " + result.averageRating + ", as voted by " + result.ratingCount + " people.";
+                        for (int i = 1; i < 6; i++)
+			            {
+                            if (i != result.averageRating)
+                                spanRating.InnerHtml = spanRating.InnerHtml + "<input name='star3' type='radio' class='star' disabled='disabled'/>";
+                            else
+                                spanRating.InnerHtml = spanRating.InnerHtml + "<input name='star3' type='radio' class='star' disabled='disabled' checked='checked' />";
+	            		}
+                        spanNotRated.Visible = false;
+                    }
+                    else
+                    {
+                        spanRating.InnerText = "This resource has not recieved any ratings (or less than five).";
+                        spanRating.Visible = false;
+                    }                    
+
                     //do some shit for the topics..
                     if (result.resourceInfo.ResourceTopic != null && result.resourceInfo.ResourceTopic != "")
                     {
@@ -133,18 +156,19 @@ namespace Blackhouse.Resources
                     else
                         divApproval.Visible = false;
 
-                    //if (result.comments.Count > 0)
-                    //{
-                    //    dlComments.DataSource = result.comments;
-                    //    dlComments.DataBind();
-                    //    divEmptyMessage.Visible = false;
-                    //}
-                    //else
-                    //{
-                    //    //divRepeater.Visible = false;
-                    //    if (ModuleContext.PortalSettings.UserInfo.UserID > 0 && !ModuleContext.PortalSettings.UserInfo.IsSuperUser)
-                    //        divAddFirstComment.Visible = false;
-                    //}
+                    if (result.comments.Count > 0)
+                    {
+                        rptComments.DataSource = result.comments;
+                        rptComments.DataBind();
+                        divEmptyMessage.Visible = false;
+                        divAddaComment.Visible = true;
+                    }
+                    else
+                    {
+                        //divRepeater.Visible = false;
+                        if (ModuleContext.PortalSettings.UserInfo.UserID > 0 && !ModuleContext.PortalSettings.UserInfo.IsSuperUser)
+                            divAddFirstComment.Visible = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -286,112 +310,163 @@ namespace Blackhouse.Resources
             imgPreviewImage.Src = String.Format("data:image/Bmp;base64,{0}\"", imgString);
         }
 
-        //protected void cmdSaveComment_Click(object sender, EventArgs e)
-        //{
-        //    Comment saveComment = new Comment();
-        //    saveComment.commentId = String.IsNullOrEmpty(hidCommentId.Value)? 0 : int.Parse(hidCommentId.Value);
-        //    saveComment.resourceId = int.Parse(Request.QueryString["resourceid"]);
-        //    saveComment.userId = PortalSettings.Current.UserId;
-        //    saveComment.commentDate = DateTime.Now;
-        //    saveComment.active = true;
-        //    saveComment.comment = txtComment.Text;
+        protected void cmdSaveComment_Click(object sender, EventArgs e)
+        {
+            Comment saveComment = new Comment();
+            saveComment.commentId = String.IsNullOrEmpty(hidCommentId.Value) ? 0 : int.Parse(hidCommentId.Value);
+            saveComment.resourceId = int.Parse(Request.QueryString["resourceid"]);
+            saveComment.userId = PortalSettings.Current.UserId;
+            saveComment.commentDate = DateTime.Now;
+            saveComment.active = true;
+            saveComment.comment = txtComment.Text;
 
-        //    HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcecomment/") as HttpWebRequest;
-        //    request.ContentType = "text/json";
-        //    request.Method = "PUT";
-        //    try
-        //    {
-        //        using (var streamWriter = new StreamWriter(request.GetRequestStream()))
-        //        {
-        //            string json = JsonConvert.SerializeObject(saveComment);
-        //            streamWriter.Write(json);
-        //            streamWriter.Flush();
-        //            streamWriter.Close();
-        //        }
+            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcecomment/") as HttpWebRequest;
+            request.ContentType = "text/json";
+            request.Method = "PUT";
+            try
+            {
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    string json = JsonConvert.SerializeObject(saveComment);
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
 
-        //        var httpResponse = (HttpWebResponse)request.GetResponse();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new ApplicationException(ex.ToString());
-        //    }
+                var httpResponse = (HttpWebResponse)request.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.ToString());
+            }
 
-        //    Response.Redirect(Request.Url.AbsoluteUri);
-        //}
-        //protected void cmdAddNewComment_Click(object sender, EventArgs e)
-        //{
-        //    resetCommentControls();
-        //    AddComment.Visible = true;
-        //}
-        //protected void cmdCancelComment_Click(object sender, EventArgs e)
-        //{
-        //    resetCommentControls();
-        //}
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+        protected void cmdAddNewComment_Click(object sender, EventArgs e)
+        {
+            resetCommentControls();
+            AddComment.Visible = true;
+            divAddaComment.Visible = false;
+        }
+        protected void cmdCancelComment_Click(object sender, EventArgs e)
+        {
+            resetCommentControls();
+        }
 
-        //private void resetCommentControls()
-        //{
-        //    AddComment.Visible = false;
-        //    hidCommentId.Value = "";
-        //    txtComment.Text = "";
-        //}
+        private void resetCommentControls()
+        {
+            AddComment.Visible = false;
+            hidCommentId.Value = "";
+            txtComment.Text = "";
+            divAddaComment.Visible = true;
+        }
 
 
-        //protected void dlComments_ItemCreated(object sender, DataListItemEventArgs e)
-        //{
-        //    if ((e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem))
-        //    {
-        //        if (e.Item.DataItem == null)
-        //        {
-        //            throw new ApplicationException("rebound wtf?");
-        //            return;
-        //        }
-        //        Comment currentComment = (Comment)e.Item.DataItem;
-        //        HiddenField hidUserId = (HiddenField)e.Item.FindControl("hidUserId");
-        //        Label lblUserName = (Label)e.Item.FindControl("lblUserName");
-        //        Label lblCommentDate = (Label)e.Item.FindControl("lblCommentDate");
-        //        Label lblComment = (Label)e.Item.FindControl("lblComment");
-        //        Button cmdRemove = (Button)e.Item.FindControl("cmdRemove");
-        //        Button cmdAddComment = (Button)e.Item.FindControl("cmdAddComment");
+        protected void dlComments_ItemCreated(object sender, DataListItemEventArgs e)
+        {
+            if ((e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem))
+            {
+                if (e.Item.DataItem == null)
+                {
+                    throw new ApplicationException("rebound wtf?");
+                    return;
+                }
+                Comment currentComment = (Comment)e.Item.DataItem;
+                HiddenField hidUserId = (HiddenField)e.Item.FindControl("hidUserId");
+                Label lblUserName = (Label)e.Item.FindControl("lblUserName");
+                Label lblCommentDate = (Label)e.Item.FindControl("lblCommentDate");
+                Label lblComment = (Label)e.Item.FindControl("lblComment");
+                Button cmdRemove = (Button)e.Item.FindControl("cmdRemove");
+                Button cmdAddComment = (Button)e.Item.FindControl("cmdAddComment");
 
-        //        hidUserId.Value = currentComment.userId.ToString();
-        //        lblUserName.Text = DotNetNuke.Entities.Users.UserController.GetUserById(ModuleContext.PortalId, currentComment.userId).DisplayName;
-        //        lblCommentDate.Text = currentComment.commentDate.ToShortDateString();
-        //        lblComment.Text = currentComment.comment;
-        //        cmdAddComment.CommandName = "addComment";
-        //        cmdAddComment.CommandArgument = currentComment.commentId.ToString();
-        //        if (ModuleContext.PortalSettings.UserInfo.IsInRole("Administrator") || ModuleContext.PortalSettings.UserInfo.IsSuperUser)
-        //        {
-        //            cmdRemove.CommandName = "removeComment";
-        //            cmdRemove.CommandArgument = currentComment.commentId.ToString();
-        //        }
-        //        else
-        //        {
-        //            cmdRemove.Visible = false;
-        //        }
+                hidUserId.Value = currentComment.userId.ToString();
+                lblUserName.Text = DotNetNuke.Entities.Users.UserController.GetUserById(ModuleContext.PortalId, currentComment.userId).DisplayName;
+                lblCommentDate.Text = currentComment.commentDate.ToShortDateString();
+                lblComment.Text = currentComment.comment;
+                cmdAddComment.CommandName = "addComment";
+                cmdAddComment.CommandArgument = currentComment.commentId.ToString();
+                if (ModuleContext.PortalSettings.UserInfo.IsInRole("Administrator") || ModuleContext.PortalSettings.UserInfo.IsSuperUser)
+                {
+                    cmdRemove.CommandName = "removeComment";
+                    cmdRemove.CommandArgument = currentComment.commentId.ToString();
+                }
+                else
+                {
+                    cmdRemove.Visible = false;
+                }
 
-        //    }
+            }
 
-        //}
-        //protected void dlComments_ItemCommand(object source, DataListCommandEventArgs e)
-        //{
-        //    switch (e.CommandName.ToString().ToLower())
-        //    {
-        //        case "addcomment":
-        //            resetCommentControls();
-        //            AddComment.Visible = true;
-        //            break;
-        //        case "removecomment":
-        //            //lblResourceName.Text = e.CommandArgument.ToString();
-        //            //return;
-        //            HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcecomment/" + e.CommandArgument.ToString()) as HttpWebRequest;
-        //            request.ContentType = "text/json";
-        //            request.Method = "DELETE";
-        //            var response = (HttpWebResponse)request.GetResponse();
-        //            Response.Redirect(Request.Url.AbsoluteUri);
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
-    }
+        }
+        protected void dlComments_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            switch (e.CommandName.ToString().ToLower())
+            {
+                case "addcomment":
+                    resetCommentControls();
+                    AddComment.Visible = true;
+                    break;
+                case "removecomment":
+                    //lblResourceName.Text = e.CommandArgument.ToString();
+                    //return;
+                    HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcecomment/" + e.CommandArgument.ToString()) as HttpWebRequest;
+                    request.ContentType = "text/json";
+                    request.Method = "DELETE";
+                    var response = (HttpWebResponse)request.GetResponse();
+                    Response.Redirect(Request.Url.AbsoluteUri);
+                    break;
+                default:
+                    break;
+            }
+        }
+        protected void lnkRate_Click(object sender, EventArgs e)
+        {
+            spanNotRated.Visible = false;
+            spanRating.Visible = false;
+            spanRateResource.Visible = true;
+        }
+        protected void btnRate_Click(object sender, EventArgs e)
+        {
+            //this is to save the rating for the resource...
+            spanRateResource.Visible = false;
+            //send info to the resource
+            int ratingGiven = 0;
+            if (rdoRating1.Checked)
+                ratingGiven = 1;
+            if (rdoRating2.Checked)
+                ratingGiven = 2;
+            if (rdoRating3.Checked)
+                ratingGiven = 3;
+            if (rdoRating4.Checked)
+                ratingGiven = 4;
+            if (rdoRating5.Checked)
+                ratingGiven = 5;
+            if (PortalSettings.Current.UserId > 0)
+            {
+                if (ratingGiven > 0)
+                {
+                    Dictionary<string, int> rating = new Dictionary<string, int>();
+                    rating.Add("resourceid", int.Parse(hidResourceId.Value));
+                    rating.Add("ratingscore", ratingGiven);
+                    rating.Add("userid", PortalSettings.Current.UserId);
+                    //send the information
+                    HttpWebRequest request = WebRequest.Create(dashboardUrlBase + "resourcecomment") as HttpWebRequest;
+                    request.ContentType = "text/json";
+                    request.Method = "POST";
+                    using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                    {
+                        string json = JsonConvert.SerializeObject(rating);
+
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                    }
+                    var response = (HttpWebResponse)request.GetResponse();
+                }
+            }
+            //reload the page...
+            Response.Redirect(Request.RawUrl);
+
+        }
+}
 }

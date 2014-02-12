@@ -19,6 +19,52 @@ namespace JustForTeachersApi.Controllers
     public class ResourceCommentController : ApiController
     {
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> Post()
+        {
+            int ResourceId = 0, ratingGiven = 0, userid = 0;
+
+            HttpResponseMessage response = new HttpResponseMessage();
+            var result = Request.Content.ReadAsFormDataAsync();
+            Stream streamIn = await Request.Content.ReadAsStreamAsync();
+            StreamReader streamReader = new StreamReader(streamIn);
+            string jsonstring = streamReader.ReadToEnd();
+            Dictionary<string, int> currentRating = new Dictionary<string, int>();
+            try
+            {
+                currentRating = JsonConvert.DeserializeObject<Dictionary<string, int>>(jsonstring);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
+            if (currentRating != null)
+            {
+                if (currentRating["resourceid"] != null && currentRating["ratingscore"] != null && currentRating["userid"] != null)
+                {
+                    using (ResourcesDataContext dc = new ResourcesDataContext())
+                    {
+                        try
+                        {
+                            bhdResourceRating d = new bhdResourceRating();
+                            d.resourceId = currentRating["resourceid"];
+                            d.rating = currentRating["ratingscore"];
+                            d.userId = currentRating["userid"];
+                            dc.bhdResourceRatings.InsertOnSubmit(d);
+                            dc.SubmitChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, ex);
+                        }
+                    }
+                }
+
+            }
+            return response;
+        }
+
         [HttpPut]
         [AllowAnonymous]
         public async Task<HttpResponseMessage> Put()

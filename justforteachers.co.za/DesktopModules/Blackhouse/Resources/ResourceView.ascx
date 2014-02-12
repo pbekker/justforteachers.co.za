@@ -1,13 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceView.ascx.cs" Inherits="Blackhouse.Resources.ResourceView" %>
 
 <style>
-    /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
-    /* ==========================================================================
-           HTML5 display definitions
-           ========================================================================== */
-    /**
-         * Correct `block` display not defined in IE 8/9.
-         */
+
     article,
     aside,
     details,
@@ -898,37 +892,66 @@
         font-style: italic;
         font-size: 13px;
     }
+
+    .reviews {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .review .rating {
+        float: right;
+    }
+    .rating.inactive, .rating.inactive li {
+        cursor: default;
+    }
+    .rating{list-style:none;color:#aaa;overflow:hidden;padding:0;margin:0;cursor:pointer}
+    .rating li{display:inline-block;padding:3px 0;cursor:pointer}
+    .rating .hovered,.rating .selected{color:#e2b500}
+    .rating.inactive,.rating.inactive li{cursor:default}
 </style>
 
+<script src='/desktopmodules/blackhouse/js/vendor/jquery.js' type="text/javascript"></script>
+<script src='/desktopmodules/blackhouse/js/vendor/jquery.MetaData.js' type="text/javascript" language="javascript"></script>
+<script src='/desktopmodules/blackhouse/js/vendor/jquery.rating.js' type="text/javascript" language="javascript"></script>
+<link href='/desktopmodules/blackhouse/js/vendor/jquery.rating.css' type="text/css" rel="stylesheet"/>
 
 <asp:HiddenField runat="server" ID="hidResourceId" />
 <h3>
     <asp:Label runat="server" ID="lblResourceName" Style="width: 90%" CssClass="resources-label" />
     <span runat="server" id="spanRating" style="float: right" class="resources-label">
-		<ul class="rating inactive">
-			<li class="selected" data-icon="&#xe007;"></li>
-			<li data-icon="&#xe007;"></li>
-		</ul>
-    </span>
 
+    </span>
+    <span runat="server" id="spanNotRated" style="float: right" class="resources-label">
+        This resource has not recieved enough ratings.<br />
+    </span>
+    <span runat="server" id="spanRateResource" style="float: right" class="resources-label" visible="false">
+        <asp:RadioButton runat="server" ID="rdoRating1" GroupName="resourceRating" Text="Poor (1 star)" /><br />
+        <asp:RadioButton runat="server" ID="rdoRating2" GroupName="resourceRating" Text="Below Average (2 star)" /><br />
+        <asp:RadioButton runat="server" ID="rdoRating3" GroupName="resourceRating" Text="Average (3 star)" /><br />
+        <asp:RadioButton runat="server" ID="rdoRating4" GroupName="resourceRating" Text="Good (4 star)" /><br />
+        <asp:RadioButton runat="server" ID="rdoRating5" GroupName="resourceRating" Text="Great (5 star)" Checked="true" /><br />
+        <asp:LinkButton runat="server" ID="btnRate" Text="Save" OnClick="btnRate_Click" />
+    </span>
 </h3>
-<p style="display: block; min-height: 200px;">
-    <table>
-        <tr>
-            <td>
-                <img runat="server" id="imgPreviewImage" style="float: left;" width="204" height="350" /></td>
-            <td style="vertical-align:top;">
-                <asp:Label runat="server" ID="lblResourceDescription" CssClass="resource-label" /></td>
-        </tr>
-    </table>
-</p>
+    <span runat="server" id="spanRate" style="float: right; clear:both;" class="resources-label" visible="false">
+        <asp:LinkButton runat="server" ID="lnkRate" Text="Click here to rate this resource." OnClick="lnkRate_Click" />
+    </span>    
+
+<table style="display: block; min-height: 200px; vertical-align: top; height: auto; width: 100%;">
+    <tr>
+        <td>
+            <img runat="server" id="imgPreviewImage" style="float: left;" width="204" height="350" /></td>
+        <td style="vertical-align:top; padding: 10px; width:90%;">
+            <asp:Label runat="server" ID="lblResourceDescription" CssClass="resource-label" /></td>
+    </tr>
+</table>
 <span><b>
     <asp:Label runat="server" Text="Resource Format: " CssClass="resources-label" /></b>
     <asp:Label runat="server" ID="ResourceType" CssClass="resources-label" /></span><br />
-<span runat="server" id="spanPhase"><b>
+    <span runat="server" id="spanPhase"><b>
     <asp:Label ID="lblPhase" runat="server" Text="Phase:" CssClass="resources-label" /></b>
     <asp:Label runat="server" ID="ResourcePhase" CssClass="resources-label" /></span><br />
-<span runat="server" id="spanSubject"><b>
+    <span runat="server" id="spanSubject"><b>
     <asp:Label ID="lblSubject" runat="server" Text="Subject:" CssClass="resources-label" /></b>
     <asp:Label runat="server" ID="ResourceSubject" CssClass="resources-label" /><br />
 </span>
@@ -976,6 +999,8 @@
             <asp:HyperLink runat="server" ID="lblFileName" Text='<%#Eval("resourceURL") %>' NavigateUrl='<%#Eval("resourceURL") %>' /></span><br />
     </ItemTemplate>
 </asp:Repeater>
+<br />
+<div style="clear:both;" />
 <div id="divApproval" runat="server">
     <div>
         <asp:CheckBox runat="server" ID="chkApprove" Text="Approved" Checked="true" />
@@ -984,68 +1009,41 @@
         <asp:LinkButton runat="server" ID="cmdApprove" Text="Confirm Approval" OnClick="cmdApprove_Click" CssClass="resource-btn resource-basic-btn" />
     </div>
 </div>
-
-<div> <%--
+<hr />
+<div> 
     <h3>Resource Comments</h3>
-        <asp:DataList runat="server" ID="dlComments" OnItemCommand="dlComments_ItemCommand" OnItemCreated="dlComments_ItemCreated" >
+
+    </div>
+    <div id="divCommentsList">
+        <asp:Repeater runat="server" ID="rptComments" >
             <ItemTemplate>
-                <asp:HiddenField runat="server" ID="hidUserId" Value="" />
-                <div>
-                    <asp:Label runat="server" ID="lblUserName" Text="UserName" />
-                </div>
-                <div>
-                    <asp:Label runat="server" ID="lblCommentDate" Text="Comment Date" />
-                </div>
-                <div>
-                    <asp:Label runat="server" ID="lblComment" Text="Comment" />
-                </div>
-                <div>
-                    <asp:Button runat="server" ID="cmdRemove" Text="Remove Comment" />
-                    &nbsp;
-                    <asp:Button runat="server" ID="cmdAddComment" Text="Add Comment" CausesValidation="False" />
-                </div>
-            </ItemTemplate>
-        </asp:DataList>
-   <div id="divRepeater" runat="server">
-        <asp:Repeater runat="server" ID="rptComments" OnItemCreated="rptComments_ItemCreated" OnItemCommand="rptComments_ItemCommand">
-            <ItemTemplate>
-                <asp:HiddenField runat="server" ID="hidUserId" Value="" />
-                <asp:LinkButton runat="server" ID="temp" Text="killyourself" CommandName="Wanker" CommandArgument="YOU" />
-                <div>
-                    <asp:Label runat="server" ID="lblUserName" Text="UserName" />
-                </div>
-                <div>
-                    <asp:Label runat="server" ID="lblCommentDate" Text="Comment Date" />
-                </div>
-                <div>
-                    <asp:Label runat="server" ID="lblComment" Text="Comment" />
-                </div>
-                <div>
-                    <asp:LinkButton runat="server" ID="cmdRemove" Text="Remove Comment" />
-                    &nbsp;
-                            <asp:LinkButton runat="server" ID="cmdAddComment" Text="Add Comment" />
+                <div style="width:100%; padding:10px; clear:both;">
+                    <asp:Label runat="server" ID="lblComment" Text='<%#Eval("comment") %>' /><br />
+                    <span style="width:100%; text-align:right; float:right; padding: 4px; font-size: 10px;"><asp:Label runat="server" ID="lblCommentDate" Text='<%#Eval("commentDate") %>' /></span>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
     </div>
     <div id="divEmptyMessage" runat="server">
-        <div>There are currently no Comments.</div>
+        <div class="text">There are currently no Comments.</div>
+        <div style="clear:both" />
         <div id="divAddFirstComment" runat="server">
-            You can
-                    <asp:LinkButton runat="server" ID="cmdAddNewComment" Text="Add a Comment" OnClick="cmdAddNewComment_Click" />
-            now!
+            You can <asp:LinkButton runat="server" ID="cmdAddNewComment" Text="Add a Comment" OnClick="cmdAddNewComment_Click" /> &nbsp;now!
         </div>
+        <div style="clear:both" />
     </div>
-    <div id="AddComment" runat="server" visible="false">
+        <div id="divAddaComment" runat="server" visible="false">
+            <asp:LinkButton runat="server" ID="cmdAddComment" Text="Add a Comment" OnClick="cmdAddNewComment_Click" />
+        </div>    <div id="AddComment" runat="server" visible="false">
         <asp:HiddenField runat="server" ID="hidCommentId" Value="" />
         <div>
             <asp:Label runat="server" ID="lblComment" Text="Comment:" />
-            <asp:TextBox runat="server" Rows="5" Columns="100" ID="txtComment" />
+            <asp:TextBox runat="server" Rows="5" TextMode="MultiLine" ID="txtComment" CssClass="text textarea" />
         </div>
         <div>
             <asp:LinkButton runat="server" ID="cmdCancelComment" Text="Cancel" OnClick="cmdCancelComment_Click" />
             &nbsp;
                     <asp:LinkButton runat="server" ID="cmdSaveComment" Text="Save" OnClick="cmdSaveComment_Click" />
         </div>
-    </div>--%>
-</div>
+    </div>
+

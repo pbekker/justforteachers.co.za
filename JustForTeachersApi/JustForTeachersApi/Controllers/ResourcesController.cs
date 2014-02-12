@@ -57,6 +57,29 @@ namespace JustForTeachersApi.Controllers
                 if (r.PreviewFileId != null)
                     tmpList.PreviewFileId = (int)r.PreviewFileId;
                 
+                //get rating score 
+                var rate = (from d in dc.bhdResourceRatings
+                            where d.resourceId == id
+                            select d);
+                if (rate != null)
+                {
+                    int ratingAve = 0;
+                    tmpResource.ratingCount = rate.Count();
+                    foreach (var item in rate)
+                    {
+                        ratingAve = ratingAve + item.rating;
+                    }
+                    if (ratingAve > 0 && rate.Count() > 0)
+                    {
+                        ratingAve = (ratingAve / rate.Count());
+                    }
+                    tmpResource.averageRating = ratingAve;
+                }
+                else
+                {
+                    tmpResource.ratingCount = 0;
+                    tmpResource.averageRating = 0;
+                }
                 // resource comments
                 List<Comment> resourceComments = dc.bhdResourceComments.Where((x) => x.resourceId == id && x.isActive.Value).Select(x => new Comment { userId = x.userId, resourceId = x.resourceId, commentDate = x.commentDate.Value, comment = x.comment, commentId = x.id, active = x.isActive.Value }).ToList();
                 tmpResource.comments = resourceComments;
