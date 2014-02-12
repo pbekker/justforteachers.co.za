@@ -227,4 +227,12 @@ namespace JustForTeachersApi.Models
         public string URL { get; set; }
         public List<FileViewInfo> fileInfo { get; set; }
     }
+
+    public class TopicInfo
+    {
+        public int topicId { get; set; }
+        public int? parentId { get; set; }
+        public string name { get; set; }
+
+    }
 }

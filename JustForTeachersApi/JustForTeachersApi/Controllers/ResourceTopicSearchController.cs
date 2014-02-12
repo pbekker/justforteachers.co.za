@@ -19,12 +19,12 @@ namespace JustForTeachersApi.Controllers
     {
         [HttpGet]
         [AllowAnonymous]
-        public List<GenDropList> Get()
+        public List<TopicInfo> Get()
         {
             using (ResourcesDataContext db = new ResourcesDataContext())
             {
                 Dictionary<int, string> tmpParents = new Dictionary<int, string>();
-                List<GenDropList> tmpList = new List<GenDropList>();
+                List<TopicInfo> tmpList = new List<TopicInfo>();
                 var r = db.sps_getResourceTopic(null);
                 foreach (var item in r)
                 {
@@ -33,21 +33,23 @@ namespace JustForTeachersApi.Controllers
                         string tmp;
                         tmpParents.TryGetValue((int)item.parentId, out tmp);
                         tmpParents.Add(item.id, tmp + " > " + item.name);
-                        GenDropList mtp = new GenDropList();
-                        mtp.ListId = item.id;
-                        mtp.ListValue = tmp + " > " + item.name;
-                        if (item.linkedResources != null)
-                            mtp.ListValue = mtp.ListValue + "(" + item.linkedResources.ToString() + ")";
+                        TopicInfo mtp = new TopicInfo();
+                        mtp.topicId = item.id;
+                        mtp.parentId = item.parentId;
+                        mtp.name = item.name;
+                        //if (item.linkedResources != null)
+                        //    mtp.ListValue = mtp.ListValue + "(" + item.linkedResources.ToString() + ")";
                         tmpList.Add(mtp);
                     }
                     else
                     {
                         tmpParents.Add(item.id, item.name);
-                        GenDropList mtp = new GenDropList();
-                        mtp.ListId = item.id;
-                        mtp.ListValue = item.name;
-                        if (item.linkedResources != null)
-                            mtp.ListValue = mtp.ListValue + "(" + item.linkedResources.ToString() + ")";
+                        TopicInfo mtp = new TopicInfo();
+                        mtp.topicId = item.id;
+                        mtp.parentId = item.parentId;
+                        mtp.name = item.name;
+                        //if (item.linkedResources != null)
+                        //    mtp.ListValue = mtp.ListValue + "(" + item.linkedResources.ToString() + ")";
                         tmpList.Add(mtp);
                     }
                 }

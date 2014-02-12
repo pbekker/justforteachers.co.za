@@ -156,6 +156,12 @@ namespace JustForTeachersApi.Controllers
         [AllowAnonymous]
         public void Delete(int id)
         {
+            using (ResourcesDataContext dc = new ResourcesDataContext())
+            {
+                bhdResource currentResource = dc.bhdResources.Single((x) => x.id == id);
+                currentResource.isActive = false;
+                dc.SubmitChanges();
+            }
         }
     }
 }

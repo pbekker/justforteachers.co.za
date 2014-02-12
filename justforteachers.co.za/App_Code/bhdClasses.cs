@@ -11,12 +11,21 @@ namespace Blackhouse.Resources
         public ResourceList resourceInfo { get; set; }
         public List<FileViewInfo> fileInfo { get; set; }
         public List<LinkViewInfo> urlInfo { get; set; }
+        public List<Comment> comments { get; set; }
+    }
+
+    public class ResourcePayload
+    {
         public List<GenDropList> types { get; set; }
         public List<GenDropList> languages { get; set; }
         public List<GenDropList> formats { get; set; }
+<<<<<<< HEAD
         public List<Comment> comments { get; set; }
         public int averageRating { get; set; }
         public int ratingCount { get; set; }
+=======
+        public DataTable topics { get; set; }
+>>>>>>> 1e3d034d9f5605df8b4d235796e704e081f5704b
     }
 
     public class ResourceList
@@ -86,14 +95,6 @@ namespace Blackhouse.Resources
         public string ListValue { get; set; }
     }
 
-    public class ResourcePayload
-    {
-        public List<GenDropList> types { get; set; }
-        public List<GenDropList> languages { get; set; }
-        public List<GenDropList> formats { get; set; }
-        public DataTable topics { get; set; }
-    }
-
     public class UploadData
     {
         public string ResourceName { get; set; }
@@ -150,6 +151,14 @@ namespace Blackhouse.Resources
     {
         public int ResourceId { get; set; }
         public List<string> tags { get; set; }
+    }
+
+    public class TopicInfo
+    {
+        public int topicId { get; set; }
+        public int? parentId { get; set; }
+        public string name { get; set; }
+
     }
 
 }
