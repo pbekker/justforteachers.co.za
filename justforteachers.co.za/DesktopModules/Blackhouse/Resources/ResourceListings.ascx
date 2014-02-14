@@ -62,8 +62,8 @@
     <ItemTemplate>
         <li>
             <span style="max-width: 236px;">
-            <h3><asp:LinkButton runat="server" ID="lblResourceName" Text='<%#Eval("ResourceName") %>' CommandArgument='<%#Eval("ResourceId") %>' /></h3>
-            <p><img runat="server" ID="imgPreviewImage" src='<%#GetImage(Eval("PreviewFileId").ToString()) %>' style="max-height: 83px;"></p>
+            <p><img runat="server" ID="imgPreviewImage" src='<%#GetImage(Eval("PreviewFileId").ToString()) %>' style="min-width: 215px;"></p>
+            <h5><asp:LinkButton runat="server" ID="lblResourceName" Text='<%#Eval("ResourceName") %>' CommandArgument='<%#Eval("ResourceId") %>' /></h5>
             <span><b>Type:</b> <asp:Label runat="server" ID="ResourceType" Text='<%#Eval("ResourceType") %>' /></span><br />
             <span><b>Topic:</b> <asp:Label runat="server" ID="ResourceTopic" Text='<%#Eval("ResourceTopic") %>' /></span><br />
             <span><b>Language:</b> <asp:Label runat="server" ID="ResourceLanguage" Text='<%#Eval("ResourceLanguage") %>' /></span><br />
